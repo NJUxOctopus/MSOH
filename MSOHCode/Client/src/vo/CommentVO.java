@@ -1,0 +1,35 @@
+package vo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class CommentVO implements Serializable {
+
+	public double score;
+
+	public String comment;
+
+	public String customerName;
+
+	public String hotelName;
+
+	public String hotelID;
+
+	public String orderID;
+
+	public Date commentTime;
+
+	public CommentVO() {
+	}
+
+	public CommentVO(double score, String comment, String customerName, String hotelName, String hotelID,
+			String orderID, Date commentTime) {
+		this.score = score;
+		this.comment = comment;
+		this.customerName = customerName;
+		this.hotelName = hotelName;
+		this.hotelID = hotelID;
+		this.orderID = orderID;
+		this.commentTime = commentTime;
+	}
+}

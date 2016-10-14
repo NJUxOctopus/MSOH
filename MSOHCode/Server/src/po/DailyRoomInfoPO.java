@@ -16,7 +16,6 @@ public class DailyRoomInfoPO implements Serializable {
 	}
 
 	public DailyRoomInfoPO(String hotelID, Date date, List<RoomPO> room) {
-		super();
 		this.hotelID = hotelID;
 		this.date = date;
 		this.room = room;

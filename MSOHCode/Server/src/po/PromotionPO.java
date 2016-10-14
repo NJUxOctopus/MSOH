@@ -7,25 +7,25 @@ import java.util.List;
 import util.MemberType;
 
 public class PromotionPO implements Serializable{
-
+	// 制定者姓名
 	private String framerName;
-	
+	// 制定日期
 	private Date frameDate;
-	
+	// 策略名称
 	private String promotionName;
-	
+	// 策略适用客户
 	private MemberType targetUser;
-	
+	// 策略适用商圈
 	private String targetArea;
-	
+	// 策略适用酒店
 	private List<String> targetHotel;
-	
+	// 策略生效时间
 	private Date startTime;
-	
+	// 策略过期时间
 	private Date endTime;
-	
+	// 策略折扣
 	private double discount;
-	
+	// 策略生效至少需要的房间数
 	private int minRoom;
 	
 	public PromotionPO(){}
