@@ -1,5 +1,6 @@
 package businesslogicservice.order_blservice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import util.OrderStatus;
@@ -20,7 +21,6 @@ public class Order_BLService_Stub implements Order_BLService {
 
 	PromotionVO promotionVO;
 
-	RoomVO roomVO;
 
 	List<OrderVO> list;
 
@@ -97,6 +97,7 @@ public class Order_BLService_Stub implements Order_BLService {
 	 */
 	@Override
 	public OrderVO getSingle(String orderID) {
+		OrderVO orderVO = new OrderVO();
 		return orderVO;
 	}
 	
@@ -105,6 +106,7 @@ public class Order_BLService_Stub implements Order_BLService {
 	 */
 	@Override
 	public List<OrderVO> getAll() {
+		List<OrderVO> list = new ArrayList<OrderVO>();
 		return list;
 	}
 	
@@ -144,10 +146,8 @@ public class Order_BLService_Stub implements Order_BLService {
 	 */
 	@Override
 	public double getPrice(OrderVO orderVO, RoomVO roomVO) {
-		for (String roomVO : orderVO.rooms) {
-			orderVO.initialPrice += roomVO.price;
-		}
-		orderVO.finalPrice = orderVO.initialPrice * getDiscount(promotionVO, orderVO) * 0.1;
+		orderVO = new OrderVO();
+		roomVO = new RoomVO();
 		return orderVO.finalPrice;
 	}
 

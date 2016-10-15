@@ -39,6 +39,7 @@ public class Promotion_BLService_Stub implements Promotion_BLService {
 	 */
 	@Override
 	public PromotionVO getSingle(Date date, String name) {
+		PromotionVO promotionVO = new PromotionVO();
 		return promotionVO;
 	}
 

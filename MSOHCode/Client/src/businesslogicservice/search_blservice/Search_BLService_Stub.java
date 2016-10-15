@@ -32,7 +32,7 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照工作人员职位返回列表
 	 */
 	@Override
-	public List<WorkerVO> ByPosition(WorkerPosition position) {
+	public List<WorkerVO> searchByPosition(WorkerPosition position) {
 		if (position.equals(WorkerPosition.CLERK)) {
 			return clerkList;
 		}
@@ -47,7 +47,7 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照ID返回用户列表
 	 */
 	@Override
-	public List<CustomerVO> Customer(String ID) {
+	public List<CustomerVO> searchCustomer(String ID) {
 		return customerList;
 	}
 	
@@ -55,7 +55,7 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照ID搜索工作人员
 	 */
 	@Override
-	public List<WorkerVO> WorkerByID(String ID) {
+	public List<WorkerVO> searchWorkerByID(String ID) {
 		return workerList;
 	}
 	
@@ -63,7 +63,7 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照名字搜索工作人员
 	 */
 	@Override
-	public List<WorkerVO> WorkerByName(String name) {
+	public List<WorkerVO> searchWorkerByName(String name) {
 		return workerList;
 	}
 	
@@ -71,23 +71,16 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照ID搜索酒店
 	 */
 	@Override
-	public List<HotelVO> HotelByID(String ID) {
+	public List<HotelVO> searchHotelByID(String ID) {
 		return hotelList;
 	}
 	
-	/**
-	 * 按照名字搜索酒店
-	 */
-	@Override
-	public List<HotelVO> HotelByName(String name) {
-		return hotelList;
-	}
 	
 	/**
 	 * 按照地址搜索酒店
 	 */
 	@Override
-	public List<HotelVO> HotelAddress(String address) {
+	public List<HotelVO> searchHotelAddress(String address) {
 		return hotelList;
 	}
 	
@@ -95,7 +88,7 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照订单状态搜索订单
 	 */
 	@Override
-	public List<OrderVO> OrderByStatus(String status) {
+	public List<OrderVO> searchOrderByStatus(OrderStatus status) {
 		return orderList;
 	}
 	
@@ -103,7 +96,7 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照用户姓名搜索订单
 	 */
 	@Override
-	public List<OrderVO> OrderByCustomerName(String customerName) {
+	public List<OrderVO> searchOrderByCustomerName(String customerName) {
 		return orderList;
 	}
 	
@@ -111,7 +104,7 @@ public class Search_BLService_Stub implements Search_BLService {
 	 * 按照酒店名搜索订单
 	 */
 	@Override
-	public List<OrderVO> OrderByHotelName(String hotelName) {
+	public List<OrderVO> searchOrderByHotelName(String hotelName) {
 		return orderList;
 	}
 

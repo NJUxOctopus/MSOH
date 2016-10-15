@@ -82,6 +82,7 @@ public class Member_BLService_Stub implements Member_BLService {
 	 */
 	@Override
 	public MemberVO getSingle(String ID) {
+		MemberVO memberVO = new MemberVO();
 		return memberVO;
 	}
 
