@@ -2,10 +2,13 @@ package businesslogicservice.search_blservice;
 
 import java.util.List;
 
-import javax.swing.text.Position;
+import vo.CustomerVO;
+import vo.HotelVO;
+import vo.OrderVO;
+import vo.WorkerVO;
 
 public interface Search_BLService {
-	public List<WorkerVO>ByPosition(Position position);
+	public List<WorkerVO>ByPosition(WorkerPosition position);
 	
 	public List<CustomerVO> Customer(String ID);
 	
@@ -19,7 +22,7 @@ public interface Search_BLService {
 	
 	public List<HotelVO> HotelAddress(String address);
 	
-	public List<OrderVo> OrderByStatus(String status);
+	public List<OrderVO> OrderByStatus(String status);
 	
 	public List<OrderVO> OrderByCustomerName (String customerName);
 	

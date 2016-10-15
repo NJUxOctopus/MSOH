@@ -4,15 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import util.ResultMessage;
+import vo.PromotionVO;
 
 public interface Promotion_BLService {
-	public ResultMessage Add(PromtionVO vo);
+	public ResultMessage addPromotion(PromotionVO promotionVO);
 	
-	public void End(Date date, PromotionVO vo);
-	
-	public void Execute(Date date, PromotionVO vo);
-	
-	public List<PromotionVo> getAll (Date date);
-	
-	public PromotionVo getSingle(Date date, String name);
+	public PromotionVO getSingle(Date date, String name);
 }

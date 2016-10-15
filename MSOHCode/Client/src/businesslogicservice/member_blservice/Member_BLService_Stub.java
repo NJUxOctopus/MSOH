@@ -1,9 +1,9 @@
 package businesslogicservice.member_blservice;
 
-import java.util.Date;
-
-import util.MemberType;
 import util.ResultMessage;
+import vo.CustomerVO;
+import vo.MemberLevelVO;
+import vo.MemberVO;
 
 /**
  * @author Pxr created:2016.10.14 latest modify:2016.10.15
@@ -22,35 +22,35 @@ public class Member_BLService_Stub implements Member_BLService {
 	@Override
 	public ResultMessage signUp(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
 		// 若用户信用值超过信用界限，则可以注册会员，并选择会员类型
-		if (customerVO.credit >= memberLevelVO.creditBoundries[1]) {
+		if (customerVO.credit >= memberLevelVO.creditBoundaries[1]) {
 			// 若用户未选择会员类型，返回有信息空白
-			if (memberLevelVO.memberType == null) {
+			if (memberVO.memberType == null) {
 				return ResultMessage.Blank;
 			}
 			// 若用户选择成为普通会员
-			else if (memberLevelVO.memberType.equals("NORMAL")) {
+			else if (memberVO.memberType.equals("NORMAL")) {
 				// 若用户未填写生日，返回有信息空白
-				if (memberLevelVO.birthday == null) {
+				if (memberVO.birthday == null) {
 					return ResultMessage.Blank;
 				}
 				// 若用户生日填写为12.25，则返回注册成功
 				else if (memberVO.birthday.equals(12.25)) {
-					return ResultMessage.SignUp_Success;
+					return ResultMessage.Member_NormalSignupSuccess;
 				}
 			}
 			// 若用户选择成为企业会员
-			else if (memberLevelVO.MemberType.equals("ENTREPRENEUR")) {
+			else if (memberVO.memberType.equals("ENTERPRICE")) {
 				// 若用户未填写企业名，返回有信息空白
 				if (memberVO.companyName == null) {
 					return ResultMessage.Blank;
 				}
 				// 若用户企业名填写为江南皮革厂，则返回注册成功
 				else if (memberVO.companyName.equals("江南皮革厂")) {
-					return ResultMessage.SignUp_Success;
+					return ResultMessage.Member_EnterpriceSignupSuccess;
 				}
 			}
 		} else {
-			return ResultMessage.Credit_Not_Enough;
+			return ResultMessage.Member_SignupCreditNotEnough;
 		}
 	}
 
@@ -58,9 +58,9 @@ public class Member_BLService_Stub implements Member_BLService {
 	 * 会员升级
 	 */
 	@Override
-	public void Upgrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
+	public void upGrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
 		// 若用户为会员一级而信用值超过会员2级，则升级
-		if (memberVO.level == 1 && customerVO.credit >= memberLevelVO.creditBoundries[2]) {
+		if (memberVO.level == 1 && customerVO.credit >= memberLevelVO.creditBoundaries[2]) {
 			memberVO.level++;
 		}
 	}
@@ -69,11 +69,11 @@ public class Member_BLService_Stub implements Member_BLService {
 	 * 会员降级
 	 */
 	@Override
-	public void Degrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
+	public void deGrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
 		// 若用户为二级而信用值不足，则降级
-		if (memberVO.level == 2 && customerVO.credit <= memberLevelVO.creditBoundries[2]
-				&& customerVO.credit >= memberLevelVO.creditBoundries[1]) {
-			customerVO.level--;
+		if (memberVO.level == 2 && customerVO.credit <= memberLevelVO.creditBoundaries[2]
+				&& customerVO.credit >= memberLevelVO.creditBoundaries[1]) {
+			memberVO.level--;
 		}
 	}
 
@@ -82,11 +82,7 @@ public class Member_BLService_Stub implements Member_BLService {
 	 */
 	@Override
 	public MemberVO getSingle(String ID) {
-		if (ID.equals("12358")) {
-			return memberVO;
-		} else if (ID.equals("00000")) {
-			return null;
-		}
+		return memberVO;
 	}
 
 }
