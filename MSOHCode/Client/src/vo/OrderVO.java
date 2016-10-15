@@ -1,17 +1,24 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import util.OrderStatus;
-
-public class OrderVO {
+/**
+ * 
+ * @author 週沁涵 2016-10-15 15:11:56
+ *
+ */
+public class OrderVO implements Serializable{
 
 	public String customerName;
 
 	public String phone;
 
 	public String customerID;
+	
+	public String hotelID;
 
 	public String hotelName;
 
@@ -48,13 +55,14 @@ public class OrderVO {
 	}
 
 	// 将actualCheckoutTime和actualCheckinTime放在构造函数中，是因为会出现线下创建订单的情况
-	public OrderVO(String customerName, String phone, String customerID, String hotelName, String orderID,
+	public OrderVO(String customerName, String phone, String customerID, String hotelID, String hotelName, String orderID,
 			Date estimatedCheckinTime, Date actualCheckinTime, Date estimatedCheckoutTime, Date actualCheckoutTime,
 			Date latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
 			String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
 		this.customerName = customerName;
 		this.phone = phone;
 		this.customerID = customerID;
+		this.hotelID=hotelID;
 		this.hotelName = hotelName;
 		this.orderID = orderID;
 		this.estimatedCheckinTime = estimatedCheckinTime;

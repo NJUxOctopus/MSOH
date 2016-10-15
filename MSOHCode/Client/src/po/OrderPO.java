@@ -5,7 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import util.OrderStatus;
-
+/**
+ * 
+ * @author 週沁涵
+ *
+ */
 public class OrderPO implements Serializable {
 	// 客户姓名或名称
 	private String customerName;
@@ -13,6 +17,8 @@ public class OrderPO implements Serializable {
 	private String phone;
 	// 身份证号
 	private String customerID;
+	// 酒店ID
+	private String hotelID;
 	// 酒店名称
 	private String hotelName;
 	// 订单号
@@ -49,13 +55,14 @@ public class OrderPO implements Serializable {
 	}
 
 	// 将actualCheckoutTime和actualCheckinTime放在构造函数中，是因为会出现线下创建订单的情况
-	public OrderPO(String customerName, String phone, String customerID, String hotelName, String orderID,
+	public OrderPO(String customerName, String phone, String customerID, String hotelID,String hotelName, String orderID,
 			Date estimatedCheckinTime, Date actualCheckinTime, Date estimatedCheckoutTime, Date actualCheckoutTime,
 			Date latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
 			String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
 		this.customerName = customerName;
 		this.phone = phone;
 		this.customerID = customerID;
+		this.hotelID=hotelID;
 		this.hotelName = hotelName;
 		this.orderID = orderID;
 		this.estimatedCheckinTime = estimatedCheckinTime;
@@ -97,6 +104,14 @@ public class OrderPO implements Serializable {
 		this.customerID = customerID;
 	}
 
+	public String getHotelID(){
+		return hotelID;
+	}
+	
+	public void setHotelID(String hotelID){
+		this.hotelID=hotelID;
+	}
+	
 	public String getHotelName() {
 		return hotelName;
 	}

@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 import util.MemberType;
-
+/**
+ * 
+ * @author ßLÇßº­
+ *
+ */
 public class MemberPO implements Serializable {
 	// ÓÃ»§ID
 	private String ID;

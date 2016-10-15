@@ -3,6 +3,11 @@ package vo;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:10:19
+ *
+ */
 public class CreditRecordVO implements Serializable{
 
 	public int variation;

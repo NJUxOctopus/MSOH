@@ -3,10 +3,11 @@ package businesslogicservice.marketer_blservice;
 import java.util.List;
 
 import util.ResultMessage;
+import vo.MarketerVO;
 
 public interface Marketer_BLService {
 
-	public ResultMessage signUp(MarketerVo vo);
+	public ResultMessage signUp(MarketerVO vo);
 
 	public MarketerVO getSingleByID(String ID);
 

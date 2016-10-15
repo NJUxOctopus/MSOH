@@ -3,7 +3,11 @@ package po;
 import java.awt.Image;
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ * 
+ * @author ßLÇßº­
+ *
+ */
 public class HotelPO implements Serializable {
 	// ¾ÆµêÃû³Æ
 	private String hotelName;

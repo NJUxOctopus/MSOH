@@ -2,7 +2,11 @@ package po;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * 
+ * @author 週沁涵
+ *
+ */
 public class MemberLevelPO implements Serializable{
 	//制定者姓名
 	private String framerName;

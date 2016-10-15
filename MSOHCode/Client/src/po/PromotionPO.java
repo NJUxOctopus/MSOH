@@ -5,7 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import util.MemberType;
-
+/**
+ * 
+ * @author 週沁涵
+ *
+ */
 public class PromotionPO implements Serializable{
 	// 制定者姓名
 	private String framerName;

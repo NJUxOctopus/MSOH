@@ -5,6 +5,11 @@ import java.io.Serializable;
 
 import util.MemberType;
 
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:09:44
+ *
+ */
 public class CustomerVO implements Serializable{
 
 	public String userName;

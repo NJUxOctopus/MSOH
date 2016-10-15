@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author ﬂL«ﬂ∫≠
+ *
+ */
 public class RoomPO implements Serializable {
 	// æ∆µÍID
 	private String hotelID;
