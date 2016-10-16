@@ -2,7 +2,11 @@ package po;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * 
+ * @author ßLÇßº­
+ *
+ */
 public class CommentPO implements Serializable {
 	// ÆÀ·Ö
 	private double score;

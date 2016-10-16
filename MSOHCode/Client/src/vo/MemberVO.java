@@ -5,6 +5,11 @@ import java.util.Date;
 
 import util.MemberType;
 
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:11:44
+ *
+ */
 public class MemberVO implements Serializable{
 
 	public String ID;

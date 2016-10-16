@@ -2,6 +2,11 @@ package vo;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:12:17
+ *
+ */
 public class RoomVO implements Serializable{
 
 	public String hotelID;
@@ -26,6 +31,10 @@ public class RoomVO implements Serializable{
 		this.reservedRooms = reservedRooms;
 		this.leftRooms = leftRooms;
 		this.price = price;
+	}
+	
+	public double getPrice(){
+		return price;
 	}
 
 }

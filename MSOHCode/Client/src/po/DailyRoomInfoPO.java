@@ -3,7 +3,11 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * 
+ * @author ﬂL«ﬂ∫≠
+ *
+ */
 public class DailyRoomInfoPO implements Serializable {
 	// æ∆µÍID
 	private String hotelID;

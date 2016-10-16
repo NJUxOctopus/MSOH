@@ -3,6 +3,12 @@ package po;
 import java.awt.Image;
 import java.io.Serializable;
 
+import util.WorkerPosition;
+/**
+ * 
+ * @author 週沁涵
+ *
+ */
 public class ManagerPO implements Serializable {
 	// 姓名
 	private String name;
@@ -14,16 +20,19 @@ public class ManagerPO implements Serializable {
 	private String password;
 	// 个人头像
 	private Image pic;
+	// 职位
+	private WorkerPosition position;
 
 	public ManagerPO() {
 	}
 
-	public ManagerPO(String name, String ID, String phone, String password, Image pic) {
+	public ManagerPO(String name, String ID, String phone, String password, Image pic,WorkerPosition position) {
 		this.name = name;
 		this.ID = ID;
 		this.phone = phone;
 		this.password = password;
 		this.pic = pic;
+		this.position=position;
 	}
 
 	public String getName() {
@@ -66,4 +75,11 @@ public class ManagerPO implements Serializable {
 		this.pic = pic;
 	}
 
+	public WorkerPosition getPosition(){
+		return position;
+	}
+	
+	public void setPosition(WorkerPosition position){
+		this.position=position;
+	}
 }

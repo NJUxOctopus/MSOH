@@ -7,6 +7,11 @@ import java.util.List;
 import vo.CommentVO;
 import vo.DailyRoomInfoVO;
 
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:09:12
+ *
+ */
 public class HotelVO implements Serializable{
 
 	public String hotelName;

@@ -3,7 +3,11 @@ package po;
 import java.awt.Image;
 import java.io.Serializable;
 import util.MemberType;
-
+/**
+ * 
+ * @author ßLÇßº­
+ *
+ */
 public class CustomerPO implements Serializable {
 	// ÓÃ»§Ãû
 	private String userName;

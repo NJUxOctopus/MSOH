@@ -1,8 +1,14 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MemberLevelVO {
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:08:10
+ *
+ */
+public class MemberLevelVO implements Serializable{
 
 	public String framerName;
 

@@ -1,5 +1,9 @@
 package util;
-
+/**
+ * 
+ * @author ßLÇßº­
+ *
+ */
 public enum OrderStatus {
-	NORMAL,REVOKED,ABNORMAL;
+	REVOKED,ABNORMAL,UNEXECUTED,EXECUTED,FINISHED_UNEVALUATED,FINISHED_EVALUATED;
 }

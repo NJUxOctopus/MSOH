@@ -1,11 +1,16 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import util.MemberType;
-
-public class PromotionVO {
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:12:07
+ *
+ */
+public class PromotionVO implements Serializable{
 
 	public String framerName;
 

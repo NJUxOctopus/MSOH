@@ -1,11 +1,15 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import vo.RoomVO;
-
-public class DailyRoomInfoVO {
+/**
+ * 
+ * @author ßLÇßº­ 2016-10-15 15:09:28
+ *
+ */
+public class DailyRoomInfoVO implements Serializable{
 
 	public String hotelID;
 
