@@ -8,7 +8,7 @@ public class Search_BLService_Driver {
 		search_BLService.searchByPosition(position);
 		search_BLService.searchCustomer("3202XXXXXXXXXXXXXX");
 		search_BLService.searchHotelAddress("NJU");
-		search_BLService.searchHotelByID("");//酒店ID长度未知
+		search_BLService.searchHotelByID("123456");
 		search_BLService.searchHotelByName("如家");
 		search_BLService.searchOrderByCustomerName("pxr");
 		search_BLService.searchOrderByHotelName("如家");
