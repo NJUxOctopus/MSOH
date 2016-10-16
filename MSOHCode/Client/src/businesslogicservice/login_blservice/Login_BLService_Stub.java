@@ -23,9 +23,9 @@ public class Login_BLService_Stub implements Login_BLService {
 		if (ID.equals("000000000000000000") && password.equals("123456")) {
 			// 登陆成功
 			return ResultMessage.Login_Success;
-		} else if (ID == null && password == null) {
+		} else if (ID == "" || password == "") {
 			// 用户名或密码未填写
-			return ResultMessage.Login_Blank;
+			return ResultMessage.Blank;
 		} else if (ID.equals("000000000000000000") && password.equals("000000")) {
 			// 密码错误
 			return ResultMessage.Login_WrongPassword;

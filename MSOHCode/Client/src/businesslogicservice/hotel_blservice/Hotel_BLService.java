@@ -1,26 +1,32 @@
 package businesslogicservice.hotel_blservice;
 
+import java.util.Date;
 import java.util.List;
 
 import util.ResultMessage;
+import vo.CommentVO;
+import vo.DailyRoomInfoVO;
+import vo.HotelVO;
+import vo.OrderVO;
+import vo.RoomVO;
 
 public interface Hotel_BLService {
 
-	public ResultMessage addRoom(RoomVo vo);
+	public ResultMessage addRoom(RoomVO vo);
 
-	public ResultMessage changeAvailableRoom(String type, int number, DailyRoomInfoVo vo);
+	public ResultMessage changeAvailableRoom(String ID, String type, int number, Date date, DailyRoomInfoVO vo);
 
-	public ResultMessage changeReservedRoom(String type, int number, DailyRoomInfoVo vo);
+	public ResultMessage changeReservedRoom(String type, int number, DailyRoomInfoVO vo);
 
-	public ResultMessage changeOccupiedRoom(String type, int number, DailyRoomInfoVo vo);
+	public ResultMessage changeOccupiedRoom(String type, int number, DailyRoomInfoVO vo);
 
-	public List<RoomVo> getRoom(String ID);
+	public List<RoomVO> getRoom(String ID);
 
-	public HotelVo getSingle(String ID);
+	public HotelVO getSingle(String ID);
 
-	public List<HotelVo> getAll();
+	public List<HotelVO> getAll();
 
-	public void addComment(CommentVo vo, OrderVo vo);
+	public void addComment(CommentVO commentVO, OrderVO orderVO);
 
 	public List<HotelVO> sortByPrice(List<HotelVO> list);
 

@@ -1,5 +1,19 @@
 package util;
 
 public enum ResultMessage {
-		Login_Success, Login_Blank, Login_NoUser, Login_WrongPassword; 
-}
+	Login_Success, Blank, Login_NoUser, Login_WrongPassword, 
+	Customer_SignupSuccess, WrongPhoneFormat, WrongIDFormat, WrongEmailFormat, Customer_SignupExist, 
+	ChangeInfoSuccess, Customer_CustomerNotExist,
+	Customer_ChangeInfoWrongPhoneFormat, Customer_ChangeInfoWrongEmailFormat,
+	ChangePasswordWrongOldPw, ChangePassword2DifferentNew, ChangePasswordSuccess, ChangePasswordNotExist,
+	Member_NormalSignupSuccess, Member_EnterpriseSignupSuccess, Member_SignupCreditNotEnough,
+	Order_CreateOrderSuccess,
+	Hotel_AddRoomBlank, Hotel_AddRoomSuccess, Hotel_HotelNotExist,
+	Manager_AddCustomerAlreadyExist, Manager_AddCustomerSuccess, Manager_changeCustomerInfoSuccess,
+	Manager_AddClerkAlreadyExist, Manager_AddClerkSuccess,
+	Manager_DeleteClerkSuccess, Clerk_ClerkNotExist, Manager_ChangeClerkInfoSuccess, Manager_AddMarketerSuccess,
+	Marketer_MarketerNotExist, Manager_DeleteMarketerSuccess, Manager_ChangeMarketerInfoSuccess,
+	Hotel_HotelAlreadyExist, WrongHotelIDFormat, Manager_AddHotelSuccess, Manager_DeleteHotelSuccess, Manager_ChangeHotelInfoSuccess,
+	Promotion_AddPromotionSuccess, Order_EndOrderSuccess, Order_ExecuteOrderSuccess, Order_CancelOrderSuccess,
+	Marketer_ChangeInfoSuccess, Marketer_CreditChargeSuccess
+	}
