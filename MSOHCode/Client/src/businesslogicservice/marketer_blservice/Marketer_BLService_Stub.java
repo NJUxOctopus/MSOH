@@ -103,7 +103,7 @@ public class Marketer_BLService_Stub implements Marketer_BLService {
 			return ResultMessage.Customer_CustomerNotExist;
 		} else {
 			// ≥‰÷µ≥…π¶
-			vo.credit+=credit;
+			vo.credit += credit;
 			return ResultMessage.Marketer_CreditChargeSuccess;
 		}
 	}

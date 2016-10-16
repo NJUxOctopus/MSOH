@@ -26,6 +26,8 @@ public class Manager_BLService_Stub implements Manager_BLService {
 		if (vo.phone == "") {
 			// 有信息未填写
 			return ResultMessage.Blank;
+		} else if (vo.phone.length() != 11) {
+			return ResultMessage.WrongPhoneFormat;
 		} else {
 			// 修改信息成功
 			return ResultMessage.ChangeInfoSuccess;
@@ -43,7 +45,7 @@ public class Manager_BLService_Stub implements Manager_BLService {
 			return ResultMessage.ChangePasswordWrongOldPw;
 		} else if (ID.equals("320581190001012016")) {
 			// 找不到对应工作人员
-			return ResultMessage.ChangePasswordNotExist;
+			return ResultMessage.Manager_ManagerNotExist;
 		} else if (oldPw.equals(managerVO.password) && !newPw1.equals(newPw2)) {
 			// 两次新密码不一致
 			return ResultMessage.ChangePassword2DifferentNew;
@@ -93,9 +95,6 @@ public class Manager_BLService_Stub implements Manager_BLService {
 		} else if (vo.phone.length() != 11) {
 			// 手机号码格式错误
 			return ResultMessage.WrongPhoneFormat;
-		} else if (vo.ID.length() != 18) {
-			// 身份证号格式错误
-			return ResultMessage.WrongIDFormat;
 		} else if (!vo.email.contains("@")) {
 			// 邮箱格式错误
 			return ResultMessage.WrongEmailFormat;
@@ -161,9 +160,6 @@ public class Manager_BLService_Stub implements Manager_BLService {
 		} else if (vo.phone.length() != 11) {
 			// 手机号码格式错误
 			return ResultMessage.WrongPhoneFormat;
-		} else if (vo.ID.length() != 18) {
-			// 身份证号格式错误
-			return ResultMessage.WrongIDFormat;
 		} else {
 			return ResultMessage.Manager_ChangeClerkInfoSuccess;
 		}
@@ -177,6 +173,9 @@ public class Manager_BLService_Stub implements Manager_BLService {
 		// TODO Auto-generated method stub
 		if (vo.ID == "" || vo.name == "" || vo.password == "" || vo.phone == "") {
 			return ResultMessage.Blank;
+		} else if (vo.ID.equals("320581190001012016")) {
+			// 营销人员已存在
+			return ResultMessage.Marketer_MarketerAlreadyExist;
 		} else if (vo.phone.length() != 11) {
 			// 手机号码格式错误
 			return ResultMessage.WrongPhoneFormat;
@@ -218,9 +217,6 @@ public class Manager_BLService_Stub implements Manager_BLService {
 		} else if (vo.phone.length() != 11) {
 			// 手机号码格式错误
 			return ResultMessage.WrongPhoneFormat;
-		} else if (vo.ID.length() != 18) {
-			// 身份证号格式错误
-			return ResultMessage.WrongIDFormat;
 		} else {
 			// 修改成功
 			return ResultMessage.Manager_ChangeMarketerInfoSuccess;

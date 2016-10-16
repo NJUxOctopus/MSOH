@@ -54,7 +54,7 @@ public class Clerk_BLService_Stub implements Clerk_BLService {
 			return ResultMessage.ChangePasswordWrongOldPw;
 		} else if (ID.equals("320581190001012016")) {
 			// 找不到对应工作人员
-			return ResultMessage.ChangePasswordNotExist;
+			return ResultMessage.Clerk_ClerkNotExist;
 		} else if (oldPw.equals(clerkVO.password) && !newPw1.equals(newPw2)) {
 			// 两次新密码不一致
 			return ResultMessage.ChangePassword2DifferentNew;

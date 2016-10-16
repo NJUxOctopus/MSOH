@@ -33,7 +33,7 @@ public class Hotel_BLService_Stub implements Hotel_BLService {
 	public ResultMessage addRoom(RoomVO roomVO) {
 		// TODO Auto-generated method stub
 		if (roomVO.roomType == "") {
-			return ResultMessage.Hotel_AddRoomBlank;
+			return ResultMessage.Blank;
 		} else {
 			return ResultMessage.Hotel_AddRoomSuccess;
 		}
@@ -49,7 +49,7 @@ public class Hotel_BLService_Stub implements Hotel_BLService {
 			// 没有对应的酒店
 			return ResultMessage.Hotel_HotelNotExist;
 		} else {
-
+			
 		}
 		return null;
 	}
@@ -115,7 +115,7 @@ public class Hotel_BLService_Stub implements Hotel_BLService {
 	@Override
 	public void addComment(CommentVO commentVO, OrderVO orderVO) {
 		// TODO Auto-generated method stub
-		if(orderVO.orderType.equals(OrderStatus.FINISHED_UNEVALUATED))){
+		if(orderVO.orderType.equals(OrderStatus.FINISHED_UNEVALUATED)){
 			// 订单已结束且未评价
 			hotelVO.comment.add(commentVO);
 		}
