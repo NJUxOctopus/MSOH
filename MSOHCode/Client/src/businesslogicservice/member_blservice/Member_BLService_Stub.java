@@ -46,12 +46,13 @@ public class Member_BLService_Stub implements Member_BLService {
 				}
 				// 若用户企业名填写为江南皮革厂，则返回注册成功
 				else if (memberVO.companyName.equals("江南皮革厂")) {
-					return ResultMessage.Member_EnterpriceSignupSuccess;
+					return ResultMessage.Member_EnterpriseSignupSuccess;
 				}
 			}
 		} else {
 			return ResultMessage.Member_SignupCreditNotEnough;
 		}
+		return null;
 	}
 
 	/**

@@ -1,10 +1,11 @@
 package businesslogicservice.search_blservice;
 
 import util.OrderStatus;
+import util.WorkerPosition;
 
 public class Search_BLService_Driver {
+	WorkerPosition position;
 	public void drive(Search_BLService search_BLService){
-		WorkerPosition position;
 		search_BLService.searchByPosition(position);
 		search_BLService.searchCustomer("3202XXXXXXXXXXXXXX");
 		search_BLService.searchHotelAddress("NJU");

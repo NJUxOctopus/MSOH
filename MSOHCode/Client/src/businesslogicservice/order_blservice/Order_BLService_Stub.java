@@ -38,6 +38,7 @@ public class Order_BLService_Stub implements Order_BLService {
 		} else if (orderVO.haveChildren == false && orderVO.numOfCustomers == 2 && orderVO.rooms.equals("±ê¼ä")) {
 			return ResultMessage.Order_CreateOrderSuccess;
 		}
+		return null;
 
 	}
 
@@ -69,7 +70,7 @@ public class Order_BLService_Stub implements Order_BLService {
 	@Override
 	public ResultMessage endOrder(OrderVO orderVO) {
 		if (orderVO.actualCheckoutTime != null) {
-			changeStatus(orderVO, OrderStatus.ENDED);
+			changeStatus(orderVO, OrderStatus.FINISHED_UNEVALUATED);
 			return ResultMessage.Order_EndOrderSuccess;
 		} else {
 			return ResultMessage.Blank;

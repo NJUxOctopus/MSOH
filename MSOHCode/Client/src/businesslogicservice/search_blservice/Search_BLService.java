@@ -3,6 +3,7 @@ package businesslogicservice.search_blservice;
 import java.util.List;
 
 import util.OrderStatus;
+import util.WorkerPosition;
 import vo.CustomerVO;
 import vo.HotelVO;
 import vo.OrderVO;

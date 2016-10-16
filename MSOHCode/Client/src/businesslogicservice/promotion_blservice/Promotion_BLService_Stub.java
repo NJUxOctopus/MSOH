@@ -38,7 +38,7 @@ public class Promotion_BLService_Stub implements Promotion_BLService {
 	 * 根据名字、日期获取营销策略
 	 */
 	@Override
-	public PromotionVO getSingle(Date date, String name) {
+	public PromotionVO getSingle(String hotelID) {
 		PromotionVO promotionVO = new PromotionVO();
 		return promotionVO;
 	}

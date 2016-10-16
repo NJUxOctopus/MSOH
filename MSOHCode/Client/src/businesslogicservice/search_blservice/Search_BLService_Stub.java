@@ -2,8 +2,8 @@ package businesslogicservice.search_blservice;
 
 import java.util.List;
 
-import javax.swing.text.Position;
-
+import util.OrderStatus;
+import util.WorkerPosition;
 import vo.CustomerVO;
 import vo.HotelVO;
 import vo.OrderVO;
@@ -33,10 +33,10 @@ public class Search_BLService_Stub implements Search_BLService {
 	 */
 	@Override
 	public List<WorkerVO> searchByPosition(WorkerPosition position) {
-		if (position.equals(WorkerPosition.CLERK)) {
+		if (position.equals(WorkerPosition.Clerk)) {
 			return clerkList;
 		}
-		if (position.equals(WorkerPosition.MARKETER)) {
+		if (position.equals(WorkerPosition.Marketer)) {
 			return marketerList;
 		} else {
 			return null;
@@ -107,5 +107,11 @@ public class Search_BLService_Stub implements Search_BLService {
 	public List<OrderVO> searchOrderByHotelName(String hotelName) {
 		return orderList;
 	}
+
+	@Override
+	public List<HotelVO> searchHotelByName(String name) {
+		return hotelList;
+	}
+
 
 }
