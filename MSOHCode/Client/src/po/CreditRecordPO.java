@@ -14,6 +14,8 @@ public class CreditRecordPO implements Serializable {
 	private Date changeTime;
 	// 客户姓名或名称
 	private String customerName;
+	// 客户ID
+	private String customerID;
 	// 更改后信用值
 	private int afterChangeCredit;
 	// 订单号
@@ -24,11 +26,12 @@ public class CreditRecordPO implements Serializable {
 	public CreditRecordPO() {
 	}
 
-	public CreditRecordPO(int variation, Date changeTime, String customerName, int afterChangeCredit, String orderID,
+	public CreditRecordPO(int variation, Date changeTime, String customerName, String customerID, int afterChangeCredit, String orderID,
 			String marketerName) {
 		this.variation = variation;
 		this.changeTime = changeTime;
 		this.customerName = customerName;
+		this.customerID=customerID;
 		this.afterChangeCredit = afterChangeCredit;
 		this.orderID = orderID;
 		this.marketerName = marketerName;
@@ -57,7 +60,15 @@ public class CreditRecordPO implements Serializable {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
+	
+	public String getCustomerID(){
+		return customerID;
+	}
 
+	public void setCustomerID(String customerID){
+		this.customerID=customerID;
+	}
+	
 	public int getAfterChangeCredit() {
 		return afterChangeCredit;
 	}

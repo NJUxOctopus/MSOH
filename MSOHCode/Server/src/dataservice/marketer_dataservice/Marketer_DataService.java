@@ -16,9 +16,9 @@ public interface Marketer_DataService {
 	
 	public ResultMessage modify (MarketerPO marketerPO);
 	
-	public MarketerPO findByMarketerName (String name);
+	public List<MarketerPO> findByMarketerName (String name);
 	
-	public MarketerPO findByMarketerID (String id);
+	public List<MarketerPO> findByMarketerID (String id);
 	
 	public List<MarketerPO> findByPosition(WorkerPosition position);
 	

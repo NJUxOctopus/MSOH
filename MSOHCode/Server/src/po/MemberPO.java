@@ -35,6 +35,10 @@ public class MemberPO implements Serializable {
 	public String getID() {
 		return ID;
 	}
+	
+	public void setID(String ID){
+		this.ID=ID;
+	}
 
 	public MemberType getMemberType() {
 		return memberType;

@@ -31,7 +31,7 @@ public interface Hotel_DataService {
 	
 	public ResultMessage deleteRoomType(RoomPO po);
 	
-	public int getRoomPrice(RoomPO po);
+	public double getRoomPrice(RoomPO po);
 	
 	public String getRoomType(RoomPO po);
 	

@@ -15,6 +15,8 @@ public class CreditRecordVO implements Serializable{
 	public Date changeTime;
 
 	public String customerName;
+	
+	public String customerID;
 
 	public int afterChangeCredit;
 
@@ -25,11 +27,12 @@ public class CreditRecordVO implements Serializable{
 	public CreditRecordVO() {
 	}
 
-	public CreditRecordVO(int variation, Date changeTime, String customerName, int afterChangeCredit, String orderID,
+	public CreditRecordVO(int variation, Date changeTime, String customerName, String customerID, int afterChangeCredit, String orderID,
 			String marketerName) {
 		this.variation = variation;
 		this.changeTime = changeTime;
 		this.customerName = customerName;
+		this.customerID=customerID;
 		this.afterChangeCredit = afterChangeCredit;
 		this.orderID = orderID;
 		this.marketerName = marketerName;

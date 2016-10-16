@@ -31,11 +31,13 @@ public class PromotionPO implements Serializable{
 	private double discount;
 	// 策略生效至少需要的房间数
 	private int minRoom;
+	// 策略ID
+	private String promotionID;
 	
 	public PromotionPO(){}
 
 	public PromotionPO(String framerName, Date frameDate, String promotionName, MemberType targetUser,
-			String targetArea, List<String> targetHotel, Date startTime, Date endTime, double discount, int minRoom) {
+			String targetArea, List<String> targetHotel, Date startTime, Date endTime, double discount, int minRoom, String promotionID) {
 		this.framerName = framerName;
 		this.frameDate = frameDate;
 		this.promotionName = promotionName;
@@ -46,6 +48,7 @@ public class PromotionPO implements Serializable{
 		this.endTime = endTime;
 		this.discount = discount;
 		this.minRoom = minRoom;
+		this.promotionID=promotionID;
 	}
 
 	public String getFramerName() {
@@ -128,5 +131,11 @@ public class PromotionPO implements Serializable{
 		this.minRoom = minRoom;
 	}
 	
+	public String getPromotionID(){
+		return promotionID;
+	}
 	
+	public void setPromotionID(String promotionID){
+		this.promotionID=promotionID;
+	}
 }

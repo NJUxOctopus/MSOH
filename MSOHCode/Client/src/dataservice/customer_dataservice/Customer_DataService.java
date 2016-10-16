@@ -18,8 +18,6 @@ public interface Customer_DataService {
 	
 	public List<CustomerPO> find(String id);	
 	
-	public ResultMessage delete(CustomerPO customerPO);
-	
 	public String getID (CustomerPO customerPO);
 	
 	public int getCurrentCredit (String customer_id);

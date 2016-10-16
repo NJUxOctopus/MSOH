@@ -8,7 +8,7 @@ import util.OrderStatus;
 import util.ResultMessage;
 /**
  * 
- * @author ßLÇßº­
+ * @author Ç®¿ÂÓî
  *
  */
 public interface Order_DataService {
@@ -23,9 +23,9 @@ public interface Order_DataService {
 	
 	public List<OrderPO> findByOrderStatus(OrderStatus orderStatus);
 	
-	public int getPrice(OrderPO po);
+	public double getPrice(OrderPO po);
 	
-	public ResultMessage changOrderStatus(OrderPO po, OrderStatus condition);
+	public ResultMessage changeOrderStatus(OrderPO po, OrderStatus condition);
 	
 	public OrderStatus getOrderStatus(OrderPO po);
 	

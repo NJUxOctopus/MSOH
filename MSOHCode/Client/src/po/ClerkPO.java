@@ -70,6 +70,10 @@ public class ClerkPO implements Serializable {
 		return ID;
 	}
 
+	public void setID(String ID){
+		this.ID=ID;
+	}
+	
 	public String getHotelName() {
 		return hotelName;
 	}

@@ -14,6 +14,8 @@ public class CommentVO implements Serializable {
 	public String comment;
 
 	public String customerName;
+	
+	public String customerID;
 
 	public String hotelName;
 
@@ -26,11 +28,12 @@ public class CommentVO implements Serializable {
 	public CommentVO() {
 	}
 
-	public CommentVO(double score, String comment, String customerName, String hotelName, String hotelID,
+	public CommentVO(double score, String comment, String customerName, String customerID, String hotelName, String hotelID,
 			String orderID, Date commentTime) {
 		this.score = score;
 		this.comment = comment;
 		this.customerName = customerName;
+		this.customerID=customerID;
 		this.hotelName = hotelName;
 		this.hotelID = hotelID;
 		this.orderID = orderID;

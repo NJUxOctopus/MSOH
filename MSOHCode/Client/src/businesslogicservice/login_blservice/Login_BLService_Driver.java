@@ -10,7 +10,7 @@ import util.ResultMessage;
 public class Login_BLService_Driver {
 	public void drive(Login_BLService login_BLService) {
 		ResultMessage result = login_BLService.login("", "123456");
-		if (result == ResultMessage.Login_Blank) {
+		if (result == ResultMessage.Blank) {
 			System.out.println("Info Blank!");
 		}
 

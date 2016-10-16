@@ -17,7 +17,7 @@ public interface Promotion_DataService {
 	
 	public String getTargetAera (PromotionPO po);
 
-	public List<HotelPO> getTargetHotel (PromotionPO po);
+	public List<String> getTargetHotel (PromotionPO po);
 	
 	public MemberType getTargetUser (PromotionPO po);
 	
