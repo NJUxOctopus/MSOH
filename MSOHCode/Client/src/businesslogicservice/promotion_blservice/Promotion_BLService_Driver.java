@@ -14,6 +14,6 @@ public class Promotion_BLService_Driver {
 		if(result.equals(ResultMessage.Promotion_AddPromotionSuccess))
 			System.out.println("Promotion adds successfully");
 		Date date = new Date();
-		promotion_BLService.getSingle(date, "˫11");
+		promotion_BLService.getSingle("2014111101");
 	}
 }

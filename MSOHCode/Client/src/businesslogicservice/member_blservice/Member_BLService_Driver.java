@@ -15,8 +15,8 @@ public class Member_BLService_Driver {
 			System.out.println("Member's information is blank");
 		if(result.equals(ResultMessage.Member_NormalSignupSuccess));
 			System.out.println("Normal member signs up successfully");
-		if(result.equals(ResultMessage.Member_EnterpriceSignupSuccess))
-			System.out.println("Enterprice member signs up successfully");
+		if(result.equals(ResultMessage.Member_EnterpriseSignupSuccess))
+			System.out.println("Enterprise member signs up successfully");
 		if(result.equals(ResultMessage.Member_SignupCreditNotEnough))
 			System.out.println("Sorry,your credit is not enough");
 		member_BLService.deGrade(memberLevelVO, memberVO, customerVO);

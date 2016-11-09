@@ -19,6 +19,7 @@ public class Customer_BLService_Stub implements Customer_BLService {
 	CustomerVO customerVO;
 	CreditRecordVO creditRecordVO;
 	HotelVO hotelVO;
+	List<HotelVO> list;
 
 	/**
 	 * 客户注册
@@ -79,10 +80,9 @@ public class Customer_BLService_Stub implements Customer_BLService {
 		} else if (oldPw.equals(customerVO.password) && !newPw1.equals(newPw2)) {
 			// 两次新密码不一致
 			return ResultMessage.ChangePassword2DifferentNew;
-		} else if (ID.equals("320581190001012016")) {
-			// 找不到对应用户
-			return ResultMessage.ChangePasswordNotExist;
-		}else {
+		} else
+
+		{
 			// 修改密码成功
 			return ResultMessage.ChangePasswordSuccess;
 		}
@@ -128,7 +128,7 @@ public class Customer_BLService_Stub implements Customer_BLService {
 	@Override
 	public List<HotelVO> getHistoryHotel(CustomerVO vo) {
 		// TODO Auto-generated method stub
-		return hotelVO;
+		return list;
 	}
 
 }

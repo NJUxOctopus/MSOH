@@ -9,5 +9,5 @@ import vo.PromotionVO;
 public interface Promotion_BLService {
 	public ResultMessage addPromotion(PromotionVO promotionVO);
 	
-	public PromotionVO getSingle(Date date, String name);
+	public PromotionVO getSingle(String promotionID);
 }

@@ -135,4 +135,7 @@ public class PromotionPO implements Serializable{
 		return promotionID;
 	}
 	
+	public void setPromotionID(String promotionID){
+		this.promotionID=promotionID;
+	}
 }
