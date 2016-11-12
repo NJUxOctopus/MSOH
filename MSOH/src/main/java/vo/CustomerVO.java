@@ -7,24 +7,14 @@ import util.MemberType;
 
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:09:44
+ * @author zqh
  *
  */
-public class CustomerVO implements Serializable{
-
-	public String userName;
-	
-	public String password;
-
-	public String phone;
+public class CustomerVO extends UserVO implements Serializable  {
 
 	public String email;
 
 	public int credit;
-
-	public Image picture;
-
-	public String ID;
 
 	public MemberType memberType;
 
@@ -33,13 +23,9 @@ public class CustomerVO implements Serializable{
 
 	public CustomerVO(String userName, String password, String phone, String email, int credit, Image picture,
 			String ID,MemberType memberType) {
-		this.userName = userName;
-		this.password = password;
-		this.phone = phone;
+		super(userName,phone,password,ID,picture);
 		this.email = email;
 		this.credit = credit;
-		this.picture = picture;
-		this.ID = ID;
 		this.memberType=memberType;
 	}
 

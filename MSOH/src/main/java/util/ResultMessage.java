@@ -19,6 +19,5 @@ public enum ResultMessage {
     MemberLevel_AddMemberLevelSuccess, MemberLevel_ModifyMemberLevelSuccess,
     Order_AddOrderSuccess, Order_ChangeOrderStatusSuccess, Order_SetActualCheckinTimeSuccess, Order_SetActualCheckoutTimeSuccess,
     Order_ChangeOrderStatusFailure, Order_SetActualCheckinTimeFailure, Order_SetActualCheckoutTimeFailure,
-    Datafactory_CreditChangeSuccess, Datafactory_AddCreditRecordSuccess, 
     Hotel_ModifyRoomSuccess, Hotel_DeleteRoomSuccess, Hotel_setDailyRoomInfoSuccess, Hotel_addCommentSuccess, Hotel_addToListOfHotelReservedByCustomerSuccess, Manager_AddMarketerAlreadyExist, Manager_ChangeManagerInfoSuccess;
 	}

@@ -6,10 +6,10 @@ import java.io.Serializable;
 import util.WorkerPosition;
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:10:51
+ * @author zqh
  *
  */
-public class ClerkVO extends WorkerVO implements Serializable{
+public class ClerkVO extends UserVO implements Serializable{
 
 	public String hotelName;
 
@@ -17,8 +17,8 @@ public class ClerkVO extends WorkerVO implements Serializable{
 		
 	public ClerkVO(){}
 	
-	public ClerkVO(String name,String phone,String password,String ID,Image pic,String hotelName,String hotelID,WorkerPosition position){
-		super(name,phone,password,ID,pic,position);
+	public ClerkVO(String name,String phone,String password,String ID,Image pic,String hotelName,String hotelID){
+		super(name,phone,password,ID,pic);
 		this.hotelName=hotelName;
 		this.hotelID=hotelID;
 	}
