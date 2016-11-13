@@ -1,5 +1,7 @@
 package dataservice.order_dataservice;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
@@ -8,32 +10,32 @@ import util.OrderStatus;
 import util.ResultMessage;
 /**
  * 
- * @author Ç®¿ÂÓî
+ * @author zqh
  *
  */
-public interface Order_DataService {
+public interface Order_DataService extends Remote{
 	
-	public ResultMessage add(OrderPO po);
+	public ResultMessage add(OrderPO po) throws RemoteException;
 	
-	public List<OrderPO> findByCustomerID(String customerID);
+	public List<OrderPO> findByCustomerID(String customerID) throws RemoteException;
 	
-	public List<OrderPO> findByCustomerIDAndOrderStatus(String customerID, OrderStatus orderStatus);
+	public List<OrderPO> findByCustomerIDAndOrderStatus(String customerID, OrderStatus orderStatus) throws RemoteException;
 	
-	public List<OrderPO> findByHotelID(String hotelID);
+	public List<OrderPO> findByHotelID(String hotelID)  throws RemoteException;
 	
-	public List<OrderPO> findByOrderStatus(OrderStatus orderStatus);
+	public List<OrderPO> findByOrderStatus(OrderStatus orderStatus) throws RemoteException;
 	
-	public double getPrice(OrderPO po);
+	public double getPrice(OrderPO po) throws RemoteException;
 	
-	public ResultMessage changeOrderStatus(OrderPO po, OrderStatus condition);
+	public ResultMessage changeOrderStatus(OrderPO po, OrderStatus condition) throws RemoteException;
 	
-	public OrderStatus getOrderStatus(OrderPO po);
+	public OrderStatus getOrderStatus(OrderPO po) throws RemoteException;
 	
-	public ResultMessage setActualCheckinTime(OrderPO po, Date actualCheckinTime);
+	public ResultMessage setActualCheckinTime(OrderPO po, Date actualCheckinTime) throws RemoteException;
 	
-	public ResultMessage setActualCheckoutTime(OrderPO po, Date actualCheckoutTime);
+	public ResultMessage setActualCheckoutTime(OrderPO po, Date actualCheckoutTime) throws RemoteException;
 	
-	public Date getLatestExecutedTime(OrderPO po);
+	public Date getLatestExecutedTime(OrderPO po) throws RemoteException;
 	
 	
 }
