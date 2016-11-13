@@ -4,34 +4,35 @@ import java.util.Date;
 import java.util.List;
 
 import util.ResultMessage;
-import vo.CommentVO;
-import vo.DailyRoomInfoVO;
-import vo.HotelVO;
-import vo.OrderVO;
-import vo.RoomVO;
+import vo.*;
 
 public interface Hotel_BLService {
 
 	public ResultMessage addRoom(RoomVO vo);
 
-	public ResultMessage changeAvailableRoom(String ID, String type, int number, Date date, DailyRoomInfoVO vo);
+	public ResultMessage modifyRoom(RoomVO roomVO);
 
-	public ResultMessage changeReservedRoom(String type, int number, DailyRoomInfoVO vo);
+	public ResultMessage deleteRoom (RoomVO roomVO);
 
-	public ResultMessage changeOccupiedRoom(String type, int number, DailyRoomInfoVO vo);
+	public ResultMessage changeAvailableRoom(String ID, String type, int number,DailyRoomInfoVO dailyRoomInfoVO);
+
+	public ResultMessage changeReservedRoom(String type, int number, DailyRoomInfoVO dailyRoomInfoVO);
+
+	public ResultMessage changeOccupiedRoom(String type, int number, DailyRoomInfoVO dailyRoomInfoVO);
+
+	public ResultMessage addComment(CommentVO commentVO, OrderVO orderVO);
+
+	public List<DailyRoomInfoVO> getDailyRoomInfo (String ID , Date Date);
 
 	public List<RoomVO> getRoom(String ID);
 
-	public HotelVO getSingle(String ID);
+	public ResultMessage addHotel(HotelVO roomVO);
 
-	public List<HotelVO> getAll();
+	public ResultMessage modifyHotel(HotelVO roomVO);
 
-	public void addComment(CommentVO commentVO, OrderVO orderVO);
+	public ResultMessage deleteHotel(HotelVO roomVO);
 
-	public List<HotelVO> sortByPrice(List<HotelVO> list);
+	public ResultMessage  addToListOfHotelReservedByCustomer(HotelVO hotelVO, CustomerVO customerVO);
 
-	public List<HotelVO> sortByStar(List<HotelVO> list);
-
-	public List<HotelVO> sortByScore(List<HotelVO> list);
-
+	public ResultMessage  modifyDailyRoomInfo (List<DailyRoomInfoVO> list);
 }
