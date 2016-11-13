@@ -7,10 +7,10 @@ import util.WorkerPosition;
 
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:12:31
+ * @author zqh
  *
  */
-public abstract class WorkerVO implements Serializable{
+public abstract class UserVO implements Serializable{
 
 	public String name;
 
@@ -21,17 +21,14 @@ public abstract class WorkerVO implements Serializable{
 	public String ID;
 
 	public Image pic;
+
+	public UserVO(){}
 	
-	public WorkerPosition position;
-	
-	public WorkerVO(){}
-	
-	public WorkerVO(String name,String phone,String password,String ID,Image pic, WorkerPosition position){
+	public UserVO(String name, String phone, String password, String ID, Image pic){
 		this.name=name;
 		this.phone=phone;
 		this.password=password;
 		this.ID=ID;
 		this.pic=pic;
-		this.position=position;
 	}
 }
