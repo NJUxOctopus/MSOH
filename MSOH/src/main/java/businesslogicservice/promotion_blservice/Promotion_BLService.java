@@ -8,6 +8,8 @@ import vo.PromotionVO;
 
 public interface Promotion_BLService {
 	public ResultMessage addPromotion(PromotionVO promotionVO);
-	
-	public PromotionVO getSingle(String promotionID);
+
+	public ResultMessage modifyPromotion(PromotionVO promotionVO);
+
+	public ResultMessage deletePromotion(String promotionID);
 }

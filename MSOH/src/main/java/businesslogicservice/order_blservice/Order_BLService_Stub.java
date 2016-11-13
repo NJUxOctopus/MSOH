@@ -22,14 +22,9 @@ public class Order_BLService_Stub implements Order_BLService {
 	PromotionVO promotionVO;
 
 
-	List<OrderVO> list;
-
-	CreditRecordVO creditRecordVO;
-
 	/**
 	 * 新建订单
 	 */
-	@Override
 	public ResultMessage createOrder(OrderVO orderVO) {
 		// TODO Auto-generated method stub
 		if (orderVO.estimatedCheckinTime == null || orderVO.estimatedCheckoutTime == null || orderVO.phone.equals("")
@@ -45,19 +40,17 @@ public class Order_BLService_Stub implements Order_BLService {
 	/**
 	 * 撤销订单
 	 */
-	@Override
 	public ResultMessage cancelOrder(OrderVO orderVO) {
-		changeStatus(orderVO, OrderStatus.REVOKED);
+		orderVO.orderType=OrderStatus.REVOKED
 		return ResultMessage.Order_CancelOrderSuccess;
 	}
 
 	/**
 	 * 执行订单
 	 */
-	@Override
 	public ResultMessage executeOrder(OrderVO orderVO) {
 		if (orderVO.actualCheckoutTime != null || orderVO.estimatedCheckoutTime != null) {
-			changeStatus(orderVO, OrderStatus.EXECUTED);
+			orderVO.orderType=OrderStatus.EXECUTED;
 			return ResultMessage.Order_ExecuteOrderSuccess;
 		} else {
 			return ResultMessage.Blank;
@@ -67,10 +60,9 @@ public class Order_BLService_Stub implements Order_BLService {
 	/**
 	 * 结束订单
 	 */
-	@Override
 	public ResultMessage endOrder(OrderVO orderVO) {
 		if (orderVO.actualCheckoutTime != null) {
-			changeStatus(orderVO, OrderStatus.FINISHED_UNEVALUATED);
+			orderVO.orderType= OrderStatus.FINISHED_UNEVALUATED;
 			return ResultMessage.Order_EndOrderSuccess;
 		} else {
 			return ResultMessage.Blank;
@@ -80,76 +72,16 @@ public class Order_BLService_Stub implements Order_BLService {
 	/**
 	 * 将订单设置为异常
 	 */
-	@Override
-	public void setAbnormal(OrderVO orderVO) {
-		changeStatus(orderVO, OrderStatus.ABNORMAL);
+	public ResultMessage setAbnormal(OrderVO orderVO) {
+		orderVO.orderType=OrderStatus.ABNORMAL;
+		return ResultMessage.Order_SetAbnormalSuccess;
 	}
 
 	/**
 	 * 将异常订单恢复
 	 */
-	@Override
-	public void renewOrder(OrderVO orderVO) {
-		changeStatus(orderVO, OrderStatus.REVOKED);
+	public ResultMessage renewOrder(OrderVO orderVO) {
+		orderVO.orderType=OrderStatus.REVOKED;
+		return ResultMessage.Order_RenewOrderSuccess;
 	}
-
-	/**
-	 * 按照ID获取订单
-	 */
-	@Override
-	public OrderVO getSingle(String orderID) {
-		OrderVO orderVO = new OrderVO();
-		return orderVO;
-	}
-	
-	/**
-	 * 获取所有订单
-	 */
-	@Override
-	public List<OrderVO> getAll() {
-		List<OrderVO> list = new ArrayList<OrderVO>();
-		return list;
-	}
-	
-	/**
-	 * 得到折扣
-	 */
-	@Override
-	public double getDiscount(PromotionVO promotionVO, OrderVO orderVO) {
-		if (orderVO.rooms.size() >= promotionVO.minRoom) {
-			return 9.5;
-		} else {
-			return 10;
-		}
-	}
-	
-	/**
-	 * 添加信用记录
-	 */
-	@Override
-	public void addCreditRecord(OrderVO orderVO, CreditRecordVO creditRecordVO) {
-		if (orderVO.orderType.equals(OrderStatus.EXECUTED)) {
-			creditRecordVO.variation = (int) orderVO.finalPrice;
-		} else if (orderVO.orderType.equals(OrderStatus.ABNORMAL)) {
-			creditRecordVO.variation = -(int) orderVO.finalPrice;
-		}
-		creditRecordVO.afterChangeCredit += creditRecordVO.variation;
-	}
-	/**
-	 * 改变订单状态
-	 */
-	@Override
-	public void changeStatus(OrderVO orderVO, OrderStatus orderType) {
-		orderVO.orderType = orderType;
-	}
-	/**
-	 * 获取价格
-	 */
-	@Override
-	public double getPrice(OrderVO orderVO, RoomVO roomVO) {
-		orderVO = new OrderVO();
-		roomVO = new RoomVO();
-		return orderVO.finalPrice;
-	}
-
 }

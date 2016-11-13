@@ -7,11 +7,6 @@ import vo.MemberVO;
 
 public interface Member_BLService {
 
-	public ResultMessage signUp(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO);
+	public ResultMessage signUp(MemberVO memberVO, CustomerVO customerVO);
 
-	public void upGrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO);
-
-	public void deGrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO);
-
-	public MemberVO getSingle(String ID);
 }

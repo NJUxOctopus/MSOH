@@ -1,59 +1,61 @@
 package dataservice.order_dataservice;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import po.OrderPO;
 import util.OrderStatus;
 import util.ResultMessage;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * 
- * @author Ç®¿ÂÓî
+ * @author Ç®ï¿½ï¿½ï¿½ï¿½
  *
  */
 public class Order_DataService_Stub implements Order_DataService{
 
-	@Override
+	public OrderPO getOrderByOrderID(String OrderID) {
+		return new OrderPO();
+	}
+
+	public ResultMessage setEstimatedCheckoutTime(OrderPO orderPO,Date estimatedCheckoutTime) {
+		orderPO.setEstimatedCheckoutTime(estimatedCheckoutTime);
+		return ResultMessage.Order_SetEstimatedCheckoutTimeSuccess;
+	}
+
 	public ResultMessage add(OrderPO po) {
 		return ResultMessage.Order_AddOrderSuccess;
 	}
 
-	@Override
 	public List<OrderPO> findByCustomerID(String customerID) {
 		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
 		order.add(new OrderPO());
 		return order;
 	}
 
-	@Override
 	public List<OrderPO> findByCustomerIDAndOrderStatus(String customerID, OrderStatus orderStatus) {
 		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
 		order.add(new OrderPO());
 		return order;
 	}
 
-	@Override
 	public List<OrderPO> findByHotelID(String hotelID) {
 		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
 		order.add(new OrderPO());
 		return order;
 	}
 
-	@Override
 	public List<OrderPO> findByOrderStatus(OrderStatus orderStatus) {
 		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
 		order.add(new OrderPO());
 		return order;
 	}
 
-	@Override
 	public double getPrice(OrderPO po) {
 		return po.getFinalPrice();
 	}
 
-	@Override
 	public ResultMessage changeOrderStatus(OrderPO po, OrderStatus condition) {
 		if(po.getOrderID().equals("111111111"))
 			return ResultMessage.Order_ChangeOrderStatusSuccess;
@@ -62,7 +64,6 @@ public class Order_DataService_Stub implements Order_DataService{
 
 	}
 
-	@Override
 	public OrderStatus getOrderStatus(OrderPO po) {
 		if(po.getOrderID().equals("111111111"))
 			return po.getOrderType();
@@ -70,7 +71,6 @@ public class Order_DataService_Stub implements Order_DataService{
 			return null;
 	}
 
-	@Override
 	public ResultMessage setActualCheckinTime(OrderPO po, Date actualCheckinTime) {
 		if(po.getOrderID().equals("111111111"))
 			return ResultMessage.Order_SetActualCheckinTimeSuccess;
@@ -78,7 +78,6 @@ public class Order_DataService_Stub implements Order_DataService{
 			return ResultMessage.Order_SetActualCheckinTimeFailure;
 	}
 
-	@Override
 	public ResultMessage setActualCheckoutTime(OrderPO po, Date actualCheckoutTime) {
 		if(po.getOrderID().equals("111111111"))
 			return ResultMessage.Order_SetActualCheckoutTimeSuccess;
@@ -86,7 +85,10 @@ public class Order_DataService_Stub implements Order_DataService{
 			return ResultMessage.Order_SetActualCheckoutTimeFailure;
 	}
 
-	@Override
+	public OrderPO getOrderByHotelID(String hotelID) {
+		return null;
+	}
+
 	public Date getLatestExecutedTime(OrderPO po) {
 		if(po.getOrderID().equals("111111111"))
 			return po.getLatestExecutedTime();

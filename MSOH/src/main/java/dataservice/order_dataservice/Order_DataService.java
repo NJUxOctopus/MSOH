@@ -8,10 +8,14 @@ import util.OrderStatus;
 import util.ResultMessage;
 /**
  * 
- * @author Ç®¿ÂÓî
+ * @author Ç®ï¿½ï¿½ï¿½ï¿½
  *
  */
 public interface Order_DataService {
+
+	public OrderPO getOrderByOrderID(String OrderID);
+
+	public OrderPO getOrderByHotelID(String hotelID);
 	
 	public ResultMessage add(OrderPO po);
 	
@@ -32,6 +36,8 @@ public interface Order_DataService {
 	public ResultMessage setActualCheckinTime(OrderPO po, Date actualCheckinTime);
 	
 	public ResultMessage setActualCheckoutTime(OrderPO po, Date actualCheckoutTime);
+
+	public OrderPO setEstimatedCheckoutTime(OrderPO orderPO,Date estimatedCheckoutTime);
 	
 	public Date getLatestExecutedTime(OrderPO po);
 	

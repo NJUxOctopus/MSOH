@@ -6,7 +6,7 @@ import po.ClerkPO;
 import util.ResultMessage;
 /**
  * 
- * @author åX¿ÂÓî
+ * @author zqh
  *
  */
 public interface Clerk_DataService {

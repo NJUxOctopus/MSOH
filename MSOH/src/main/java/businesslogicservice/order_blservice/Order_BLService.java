@@ -18,19 +18,10 @@ public interface Order_BLService {
 
 	public ResultMessage endOrder(OrderVO orderVO);
 
-	public void setAbnormal(OrderVO orderVO);
+	public ResultMessage setAbnormal(OrderVO orderVO);
 
-	public void renewOrder(OrderVO orderVO);
+	public ResultMessage renewOrder(OrderVO orderVO);
 
-	public OrderVO getSingle(String orderID);
+	public double getTotal(OrderVO orderVO);
 
-	public List<OrderVO> getAll();
-
-	public double getDiscount(PromotionVO promotionVO, OrderVO orderVO);
-
-	public void addCreditRecord(OrderVO orderVO,CreditRecordVO creditRecordVO);
-
-	public void changeStatus(OrderVO orderVO, OrderStatus orderType);
-
-	public double getPrice(OrderVO orderVO,RoomVO roomVO);
 }
