@@ -19,4 +19,6 @@ public interface Clerk_DataService {
 	public List<ClerkPO> findByClerkID (String id);
 	
 	public ResultMessage delete(ClerkPO clerkPO);
+
+	public ClerkPO find(String ID);
 }

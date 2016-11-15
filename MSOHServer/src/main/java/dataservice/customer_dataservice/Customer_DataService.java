@@ -16,11 +16,13 @@ public interface Customer_DataService {
 	
 	public ResultMessage modify(CustomerPO customerPO);
 	
-	public List<CustomerPO> find(String id);	
+	public List<CustomerPO> findByID(String id);
 	
 	public String getID (CustomerPO customerPO);
 	
 	public int getCurrentCredit (String customer_id);
 	
 	public List<HotelPO> getReservedHotel(CustomerPO customerPO);
+
+	public CustomerPO find(String ID);
 }
