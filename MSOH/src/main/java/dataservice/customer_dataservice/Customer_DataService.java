@@ -18,11 +18,13 @@ public interface Customer_DataService extends Remote{
 	
 	public ResultMessage modify(CustomerPO customerPO) throws RemoteException;
 	
-	public List<CustomerPO> find(String id) throws RemoteException;
+	public List<CustomerPO> findByID(String id) throws RemoteException;
 	
 	public String getID (CustomerPO customerPO) throws RemoteException;
 	
 	public int getCurrentCredit (String customer_id) throws RemoteException;
 	
 	public List<HotelPO> getReservedHotel(CustomerPO customerPO) throws RemoteException;
+
+	public CustomerPO find(String ID)throws RemoteException;
 }

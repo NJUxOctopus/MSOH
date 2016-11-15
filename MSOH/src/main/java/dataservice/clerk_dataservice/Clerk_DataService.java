@@ -21,4 +21,6 @@ public interface Clerk_DataService extends Remote{
 	public List<ClerkPO> findByClerkID (String id) throws RemoteException;
 	
 	public ResultMessage delete(ClerkPO clerkPO) throws RemoteException;
+
+	public ClerkPO find(String ID) throws RemoteException;
 }
