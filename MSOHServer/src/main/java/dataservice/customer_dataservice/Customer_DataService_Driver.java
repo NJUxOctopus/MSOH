@@ -7,7 +7,7 @@ import po.HotelPO;
 import util.ResultMessage;
 /**
  * 
- * @author ÖÜÇßº­
+ * @author ï¿½ï¿½ï¿½ßºï¿½
  *
  */
 public class Customer_DataService_Driver {
@@ -32,14 +32,14 @@ public class Customer_DataService_Driver {
 			System.out.println("Get CustomerID Failure!");
 		}
 		
-		int currentCredit=customer_DataService.getCurrentCredit("320581190001012016");
+		double currentCredit=customer_DataService.getCurrentCredit("320581190001012016");
 		if(currentCredit==1000){
 			System.out.println("Get Current Credit Successfully!");
 		}else{
 			System.out.println("Get Current Credit Failure!");
 		}
 		
-		List<CustomerPO> customerList=customer_DataService.find("320581190001012016");
+		List<CustomerPO> customerList=customer_DataService.findByID("320581190001012016");
 		if(!customerList.isEmpty()){
 			System.out.println("Find Customer Successfully!");
 		}else{
