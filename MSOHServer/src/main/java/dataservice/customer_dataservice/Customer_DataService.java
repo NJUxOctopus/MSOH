@@ -22,7 +22,7 @@ public interface Customer_DataService {
 
     public ResultMessage modify(CustomerPO customerPO);
 
-    public List<CustomerPO> findByID(String customerID);
+    public List<CustomerPO> findByName(String customerName);
 
     public CreditRecordPO getCreditRecord(CustomerPO customerPO);
 

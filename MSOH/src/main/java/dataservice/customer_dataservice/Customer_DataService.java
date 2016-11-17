@@ -25,7 +25,7 @@ public interface Customer_DataService extends Remote {
 
     public ResultMessage modify(CustomerPO customerPO) throws RemoteException;
 
-    public List<CustomerPO> findByID(String customerID) throws RemoteException;
+    public List<CustomerPO> findByName(String customerName) throws RemoteException;
 
     public CreditRecordPO getCreditRecord(CustomerPO customerPO) throws RemoteException;
 

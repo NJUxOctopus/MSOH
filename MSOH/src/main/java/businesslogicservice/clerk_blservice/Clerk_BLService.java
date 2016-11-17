@@ -1,25 +1,21 @@
 package businesslogicservice.clerk_blservice;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import util.ResultMessage;
 import vo.ClerkVO;
 
 /**
- * 
  * @author ST 2016/10/15
- *
  */
 public interface Clerk_BLService {
 
-	public ResultMessage changeInfo(ClerkVO clerkVO);
+    public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException;
 
-	public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2);
+    public ResultMessage changeInfo(ClerkVO clerkVO) throws RemoteException;
 
-	public ClerkVO getSingleByID(String ID);
+    public ResultMessage deleteClerk(ClerkVO clerkVO) throws RemoteException;
 
-	public ClerkVO getSingleByName(String name);
-
-	public List<ClerkVO> getAll();
-
+    public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException;
 }
