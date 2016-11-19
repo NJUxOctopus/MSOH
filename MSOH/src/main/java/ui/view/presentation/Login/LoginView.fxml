@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="489.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/登录界面.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="166.0" layoutY="94.0" text="Welcome" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="96.0" />
+         </font>
+      </Label>
+      <Label layoutX="137.0" layoutY="293.0" text="用户：">
+         <font>
+            <Font name="Microsoft YaHei" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="137.0" layoutY="337.0" text="密码：">
+         <font>
+            <Font name="Microsoft YaHei" size="22.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passWordField" layoutX="228.0" layoutY="339.0" prefHeight="29.0" prefWidth="275.0" />
+      <TextField fx:id="userNameField" layoutX="228.0" layoutY="294.0" prefHeight="29.0" prefWidth="275.0" />
+      <Button fx:id="RememberPWButton" layoutX="503.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="记住密码" textFill="#7d8bda">
+         <font>
+            <Font name="Microsoft YaHei" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="LoginButton" layoutX="228.0" layoutY="388.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="登录">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="RegisterButton" layoutX="382.0" layoutY="388.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="注册">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="SkipButton" layoutX="640.0" layoutY="418.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="80.0" style="-fx-background-color: #ffffff00;" text="跳过">
+         <font>
+            <Font name="Microsoft YaHei" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
