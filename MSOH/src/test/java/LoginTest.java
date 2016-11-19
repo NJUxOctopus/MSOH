@@ -3,7 +3,7 @@ import businesslogic.login_bl.MockLogin;
 import static junit.framework.Assert.assertEquals;
 
 /**
- * Created by 名 on 2016/11/13.
+ * Created by pxr on 2016/11/13.
  */
 public class LoginTest {
 

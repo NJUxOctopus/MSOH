@@ -1,61 +1,61 @@
 package po;
 
+import util.OrderStatus;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import util.OrderStatus;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class OrderPO implements Serializable {
-	// ¿Í»§ĞÕÃû»òÃû³Æ
+	// å®¢æˆ·å§“å
 	private String customerName;
-	// ÊÖ»úºÅ
+	// å®¢æˆ·è”ç³»æ–¹å¼
 	private String phone;
-	// Éí·İÖ¤ºÅ
+	// å®¢æˆ·ID
 	private String customerID;
-	// ¾ÆµêID
+	// é…’åº—ID
 	private String hotelID;
-	// ¾ÆµêÃû³Æ
+	// é…’åº—åç§°
 	private String hotelName;
-	// ¶©µ¥ºÅ
+	// è®¢å•å·
 	private String orderID;
-	// Ô¤¼Æ¶©µ¥¿ªÊ¼Ê±¼ä
+	// é¢„è®¡check inæ—¶é—´
 	private Date estimatedCheckinTime;
-	// Êµ¼Ê¶©µ¥¿ªÊ¼Ê±¼ä
+	// å®é™…check inæ—¶é—´
 	private Date actualCheckinTime;
-	// Ô¤¼ÆÍË·¿Ê±¼ä
+	// é¢„è®¡check outæ—¶é—´
 	private Date estimatedCheckoutTime;
-	// Êµ¼ÊÍË·¿Ê±¼ä
+	// å®é™…check outæ—¶é—´
 	private Date actualCheckoutTime;
-	// ×îÍí¶©µ¥Ö´ĞĞÊ±¼ä
+	// æœ€æ™šæ‰§è¡Œæ—¶é—´
 	private Date latestExecutedTime;
-	// ·¿¼äÀàĞÍ¼°ÊıÁ¿
+	// æ‰€è®¢å®¢æˆ¿
 	private List<String> rooms;
-	// Ô¤¼ÆÈë×¡ÈËÊı
+	// å…¥ä½äººæ•°
 	private int numOfCustomers;
-	// ÓĞÎŞ¶ùÍ¯
+	// æ˜¯å¦æœ‰å„¿ç«¥
 	private boolean haveChildren;
-	// ±¸×¢
+	// å¤‡æ³¨ï¼ˆç‰¹æ®Šè¦æ±‚ï¼Œå¦‚ï¼šâ€œéœ€è¦ä¸‰åŒæ‹–é‹â€
 	private String remarks;
-	// Ê¹ÓÃµÄÓÅ»İ²ßÂÔÃû³Æ
+	// æ‰€ç”¨ç­–ç•¥åç§°
 	private String promotionName;
-	// ÕÛ¿ÛÇ°¼Û¸ñ
+	// æœ€åˆä»·æ ¼
 	private double initialPrice;
-	// ÕÛ¿Ûºó¼Û¸ñ
+	// æŠ˜åä»·æ ¼
 	private double finalPrice;
-	// ¶©µ¥×´Ì¬
+	// è®¢å•çŠ¶æ€
 	private OrderStatus orderType;
 
 	public OrderPO() {
 
 	}
 
-	// ½«actualCheckoutTimeºÍactualCheckinTime·ÅÔÚ¹¹Ôìº¯ÊıÖĞ£¬ÊÇÒòÎª»á³öÏÖÏßÏÂ´´½¨¶©µ¥µÄÇé¿ö
-	public OrderPO(String customerName, String phone, String customerID, String hotelID,String hotelName, String orderID,
+	public OrderPO(String customerName, String phone, String customerID, String hotelID, String hotelName, String orderID,
 			Date estimatedCheckinTime, Date actualCheckinTime, Date estimatedCheckoutTime, Date actualCheckoutTime,
 			Date latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
 			String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
@@ -104,14 +104,6 @@ public class OrderPO implements Serializable {
 		this.customerID = customerID;
 	}
 
-	public String getHotelID(){
-		return hotelID;
-	}
-	
-	public void setHotelID(String hotelID){
-		this.hotelID=hotelID;
-	}
-	
 	public String getHotelName() {
 		return hotelName;
 	}

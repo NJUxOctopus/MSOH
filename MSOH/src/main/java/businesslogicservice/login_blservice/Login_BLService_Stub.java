@@ -17,7 +17,6 @@ public class Login_BLService_Stub implements Login_BLService {
 	// password = pw;
 	// }
 
-	@Override
 	public ResultMessage login(String ID, String password) {
 		// TODO Auto-generated method stub
 		if (ID.equals("000000000000000000") && password.equals("123456")) {

@@ -1,5 +1,6 @@
 package businesslogicservice.customer_blservice;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import util.ResultMessage;
@@ -8,24 +9,21 @@ import vo.CustomerVO;
 import vo.HotelVO;
 
 /**
- * 
  * @author ST 2016/10/15
- *
  */
 
 public interface Customer_BLService {
+    public double getCredit(CustomerVO customerVO) throws RemoteException;
 
-	public ResultMessage signUp(CustomerVO vo);
+    public ResultMessage signUp(CustomerVO customerVO) throws RemoteException;
 
-	public ResultMessage changeInfo(CustomerVO vo);
+    public ResultMessage changeInfo(CustomerVO customerVO) throws RemoteException;
 
-	public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2);
+    public List<HotelVO> getHistoryHotel(CustomerVO customerVO) throws RemoteException;
 
-	public CustomerVO getSingle(String ID);
+    public CreditRecordVO getCreditRecord(CustomerVO customerVO) throws RemoteException;
 
-	public List<CustomerVO> getAll();
+    public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException;
 
-	public CreditRecordVO getCreditRecord(CustomerVO vo);
-
-	public List<HotelVO> getHistoryHotel(CustomerVO vo);
+    public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2) throws RemoteException;
 }

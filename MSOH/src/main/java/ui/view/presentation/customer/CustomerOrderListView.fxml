@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image_customer/ElCapitan2.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fx:id="backButton1" fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image_customer/backButton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="40.0" layoutY="22.5" prefHeight="675.0" prefWidth="1200.0">
+         <children>
+            <ImageView fitHeight="675.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image_customer/customer_orderframe.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Button fx:id="allOrderButton" layoutX="150.0" layoutY="156.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;" text="所 有 订 单" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Button>
+            <Button fx:id="normalOrderButton" layoutX="150.0" layoutY="256.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;" text="正 常 订 单" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Button>
+            <Button fx:id="abnormolOrderButton" layoutX="150.0" layoutY="356.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;" text="异 常 订 单" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Button>
+            <Button fx:id="canceledOrderButton" layoutX="150.0" layoutY="456.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;" text="已 撤 销 订 单" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Button>
+            <Button fx:id="evaluateOrderButton" layoutX="150.0" layoutY="556.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;" text="未 评 价 订 单" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Button>
+            <Button fx:id="lastPageButton" layoutX="850.0" layoutY="650.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="&lt; 上一页" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="nextPageButton" layoutX="930.0" layoutY="650.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="下一页 &gt;" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="1029.0" layoutY="655.0" text="当前页：" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="selectPageBox" layoutX="1103.0" layoutY="652.0" prefHeight="29.0" prefWidth="54.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </Pane>
+      <Pane fx:id="orderPanel1" layoutX="405.0" layoutY="130.0" prefHeight="150.0" prefWidth="750.0">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image_customer/customer_singleorder.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="662.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="撤销订单" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="700.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="查看详情" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="orderIDLabel" layoutX="110.0" layoutY="20.0" text="111111111" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="peopleLabel" layoutX="110.0" layoutY="80.0" text="2" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkInTimeLabel" layoutX="150.0" layoutY="110.0" text="2016／09／18" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkOutTimeLabel" layoutX="445.0" layoutY="110.0" text="2016／09／19" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="priceLabel" layoutX="405.0" layoutY="80.0" text="666.66" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="roomTypeLabel" layoutX="405.0" layoutY="50.0" text="双人房" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="orderStatusLabel" layoutX="405.0" layoutY="20.0" text="未执行订单" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="hotelButton" layoutX="101.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="如家" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="orderPanel2" layoutX="405.0" layoutY="305.0" prefHeight="150.0" prefWidth="750.0">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image_customer/customer_singleorder.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="662.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="撤销订单" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="700.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="查看详情" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="orderIDLabel2" layoutX="110.0" layoutY="20.0" text="111111111" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="peopleLabel" layoutX="110.0" layoutY="80.0" text="2" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkInTimeLabel" layoutX="150.0" layoutY="110.0" text="2016／09／18" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkOutTimeLabel" layoutX="445.0" layoutY="110.0" text="2016／09／19" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="priceLabel" layoutX="405.0" layoutY="80.0" text="666.66" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="roomTypeLabel" layoutX="405.0" layoutY="50.0" text="双人房" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="orderStatusLabel" layoutX="405.0" layoutY="20.0" text="未执行订单" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="hotelButton" layoutX="101.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="如家" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="orderPanel3" layoutX="405.0" layoutY="485.0" prefHeight="150.0" prefWidth="750.0">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image_customer/customer_singleorder.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="662.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="撤销订单" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="700.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="查看详情" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="orderIDLabel3" layoutX="110.0" layoutY="20.0" text="111111111" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="peopleLabel" layoutX="110.0" layoutY="80.0" text="2" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkInTimeLabel" layoutX="150.0" layoutY="110.0" text="2016／09／18" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkOutTimeLabel" layoutX="445.0" layoutY="110.0" text="2016／09／19" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="priceLabel" layoutX="405.0" layoutY="80.0" text="666.66" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="roomTypeLabel" layoutX="405.0" layoutY="50.0" text="双人房" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="orderStatusLabel" layoutX="405.0" layoutY="20.0" text="未执行订单" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="hotelButton" layoutX="101.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="如家" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</Pane>

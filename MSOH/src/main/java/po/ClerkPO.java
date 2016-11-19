@@ -1,37 +1,38 @@
 package po;
 
-import java.awt.Image;
+import util.WorkerPosition;
+
+import java.awt.*;
 import java.io.Serializable;
 
-import util.WorkerPosition;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class ClerkPO implements Serializable {
-	// ĞÕÃû»òÃû³Æ
+	// é…’åº—å·¥ä½œäººå‘˜å§“å
 	private String name;
-	// ÊÖ»úºÅ
+	// é…’åº—å·¥ä½œäººå‘˜è”ç³»æ–¹å¼
 	private String phone;
-	// ÃÜÂë
+	// é…’åº—å·¥ä½œäººå‘˜å¯†ç 
 	private String password;
-	// Éí·İÖ¤ºÅ
+	// é…’åº—å·¥ä½œäººå‘˜ID
 	private String ID;
-	// ËùÔÚ¾ÆµêÃû³Æ
+	// é…’åº—å·¥ä½œäººå‘˜æ‰€åœ¨é…’åº—åç§°
 	private String hotelName;
-	// ËùÔÚ¾ÆµêID
+	// é…’åº—å·¥ä½œäººå‘˜æ‰€åœ¨é…’åº—ID
 	private String hotelID;
-	// Ö°Î»
+	// å·¥ä½œäººå‘˜ç±»å‹ï¼šé…’åº—å·¥ä½œäººå‘˜é»˜è®¤ä¸ºClerk
 	private WorkerPosition position;
-	// ¸öÈËÍ·Ïñ
+	// é…’åº—å·¥ä½œäººå‘˜å¤´åƒ
 	private Image pic;
 
 	public ClerkPO() {
 	}
 
 	public ClerkPO(String name, String phone, String password, String ID, String hotelName, String hotelID,
-			WorkerPosition position, Image pic) {
+                   WorkerPosition position, Image pic) {
 		this.name = name;
 		this.phone = phone;
 		this.password = password;

@@ -6,21 +6,21 @@ import java.io.Serializable;
 import util.WorkerPosition;
 /**
  * 
- * @author 週沁涵
+ * @author zqh
  *
  */
 public class MarketerPO implements Serializable {
-	// 姓名
+	// 缃戠珯钀ラ攢浜哄憳濮撳悕
 	private String name;
-	// 身份证号
+	// 缃戠珯钀ラ攢浜哄憳ID
 	private String ID;
-	// 手机号
+	// 缃戠珯钀ラ攢浜哄憳鑱旂郴鏂瑰紡
 	private String phone;
-	// 密码
+	// 缃戠珯钀ラ攢浜哄憳瀵嗙爜
 	private String password;
-	// 个人头像
+	// 缃戠珯钀ラ攢浜哄憳澶村儚
 	private Image pic;
-	// 职位
+	// 职缃戠珯钀ラ攢浜哄憳鑱屼綅锛岄粯璁や负Marketer
 	private WorkerPosition position;
 
 	public MarketerPO() {

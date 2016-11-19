@@ -2,19 +2,20 @@ package po;
 
 import java.io.Serializable;
 import java.util.Date;
+
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class MemberLevelPO implements Serializable{
-	//ÖÆ¶¨ÕßĞÕÃû
+	// åˆ¶å®šäººå‘˜å§“å
 	private String framerName;
-	//ÖÆ¶¨ÈÕÆÚ
+	// åˆ¶å®šæ—¥æœŸ
 	private Date frameDate;
-	//»áÔ±¸öÊı
+	// ç­‰çº§ä¸ªæ•°
 	private int num;
-	//»áÔ±ĞÅÓÃÖµ½çÏŞ
+	// ç­‰çº§ç•Œé™å€¼
 	private int[] creditBoundaries;
 	
 	public MemberLevelPO(){
