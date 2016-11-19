@@ -7,31 +7,31 @@ import java.util.List;
 import util.MemberType;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class PromotionPO implements Serializable{
-	// ÖÆ¶¨ÕßĞÕÃû
+	// ç­–ç•¥åˆ¶å®šè€…åç§°
 	private String framerName;
-	// ÖÆ¶¨ÈÕÆÚ
+	// ç­–ç•¥åˆ¶å®šæ—¥æœŸ
 	private Date frameDate;
-	// ²ßÂÔÃû³Æ
+	// ç­–ç•¥åç§°
 	private String promotionName;
-	// ²ßÂÔÊÊÓÃ¿Í»§
+	// ç›®æ ‡å®¢æˆ·
 	private MemberType targetUser;
-	// ²ßÂÔÊÊÓÃÉÌÈ¦
+	// ç›®æ ‡å•†åœˆ
 	private String targetArea;
-	// ²ßÂÔÊÊÓÃ¾Æµê
+	// ç›®æ ‡é…’åº—
 	private List<String> targetHotel;
-	// ²ßÂÔÉúĞ§Ê±¼ä
+	// ç­–ç•¥ç”Ÿæ•ˆæ—¶é—´
 	private Date startTime;
-	// ²ßÂÔ¹ıÆÚÊ±¼ä
+	// ç­–ç•¥è¿‡æœŸæ—¶é—´
 	private Date endTime;
-	// ²ßÂÔÕÛ¿Û
+	// ç­–ç•¥æŠ˜æ‰£
 	private double discount;
-	// ²ßÂÔÉúĞ§ÖÁÉÙĞèÒªµÄ·¿¼äÊı
+	// ç­–ç•¥ç”Ÿæ•ˆæ‰€éœ€æœ€å°‘æˆ¿é—´æ•°
 	private int minRoom;
-	// ²ßÂÔID
+	// ç­–ç•¥IDï¼ˆç¼–å·ï¼‰
 	private String promotionID;
 	
 	public PromotionPO(){}

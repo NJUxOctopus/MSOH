@@ -1,12 +1,10 @@
 package dataservice.member_dataservice;
 
-import po.MemberLevelPO;
 import po.MemberPO;
-import util.MemberType;
-import util.ResultMessage;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * 
@@ -14,25 +12,15 @@ import java.rmi.RemoteException;
  *
  */
 public interface Member_DataService extends Remote{
-	public ResultMessage add(MemberPO po) throws RemoteException;
-	
-	public ResultMessage upgrade (int grade) throws RemoteException;
-	
-	public ResultMessage degrade (int grade) throws RemoteException;
-	
-	public int getGrade (MemberPO po) throws RemoteException;
+	// 新增会员信息
+	public boolean addMember(MemberPO po) throws RemoteException;
+	// 删除客户会员身份
+	public boolean deleteMember(MemberPO po) throws RemoteException;
+	// 更新会员信息
+	public boolean updateMember(MemberPO po) throws RemoteException;
+	// 根据ID获取会员信息
+	public MemberPO findMemberByID(String ID) throws RemoteException;
+	// 得到所有会员
+	public List<MemberPO> findAllMemebers() throws RemoteException;
 
-	public ResultMessage delete(MemberPO po) throws RemoteException;
-	
-	public MemberType getType (MemberPO po) throws RemoteException;
-	
-	public MemberPO getMember (String id) throws RemoteException;
-	
-	public ResultMessage addMemberLevel(MemberLevelPO po) throws RemoteException;
-	
-	public ResultMessage modifyMemberLevel(MemberLevelPO po) throws RemoteException;
-	
-	public int getNumberOfMemberLevel(MemberLevelPO po) throws RemoteException;
-	
-	
 }

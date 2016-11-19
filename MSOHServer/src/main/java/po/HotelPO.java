@@ -5,37 +5,37 @@ import java.io.Serializable;
 import java.util.List;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class HotelPO implements Serializable {
-	// ¾ÆµêÃû³Æ
+	// é…’åº—åç§°
 	private String hotelName;
-	// ¾ÆµêµØÖ·
-	private String hotelAddress;
-	// ¾ÆµêËùÊôÉÌÈ¦
-	private String area;
-	// ¼ò½é
-	private String intro;
-	// ÉèÊ©·şÎñ
-	private List<String> infra;
-	// ¾ÆµêĞÇ¼¶
-	private int star;
-	// ¾ÆµêÆÀ·Ö
-	private double score;
-	// ¾­ÓªĞí¿ÉÖ¤ºÅ
-	private String license;
-	// ¾ÆµêÍ¼Æ¬
-	private List<Image> pics;
-	// ÏµÍ³ÖĞ¸Ã¾Æµê¹¤×÷ÈËÔ±µÄÃû³Æ
-	private String clerkName;
-	// ÏµÍ³ÖĞ¸Ã¾Æµê¹¤×÷ÈËÔ±µÄÊÖ»úºÅ
-	private String clerkPhone;
-	// ¾ÆµêID
+	// é…’åº—ID
 	private String hotelID;
-	// Èô¸É¸öDailyRoomInfoPO
+	// é…’åº—åœ°å€
+	private String hotelAddress;
+	// é…’åº—æ‰€å¤„å•†åœˆ
+	private String area;
+	// é…’åº—ç®€ä»‹
+	private String intro;
+	// é…’åº—è®¾æ–½
+	private List<String> infra;
+	// é…’åº—æ˜Ÿçº§
+	private int star;
+	// é…’åº—è¯„åˆ†
+	private double score;
+	// é…’åº—ç»è¥è®¸å¯è¯å·
+	private String license;
+	// é…’åº—ç…§ç‰‡
+	private List<Image> pics;
+	// ç³»ç»Ÿä¸­è¯¥é…’åº—è´Ÿè´£äººå§“å
+	private String clerkName;
+	// ç³»ç»Ÿä¸­è¯¥é…’åº—è´Ÿè´£äººè”ç³»æ–¹å¼
+	private String clerkPhone;
+	// é…’åº—æ¯æ—¥å®¢æˆ¿ä¿¡æ¯<DailyRoomInfoPO>
 	private List<DailyRoomInfoPO> dailyRoomInfo;
-	// Èô¸É¸öÆÀ¼ÛPO
+	// é…’åº—è¯„ä»·
 	private List<CommentPO> comment;
 
 	public HotelPO() {

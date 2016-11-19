@@ -1,27 +1,27 @@
 package dataservice.marketer_dataservice;
 
 
+import po.MarketerPO;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
-import po.MarketerPO;
-import util.ResultMessage;
-import util.WorkerPosition;
-
 /**
- * @author �X����
+ * @author zqh
  */
-public interface Marketer_DataService {
-    public ResultMessage add(MarketerPO marketerPO);
+public interface Marketer_DataService extends Remote {
+    // 新增营销人员
+    public boolean addMarketer(MarketerPO marketerPO) throws RemoteException;
+    // 更改营销人员信息
+    public boolean modifyMarketer(MarketerPO marketerPO) throws RemoteException;
+    // 根据姓名查找营销人员信息
+    public List<MarketerPO> findMarketerByName(String name) throws RemoteException;
+    // 根据ID查找营销人员信息
+    public MarketerPO findMarketerByID(String id) throws RemoteException;
+    // 得到全部营销人员的信息
+    public List<MarketerPO> findAllMarketers() throws RemoteException;
+    // 删除营销人员的信息
+    public boolean deleteMarketer(MarketerPO marketerPO) throws RemoteException;
 
-    public ResultMessage modify(MarketerPO marketerPO);
-
-    public List<MarketerPO> findByMarketerName(String name);
-
-    public List<MarketerPO> findByMarketerID(String id);
-
-    public List<MarketerPO> findByPosition(WorkerPosition position);
-
-    public ResultMessage delete(MarketerPO marketerPO);
-
-    public MarketerPO find(String ID);
 }

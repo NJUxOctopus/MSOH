@@ -5,25 +5,25 @@ import java.io.Serializable;
 import util.MemberType;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class CustomerPO implements Serializable {
-	// ÓÃ»§Ãû
+	// å®¢æˆ·å§“å
 	private String userName;
-	// ÓÃ»§ÃÜÂë
+	// å®¢æˆ·å¯†ç 
 	private String password;
-	// ÓÃ»§ÊÖ»úºÅ
+	// å®¢æˆ·è”ç³»æ–¹å¼
 	private String phone;
-	// ÓÃ»§ÓÊÏäÕËºÅ
+	// å®¢æˆ·é‚®ç®±
 	private String email;
-	// ÓÃ»§ĞÅÓÃÖµ
+	// å®¢æˆ·ä¿¡ç”¨å€¼
 	private int credit;
-	// ÓÃ»§Í·Ïñ
+	// å®¢æˆ·å¤´åƒ
 	private Image picture;
-	// ÓÃ»§Éí·İÖ¤ºÅ
+	// å®¢æˆ·ID
 	private String ID;
-	// »áÔ±ÀàĞÍ
+	// å®¢æˆ·ä¼šå‘˜ç±»å‹
 	private MemberType memberType;
 
 	public CustomerPO() {

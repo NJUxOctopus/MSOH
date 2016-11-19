@@ -2,25 +2,26 @@ package po;
 
 import java.io.Serializable;
 import java.util.Date;
+
 /**
- * 
- * @author ßLÇßº­
+ *
+ * @author zqh
  *
  */
 public class CreditRecordPO implements Serializable {
-	// ĞÅÓÃ±ä»¯Öµ
+	// å˜åŒ–å€¼
 	private int variation;
-	// ¸ü¸ÄÊ±¼ä
+	// æ›´æ”¹æ—¶é—´
 	private Date changeTime;
-	// ¿Í»§ĞÕÃû»òÃû³Æ
+	// å®¢æˆ·å§“å
 	private String customerName;
-	// ¿Í»§ID
+	// å®¢æˆ·ID
 	private String customerID;
-	// ¸ü¸ÄºóĞÅÓÃÖµ
+	// å˜æ›´åçš„ä¿¡ç”¨å€¼
 	private int afterChangeCredit;
-	// ¶©µ¥ºÅ
+	// è®¢å•å·
 	private String orderID;
-	// ÓªÏúÈËÔ±ĞÕÃû
+	// è¥é”€äººå‘˜å§“å
 	private String marketerName;
 
 	public CreditRecordPO() {
@@ -60,7 +61,7 @@ public class CreditRecordPO implements Serializable {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	
+
 	public String getCustomerID(){
 		return customerID;
 	}

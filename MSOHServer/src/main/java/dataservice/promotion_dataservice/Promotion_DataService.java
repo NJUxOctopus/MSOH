@@ -1,32 +1,26 @@
 package dataservice.promotion_dataservice;
 
-import java.util.Date;
+import po.PromotionPO;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
-import po.HotelPO;
-import po.PromotionPO;
-import util.MemberType;
-import util.ResultMessage;
 /**
  * 
- * @author �X����
+ * @author zqh
  *
  */
-public interface Promotion_DataService {
-	public ResultMessage add (PromotionPO po);
-	
-	public String getTargetAera (PromotionPO po);
-
-	public List<String> getTargetHotel (PromotionPO po);
-	
-	public MemberType getTargetUser (PromotionPO po);
-	
-	public Date getStartTime (PromotionPO po);
-	
-	public Date getEndTime (PromotionPO po);
-	
-	public double getDiscount (PromotionPO po);
-	
-	public int getMinRoom (PromotionPO po);
+public interface Promotion_DataService extends Remote{
+	// 新增促销策略
+	public boolean addPromotion (PromotionPO po) throws RemoteException;
+	// 根据ID查找促销策略
+	public PromotionPO getPromotion(String promotionID) throws RemoteException;
+	// 得到所有促销策略
+	public List<PromotionPO> getAllPromotions() throws RemoteException;
+	// 删除促销策略
+	public boolean deletePromotion(PromotionPO promotionPO) throws RemoteException;
+	// 更新促销策略
+	public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException;
 
 }

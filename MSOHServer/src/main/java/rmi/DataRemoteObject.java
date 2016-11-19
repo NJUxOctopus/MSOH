@@ -9,10 +9,7 @@ import dataservice.member_dataservice.Member_DataService;
 import dataservice.order_dataservice.Order_DataService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.*;
-import util.MemberType;
 import util.OrderStatus;
-import util.ResultMessage;
-import util.WorkerPosition;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -24,266 +21,243 @@ import java.util.List;
  */
 public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService,Customer_DataService,Hotel_DataService,Manager_DataService,Marketer_DataService,Member_DataService,Order_DataService,Promotion_DataService{
 
-    private Clerk_DataService clerk_dataService;
+
     private Customer_DataService customer_dataService;
     private Hotel_DataService hotel_dataService;
     private Manager_DataService manager_dataService;
     private Marketer_DataService marketer_dataService;
     private Member_DataService member_dataService;
     private Order_DataService order_dataService;
+    private Clerk_DataService clerk_dataService;
     private Promotion_DataService promotion_dataService;
 
     protected DataRemoteObject() throws RemoteException{
         // TODO 初始化
-
     }
-    //TODO 修改data层的方法，围绕增删改查提供
-    //TODO 方法后添加异常抛出
-    public ResultMessage modify(ManagerPO po) {
+
+
+
+    // TODO 修改data层的方法，围绕增删改查提供
+    // TODO 方法后添加异常抛出
+
+
+    public boolean modifyManager(ManagerPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean addMember(MemberPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean addClerk(ClerkPO clerkPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean addMarketer(MarketerPO marketerPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean addPromotion(PromotionPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean addOrder(OrderPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean addCustomer(CustomerPO customerPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean deleteMember(MemberPO po) throws RemoteException {
+        return false;
+    }
+
+    public ManagerPO findManager(String ID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage add(ClerkPO clerkPO) {
+    public boolean addHotel(HotelPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean modifyClerk(ClerkPO clerkPO) throws RemoteException {
+        return false;
+    }
+
+    public PromotionPO getPromotion(String promotionID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage add(MemberPO po) {
+    public List<OrderPO> getAllOrders() throws RemoteException {
         return null;
     }
 
-    public ResultMessage add(CustomerPO customerPO) {
+    public boolean modifyMarketer(MarketerPO marketerPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean modifyCustomer(CustomerPO customerPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean updateMember(MemberPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean modifyHotel(HotelPO po) throws RemoteException {
+        return false;
+    }
+
+    public OrderPO getOrderByOrderID(String OrderID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage add(MarketerPO marketerPO) {
+    public List<ClerkPO> findClerkByName(String name) throws RemoteException {
         return null;
     }
 
-    public ResultMessage modify(ClerkPO clerkPO) {
+    public List<PromotionPO> getAllPromotions() throws RemoteException {
         return null;
     }
 
-    public ResultMessage add(OrderPO po) {
+    public List<MarketerPO> findMarketerByName(String name) throws RemoteException {
         return null;
     }
 
-    public ResultMessage upgrade(int grade) {
+    public boolean deleteCustomer(CustomerPO customerPO) throws RemoteException {
+        return false;
+    }
+
+    public MemberPO findMemberByID(String ID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage add(PromotionPO po) {
+    public boolean deleteHotel(HotelPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean deletePromotion(PromotionPO promotionPO) throws RemoteException {
+        return false;
+    }
+
+    public List<OrderPO> findOrderByCustomerID(String customerID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage modify(CustomerPO customerPO) {
+    public ClerkPO findClerkByID(String id) throws RemoteException {
         return null;
     }
 
-    public ResultMessage modify(MarketerPO marketerPO) {
+    public MarketerPO findMarketerByID(String id) throws RemoteException {
         return null;
     }
 
-    public List<OrderPO> findByCustomerID(String customerID) {
+    public List<MemberPO> findAllMemebers() throws RemoteException {
         return null;
     }
 
-    public List<ClerkPO> findByClerkName(String name) {
+    public List<HotelPO> findHotels(String address, String area, Date expected_date_of_arrival, Date expected_date_of_departure, int star, double score) throws RemoteException {
         return null;
     }
 
-    public ResultMessage add(HotelPO po) {
+    public List<CustomerPO> findCustomerByName(String customerName) throws RemoteException {
         return null;
     }
 
-    public ResultMessage degrade(int grade) {
+    public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException {
+        return false;
+    }
+
+    public List<ClerkPO> findAllClerks() throws RemoteException {
         return null;
     }
 
-    public String getTargetAera(PromotionPO po) {
+    public List<OrderPO> findOrderByHotelID(String hotelID) throws RemoteException {
         return null;
     }
 
-    public List<CustomerPO> find(String id) {
+    public List<MarketerPO> findAllMarketers() throws RemoteException {
         return null;
     }
 
-    public List<ClerkPO> findByClerkID(String id) {
+    public boolean deleteClerk(ClerkPO clerkPO) throws RemoteException {
+        return false;
+    }
+
+    public CustomerPO findCustomerByID(String customerID) throws RemoteException {
         return null;
     }
 
-    public List<MarketerPO> findByMarketerName(String name) {
+    public List<OrderPO> findOrderByOrderStatus(OrderStatus orderStatus) throws RemoteException {
         return null;
     }
 
-    public int getGrade(MemberPO po) {
-        return 0;
+    public boolean deleteMarketer(MarketerPO marketerPO) throws RemoteException {
+        return false;
     }
 
-    public List<OrderPO> findByCustomerIDAndOrderStatus(String customerID, OrderStatus orderStatus) {
+    public HotelPO findHotelByID(String hotelID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage modify(HotelPO po) {
+    public boolean updateOrder(OrderPO orderPO) throws RemoteException {
+        return false;
+    }
+
+    public List<CustomerPO> findAllCustomers() throws RemoteException {
         return null;
     }
 
-    public List<String> getTargetHotel(PromotionPO po) {
+    public List<HotelPO> findHotelByName(String hotelName) throws RemoteException {
         return null;
     }
 
-    public String getID(CustomerPO customerPO) {
+    public boolean deleteOrder(OrderPO orderPO) throws RemoteException {
+        return false;
+    }
+
+    public List<HotelPO> getCustomerReservedHotel(String ID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage delete(HotelPO po) {
+    public boolean addRoom(RoomPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean modifyRoom(RoomPO po) throws RemoteException {
+        return false;
+    }
+
+    public boolean deleteRoom(RoomPO po) throws RemoteException {
+        return false;
+    }
+
+    public RoomPO getRoom(String hotelID, String roomName) throws RemoteException {
         return null;
     }
 
-    public ResultMessage delete(MemberPO po) {
+    public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage delete(ClerkPO clerkPO) {
+    public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Date date) throws RemoteException {
         return null;
     }
 
-    public List<MarketerPO> findByMarketerID(String id) {
+    public boolean setDailyRoomInfo(List<DailyRoomInfoPO> list) throws RemoteException {
+        return false;
+    }
+
+    public boolean addComment(CommentPO po) throws RemoteException {
+        return false;
+    }
+
+    public List<CommentPO> getCommentByHotel(String hotelID) throws RemoteException {
         return null;
     }
 
-    public int getCurrentCredit(String customer_id) {
-        return 0;
-    }
-
-    public MemberType getTargetUser(PromotionPO po) {
-        return null;
-    }
-
-    public MemberType getType(MemberPO po) {
-        return null;
-    }
-
-    public List<HotelPO> find(String address, String area, Date expected_date_of_arrival, Date expected_date_of_departure, int star, double score) {
-        return null;
-    }
-
-    public List<OrderPO> findByHotelID(String hotelID) {
-        return null;
-    }
-
-    public List<MarketerPO> findByPosition(WorkerPosition position) {
-        return null;
-    }
-
-    public Date getStartTime(PromotionPO po) {
-        return null;
-    }
-
-    public MemberPO getMember(String id) {
-        return null;
-    }
-
-    public List<HotelPO> getReservedHotel(CustomerPO customerPO) {
-        return null;
-    }
-
-    public List<OrderPO> findByOrderStatus(OrderStatus orderStatus) {
-        return null;
-    }
-
-    public Date getEndTime(PromotionPO po) {
-        return null;
-    }
-
-    public ResultMessage addMemberLevel(MemberLevelPO po) {
-        return null;
-    }
-
-    public ResultMessage delete(MarketerPO marketerPO) {
-        return null;
-    }
-
-    public double getDiscount(PromotionPO po) {
-        return 0;
-    }
-
-    public double getPrice(OrderPO po) {
-        return 0;
-    }
-
-    public HotelPO getHotel(String id) {
-        return null;
-    }
-
-    public ResultMessage modifyMemberLevel(MemberLevelPO po) {
-        return null;
-    }
-
-    public int getMinRoom(PromotionPO po) {
-        return 0;
-    }
-
-    public ResultMessage changeOrderStatus(OrderPO po, OrderStatus condition) {
-        return null;
-    }
-
-    public ResultMessage addRoomType(RoomPO po) {
-        return null;
-    }
-
-    public int getNumberOfMemberLevel(MemberLevelPO po) {
-        return 0;
-    }
-
-    public ResultMessage modifyRoomType(RoomPO po) {
-        return null;
-    }
-
-    public OrderStatus getOrderStatus(OrderPO po) {
-        return null;
-    }
-
-    public ResultMessage deleteRoomType(RoomPO po) {
-        return null;
-    }
-
-    public ResultMessage setActualCheckinTime(OrderPO po, Date actualCheckinTime) {
-        return null;
-    }
-
-    public double getRoomPrice(RoomPO po) {
-        return 0;
-    }
-
-    public String getRoomType(RoomPO po) {
-        return null;
-    }
-
-    public ResultMessage setActualCheckoutTime(OrderPO po, Date actualCheckoutTime) {
-        return null;
-    }
-
-    public DailyRoomInfoPO getDailyRoomInfo(Date date) {
-        return null;
-    }
-
-    public Date getLatestExecutedTime(OrderPO po) {
-        return null;
-    }
-
-    public ResultMessage setDailyRoomInfo(List<DailyRoomInfoPO> list) {
-        return null;
-    }
-
-    public ResultMessage addComment(CommentPO po) {
-        return null;
-    }
-
-    public List<CommentPO> getCommentPO(String hotelID) {
-        return null;
-    }
-
-    public ResultMessage addToListOfHotelReservedByCustomer(HotelPO hotelPO, CustomerPO customerPO) {
+    public CommentPO getCommentByOrder(String orderID) throws RemoteException {
         return null;
     }
 }

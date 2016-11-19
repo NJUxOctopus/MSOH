@@ -3,21 +3,21 @@ package po;
 import java.io.Serializable;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class RoomPO implements Serializable {
-	// ¾ÆµêID
+	// é…’åº—ID
 	private String hotelID;
-	// ·¿¼äÀàĞÍ
+	// æˆ¿é—´ç±»å‹
 	private String roomType;
-	// ÒÑÈë×¡·¿¼äÊıÁ¿
+	// å·²å…¥ä½å®¢æˆ¿æ•°é‡
 	private int occupiedRooms;
-	// ÒÑÔ¤¶©·¿¼äÊıÁ¿
+	// å·²é¢„è®¢å®¢æˆ¿æ•°é‡
 	private int reservedRooms;
-	// Ê£Óà¿Õ·¿ÊıÁ¿
+	// å‰©ä½™å¯é¢„å®šå®¢æˆ¿æ•°é‡
 	private int leftRooms;
-	// ·¿¼ä¼Û¸ñ
+	// ä»·æ ¼
 	private double price;
 
 	public RoomPO() {

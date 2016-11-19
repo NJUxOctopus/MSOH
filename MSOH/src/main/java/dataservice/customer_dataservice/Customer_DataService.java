@@ -1,36 +1,36 @@
 package dataservice.customer_dataservice;
 
+import po.CustomerPO;
+import po.HotelPO;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
-
-import po.CreditRecordPO;
-import po.CustomerPO;
-import po.HotelPO;
-import ui.view.controllerservice.CreditRecord;
-import util.ResultMessage;
 
 /**
  * @author zqh
  */
 public interface Customer_DataService extends Remote {
 
-    public CustomerPO find(String customerID) throws RemoteException;
+    // 在数据库中新增客户信息
+    public boolean addCustomer(CustomerPO customerPO) throws RemoteException;
 
-    public String getID(CustomerPO customerPO) throws RemoteException;
+    // 更新客户在数据库中的信息
+    public boolean modifyCustomer(CustomerPO customerPO) throws RemoteException;
 
-    public ResultMessage add(CustomerPO customerPO) throws RemoteException;
+    // 删除客户在数据库中的信息
+    public boolean deleteCustomer(CustomerPO customerPO) throws RemoteException;
 
-    public double getCurrentCredit(String customerID) throws RemoteException;
+    // 根据姓名查找客户（返回List是考虑了同名的情形）
+    public List<CustomerPO> findCustomerByName(String customerName) throws RemoteException;
 
-    public ResultMessage modify(CustomerPO customerPO) throws RemoteException;
+    // 根据客户ID查找客户信息
+    public CustomerPO findCustomerByID(String customerID) throws RemoteException;
 
-    public List<CustomerPO> findByName(String customerName) throws RemoteException;
+    // 获得所有客户信息
+    public List<CustomerPO> findAllCustomers() throws RemoteException;
 
-    public CreditRecordPO getCreditRecord(CustomerPO customerPO) throws RemoteException;
-
-    public List<HotelPO> getReservedHotel(CustomerPO customerPO) throws RemoteException;
-
-    public ResultMessage addCreditRecord(String customerID, CreditRecordPO creditRecordPO) throws RemoteException;
+    // 获得客户预定过的酒店列表
+    public List<HotelPO> getCustomerReservedHotel(String ID) throws RemoteException;
 
 }

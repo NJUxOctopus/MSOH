@@ -1,32 +1,33 @@
 package po;
 
-import java.awt.Image;
+import util.WorkerPosition;
+
+import java.awt.*;
 import java.io.Serializable;
 
-import util.WorkerPosition;
 /**
  * 
- * @author �L�ߺ�
+ * @author zqh
  *
  */
 public class ManagerPO implements Serializable {
-	// ����
+	// 网站管理人员姓名
 	private String name;
-	// ����֤��
+	// 网站管理人员ID
 	private String ID;
-	// �ֻ���
+	// 网站管理人员联系方式
 	private String phone;
-	// ����
+	// 网站管理人员密码
 	private String password;
-	// ����ͷ��
+	// 网站管理人员头像
 	private Image pic;
-	// ְλ
+	// ְ网站管理人员职位，默认为Manager
 	private WorkerPosition position;
 
 	public ManagerPO() {
 	}
 
-	public ManagerPO(String name, String ID, String phone, String password, Image pic,WorkerPosition position) {
+	public ManagerPO(String name, String ID, String phone, String password, Image pic, WorkerPosition position) {
 		this.name = name;
 		this.ID = ID;
 		this.phone = phone;

@@ -1,45 +1,32 @@
 package dataservice.order_dataservice;
 
-import java.util.Date;
-import java.util.List;
-
 import po.OrderPO;
 import util.OrderStatus;
-import util.ResultMessage;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
 /**
  * 
- * @author Ǯ����
+ * @author zqh
  *
  */
-public interface Order_DataService {
-
-	public OrderPO getOrderByOrderID(String OrderID);
-
-	public OrderPO getOrderByHotelID(String hotelID);
-	
-	public ResultMessage add(OrderPO po);
-	
-	public List<OrderPO> findByCustomerID(String customerID);
-	
-	public List<OrderPO> findByCustomerIDAndOrderStatus(String customerID, OrderStatus orderStatus);
-	
-	public List<OrderPO> findByHotelID(String hotelID);
-	
-	public List<OrderPO> findByOrderStatus(OrderStatus orderStatus);
-	
-	public double getPrice(OrderPO po);
-	
-	public ResultMessage changeOrderStatus(OrderPO po, OrderStatus condition);
-	
-	public OrderStatus getOrderStatus(OrderPO po);
-	
-	public ResultMessage setActualCheckinTime(OrderPO po, Date actualCheckinTime);
-	
-	public ResultMessage setActualCheckoutTime(OrderPO po, Date actualCheckoutTime);
-
-	public OrderPO setEstimatedCheckoutTime(OrderPO orderPO,Date estimatedCheckoutTime);
-	
-	public Date getLatestExecutedTime(OrderPO po);
-	
-	
+public interface Order_DataService extends Remote {
+	// 新增订单
+	public boolean addOrder(OrderPO po) throws RemoteException;
+	// 获取所有订单
+	public List<OrderPO> getAllOrders() throws  RemoteException;
+	// 根据订单ID获取订单
+	public OrderPO getOrderByOrderID(String OrderID) throws RemoteException;
+	// 根据客户ID查找订单
+	public List<OrderPO> findOrderByCustomerID(String customerID) throws RemoteException;
+	// 根据酒店ID查找订单
+	public List<OrderPO> findOrderByHotelID(String hotelID) throws RemoteException;
+	// 根据订单状态查找订单
+	public List<OrderPO> findOrderByOrderStatus(OrderStatus orderStatus) throws RemoteException;
+	// 更新订单信息
+	public boolean updateOrder(OrderPO orderPO) throws RemoteException;
+	// 删除订单
+	public boolean deleteOrder(OrderPO orderPO) throws RemoteException;
 }

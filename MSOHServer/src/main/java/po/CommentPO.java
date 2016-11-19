@@ -4,25 +4,25 @@ import java.io.Serializable;
 import java.util.Date;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class CommentPO implements Serializable {
-	// ÆÀ·Ö
+	// è¯„åˆ†
 	private double score;
-	// ÆÀ¼ÛÃèÊö
+	// è¯„ä»·å…·ä½“å†…å®¹
 	private String comment;
-	// ÆÀ·Ö¿Í»§ĞÕÃû»òÃû³Æ
+	// è¯„ä»·å®¢æˆ·å§“å
 	private String customerName;
-	// ÆÀ·Ö¿Í»§ID
+	// è¯„ä»·å®¢æˆ·ID
 	private String customerID;
-	// ÆÀ¼Û¶ÔÓ¦¾ÆµêÃû³Æ
+	// è¯„ä»·é…’åº—çš„åå­—
 	private String hotelName;
-	// ÆÀ¼Û¶ÔÓ¦¾ÆµêID
+	// è¯„ä»·é…’åº—ID
 	private String hotelID;
-	// ÆÀ¼Û¶ÔÓ¦¶©µ¥ºÅ
+	// è¯„ä»·è®¢å•ID
 	private String orderID;
-	// ÆÀ¼ÛÊ±¼ä
+	// è¯„ä»·æ—¶é—´
 	private Date commentTime;
 
 	public CommentPO() {

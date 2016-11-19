@@ -1,24 +1,25 @@
 package po;
 
+import util.MemberType;
+
 import java.io.Serializable;
 import java.util.Date;
 
-import util.MemberType;
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public class MemberPO implements Serializable {
-	// ÓÃ»§ID
+	// ä¼šå‘˜ID
 	private String ID;
-	// »áÔ±ÀàĞÍ
+	// ä¼šå‘˜ç±»å‹
 	private MemberType memberType;
-	// »áÔ±µÈ¼¶
+	// ä¼šå‘˜ç­‰çº§
 	private int level;
-	// ÆÕÍ¨»áÔ±ÉúÈÕ
+	// ä¼šå‘˜ç”Ÿæ—¥
 	private Date birthday;
-	// ÆóÒµ»áÔ±ÆóÒµÃû³Æ
+	// ä¼šå‘˜æ‰€åœ¨ä¼ä¸šåç§°
 	private String companyName;
 
 	public MemberPO() {
