@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkMainView">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="744.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ClerkBackground" fitHeight="720.0" fitWidth="1318.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/酒店工作人员背景1.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="StandardRoomNum" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="720.0" fitWidth="1340.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/酒店工作人员框架.png" />
          </image>
@@ -99,7 +101,7 @@
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="FeedBack" layoutX="1085.0" layoutY="469.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="反馈" textFill="WHITE">
+      <Button fx:id="Feedback" layoutX="1085.0" layoutY="469.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="反馈" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -109,81 +111,49 @@
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="ChangeInfo" layoutX="750.0" layoutY="561.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改信息" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="16.0" />
-         </font></Button>
-      <Button fx:id="addRoom" layoutX="883.0" layoutY="561.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="录入客房" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="16.0" />
-         </font></Button>
-      <Label fx:id="hotelName" layoutX="388.0" layoutY="154.0" text="MSOH连锁酒店" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="30.0" />
-         </font>
-      </Label>
-      <Label fx:id="hotelScore" layoutX="640.0" layoutY="160.0" text="4.8分" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="388.0" layoutY="199.0" text="今日剩余客房" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="22.0" />
-         </font>
-      </Label>
-      <Button layoutX="695.0" layoutY="165.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="查看详细评价">
-         <font>
-            <Font name="Microsoft YaHei" size="15.0" />
-         </font>
-      </Button>
-      <LineChart layoutX="357.0" layoutY="271.0" prefHeight="286.0" prefWidth="652.0" style="-fx-background-color: #ffffff00;" title="一周预订数量图">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </LineChart>
-      <Label layoutX="388.0" layoutY="237.0" text="标间：" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="StandardRoomNum" layoutX="448.0" layoutY="237.0" text="0" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="490.0" layoutY="237.0" text="单人房：" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="SingleRoomNum" layoutX="570.0" layoutY="237.0" text="0" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="608.0" layoutY="237.0" text="家庭房：" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="FamilyRoomNum" layoutX="689.0" layoutY="237.0" text="0" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="727.0" layoutY="237.0" text="豪华房：" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="DeluxeRoomNum" layoutX="805.0" layoutY="237.0" text="0" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="20.0" />
-         </font>
-      </Label>
+      <Pane layoutX="344.0" layoutY="141.0" prefHeight="471.0" prefWidth="688.0">
+         <children>
+            <HBox layoutY="-2.0" prefHeight="50.0" prefWidth="688.0">
+               <children>
+                  <Button fx:id="AllOrders" mnemonicParsing="false" prefHeight="50.0" prefWidth="172.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="全  部" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="UnexcecutedOrders" mnemonicParsing="false" prefHeight="50.0" prefWidth="172.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="未执行" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="ExecutedOrders" mnemonicParsing="false" prefHeight="50.0" prefWidth="172.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="已执行" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="FinishedOrders" mnemonicParsing="false" prefHeight="50.0" prefWidth="172.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="已结束" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Button layoutX="412.0" layoutY="421.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="线下入住" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="542.0" layoutY="421.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="下一页" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="16.0" />
+               </font>
+            </Button>
+            <TextField fx:id="SearchTextField" layoutX="20.0" layoutY="55.0" prefHeight="29.0" prefWidth="648.0" promptText="输入订单号/顾客ID/顾客姓名：" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" />
+            <ScrollPane layoutY="96.0" prefHeight="323.0" prefWidth="688.0" style="-fx-background-color: #ffffff;" stylesheets="@clerk.css">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="686.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </Pane>
    </children>
-</fx:root>
+</Pane>
