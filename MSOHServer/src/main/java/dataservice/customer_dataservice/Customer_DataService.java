@@ -1,5 +1,6 @@
 package dataservice.customer_dataservice;
 
+import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
 
@@ -24,7 +25,7 @@ public interface Customer_DataService extends Remote {
     // 根据姓名查找客户（返回List是考虑了同名的情形）
     public List<CustomerPO> findCustomerByName(String customerName) throws RemoteException;
 
-    // 根据客户ID查找客户信息
+     // 根据客户ID查找客户信息
     public CustomerPO findCustomerByID(String customerID) throws RemoteException;
 
     // 获得所有客户信息
@@ -32,5 +33,14 @@ public interface Customer_DataService extends Remote {
 
     // 获得客户预定过的酒店列表
     public List<HotelPO> getCustomerReservedHotel(String ID) throws RemoteException;
+
+    // 增加信用记录
+    public boolean addCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException;
+
+    // 删除信用记录
+    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException;
+
+    // 根据ID获取客户信用记录
+    public List<CreditRecordPO> findCreditRecordByID(String ID) throws RemoteException;
 
 }

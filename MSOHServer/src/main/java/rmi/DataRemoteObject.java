@@ -125,6 +125,18 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return null;
     }
 
+    public boolean addCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException {
+        return false;
+    }
+
+    public List<CreditRecordPO> findCreditRecordByID(String ID) throws RemoteException {
+        return null;
+    }
+
     public boolean deleteCustomer(CustomerPO customerPO) throws RemoteException {
         return false;
     }
