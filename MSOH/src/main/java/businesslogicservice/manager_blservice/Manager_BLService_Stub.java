@@ -18,112 +18,107 @@ public class Manager_BLService_Stub implements Manager_BLService {
 	ManagerVO managerVO;
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Î¬»¤¸öÈËĞÅÏ¢
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
-	@Override
 	public ResultMessage changeInfo(ManagerVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.phone == "") {
-			// ÓĞĞÅÏ¢Î´ÌîĞ´
+			// ï¿½ï¿½ï¿½ï¿½Ï¢Î´ï¿½ï¿½Ğ´
 			return ResultMessage.Blank;
 		} else if (vo.phone.length() != 11) {
 			return ResultMessage.WrongPhoneFormat;
 		} else {
-			// ĞŞ¸ÄĞÅÏ¢³É¹¦
+			// ï¿½Ş¸ï¿½ï¿½ï¿½Ï¢ï¿½É¹ï¿½
 			return ResultMessage.ChangeInfoSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±ĞŞ¸ÄÃÜÂë
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
-	@Override
 	public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2) {
 		// TODO Auto-generated method stub
 		if (!oldPw.equals(managerVO.password)) {
-			// ¾ÉÃÜÂë´íÎó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.ChangePasswordWrongOldPw;
 		} else if (ID.equals("320581190001012016")) {
-			// ÕÒ²»µ½¶ÔÓ¦¹¤×÷ÈËÔ±
+			// ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 			return ResultMessage.Manager_ManagerNotExist;
 		} else if (oldPw.equals(managerVO.password) && !newPw1.equals(newPw2)) {
-			// Á½´ÎĞÂÃÜÂë²»Ò»ÖÂ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Ò»ï¿½ï¿½
 			return ResultMessage.ChangePassword2DifferentNew;
 		} else {
-			// ĞŞ¸ÄÃÜÂë³É¹¦
+			// ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 			return ResultMessage.ChangePasswordSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Ìí¼Ó¿Í»§
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ó¿Í»ï¿½
 	 */
-	@Override
 	public ResultMessage addCustomer(CustomerVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.ID.equals("320581190001012016")) {
-			// ÒÑ´æÔÚ¸Ã¿Í»§
+			// ï¿½Ñ´ï¿½ï¿½Ú¸Ã¿Í»ï¿½
 			return ResultMessage.Manager_AddCustomerAlreadyExist;
-		} else if (vo.email == "" || vo.ID == "" || vo.password == "" || vo.phone == "" || vo.userName == "") {
-			// ÓĞÄ³ÏîÎ´ÌîĞ´
+		} else if (vo.email == "" || vo.ID == "" || vo.password == "" || vo.phone == "" || vo.name== "") {
+			// ï¿½ï¿½Ä³ï¿½ï¿½Î´ï¿½ï¿½Ğ´
 			return ResultMessage.Blank;
 		} else if (vo.phone.length() != 11) {
-			// ÊÖ»úºÅÂë¸ñÊ½´íÎó
+			// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongPhoneFormat;
 		} else if (vo.ID.length() != 18) {
-			// Éí·İÖ¤ºÅ¸ñÊ½´íÎó
+			// ï¿½ï¿½ï¿½Ö¤ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongIDFormat;
 		} else if (!vo.email.contains("@")) {
-			// ÓÊÏä¸ñÊ½´íÎó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongEmailFormat;
 		} else {
-			// Ìí¼Ó³É¹¦
+			// ï¿½ï¿½Ó³É¹ï¿½
 			return ResultMessage.Manager_AddCustomerSuccess;
 		}
 
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Î¬»¤¿Í»§¸öÈËĞÅÏ¢
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±Î¬ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
-	@Override
 	public ResultMessage changeCustomerInfo(CustomerVO vo) {
 		// TODO Auto-generated method stub
-		if (vo.email == "" || vo.ID == "" || vo.password == "" || vo.phone == "" || vo.userName == "") {
-			// ÓĞÄ³ÏîÎ´ÌîĞ´
+		if (vo.email == "" || vo.ID == "" || vo.password == "" || vo.phone == "" || vo.name == "") {
+			// ï¿½ï¿½Ä³ï¿½ï¿½Î´ï¿½ï¿½Ğ´
 			return ResultMessage.Blank;
 		} else if (vo.phone.length() != 11) {
-			// ÊÖ»úºÅÂë¸ñÊ½´íÎó
+			// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongPhoneFormat;
 		} else if (!vo.email.contains("@")) {
-			// ÓÊÏä¸ñÊ½´íÎó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongEmailFormat;
 		} else {
-			// ĞŞ¸Ä³É¹¦
+			// ï¿½Ş¸Ä³É¹ï¿½
 			return ResultMessage.Manager_ChangeCustomerInfoSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Ìí¼Ó¾Æµê¹¤×÷ÈËÔ±
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ó¾Æµê¹¤ï¿½ï¿½ï¿½ï¿½Ô±
 	 */
-	@Override
 	public ResultMessage addClerk(ClerkVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.hotelID.equals("123456")) {
-			// Ã»ÓĞ¶ÔÓ¦¾Æµê
+			// Ã»ï¿½Ğ¶ï¿½Ó¦ï¿½Æµï¿½
 			return ResultMessage.Hotel_HotelNotExist;
 		} else if (vo.hotelID.equals("234567")) {
-			// ¸Ã¾ÆµêÒÑ´æÔÚ¹¤×÷ÈËÔ±
+			// ï¿½Ã¾Æµï¿½ï¿½Ñ´ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 			return ResultMessage.Manager_AddClerkAlreadyExist;
 		} else if (vo.hotelID == "" || vo.hotelName == "" || vo.ID == "" || vo.name == "" || vo.password == ""
-				|| vo.phone == "" || vo.position == null) {
+				|| vo.phone == "") {
 			return ResultMessage.Blank;
 		} else if (vo.phone.length() != 11) {
-			// ÊÖ»úºÅÂë¸ñÊ½´íÎó
+			// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongPhoneFormat;
 		} else if (vo.ID.length() != 18) {
-			// Éí·İÖ¤ºÅ¸ñÊ½´íÎó
+			// ï¿½ï¿½ï¿½Ö¤ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongIDFormat;
 		} else {
 			return ResultMessage.Manager_AddClerkSuccess;
@@ -131,34 +126,32 @@ public class Manager_BLService_Stub implements Manager_BLService {
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±É¾³ı¾Æµê¹¤×÷ÈËÔ±
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±É¾ï¿½ï¿½ï¿½Æµê¹¤ï¿½ï¿½ï¿½ï¿½Ô±
 	 */
-	@Override
 	public ResultMessage deleteClerk(ClerkVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.ID == "320581190001012016") {
-			// ²»´æÔÚ¶ÔÓ¦¹¤×÷ÈËÔ±
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 			return ResultMessage.Clerk_ClerkNotExist;
 		} else {
-			// É¾³ı³É¹¦
+			// É¾ï¿½ï¿½ï¿½É¹ï¿½
 			return ResultMessage.Manager_DeleteClerkSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Î¬»¤¾Æµê¹¤×÷ÈËÔ±¸öÈËĞÅÏ¢
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±Î¬ï¿½ï¿½ï¿½Æµê¹¤ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
-	@Override
 	public ResultMessage changeClerkInfo(ClerkVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.ID.equals("320581199001012016")) {
-			// ²»´æÔÚ¶ÔÓ¦¹¤×÷ÈËÔ±
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 			return ResultMessage.Clerk_ClerkNotExist;
 		} else if (vo.hotelID == "" || vo.hotelName == "" || vo.ID == "" || vo.name == "" || vo.password == ""
-				|| vo.phone == "" || vo.position == null) {
+				|| vo.phone == "" ) {
 			return ResultMessage.Blank;
 		} else if (vo.phone.length() != 11) {
-			// ÊÖ»úºÅÂë¸ñÊ½´íÎó
+			// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongPhoneFormat;
 		} else {
 			return ResultMessage.Manager_ChangeClerkInfoSuccess;
@@ -166,116 +159,110 @@ public class Manager_BLService_Stub implements Manager_BLService {
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Ìí¼ÓÍøÕ¾ÓªÏúÈËÔ±
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾Óªï¿½ï¿½ï¿½ï¿½Ô±
 	 */
-	@Override
 	public ResultMessage addMarketer(MarketerVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.ID == "" || vo.name == "" || vo.password == "" || vo.phone == "") {
 			return ResultMessage.Blank;
 		} else if (vo.ID.equals("320581190001012016")) {
-			// ÓªÏúÈËÔ±ÒÑ´æÔÚ
+			// Óªï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ñ´ï¿½ï¿½ï¿½
 			return ResultMessage.Marketer_MarketerAlreadyExist;
 		} else if (vo.phone.length() != 11) {
-			// ÊÖ»úºÅÂë¸ñÊ½´íÎó
+			// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongPhoneFormat;
 		} else if (vo.ID.length() != 18) {
-			// Éí·İÖ¤ºÅ¸ñÊ½´íÎó
+			// ï¿½ï¿½ï¿½Ö¤ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongIDFormat;
 		} else {
-			// Ìí¼Ó³É¹¦
+			// ï¿½ï¿½Ó³É¹ï¿½
 			return ResultMessage.Manager_AddMarketerSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±É¾³ıÍøÕ¾ÓªÏúÈËÔ±
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±É¾ï¿½ï¿½ï¿½ï¿½Õ¾Óªï¿½ï¿½ï¿½ï¿½Ô±
 	 */
-	@Override
 	public ResultMessage deleteMarketer(MarketerVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.ID == "320581190001012016") {
-			// ¶ÔÓ¦ÍøÕ¾ÓªÏúÈËÔ±²»´æÔÚ
+			// ï¿½ï¿½Ó¦ï¿½ï¿½Õ¾Óªï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.Marketer_MarketerNotExist;
 		} else {
-			// É¾³ı³É¹¦
+			// É¾ï¿½ï¿½ï¿½É¹ï¿½
 			return ResultMessage.Manager_DeleteMarketerSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Î¬»¤ÍøÕ¾ÓªÏúÈËÔ±ĞÅÏ¢
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±Î¬ï¿½ï¿½ï¿½ï¿½Õ¾Óªï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
 	 */
-	@Override
 	public ResultMessage changeMarketerInfo(MarketerVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.ID == "320581190001012016") {
-			// ¶ÔÓ¦ÍøÕ¾ÓªÏúÈËÔ±²»´æÔÚ
+			// ï¿½ï¿½Ó¦ï¿½ï¿½Õ¾Óªï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.Marketer_MarketerNotExist;
 		} else if (vo.ID == "" || vo.name == "" || vo.password == "" || vo.phone == "") {
 			return ResultMessage.Blank;
 		} else if (vo.phone.length() != 11) {
-			// ÊÖ»úºÅÂë¸ñÊ½´íÎó
+			// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongPhoneFormat;
 		} else {
-			// ĞŞ¸Ä³É¹¦
+			// ï¿½Ş¸Ä³É¹ï¿½
 			return ResultMessage.Manager_ChangeMarketerInfoSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Ìí¼Ó¾Æµê
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ó¾Æµï¿½
 	 */
-	@Override
 	public ResultMessage addHotel(HotelVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.hotelID.equals("123456")) {
-			// ¾ÆµêÒÑ´æÔÚ
+			// ï¿½Æµï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 			return ResultMessage.Hotel_HotelAlreadyExist;
 		} else if (vo.area == "" || vo.hotelAddress == "" || vo.hotelID == "" || vo.license == "") {
-			// ĞÅÏ¢Î´ÌîĞ´ÍêÕû
+			// ï¿½ï¿½Ï¢Î´ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.Blank;
 		} else if (vo.hotelID.length() != 6) {
-			// ¾ÆµêID¸ñÊ½´íÎó
+			// ï¿½Æµï¿½IDï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongHotelIDFormat;
 		} else {
-			// Ìí¼Ó¾Æµê³É¹¦
+			// ï¿½ï¿½Ó¾Æµï¿½É¹ï¿½
 			return ResultMessage.Manager_AddHotelSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±É¾³ı¾Æµê
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±É¾ï¿½ï¿½ï¿½Æµï¿½
 	 */
-	@Override
 	public ResultMessage deleteHotel(HotelVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.hotelID == "123456") {
-			// ¾Æµê²»´æÔÚ
+			// ï¿½Æµê²»ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.Hotel_HotelNotExist;
 		} else {
-			// É¾³ı¾Æµê³É¹¦
+			// É¾ï¿½ï¿½ï¿½Æµï¿½É¹ï¿½
 			return ResultMessage.Manager_DeleteHotelSuccess;
 		}
 	}
 
 	/**
-	 * ÍøÕ¾¹ÜÀíÈËÔ±Î¬»¤¾ÆµêĞÅÏ¢
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±Î¬ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½Ï¢
 	 */
-	@Override
 	public ResultMessage changeHotelInfo(HotelVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.hotelID == "123456") {
-			// ¾Æµê²»´æÔÚ
+			// ï¿½Æµê²»ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.Hotel_HotelNotExist;
 		} else if (vo.area == "" || vo.hotelAddress == "" || vo.hotelID == "" || vo.license == "") {
-			// ĞÅÏ¢Î´ÌîĞ´ÍêÕû
+			// ï¿½ï¿½Ï¢Î´ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.Blank;
 		} else if (vo.hotelID.length() != 6) {
-			// ¾ÆµêID¸ñÊ½´íÎó
+			// ï¿½Æµï¿½IDï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.WrongHotelIDFormat;
 		} else {
-			// ĞŞ¸Ä¾ÆµêĞÅÏ¢³É¹¦
+			// ï¿½Ş¸Ä¾Æµï¿½ï¿½ï¿½Ï¢ï¿½É¹ï¿½
 			return ResultMessage.Manager_ChangeHotelInfoSuccess;
 		}
 	}

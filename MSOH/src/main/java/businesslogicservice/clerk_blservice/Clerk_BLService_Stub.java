@@ -1,5 +1,6 @@
 package businesslogicservice.clerk_blservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +17,17 @@ public class Clerk_BLService_Stub implements Clerk_BLService {
 
 	ClerkVO clerkVO;
 
+	public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException {
+		return null;
+	}
+
+	public ResultMessage deleteClerk(ClerkVO clerkVO) throws RemoteException {
+		return null;
+	}
+
 	/**
 	 * 通过ID查找酒店工作人员
 	 */
-	@Override
 	public ClerkVO getSingleByID(String ID) {
 		// TODO Auto-generated method stub
 		if (ID.equals("000000000000000000")) {
@@ -67,7 +75,6 @@ public class Clerk_BLService_Stub implements Clerk_BLService {
 	/**
 	 * 通过用户名查找酒店工作人员
 	 */
-	@Override
 	public ClerkVO getSingleByName(String name) {
 		// TODO Auto-generated method stub
 		if (name.equals("Admin")) {
@@ -82,7 +89,6 @@ public class Clerk_BLService_Stub implements Clerk_BLService {
 	/**
 	 * 返回所有的酒店工作人员列表
 	 */
-	@Override
 	public List<ClerkVO> getAll() {
 		// TODO Auto-generated method stub
 		List<ClerkVO> clerk = new ArrayList<ClerkVO>();

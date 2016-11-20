@@ -13,15 +13,15 @@ import vo.HotelVO;
  */
 
 public interface Customer_BLService {
-    public double getCredit(CustomerVO customerVO) throws RemoteException;
+    public double getCredit(String customerID) throws RemoteException;
 
     public ResultMessage signUp(CustomerVO customerVO) throws RemoteException;
 
     public ResultMessage changeInfo(CustomerVO customerVO) throws RemoteException;
 
-    public List<HotelVO> getHistoryHotel(CustomerVO customerVO) throws RemoteException;
+    public List<HotelVO> getHistoryHotel(String customerID) throws RemoteException;
 
-    public CreditRecordVO getCreditRecord(CustomerVO customerVO) throws RemoteException;
+    public CreditRecordVO getCreditRecord(String customerID) throws RemoteException;
 
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException;
 

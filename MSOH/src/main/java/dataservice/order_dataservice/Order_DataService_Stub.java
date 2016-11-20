@@ -1,9 +1,11 @@
 package dataservice.order_dataservice;
 
+import businesslogic.order_bl.Order;
 import po.OrderPO;
 import util.OrderStatus;
 import util.ResultMessage;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,85 +17,61 @@ import java.util.List;
  */
 public class Order_DataService_Stub implements Order_DataService{
 
-	public OrderPO getOrderByOrderID(String OrderID) {
-		return new OrderPO();
+	public boolean addOrder(OrderPO po) throws RemoteException {
+		return false;
 	}
 
-	public ResultMessage setEstimatedCheckoutTime(OrderPO orderPO,Date estimatedCheckoutTime) {
-		orderPO.setEstimatedCheckoutTime(estimatedCheckoutTime);
-		return ResultMessage.Order_SetEstimatedCheckoutTimeSuccess;
+	public List<OrderPO> getAllOrders() throws RemoteException {
+		return null;
 	}
 
-	public ResultMessage add(OrderPO po) {
-		return ResultMessage.Order_AddOrderSuccess;
-	}
-
-	public List<OrderPO> findByCustomerID(String customerID) {
-		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
-		order.add(new OrderPO());
-		return order;
-	}
-
-	public List<OrderPO> findByCustomerIDAndOrderStatus(String customerID, OrderStatus orderStatus) {
-		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
-		order.add(new OrderPO());
-		return order;
-	}
-
-	public List<OrderPO> findByHotelID(String hotelID) {
-		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
-		order.add(new OrderPO());
-		return order;
-	}
-
-	public List<OrderPO> findByOrderStatus(OrderStatus orderStatus) {
-		ArrayList<OrderPO> order=new ArrayList<OrderPO>();
-		order.add(new OrderPO());
-		return order;
-	}
-
-	public double getPrice(OrderPO po) {
-		return po.getFinalPrice();
-	}
-
-	public ResultMessage changeOrderStatus(OrderPO po, OrderStatus condition) {
-		if(po.getOrderID().equals("111111111"))
-			return ResultMessage.Order_ChangeOrderStatusSuccess;
-		else
-			return ResultMessage.Order_ChangeOrderStatusFailure;
-
-	}
-
-	public OrderStatus getOrderStatus(OrderPO po) {
-		if(po.getOrderID().equals("111111111"))
-			return po.getOrderType();
+	public OrderPO getOrderByOrderID(String OrderID) throws RemoteException {
+		if(OrderID.equals("12138"))
+			return new OrderPO("pxr", "12345678910", "320200000000000000", "123",
+					"RUJIA", "12138", new Date(2016,11,20), null, new Date(2016,11,21), null,
+					new Date(2016,11,20), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED);
 		else
 			return null;
 	}
 
-	public ResultMessage setActualCheckinTime(OrderPO po, Date actualCheckinTime) {
-		if(po.getOrderID().equals("111111111"))
-			return ResultMessage.Order_SetActualCheckinTimeSuccess;
-		else
-			return ResultMessage.Order_SetActualCheckinTimeFailure;
+	public List<OrderPO> findOrderByCustomerID(String customerID) throws RemoteException {
+		if(customerID.equals("320200000000000000")){
+			List<OrderPO> orderPOList = new ArrayList<OrderPO>();
+			orderPOList.add(new OrderPO("pxr", "12345678910", "320200000000000000", "123",
+					"RUJIA", "12138", new Date(2016,11,20), null, new Date(2016,11,21), null,
+					new Date(2016,11,20), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
+			return orderPOList;
+		}else
+			return null;
 	}
 
-	public ResultMessage setActualCheckoutTime(OrderPO po, Date actualCheckoutTime) {
-		if(po.getOrderID().equals("111111111"))
-			return ResultMessage.Order_SetActualCheckoutTimeSuccess;
-		else
-			return ResultMessage.Order_SetActualCheckoutTimeFailure;
+	public List<OrderPO> findOrderByHotelID(String hotelID) throws RemoteException {
+		if(hotelID.equals("123")){
+			List<OrderPO> orderPOList = new ArrayList<OrderPO>();
+			orderPOList.add(new OrderPO("pxr", "12345678910", "320200000000000000", "123",
+					"RUJIA", "12138", new Date(2016,11,20), null, new Date(2016,11,21), null,
+					new Date(2016,11,20), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
+			return orderPOList;
+		}else
+			return null;
 	}
 
-	public OrderPO getOrderByHotelID(String hotelID) {
-		return null;
+	public List<OrderPO> findOrderByOrderStatus(OrderStatus orderStatus) throws RemoteException {
+		if(orderStatus.equals(OrderStatus.UNEXECUTED)){
+			List<OrderPO> orderPOList = new ArrayList<OrderPO>();
+			orderPOList.add(new OrderPO("pxr", "12345678910", "320200000000000000", "123",
+					"RUJIA", "12138", new Date(2016,11,20), null, new Date(2016,11,21), null,
+					new Date(2016,11,20), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
+			return orderPOList;
+		}else
+			return null;
 	}
 
-	public Date getLatestExecutedTime(OrderPO po) {
-		if(po.getOrderID().equals("111111111"))
-			return po.getLatestExecutedTime();
-		else
-			return null;	
+	public boolean updateOrder(OrderPO orderPO) throws RemoteException {
+		return false;
 	}
-	
+
+	public boolean deleteOrder(OrderPO orderPO) throws RemoteException {
+		return false;
+	}
 }

@@ -1,5 +1,6 @@
 package businesslogicservice.order_blservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +38,15 @@ public class Order_BLService_Stub implements Order_BLService {
 
 	}
 
+	public double getTotal(OrderVO orderVO) throws RemoteException {
+		return 0;
+	}
+
 	/**
 	 * ³·Ïú¶©µ¥
 	 */
 	public ResultMessage cancelOrder(OrderVO orderVO) {
-		orderVO.orderType=OrderStatus.REVOKED
+		orderVO.orderType=OrderStatus.REVOKED;
 		return ResultMessage.Order_CancelOrderSuccess;
 	}
 

@@ -48,8 +48,8 @@ public class Customer_BLService_Driver {
         } else {
             System.out.println("get successfullu");
         }
-        CreditRecordVO creditRecordVO = customer_BLService.getCreditRecord(customerVO);
-        List<HotelVO> list2 = customer_BLService.getHistoryHotel(customerVO);
+        CreditRecordVO creditRecordVO = customer_BLService.getCreditRecord("!23");
+        List<HotelVO> list2 = customer_BLService.getHistoryHotel("!23");
 
     }
 

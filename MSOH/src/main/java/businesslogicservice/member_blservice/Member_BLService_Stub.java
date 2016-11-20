@@ -9,43 +9,42 @@ import vo.MemberVO;
  * @author Pxr created:2016.10.14 latest modify:2016.10.15
  */
 public class Member_BLService_Stub implements Member_BLService {
-	// »áÔ±µÈ¼¶ĞÅÏ¢
+	// ï¿½ï¿½Ô±ï¿½È¼ï¿½ï¿½ï¿½Ï¢
 	MemberLevelVO memberLevelVO;
-	// ÓÃ»§ĞÅÏ¢
+	// ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 	CustomerVO customerVO;
-	// »áÔ±ĞÅÏ¢
+	// ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
 	MemberVO memberVO;
 
 	/**
-	 * »áÔ±×¢²á
+	 * ï¿½ï¿½Ô±×¢ï¿½ï¿½
 	 */
-	@Override
-	public ResultMessage signUp(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
-		// ÈôÓÃ»§ĞÅÓÃÖµ³¬¹ıĞÅÓÃ½çÏŞ£¬Ôò¿ÉÒÔ×¢²á»áÔ±£¬²¢Ñ¡Ôñ»áÔ±ÀàĞÍ
+	public ResultMessage signUp( MemberVO memberVO, String customerID) {
+		// ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½ï¿½Ş£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
 		if (customerVO.credit >= memberLevelVO.creditBoundaries[1]) {
-			// ÈôÓÃ»§Î´Ñ¡Ôñ»áÔ±ÀàĞÍ£¬·µ»ØÓĞĞÅÏ¢¿Õ°×
+			// ï¿½ï¿½ï¿½Ã»ï¿½Î´Ñ¡ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Õ°ï¿½
 			if (memberVO.memberType == null) {
 				return ResultMessage.Blank;
 			}
-			// ÈôÓÃ»§Ñ¡Ôñ³ÉÎªÆÕÍ¨»áÔ±
+			// ï¿½ï¿½ï¿½Ã»ï¿½Ñ¡ï¿½ï¿½ï¿½Îªï¿½ï¿½Í¨ï¿½ï¿½Ô±
 			else if (memberVO.memberType.equals("NORMAL")) {
-				// ÈôÓÃ»§Î´ÌîĞ´ÉúÈÕ£¬·µ»ØÓĞĞÅÏ¢¿Õ°×
+				// ï¿½ï¿½ï¿½Ã»ï¿½Î´ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½Õ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Õ°ï¿½
 				if (memberVO.birthday == null) {
 					return ResultMessage.Blank;
 				}
-				// ÈôÓÃ»§ÉúÈÕÌîĞ´Îª12.25£¬Ôò·µ»Ø×¢²á³É¹¦
+				// ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´Îª12.25ï¿½ï¿½ï¿½ò·µ»ï¿½×¢ï¿½ï¿½É¹ï¿½
 				else if (memberVO.birthday.equals(12.25)) {
 					return ResultMessage.Member_NormalSignupSuccess;
 				}
 			}
-			// ÈôÓÃ»§Ñ¡Ôñ³ÉÎªÆóÒµ»áÔ±
+			// ï¿½ï¿½ï¿½Ã»ï¿½Ñ¡ï¿½ï¿½ï¿½Îªï¿½ï¿½Òµï¿½ï¿½Ô±
 			else if (memberVO.memberType.equals("ENTERPRICE")) {
-				// ÈôÓÃ»§Î´ÌîĞ´ÆóÒµÃû£¬·µ»ØÓĞĞÅÏ¢¿Õ°×
+				// ï¿½ï¿½ï¿½Ã»ï¿½Î´ï¿½ï¿½Ğ´ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Õ°ï¿½
 				if (memberVO.companyName == null) {
 					return ResultMessage.Blank;
 				}
-				// ÈôÓÃ»§ÆóÒµÃûÌîĞ´Îª½­ÄÏÆ¤¸ï³§£¬Ôò·µ»Ø×¢²á³É¹¦
-				else if (memberVO.companyName.equals("½­ÄÏÆ¤¸ï³§")) {
+				// ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½Ğ´Îªï¿½ï¿½ï¿½ï¿½Æ¤ï¿½ï³§ï¿½ï¿½ï¿½ò·µ»ï¿½×¢ï¿½ï¿½É¹ï¿½
+				else if (memberVO.companyName.equals("ï¿½ï¿½ï¿½ï¿½Æ¤ï¿½ï³§")) {
 					return ResultMessage.Member_EnterpriseSignupSuccess;
 				}
 			}
@@ -55,36 +54,5 @@ public class Member_BLService_Stub implements Member_BLService {
 		return null;
 	}
 
-	/**
-	 * »áÔ±Éı¼¶
-	 */
-	@Override
-	public void upGrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
-		// ÈôÓÃ»§Îª»áÔ±Ò»¼¶¶øĞÅÓÃÖµ³¬¹ı»áÔ±2¼¶£¬ÔòÉı¼¶
-		if (memberVO.level == 1 && customerVO.credit >= memberLevelVO.creditBoundaries[2]) {
-			memberVO.level++;
-		}
-	}
-
-	/**
-	 * »áÔ±½µ¼¶
-	 */
-	@Override
-	public void deGrade(MemberLevelVO memberLevelVO, MemberVO memberVO, CustomerVO customerVO) {
-		// ÈôÓÃ»§Îª¶ş¼¶¶øĞÅÓÃÖµ²»×ã£¬Ôò½µ¼¶
-		if (memberVO.level == 2 && customerVO.credit <= memberLevelVO.creditBoundaries[2]
-				&& customerVO.credit >= memberLevelVO.creditBoundaries[1]) {
-			memberVO.level--;
-		}
-	}
-
-	/**
-	 * »ñÈ¡»áÔ±
-	 */
-	@Override
-	public MemberVO getSingle(String ID) {
-		MemberVO memberVO = new MemberVO();
-		return memberVO;
-	}
 
 }

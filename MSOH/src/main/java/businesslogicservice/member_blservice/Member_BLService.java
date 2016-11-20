@@ -5,8 +5,10 @@ import vo.CustomerVO;
 import vo.MemberLevelVO;
 import vo.MemberVO;
 
+import java.rmi.RemoteException;
+
 public interface Member_BLService {
 
-	public ResultMessage signUp(MemberVO memberVO, CustomerVO customerVO);
+	public ResultMessage signUp(MemberVO memberVO,String customerID) throws RemoteException;
 
 }

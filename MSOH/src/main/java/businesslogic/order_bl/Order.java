@@ -9,6 +9,7 @@ import dataservice.order_dataservice.Order_DataService;
 import dataservice.order_dataservice.Order_DataService_Stub;
 import po.HotelPO;
 import po.OrderPO;
+import rmi.RemoteHelper;
 import util.OrderStatus;
 import util.ResultMessage;
 import vo.DailyRoomInfoVO;
@@ -18,6 +19,7 @@ import vo.RoomVO;
 
 import javax.swing.text.html.HTMLDocument;
 import javax.xml.transform.Result;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -27,32 +29,37 @@ import java.util.List;
  * Created by apple on 16/11/10.
  */
 public class Order implements Order_BLService {
-    private Order_DataService_Stub order_dataService_stub = new Order_DataService_Stub();
     private Hotel hotel;
     private OrderPO orderPO;
     private MockHotel mockHotel;
+    Order_DataService_Stub order_dataService_stub = new Order_DataService_Stub();
 
-    public double getTotal(OrderVO orderVO) {
+    public double getTotal(OrderVO orderVO) throws RemoteException {
 
-        return mockHotel.getRoomPrice(orderVO.finalPrice,orderVO.rooms.size());
+        return mockHotel.getRoomPrice(orderVO.finalPrice, orderVO.rooms.size());
     }
 
-    public ResultMessage createOrder(OrderVO orderVO) {
-        //有哪些信息是本来就有不用填的呢
-        orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, orderVO.hotelID, orderVO.hotelName, orderVO.orderID,
-                orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime,
-                orderVO.latestExecutedTime, orderVO.rooms, orderVO.numOfCustomers, orderVO.haveChildren, orderVO.remarks,
-                orderVO.promotionName, orderVO.initialPrice, orderVO.finalPrice, orderVO.orderType);
-        order_dataService_stub.add(orderPO);
-        return null;
+    public ResultMessage createOrder(OrderVO orderVO) throws RemoteException{
+        if (orderVO.estimatedCheckoutTime == null || orderVO.estimatedCheckinTime == null)
+            return ResultMessage.Blank;
+            //有哪些信息是本来就有不用填的呢
+        else {
+            orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, orderVO.hotelID, orderVO.hotelName, orderVO.orderID,
+                    orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime,
+                    orderVO.latestExecutedTime, orderVO.rooms, orderVO.numOfCustomers, orderVO.haveChildren, orderVO.remarks,
+                    orderVO.promotionName, orderVO.initialPrice, orderVO.finalPrice, orderVO.orderType);
+            order_dataService_stub.addOrder(orderPO);
+            return ResultMessage.Order_CreateOrderSuccess;
+        }
     }
 
-    public ResultMessage cancelOrder(OrderVO orderVO) {
+    public ResultMessage cancelOrder(OrderVO orderVO)throws RemoteException {
         //根据orderVO的订单号得到该订单的po,然后在获取订单状态
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
         //如果订单状态为未执行，更改为已撤销，并返回撤销订单成功
-        if (order_dataService_stub.getOrderStatus(orderPO).equals(OrderStatus.UNEXECUTED)) {
-            order_dataService_stub.changeOrderStatus(orderPO, OrderStatus.EXECUTED);
+        if (orderPO.getOrderType().equals(OrderStatus.UNEXECUTED)) {
+            orderPO.setOrderType(OrderStatus.REVOKED);
+            order_dataService_stub.updateOrder(orderPO);
             orderVO.orderType = OrderStatus.EXECUTED;
             return ResultMessage.Order_CancelOrderSuccess;
         } else
@@ -61,13 +68,17 @@ public class Order implements Order_BLService {
 
     }
 
-    public ResultMessage executeOrder(OrderVO orderVO) {
+    public ResultMessage executeOrder(OrderVO orderVO)throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (order_dataService_stub.getOrderStatus(orderPO).equals(OrderStatus.UNEXECUTED)) {
-            order_dataService_stub.changeOrderStatus(orderPO, OrderStatus.EXECUTED);
+        if (orderPO.getOrderType().equals(OrderStatus.UNEXECUTED)) {
+            if(orderVO.actualCheckinTime==null)
+                return ResultMessage.Blank;
+            orderPO.setOrderType(OrderStatus.EXECUTED);
+            orderPO.setEstimatedCheckoutTime(orderVO.estimatedCheckoutTime);
+            orderPO.setActualCheckinTime(orderVO.actualCheckinTime);
+           order_dataService_stub.updateOrder(orderPO);
+
             orderVO.orderType = OrderStatus.EXECUTED;
-            order_dataService_stub.setActualCheckinTime(orderPO, orderVO.actualCheckinTime);
-            order_dataService_stub.setEstimatedCheckoutTime(orderPO, orderVO.estimatedCheckoutTime);
             return ResultMessage.Order_ExecuteOrderSuccess;
         } else {
             //同上
@@ -75,12 +86,15 @@ public class Order implements Order_BLService {
         }
     }
 
-    public ResultMessage endOrder(OrderVO orderVO) {
+    public ResultMessage endOrder(OrderVO orderVO)throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (order_dataService_stub.getOrderStatus(orderPO).equals(OrderStatus.EXECUTED)) {
-            order_dataService_stub.changeOrderStatus(orderPO, OrderStatus.FINISHED_UNEVALUATED);
+        if (orderPO.getOrderType().equals(OrderStatus.EXECUTED)) {
+            if(orderVO.actualCheckoutTime==null)
+                return ResultMessage.Blank;
+            orderPO.setOrderType(OrderStatus.FINISHED_UNEVALUATED);
             orderVO.orderType = OrderStatus.FINISHED_UNEVALUATED;
-            order_dataService_stub.setActualCheckoutTime(orderPO, orderVO.actualCheckinTime);
+            orderPO.setActualCheckoutTime(orderVO.actualCheckoutTime);
+            order_dataService_stub.updateOrder(orderPO);
             return ResultMessage.Order_EndOrderSuccess;
         } else {
             //同上
@@ -88,18 +102,20 @@ public class Order implements Order_BLService {
         }
     }
 
-    public ResultMessage setAbnormal(OrderVO orderVO) {
+    public ResultMessage setAbnormal(OrderVO orderVO) throws RemoteException{
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        order_dataService_stub.changeOrderStatus(orderPO, OrderStatus.ABNORMAL);
+        orderPO.setOrderType(OrderStatus.ABNORMAL);
         orderVO.orderType = OrderStatus.ABNORMAL;
-        return ResultMessage.Order_SetAbormalSuccess;
+        order_dataService_stub.updateOrder(orderPO);
+        return ResultMessage.Order_SetAbnormalSuccess;
     }
 
-    public ResultMessage renewOrder(OrderVO orderVO) {
+    public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException{
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (order_dataService_stub.getOrderStatus(orderPO).equals(OrderStatus.ABNORMAL)) {
-            order_dataService_stub.changeOrderStatus(orderPO, OrderStatus.REVOKED);
+        if (orderPO.getOrderType().equals(OrderStatus.ABNORMAL)) {
+            orderPO.setOrderType(OrderStatus.REVOKED);
             orderVO.orderType = OrderStatus.REVOKED;
+            order_dataService_stub.updateOrder(orderPO);
             return ResultMessage.Order_RenewOrderSuccess;
         } else {
             //同上

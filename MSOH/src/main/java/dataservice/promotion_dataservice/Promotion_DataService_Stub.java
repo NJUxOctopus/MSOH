@@ -1,5 +1,6 @@
 package dataservice.promotion_dataservice;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
@@ -9,73 +10,28 @@ import util.MemberType;
 import util.ResultMessage;
 /**
  * 
- * @author Ç®¿ÂÓî
+ * @author Ç®ï¿½ï¿½ï¿½ï¿½
  *
  */
 public class Promotion_DataService_Stub implements Promotion_DataService{
 
-	@Override
-	public ResultMessage add(PromotionPO po) {
-			return ResultMessage.Promotion_AddPromotionSuccess;
+	public boolean addPromotion(PromotionPO po) throws RemoteException {
+		return false;
 	}
 
-	@Override
-	public String getTargetAera(PromotionPO po) {
-		if(po.getPromotionID().equals("2016101501"))
-			return po.getTargetArea();
-		else
-			return null;
+	public PromotionPO getPromotion(String promotionID) throws RemoteException {
+		return null;
 	}
 
-	@Override
-	public List<String> getTargetHotel(PromotionPO po) {
-		if(po.getPromotionID().equals("2016101501"))
-			return po.getTargetHotel();
-		else
-			return null;
+	public List<PromotionPO> getAllPromotions() throws RemoteException {
+		return null;
 	}
 
-	@Override
-	public MemberType getTargetUser(PromotionPO po) {
-		if(po.getPromotionID().equals("2016101501"))
-			return po.getTargetUser();
-		else
-			return null;		
+	public boolean deletePromotion(PromotionPO promotionPO) throws RemoteException {
+		return false;
 	}
 
-	@Override
-	public Date getStartTime(PromotionPO po) {
-		if(po.getPromotionID().equals("2016101501"))
-			return po.getStartTime();
-		else
-			return null;	
-	
+	public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException {
+		return false;
 	}
-
-	@Override
-	public Date getEndTime(PromotionPO po) {
-		if(po.getPromotionID().equals("2016101501"))
-			return po.getEndTime();
-		else
-			return null;	
-
-	}
-
-	@Override
-	public double getDiscount(PromotionPO po) {
-		if(po.getPromotionID().equals("2016101501"))
-			return po.getDiscount();
-		else
-			return -1;	
-
-	}
-
-	@Override
-	public int getMinRoom(PromotionPO po) {
-		if(po.getPromotionID().equals("2016101501"))
-			return po.getMinRoom();
-		else
-			return -1;	
-	}
-
 }

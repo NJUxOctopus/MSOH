@@ -90,7 +90,7 @@ public class Customer_BLService_Stub implements Customer_BLService {
 	/**
 	 * 查看客户信用记录
 	 */
-	public CreditRecordVO getCreditRecord(CustomerVO vo) {
+	public CreditRecordVO getCreditRecord(String ID) {
 		// TODO Auto-generated method stub
 		return creditRecordVO;
 	}
@@ -98,12 +98,12 @@ public class Customer_BLService_Stub implements Customer_BLService {
 	/**
 	 * 返回预订过的酒店
 	 */
-	public List<HotelVO> getHistoryHotel(CustomerVO vo) {
+	public List<HotelVO> getHistoryHotel(String ID) {
 		// TODO Auto-generated method stub
 		return list;
 	}
 
-	public double getCredit(CustomerVO customerVO) {
+	public double getCredit(String ID) {
 		return 0;
 	}
 

@@ -3,8 +3,11 @@ package dataservice.customer_dataservice;
 import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
+import util.MemberType;
 import util.ResultMessage;
 
+import javax.swing.*;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,66 +17,56 @@ import java.util.List;
 public class Customer_DataService_Stub implements Customer_DataService {
 
     @Override
-    public CustomerPO find(String customerID) {
+    public boolean addCustomer(CustomerPO customerPO) throws RemoteException {
+        return false;
+    }
+
+    @Override
+    public boolean modifyCustomer(CustomerPO customerPO) throws RemoteException {
+        return false;
+    }
+
+    @Override
+    public boolean deleteCustomer(CustomerPO customerPO) throws RemoteException {
+        return false;
+    }
+
+    @Override
+    public List<CustomerPO> findCustomerByName(String customerName) throws RemoteException {
         return null;
     }
 
-
     @Override
-    public ResultMessage add(CustomerPO customerPO) {
-        // TODO Auto-generated method stub
-        if (customerPO.getID().equals("320581190001012016")) {
-            return ResultMessage.Manager_AddCustomerAlreadyExist;
-        } else {
-            return ResultMessage.Manager_AddCustomerSuccess;
-        }
+    public boolean addCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException {
+        return false;
     }
 
     @Override
-    public ResultMessage modify(CustomerPO customerPO) {
-        // TODO Auto-generated method stub
-        if (customerPO.getID().equals("320581190001012016")) {
-            return ResultMessage.Manager_ChangeCustomerInfoSuccess;
-        } else {
-            return ResultMessage.Customer_CustomerNotExist;
-        }
+    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException {
+        return false;
     }
 
     @Override
-    public List<CustomerPO> findByID(String id) {
-        // TODO Auto-generated method stub
-        ArrayList<CustomerPO> customer = new ArrayList<CustomerPO>();
-        customer.add(new CustomerPO());
-        return customer;
-    }
-
-    @Override
-    public String getID(CustomerPO customerPO) {
-        // TODO Auto-generated method stub
-        return "320581190001012016";
-    }
-
-    @Override
-    public double getCurrentCredit(String customer_id) {
-        // TODO Auto-generated method stub
-        return 1000;
-    }
-
-    @Override
-    public List<HotelPO> getReservedHotel(CustomerPO customerPO) {
-        // TODO Auto-generated method stub
-        ArrayList<HotelPO> hotel = new ArrayList<HotelPO>();
-        hotel.add(new HotelPO());
-        return hotel;
-    }
-
-    @Override
-    public CreditRecordPO getCreditRecord(CustomerPO customerPO) {
+    public List<CreditRecordPO> findCreditRecordByID(String ID) throws RemoteException {
         return null;
     }
 
-    public ResultMessage addCreditRecord(String customerID, CreditRecordPO creditRecordPO) {
+    @Override
+    public CustomerPO findCustomerByID(String customerID) throws RemoteException {
+        if(customerID=="320200000000000000")
+            return new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, new ImageIcon().getImage(),
+                customerID, MemberType.ENTREPRISE);
+        else
+            return null;
+    }
+
+    @Override
+    public List<CustomerPO> findAllCustomers() throws RemoteException {
         return null;
     }
 
+    @Override
+    public List<HotelPO> getCustomerReservedHotel(String ID) throws RemoteException {
+        return null;
+    }
 }

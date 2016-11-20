@@ -37,22 +37,6 @@ public class Hotel_BLService_Driver {
 		else
 			System.out.println("Success!");
 
-		hotelVO = hotel_BLService.getSingle("123456");
-		if (hotelVO == null)
-			System.out.println("Find Fail!");
-		else
-			System.out.println("Success!");
-
-		hotel = hotel_BLService.getAll();
-		if (hotel == null)
-			System.out.println("Find Fail!");
-		else
-			System.out.println("Success!");
-
-		hotel_BLService.addComment(commentVO, orderVO);
-		hotel = hotel_BLService.sortByPrice(hotel);
-		hotel = hotel_BLService.sortByScore(hotel);
-		hotel = hotel_BLService.sortByStar(hotel);
 		
 		
 

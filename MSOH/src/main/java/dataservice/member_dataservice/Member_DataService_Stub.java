@@ -4,78 +4,37 @@ import po.MemberLevelPO;
 import po.MemberPO;
 import util.MemberType;
 import util.ResultMessage;
+
+import java.rmi.RemoteException;
+import java.util.List;
+
 /**
- * 
- * @author Ç®¿ÂÓî
- *
+ * @author Ç®ï¿½ï¿½ï¿½ï¿½
  */
-public class Member_DataService_Stub implements Member_DataService{
+public class Member_DataService_Stub implements Member_DataService {
 
-	@Override
-	public ResultMessage add(MemberPO po) {
-		if(po.getID().equals("320581199810101111")){
-			return ResultMessage.Member_AddMemberAlreadyExist;
-		}else{
-			return ResultMessage.Member_AddMemberSuccess;
-		}
-	}
+    public boolean addMember(MemberPO po) throws RemoteException {
+        return false;
+    }
 
-	@Override
-	public ResultMessage upgrade(int grade) {
-		// TODO Auto-generated method stub
-		return ResultMessage.Member_Upgrade;
-	}
+    public boolean deleteMember(MemberPO po) throws RemoteException {
+        return false;
+    }
 
-	@Override
-	public ResultMessage degrade(int grade) {
-		// TODO Auto-generated method stub
-		return ResultMessage.Member_Degrade;
-	}
+    public boolean updateMember(MemberPO po) throws RemoteException {
+        return false;
+    }
 
-	@Override
-	public int getGrade(MemberPO po) {
-		// TODO Auto-generated method stub
-		return po.getLevel();
-	}
+    public MemberPO findMemberByID(String ID) throws RemoteException {
+        if (ID.equals("320200000000000000"))
+            return new MemberPO(ID, MemberType.NONMEMBER, 0, null, null);
+        else if (ID.equals("12345678"))
+            return new MemberPO(ID, MemberType.ENTREPRISE, 1, null, "NJU");
+        else
+            return null;
+    }
 
-	@Override
-	public ResultMessage delete(MemberPO po) {
-		if(po.getID().equals("320581199810101111")){
-			return ResultMessage.Manager_DeleteMemberSuccess;
-		}else{
-			return ResultMessage.Member_MemberNotExist;
-		}
-	}
-
-	@Override
-	public MemberType getType(MemberPO po) {
-		// TODO Auto-generated method stub
-		return po.getMemberType();
-	}
-
-	@Override
-	public MemberPO getMember(String id) {
-		if(id.equals("320581199810101111"))
-			return new MemberPO();
-		else
-			return null;
-	}
-
-	@Override
-	public ResultMessage addMemberLevel(MemberLevelPO po) {
-		return ResultMessage.MemberLevel_AddMemberLevelSuccess;
-	}
-
-	@Override
-	public ResultMessage modifyMemberLevel(MemberLevelPO po) {
-		// TODO Auto-generated method stub
-		return ResultMessage.MemberLevel_ModifyMemberLevelSuccess;
-	}
-
-	@Override
-	public int getNumberOfMemberLevel(MemberLevelPO po) {
-		// TODO Auto-generated method stub
-		return po.getNum();
-	}
-
+    public List<MemberPO> findAllMemebers() throws RemoteException {
+        return null;
+    }
 }

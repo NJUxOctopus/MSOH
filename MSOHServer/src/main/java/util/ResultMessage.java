@@ -6,7 +6,7 @@ public enum ResultMessage {
     ChangeInfoSuccess, Customer_CustomerNotExist,
     ChangePasswordWrongOldPw, ChangePassword2DifferentNew, ChangePasswordSuccess,
     Member_NormalSignupSuccess, Member_EnterpriseSignupSuccess, Member_SignupCreditNotEnough,
-    Order_CreateOrderSuccess,
+    Order_CreateOrderSuccess,Order_SetAbnormalSuccess,Order_RenewOrderSuccess,
     Hotel_AddRoomSuccess, Hotel_HotelNotExist,
     Manager_AddCustomerAlreadyExist, Manager_AddCustomerSuccess, Manager_ChangeCustomerInfoSuccess,
     Manager_AddClerkAlreadyExist, Manager_AddClerkSuccess, Manager_ManagerNotExist,
@@ -21,5 +21,6 @@ public enum ResultMessage {
     Order_ChangeOrderStatusFailure, Order_SetActualCheckinTimeFailure, Order_SetActualCheckoutTimeFailure,
     Datafactory_CreditChangeSuccess, Datafactory_AddCreditRecordSuccess,
     Hotel_ModifyRoomSuccess, Hotel_DeleteRoomSuccess, Hotel_setDailyRoomInfoSuccess, Hotel_addCommentSuccess, Hotel_addToListOfHotelReservedByCustomerSuccess, Manager_AddMarketerAlreadyExist, Manager_ChangeManagerInfoSuccess,
-    Clerk_AddClerkSuccess,Clerk_AddClerkExist,Clerk_DeleteClerkNotExist,Clerk_DeleteClerkSuccess;
+    Clerk_AddClerkSuccess,Clerk_AddClerkExist,Clerk_DeleteClerkNotExist,Clerk_DeleteClerkSuccess,
+    Promotion_ModifyPromotionSuccess;
 }
