@@ -2,9 +2,9 @@ package util;
 
 /**
  * 
- * @author ßLÇßº­
+ * @author zqh
  *
  */
 public enum MemberType {
-	NONMEMBER ,NORMAL, ENTREPRISE;
+	NONMEMBER ,NORMAL, ENTREPRISE
 }
