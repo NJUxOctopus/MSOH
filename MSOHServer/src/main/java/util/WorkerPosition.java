@@ -1,9 +1,9 @@
 package util;
 /**
  * 
- * @author ÖÜÇßº­
+ * @author zqh
  *
  */
 public enum WorkerPosition {
-	Clerk,Marketer,Manager;
+	Clerk,Marketer,Manager
 }

@@ -20,8 +20,8 @@ public interface Hotel_DataService extends Remote{
     public boolean modifyHotel(HotelPO po) throws RemoteException;
     // 删除酒店
     public boolean deleteHotel(HotelPO po) throws RemoteException;
-    // 根据地址、商圈、预计入住日期和离开时期、星级和评分查找酒店
-    public List<HotelPO> findHotels(String address, String area, Date expected_date_of_arrival, Date expected_date_of_departure, int star, double score) throws RemoteException;
+    // 得到所有酒店信息
+    public List<HotelPO> getHotels() throws RemoteException;
     // 根据酒店ID查找酒店
     public HotelPO findHotelByID(String hotelID) throws RemoteException;
     // 根据酒店名字查找酒店
