@@ -11,14 +11,14 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image_customer/ElCapitan2.png" />
+            <Image url="@image_customer/ElCapitan2.png" />
          </image>
       </ImageView>
       <Button fx:id="backButton" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;">
          <graphic>
             <ImageView fx:id="backButton" fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image_customer/backButton.png" />
+                  <Image url="@image_customer/backButton.png" />
                </image>
             </ImageView>
          </graphic>
@@ -27,7 +27,7 @@
          <children>
             <ImageView fitHeight="675.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image_customer/customer_singleorderframe.png" />
+                  <Image url="@image_customer/customer_singleorderframe.png" />
                </image>
             </ImageView>
             <Label fx:id="customerNameLabel" layoutX="337.0" layoutY="153.0" text="Octopus" textFill="WHITE">
