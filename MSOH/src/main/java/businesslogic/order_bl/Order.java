@@ -40,7 +40,7 @@ public class Order implements Order_BLService {
     }
 
     public ResultMessage createOrder(OrderVO orderVO) throws RemoteException{
-        if (orderVO.estimatedCheckoutTime == null || orderVO.estimatedCheckinTime == null)
+        if (orderVO.rooms==null||orderVO.estimatedCheckoutTime == null || orderVO.estimatedCheckinTime == null)
             return ResultMessage.Blank;
             //有哪些信息是本来就有不用填的呢
         else {
@@ -70,7 +70,7 @@ public class Order implements Order_BLService {
 
     public ResultMessage executeOrder(OrderVO orderVO)throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (orderPO.getOrderType().equals(OrderStatus.UNEXECUTED)) {
+        if (orderVO.orderType.equals(OrderStatus.UNEXECUTED)) {
             if(orderVO.actualCheckinTime==null)
                 return ResultMessage.Blank;
             orderPO.setOrderType(OrderStatus.EXECUTED);
@@ -88,7 +88,7 @@ public class Order implements Order_BLService {
 
     public ResultMessage endOrder(OrderVO orderVO)throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (orderPO.getOrderType().equals(OrderStatus.EXECUTED)) {
+        if (orderVO.orderType.equals(OrderStatus.EXECUTED)) {
             if(orderVO.actualCheckoutTime==null)
                 return ResultMessage.Blank;
             orderPO.setOrderType(OrderStatus.FINISHED_UNEVALUATED);
@@ -112,7 +112,7 @@ public class Order implements Order_BLService {
 
     public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException{
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (orderPO.getOrderType().equals(OrderStatus.ABNORMAL)) {
+        if (orderVO.orderType.equals(OrderStatus.ABNORMAL)) {
             orderPO.setOrderType(OrderStatus.REVOKED);
             orderVO.orderType = OrderStatus.REVOKED;
             order_dataService_stub.updateOrder(orderPO);

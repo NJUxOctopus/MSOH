@@ -103,7 +103,7 @@ public class Customer_BLService_Stub implements Customer_BLService {
 		return list;
 	}
 
-	public double getCredit(String ID) {
+	public int getCredit(String ID) {
 		return 0;
 	}
 

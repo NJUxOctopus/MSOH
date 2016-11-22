@@ -29,8 +29,8 @@ public class Marketer_DataService_Stub implements Marketer_DataService{
 	}
 
 	public MarketerPO findMarketerByID(String id) throws RemoteException {
-		if (id .equals( "320200000000000000"))
-			return new MarketerPO("pxr", "320200000000000000", "12345678910", "123456", new ImageIcon().getImage(), WorkerPosition.Marketer);
+		if (id.equals("1234"))
+			return new MarketerPO("pxr",  "12345678910", "123456", id,new ImageIcon().getImage(), WorkerPosition.Marketer);
 		else
 			return null;
 	}

@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class MemberLevelTest extends TestCase {
     MemberLevel memberLevel = new MemberLevel();
-    public void addMemberLevelTest()throws RemoteException{
+    public void testAddMemberLevel()throws RemoteException{
         int a[] = {10,20,30};
         ResultMessage resultMessage1 = memberLevel.addMemberLevel(new MemberLevelVO("pxr",new Date(2016,11,19),3,a));
         ResultMessage resultMessage2 = memberLevel.addMemberLevel(new MemberLevelVO("pxr",new Date(2016,11,19),3,null));
@@ -21,7 +21,7 @@ public class MemberLevelTest extends TestCase {
         assertEquals(resultMessage3,null);
     }
 
-    public void modifyMemberLevelTest()throws RemoteException{
+    public void testModifyMemberLevel()throws RemoteException{
         int a[] = {10,20,30};
         ResultMessage resultMessage1 = memberLevel.modifyMemberLevel(new MemberLevelVO("pxr",new Date(2016,11,19),3,a));
         ResultMessage resultMessage2 = memberLevel.modifyMemberLevel(new MemberLevelVO("pxr",new Date(2016,11,19),3,null));

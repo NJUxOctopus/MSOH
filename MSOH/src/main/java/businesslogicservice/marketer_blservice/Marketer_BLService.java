@@ -1,5 +1,6 @@
 package businesslogicservice.marketer_blservice;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import util.ResultMessage;
@@ -8,15 +9,13 @@ import vo.MarketerVO;
 
 public interface Marketer_BLService {
 
-	public ResultMessage changeInfo(MarketerVO vo);
+    public ResultMessage deleteMarketer(String marketerID) throws RemoteException;
 
-	public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2);
+    public ResultMessage addMarketer(MarketerVO marketerVO) throws RemoteException;
 
-	public MarketerVO getSingleByID(String ID);
+    public ResultMessage changeInfo(MarketerVO marketerVO) throws RemoteException ;
 
-	public MarketerVO getSingleByName(String name);
+    public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2)throws RemoteException;
 
-	public List<MarketerVO> getAll();
-
-	public ResultMessage CreditCharge(String ID, int credit, CustomerVO vo);
+    public ResultMessage CreditCharge(String ID, int credit, CustomerVO customerVO)throws RemoteException;
 }

@@ -27,6 +27,12 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     private Manager_DataService manager_dataService;
     private Marketer_DataService marketer_dataService;
     private Member_DataService member_dataService;
+
+    @Override
+    public List<HotelPO> getHotels() throws RemoteException {
+        return null;
+    }
+
     private Order_DataService order_dataService;
     private Clerk_DataService clerk_dataService;
     private Promotion_DataService promotion_dataService;

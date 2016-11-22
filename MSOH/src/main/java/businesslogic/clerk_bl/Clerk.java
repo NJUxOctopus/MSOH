@@ -15,12 +15,13 @@ import java.rmi.RemoteException;
  */
 public class Clerk implements Clerk_BLService {
     Clerk_DataService_Stub clerk_dataService_stub = new Clerk_DataService_Stub();
+
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException {
-        if (clerkVO.name == "" || clerkVO.phone == "" || clerkVO.ID == "" ||
-                clerkVO.password == "" || clerkVO.hotelID == "" || clerkVO.hotelName == "") {
+        if (clerkVO.name.equals("") || clerkVO.phone.equals("") || clerkVO.ID.equals("") ||
+                clerkVO.password.equals("") || clerkVO.hotelID.equals("") || clerkVO.hotelName.equals("")) {
             //若工作人员的名字或电话或ID或密码或所在酒店ID，名称为空
             return ResultMessage.Blank;
-        } else if (clerkVO.ID != "" && clerk_dataService_stub.findClerkByID(clerkVO.ID) != null) {
+        } else if (clerk_dataService_stub.findClerkByID(clerkVO.ID) != null) {
             //若已存在该工作人员
             return ResultMessage.Clerk_AddClerkExist;
         } else {
@@ -32,34 +33,29 @@ public class Clerk implements Clerk_BLService {
     }
 
     public ResultMessage changeInfo(ClerkVO clerkVO) throws RemoteException {
-        if (clerkVO.name == "" || clerkVO.phone == "" || clerkVO.ID == "") {
+        if(clerk_dataService_stub.findClerkByID(clerkVO.ID)==null)
+            return ResultMessage.Clerk_ClerkNotExist;
+        if (clerkVO.name.equals("") || clerkVO.phone.equals("") || clerkVO.ID.equals(""))
             //若工作人员的名字或电话或ID或密码或所在酒店ID，名称为空
             return ResultMessage.Blank;
-        } else {
-            ClerkPO clerkPO = clerk_dataService_stub.findClerkByID(clerkVO.ID);
-            if (!clerkPO.getPhone().equals(clerkVO.phone))
-                clerkPO.setPhone(clerkVO.phone);
-            if (!clerkPO.getPic().equals(clerkVO.pic))
-                clerkPO.setPic(clerkVO.pic);
-            if (!clerkPO.getName().equals(clerkVO.name))
-                clerkPO.setName(clerkVO.name);
-            clerk_dataService_stub.modifyClerk(clerkPO);
-            return ResultMessage.ChangeInfoSuccess;
-        }
+        ClerkPO clerkPO = clerk_dataService_stub.findClerkByID(clerkVO.ID);
+        clerkPO.setPhone(clerkVO.phone);
+        clerkPO.setPic(clerkVO.pic);
+        clerkPO.setName(clerkVO.name);
+        clerk_dataService_stub.modifyClerk(clerkPO);
+        return ResultMessage.ChangeInfoSuccess;
     }
 
     public ResultMessage deleteClerk(ClerkVO clerkVO) throws RemoteException {
-        if (clerk_dataService_stub.findClerkByID(clerkVO.ID) == null) {//若该工作人员不存在
+        if (clerk_dataService_stub.findClerkByID(clerkVO.ID) == null) //若该工作人员不存在
             return ResultMessage.Clerk_DeleteClerkNotExist;
-        } else {//这里直接掉数据层吗？
-            clerk_dataService_stub.deleteClerk(clerk_dataService_stub.findClerkByID(clerkVO.ID));
-            return ResultMessage.Clerk_DeleteClerkSuccess;
-        }
+        clerk_dataService_stub.deleteClerk(clerk_dataService_stub.findClerkByID(clerkVO.ID));
+        return ResultMessage.Clerk_DeleteClerkSuccess;
     }
 
     public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException {
         //改密码感觉跟别的有重复的了，是不是应该抽出来
-        if (ID == "" || oldPassword == "" || newPassword1 == "" || newPassword2 == "") {//ID或旧密码或两次新密码未输入
+        if (ID.equals("") || oldPassword.equals("") || newPassword1.equals("") || newPassword2.equals("")) {//ID或旧密码或两次新密码未输入
             return ResultMessage.Blank;
         } else if (clerk_dataService_stub.findClerkByID(ID).getPassword().equals(oldPassword)) {//若旧密码输入正确
             if (newPassword1.equals(newPassword2)) {//如果两次新密码输入相同

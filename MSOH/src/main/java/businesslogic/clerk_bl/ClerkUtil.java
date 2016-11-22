@@ -35,6 +35,8 @@ public class ClerkUtil implements ClerkUtil_BLService {
     }
 
     public ClerkVO getSingle(String ID) throws RemoteException {
+        if(ID.equals(""))
+            return null;
         ClerkPO clerkPO = clerk_dataService_stub.findClerkByID(ID);
         if(clerkPO==null)
             return null;
@@ -43,6 +45,8 @@ public class ClerkUtil implements ClerkUtil_BLService {
     }
 
     public List<ClerkVO> getByName(String name) throws RemoteException {
+        if(name.equals(""))
+            return null;
         List<ClerkPO> clerkPOList = clerk_dataService_stub.findClerkByName(name);
         if (clerkPOList==null)
             return null;

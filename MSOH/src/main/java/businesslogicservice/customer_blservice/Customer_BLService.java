@@ -13,7 +13,7 @@ import vo.HotelVO;
  */
 
 public interface Customer_BLService {
-    public double getCredit(String customerID) throws RemoteException;
+    public int getCredit(String customerID) throws RemoteException;
 
     public ResultMessage signUp(CustomerVO customerVO) throws RemoteException;
 

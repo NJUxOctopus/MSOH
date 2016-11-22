@@ -19,14 +19,14 @@ import java.util.List;
 public class CustomerTest extends TestCase {
     Customer customer = new Customer();
 
-    public void getCreditTest() throws RemoteException {
-        double credit1 = customer.getCredit("320200000000000000");
-        double credit2 = customer.getCredit("123");
+    public void testGetCredit() throws RemoteException {
+        int credit1 = customer.getCredit("320200000000000000");
+        int credit2 = customer.getCredit("123");
         assertEquals(credit1, 10);
         assertEquals(credit2, -1);
     }
 
-    public void signUpTest() throws RemoteException{
+    public void testSignUp() throws RemoteException{
         ResultMessage resultMessage1 = customer.signUp(new CustomerVO("pxr", "123456", "12345678910", "123@qq.com", 0, null,
                 "320200000000000000", MemberType.NONMEMBER));
         ResultMessage resultMessage2 = customer.signUp(new CustomerVO("pxr", "123456", "12345678910", "123@qq.com", 0, null,
@@ -38,7 +38,7 @@ public class CustomerTest extends TestCase {
         assertEquals(resultMessage3,ResultMessage.Blank);
     }
 
-    public void changeInfoTest()throws RemoteException{
+    public void testChangeInfo()throws RemoteException{
         ResultMessage resultMessage1 = customer.changeInfo(new CustomerVO("pxr", "123456", "12345678910", "123@qq.com", 0, null,
                 "320200000000000000", MemberType.NONMEMBER));
         ResultMessage resultMessage2 = customer.changeInfo(new CustomerVO("", "123456", "12345678910", "123@qq.com", 0, null,
@@ -47,17 +47,17 @@ public class CustomerTest extends TestCase {
         assertEquals(resultMessage2,ResultMessage.Blank);
     }
 
-    public void getHistoryHotelTest()throws RemoteException{
+    public void testGetHistoryHotel()throws RemoteException{
         List<HotelVO> hotelVOList = customer.getHistoryHotel("320200000000000000");
         List<HotelVO> hotelVOList1 = new ArrayList<HotelVO>();
         hotelVOList1.add(new HotelVO("RUJIA", "NJU", "XIANLIN", "wu", null, 5,
                 5, "has", "pxr", "12345678910", "123", null, null));
         List<HotelVO> hotelVOList2 = customer.getHistoryHotel("123");
-        assertEquals(hotelVOList,hotelVOList1);
+        assertEquals(hotelVOList.get(0).hotelID,hotelVOList1.get(0).hotelID);
         assertEquals(hotelVOList2,null);
     }
 
-    public void changePasswordTest()throws RemoteException{
+    public void testChangePassword()throws RemoteException{
         ResultMessage resultMessage1 = customer.changePassword("320200000000000000","123456","1234567","1234567");
         ResultMessage resultMessage2 = customer.changePassword("320200000000000000","12345","1234567","1234567");
         ResultMessage resultMessage3 = customer.changePassword("320200000000000000","123456","1234567","123456");

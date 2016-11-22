@@ -30,7 +30,7 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 		return false;
 	}
 
-	public List<HotelPO> findHotels(String address, String area, Date expected_date_of_arrival, Date expected_date_of_departure, int star, double score) throws RemoteException {
+	public List<HotelPO> getHotels() throws RemoteException {
 		return null;
 	}
 

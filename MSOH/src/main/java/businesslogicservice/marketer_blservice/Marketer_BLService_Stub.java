@@ -1,5 +1,6 @@
 package businesslogicservice.marketer_blservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +19,14 @@ public class Marketer_BLService_Stub implements Marketer_BLService {
 	MarketerVO marketerVO;
 	List<MarketerVO> marketer = new ArrayList<MarketerVO>();
 
-	/**
-	 * ÍøÕ¾ÓªÏúÈËÔ±Î¬»¤¸öÈËĞÅÏ¢
-	 */
-	@Override
+	public ResultMessage deleteMarketer(String marketerID) throws RemoteException {
+		return null;
+	}
+
+	public ResultMessage addMarketer(MarketerVO marketerVO) throws RemoteException {
+		return null;
+	}
+
 	public ResultMessage changeInfo(MarketerVO vo) {
 		// TODO Auto-generated method stub
 		if (vo.name.equals("") || vo.phone.equals("")) {
@@ -34,75 +39,31 @@ public class Marketer_BLService_Stub implements Marketer_BLService {
 
 	}
 
-	/**
-	 * ÍøÕ¾ÓªÏúÈËÔ±ĞŞ¸ÄÃÜÂë
-	 */
-	@Override
 	public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2) {
 		// TODO Auto-generated method stub
 		if (ID.equals("320581190001012016")) {
-			// ÕÒ²»µ½¶ÔÓ¦µÄÓªÏúÈËÔ±
+			// ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Óªï¿½ï¿½ï¿½ï¿½Ô±
 			return ResultMessage.Marketer_MarketerNotExist;
 		} else if (!oldPw.equals(marketerVO.password)) {
-			// ¾ÉÃÜÂë´íÎó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return ResultMessage.ChangePasswordWrongOldPw;
 		} else if (oldPw.equals(marketerVO.password) && !newPw1.equals(newPw2)) {
-			// Á½´ÎĞÂÃÜÂë²»Ò»ÖÂ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Ò»ï¿½ï¿½
 			return ResultMessage.ChangePassword2DifferentNew;
 		} else {
-			// ĞŞ¸ÄÃÜÂë³É¹¦
+			// ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 			return ResultMessage.ChangePasswordSuccess;
 		}
 	}
 
-	/**
-	 * Í¨¹ıID·µ»Ø¶ÔÓ¦µÄÍøÕ¾ÓªÏúÈËÔ±
-	 */
-	@Override
-	public MarketerVO getSingleByID(String ID) {
-		// TODO Auto-generated method stub
-		if (ID.equals("320581190001012016")) {
-			// ÕÒ²»µ½¶ÔÓ¦µÄÓªÏúÈËÔ±
-			return null;
-		} else {
-			return marketerVO;
-		}
-	}
 
-	/**
-	 * Í¨¹ıÃû×Ö·µ»Ø¶ÔÓ¦µÄÍøÕ¾ÓªÏúÈËÔ±
-	 */
-	@Override
-	public MarketerVO getSingleByName(String name) {
-		// TODO Auto-generated method stub
-		if (name.equals("Admin")) {
-			// ÕÒ²»µ½¶ÔÓ¦µÄÓªÏúÈËÔ±
-			return null;
-		} else {
-			return marketerVO;
-		}
-	}
-
-	/**
-	 * ·µ»ØËùÓĞÓªÏúÈËÔ±
-	 */
-	@Override
-	public List<MarketerVO> getAll() {
-		// TODO Auto-generated method stub
-		return marketer;
-	}
-
-	/**
-	 * ÍøÕ¾ÓªÏúÈËÔ±³äÖµĞÅÓÃ
-	 */
-	@Override
 	public ResultMessage CreditCharge(String ID, int credit, CustomerVO vo) {
 		// TODO Auto-generated method stub
 		if (ID.equals("320581190001012016")) {
-			// ÕÒ²»µ½¶ÔÓ¦µÄ¿Í»§
+			// ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ä¿Í»ï¿½
 			return ResultMessage.Customer_CustomerNotExist;
 		} else {
-			// ³äÖµ³É¹¦
+			// ï¿½ï¿½Öµï¿½É¹ï¿½
 			vo.credit += credit;
 			return ResultMessage.Marketer_CreditChargeSuccess;
 		}
