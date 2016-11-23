@@ -1,7 +1,7 @@
 package po;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 
@@ -9,6 +9,8 @@ import java.util.Date;
  *
  */
 public class CommentPO implements Serializable {
+	// 评价编号,供数据库存储使用
+	private int commentId;
 	// 评分
 	private double score;
 	// 评价具体内容
@@ -24,13 +26,13 @@ public class CommentPO implements Serializable {
 	// 评价订单ID
 	private String orderID;
 	// 评价时间
-	private Date commentTime;
+	private Timestamp commentTime;
 
 	public CommentPO() {
 	}
 
 	public CommentPO(double score, String comment, String customerName, String customerID, String hotelName, String hotelID,
-			String orderID, Date commentTime) {
+			String orderID, Timestamp commentTime) {
 		this.score = score;
 		this.comment = comment;
 		this.customerName = customerName;
@@ -97,11 +99,11 @@ public class CommentPO implements Serializable {
 		this.orderID = orderID;
 	}
 
-	public Date getCommentTime() {
+	public Timestamp getCommentTime() {
 		return commentTime;
 	}
 
-	public void setCommentTime(Date commentTime) {
+	public void setCommentTime(Timestamp commentTime) {
 		this.commentTime = commentTime;
 	}
 

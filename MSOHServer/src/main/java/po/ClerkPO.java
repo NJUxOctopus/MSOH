@@ -1,37 +1,56 @@
 package po;
 
-import java.awt.Image;
 import java.io.Serializable;
 
 import util.WorkerPosition;
+
+import javax.persistence.*;
+
 /**
  * 
  * @author zqh
  *
  */
+@Entity
+@Table(name = "clerk",schema = "msoh_database")
 public class ClerkPO implements Serializable {
+	private static final long serialVersionUID=1L;
+
+	// 酒店工作人员在数据库中的ID，仅供数据库使用
+	@Id@GeneratedValue
+	@Column(name = "_autoId")
+	private int _autoID;
 	// 酒店工作人员姓名
+	@Column(name = "name")
 	private String name;
 	// 酒店工作人员联系方式
+	@Column(name = "phone")
 	private String phone;
 	// 酒店工作人员密码
+	@Column(name = "password")
 	private String password;
 	// 酒店工作人员ID
+	@Column(name = "ID")
 	private String ID;
 	// 酒店工作人员所在酒店名称
+	@Column(name = "hotelName")
 	private String hotelName;
 	// 酒店工作人员所在酒店ID
+	@Column(name = "hotelID")
 	private String hotelID;
 	// 工作人员类型：酒店工作人员默认为Clerk
+	@Column(name = "position")
+	@Enumerated(EnumType.STRING)
 	private WorkerPosition position;
 	// 酒店工作人员头像
-	private Image pic;
+	@Column(name = "picUrl")
+	private String picUrl;
 
 	public ClerkPO() {
 	}
 
 	public ClerkPO(String name, String phone, String password, String ID, String hotelName, String hotelID,
-			WorkerPosition position, Image pic) {
+			WorkerPosition position, String picUrl) {
 		this.name = name;
 		this.phone = phone;
 		this.password = password;
@@ -39,7 +58,7 @@ public class ClerkPO implements Serializable {
 		this.hotelName = hotelName;
 		this.hotelID = hotelID;
 		this.position = position;
-		this.pic=pic;
+		this.picUrl=picUrl;
 	}
 
 	public String getName() {
@@ -98,11 +117,11 @@ public class ClerkPO implements Serializable {
 		this.position = position;
 	}
 
-	public Image getPic(){
-		return pic;
+	public String getPicUrl(){
+		return picUrl;
 	}
 	
-	public void setPic(Image pic){
-		this.pic=pic;
+	public void setPicUrl(String picUrl){
+		this.picUrl=picUrl;
 	}
 }

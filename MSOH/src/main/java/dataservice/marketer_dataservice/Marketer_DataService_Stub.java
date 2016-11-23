@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  * 
- * @author Ǯ����
+ * @author zqh
  *
  */
 public class Marketer_DataService_Stub implements Marketer_DataService{

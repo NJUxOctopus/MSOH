@@ -13,7 +13,7 @@ import po.RoomPO;
 import util.ResultMessage;
 /**
  * 
- * @author ���ߺ�
+ * @author zqh
  *
  */
 public class Hotel_DataService_Stub implements Hotel_DataService{

@@ -5,7 +5,7 @@ import po.MemberPO;
 import util.ResultMessage;
 /**
  * 
- * @author Ǯ����
+ * @author zqh
  *
  */
 public class Member_DataService_Driver {

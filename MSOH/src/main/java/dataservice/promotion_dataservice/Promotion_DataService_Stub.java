@@ -10,7 +10,7 @@ import util.MemberType;
 import util.ResultMessage;
 /**
  * 
- * @author Ǯ����
+ * @author zqh
  *
  */
 public class Promotion_DataService_Stub implements Promotion_DataService{

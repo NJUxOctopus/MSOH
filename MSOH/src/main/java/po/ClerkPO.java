@@ -2,7 +2,6 @@ package po;
 
 import util.WorkerPosition;
 
-import java.awt.*;
 import java.io.Serializable;
 
 /**
@@ -11,6 +10,8 @@ import java.io.Serializable;
  *
  */
 public class ClerkPO implements Serializable {
+	// 酒店工作人员在数据库中的ID，仅供数据库使用
+	private int _autoID;
 	// 酒店工作人员姓名
 	private String name;
 	// 酒店工作人员联系方式
@@ -25,14 +26,14 @@ public class ClerkPO implements Serializable {
 	private String hotelID;
 	// 工作人员类型：酒店工作人员默认为Clerk
 	private WorkerPosition position;
-	// 酒店工作人员头像
-	private Image pic;
+	// 酒店工作人员头像地址
+	private String picUrl;
 
 	public ClerkPO() {
 	}
 
 	public ClerkPO(String name, String phone, String password, String ID, String hotelName, String hotelID,
-                   WorkerPosition position, Image pic) {
+                   WorkerPosition position, String picUrl) {
 		this.name = name;
 		this.phone = phone;
 		this.password = password;
@@ -40,7 +41,7 @@ public class ClerkPO implements Serializable {
 		this.hotelName = hotelName;
 		this.hotelID = hotelID;
 		this.position = position;
-		this.pic=pic;
+		this.picUrl=picUrl;
 	}
 
 	public String getName() {
@@ -99,11 +100,11 @@ public class ClerkPO implements Serializable {
 		this.position = position;
 	}
 
-	public Image getPic(){
-		return pic;
+	public String getPicUrl(){
+		return picUrl;
 	}
 	
-	public void setPic(Image pic){
-		this.pic=pic;
+	public void setPicUrl(String picUrl){
+		this.picUrl=picUrl;
 	}
 }

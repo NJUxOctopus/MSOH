@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 
 /**
  * 
- * @author ÷‹«ﬂ∫≠ 2016/10/15
+ * @author st
  *
  */
 public class Login_BLService_Driver {
