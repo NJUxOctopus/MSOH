@@ -1,18 +1,14 @@
 package vo;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
-/**
- * 
- * @author �L�ߺ� 2016-10-15 15:08:10
- *
- */
+
 public class MemberLevelVO implements Serializable{
 
 	public String framerName;
 
-	public Timestamp frameDate;
+	public Date frameDate;
 
 	public int num;
 
@@ -21,7 +17,7 @@ public class MemberLevelVO implements Serializable{
 	public MemberLevelVO(){
 	}
 	
-	public MemberLevelVO(String framerName, Timestamp frameDate, int num, int[] creditBoundaries){
+	public MemberLevelVO(String framerName, Date frameDate, int num, int[] creditBoundaries){
 		this.framerName=framerName;
 		this.frameDate=frameDate;
 		this.num=num;

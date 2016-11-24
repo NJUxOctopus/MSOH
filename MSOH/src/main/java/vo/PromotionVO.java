@@ -1,20 +1,16 @@
 package vo;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
 import util.MemberType;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.List;
-/**
- * 
- * @author �L�ߺ� 2016-10-15 15:12:07
- *
- */
 public class PromotionVO implements Serializable{
 
 	public String framerName;
 
-	public Timestamp frameDate;
+	public Date frameDate;
 
 	public String promotionName;
 
@@ -24,9 +20,9 @@ public class PromotionVO implements Serializable{
 
 	public List<String> targetHotel;
 
-	public Timestamp startTime;
+	public Date startTime;
 
-	public Timestamp endTime;
+	public Date endTime;
 
 	public double discount;
 
@@ -36,8 +32,8 @@ public class PromotionVO implements Serializable{
 	
 	public PromotionVO(){}
 
-	public PromotionVO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-			String targetArea, List<String> targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, String promotionID) {
+	public PromotionVO(String framerName, Date frameDate, String promotionName, MemberType targetUser,
+			String targetArea, List<String> targetHotel, Date startTime, Date endTime, double discount, int minRoom, String promotionID) {
 		this.framerName = framerName;
 		this.frameDate = frameDate;
 		this.promotionName = promotionName;

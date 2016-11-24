@@ -2,11 +2,7 @@ package vo;
 
 import java.io.Serializable;
 
-/**
- * 
- * @author ßLÇßº­ 2016-10-15 15:12:17
- *
- */
+
 public class RoomVO implements Serializable{
 
 	public String hotelID;

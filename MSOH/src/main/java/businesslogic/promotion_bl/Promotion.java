@@ -18,11 +18,10 @@ public class Promotion implements Promotion_BLService {
 
     public ResultMessage addPromotion(PromotionVO promotionVO) throws RemoteException {
         if(promotionVO.endTime==null||promotionVO.promotionName.equals("")||promotionVO.startTime==null||
-                promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea==null||promotionVO.promotionID.equals("")){
+                promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea.equals("")||promotionVO.promotionID.equals("")){
             return ResultMessage.Blank;
         }else if(promotionVO.discount<=0||promotionVO.discount>=10){
-            //这个返回什么呢
-            return null;
+            return ResultMessage.DataFormatWrong;
         }else {
             if(promotion_dataService_stub.getPromotion(promotionVO.promotionID)!=null)
                 return ResultMessage.PromotionExist;
@@ -36,11 +35,10 @@ public class Promotion implements Promotion_BLService {
 
     public ResultMessage modifyPromotion(PromotionVO promotionVO) throws RemoteException {
         if(promotionVO.endTime==null||promotionVO.promotionName.equals("")||promotionVO.startTime==null||
-                promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea==null){
+                promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea.equals("")){
             return ResultMessage.Blank;
         }else if(promotionVO.discount<=0||promotionVO.discount>=10){
-            //这个返回什么呢
-            return null;
+            return ResultMessage.DataFormatWrong;
         }else {
             PromotionPO promotionPO = promotion_dataService_stub.getPromotion(promotionVO.promotionID);
             if(promotionPO==null)
