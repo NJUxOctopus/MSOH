@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 /**
- * @author Ǯ����
+ * @author zqh
  */
 public class Member_DataService_Stub implements Member_DataService {
 

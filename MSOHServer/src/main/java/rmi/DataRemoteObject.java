@@ -6,6 +6,7 @@ import dataservice.hotel_dataservice.Hotel_DataService;
 import dataservice.manager_dataservice.Manager_DataService;
 import dataservice.marketer_dataservice.Marketer_DataService;
 import dataservice.member_dataservice.Member_DataService;
+import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import dataservice.order_dataservice.Order_DataService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.*;
@@ -19,27 +20,43 @@ import java.util.List;
 /**
  * Created by zqh on 2016/11/13.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService,Customer_DataService,Hotel_DataService,Manager_DataService,Marketer_DataService,Member_DataService,Order_DataService,Promotion_DataService{
+public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService,Customer_DataService,Hotel_DataService,Manager_DataService,Marketer_DataService,MemberLevel_DataService,Member_DataService,Order_DataService,Promotion_DataService{
 
 
     private Customer_DataService customer_dataService;
     private Hotel_DataService hotel_dataService;
     private Manager_DataService manager_dataService;
-    private Marketer_DataService marketer_dataService;
-    private Member_DataService member_dataService;
     private Order_DataService order_dataService;
     private Clerk_DataService clerk_dataService;
     private Promotion_DataService promotion_dataService;
+    private Marketer_DataService marketer_dataService;
+    private Member_DataService member_dataService;
 
     protected DataRemoteObject() throws RemoteException{
         // TODO 初始化
     }
 
-
-
-    // TODO 修改data层的方法，围绕增删改查提供
     // TODO 方法后添加异常抛出
 
+    public boolean addMemberLevel(MemberLevelPO memberLevelPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean deleteMemberLevel(MemberLevelPO memberLevelPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean updateMemberLevel(MemberLevelPO memberLevelPO) throws RemoteException {
+        return false;
+    }
+
+    public MemberLevelPO getMemberLevel() throws RemoteException {
+        return null;
+    }
+
+    public List<HotelPO> getHotels() throws RemoteException {
+        return null;
+    }
 
     public boolean modifyManager(ManagerPO po) throws RemoteException {
         return false;

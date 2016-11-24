@@ -19,6 +19,8 @@ public class OrderUtil implements OrderUtil_BLService {
     Order_DataService_Stub order_dataService_stub = new Order_DataService_Stub();
 
     public OrderVO getSingle(String orderID) throws RemoteException {
+        if(orderID.equals(""))
+            return null;
         OrderPO orderPO =order_dataService_stub.getOrderByOrderID(orderID);
         if(orderPO==null)
             return null;
@@ -30,6 +32,8 @@ public class OrderUtil implements OrderUtil_BLService {
     }
 
     public List<OrderVO> getOrdersByCustomerID(String customerID) throws RemoteException {
+        if(customerID.equals(""))
+            return null;
         List<OrderPO> orderPOList = order_dataService_stub.findOrderByCustomerID(customerID);
         if (orderPOList == null)
             return null;
@@ -51,6 +55,8 @@ public class OrderUtil implements OrderUtil_BLService {
     }
 
     public List<OrderVO> getOrderByIDAndStatus(String customerID, OrderStatus orderStatus) throws RemoteException {
+        if(customerID.equals(""))
+            return null;
         List<OrderPO> orderPOList = order_dataService_stub.findOrderByCustomerID(customerID);
         if (orderPOList == null)
             return null;
@@ -67,11 +73,15 @@ public class OrderUtil implements OrderUtil_BLService {
                             orderPO.getLatestExecutedTime(), orderPO.getRooms(), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
                             orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
             }
+            if(orderVOList.isEmpty())
+                return null;
             return orderVOList;
         }
     }
 
     public List<OrderVO> getOrdersByHotelID(String hotelID) throws RemoteException {
+        if(hotelID.equals(""))
+            return null;
         List<OrderPO> orderPOList = order_dataService_stub.findOrderByHotelID(hotelID);
         if (orderPOList == null)
             return null;

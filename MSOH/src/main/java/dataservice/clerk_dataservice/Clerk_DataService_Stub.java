@@ -29,14 +29,14 @@ public class Clerk_DataService_Stub implements Clerk_DataService {
                 WorkerPosition.Clerk, new ImageIcon().getImage()));
         clerkPOList.add(new ClerkPO("pxr", "12345678910", "1234567", "320200000000000001", "RUJIA", "123",
                 WorkerPosition.Clerk, new ImageIcon().getImage()));
-        if(name.equals("pxr"))
+        if (name.equals("pxr"))
             return clerkPOList;
         else
             return null;
     }
 
     public ClerkPO findClerkByID(String id) throws RemoteException {
-        if (id == "320200000000000000")
+        if (id.equals("320200000000000000"))
             return new ClerkPO("pxr", "12345678910", "123456", "320200000000000000", "RUJIA", "123",
                     WorkerPosition.Clerk, new ImageIcon().getImage());
         else

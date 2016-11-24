@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  * 
- * @author ���ߺ�
+ * @author zqh
  *
  */
 public class Customer_DataService_Stub implements Customer_DataService{

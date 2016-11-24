@@ -35,6 +35,8 @@ public class CustomerUtil implements CustomerUtil_BLService {
     }
 
     public CustomerVO getSingle(String ID) throws RemoteException {
+        if(ID.equals(""))
+            return null;
         //先按照ID查找到用户的列表，在转换成vo
         if(customer_dataService_stub.findCustomerByID(ID)==null)
             return null;
@@ -45,6 +47,8 @@ public class CustomerUtil implements CustomerUtil_BLService {
     }
 
     public List<CustomerVO> getByName(String name) throws RemoteException {
+        if(name.equals(""))
+            return null;
         //先按照名字查找到用户的列表，在转换成vo
         List<CustomerPO> customerPOList = customer_dataService_stub.findCustomerByName(name);
         if (customerPOList == null)

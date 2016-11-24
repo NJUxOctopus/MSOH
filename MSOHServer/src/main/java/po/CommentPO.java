@@ -1,35 +1,54 @@
 package po;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
+
 /**
  * 
  * @author zqh
  *
  */
+@Entity
+@Table(name="comment",schema = "msoh_database")
 public class CommentPO implements Serializable {
+	private static final long serialVersionUID=1L;
+
+	// 评价编号,供数据库存储使用
+	@Id@GeneratedValue
+	@Column(name = "commentID")
+	private int commentId;
 	// 评分
+	@Column(name = "score")
 	private double score;
 	// 评价具体内容
+	@Column(name = "comment")
 	private String comment;
 	// 评价客户姓名
+	@Column(name = "customerName")
 	private String customerName;
 	// 评价客户ID
+	@Column(name = "customerID")
 	private String customerID;
 	// 评价酒店的名字
+	@Column(name = "hotelName")
 	private String hotelName;
 	// 评价酒店ID
+	@Column(name = "hotelID")
 	private String hotelID;
 	// 评价订单ID
+	@Column(name = "orderID")
 	private String orderID;
 	// 评价时间
-	private Date commentTime;
+	@Column(name = "commentTime")
+	private Timestamp commentTime;
+
 
 	public CommentPO() {
 	}
 
 	public CommentPO(double score, String comment, String customerName, String customerID, String hotelName, String hotelID,
-			String orderID, Date commentTime) {
+			String orderID, Timestamp commentTime) {
 		this.score = score;
 		this.comment = comment;
 		this.customerName = customerName;
@@ -96,12 +115,19 @@ public class CommentPO implements Serializable {
 		this.orderID = orderID;
 	}
 
-	public Date getCommentTime() {
+	public Timestamp getCommentTime() {
 		return commentTime;
 	}
 
-	public void setCommentTime(Date commentTime) {
+	public void setCommentTime(Timestamp commentTime) {
 		this.commentTime = commentTime;
 	}
 
+	public int getCommentId(){
+		return commentId;
+	}
+
+	public void setCommentId(int commentId){
+		this.commentId=commentId;
+	}
 }

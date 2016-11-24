@@ -20,16 +20,13 @@ public class Login_BLService_Stub implements Login_BLService {
 	public ResultMessage login(String ID, String password) {
 		// TODO Auto-generated method stub
 		if (ID.equals("000000000000000000") && password.equals("123456")) {
-			// 登陆成功
+
 			return ResultMessage.Login_Success;
 		} else if (ID == "" || password == "") {
-			// 用户名或密码未填写
 			return ResultMessage.Blank;
 		} else if (ID.equals("000000000000000000") && password.equals("000000")) {
-			// 密码错误
 			return ResultMessage.Login_WrongPassword;
 		} else {
-			// 用户名不存在
 			return ResultMessage.Login_NoUser;
 		}
 	}

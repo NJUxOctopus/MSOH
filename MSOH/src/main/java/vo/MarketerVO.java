@@ -15,7 +15,7 @@ public class MarketerVO extends UserVO implements Serializable {
 	public MarketerVO() {
 	}
 
-	public MarketerVO(String name, String ID, String phone, String password, Image pic) {
-		super(name, ID, phone, password, pic);
+	public MarketerVO(String name, String phone, String password, String ID, Image pic) {
+		super(name,  phone, password, ID,pic);
 	}
 }

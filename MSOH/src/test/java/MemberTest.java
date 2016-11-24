@@ -13,7 +13,7 @@ import java.util.Date;
 public class MemberTest extends TestCase {
     Member member = new Member();
 
-    public void signUpTest() throws RemoteException {
+    public void testSignUp() throws RemoteException {
         ResultMessage resultMessage1 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
                 "NJU"), "320200000000000000");
         ResultMessage resultMessage2 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,

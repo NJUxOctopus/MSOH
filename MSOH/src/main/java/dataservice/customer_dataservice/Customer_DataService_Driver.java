@@ -8,7 +8,7 @@ import po.HotelPO;
 import util.ResultMessage;
 /**
  * 
- * @author ���ߺ�
+ * @author zqh
  *
  */
 public class Customer_DataService_Driver {

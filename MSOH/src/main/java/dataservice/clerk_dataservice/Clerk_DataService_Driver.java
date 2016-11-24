@@ -6,7 +6,7 @@ import po.ClerkPO;
 import util.ResultMessage;
 /**
  * 
- * @author ���ߺ�
+ * @author zqh
  *
  */
 public class Clerk_DataService_Driver {

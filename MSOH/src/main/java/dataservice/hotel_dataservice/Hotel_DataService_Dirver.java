@@ -11,7 +11,7 @@ import po.RoomPO;
 import util.ResultMessage;
 /**
  * 
- * @author �L�ߺ�
+ * @author zqh
  *
  */
 public class Hotel_DataService_Dirver {

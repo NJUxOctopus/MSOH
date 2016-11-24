@@ -27,7 +27,7 @@ public class MarketerPO implements Serializable {
 	public MarketerPO() {
 	}
 
-	public MarketerPO(String name, String ID, String phone, String password, Image pic, WorkerPosition position) {
+	public MarketerPO(String name, String phone, String password,String ID,  Image pic, WorkerPosition position) {
 		this.name = name;
 		this.ID = ID;
 		this.phone = phone;

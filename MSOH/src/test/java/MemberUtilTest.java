@@ -11,14 +11,14 @@ import java.rmi.RemoteException;
  */
 public class MemberUtilTest extends TestCase{
     MemberUtil memberUtil =new MemberUtil();
-    public void getSingleTest()throws RemoteException{
+    public void testGetSingle()throws RemoteException{
         MemberVO memberVO1 = memberUtil.getSingle("320200000000000000");
         MemberVO memberVO2 = memberUtil.getSingle("12345678");
         MemberVO memberVO3 = memberUtil.getSingle("123");
         MemberVO memberVO4 = new MemberVO("320200000000000000", MemberType.NONMEMBER,0,null,null);
         MemberVO memberVO5 = new MemberVO("12345678", MemberType.ENTREPRISE,1,null,"NJU");
-        assertEquals(memberVO1,memberVO4);
-        assertEquals(memberVO2,memberVO5);
+        assertEquals(memberVO1.ID,memberVO4.ID);
+        assertEquals(memberVO2.ID,memberVO5.ID);
         assertEquals(memberVO3,null);
     }
 }

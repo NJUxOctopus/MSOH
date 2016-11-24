@@ -17,7 +17,7 @@ public class Promotion implements Promotion_BLService {
     Promotion_DataService_Stub promotion_dataService_stub = new Promotion_DataService_Stub();
 
     public ResultMessage addPromotion(PromotionVO promotionVO) throws RemoteException {
-        if(promotionVO.endTime==null||promotionVO.promotionName==""||promotionVO.startTime==null||
+        if(promotionVO.endTime==null||promotionVO.promotionName.equals("")||promotionVO.startTime==null||
                 promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea==null){
             return ResultMessage.Blank;
         }else if(promotionVO.discount<=0||promotionVO.discount>=10){
@@ -33,7 +33,7 @@ public class Promotion implements Promotion_BLService {
     }
 
     public ResultMessage modifyPromotion(PromotionVO promotionVO) throws RemoteException {
-        if(promotionVO.endTime==null||promotionVO.promotionName==""||promotionVO.startTime==null||
+        if(promotionVO.endTime==null||promotionVO.promotionName.equals("")||promotionVO.startTime==null||
                 promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea==null){
             return ResultMessage.Blank;
         }else if(promotionVO.discount<=0||promotionVO.discount>=10){

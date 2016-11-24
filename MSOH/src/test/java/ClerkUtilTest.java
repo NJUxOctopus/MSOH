@@ -12,24 +12,24 @@ import java.util.List;
  */
 public class ClerkUtilTest extends TestCase{
     ClerkUtil clerkUtil = new ClerkUtil();
-    public void getAllTest()throws RemoteException{
+    public void testGetAll()throws RemoteException{
         List<ClerkVO> clerkVOList = clerkUtil.getAll();
         List<ClerkVO> clerkVOList1 = new ArrayList<ClerkVO>();
         clerkVOList1.add(new ClerkVO("pxr","12345678910","123456","320200000000000000",
                 null,"RUJIA","123"));
-        assertEquals(clerkVOList,clerkVOList1);
+        assertEquals(clerkVOList.get(0).hotelID,clerkVOList1.get(0).hotelID);
     }
 
-    public void getSingleTest()throws RemoteException{
+    public void testGetSingle()throws RemoteException{
         ClerkVO clerkVO = clerkUtil.getSingle("320200000000000000");
         ClerkVO clerkVO1 = new ClerkVO("pxr","12345678910","123456","320200000000000000",
                 null,"RUJIA","123");
         ClerkVO clerkVO2 = clerkUtil.getSingle("123");
-        assertEquals(clerkVO,clerkVO1);
+        assertEquals(clerkVO.hotelID,clerkVO1.hotelID);
         assertEquals(null,clerkVO2);
     }
 
-    public void getByNameTest()throws RemoteException{
+    public void testGetByName()throws RemoteException{
         List<ClerkVO> clerkVOList = clerkUtil.getByName("pxr");
         List<ClerkVO> clerkVOList1 = new ArrayList<ClerkVO>();
         clerkVOList1.add(new ClerkVO("pxr","12345678910","123456","320200000000000000",
@@ -37,7 +37,7 @@ public class ClerkUtilTest extends TestCase{
         clerkVOList1.add(new ClerkVO("pxr","12345678910","1234567","320200000000000001",
                 null,"RUJIA","123"));
         List<ClerkVO> clerkVOList2 = clerkUtil.getByName("zqh");
-        assertEquals(clerkVOList,clerkVOList1);
+        assertEquals(clerkVOList.get(0).hotelID,clerkVOList1.get(0).hotelID);
         assertEquals(null,clerkVOList2);
     }
 }

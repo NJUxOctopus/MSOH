@@ -14,6 +14,8 @@ import java.rmi.RemoteException;
 public class MemberUtil implements MemberUtil_BLService {
     Member_DataService_Stub member_dataService_stub = new Member_DataService_Stub();
     public MemberVO getSingle(String customerID) throws RemoteException{
+        if(customerID.equals(""))
+            return null;
         MemberPO memberPO = member_dataService_stub.findMemberByID(customerID);
         if (memberPO==null)
             return null;
