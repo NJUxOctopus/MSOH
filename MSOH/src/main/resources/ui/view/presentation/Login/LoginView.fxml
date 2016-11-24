@@ -9,12 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Login.LoginViewController">
    <children>
       <ImageView fitHeight="489.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/登录界面.jpg" />
+            <Image url="@../image/loginBG.jpg" />
          </image>
       </ImageView>
       <Label layoutX="166.0" layoutY="94.0" text="Welcome" textFill="WHITE">
@@ -32,24 +31,24 @@
             <Font name="Microsoft YaHei" size="22.0" />
          </font>
       </Label>
-      <PasswordField fx:id="passWordField" layoutX="228.0" layoutY="339.0" prefHeight="29.0" prefWidth="275.0" />
+      <PasswordField fx:id="passwordField" layoutX="228.0" layoutY="339.0" prefHeight="29.0" prefWidth="275.0" />
       <TextField fx:id="userNameField" layoutX="228.0" layoutY="294.0" prefHeight="29.0" prefWidth="275.0" />
-      <Button fx:id="RememberPWButton" layoutX="503.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="记住密码" textFill="#7d8bda">
+      <Button fx:id="rememberPWButton" layoutX="503.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="记住密码" textFill="#7d8bda">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="LoginButton" layoutX="228.0" layoutY="388.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="登录">
+      <Button fx:id="loginButton" layoutX="228.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="登录">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="RegisterButton" layoutX="382.0" layoutY="388.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="注册">
+      <Button fx:id="registerButton" layoutX="382.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="注册">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="SkipButton" layoutX="640.0" layoutY="418.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="80.0" style="-fx-background-color: #ffffff00;" text="跳过">
+      <Button fx:id="skipButton" layoutX="640.0" layoutY="418.0" mnemonicParsing="false" onAction="#handleSkip" prefHeight="36.0" prefWidth="80.0" style="-fx-background-color: #ffffff00;" text="跳过">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
