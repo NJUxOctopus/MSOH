@@ -1,9 +1,8 @@
 package vo;
 
-import java.awt.Image;
-import java.io.Serializable;
-
 import util.MemberType;
+
+import java.io.Serializable;
 
 /**
  * 
@@ -21,9 +20,9 @@ public class CustomerVO extends UserVO implements Serializable  {
 	public CustomerVO() {
 	}
 
-	public CustomerVO(String userName, String password, String phone, String email, int credit, Image picture,
+	public CustomerVO(String userName, String password, String phone, String email, int credit, String picUrl,
 			String ID,MemberType memberType) {
-		super(userName,phone,password,ID,picture);
+		super(userName,phone,password,ID,picUrl);
 		this.email = email;
 		this.credit = credit;
 		this.memberType=memberType;

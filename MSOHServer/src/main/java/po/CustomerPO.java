@@ -1,10 +1,9 @@
 package po;
 
-import java.awt.Image;
-import java.io.Serializable;
 import util.MemberType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 

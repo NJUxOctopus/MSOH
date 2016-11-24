@@ -1,9 +1,6 @@
 package vo;
 
-import java.awt.Image;
 import java.io.Serializable;
-
-import util.WorkerPosition;
 
 /**
  * 
@@ -20,15 +17,15 @@ public abstract class UserVO implements Serializable{
 
 	public String ID;
 
-	public Image pic;
+	public String picUrl;
 
 	public UserVO(){}
 	
-	public UserVO(String name, String phone, String password, String ID, Image pic){
+	public UserVO(String name, String phone, String password, String ID, String picUrl){
 		this.name=name;
 		this.phone=phone;
 		this.password=password;
 		this.ID=ID;
-		this.pic=pic;
+		this.picUrl=picUrl;
 	}
 }

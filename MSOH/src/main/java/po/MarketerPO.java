@@ -2,7 +2,6 @@ package po;
 
 import util.WorkerPosition;
 
-import java.awt.*;
 import java.io.Serializable;
 
 /**
@@ -11,6 +10,8 @@ import java.io.Serializable;
  *
  */
 public class MarketerPO implements Serializable {
+	// 网站营销人员条目在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
+	private int _autoId;
 	// 网站营销人员姓名
 	private String name;
 	// 网站营销人员ID
@@ -20,19 +21,19 @@ public class MarketerPO implements Serializable {
 	// 网站营销人员密码
 	private String password;
 	// 网站营销人员头像
-	private Image pic;
+	private String picUrl;
 	// ְ网站营销人员职位，默认为Marketer
 	private WorkerPosition position;
 
 	public MarketerPO() {
 	}
 
-	public MarketerPO(String name, String phone, String password,String ID,  Image pic, WorkerPosition position) {
+	public MarketerPO(String name, String phone, String password,String ID,  String picUrl, WorkerPosition position) {
 		this.name = name;
 		this.ID = ID;
 		this.phone = phone;
 		this.password = password;
-		this.pic = pic;
+		this.picUrl = picUrl;
 		this.position=position;
 	}
 
@@ -68,12 +69,12 @@ public class MarketerPO implements Serializable {
 		this.password = password;
 	}
 
-	public Image getPic() {
-		return pic;
+	public String getPicUrl() {
+		return picUrl;
 	}
 
-	public void setPic(Image pic) {
-		this.pic = pic;
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 
 	public WorkerPosition getPosition(){

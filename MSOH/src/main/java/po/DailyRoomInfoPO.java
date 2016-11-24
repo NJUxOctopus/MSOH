@@ -1,7 +1,7 @@
 package po;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -13,14 +13,14 @@ public class DailyRoomInfoPO implements Serializable {
 	// 酒店ID
 	private String hotelID;
 	// 日期
-	private Date date;
+	private Timestamp date;
 	// 当日可用房间类型及数量
 	private List<RoomPO> room;
 
 	public DailyRoomInfoPO() {
 	}
 
-	public DailyRoomInfoPO(String hotelID, Date date, List<RoomPO> room) {
+	public DailyRoomInfoPO(String hotelID, Timestamp date, List<RoomPO> room) {
 		this.hotelID = hotelID;
 		this.date = date;
 		this.room = room;
@@ -34,11 +34,11 @@ public class DailyRoomInfoPO implements Serializable {
 		this.hotelID = hotelID;
 	}
 
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 

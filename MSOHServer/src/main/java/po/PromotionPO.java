@@ -1,10 +1,10 @@
 package po;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 import util.MemberType;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
 /**
  * 
  * @author zqh
@@ -14,7 +14,7 @@ public class PromotionPO implements Serializable{
 	// 策略制定者名称
 	private String framerName;
 	// 策略制定日期
-	private Date frameDate;
+	private Timestamp frameDate;
 	// 策略名称
 	private String promotionName;
 	// 目标客户
@@ -24,9 +24,9 @@ public class PromotionPO implements Serializable{
 	// 目标酒店
 	private List<String> targetHotel;
 	// 策略生效时间
-	private Date startTime;
+	private Timestamp startTime;
 	// 策略过期时间
-	private Date endTime;
+	private Timestamp endTime;
 	// 策略折扣
 	private double discount;
 	// 策略生效所需最少房间数
@@ -36,8 +36,8 @@ public class PromotionPO implements Serializable{
 	
 	public PromotionPO(){}
 
-	public PromotionPO(String framerName, Date frameDate, String promotionName, MemberType targetUser,
-			String targetArea, List<String> targetHotel, Date startTime, Date endTime, double discount, int minRoom, String promotionID) {
+	public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
+			String targetArea, List<String> targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, String promotionID) {
 		this.framerName = framerName;
 		this.frameDate = frameDate;
 		this.promotionName = promotionName;
@@ -59,11 +59,11 @@ public class PromotionPO implements Serializable{
 		this.framerName = framerName;
 	}
 
-	public Date getFrameDate() {
+	public Timestamp getFrameDate() {
 		return frameDate;
 	}
 
-	public void setFrameDate(Date frameDate) {
+	public void setFrameDate(Timestamp frameDate) {
 		this.frameDate = frameDate;
 	}
 
@@ -99,19 +99,19 @@ public class PromotionPO implements Serializable{
 		this.targetHotel = targetHotel;
 	}
 
-	public Date getStartTime() {
+	public Timestamp getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public Timestamp getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
 

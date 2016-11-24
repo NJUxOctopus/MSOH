@@ -2,7 +2,6 @@ package po;
 
 import util.MemberType;
 
-import java.awt.*;
 import java.io.Serializable;
 
 /**
@@ -11,6 +10,8 @@ import java.io.Serializable;
  *
  */
 public class CustomerPO implements Serializable {
+	// 客户条目在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
+	private int _autoId;
 	// 客户姓名
 	private String userName;
 	// 客户密码
@@ -22,7 +23,7 @@ public class CustomerPO implements Serializable {
 	// 客户信用值
 	private int credit;
 	// 客户头像
-	private Image picture;
+	private String picUrl;
 	// 客户ID
 	private String ID;
 	// 客户会员类型
@@ -31,14 +32,14 @@ public class CustomerPO implements Serializable {
 	public CustomerPO() {
 	}
 
-	public CustomerPO(String userName, String password, String phone, String email, int credit, Image picture,
+	public CustomerPO(String userName, String password, String phone, String email, int credit, String picUrl,
                       String ID, MemberType memberType) {
 		this.userName = userName;
 		this.password = password;
 		this.phone = phone;
 		this.email = email;
 		this.credit = credit;
-		this.picture = picture;
+		this.picUrl = picUrl;
 		this.ID = ID;
 		this.memberType=memberType;
 	}
@@ -83,12 +84,12 @@ public class CustomerPO implements Serializable {
 		this.credit = credit;
 	}
 
-	public Image getPicture() {
-		return picture;
+	public String getPicUrl() {
+		return picUrl;
 	}
 
-	public void setPicture(Image picture) {
-		this.picture = picture;
+	public void setPicture(String picUrl) {
+		this.picUrl = picUrl;
 	}
 
 	public String getID() {

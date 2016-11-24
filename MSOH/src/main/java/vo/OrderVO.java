@@ -1,13 +1,13 @@
 package vo;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 import util.OrderStatus;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:11:56
+ * @author ï¿½Lï¿½ßºï¿½ 2016-10-15 15:11:56
  *
  */
 public class OrderVO implements Serializable{
@@ -24,15 +24,15 @@ public class OrderVO implements Serializable{
 
 	public String orderID;
 
-	public Date estimatedCheckinTime;
+	public Timestamp estimatedCheckinTime;
 
-	public Date actualCheckinTime;
+	public Timestamp actualCheckinTime;
 
-	public Date estimatedCheckoutTime;
+	public Timestamp estimatedCheckoutTime;
 
-	public Date actualCheckoutTime;
+	public Timestamp actualCheckoutTime;
 
-	public Date latestExecutedTime;
+	public Timestamp latestExecutedTime;
 
 	public List<String> rooms;
 
@@ -54,10 +54,10 @@ public class OrderVO implements Serializable{
 
 	}
 
-	// ½«actualCheckoutTimeºÍactualCheckinTime·ÅÔÚ¹¹Ôìº¯ÊýÖÐ£¬ÊÇÒòÎª»á³öÏÖÏßÏÂ´´½¨¶©µ¥µÄÇé¿ö
+	// ï¿½ï¿½actualCheckoutTimeï¿½ï¿½actualCheckinTimeï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public OrderVO(String customerName, String phone, String customerID, String hotelID, String hotelName, String orderID,
-			Date estimatedCheckinTime, Date actualCheckinTime, Date estimatedCheckoutTime, Date actualCheckoutTime,
-			Date latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
+			Timestamp estimatedCheckinTime, Timestamp actualCheckinTime, Timestamp estimatedCheckoutTime, Timestamp actualCheckoutTime,
+			Timestamp latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
 			String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
 		this.customerName = customerName;
 		this.phone = phone;

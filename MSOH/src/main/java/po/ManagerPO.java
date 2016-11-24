@@ -11,6 +11,8 @@ import java.io.Serializable;
  *
  */
 public class ManagerPO implements Serializable {
+	// 网站管理人员条目在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
+	private int _autoId;
 	// 网站管理人员姓名
 	private String name;
 	// 网站管理人员ID

@@ -1,10 +1,9 @@
 package po;
 
-import java.io.Serializable;
-
 import util.WorkerPosition;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 

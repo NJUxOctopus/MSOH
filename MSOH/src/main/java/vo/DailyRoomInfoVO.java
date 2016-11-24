@@ -1,26 +1,26 @@
 package vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:09:28
+ * @author ï¿½Lï¿½ßºï¿½ 2016-10-15 15:09:28
  *
  */
 public class DailyRoomInfoVO implements Serializable{
 
 	public String hotelID;
 
-	public Date date;
+	public Timestamp date;
 
 	public List<RoomVO> room;
 
 	public DailyRoomInfoVO() {
 	}
 
-	public DailyRoomInfoVO(String hotelID, Date date, List<RoomVO> room) {
+	public DailyRoomInfoVO(String hotelID, Timestamp date, List<RoomVO> room) {
 		this.hotelID = hotelID;
 		this.date = date;
 		this.room = room;

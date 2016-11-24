@@ -1,6 +1,5 @@
 package po;
 
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.List;
 /**
@@ -28,7 +27,7 @@ public class HotelPO implements Serializable {
 	// 酒店经营许可证号
 	private String license;
 	// 酒店照片
-	private List<Image> pics;
+	private List<String> picUrls;
 	// 系统中该酒店负责人姓名
 	private String clerkName;
 	// 系统中该酒店负责人联系方式
@@ -42,9 +41,10 @@ public class HotelPO implements Serializable {
 	}
 
 	public HotelPO(String hotelName, String hotelAddress, String area, String intro, List<String> infra, int star,
-			double score, String license, String clerkName, String clerkPhone, String hotelID, List<DailyRoomInfoPO> dailyRoomInfo,
+			double score, String license, List<String> picUrls,String clerkName, String clerkPhone, String hotelID, List<DailyRoomInfoPO> dailyRoomInfo,
 			List<CommentPO> comment) {
 		this.hotelName = hotelName;
+		this.hotelID=hotelID;
 		this.hotelAddress = hotelAddress;
 		this.area = area;
 		this.intro = intro;
@@ -52,9 +52,9 @@ public class HotelPO implements Serializable {
 		this.star = star;
 		this.score = score;
 		this.license = license;
+		this.picUrls=picUrls;
 		this.clerkName = clerkName;
 		this.clerkPhone = clerkPhone;
-		this.hotelID = hotelID;
 		this.dailyRoomInfo = dailyRoomInfo;
 		this.comment = comment;
 	}
@@ -121,6 +121,14 @@ public class HotelPO implements Serializable {
 
 	public void setLicense(String license) {
 		this.license = license;
+	}
+
+	public List<String> getPicUrls(){
+		return picUrls;
+	}
+
+	public void setPicUrls(List<String> picUrls){
+		this.picUrls=picUrls;
 	}
 
 	public String getClerkName() {

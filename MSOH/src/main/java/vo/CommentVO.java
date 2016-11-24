@@ -1,10 +1,10 @@
 package vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:10:36
+ * @author ï¿½Lï¿½ßºï¿½ 2016-10-15 15:10:
  *
  */
 public class CommentVO implements Serializable {
@@ -23,13 +23,13 @@ public class CommentVO implements Serializable {
 
 	public String orderID;
 
-	public Date commentTime;
+	public Timestamp commentTime;
 
 	public CommentVO() {
 	}
 
 	public CommentVO(double score, String comment, String customerName, String customerID, String hotelName, String hotelID,
-			String orderID, Date commentTime) {
+			String orderID, Timestamp commentTime) {
 		this.score = score;
 		this.comment = comment;
 		this.customerName = customerName;
