@@ -39,7 +39,7 @@ public class Customer implements Customer_BLService {
         } else if (customerVO.password.matches(DataFormat.Password_Format)&&customerVO.email.matches(DataFormat.Email_Format)) {
             //若用户已输入ID并且不存在该ID的用户，则添加该用户，并返回注册成功
             customer_dataService_stub.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
-                    customerVO.phone, customerVO.email, customerVO.credit, customerVO.pic, customerVO.ID, customerVO.memberType));
+                    customerVO.phone, customerVO.email, customerVO.credit, customerVO.picUrl, customerVO.ID, customerVO.memberType));
             return ResultMessage.Customer_SignupSuccess;
         } else
             return ResultMessage.DataFormatWrong;
@@ -55,7 +55,7 @@ public class Customer implements Customer_BLService {
         CustomerPO customerPO = customer_dataService_stub.findCustomerByID(customerVO.ID);
         customerPO.setEmail(customerVO.email);
         customerPO.setPhone(customerVO.phone);
-        customerPO.setPicture(customerVO.pic);
+        customerPO.setPicture(customerVO.picUrl);
         customerPO.setUserName(customerVO.name);
         customer_dataService_stub.modifyCustomer(customerPO);
         return ResultMessage.ChangeInfoSuccess;
@@ -72,7 +72,7 @@ public class Customer implements Customer_BLService {
             Object object = iterator.next();
             HotelPO hotelPO = (HotelPO) object;
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
-                    hotelPO.getIntro(), hotelPO.getInfra(), hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),
+                    hotelPO.getIntro(), hotelPO.getInfra(), hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),hotelPO.getPicUrls(),
                     hotelPO.getClerkName(), hotelPO.getClerkPhone(), hotelPO.getHotelID(), null, null);
             //这里有个疑问，评论和酒店每日信息需要转成VO吗？
             listVO.add(hotelVO);

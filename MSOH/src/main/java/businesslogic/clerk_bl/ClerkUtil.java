@@ -29,7 +29,7 @@ public class ClerkUtil implements ClerkUtil_BLService {
                 Object object = iterator.next();
                 ClerkPO clerkPO = (ClerkPO)object;
                 clerkVOList.add(new ClerkVO(clerkPO.getName(),clerkPO.getPhone(),clerkPO.getPassword(),clerkPO.getID(),
-                        new ImageIcon(clerkPO.getPicUrl()).getImage(),clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
+                        clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
             }
             return clerkVOList;
         }
@@ -41,8 +41,8 @@ public class ClerkUtil implements ClerkUtil_BLService {
         ClerkPO clerkPO = clerk_dataService_stub.findClerkByID(ID);
         if(clerkPO==null)
             return null;
-        return new ClerkVO(clerkPO.getName(), clerkPO.getPhone(), clerkPO.getPassword(), clerkPO.getID(),
-                new ImageIcon(clerkPO.getPicUrl()).getImage(),clerkPO.getPicUrl(), clerkPO.getHotelName(), clerkPO.getHotelID());
+        return new ClerkVO(clerkPO.getName(), clerkPO.getPhone(), clerkPO.getPassword(), clerkPO.getID()
+                ,clerkPO.getPicUrl(), clerkPO.getHotelName(), clerkPO.getHotelID());
     }
 
     public List<ClerkVO> getByName(String name) throws RemoteException {
@@ -57,8 +57,8 @@ public class ClerkUtil implements ClerkUtil_BLService {
             while (iterator.hasNext()){
                 Object object = iterator.next();
                 ClerkPO clerkPO = (ClerkPO)object;
-                clerkVOList.add(new ClerkVO(clerkPO.getName(),clerkPO.getPhone(),clerkPO.getPassword(),clerkPO.getID(),
-                        new ImageIcon(clerkPO.getPicUrl()).getImage(),clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
+                clerkVOList.add(new ClerkVO(clerkPO.getName(),clerkPO.getPhone(),clerkPO.getPassword(),clerkPO.getID()
+                        ,clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
             }
             return clerkVOList;
         }

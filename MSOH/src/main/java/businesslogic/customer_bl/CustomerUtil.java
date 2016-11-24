@@ -27,7 +27,7 @@ public class CustomerUtil implements CustomerUtil_BLService {
                 Object object = iterator.next();
                 CustomerPO customerPO = (CustomerPO) object;
                 customerVOList.add(new CustomerVO(customerPO.getUserName(), customerPO.getPassword(), customerPO.getPhone(),
-                        customerPO.getEmail(), customerPO.getCredit(), customerPO.getPicture(),
+                        customerPO.getEmail(), customerPO.getCredit(), customerPO.getPicUrl(),
                         customerPO.getID(), customerPO.getMemberType()));
             }
             return customerVOList;
@@ -42,7 +42,7 @@ public class CustomerUtil implements CustomerUtil_BLService {
             return null;
         CustomerPO customerPO = customer_dataService_stub.findCustomerByID(ID);
         return new CustomerVO(customerPO.getUserName(), customerPO.getPassword(), customerPO.getPhone(),
-                customerPO.getEmail(), customerPO.getCredit(), customerPO.getPicture(),
+                customerPO.getEmail(), customerPO.getCredit(), customerPO.getPicUrl(),
                 customerPO.getID(), customerPO.getMemberType());
     }
 
@@ -60,7 +60,7 @@ public class CustomerUtil implements CustomerUtil_BLService {
                 Object object = iterator.next();
                 CustomerPO customerPO = (CustomerPO) object;
                 customerVOList.add(new CustomerVO(customerPO.getUserName(), customerPO.getPassword(), customerPO.getPhone(),
-                        customerPO.getEmail(), customerPO.getCredit(), customerPO.getPicture(),
+                        customerPO.getEmail(), customerPO.getCredit(), customerPO.getPicUrl(),
                         customerPO.getID(), customerPO.getMemberType()));
             }
             return customerVOList;

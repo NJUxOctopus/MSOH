@@ -21,7 +21,7 @@ public class Manager implements Manager_BLService {
         if(managerVO.name.equals("")||managerVO.phone.equals("")){
             return ResultMessage.Blank;
         }
-        managerPO.setPic(managerVO.pic);
+        managerPO.setPic(managerVO.picUrl);
         managerPO.setPhone(managerVO.phone);
         managerPO.setName(managerVO.name);
         manager_dataService_stub.modifyManager(managerPO);
