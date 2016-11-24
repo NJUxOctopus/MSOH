@@ -14,12 +14,15 @@ public class ClerkVO extends UserVO implements Serializable{
 	public String hotelName;
 
 	public String hotelID;
+
+	public String picUrl;
 		
 	public ClerkVO(){}
 	
-	public ClerkVO(String name,String phone,String password,String ID,Image pic,String hotelName,String hotelID){
+	public ClerkVO(String name,String phone,String password,String ID,Image pic,String picUrl,String hotelName,String hotelID){
 		super(name,phone,password,ID,pic);
 		this.hotelName=hotelName;
 		this.hotelID=hotelID;
+		this.picUrl = picUrl;
 	}
 }

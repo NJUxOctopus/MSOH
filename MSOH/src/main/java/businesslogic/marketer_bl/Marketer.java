@@ -5,6 +5,7 @@ import dataservice.customer_dataservice.Customer_DataService_Stub;
 import dataservice.marketer_dataservice.Marketer_DataService_Stub;
 import po.CustomerPO;
 import po.MarketerPO;
+import util.DataFormat;
 import util.ResultMessage;
 import util.WorkerPosition;
 import vo.CustomerVO;
@@ -30,9 +31,12 @@ public class Marketer implements Marketer_BLService {
             return ResultMessage.Blank;
         if (marketer_dataService_stub.findMarketerByID(marketerVO.ID) != null)
             return ResultMessage.Marketer_MarketerAlreadyExist;
-        marketer_dataService_stub.addMarketer(new MarketerPO(marketerVO.name, marketerVO.ID, marketerVO.phone,
-                marketerVO.password, marketerVO.pic, WorkerPosition.Marketer));
-        return ResultMessage.Marketer_AddMarketerSuccess;
+        if(marketerVO.password.matches(DataFormat.Password_Format)) {
+            marketer_dataService_stub.addMarketer(new MarketerPO(marketerVO.name, marketerVO.ID, marketerVO.phone,
+                    marketerVO.password, marketerVO.pic, WorkerPosition.Marketer));
+            return ResultMessage.Marketer_AddMarketerSuccess;
+        }else
+            return ResultMessage.DataFormatWrong;
     }
 
     public ResultMessage changeInfo(MarketerVO marketerVO) throws RemoteException{
@@ -51,7 +55,10 @@ public class Marketer implements Marketer_BLService {
     public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException{
         if (ID.equals("") || oldPassword.equals("") || newPassword1.equals("") || newPassword2.equals("")) {//ID或旧密码或两次新密码未输入
             return ResultMessage.Blank;
-        } else if (marketer_dataService_stub.findMarketerByID(ID).getPassword().equals(oldPassword)) {//若旧密码输入正确
+        } else if(marketer_dataService_stub.findMarketerByID(ID)==null){
+            return ResultMessage.Marketer_MarketerNotExist;
+        } else if (marketer_dataService_stub.findMarketerByID(ID).getPassword().equals(oldPassword)&&newPassword1.matches
+                (DataFormat.Password_Format)&&newPassword2.matches(DataFormat.Password_Format)) {//若旧密码输入正确
             if (newPassword1.equals(newPassword2)) {//如果两次新密码输入相同
                 MarketerPO marketerPO = marketer_dataService_stub.findMarketerByID(ID);
                 marketerPO.setPassword(newPassword1);
@@ -63,7 +70,7 @@ public class Marketer implements Marketer_BLService {
         } else if (!marketer_dataService_stub.findMarketerByID(ID).getPassword().equals(oldPassword)) {//旧密码输入错误
             return ResultMessage.ChangePasswordWrongOldPw;
         } else
-            return null;
+            return ResultMessage.DataFormatWrong;
     }
 
     public ResultMessage CreditCharge(String ID, int credit, CustomerVO customerVO) throws RemoteException{

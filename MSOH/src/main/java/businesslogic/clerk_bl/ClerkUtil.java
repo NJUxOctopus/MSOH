@@ -7,6 +7,7 @@ import rmi.RemoteHelper;
 import util.WorkerPosition;
 import vo.ClerkVO;
 
+import javax.swing.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,7 +29,7 @@ public class ClerkUtil implements ClerkUtil_BLService {
                 Object object = iterator.next();
                 ClerkPO clerkPO = (ClerkPO)object;
                 clerkVOList.add(new ClerkVO(clerkPO.getName(),clerkPO.getPhone(),clerkPO.getPassword(),clerkPO.getID(),
-                        clerkPO.getPic(),clerkPO.getHotelName(),clerkPO.getHotelID()));
+                        new ImageIcon(clerkPO.getPicUrl()).getImage(),clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
             }
             return clerkVOList;
         }
@@ -41,7 +42,7 @@ public class ClerkUtil implements ClerkUtil_BLService {
         if(clerkPO==null)
             return null;
         return new ClerkVO(clerkPO.getName(), clerkPO.getPhone(), clerkPO.getPassword(), clerkPO.getID(),
-                clerkPO.getPic(), clerkPO.getHotelName(), clerkPO.getHotelID());
+                new ImageIcon(clerkPO.getPicUrl()).getImage(),clerkPO.getPicUrl(), clerkPO.getHotelName(), clerkPO.getHotelID());
     }
 
     public List<ClerkVO> getByName(String name) throws RemoteException {
@@ -57,7 +58,7 @@ public class ClerkUtil implements ClerkUtil_BLService {
                 Object object = iterator.next();
                 ClerkPO clerkPO = (ClerkPO)object;
                 clerkVOList.add(new ClerkVO(clerkPO.getName(),clerkPO.getPhone(),clerkPO.getPassword(),clerkPO.getID(),
-                        clerkPO.getPic(),clerkPO.getHotelName(),clerkPO.getHotelID()));
+                        new ImageIcon(clerkPO.getPicUrl()).getImage(),clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
             }
             return clerkVOList;
         }

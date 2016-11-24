@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import po.MarketerPO;
-import util.ResultMessage;
 import util.WorkerPosition;
 
 import javax.swing.*;
 
 /**
- * 
- * @author zqh
+ *
+ * @author Ǯ����
  *
  */
 public class Marketer_DataService_Stub implements Marketer_DataService{
@@ -25,6 +24,11 @@ public class Marketer_DataService_Stub implements Marketer_DataService{
 	}
 
 	public List<MarketerPO> findMarketerByName(String name) throws RemoteException {
+		if(name.equals("pxr")) {
+			List<MarketerPO> marketerPOList = new ArrayList<MarketerPO>();
+			marketerPOList.add(new MarketerPO("pxr","12345678910","123456","1234",null,WorkerPosition.Marketer));
+			return marketerPOList;
+		}
 		return null;
 	}
 
@@ -36,7 +40,9 @@ public class Marketer_DataService_Stub implements Marketer_DataService{
 	}
 
 	public List<MarketerPO> findAllMarketers() throws RemoteException {
-		return null;
+		List<MarketerPO> marketerPOList = new ArrayList<MarketerPO>();
+		marketerPOList.add(new MarketerPO("pxr","12345678910","123456","1234",null,WorkerPosition.Marketer));
+		return marketerPOList;
 	}
 
 	public boolean deleteMarketer(MarketerPO marketerPO) throws RemoteException {
