@@ -5,6 +5,7 @@ import util.ResultMessage;
 import vo.MemberVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class MemberTest extends TestCase {
                 "NJU"), "320200000000000000");
         ResultMessage resultMessage2 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
                 ""), "320200000000000000");
-        ResultMessage resultMessage3 = member.signUp(new MemberVO("320200000000000000", MemberType.NORMAL, 1, new Date(1997,8,10),
+        ResultMessage resultMessage3 = member.signUp(new MemberVO("320200000000000000", MemberType.NORMAL, 1,new Timestamp(System.currentTimeMillis()),
                 ""), "320200000000000000");
         ResultMessage resultMessage4 = member.signUp(new MemberVO("320200000000000000", MemberType.NORMAL, 1, null,
                 ""), "320200000000000000");

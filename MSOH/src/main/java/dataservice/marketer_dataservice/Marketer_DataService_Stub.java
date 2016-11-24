@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Ǯ����
+ *
  *
  */
 public class Marketer_DataService_Stub implements Marketer_DataService{
@@ -34,7 +34,7 @@ public class Marketer_DataService_Stub implements Marketer_DataService{
 
 	public MarketerPO findMarketerByID(String id) throws RemoteException {
 		if (id.equals("1234"))
-			return new MarketerPO("pxr",  "12345678910", "123456", id,new ImageIcon().getImage(), WorkerPosition.Marketer);
+			return new MarketerPO("pxr",  "12345678910", "123456", id,"", WorkerPosition.Marketer);
 		else
 			return null;
 	}

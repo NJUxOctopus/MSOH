@@ -33,7 +33,7 @@ public class Marketer implements Marketer_BLService {
             return ResultMessage.Marketer_MarketerAlreadyExist;
         if(marketerVO.password.matches(DataFormat.Password_Format)) {
             marketer_dataService_stub.addMarketer(new MarketerPO(marketerVO.name, marketerVO.ID, marketerVO.phone,
-                    marketerVO.password, marketerVO.pic, WorkerPosition.Marketer));
+                    marketerVO.password, marketerVO.picUrl, WorkerPosition.Marketer));
             return ResultMessage.Marketer_AddMarketerSuccess;
         }else
             return ResultMessage.DataFormatWrong;
@@ -46,7 +46,7 @@ public class Marketer implements Marketer_BLService {
             return ResultMessage.Blank;
         MarketerPO  marketerPO= marketer_dataService_stub.findMarketerByID(marketerVO.ID);
         marketerPO.setPhone(marketerVO.phone);
-        marketerPO.setPic(marketerVO.pic);
+        marketerPO.setPicUrl(marketerVO.picUrl);
         marketerPO.setName(marketerVO.name);
         marketer_dataService_stub.modifyMarketer(marketerPO);
         return ResultMessage.Marketer_ChangeInfoSuccess;

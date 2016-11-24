@@ -19,7 +19,7 @@ public class Manager_DataService_Stub implements Manager_DataService{
 
 	public ManagerPO findManager(String ID) throws RemoteException {
 		if(ID.equals("320200000000000000"))
-			return new ManagerPO("pxr", ID, "12345678910", "123456",  new ImageIcon().getImage(), WorkerPosition.Manager);
+			return new ManagerPO("pxr", ID, "12345678910", "123456",  "", WorkerPosition.Manager);
 		else
 			return null;
 	}

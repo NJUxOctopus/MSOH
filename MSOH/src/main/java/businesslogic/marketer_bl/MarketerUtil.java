@@ -22,7 +22,7 @@ public class MarketerUtil implements MarketerUtil_BLService {
         if (marketer_dataService_stub.findMarketerByID(marketerID) == null)
             return null;
         MarketerPO marketerPO = marketer_dataService_stub.findMarketerByID(marketerID);
-        return new MarketerVO(marketerPO.getName(), marketerPO.getPhone(), marketerPO.getPassword(), marketerPO.getID(), marketerPO.getPic());
+        return new MarketerVO(marketerPO.getName(), marketerPO.getPhone(), marketerPO.getPassword(), marketerPO.getID(), marketerPO.getPicUrl());
     }
 
     public List<MarketerVO> getByName(String name) throws RemoteException {
@@ -36,7 +36,7 @@ public class MarketerUtil implements MarketerUtil_BLService {
         while(iterator.hasNext()){
             MarketerPO marketerPO = (MarketerPO)iterator.next();
             marketerVOList.add(new MarketerVO(marketerPO.getName(), marketerPO.getPhone(), marketerPO.getPassword(),
-                    marketerPO.getID(), marketerPO.getPic()));
+                    marketerPO.getID(), marketerPO.getPicUrl()));
 
         }
         return marketerVOList;
@@ -51,7 +51,7 @@ public class MarketerUtil implements MarketerUtil_BLService {
         while(iterator.hasNext()){
             MarketerPO marketerPO = (MarketerPO)iterator.next();
             marketerVOList.add(new MarketerVO(marketerPO.getName(), marketerPO.getPhone(), marketerPO.getPassword(),
-                    marketerPO.getID(), marketerPO.getPic()));
+                    marketerPO.getID(), marketerPO.getPicUrl()));
 
         }
         return marketerVOList;

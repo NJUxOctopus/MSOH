@@ -3,6 +3,7 @@ package dataservice.memberlevel_dataservice;
 import po.MemberLevelPO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -23,6 +24,6 @@ public class MemberLevel_DataService_Stub implements MemberLevel_DataService {
 
     public MemberLevelPO getMemberLevel() throws RemoteException {
         int a[] = {10,20,30};
-        return new MemberLevelPO("pxr",new Date(2016,11,19),3,a);
+        return new MemberLevelPO("pxr",new Timestamp(System.currentTimeMillis()),3,a);
     }
 }
