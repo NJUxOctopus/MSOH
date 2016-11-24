@@ -5,5 +5,5 @@ package util;
  *
  */
 public enum WorkerPosition {
-	clerk,marketer,manager
+	Clerk,Marketer,Manager
 }

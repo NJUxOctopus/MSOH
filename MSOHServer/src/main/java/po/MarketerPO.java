@@ -1,37 +1,55 @@
 package po;
 
-import java.awt.Image;
+import util.WorkerPosition;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
-import util.WorkerPosition;
 /**
  * 
  * @author zqh
  *
  */
+@Entity
+@Table(name = "marketer",schema = "msoh_database")
 public class MarketerPO implements Serializable {
+	private static final long serialVersionUID=1L;
+
+	// 网站营销人员在数据库中的ID，仅供数据库使用，无实际意义
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "marketer_id_seq")
+	@SequenceGenerator(name = "marketer_id_seq",sequenceName = "marketer_id_seq",allocationSize = 1)
+	@Column(name = "_autoId")
+	private int _autoId;
 	// 网站营销人员姓名
+	@Column(name = "name")
 	private String name;
 	// 网站营销人员ID
+	@Column(name = "ID")
 	private String ID;
 	// 网站营销人员联系方式
+	@Column(name = "phone")
 	private String phone;
 	// 网站营销人员密码
+	@Column(name = "password")
 	private String password;
 	// 网站营销人员头像
-	private Image pic;
+	@Column(name = "picture")
+	private String picUrl;
 	// ְ网站营销人员职位，默认为Marketer
+	@Column(name = "position")
+	@Enumerated(EnumType.STRING)
 	private WorkerPosition position;
 
 	public MarketerPO() {
 	}
 
-	public MarketerPO(String name, String ID, String phone, String password, Image pic, WorkerPosition position) {
+	public MarketerPO(String name, String ID, String phone, String password, String picUrl, WorkerPosition position) {
 		this.name = name;
 		this.ID = ID;
 		this.phone = phone;
 		this.password = password;
-		this.pic = pic;
+		this.picUrl = picUrl;
 		this.position=position;
 	}
 
@@ -67,12 +85,12 @@ public class MarketerPO implements Serializable {
 		this.password = password;
 	}
 
-	public Image getPic() {
-		return pic;
+	public String getPicUrl() {
+		return picUrl;
 	}
 
-	public void setPic(Image pic) {
-		this.pic = pic;
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 
 	public WorkerPosition getPosition(){

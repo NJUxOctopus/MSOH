@@ -3,40 +3,62 @@ package po;
 import java.awt.Image;
 import java.io.Serializable;
 import util.MemberType;
+
+import javax.persistence.*;
+
 /**
  * 
  * @author zqh
  *
  */
+@Entity
+@Table(name = "customer",schema = "msoh_database")
 public class CustomerPO implements Serializable {
+	private static final long serialVersionUID=1L;
+
+	// 客户在数据库中的ID，仅供数据库使用，无实际意义
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "customer_id_seq")
+	@SequenceGenerator(name = "customer_id_seq",sequenceName = "customer_id_seq",allocationSize = 1)
+	@Column(name = "_autoId")
+	private int _autoId;
 	// 客户姓名
+	@Column(name = "userName")
 	private String userName;
 	// 客户密码
+	@Column(name = "password")
 	private String password;
 	// 客户联系方式
+	@Column(name = "phone")
 	private String phone;
 	// 客户邮箱
+	@Column(name = "email")
 	private String email;
 	// 客户信用值
+	@Column(name = "credit")
 	private int credit;
 	// 客户头像
-	private Image picture;
+	@Column(name = "picture")
+	private String picUrl;
 	// 客户ID
+	@Column(name = "ID")
 	private String ID;
 	// 客户会员类型
+	@Column(name = "memberType")
+	@Enumerated(EnumType.STRING)
 	private MemberType memberType;
 
 	public CustomerPO() {
 	}
 
-	public CustomerPO(String userName, String password, String phone, String email, int credit, Image picture,
+	public CustomerPO(String userName, String password, String phone, String email, int credit, String picUrl,
 			String ID,MemberType memberType) {
 		this.userName = userName;
 		this.password = password;
 		this.phone = phone;
 		this.email = email;
 		this.credit = credit;
-		this.picture = picture;
+		this.picUrl = picUrl;
 		this.ID = ID;
 		this.memberType=memberType;
 	}
@@ -81,12 +103,12 @@ public class CustomerPO implements Serializable {
 		this.credit = credit;
 	}
 
-	public Image getPicture() {
-		return picture;
+	public String getPicUrl() {
+		return picUrl;
 	}
 
-	public void setPicture(Image picture) {
-		this.picture = picture;
+	public void setPictUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 
 	public String getID() {
