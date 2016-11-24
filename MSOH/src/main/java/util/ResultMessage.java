@@ -1,7 +1,7 @@
 package util;
 
 public enum ResultMessage {
-    Login_Success, Blank, Login_NoUser, Login_WrongPassword,
+    Login_CustomerSuccess, Blank, Login_NoUser, Login_WrongPassword,Login_ClerkSuccess,Login_ManagerSuccess,Login_MarketerSuccess,
     Customer_SignupSuccess, WrongPhoneFormat, WrongIDFormat, WrongEmailFormat, Customer_SignupExist,
     ChangeInfoSuccess, Customer_CustomerNotExist,
     ChangePasswordWrongOldPw, ChangePassword2DifferentNew, ChangePasswordSuccess,

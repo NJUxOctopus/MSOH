@@ -5,11 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import util.MemberType;
-/**
- * 
- * @author ßLÇßº­ 2016-10-15 15:12:07
- *
- */
+
 public class PromotionVO implements Serializable{
 
 	public String framerName;

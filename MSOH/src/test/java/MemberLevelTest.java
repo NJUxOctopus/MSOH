@@ -18,7 +18,7 @@ public class MemberLevelTest extends TestCase {
         ResultMessage resultMessage3 = memberLevel.addMemberLevel(new MemberLevelVO("pxr",new Date(2016,11,19),-1,a));
         assertEquals(resultMessage1,ResultMessage.MemberLevel_AddMemberLevelSuccess);
         assertEquals(resultMessage2,ResultMessage.Blank);
-        assertEquals(resultMessage3,null);
+        assertEquals(resultMessage3,ResultMessage.DataFormatWrong);
     }
 
     public void testModifyMemberLevel()throws RemoteException{
@@ -28,6 +28,6 @@ public class MemberLevelTest extends TestCase {
         ResultMessage resultMessage3 = memberLevel.modifyMemberLevel(new MemberLevelVO("pxr",new Date(2016,11,19),-1,a));
         assertEquals(resultMessage1,ResultMessage.MemberLevel_ModifyMemberLevelSuccess);
         assertEquals(resultMessage2,ResultMessage.Blank);
-        assertEquals(resultMessage3,null);
+        assertEquals(resultMessage3,ResultMessage.DataFormatWrong);
     }
 }

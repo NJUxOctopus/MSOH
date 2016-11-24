@@ -4,11 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 
- * @author ßLÇßº­ 2016-10-15 15:09:28
- *
- */
+
 public class DailyRoomInfoVO implements Serializable{
 
 	public String hotelID;

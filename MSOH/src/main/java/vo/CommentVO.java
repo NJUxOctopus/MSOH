@@ -2,11 +2,7 @@ package vo;
 
 import java.io.Serializable;
 import java.util.Date;
-/**
- * 
- * @author ßLÇßº­ 2016-10-15 15:10:36
- *
- */
+
 public class CommentVO implements Serializable {
 
 	public double score;
