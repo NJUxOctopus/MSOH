@@ -26,9 +26,9 @@ public class Clerk_DataService_Stub implements Clerk_DataService {
     public List<ClerkPO> findClerkByName(String name) throws RemoteException {
         List<ClerkPO> clerkPOList = new ArrayList<ClerkPO>();
         clerkPOList.add(new ClerkPO("pxr", "12345678910", "123456", "320200000000000000", "RUJIA", "123",
-                WorkerPosition.Clerk, new ImageIcon().getImage()));
+                WorkerPosition.Clerk, ""));
         clerkPOList.add(new ClerkPO("pxr", "12345678910", "1234567", "320200000000000001", "RUJIA", "123",
-                WorkerPosition.Clerk, new ImageIcon().getImage()));
+                WorkerPosition.Clerk, ""));
         if (name.equals("pxr"))
             return clerkPOList;
         else
@@ -38,7 +38,7 @@ public class Clerk_DataService_Stub implements Clerk_DataService {
     public ClerkPO findClerkByID(String id) throws RemoteException {
         if (id.equals("320200000000000000"))
             return new ClerkPO("pxr", "12345678910", "123456", "320200000000000000", "RUJIA", "123",
-                    WorkerPosition.Clerk, new ImageIcon().getImage());
+                    WorkerPosition.Clerk, "");
         else
             return null;
     }
@@ -46,7 +46,7 @@ public class Clerk_DataService_Stub implements Clerk_DataService {
     public List<ClerkPO> findAllClerks() throws RemoteException {
         List<ClerkPO> clerkPOList = new ArrayList<ClerkPO>();
         clerkPOList.add(new ClerkPO("pxr", "12345678910", "123456", "320200000000000000", "RUJIA", "123",
-                WorkerPosition.Clerk, new ImageIcon().getImage()));
+                WorkerPosition.Clerk, ""));
         return clerkPOList;
     }
 
