@@ -18,12 +18,14 @@ public class Promotion implements Promotion_BLService {
 
     public ResultMessage addPromotion(PromotionVO promotionVO) throws RemoteException {
         if(promotionVO.endTime==null||promotionVO.promotionName.equals("")||promotionVO.startTime==null||
-                promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea==null){
+                promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea==null||promotionVO.promotionID.equals("")){
             return ResultMessage.Blank;
         }else if(promotionVO.discount<=0||promotionVO.discount>=10){
             //这个返回什么呢
             return null;
         }else {
+            if(promotion_dataService_stub.getPromotion(promotionVO.promotionID)!=null)
+                return ResultMessage.PromotionExist;
             promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate,promotionVO.promotionName,promotionVO.targetUser,promotionVO.targetArea,
                     promotionVO.targetHotel,promotionVO.startTime,promotionVO.endTime,promotionVO.discount,
@@ -40,12 +42,26 @@ public class Promotion implements Promotion_BLService {
             //这个返回什么呢
             return null;
         }else {
-
+            PromotionPO promotionPO = promotion_dataService_stub.getPromotion(promotionVO.promotionID);
+            if(promotionPO==null)
+                return ResultMessage.PromotionNotExist;
+            promotionPO.setDiscount(promotionVO.discount);
+            promotionPO.setEndTime(promotionVO.endTime);
+            promotionPO.setFrameDate(promotionVO.frameDate);
+            promotionPO.setMinRoom(promotionVO.minRoom);
+            promotionPO.setPromotionName(promotionVO.promotionName);
+            promotionPO.setStartTime(promotionVO.startTime);
+            promotionPO.setTargetArea(promotionVO.targetArea);
+            promotionPO.setTargetUser(promotionVO.targetUser);
+            promotion_dataService_stub.modifyPromotion(promotionPO);
             return ResultMessage.Promotion_ModifyPromotionSuccess;
         }
     }
 
     public ResultMessage deletePromotion(String promotionID) throws RemoteException {
-        return null;
+        if(promotion_dataService_stub.getPromotion(promotionID)==null)
+            return ResultMessage.PromotionNotExist;
+        promotion_dataService_stub.deletePromotion(promotion_dataService_stub.getPromotion(promotionID));
+        return ResultMessage.Promotion_DeletePromotionSuccess;
     }
 }

@@ -1,12 +1,10 @@
 package businesslogic.customer_bl;
 
-import businesslogic.hotel_bl.Hotel;
 import businesslogicservice.customer_blservice.Customer_BLService;
 import dataservice.customer_dataservice.Customer_DataService_Stub;
-import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
-import rmi.RemoteHelper;
+import util.DataFormat;
 import util.ResultMessage;
 import vo.CreditRecordVO;
 import vo.CustomerVO;
@@ -35,32 +33,32 @@ public class Customer implements Customer_BLService {
                 customerVO.ID.equals("") || customerVO.phone.equals("")) {
             //若用户未输入名字或邮箱或密码或ID或手机，则返回有信息空白
             return ResultMessage.Blank;
-        } else if (customer_dataService_stub.findCustomerByID(customerVO.ID) == null) {
+        } else if (customer_dataService_stub.findCustomerByID(customerVO.ID) != null) {
+            //若用户输入ID，已存在该用户，返回注册已存在
+            return ResultMessage.Customer_SignupExist;
+        } else if (customerVO.password.matches(DataFormat.Password_Format)&&customerVO.email.matches(DataFormat.Email_Format)) {
             //若用户已输入ID并且不存在该ID的用户，则添加该用户，并返回注册成功
             customer_dataService_stub.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
                     customerVO.phone, customerVO.email, customerVO.credit, customerVO.pic, customerVO.ID, customerVO.memberType));
             return ResultMessage.Customer_SignupSuccess;
-        } else if (customer_dataService_stub.findCustomerByID(customerVO.ID) != null && customerVO.ID != null) {
-            //若用户输入ID，已存在该用户，返回注册已存在
-            return ResultMessage.Customer_SignupExist;
         } else
-            return null;
+            return ResultMessage.DataFormatWrong;
     }
 
     public ResultMessage changeInfo(CustomerVO customerVO) throws RemoteException {
-        if(customer_dataService_stub.findCustomerByID(customerVO.ID)==null)
+        if (customer_dataService_stub.findCustomerByID(customerVO.ID) == null)
             return ResultMessage.Customer_CustomerNotExist;
         if (customerVO.name.equals("") || customerVO.email.equals("") || customerVO.phone.equals(""))
             //若用户修改时未填写名字，邮箱，手机号，返回有信息空白
             return ResultMessage.Blank;
         //根据ID获取该用户后修改用户的po，返回修改信息成功
-            CustomerPO customerPO = customer_dataService_stub.findCustomerByID(customerVO.ID);
-            customerPO.setEmail(customerVO.email);
-            customerPO.setPhone(customerVO.phone);
-            customerPO.setPicture(customerVO.pic);
-            customerPO.setUserName(customerVO.name);
-            customer_dataService_stub.modifyCustomer(customerPO);
-            return ResultMessage.ChangeInfoSuccess;
+        CustomerPO customerPO = customer_dataService_stub.findCustomerByID(customerVO.ID);
+        customerPO.setEmail(customerVO.email);
+        customerPO.setPhone(customerVO.phone);
+        customerPO.setPicture(customerVO.pic);
+        customerPO.setUserName(customerVO.name);
+        customer_dataService_stub.modifyCustomer(customerPO);
+        return ResultMessage.ChangeInfoSuccess;
     }
 
     public List<HotelVO> getHistoryHotel(String customerID) throws RemoteException {
@@ -94,7 +92,10 @@ public class Customer implements Customer_BLService {
     public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException {
         if (ID.equals("") || oldPassword.equals("") || newPassword1.equals("") || newPassword2.equals("")) {//ID或旧密码或两次新密码未输入
             return ResultMessage.Blank;
-        } else if (customer_dataService_stub.findCustomerByID(ID).getPassword().equals(oldPassword)) {//若旧密码输入正确
+        } else if (customer_dataService_stub.findCustomerByID(ID) == null) {
+            return ResultMessage.Customer_CustomerNotExist;
+        } else if (customer_dataService_stub.findCustomerByID(ID).getPassword().equals(oldPassword) && newPassword1.matches
+                (DataFormat.Password_Format) && newPassword2.matches(DataFormat.Password_Format)) {//若旧密码输入正确
             if (newPassword1.equals(newPassword2)) {//如果两次新密码输入相同
                 CustomerPO customerPO = customer_dataService_stub.findCustomerByID(ID);
                 customerPO.setPassword(newPassword1);
@@ -106,6 +107,6 @@ public class Customer implements Customer_BLService {
         } else if (!customer_dataService_stub.findCustomerByID(ID).getPassword().equals(oldPassword)) {//旧密码输入错误
             return ResultMessage.ChangePasswordWrongOldPw;
         } else
-            return null;
+            return ResultMessage.DataFormatWrong;
     }
 }
