@@ -1,7 +1,7 @@
 package po;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 
@@ -12,7 +12,7 @@ public class MemberLevelPO implements Serializable{
 	// 制定人员姓名
 	private String framerName;
 	// 制定日期
-	private Date frameDate;
+	private Timestamp frameDate;
 	// 等级个数
 	private int num;
 	// 等级界限值
@@ -21,7 +21,7 @@ public class MemberLevelPO implements Serializable{
 	public MemberLevelPO(){
 	}
 	
-	public MemberLevelPO(String framerName, Date frameDate, int num, int[] creditBoundaries){
+	public MemberLevelPO(String framerName, Timestamp frameDate, int num, int[] creditBoundaries){
 		this.framerName=framerName;
 		this.frameDate=frameDate;
 		this.num=num;
@@ -36,11 +36,11 @@ public class MemberLevelPO implements Serializable{
 		this.framerName = framerName;
 	}
 
-	public Date getFrameDate() {
+	public Timestamp getFrameDate() {
 		return frameDate;
 	}
 
-	public void setFrameDate(Date frameDate) {
+	public void setFrameDate(Timestamp frameDate) {
 		this.frameDate = frameDate;
 	}
 

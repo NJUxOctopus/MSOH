@@ -1,18 +1,18 @@
 package vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:10:19
+ * @author ï¿½Lï¿½ßºï¿½ 2016-10-15 15:10:19
  *
  */
 public class CreditRecordVO implements Serializable{
 
 	public int variation;
 
-	public Date changeTime;
+	public Timestamp changeTime;
 
 	public String customerName;
 	
@@ -27,7 +27,7 @@ public class CreditRecordVO implements Serializable{
 	public CreditRecordVO() {
 	}
 
-	public CreditRecordVO(int variation, Date changeTime, String customerName, String customerID, int afterChangeCredit, String orderID,
+	public CreditRecordVO(int variation, Timestamp changeTime, String customerName, String customerID, int afterChangeCredit, String orderID,
 			String marketerName) {
 		this.variation = variation;
 		this.changeTime = changeTime;

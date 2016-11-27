@@ -1,7 +1,7 @@
 package po;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -9,10 +9,12 @@ import java.util.Date;
  *
  */
 public class CreditRecordPO implements Serializable {
+	// 信用记录在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
+	private int _autoId;
 	// 变化值
 	private int variation;
 	// 更改时间
-	private Date changeTime;
+	private Timestamp changeTime;
 	// 客户姓名
 	private String customerName;
 	// 客户ID
@@ -27,7 +29,7 @@ public class CreditRecordPO implements Serializable {
 	public CreditRecordPO() {
 	}
 
-	public CreditRecordPO(int variation, Date changeTime, String customerName, String customerID, int afterChangeCredit, String orderID,
+	public CreditRecordPO(int variation, Timestamp changeTime, String customerName, String customerID, int afterChangeCredit, String orderID,
 			String marketerName) {
 		this.variation = variation;
 		this.changeTime = changeTime;
@@ -46,11 +48,11 @@ public class CreditRecordPO implements Serializable {
 		this.variation = variation;
 	}
 
-	public Date getChangeTime() {
+	public Timestamp getChangeTime() {
 		return changeTime;
 	}
 
-	public void setChangeTime(Date changeTime) {
+	public void setChangeTime(Timestamp changeTime) {
 		this.changeTime = changeTime;
 	}
 

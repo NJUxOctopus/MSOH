@@ -4,8 +4,13 @@ package ui.view.presentation.customer;/**
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import ui.view.presentation.StageController;
+
 
 public class CustomerOrderListView extends Application {
+    public static String resource = "CustomerOrderListView.fxml";
+
+    private StageController stageController;
 
     public static void main(String[] args) {
         launch(args);
@@ -13,6 +18,10 @@ public class CustomerOrderListView extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        stageController = new StageController();
+        stageController.loadStage(resource);
 
     }
+
 }
+

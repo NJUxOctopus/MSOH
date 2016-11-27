@@ -1,15 +1,11 @@
 package vo;
 
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.List;
 
-import vo.CommentVO;
-import vo.DailyRoomInfoVO;
-
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:09:12
+ * @author ï¿½Lï¿½ßºï¿½ 2016-10-15 15:09:12
  *
  */
 public class HotelVO implements Serializable{
@@ -30,7 +26,7 @@ public class HotelVO implements Serializable{
 
 	public String license;
 
-	public List<Image> pics;
+	public List<String> picUrls;
 
 	public String clerkName;
 
@@ -46,7 +42,7 @@ public class HotelVO implements Serializable{
 	}
 
 	public HotelVO(String hotelName, String hotelAddress, String area, String intro, List<String> infra, int star,
-			double score, String license, String clerkName, String clerkPhone, String hotelID, List<DailyRoomInfoVO> dailyRoomInfo,
+			double score, String license,List<String> picUrls, String clerkName, String clerkPhone, String hotelID, List<DailyRoomInfoVO> dailyRoomInfo,
 			List<CommentVO> comment) {
 		this.hotelName = hotelName;
 		this.hotelAddress = hotelAddress;
@@ -56,6 +52,7 @@ public class HotelVO implements Serializable{
 		this.star = star;
 		this.score = score;
 		this.license = license;
+		this.picUrls=picUrls;
 		this.clerkName = clerkName;
 		this.clerkPhone = clerkPhone;
 		this.hotelID = hotelID;

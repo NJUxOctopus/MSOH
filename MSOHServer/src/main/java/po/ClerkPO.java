@@ -1,10 +1,9 @@
 package po;
 
-import java.io.Serializable;
-
 import util.WorkerPosition;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 
@@ -16,8 +15,10 @@ import javax.persistence.*;
 public class ClerkPO implements Serializable {
 	private static final long serialVersionUID=1L;
 
-	// 酒店工作人员在数据库中的ID，仅供数据库使用
-	@Id@GeneratedValue
+	// 酒店工作人员在数据库中的ID，仅供数据库使用，无实际意义
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "clerk_id_seq")
+	@SequenceGenerator(name = "clerk_id_seq",sequenceName = "clerk_id_seq",allocationSize = 1)
 	@Column(name = "_autoId")
 	private int _autoID;
 	// 酒店工作人员姓名

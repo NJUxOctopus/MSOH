@@ -10,9 +10,7 @@ import util.WorkerPosition;
 
 import javax.swing.*;
 
-/**
- * @author ���ߺ�
- */
+
 public class Clerk_DataService_Stub implements Clerk_DataService {
 
     public boolean addClerk(ClerkPO clerkPO) throws RemoteException {

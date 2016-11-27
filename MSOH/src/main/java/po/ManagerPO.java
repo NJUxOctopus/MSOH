@@ -11,6 +11,8 @@ import java.io.Serializable;
  *
  */
 public class ManagerPO implements Serializable {
+	// 网站管理人员条目在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
+	private int _autoId;
 	// 网站管理人员姓名
 	private String name;
 	// 网站管理人员ID
@@ -20,14 +22,14 @@ public class ManagerPO implements Serializable {
 	// 网站管理人员密码
 	private String password;
 	// 网站管理人员头像
-	private Image pic;
+	private String pic;
 	// ְ网站管理人员职位，默认为Manager
 	private WorkerPosition position;
 
 	public ManagerPO() {
 	}
 
-	public ManagerPO(String name, String ID, String phone, String password, Image pic, WorkerPosition position) {
+	public ManagerPO(String name, String ID, String phone, String password, String picUrl, WorkerPosition position) {
 		this.name = name;
 		this.ID = ID;
 		this.phone = phone;
@@ -68,11 +70,11 @@ public class ManagerPO implements Serializable {
 		this.password = password;
 	}
 
-	public Image getPic() {
+	public String getPic() {
 		return pic;
 	}
 
-	public void setPic(Image pic) {
+	public void setPic(String pic) {
 		this.pic = pic;
 	}
 

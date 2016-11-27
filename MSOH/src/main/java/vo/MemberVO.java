@@ -1,13 +1,13 @@
 package vo;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import util.MemberType;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * 
- * @author ßLÇßº­ 2016-10-15 15:11:44
+ * @author ï¿½Lï¿½ßºï¿½ 2016-10-15 15:11:44
  *
  */
 public class MemberVO implements Serializable{
@@ -18,14 +18,14 @@ public class MemberVO implements Serializable{
 	
 	public int level;
 
-	public Date birthday;
+	public Timestamp birthday;
 
 	public String companyName;
 	
 	public MemberVO() {
 	}
 
-	public MemberVO(String ID, MemberType memberType, int level, Date birthday, String companyName) {
+	public MemberVO(String ID, MemberType memberType, int level, Timestamp birthday, String companyName) {
 		this.ID = ID;
 		this.memberType = memberType;
 		this.level = level;

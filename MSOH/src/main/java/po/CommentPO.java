@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  *
  */
 public class CommentPO implements Serializable {
-	// 评价编号,供数据库存储使用
+	// 评价编号,供数据库存储使用，无实际意义，不提供setter和getter方法
 	private int commentId;
 	// 评分
 	private double score;

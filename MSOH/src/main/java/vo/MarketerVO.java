@@ -1,9 +1,6 @@
 package vo;
 
-import java.awt.Image;
 import java.io.Serializable;
-
-import util.WorkerPosition;
 
 /**
  * 
@@ -15,7 +12,7 @@ public class MarketerVO extends UserVO implements Serializable {
 	public MarketerVO() {
 	}
 
-	public MarketerVO(String name, String phone, String password, String ID, Image pic) {
-		super(name,  phone, password, ID,pic);
+	public MarketerVO(String name, String phone, String password, String ID, String picUrl) {
+		super(name,  phone, password, ID,picUrl);
 	}
 }

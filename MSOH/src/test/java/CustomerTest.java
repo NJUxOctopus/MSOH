@@ -58,7 +58,7 @@ public class CustomerTest extends TestCase {
         List<HotelVO> hotelVOList = customer.getHistoryHotel("320200000000000000");
         List<HotelVO> hotelVOList1 = new ArrayList<HotelVO>();
         hotelVOList1.add(new HotelVO("RUJIA", "NJU", "XIANLIN", "wu", null, 5,
-                5, "has", "pxr", "12345678910", "123", null, null));
+                5, "has",null, "pxr", "12345678910", "123", null, null));
         List<HotelVO> hotelVOList2 = customer.getHistoryHotel("123");
         assertEquals(hotelVOList.get(0).hotelID,hotelVOList1.get(0).hotelID);
         assertEquals(hotelVOList2,null);

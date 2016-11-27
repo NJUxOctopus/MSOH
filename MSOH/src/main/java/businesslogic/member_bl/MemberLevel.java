@@ -20,8 +20,7 @@ public class MemberLevel implements MemberLevel_BLService {
     MemberLevel_DataService_Stub memberLevelDataServiceStub = new MemberLevel_DataService_Stub();
     public ResultMessage addMemberLevel(MemberLevelVO memberLevelVO) throws RemoteException {
         if (memberLevelVO.num < 0)
-            //返回什么呢
-            return null;
+            return ResultMessage.DataFormatWrong;
         if (memberLevelVO.creditBoundaries == null)
             return ResultMessage.Blank;
         else {
@@ -33,8 +32,7 @@ public class MemberLevel implements MemberLevel_BLService {
 
     public ResultMessage modifyMemberLevel(MemberLevelVO memberLevelVO) throws RemoteException {
         if (memberLevelVO.num < 0)
-            //返回什么呢
-            return null;
+            return ResultMessage.DataFormatWrong;
         if (memberLevelVO.creditBoundaries == null)
             return ResultMessage.Blank;
         else {

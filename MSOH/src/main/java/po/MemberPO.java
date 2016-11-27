@@ -3,7 +3,7 @@ package po;
 import util.MemberType;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 
@@ -18,14 +18,14 @@ public class MemberPO implements Serializable {
 	// 会员等级
 	private int level;
 	// 会员生日
-	private Date birthday;
+	private Timestamp birthday;
 	// 会员所在企业名称
 	private String companyName;
 
 	public MemberPO() {
 	}
 
-	public MemberPO(String ID, MemberType memberType, int level, Date birthday, String companyName) {
+	public MemberPO(String ID, MemberType memberType, int level, Timestamp birthday, String companyName) {
 		this.ID = ID;
 		this.memberType = memberType;
 		this.level = level;
@@ -57,11 +57,11 @@ public class MemberPO implements Serializable {
 		this.level = level;
 	}
 
-	public Date getBirthday() {
+	public Timestamp getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(Timestamp birthday) {
 		this.birthday = birthday;
 	}
 

@@ -36,7 +36,7 @@ public class Order implements Order_BLService {
 
     public double getTotal(OrderVO orderVO) throws RemoteException {
 
-        return mockHotel.getRoomPrice(orderVO.finalPrice, orderVO.rooms.size());
+        return 0;
     }
 
     public ResultMessage createOrder(OrderVO orderVO) throws RemoteException{

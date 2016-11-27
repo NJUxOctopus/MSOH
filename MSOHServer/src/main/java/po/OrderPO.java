@@ -1,10 +1,10 @@
 package po;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 import util.OrderStatus;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
 /**
  * 
  * @author zqh
@@ -24,15 +24,15 @@ public class OrderPO implements Serializable {
 	// 订单号
 	private String orderID;
 	// 预计check in时间
-	private Date estimatedCheckinTime;
+	private Timestamp estimatedCheckinTime;
 	// 实际check in时间
-	private Date actualCheckinTime;
+	private Timestamp actualCheckinTime;
 	// 预计check out时间
-	private Date estimatedCheckoutTime;
+	private Timestamp estimatedCheckoutTime;
 	// 实际check out时间
-	private Date actualCheckoutTime;
+	private Timestamp actualCheckoutTime;
 	// 最晚执行时间
-	private Date latestExecutedTime;
+	private Timestamp latestExecutedTime;
 	// 所订客房
 	private List<String> rooms;
 	// 入住人数
@@ -55,8 +55,8 @@ public class OrderPO implements Serializable {
 	}
 
 	public OrderPO(String customerName, String phone, String customerID, String hotelID, String hotelName, String orderID,
-			Date estimatedCheckinTime, Date actualCheckinTime, Date estimatedCheckoutTime, Date actualCheckoutTime,
-			Date latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
+			Timestamp estimatedCheckinTime, Timestamp actualCheckinTime, Timestamp estimatedCheckoutTime, Timestamp actualCheckoutTime,
+			Timestamp latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
 			String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
 		this.customerName = customerName;
 		this.phone = phone;
@@ -119,43 +119,43 @@ public class OrderPO implements Serializable {
 		this.orderID = orderID;
 	}
 
-	public Date getEstimatedCheckinTime() {
+	public Timestamp getEstimatedCheckinTime() {
 		return estimatedCheckinTime;
 	}
 
-	public void setEstimatedCheckinTime(Date estimatedCheckinTime) {
+	public void setEstimatedCheckinTime(Timestamp estimatedCheckinTime) {
 		this.estimatedCheckinTime = estimatedCheckinTime;
 	}
 
-	public Date getActualCheckinTime() {
+	public Timestamp getActualCheckinTime() {
 		return actualCheckinTime;
 	}
 
-	public void setActualCheckinTime(Date actualCheckinTime) {
+	public void setActualCheckinTime(Timestamp actualCheckinTime) {
 		this.actualCheckinTime = actualCheckinTime;
 	}
 
-	public Date getEstimatedCheckoutTime() {
+	public Timestamp getEstimatedCheckoutTime() {
 		return estimatedCheckoutTime;
 	}
 
-	public void setEstimatedCheckoutTime(Date estimatedCheckoutTime) {
+	public void setEstimatedCheckoutTime(Timestamp estimatedCheckoutTime) {
 		this.estimatedCheckoutTime = estimatedCheckoutTime;
 	}
 
-	public Date getActualCheckoutTime() {
+	public Timestamp getActualCheckoutTime() {
 		return actualCheckoutTime;
 	}
 
-	public void setActualCheckoutTime(Date actualCheckoutTime) {
+	public void setActualCheckoutTime(Timestamp actualCheckoutTime) {
 		this.actualCheckoutTime = actualCheckoutTime;
 	}
 
-	public Date getLatestExecutedTime() {
+	public Timestamp getLatestExecutedTime() {
 		return latestExecutedTime;
 	}
 
-	public void setLatestExecutedTime(Date latestExecutedTime) {
+	public void setLatestExecutedTime(Timestamp latestExecutedTime) {
 		this.latestExecutedTime = latestExecutedTime;
 	}
 

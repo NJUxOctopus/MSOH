@@ -32,7 +32,7 @@ public class Customer_DataService_Stub implements Customer_DataService{
 	public List<CustomerPO> findCustomerByName(String customerName) throws RemoteException {
 		if(customerName.equals("pxr")){
 			List<CustomerPO> customerPOList = new ArrayList<CustomerPO>();
-			customerPOList.add(new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, new ImageIcon().getImage(),
+			customerPOList.add(new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, "",
 					"320200000000000000", MemberType.ENTREPRISE));
 			return customerPOList;
 		}else
@@ -41,10 +41,10 @@ public class Customer_DataService_Stub implements Customer_DataService{
 
 	public CustomerPO findCustomerByID(String customerID) throws RemoteException {
 		if(customerID.equals("320200000000000000"))
-			return new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, new ImageIcon().getImage(),
+			return new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, "",
 					customerID, MemberType.NONMEMBER);
 		else if(customerID.equals("12345678"))
-			return new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, new ImageIcon().getImage(),
+			return new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, "",
 					customerID, MemberType.ENTREPRISE);
 		else
 			return null;
@@ -52,7 +52,7 @@ public class Customer_DataService_Stub implements Customer_DataService{
 
 	public List<CustomerPO> findAllCustomers() throws RemoteException {
 		List<CustomerPO> customerPOList = new ArrayList<CustomerPO>();
-		customerPOList.add(new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, new ImageIcon().getImage(),
+		customerPOList.add(new CustomerPO("pxr", "123456", "12345678910", "123@qq.com", 10, "",
 				"320200000000000000", MemberType.ENTREPRISE));
 		return customerPOList;
 	}
@@ -73,7 +73,7 @@ public class Customer_DataService_Stub implements Customer_DataService{
 		if(ID.equals("320200000000000000")){
 			List<HotelPO> hotelPOList = new ArrayList<HotelPO>();
 			hotelPOList.add(new HotelPO("RUJIA", "NJU", "XIANLIN", "wu", null, 5,
-			5, "has", "pxr", "12345678910", "123", null, null));
+			5, "has", null,"pxr", "12345678910", "123", null, null));
 			return hotelPOList;
 		}else
 			return null;

@@ -16,16 +16,15 @@ public class ClerkTest extends TestCase {
 
     public void testAddClerk() throws RemoteException {
         Clerk clerk = new Clerk();
-        Image image = new ImageIcon().getImage();
-        ResultMessage resultMessage1 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000000", image,"",
+        ResultMessage resultMessage1 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000000", "",
                 "RUJIA", "123"));
-        ResultMessage resultMessage2 = clerk.addClerk(new ClerkVO("", "13333333333", "151250117", "320200000000000000", image,"",
+        ResultMessage resultMessage2 = clerk.addClerk(new ClerkVO("", "13333333333", "151250117", "320200000000000000", "",
                 "RUJIA", "123"));
-        ResultMessage resultMessage3 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000001", image,"",
+        ResultMessage resultMessage3 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000001", "",
                 "RUJIA", "123"));
-        ResultMessage resultMessage4 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "@123456", "320200000000000001", image,"",
+        ResultMessage resultMessage4 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "@123456", "320200000000000001", "",
                 "RUJIA", "123"));
-        ResultMessage resultMessage5 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "123", "320200000000000001", image,"",
+        ResultMessage resultMessage5 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "123", "320200000000000001", "",
                 "RUJIA", "123"));
         assertEquals(resultMessage1,ResultMessage.Clerk_AddClerkExist);
         assertEquals(resultMessage2,ResultMessage.Blank);
@@ -36,10 +35,9 @@ public class ClerkTest extends TestCase {
 
     public void testChangeInfo()throws RemoteException{
         Clerk clerk = new Clerk();
-        Image image = new ImageIcon().getImage();
-        ResultMessage resultMessage1 = clerk.changeInfo(new ClerkVO("pxr2", "13333333333", "151250117", "320200000000000000", image,"",
+        ResultMessage resultMessage1 = clerk.changeInfo(new ClerkVO("pxr2", "13333333333", "151250117", "320200000000000000", "",
                 "RUJIA", "123"));
-        ResultMessage resultMessage2 = clerk.changeInfo(new ClerkVO("", "13333333333", "151250117", "320200000000000000", image,"",
+        ResultMessage resultMessage2 = clerk.changeInfo(new ClerkVO("", "13333333333", "151250117", "320200000000000000", "",
                 "RUJIA", "123"));
         assertEquals(resultMessage1,ResultMessage.ChangeInfoSuccess);
         assertEquals(resultMessage2,ResultMessage.Blank);
@@ -47,10 +45,9 @@ public class ClerkTest extends TestCase {
 
     public void testDeleteClerk()throws RemoteException{
         Clerk clerk = new Clerk();
-        Image image = new ImageIcon().getImage();
-        ResultMessage resultMessage1 = clerk.deleteClerk(new ClerkVO("pxr2", "13333333333", "151250117", "320200000000000000", image,"",
+        ResultMessage resultMessage1 = clerk.deleteClerk(new ClerkVO("pxr2", "13333333333", "151250117", "320200000000000000", "",
                 "RUJIA", "123"));
-        ResultMessage resultMessage2 = clerk.changeInfo(new ClerkVO("pxr2", "13333333333", "151250117", "320200000000000001", image,"",
+        ResultMessage resultMessage2 = clerk.changeInfo(new ClerkVO("pxr2", "13333333333", "151250117", "320200000000000001", "",
                 "RUJIA", "123"));
         assertEquals(resultMessage1,ResultMessage.Clerk_DeleteClerkSuccess);
         assertEquals(resultMessage2,ResultMessage.Clerk_ClerkNotExist);

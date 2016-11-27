@@ -14,8 +14,10 @@ import java.sql.Timestamp;
 public class CommentPO implements Serializable {
 	private static final long serialVersionUID=1L;
 
-	// 评价编号,供数据库存储使用
-	@Id@GeneratedValue
+	// 评价编号,供数据库存储使用，无实际意义
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "comment_id_seq")
+	@SequenceGenerator(name = "comment_id_seq",sequenceName = "comment_id_seq",allocationSize = 1)
 	@Column(name = "commentID")
 	private int commentId;
 	// 评分
