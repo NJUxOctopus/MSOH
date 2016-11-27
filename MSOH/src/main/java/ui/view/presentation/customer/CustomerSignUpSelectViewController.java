@@ -3,6 +3,7 @@ package ui.view.presentation.customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import ui.view.presentation.StageController;
+import ui.view.presentation.ControlledStage;
 
 /**
  * Created by island on 2016/11/25.
@@ -40,14 +41,14 @@ public class CustomerSignUpSelectViewController implements ControlledStage{
     @FXML
     private void signUpNormalMember(){
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerSignUpNormalMemberView.fxml");
+        stageController.loadStage("customer/CustomerSignUpNormalMemberView.fxml", 1);
         closeStage();
     }
 
     @FXML
     private void signUpEnterpriseMember(){
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerSignUpEnterpriseMemberView.fxml");
+        stageController.loadStage("customer/CustomerSignUpEnterpriseMemberView.fxml", 1);
         closeStage();
     }
 }

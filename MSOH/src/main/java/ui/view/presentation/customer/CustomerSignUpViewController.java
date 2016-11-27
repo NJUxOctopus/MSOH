@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import ui.view.presentation.StageController;
+import ui.view.presentation.ControlledStage;
 
 /**
  * Created by island on 2016/11/25.
@@ -62,7 +63,7 @@ public class CustomerSignUpViewController implements ControlledStage{
     @FXML
     private void signUp(){
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerSignUpSelectView.fxml");
+        stageController.loadStage("customer/CustomerSignUpSelectView.fxml", 1);
     }
 
 }

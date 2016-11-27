@@ -76,7 +76,7 @@ public class LoginViewController {
 
     @FXML
     private void handleSkip() {
-        pane.getChildren().remove(pane);
+        pane.getChildren().removeAll();
         CustomerMainView customerMainView = new CustomerMainView();
     }
 }

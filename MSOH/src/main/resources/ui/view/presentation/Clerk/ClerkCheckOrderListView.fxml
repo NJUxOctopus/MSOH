@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="344.0" layoutY="140.0" prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: balck;">
+      <Pane prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;">
          <children>
             <HBox layoutY="-2.0" prefHeight="50.0" prefWidth="688.0">
                <children>

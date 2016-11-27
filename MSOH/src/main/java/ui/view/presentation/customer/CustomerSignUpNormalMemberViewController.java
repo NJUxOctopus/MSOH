@@ -3,12 +3,13 @@ package ui.view.presentation.customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import ui.view.presentation.ControlledStage;
 import ui.view.presentation.StageController;
 
 /**
  * Created by island on 2016/11/24.
  */
-public class CustomerSignUpNormalMemberViewController implements ControlledStage{
+public class CustomerSignUpNormalMemberViewController implements ControlledStage {
     StageController stageController;
 
     private String resources = "customer/CustomerSignUpNormalMemberView.fxml";

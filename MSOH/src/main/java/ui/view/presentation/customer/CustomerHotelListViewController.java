@@ -6,12 +6,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import ui.view.presentation.ControlledStage;
 import ui.view.presentation.StageController;
 
 /**
  * Created by island on 2016/11/24.
  */
-public class CustomerHotelListViewController implements ControlledStage{
+public class CustomerHotelListViewController implements ControlledStage {
     StageController stageController = new StageController();
 
     private String resources = "customer/CustomerHotelListView.fxml";

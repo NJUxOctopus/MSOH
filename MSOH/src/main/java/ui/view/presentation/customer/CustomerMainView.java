@@ -18,8 +18,7 @@ public class CustomerMainView extends Application {
     @Override
     public void start(Stage primaryStage) {
         stageController = new StageController();
-        stageController.loadStage(resource);
-
+        stageController.loadStage(resource, 1);
     }
 }
 

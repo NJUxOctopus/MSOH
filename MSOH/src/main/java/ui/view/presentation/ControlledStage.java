@@ -1,4 +1,4 @@
-package ui.view.presentation.customer;
+package ui.view.presentation;
 
 import ui.view.presentation.StageController;
 

@@ -9,10 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import ui.view.presentation.ControlledStage;
 import ui.view.presentation.StageController;
 
 
-public class CustomerMainViewController implements ControlledStage{
+
+public class CustomerMainViewController implements ControlledStage {
     StageController stageController;
 
     @FXML
@@ -101,8 +103,10 @@ public class CustomerMainViewController implements ControlledStage{
      */
     @FXML
     private void showCustomerOrderListView() {
+        CustomerOrderListViewController customerOrderListViewController = new CustomerOrderListViewController();
+        customerOrderListViewController.addOrderPanel();
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerOrderListView.fxml");
+        stageController.loadStage("customer/CustomerOrderListView.fxml", 1);
     }
 
     /**
@@ -111,7 +115,7 @@ public class CustomerMainViewController implements ControlledStage{
     @FXML
     private void showCustomerHotelListView() {
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerHotelListView.fxml");
+        stageController.loadStage("customer/CustomerHotelListView.fxml", 1);
     }
 
     /**
@@ -120,7 +124,7 @@ public class CustomerMainViewController implements ControlledStage{
     @FXML
     private void showCustomerCreditRecordView() {
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerCreditRecordView.fxml");
+        stageController.loadStage("customer/CustomerCreditRecordView.fxml", 1);
     }
 
     /**
@@ -129,7 +133,7 @@ public class CustomerMainViewController implements ControlledStage{
     @FXML
     private void showCustomerMemberView() {
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerMyMemberView.fxml");
+        stageController.loadStage("customer/CustomerMyMemberView.fxml", 1);
     }
 
     /**
@@ -138,7 +142,7 @@ public class CustomerMainViewController implements ControlledStage{
     @FXML
     private void showCustomerInfoView() {
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerInfoView.fxml");
+        stageController.loadStage("customer/CustomerInfoView.fxml", 1);
     }
 
     /**

@@ -1,11 +1,15 @@
 package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.ControlledStage;
 
 /**
  * Created by island on 2016/11/23.
@@ -13,7 +17,11 @@ import ui.view.presentation.StageController;
 public class CustomerOrderListViewController implements ControlledStage {
     StageController stageController;
 
+    CustomerSingleOrderPaneViewController  customerSingleOrderPaneViewController;
     private String resources = "customer/CustomerOrderListView.fxml";
+
+    @FXML
+    private Pane orderListPane;
 
     @FXML
     private ImageView background;
@@ -91,19 +99,9 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     }
 
-    @FXML
-    private void nextPage(){
-
-    }
-
-    @FXML
-    private void lastPage(){
-
-    }
-
-    @FXML
-    private void selectPage(){
-
+    public void addOrderPanel(){
+        Button b = new Button();
+        orderListPane.getChildren().add(b);
     }
 
 

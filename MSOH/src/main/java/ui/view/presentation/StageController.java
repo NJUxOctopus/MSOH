@@ -8,7 +8,6 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ui.view.presentation.customer.ControlledStage;
 
 import java.util.HashMap;
 
@@ -21,16 +20,15 @@ public class StageController {
 
     private static HashMap<String, Stage> stages = new HashMap<String, Stage>();
 
-    public boolean loadStage(String resource) {
+    public boolean loadStage(String resource, double opacity) {
+        double width = 0;
+        double height = 0;
         try {
             //加载FXML资源文件
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
             Pane pane = (Pane) loader.load();
-            pane.getLayoutBounds().getHeight();
-
-            //pane.setStyle(
-            //        "-fx-background-color: rgba(255,255,255,0.5);"
-            //);
+            width = pane.getPrefWidth();
+            height = pane.getPrefHeight();
 
             //通过Loader获取FXML对应的ViewCtr，并将本StageController注入到ViewCtr中
             ControlledStage controlledStage = (ControlledStage) loader.getController();
@@ -50,7 +48,11 @@ public class StageController {
             stage.initStyle(StageStyle.TRANSPARENT);
             //去除stage外框
             stage.initStyle(StageStyle.UNDECORATED);
-
+            Screen screen = Screen.getPrimary();
+            Rectangle2D bounds = screen.getVisualBounds();
+            stage.setX((bounds.getWidth() - width)/2);
+            stage.setY((bounds.getHeight() - height)/2);
+            stage.setOpacity(opacity);
             stage.show();
             System.out.print(stages.size());
 

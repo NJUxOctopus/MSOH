@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.ControlledStage;
 
 /**
  * Created by island on 2016/11/24.
@@ -68,7 +69,7 @@ public class CustomerInfoViewController implements ControlledStage{
     @FXML
     private void modifyPassword(){
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerModifyPasswordView.fxml");
+        stageController.loadStage("customer/CustomerModifyPasswordView.fxml", 1);
     }
 
     @FXML
