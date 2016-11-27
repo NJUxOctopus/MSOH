@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerMyMemberViewController">
+   <children>
+      <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image_customer/ElCapitan2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="1200.0" layoutX="40.0" layoutY="22.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image_customer/customer_memberview.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Label layoutX="146.0" layoutY="165.0" text="信用" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="310.0" text="会员类型：" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="410.0" text="会员等级：" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="510.0" text="会员优惠：" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="typeOfMemberLabel" layoutX="262.0" layoutY="314.0" text="普通会员" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="gradeOfMemberLabel" layoutX="262.0" layoutY="414.0" text="3" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="discountOfMemberLabel" layoutX="262.0" layoutY="514.0" text="部分酒店9折" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="782.0" layoutY="389.0" text="等级" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="774.0" layoutY="320.0" text="等级制度：" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="782.0" layoutY="488.0" text="信用" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="signUpButton" layoutX="589.0" layoutY="617.0" mnemonicParsing="false" onAction="#showSignUpSelectView" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="注册" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+      <Button fx:id="backButton" layoutX="54.0" layoutY="41.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image_customer/backButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</Pane>

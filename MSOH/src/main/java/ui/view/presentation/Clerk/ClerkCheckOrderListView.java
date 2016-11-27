@@ -1,6 +1,5 @@
-package ui.view.presentation.Clerk;
-/**
- * Created by Administrator on 2016/11/15.
+package ui.view.presentation.Clerk; /**
+ * Created by ST on 2016/11/15.
  */
 
 import javafx.application.Application;

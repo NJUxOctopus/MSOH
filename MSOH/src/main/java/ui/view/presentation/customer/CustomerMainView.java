@@ -3,15 +3,13 @@ package ui.view.presentation.customer;/**
  */
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.view.presentation.StageController;
 
-import java.io.IOException;
 public class CustomerMainView extends Application {
-    private Stage primaryStage;
-    private Pane pane;
+    public static String resource = "customer/CustomerMainView.fxml";
+
+    private StageController stageController;
 
     public static void main(String[] args) {
         launch(args);
@@ -19,32 +17,9 @@ public class CustomerMainView extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Octopus");
+        stageController = new StageController();
+        stageController.loadStage(resource);
 
-        initPane();
-
-        //showCustomerMainView();
-    }
-
-    public void initPane() {
-        try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(CustomerMainView.class.getResource("CustomerMainView.fxml"));
-            pane = (Pane) loader.load();
-
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(pane);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
     }
 }
 
