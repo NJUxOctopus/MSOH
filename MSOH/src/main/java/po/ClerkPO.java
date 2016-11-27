@@ -10,8 +10,6 @@ import java.io.Serializable;
  *
  */
 public class ClerkPO implements Serializable {
-	// 酒店工作人员在数据库中的ID，仅供数据库使用，无实际意义，不提供setter和getter方法
-	private int _autoID;
 	// 酒店工作人员姓名
 	private String name;
 	// 酒店工作人员联系方式

@@ -10,9 +10,9 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/msoh_database</property>
     <!-- 指定连接数据库的用户名 -->
     <property name="connection.username">root</property>
-    <!-- 指定连接数据库的密码 -->
+      <!-- 指定连接数据库的密码 -->
     <property name="connection.password">123456</property>
-    <!-- 指定连接池里最大连接数 -->
+      <!-- 指定连接池里最大连接数 -->
     <property name="hibernate.c3p0.max_size">20</property>
     <!-- 指定连接池里最小连接数 -->
     <property name="hibernate.c3p0.min_size">1</property>
@@ -39,7 +39,7 @@
     <mapping class="po.MarketerPO"/>
     <mapping class="po.ManagerPO"/>
 
-    <!-- DB schema will be updated if needed -->
+      <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

@@ -10,8 +10,6 @@ import java.io.Serializable;
  *
  */
 public class CustomerPO implements Serializable {
-	// 客户条目在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
-	private int _autoId;
 	// 客户姓名
 	private String userName;
 	// 客户密码

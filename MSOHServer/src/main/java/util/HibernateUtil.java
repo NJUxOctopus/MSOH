@@ -14,28 +14,28 @@ public class HibernateUtil {
     private static final SessionFactory sessionfactory;
     private static Session session;
 
-    static{
-        try{
-//            Configuration cfg=new Configuration().configure();
-//            StandardServiceRegistryBuilder ssrb=new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());
-//            StandardServiceRegistry ssr=ssrb.build();
-//            sessionfactory=cfg.buildSessionFactory(ssr);
-            sessionfactory=new Configuration().configure().buildSessionFactory();
-        }catch(Throwable ex){
+    static {
+        try {
+            sessionfactory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
         }
     }
 
-    public static SessionFactory getSessionfactory(){
+    public static SessionFactory getSessionfactory() {
         return sessionfactory;
     }
-    public static Session getSession() throws HibernateException{
-        session=sessionfactory.openSession();
+
+    public static Session getSession() throws HibernateException {
+        session = sessionfactory.openSession();
         return session;
     }
-    public static void closeSession(Session session){
-        if(null!=session){
+
+    public static void closeSession(Session session) {
+        if (null != session) {
             session.close();
+//            sessionfactory.close();
         }
     }
+
 }

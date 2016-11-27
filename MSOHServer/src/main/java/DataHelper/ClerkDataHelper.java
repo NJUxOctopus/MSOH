@@ -16,7 +16,7 @@ public interface ClerkDataHelper {
 
     public ClerkPO getClerkByID(String ID);
 
-    public ClerkPO getClerkByName(String name);
+    public List<ClerkPO> getClerkByName(String name);
 
     public List<ClerkPO> getAllClerks();
 }

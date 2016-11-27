@@ -6,123 +6,146 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * 
  * @author zqh
- *
  */
 @Entity
-@Table(name = "clerk",schema = "msoh_database")
+@Table(name = "clerk", schema = "msoh_database")
 public class ClerkPO implements Serializable {
-	private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-	// 酒店工作人员在数据库中的ID，仅供数据库使用，无实际意义
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "clerk_id_seq")
-	@SequenceGenerator(name = "clerk_id_seq",sequenceName = "clerk_id_seq",allocationSize = 1)
-	@Column(name = "_autoId")
-	private int _autoID;
-	// 酒店工作人员姓名
-	@Column(name = "name")
-	private String name;
-	// 酒店工作人员联系方式
-	@Column(name = "phone")
-	private String phone;
-	// 酒店工作人员密码
-	@Column(name = "password")
-	private String password;
-	// 酒店工作人员ID
-	@Column(name = "ID")
-	private String ID;
-	// 酒店工作人员所在酒店名称
-	@Column(name = "hotelName")
-	private String hotelName;
-	// 酒店工作人员所在酒店ID
-	@Column(name = "hotelID")
-	private String hotelID;
-	// 工作人员类型：酒店工作人员默认为Clerk
-	@Column(name = "position")
-	@Enumerated(EnumType.STRING)
-	private WorkerPosition position;
-	// 酒店工作人员头像
-	@Column(name = "picUrl")
-	private String picUrl;
+    // 酒店工作人员姓名
+    @Column(name = "name")
+    private String name;
+    // 酒店工作人员联系方式
+    @Column(name = "phone")
+    private String phone;
+    // 酒店工作人员密码
+    @Column(name = "password")
+    private String password;
+    // 酒店工作人员ID
+    @Id
+    @Column(name = "ID")
+    private String ID;
+    // 酒店工作人员所在酒店名称
+    @Column(name = "hotelName")
+    private String hotelName;
+    // 酒店工作人员所在酒店ID
+    @Column(name = "hotelID")
+    private String hotelID;
+    // 工作人员类型：酒店工作人员默认为Clerk
+    @Column(name = "position")
+    @Enumerated(EnumType.STRING)
+    private WorkerPosition position;
+    // 酒店工作人员头像
+    @Column(name = "picUrl")
+    private String picUrl;
 
-	public ClerkPO() {
-	}
+    public ClerkPO() {
+    }
 
-	public ClerkPO(String name, String phone, String password, String ID, String hotelName, String hotelID,
-			WorkerPosition position, String picUrl) {
-		this.name = name;
-		this.phone = phone;
-		this.password = password;
-		this.ID = ID;
-		this.hotelName = hotelName;
-		this.hotelID = hotelID;
-		this.position = position;
-		this.picUrl=picUrl;
-	}
+    public ClerkPO(String name, String phone, String password, String ID, String hotelName, String hotelID,
+                   WorkerPosition position, String picUrl) {
+        this.name = name;
+        this.phone = phone;
+        this.password = password;
+        this.ID = ID;
+        this.hotelName = hotelName;
+        this.hotelID = hotelID;
+        this.position = position;
+        this.picUrl = picUrl;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public void setID(String ID){
-		this.ID=ID;
-	}
-	
-	public String getHotelName() {
-		return hotelName;
-	}
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
+    public String getHotelName() {
+        return hotelName;
+    }
 
-	public String getHotelID() {
-		return hotelID;
-	}
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
 
-	public void setHotelID(String hotelID) {
-		this.hotelID = hotelID;
-	}
+    public String getHotelID() {
+        return hotelID;
+    }
 
-	public WorkerPosition getPosition() {
-		return position;
-	}
+    public void setHotelID(String hotelID) {
+        this.hotelID = hotelID;
+    }
 
-	public void setPosition(WorkerPosition position) {
-		this.position = position;
-	}
+    public WorkerPosition getPosition() {
+        return position;
+    }
 
-	public String getPicUrl(){
-		return picUrl;
-	}
-	
-	public void setPicUrl(String picUrl){
-		this.picUrl=picUrl;
-	}
+    public void setPosition(WorkerPosition position) {
+        this.position = position;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ClerkPO clerkPO = (ClerkPO) o;
+
+        if (name != null ? !name.equals(clerkPO.name) : clerkPO.name != null) return false;
+        if (phone != null ? !phone.equals(clerkPO.phone) : clerkPO.phone != null) return false;
+        if (password != null ? !password.equals(clerkPO.password) : clerkPO.password != null) return false;
+        if (ID != null ? !ID.equals(clerkPO.ID) : clerkPO.ID != null) return false;
+        if (hotelName != null ? !hotelName.equals(clerkPO.hotelName) : clerkPO.hotelName != null) return false;
+        if (hotelID != null ? !hotelID.equals(clerkPO.hotelID) : clerkPO.hotelID != null) return false;
+        if (position != clerkPO.position) return false;
+        return picUrl != null ? picUrl.equals(clerkPO.picUrl) : clerkPO.picUrl == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (ID != null ? ID.hashCode() : 0);
+        result = 31 * result + (hotelName != null ? hotelName.hashCode() : 0);
+        result = 31 * result + (hotelID != null ? hotelID.hashCode() : 0);
+        result = 31 * result + (position != null ? position.hashCode() : 0);
+        result = 31 * result + (picUrl != null ? picUrl.hashCode() : 0);
+        return result;
+    }
 }
