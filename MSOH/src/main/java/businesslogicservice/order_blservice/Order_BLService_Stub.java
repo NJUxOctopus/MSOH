@@ -23,15 +23,12 @@ public class Order_BLService_Stub implements Order_BLService {
 	PromotionVO promotionVO;
 
 
-	/**
-	 * ÐÂ½¨¶©µ¥
-	 */
 	public ResultMessage createOrder(OrderVO orderVO) {
 		// TODO Auto-generated method stub
 		if (orderVO.estimatedCheckinTime == null || orderVO.estimatedCheckoutTime == null || orderVO.phone.equals("")
 				|| orderVO.rooms == null) {
 			return ResultMessage.Blank;
-		} else if (orderVO.haveChildren == false && orderVO.numOfCustomers == 2 && orderVO.rooms.equals("±ê¼ä")) {
+		} else if (orderVO.haveChildren == false && orderVO.numOfCustomers == 2 && orderVO.rooms.equals("ï¿½ï¿½ï¿½")) {
 			return ResultMessage.Order_CreateOrderSuccess;
 		}
 		return null;
@@ -42,17 +39,11 @@ public class Order_BLService_Stub implements Order_BLService {
 		return 0;
 	}
 
-	/**
-	 * ³·Ïú¶©µ¥
-	 */
 	public ResultMessage cancelOrder(OrderVO orderVO) {
 		orderVO.orderType=OrderStatus.REVOKED;
 		return ResultMessage.Order_CancelOrderSuccess;
 	}
 
-	/**
-	 * Ö´ÐÐ¶©µ¥
-	 */
 	public ResultMessage executeOrder(OrderVO orderVO) {
 		if (orderVO.actualCheckoutTime != null || orderVO.estimatedCheckoutTime != null) {
 			orderVO.orderType=OrderStatus.EXECUTED;
@@ -62,9 +53,6 @@ public class Order_BLService_Stub implements Order_BLService {
 		}
 	}
 
-	/**
-	 * ½áÊø¶©µ¥
-	 */
 	public ResultMessage endOrder(OrderVO orderVO) {
 		if (orderVO.actualCheckoutTime != null) {
 			orderVO.orderType= OrderStatus.FINISHED_UNEVALUATED;
@@ -74,17 +62,11 @@ public class Order_BLService_Stub implements Order_BLService {
 		}
 	}
 
-	/**
-	 * ½«¶©µ¥ÉèÖÃÎªÒì³£
-	 */
 	public ResultMessage setAbnormal(OrderVO orderVO) {
 		orderVO.orderType=OrderStatus.ABNORMAL;
 		return ResultMessage.Order_SetAbnormalSuccess;
 	}
 
-	/**
-	 * ½«Òì³£¶©µ¥»Ö¸´
-	 */
 	public ResultMessage renewOrder(OrderVO orderVO) {
 		orderVO.orderType=OrderStatus.REVOKED;
 		return ResultMessage.Order_RenewOrderSuccess;
