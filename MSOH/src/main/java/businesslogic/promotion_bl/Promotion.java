@@ -34,7 +34,7 @@ public class Promotion implements Promotion_BLService {
     }
 
     public ResultMessage modifyPromotion(PromotionVO promotionVO) throws RemoteException {
-        if(promotionVO.endTime==null||promotionVO.promotionName.equals("")||promotionVO.startTime==null||
+        if(promotionVO.frameDate==null||promotionVO.endTime==null||promotionVO.promotionName.equals("")||promotionVO.startTime==null||
                 promotionVO.targetUser==null||promotionVO.targetHotel==null||promotionVO.targetArea.equals("")){
             return ResultMessage.Blank;
         }else if(promotionVO.discount<=0||promotionVO.discount>=10){
