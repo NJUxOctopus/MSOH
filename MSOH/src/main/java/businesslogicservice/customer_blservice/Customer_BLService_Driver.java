@@ -8,9 +8,6 @@ import vo.CreditRecordVO;
 import vo.CustomerVO;
 import vo.HotelVO;
 
-/**
- * @author ≈À‰ÏÓ£
- */
 public class Customer_BLService_Driver {
     public void drive(Customer_BLService customer_BLService) throws RemoteException{
         CustomerVO customerVO = new CustomerVO();
