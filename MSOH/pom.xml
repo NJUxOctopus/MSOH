@@ -19,8 +19,6 @@
       <groupId>com.oracle</groupId>
       <artifactId>javafx</artifactId>
       <version>8.0.65-b17</version>
-      <scope>system</scope>
-      <systemPath>${java.home}/../lib/packager.jar</systemPath>
     </dependency>
 
   </dependencies>
