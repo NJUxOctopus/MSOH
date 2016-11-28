@@ -22,13 +22,19 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
 
     private static Clerk_DataServiceImpl clerk_dataServiceImpl;
 
-    // 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
+
+    /**
+     * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
+     *
+     * @return clerkDataService的实例
+     */
     public static Clerk_DataServiceImpl getInstance() {
         if (clerk_dataServiceImpl == null) {
             clerk_dataServiceImpl = new Clerk_DataServiceImpl();
         }
         return clerk_dataServiceImpl;
     }
+
 
     private Clerk_DataServiceImpl() {
         dataFactory = new DataFactoryImpl();
@@ -43,23 +49,8 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 新增酒店工作人员是否成功
      * @throws RemoteException
      */
-    public boolean addClerk(ClerkPO clerkPO) throws RemoteException {
-        Iterator<ClerkPO> it = clerkList.iterator();
-
-        while (it.hasNext()) {
-            ClerkPO cp = (ClerkPO) it.next();
-            if (cp.equals(clerkPO)) {
-                return false;
-            } else if (cp.getID().equals(clerkPO.getID()) ||
-                    cp.getHotelID().equals(clerkPO.getHotelID())) {
-                // 数据库中只允许一个酒店有一个酒店工作人员存在
-                // 一个酒店工作人员只允许在一个酒店任职
-                return false;
-            }
-        }
-
+    public void addClerk(ClerkPO clerkPO) throws RemoteException {
         clerkDataHelper.addClerk(clerkPO);
-        return true;
     }
 
     /**
@@ -69,13 +60,8 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 更改酒店工作人员信息是否成功
      * @throws RemoteException
      */
-    public boolean modifyClerk(ClerkPO clerkPO) throws RemoteException {
-        if (!clerkList.contains(clerkPO)) {
-            return false;
-        } else {
-            clerkDataHelper.modifyClerk(clerkPO);
-            return true;
-        }
+    public void modifyClerk(ClerkPO clerkPO) throws RemoteException {
+        clerkDataHelper.modifyClerk(clerkPO);
     }
 
     /**
@@ -87,7 +73,9 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      */
     public List<ClerkPO> findClerkByName(String name) throws RemoteException {
         List<ClerkPO> clerksFound = clerkDataHelper.getClerkByName(name);
-
+        if (null == clerksFound) {
+            return null;
+        }
         return clerksFound;
     }
 
@@ -124,12 +112,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 删除酒店工作人员是否成功
      * @throws RemoteException
      */
-    public boolean deleteClerk(ClerkPO clerkPO) throws RemoteException {
-        if (!clerkList.contains(clerkPO)) {
-            return false;
-        } else {
-            clerkDataHelper.deleteClerk(clerkPO);
-            return true;
-        }
+    public void deleteClerk(ClerkPO clerkPO) throws RemoteException {
+        clerkDataHelper.deleteClerk(clerkPO);
     }
 }

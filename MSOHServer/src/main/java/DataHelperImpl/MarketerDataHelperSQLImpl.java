@@ -1,131 +1,127 @@
 package DataHelperImpl;
 
-import DataHelper.ClerkDataHelper;
+import DataHelper.MarketerDataHelper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import po.ClerkPO;
+import po.MarketerPO;
 import util.HibernateUtil;
 
 import java.util.List;
 
 /**
- * Created by zqh on 2016/11/24.
+ * Created by zqh on 2016/11/28.
  */
 @SuppressWarnings(value = {"Duplicates", "deprecation"})
-public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
+public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
     /**
-     * 数据库中新增酒店工作人员
+     * 新增网站营销人员
      *
-     * @param clerkPO
+     * @param marketerPO
      */
-    public void addClerk(ClerkPO clerkPO) {
+    public void addMarketer(MarketerPO marketerPO) {
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
 
-        session.save(clerkPO);
+        session.save(marketerPO);
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);
     }
 
     /**
-     * 数据库中更新酒店工作人员
+     * 更新网站营销人员信息
      *
-     * @param clerkPO
+     * @param marketerPO
      */
-    public void modifyClerk(ClerkPO clerkPO) {
+    public void modifyMarketer(MarketerPO marketerPO) {
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
 
-        session.update(clerkPO);
-
-        session.getTransaction().commit();
-        HibernateUtil.closeSession(session);
-
-    }
-
-    /**
-     * 数据库中删除酒店工作人员
-     *
-     * @param clerkPO
-     */
-    public void deleteClerk(ClerkPO clerkPO) {
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
-
-        session.delete(clerkPO);
+        session.update(marketerPO);
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);
     }
 
     /**
-     * 根据ID查找酒店工作人员
+     * 删除网站营销人员
      *
-     * @param ID
-     * @return 查询到的酒店工作人员PO
+     * @param marketerPO
      */
-    public ClerkPO getClerkByID(String ID) {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSession();
+    public void deleteMarketer(MarketerPO marketerPO) {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
 
-            ClerkPO clerkPO = (ClerkPO) session.get(ClerkPO.class, ID);
+        session.delete(marketerPO);
 
-            return clerkPO;
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            if (session != null) {
-                HibernateUtil.closeSession(session);
-            }
-        }
+        session.getTransaction().commit();
+        HibernateUtil.closeSession(session);
     }
 
     /**
-     * 根据姓名查找酒店工作人员
+     * 根据姓名获取网站营销人员列表
      *
      * @param name
-     * @return 查询到的酒店工作人员PO
+     * @return 与姓名匹配的网站营销人员列表
      */
-    public List<ClerkPO> getClerkByName(String name) {
+    public List<MarketerPO> getMarketerByName(String name) {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
 
-            String hql = "from ClerkPO as clerk where clerk.name=:n";
+            String hql = "from MarketerPO as marketer where marketer.name=:n";
             Query query = session.createQuery(hql);
             query.setString("n", name);
 
-            List<ClerkPO> list = query.list();
+            List<MarketerPO> list = query.list();
             return list;
-
         } catch (HibernateException e) {
             e.printStackTrace();
             return null;
         } finally {
-            if (session != null) {
+            if (null != session) {
                 HibernateUtil.closeSession(session);
             }
         }
     }
 
     /**
-     * 获得所有酒店工作人员信息
+     * 根据ID获取网站营销人员
      *
-     * @return 所有酒店工作人员组成的列表
+     * @param ID
+     * @return 与ID匹配的网站营销人员
      */
-    public List<ClerkPO> getAllClerks() {
+    public MarketerPO getMarketerByID(String ID) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSession();
+
+            MarketerPO marketerPO = (MarketerPO) session.get(MarketerPO.class, ID);
+            return marketerPO;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (null != session) {
+                HibernateUtil.closeSession(session);
+            }
+        }
+    }
+
+    /**
+     * 获取所有网站营销人员列表
+     *
+     * @return 所有网站营销人员列表
+     */
+    public List<MarketerPO> getAllMarketers() {
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
 
-        List<ClerkPO> list = session.createQuery("from ClerkPO").list();
+        List<MarketerPO> list = session.createQuery("from MarketerPO ").list();
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);
-
         return list;
     }
 }

@@ -9,7 +9,6 @@ public class DataFactoryImpl implements DataFactory {
 
     public ClerkDataHelper getClerkDataHelper() {
         ClerkDataHelper clerkDataHelper = new ClerkDataHelperSQLImpl();
-
         return clerkDataHelper;
     }
 
@@ -22,11 +21,13 @@ public class DataFactoryImpl implements DataFactory {
     }
 
     public ManagerDataHelper getManagerDataHelper() {
-        return null;
+        ManagerDataHelper managerDataHelper = new ManagerDataHelperSQLImpl();
+        return managerDataHelper;
     }
 
     public MarketerDataHelper getMarketerDataHelper() {
-        return null;
+        MarketerDataHelper marketerDataHelper = new MarketerDataHelperSQLImpl();
+        return marketerDataHelper;
     }
 
     public MemberDataHelper getMemberDataHelper() {
