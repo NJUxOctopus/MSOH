@@ -1,10 +1,8 @@
 package businesslogic.login_bl;
 
-import businesslogicservice.clerk_blservice.Clerk_BLService_Stub;
 import businesslogicservice.login_blservice.Login_BLService;
-import dataservice.clerk_dataservice.Clerk_DataService_Stub;
+import dataservice.clerk_dataservice.Clerk_DataService;
 import dataservice.customer_dataservice.Customer_DataService_Stub;
-import dataservice.manager_dataservice.Manager_DataService_Driver;
 import dataservice.manager_dataservice.Manager_DataService_Stub;
 import dataservice.marketer_dataservice.Marketer_DataService_Stub;
 import rmi.RemoteHelper;
@@ -24,7 +22,7 @@ public class Login implements Login_BLService {
      * @throws RemoteException
      */
     public ResultMessage login(String ID, String password) throws RemoteException {
-        Clerk_DataService_Stub clerk_dataService_stub = new Clerk_DataService_Stub();
+        Clerk_DataService clerk_dataService_stub = RemoteHelper.getInstance().getClerkDataService();
         Manager_DataService_Stub manager_dataService_stub = new Manager_DataService_Stub();
         Marketer_DataService_Stub marketer_dataService_stub = new Marketer_DataService_Stub();
         Customer_DataService_Stub customer_dataService_stub = new Customer_DataService_Stub();

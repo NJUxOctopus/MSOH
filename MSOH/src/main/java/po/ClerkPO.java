@@ -10,6 +10,8 @@ import java.io.Serializable;
  *
  */
 public class ClerkPO implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	// 酒店工作人员姓名
 	private String name;
 	// 酒店工作人员联系方式

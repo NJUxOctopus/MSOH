@@ -7,13 +7,13 @@ import dataservice.marketer_dataservice.Marketer_DataService;
 import po.MarketerPO;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zqh on 2016/11/28.
  */
 public class Marketer_DataServiceImpl implements Marketer_DataService {
-    private List<MarketerPO> marketerList;
 
     private MarketerDataHelper marketerDataHelper;
 
@@ -36,7 +36,6 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
     private Marketer_DataServiceImpl() {
         dataFactory = new DataFactoryImpl();
         marketerDataHelper = dataFactory.getMarketerDataHelper();
-        marketerList = marketerDataHelper.getAllMarketers();
     }
 
     /**
@@ -72,8 +71,10 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
         if (null == marketersFound) {
             return null;
         }
-        return marketersFound;
 
+        List<MarketerPO> returnMarketersFound=new ArrayList<MarketerPO>();
+        returnMarketersFound.addAll(marketersFound);
+        return returnMarketersFound;
     }
 
     /**
@@ -89,7 +90,7 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
         if (null == marketerPO) {
             return null;
         }
-        return marketerPO;
+        return (MarketerPO)marketerPO.clone();
 
     }
 
@@ -100,7 +101,12 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @throws RemoteException
      */
     public List<MarketerPO> findAllMarketers() throws RemoteException {
-        return marketerList;
+       List<MarketerPO> marketerList=marketerDataHelper.getAllMarketers();
+
+       List<MarketerPO> returnMarketerList=new ArrayList<MarketerPO>();
+       returnMarketerList.addAll(marketerList);
+
+        return returnMarketerList;
     }
 
     /**
@@ -112,4 +118,5 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
     public void deleteMarketer(MarketerPO marketerPO) throws RemoteException {
         marketerDataHelper.deleteMarketer(marketerPO);
     }
+
 }

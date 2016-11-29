@@ -7,6 +7,7 @@ import dataservice.manager_dataservice.Manager_DataService;
 import po.ManagerPO;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,6 @@ public class Manager_DataServiceImpl implements Manager_DataService {
 
     private static Manager_DataServiceImpl manager_dataServiceImpl;
 
-    private List<ManagerPO> managersList;
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -36,7 +36,6 @@ public class Manager_DataServiceImpl implements Manager_DataService {
     private Manager_DataServiceImpl() {
         dataFactory = new DataFactoryImpl();
         managerDataHelper = dataFactory.getManagerDataHelper();
-        managersList = managerDataHelper.findAllManagers();
     }
 
     /**
@@ -63,7 +62,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
             return null;
         }
 
-        return managerPO;
+        return (ManagerPO)managerPO.clone();
     }
 
     /**
@@ -73,7 +72,12 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      * @throws RemoteException
      */
     public List<ManagerPO> findAllManagers() throws RemoteException {
-        return managersList;
+        List<ManagerPO> managersList=managerDataHelper.findAllManagers();
+
+        List<ManagerPO> returnManagersList=new ArrayList<ManagerPO>();
+        returnManagersList.addAll(managersList);
+
+        return returnManagersList;
     }
 
     /**
@@ -89,6 +93,10 @@ public class Manager_DataServiceImpl implements Manager_DataService {
         if (null == list) {
             return null;
         }
-        return list;
+
+        List<ManagerPO> returnManagersList=new ArrayList<ManagerPO>();
+        returnManagersList.addAll(list);
+
+        return returnManagersList;
     }
 }

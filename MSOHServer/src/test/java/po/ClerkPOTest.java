@@ -13,7 +13,7 @@ public class ClerkPOTest {
     public void testSaveClerkPO(){
         Session session= HibernateUtil.getSession();
 
-        ClerkPO clerkPO=new ClerkPO("qky","13913025325","123321","320581190011223206","如家","56311074", WorkerPosition.Clerk,"c:/pxr.jpg");
+        ClerkPO clerkPO=new ClerkPO("钱柯宇","13913025325","123321","320581190011223111","如家","56300074", WorkerPosition.Clerk,"c:/pxr.jpg");
 
         session.beginTransaction();
         session.save(clerkPO);

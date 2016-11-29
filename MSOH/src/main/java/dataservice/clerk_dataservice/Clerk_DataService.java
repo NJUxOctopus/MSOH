@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface Clerk_DataService extends Remote {
 	// 在数据库中增加酒店工作人员信息
-	public boolean addClerk(ClerkPO clerkPO) throws RemoteException;
+	public void addClerk(ClerkPO clerkPO) throws RemoteException;
 
 	// 更改在数据中的酒店工作人员信息
-	public boolean modifyClerk (ClerkPO clerkPO) throws RemoteException;
+	public void modifyClerk (ClerkPO clerkPO) throws RemoteException;
 
 	// 根据姓名查找酒店工作人员
 	public List<ClerkPO> findClerkByName(String name) throws RemoteException;
@@ -29,7 +29,7 @@ public interface Clerk_DataService extends Remote {
 	public List<ClerkPO> findAllClerks() throws RemoteException;
 
 	// 删除酒店工作人员
-	public boolean deleteClerk(ClerkPO clerkPO) throws RemoteException;
+	public void deleteClerk(ClerkPO clerkPO) throws RemoteException;
 
 }
 

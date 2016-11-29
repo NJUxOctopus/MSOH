@@ -1,13 +1,11 @@
 package businesslogic.clerk_bl;
 
 import businesslogicservice.clerkUtil_blservice.ClerkUtil_BLService;
-import dataservice.clerk_dataservice.Clerk_DataService_Stub;
+import dataservice.clerk_dataservice.Clerk_DataService;
 import po.ClerkPO;
 import rmi.RemoteHelper;
-import util.WorkerPosition;
 import vo.ClerkVO;
 
-import javax.swing.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,8 +14,9 @@ import java.util.List;
 /**
  * Created by Pxr on 16/11/17.
  */
+
 public class ClerkUtil implements ClerkUtil_BLService {
-    Clerk_DataService_Stub clerk_dataService_stub = new Clerk_DataService_Stub();
+    Clerk_DataService clerk_dataService = RemoteHelper.getInstance().getClerkDataService();
 
     /**
      * 得到所有工作人员的vo
@@ -25,7 +24,7 @@ public class ClerkUtil implements ClerkUtil_BLService {
      * @throws RemoteException
      */
     public List<ClerkVO> getAll() throws RemoteException {
-        List<ClerkPO> clerkPOList = clerk_dataService_stub.findAllClerks();
+        List<ClerkPO> clerkPOList = clerk_dataService.findAllClerks();
         //如果没有员工
         if (clerkPOList==null||clerkPOList.isEmpty())
             return null;
@@ -52,7 +51,7 @@ public class ClerkUtil implements ClerkUtil_BLService {
         if(ID.equals(""))
             //若id为空
             return null;
-        ClerkPO clerkPO = clerk_dataService_stub.findClerkByID(ID);
+        ClerkPO clerkPO = clerk_dataService.findClerkByID(ID);
         if(clerkPO==null)
             //若不存在该工作人员
             return null;
@@ -70,7 +69,7 @@ public class ClerkUtil implements ClerkUtil_BLService {
         if(name.equals(""))
             //若名字为空
             return null;
-        List<ClerkPO> clerkPOList = clerk_dataService_stub.findClerkByName(name);
+        List<ClerkPO> clerkPOList = clerk_dataService.findClerkByName(name);
         if (clerkPOList==null||clerkPOList.isEmpty())
             //若列表为空
             return null;

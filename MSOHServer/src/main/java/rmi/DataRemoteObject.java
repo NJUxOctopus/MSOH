@@ -45,12 +45,30 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     // TODO 方法后添加异常抛出
 
 
-    public boolean addMember(MemberPO po) throws RemoteException {
-        return false;
+    public void addClerk(ClerkPO clerkPO) throws RemoteException {
+        clerk_dataService.addClerk(clerkPO);
     }
 
-    public void addClerk(ClerkPO clerkPO) throws RemoteException {
+    public void modifyClerk(ClerkPO clerkPO) throws RemoteException {
+        clerk_dataService.modifyClerk(clerkPO);
+    }
 
+    public List<ClerkPO> findClerkByName(String name) throws RemoteException {
+        return clerk_dataService.findClerkByName(name);
+    }
+
+    public ClerkPO findClerkByID(String id) throws RemoteException {
+        return clerk_dataService.findClerkByID(id);
+    }
+
+    public List<ClerkPO> findAllClerks() throws RemoteException {
+        return clerk_dataService.findAllClerks();
+    }
+
+    //
+
+    public boolean addMember(MemberPO po) throws RemoteException {
+        return false;
     }
 
     public void modifyManager(ManagerPO managerPO) throws RemoteException {
@@ -83,10 +101,6 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
 
     public boolean addHotel(HotelPO po) throws RemoteException {
         return false;
-    }
-
-    public void modifyClerk(ClerkPO clerkPO) throws RemoteException {
-
     }
 
     public void modifyMarketer(MarketerPO marketerPO) throws RemoteException {
@@ -122,10 +136,6 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     }
 
     public OrderPO getOrderByOrderID(String OrderID) throws RemoteException {
-        return null;
-    }
-
-    public List<ClerkPO> findClerkByName(String name) throws RemoteException {
         return null;
     }
 
@@ -165,10 +175,6 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return null;
     }
 
-    public ClerkPO findClerkByID(String id) throws RemoteException {
-        return null;
-    }
-
     public List<ManagerPO> findManagerByName(String name) throws RemoteException {
         return null;
     }
@@ -193,10 +199,6 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return false;
     }
 
-    public List<ClerkPO> findAllClerks() throws RemoteException {
-        return null;
-    }
-
     public List<OrderPO> findOrderByHotelID(String hotelID) throws RemoteException {
         return null;
     }
@@ -211,10 +213,6 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
 
     public List<MarketerPO> findAllMarketers() throws RemoteException {
         return null;
-    }
-
-    public void deleteClerk(ClerkPO clerkPO) throws RemoteException {
-
     }
 
     public List<OrderPO> findOrderByOrderStatus(OrderStatus orderStatus) throws RemoteException {
@@ -299,5 +297,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
 
     public CommentPO getCommentByOrder(String orderID) throws RemoteException {
         return null;
+    }
+
+    public void deleteClerk(ClerkPO clerkPO) throws RemoteException {
+        clerk_dataService.deleteClerk(clerkPO);
     }
 }

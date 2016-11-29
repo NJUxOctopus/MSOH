@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "clerk", schema = "msoh_database")
-public class ClerkPO implements Serializable {
+public class ClerkPO implements Serializable,Cloneable {
     private static final long serialVersionUID = 1L;
 
     // 酒店工作人员姓名
@@ -147,5 +147,17 @@ public class ClerkPO implements Serializable {
         result = 31 * result + (position != null ? position.hashCode() : 0);
         result = 31 * result + (picUrl != null ? picUrl.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public Object clone(){
+        ClerkPO clerkPO=null;
+        try {
+            clerkPO=(ClerkPO)super.clone();
+        }catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
+
+        return clerkPO;
     }
 }

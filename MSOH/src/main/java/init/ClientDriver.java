@@ -1,7 +1,12 @@
 package init;
 
+import businesslogic.clerk_bl.Clerk;
+import dataservice.clerk_dataservice.Clerk_DataService;
 import rmi.RemoteHelper;
+import util.ResultMessage;
+import vo.ClerkVO;
 
+import javax.swing.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -35,11 +40,20 @@ public class ClientDriver {
 	}
 
 	public static void main(String[] args) {
-//		JFrame frame = new JFrame();
-//		frame.setVisible(true);
-//		frame.setBounds(200, 50, 1000, 800);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ClientDriver cd=new ClientDriver();
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
+		frame.setBounds(200, 50, 1000, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ClientDriver dc=new ClientDriver();
+
+//		Clerk clerk=new Clerk();
+//
+//
+//		try{
+//		clerk.deleteClerk(new ClerkVO("qky", "13913025325", "123321", "320581190011223111", "",
+//				"hn", "123"));}catch(RemoteException e){
+//			e.printStackTrace();
+//		}
 
 	}
 

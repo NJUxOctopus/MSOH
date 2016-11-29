@@ -7,6 +7,7 @@ import dataservice.clerk_dataservice.Clerk_DataService;
 import po.ClerkPO;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,14 +15,12 @@ import java.util.List;
  * Created by zqh on 2016/11/27.
  */
 public class Clerk_DataServiceImpl implements Clerk_DataService {
-    private List<ClerkPO> clerkList;
 
     private ClerkDataHelper clerkDataHelper;
 
     private DataFactory dataFactory;
 
     private static Clerk_DataServiceImpl clerk_dataServiceImpl;
-
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -39,7 +38,6 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
     private Clerk_DataServiceImpl() {
         dataFactory = new DataFactoryImpl();
         clerkDataHelper = dataFactory.getClerkDataHelper();
-        clerkList = clerkDataHelper.getAllClerks();
     }
 
     /**
@@ -76,7 +74,11 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
         if (null == clerksFound) {
             return null;
         }
-        return clerksFound;
+
+        List<ClerkPO> returnClerksFound=new ArrayList<ClerkPO>();
+        returnClerksFound.addAll(clerksFound);
+
+        return returnClerksFound;
     }
 
     /**
@@ -92,7 +94,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
         if (null == clerkFound) {
             return null;
         }
-        return clerkFound;
+        return (ClerkPO)clerkFound.clone();
     }
 
     /**
@@ -102,7 +104,11 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @throws RemoteException
      */
     public List<ClerkPO> findAllClerks() throws RemoteException {
-        return clerkList;
+        List<ClerkPO> clerkList=clerkDataHelper.getAllClerks();
+
+        List<ClerkPO> returnClerkList=new ArrayList<ClerkPO>();
+        returnClerkList.addAll(clerkList);
+        return returnClerkList;
     }
 
     /**
