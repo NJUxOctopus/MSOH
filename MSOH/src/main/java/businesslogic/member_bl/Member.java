@@ -18,10 +18,19 @@ import java.rmi.RemoteException;
 public class Member implements Member_BLService {
     Member_DataService_Stub member_dataService_stub = new Member_DataService_Stub();
     Customer_DataService_Stub customer_dataService_stub = new Customer_DataService_Stub();
-    public ResultMessage signUp(MemberVO memberVO, String customerID) throws RemoteException{
-        if(customer_dataService_stub.findCustomerByID(customerID).getMemberType().equals(MemberType.NONMEMBER)){//首先用户必须是非会员
+
+    /**
+     * 会员注册
+     *
+     * @param memberVO
+     * @param customerID
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage signUp(MemberVO memberVO, String customerID) throws RemoteException {
+        if (customer_dataService_stub.findCustomerByID(customerID).getMemberType().equals(MemberType.NONMEMBER)) {//首先用户必须是非会员
             if (memberVO.memberType.equals(MemberType.ENTREPRISE)) {//若注册为企业会员
-                if (memberVO.companyName .equals( ""))//企业名输入不能为空
+                if (memberVO.companyName.equals(""))//企业名输入不能为空
                     return ResultMessage.Blank;
                 else {
                     member_dataService_stub.addMember(new MemberPO(customerID, memberVO.memberType,
@@ -37,7 +46,7 @@ public class Member implements Member_BLService {
                     return ResultMessage.Member_NormalSignupSuccess;
                 }
             }
-        }else
+        } else
             return ResultMessage.Member_AddMemberAlreadyExist;
     }
 }

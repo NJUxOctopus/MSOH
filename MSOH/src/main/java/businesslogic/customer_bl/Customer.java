@@ -21,13 +21,25 @@ import java.util.List;
 public class Customer implements Customer_BLService {
     Customer_DataService_Stub customer_dataService_stub = new Customer_DataService_Stub();
 
+    /**
+     * 根据用户id得到用户的信用
+     * @param customerID
+     * @return
+     * @throws RemoteException
+     */
     public int getCredit(String customerID) throws RemoteException {
-        //返回该用户当前信用值
         if (customer_dataService_stub.findCustomerByID(customerID) == null)
+            //若不存在该用户，返回-1
             return -1;
         return customer_dataService_stub.findCustomerByID(customerID).getCredit();
     }
 
+    /**
+     * 用户注册
+     * @param customerVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage signUp(CustomerVO customerVO) throws RemoteException {
         if (customerVO.name.equals("") || customerVO.email.equals("") || customerVO.password.equals("") ||
                 customerVO.ID.equals("") || customerVO.phone.equals("")) {
@@ -45,8 +57,15 @@ public class Customer implements Customer_BLService {
             return ResultMessage.DataFormatWrong;
     }
 
+    /**
+     * 更改用户信息
+     * @param customerVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage changeInfo(CustomerVO customerVO) throws RemoteException {
         if (customer_dataService_stub.findCustomerByID(customerVO.ID) == null)
+            //若找不到该用户
             return ResultMessage.Customer_CustomerNotExist;
         if (customerVO.name.equals("") || customerVO.email.equals("") || customerVO.phone.equals(""))
             //若用户修改时未填写名字，邮箱，手机号，返回有信息空白
@@ -61,12 +80,21 @@ public class Customer implements Customer_BLService {
         return ResultMessage.ChangeInfoSuccess;
     }
 
+    /**
+     * 根据用户id得到预定过的酒店
+     * @param customerID
+     * @return
+     * @throws RemoteException
+     */
     public List<HotelVO> getHistoryHotel(String customerID) throws RemoteException {
-        //这个主要就是把po转成vo
         if (customer_dataService_stub.findCustomerByID(customerID) == null)
+            //如果找不到该用户
             return null;
         List<HotelVO> listVO = new ArrayList<HotelVO>();
         List<HotelPO> listPO = customer_dataService_stub.getCustomerReservedHotel(customerID);
+        if(listPO.isEmpty())
+            //如果列表为空
+            return null;
         Iterator iterator = listPO.iterator();
         while (iterator.hasNext()) {
             Object object = iterator.next();
@@ -74,7 +102,7 @@ public class Customer implements Customer_BLService {
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
                     hotelPO.getIntro(), hotelPO.getInfra(), hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),hotelPO.getPicUrls(),
                     hotelPO.getClerkName(), hotelPO.getClerkPhone(), hotelPO.getHotelID(), null, null);
-            //这里有个疑问，评论和酒店每日信息需要转成VO吗？
+            //TODO
             listVO.add(hotelVO);
         }
         return listVO;
@@ -89,22 +117,36 @@ public class Customer implements Customer_BLService {
         return null;
     }
 
+    /**
+     * 修改密码
+     * @param ID
+     * @param oldPassword
+     * @param newPassword1
+     * @param newPassword2
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException {
-        if (ID.equals("") || oldPassword.equals("") || newPassword1.equals("") || newPassword2.equals("")) {//ID或旧密码或两次新密码未输入
+        if (ID.equals("") || oldPassword.equals("") || newPassword1.equals("") || newPassword2.equals("")) {
+            //ID或旧密码或两次新密码未输入
             return ResultMessage.Blank;
         } else if (customer_dataService_stub.findCustomerByID(ID) == null) {
             return ResultMessage.Customer_CustomerNotExist;
         } else if (customer_dataService_stub.findCustomerByID(ID).getPassword().equals(oldPassword) && newPassword1.matches
-                (DataFormat.Password_Format) && newPassword2.matches(DataFormat.Password_Format)) {//若旧密码输入正确
-            if (newPassword1.equals(newPassword2)) {//如果两次新密码输入相同
+                (DataFormat.Password_Format) && newPassword2.matches(DataFormat.Password_Format)) {
+            //若旧密码输入正确，且格式正确
+            if (newPassword1.equals(newPassword2)) {
+                //如果两次新密码输入相同
                 CustomerPO customerPO = customer_dataService_stub.findCustomerByID(ID);
                 customerPO.setPassword(newPassword1);
                 customer_dataService_stub.modifyCustomer(customerPO);
                 return ResultMessage.ChangePasswordSuccess;
-            } else {//两次新密码输入不同
+            } else {
+                //两次新密码输入不同
                 return ResultMessage.ChangePassword2DifferentNew;
             }
-        } else if (!customer_dataService_stub.findCustomerByID(ID).getPassword().equals(oldPassword)) {//旧密码输入错误
+        } else if (!customer_dataService_stub.findCustomerByID(ID).getPassword().equals(oldPassword)) {
+            //旧密码输入错误
             return ResultMessage.ChangePasswordWrongOldPw;
         } else
             return ResultMessage.DataFormatWrong;
