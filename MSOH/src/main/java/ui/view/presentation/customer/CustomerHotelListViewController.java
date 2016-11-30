@@ -1,19 +1,23 @@
 package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import ui.view.presentation.ControlledStage;
 import ui.view.presentation.StageController;
+
+import java.io.IOException;
 
 /**
  * Created by island on 2016/11/24.
  */
 public class CustomerHotelListViewController implements ControlledStage {
     StageController stageController = new StageController();
+
+    CustomerSingleHotelViewController customerSingleHotelViewController;
 
     private String resources = "customer/CustomerHotelListView.fxml";
 
@@ -63,13 +67,7 @@ public class CustomerHotelListViewController implements ControlledStage {
     private CheckBox reservedCheckBox;
 
     @FXML
-    private Button nextPageButton;
-
-    @FXML
-    private Button lastPageButton;
-
-    @FXML
-    private ChoiceBox selectPageBox;
+    private AnchorPane hotelListScrollPane;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -77,7 +75,7 @@ public class CustomerHotelListViewController implements ControlledStage {
     }
 
     @FXML
-    private void research(){
+    private void research() {
 
     }
 
@@ -86,5 +84,18 @@ public class CustomerHotelListViewController implements ControlledStage {
         stageController.closeStage(resources);
     }
 
-
+    public void addHotelPane(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("CustomerSingleHotelView.fxml"));
+            Pane singleHotel = (Pane) loader.load();
+            hotelListScrollPane.getChildren().add(singleHotel);
+            singleHotel.setLayoutX(5);
+            singleHotel.setLayoutY(10);
+            customerSingleHotelViewController = loader.getController();
+            customerSingleHotelViewController.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
