@@ -35,7 +35,7 @@ public class OrderUtil implements OrderUtil_BLService {
         return new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                 orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
                 orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
-                orderPO.getLatestExecutedTime(), orderPO.getRooms(), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
+                orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
                 orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType());
     }
 
@@ -62,7 +62,7 @@ public class OrderUtil implements OrderUtil_BLService {
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                         orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
                         orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
-                        orderPO.getLatestExecutedTime(), orderPO.getRooms(), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
+                        orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
                         orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
             }
             return orderVOList;
@@ -95,7 +95,7 @@ public class OrderUtil implements OrderUtil_BLService {
                     orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                             orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
                             orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
-                            orderPO.getLatestExecutedTime(), orderPO.getRooms(), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
+                            orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
                             orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
             }
             if(orderVOList.isEmpty())
@@ -127,7 +127,7 @@ public class OrderUtil implements OrderUtil_BLService {
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                         orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
                         orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
-                        orderPO.getLatestExecutedTime(), orderPO.getRooms(), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
+                        orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
                         orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
             }
             return orderVOList;
@@ -164,7 +164,7 @@ public class OrderUtil implements OrderUtil_BLService {
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                         orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
                         orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
-                        orderPO.getLatestExecutedTime(), orderPO.getRooms(), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
+                        orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
                         orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
             }
             return orderVOList;

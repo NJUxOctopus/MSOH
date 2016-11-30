@@ -37,8 +37,9 @@ public class PromotionUtil implements PromotionUtil_BLService {
         while (iterator.hasNext()) {
             PromotionPO promotionPO = (PromotionPO) iterator.next();
             if (promotionPO.getStartTime().before(date) && promotionPO.getEndTime().after(date)) {
+                String[] targetHotel = promotionPO.getTargetHotel().split(";");
                 datePromotion.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
-                        promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel(), promotionPO.
+                        promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                         getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                         promotionPO.getPromotionID()));
             }
@@ -60,8 +61,9 @@ public class PromotionUtil implements PromotionUtil_BLService {
             //若不存在该营销策略
             return null;
         PromotionPO promotionPO = promotion_dataService_stub.getPromotion(promotionID);
+        String[] targetHotel = promotionPO.getTargetHotel().split(";");
         return new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
-                promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel(), promotionPO.
+                promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                 getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                 promotionPO.getPromotionID());
     }
