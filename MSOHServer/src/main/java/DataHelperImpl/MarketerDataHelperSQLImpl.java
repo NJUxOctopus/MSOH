@@ -69,6 +69,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
+            session.beginTransaction();
 
             String hql = "from MarketerPO as marketer where marketer.name=:n";
             Query query = session.createQuery(hql);
@@ -81,6 +82,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             return null;
         } finally {
             if (null != session) {
+                session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
         }
@@ -96,6 +98,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
+            session.beginTransaction();
 
             MarketerPO marketerPO = (MarketerPO) session.get(MarketerPO.class, ID);
             return marketerPO;
@@ -104,6 +107,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             return null;
         } finally {
             if (null != session) {
+                session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
         }

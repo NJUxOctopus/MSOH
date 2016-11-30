@@ -39,7 +39,8 @@ public class DataFactoryImpl implements DataFactory {
     }
 
     public OrderDataHelper getOrderDataHelper() {
-        return null;
+        OrderDataHelper orderDataHelper=new OrderDataHelperSQLImpl();
+        return orderDataHelper;
     }
 
     public PromotionDataHelper getPromotionDataHelper() {

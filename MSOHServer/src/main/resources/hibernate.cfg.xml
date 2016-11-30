@@ -38,6 +38,11 @@
     <mapping class="po.CustomerPO"/>
     <mapping class="po.MarketerPO"/>
     <mapping class="po.ManagerPO"/>
+    <mapping class="po.RoomPO"/>
+    <mapping class="po.PromotionPO"/>
+    <mapping class="po.MemberPO"/>
+    <mapping class="po.OrderPO"/>
+    <mapping class="po.MemberLevelPO"/>
 
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->

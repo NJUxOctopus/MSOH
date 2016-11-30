@@ -11,6 +11,7 @@ import java.io.Serializable;
  *
  */
 public class ManagerPO implements Serializable {
+	private static final long serialVersionUID=1L;
 	// 网站管理人员姓名
 	private String name;
 	// 网站管理人员ID
@@ -20,7 +21,7 @@ public class ManagerPO implements Serializable {
 	// 网站管理人员密码
 	private String password;
 	// 网站管理人员头像
-	private String pic;
+	private String picUrl;
 	// ְ网站管理人员职位，默认为Manager
 	private WorkerPosition position;
 
@@ -32,7 +33,7 @@ public class ManagerPO implements Serializable {
 		this.ID = ID;
 		this.phone = phone;
 		this.password = password;
-		this.pic = pic;
+		this.picUrl = picUrl;
 		this.position=position;
 	}
 
@@ -69,11 +70,11 @@ public class ManagerPO implements Serializable {
 	}
 
 	public String getPic() {
-		return pic;
+		return picUrl;
 	}
 
-	public void setPic(String pic) {
-		this.pic = pic;
+	public void setPic(String picUrl) {
+		this.picUrl = picUrl;
 	}
 
 	public WorkerPosition getPosition(){

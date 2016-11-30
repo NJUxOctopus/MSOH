@@ -18,7 +18,7 @@ public interface Order_DataService extends Remote {
 	// 获取所有订单
 	public List<OrderPO> getAllOrders() throws  RemoteException;
 	// 根据订单ID获取订单
-	public OrderPO getOrderByOrderID(String OrderID) throws RemoteException;
+	public OrderPO getOrderByOrderID(String orderID) throws RemoteException;
 	// 根据客户ID查找订单
 	public List<OrderPO> findOrderByCustomerID(String customerID) throws RemoteException;
 	// 根据酒店ID查找订单

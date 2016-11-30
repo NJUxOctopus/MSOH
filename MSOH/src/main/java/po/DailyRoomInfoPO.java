@@ -10,6 +10,7 @@ import java.util.List;
  *
  */
 public class DailyRoomInfoPO implements Serializable {
+	private static final long serialVersionUID=1L;
 	// 酒店ID
 	private String hotelID;
 	// 日期

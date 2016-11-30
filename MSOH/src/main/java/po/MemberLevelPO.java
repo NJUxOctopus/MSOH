@@ -9,6 +9,7 @@ import java.sql.Timestamp;
  *
  */
 public class MemberLevelPO implements Serializable{
+	private static final long serialVersionUID=1L;
 	// 制定人员姓名
 	private String framerName;
 	// 制定日期

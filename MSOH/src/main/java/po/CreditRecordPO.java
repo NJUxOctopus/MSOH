@@ -9,6 +9,8 @@ import java.sql.Timestamp;
  *
  */
 public class CreditRecordPO implements Serializable {
+	private static final long serialVersionUID=1L;
+
 	// 信用记录在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
 	private int _autoId;
 	// 变化值

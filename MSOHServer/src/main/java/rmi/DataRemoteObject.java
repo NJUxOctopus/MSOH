@@ -87,8 +87,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return false;
     }
 
-    public boolean addOrder(OrderPO po) throws RemoteException {
-        return false;
+    public void addOrder(OrderPO po) throws RemoteException {
     }
 
     public boolean addCustomer(CustomerPO customerPO) throws RemoteException {
@@ -231,8 +230,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return null;
     }
 
-    public boolean updateOrder(OrderPO orderPO) throws RemoteException {
-        return false;
+    public void updateOrder(OrderPO orderPO) throws RemoteException {
     }
 
     public boolean addRoom(RoomPO po) throws RemoteException {
@@ -243,8 +241,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return null;
     }
 
-    public boolean deleteOrder(OrderPO orderPO) throws RemoteException {
-        return false;
+    public void deleteOrder(OrderPO orderPO) throws RemoteException {
     }
 
     public boolean modifyRoom(RoomPO po) throws RemoteException {

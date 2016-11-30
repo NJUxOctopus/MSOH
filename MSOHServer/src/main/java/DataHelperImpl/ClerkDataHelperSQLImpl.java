@@ -70,6 +70,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
+            session.beginTransaction();
 
             ClerkPO clerkPO = (ClerkPO) session.get(ClerkPO.class, ID);
 
@@ -79,6 +80,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             return null;
         } finally {
             if (session != null) {
+                session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
         }
@@ -94,6 +96,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
+            session.beginTransaction();
 
             String hql = "from ClerkPO as clerk where clerk.name=:n";
             Query query = session.createQuery(hql);
@@ -107,6 +110,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             return null;
         } finally {
             if (session != null) {
+                session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
         }

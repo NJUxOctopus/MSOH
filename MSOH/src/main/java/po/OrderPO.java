@@ -10,6 +10,7 @@ import java.util.List;
  * @author zqh
  */
 public class OrderPO implements Serializable {
+    private static final long serialVersionUID=1L;
     // 客户姓名
     private String customerName;
     // 客户联系方式
@@ -53,7 +54,7 @@ public class OrderPO implements Serializable {
 
     }
 
-    public OrderPO(String customerName, String phone, String customerID, String hotelID, String hotelName, String orderID,
+    public OrderPO(String customerName, String phone, String customerID, String hotelID, String hotelName,
                    Timestamp estimatedCheckinTime, Timestamp actualCheckinTime, Timestamp estimatedCheckoutTime, Timestamp actualCheckoutTime,
                    Timestamp latestExecutedTime, String rooms, int numOfCustomers, boolean haveChildren, String remarks,
                    String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
@@ -62,7 +63,6 @@ public class OrderPO implements Serializable {
         this.customerID = customerID;
         this.hotelID = hotelID;
         this.hotelName = hotelName;
-        this.orderID = orderID;
         this.estimatedCheckinTime = estimatedCheckinTime;
         this.actualCheckinTime = actualCheckinTime;
         this.estimatedCheckoutTime = estimatedCheckoutTime;

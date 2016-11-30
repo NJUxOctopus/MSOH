@@ -10,6 +10,7 @@ import java.io.Serializable;
  *
  */
 public class CustomerPO implements Serializable {
+	private static final long serialVersionUID=1L;
 	// 客户姓名
 	private String userName;
 	// 客户密码

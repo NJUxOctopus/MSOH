@@ -12,6 +12,7 @@ import java.util.List;
  *
  */
 public class PromotionPO implements Serializable{
+	private static final long serialVersionUID=1L;
 	// 策略制定者名称
 	private String framerName;
 	// 策略制定日期
@@ -33,12 +34,12 @@ public class PromotionPO implements Serializable{
 	// 策略生效所需最少房间数
 	private int minRoom;
 	// 策略ID（编号）
-	private String promotionID;
+	private int promotionID;
 	
 	public PromotionPO(){}
 
 	public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-			String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, String promotionID) {
+			String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, int promotionID) {
 		this.framerName = framerName;
 		this.frameDate = frameDate;
 		this.promotionName = promotionName;
@@ -132,11 +133,11 @@ public class PromotionPO implements Serializable{
 		this.minRoom = minRoom;
 	}
 	
-	public String getPromotionID(){
+	public int getPromotionID(){
 		return promotionID;
 	}
 	
-	public void setPromotionID(String promotionID){
+	public void setPromotionID(int promotionID){
 		this.promotionID=promotionID;
 	}
 }

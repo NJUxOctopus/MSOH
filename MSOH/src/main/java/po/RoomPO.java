@@ -8,6 +8,7 @@ import java.io.Serializable;
  *
  */
 public class RoomPO implements Serializable {
+	private static final long serialVersionUID=1L;
 	// 酒店ID
 	private String hotelID;
 	// 房间类型

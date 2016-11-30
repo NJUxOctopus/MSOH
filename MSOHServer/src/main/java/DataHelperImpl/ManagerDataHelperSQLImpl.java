@@ -40,6 +40,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
 
         try {
             session = HibernateUtil.getSession();
+            session.beginTransaction();
 
             ManagerPO managerPO = (ManagerPO) session.get(ManagerPO.class, ID);
             return managerPO;
@@ -48,6 +49,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             return null;
         } finally {
             if (null != session) {
+                session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
         }
@@ -64,6 +66,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
 
         try {
             session = HibernateUtil.getSession();
+            session.beginTransaction();
 
             String hql = "from ManagerPO as manager where manager.name=:n";
             Query query = session.createQuery(hql);
@@ -76,6 +79,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             return null;
         } finally {
             if (null != session) {
+                session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
         }
@@ -91,6 +95,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
 
         try {
             session = HibernateUtil.getSession();
+            session.beginTransaction();
 
             List<ManagerPO> list = session.createQuery("from ManagerPO ").list();
 
@@ -100,6 +105,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             return null;
         } finally {
             if (null != session) {
+                session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
         }

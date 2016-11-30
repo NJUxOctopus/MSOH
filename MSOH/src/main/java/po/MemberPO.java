@@ -11,6 +11,7 @@ import java.sql.Timestamp;
  *
  */
 public class MemberPO implements Serializable {
+	private static final long serialVersionUID=1L;
 	// 会员ID
 	private String ID;
 	// 会员类型

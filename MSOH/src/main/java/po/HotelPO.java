@@ -23,6 +23,8 @@ public class HotelPO implements Serializable {
 	private String intro;
 	// 酒店设施（在数据库存储时无法存储List<String>，存成String，每个设施之间以';'分开）
 	private String infra;
+	//  酒店房间类型（在数据库存储时无法存储List<String>，存城String，每个房间类型用分号隔开
+    private String hotelRoomType;
 	// 酒店星级
 	private int star;
 	// 酒店评分
@@ -41,7 +43,7 @@ public class HotelPO implements Serializable {
 	public HotelPO() {
 	}
 
-	public HotelPO(String hotelName, String hotelAddress, String area, String intro, String infra, int star,
+	public HotelPO(String hotelName, String hotelAddress, String area, String intro, String infra, String hotelRoomType,int star,
 				   double score, String license, String picUrls,ClerkPO clerk, String hotelID, List<DailyRoomInfoPO> dailyRoomInfo,
 				   List<CommentPO> comment) {
 		this.hotelName = hotelName;
@@ -50,6 +52,7 @@ public class HotelPO implements Serializable {
 		this.area = area;
 		this.intro = intro;
 		this.infra = infra;
+		this.hotelRoomType=hotelRoomType;
 		this.star = star;
 		this.score = score;
 		this.license = license;
@@ -98,6 +101,14 @@ public class HotelPO implements Serializable {
 	public void setInfra(String infra) {
 		this.infra = infra;
 	}
+
+	public String getHotelRoomType(){
+	    return hotelRoomType;
+    }
+
+    public void setHotelRoomType(String hotelRoomType){
+	    this.hotelRoomType=hotelRoomType;
+    }
 
 	public int getStar() {
 		return star;
