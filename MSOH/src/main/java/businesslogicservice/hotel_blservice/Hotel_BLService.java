@@ -25,8 +25,6 @@ public interface Hotel_BLService {
 
 	public List<DailyRoomInfoVO> getDailyRoomInfo (String ID , Date Date)throws RemoteException;
 
-	public List<RoomVO> getRoom(String ID)throws RemoteException;
-
 	public ResultMessage addHotel(HotelVO roomVO)throws RemoteException;
 
 	public ResultMessage modifyHotel(HotelVO roomVO)throws RemoteException;

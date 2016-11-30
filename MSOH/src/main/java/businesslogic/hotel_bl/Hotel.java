@@ -69,10 +69,6 @@ public class Hotel implements Hotel_BLService {
         return null;
     }
 
-    public List<RoomVO> getRoom(String ID) throws RemoteException {
-        return null;
-    }
-
     public ResultMessage addHotel(HotelVO roomVO) throws RemoteException {
         return null;
     }
