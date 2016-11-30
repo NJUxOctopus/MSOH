@@ -33,7 +33,7 @@ public class Clerk implements Clerk_BLService{
             //若已存在该工作人员
             //return ResultMessage.Clerk_AddClerkExist;
         else if(hotel_dataService_stub.findHotelByID(clerkVO.hotelID)!=null&&
-                !hotel_dataService_stub.findHotelByID(clerkVO.hotelID).getClerkName().equals("")){
+                hotel_dataService_stub.findHotelByID(clerkVO.hotelID).getClerk()!=null){
             //若工作人员的酒店已有工作人员
             return ResultMessage.Hotel_HasClerk;
         } else if(clerkVO.password.matches(DataFormat.Password_Format)){

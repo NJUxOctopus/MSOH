@@ -22,10 +22,9 @@ public class Promotion_DataService_Stub implements Promotion_DataService {
 
     public PromotionPO getPromotion(String promotionID) throws RemoteException {
         if (promotionID.equals("123456")) {
-            List<String> targetHotel = new ArrayList<String>();
-            targetHotel.add("RUJIA");
+
             return new PromotionPO("pxr", new Timestamp(2016, 11, 27, 9, 0, 0, 0), "1111", MemberType.NORMAL, "XIANLIN",
-                    targetHotel,new Timestamp(2016, 11, 27, 9, 0, 0, 0),new Timestamp(2016, 11, 29, 9, 0, 0, 0),9,3,"123456");
+                    "RUJIA",new Timestamp(2016, 11, 27, 9, 0, 0, 0),new Timestamp(2016, 11, 29, 9, 0, 0, 0),9,3,"123456");
         }else
             return null;
     }
@@ -36,7 +35,7 @@ public class Promotion_DataService_Stub implements Promotion_DataService {
         List<PromotionPO> promotionPOList = new ArrayList<PromotionPO>();
 
         promotionPOList.add(new PromotionPO("pxr", new Timestamp(2016, 11, 27, 9, 0, 0, 0), "1111", MemberType.NORMAL, "XIANLIN",
-                targetHotel,new Timestamp(2016, 11, 27, 9, 0, 0, 0),new Timestamp(2016, 11, 29, 9, 0, 0, 0),9,3,"123456"));
+                "RUJIA",new Timestamp(2016, 11, 27, 9, 0, 0, 0),new Timestamp(2016, 11, 29, 9, 0, 0, 0),9,3,"123456"));
         return promotionPOList;
     }
 

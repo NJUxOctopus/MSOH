@@ -5,11 +5,7 @@ import util.OrderStatus;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
-/**
- * 
- * @author �L�ߺ� 2016-10-15 15:11:56
- *
- */
+
 public class OrderVO implements Serializable{
 
 	public String customerName;
@@ -34,7 +30,7 @@ public class OrderVO implements Serializable{
 
 	public Timestamp latestExecutedTime;
 
-	public List<String> rooms;
+	public String[] rooms;
 
 	public int numOfCustomers;
 
@@ -54,10 +50,9 @@ public class OrderVO implements Serializable{
 
 	}
 
-	// ��actualCheckoutTime��actualCheckinTime���ڹ��캯���У�����Ϊ��������´������������
 	public OrderVO(String customerName, String phone, String customerID, String hotelID, String hotelName, String orderID,
 			Timestamp estimatedCheckinTime, Timestamp actualCheckinTime, Timestamp estimatedCheckoutTime, Timestamp actualCheckoutTime,
-			Timestamp latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
+			Timestamp latestExecutedTime, String[] rooms, int numOfCustomers, boolean haveChildren, String remarks,
 			String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
 		this.customerName = customerName;
 		this.phone = phone;

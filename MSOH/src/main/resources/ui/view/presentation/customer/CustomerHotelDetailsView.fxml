@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerHotelDetailsViewController">
+   <children>
+      <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image_customer/ElCapitan2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="675.0" fitWidth="1200.0" layoutX="40.0" layoutY="22.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image_customer/customer_hoteldetailsframe.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image_customer/backButton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ScrollPane layoutX="80.0" layoutY="115.0" prefHeight="561.0" prefWidth="1125.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1084.0" prefWidth="1081.0" style="-fx-background-color: #ffffff00;">
+               <children>
+                  <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="60.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-border_color: #ffffffff;" />
+                  <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="10.0" prefHeight="355.0" prefWidth="65.0" text="哈哈哈哈哈哈哈哈" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="480.0" layoutY="30.0" text="城市：" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cityLabel" layoutX="535.0" layoutY="30.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="420.0" layoutX="580.0" layoutY="65.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="480.0" layoutY="80.0" text="商圈：" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="areaLabel" layoutX="535.0" layoutY="80.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="420.0" layoutX="580.0" layoutY="115.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="480.0" layoutY="130.0" text="地址：" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="addressLabel" layoutX="535.0" layoutY="130.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="420.0" layoutX="580.0" layoutY="165.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="480.0" layoutY="180.0" text="星级：" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="starLabel" layoutX="535.0" layoutY="180.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="420.0" layoutX="580.0" layoutY="215.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="480.0" layoutY="230.0" text="简介：" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="briefInfoLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="535.0" layoutY="230.0" prefHeight="85.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="1000.0" layoutX="60.0" layoutY="365.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="380.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
+                    <content>
+                      <AnchorPane fx:id="roomInfoScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="145.0" prefWidth="990.0">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="房间信息" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="126.0" layoutY="10.0" text="入住日期" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="checkInYearChoiceBox" layoutX="200.0" layoutY="5.0" prefHeight="6.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <ChoiceBox fx:id="checkInMonthChoiceBox" layoutX="320.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <ChoiceBox fx:id="checkInDayChoiceBox" layoutX="410.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <Label layoutX="295.0" layoutY="10.0" text="年" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="385.0" layoutY="10.0" text="月" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="475.0" layoutY="10.0" text="日" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="520.0" layoutY="10.0" text="退房日期" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="checkOutYearChoiceBox" layoutX="594.0" layoutY="5.0" prefHeight="6.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <ChoiceBox fx:id="checkOutMonthChoiceBox" layoutX="714.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <ChoiceBox fx:id="checkOutDayChoiceBox" layoutX="804.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <Label layoutX="689.0" layoutY="10.0" text="年" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="779.0" layoutY="10.0" text="月" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="869.0" layoutY="10.0" text="日" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="confirmButton" layoutX="925.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="确认" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children></AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <Line endX="1000.0" layoutX="60.0" layoutY="545.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="560.0" prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+                     <content>
+                        <AnchorPane fx:id="promotionScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="94.0" prefWidth="990.0" style="-fx-background-color: #ffffff00;">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="促销信息" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <Line endX="1000.0" layoutX="60.0" layoutY="675.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="690.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+                     <content>
+                        <AnchorPane fx:id="evaluationScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="986.0" style="-fx-background-color: #ffffff00;">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="评价详情" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="scoreLabel" alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="126.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="5.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <Line endX="1000.0" layoutX="60.0" layoutY="855.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="870.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+                     <content>
+                        <AnchorPane fx:id="historyOrderScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="994.0" style="-fx-background-color: #ffffff00;">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="历史订单" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

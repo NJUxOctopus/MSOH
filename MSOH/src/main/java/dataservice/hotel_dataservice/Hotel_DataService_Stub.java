@@ -1,6 +1,7 @@
 package dataservice.hotel_dataservice;
 
 import java.rmi.RemoteException;
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,14 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 	}
 
 	public CommentPO getCommentByOrder(String orderID) throws RemoteException {
+		return null;
+	}
+
+	public List<HotelPO> getHotelByArea(String area) throws RemoteException {
+		return null;
+	}
+
+	public List<HotelPO> getHotelByData(Timestamp timestamp) throws RemoteException {
 		return null;
 	}
 }

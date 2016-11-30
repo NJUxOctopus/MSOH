@@ -99,9 +99,11 @@ public class Customer implements Customer_BLService {
         while (iterator.hasNext()) {
             Object object = iterator.next();
             HotelPO hotelPO = (HotelPO) object;
+            String[] picUrl = hotelPO.getPicUrls().split(";");
+            String[] infra = hotelPO.getInfra().split(";");
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
-                    hotelPO.getIntro(), hotelPO.getInfra(), hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),hotelPO.getPicUrls(),
-                    hotelPO.getClerkName(), hotelPO.getClerkPhone(), hotelPO.getHotelID(), null, null);
+                    hotelPO.getIntro(), infra, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),picUrl,
+                    hotelPO.getClerk().getName(), hotelPO.getClerk().getPhone(), hotelPO.getHotelID(), null, null);
             //TODO
             listVO.add(hotelVO);
         }

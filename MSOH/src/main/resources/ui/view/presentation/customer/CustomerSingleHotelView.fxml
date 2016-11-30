@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="hotelPanel1" prefHeight="470.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="470.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleHotelViewController">
    <children>
       <ImageView fitHeight="470.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,10 +20,13 @@
             <Image url="@image_customer/hotelpicture.png" />
          </image>
       </ImageView>
-      <Button fx:id="hotelButton" layoutX="-6.0" layoutY="198.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="270.0" style="-fx-background-color: #ffffff00;" text="南大仙林招待所" textFill="WHITE">
+      <Button fx:id="hotelButton" layoutX="-6.0" layoutY="198.0" mnemonicParsing="false" onAction="#viewHotelDetails" prefHeight="39.0" prefWidth="270.0" style="-fx-background-color: #ffffff00;" text="南大仙林招待所" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Label fx:id="scoreLabel" alignment="CENTER_RIGHT" layoutX="44.0" layoutY="246.0" prefHeight="22.0" prefWidth="58.0" text="5.0" textFill="WHITE">
          <font>
@@ -40,31 +43,40 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="normalOrderButton" layoutX="180.0" layoutY="357.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="1" textFill="WHITE" underline="true">
+      <Button fx:id="normalOrderButton" layoutX="180.0" layoutY="357.0" mnemonicParsing="false" onAction="#viewNormalOrder" style="-fx-background-color: #ffffff00;" text="1" textFill="WHITE" underline="true">
          <font>
             <Font size="10.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button fx:id="abnormalOrderButton" layoutX="179.0" layoutY="375.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
+      <Button fx:id="abnormalOrderButton" layoutX="179.0" layoutY="375.0" mnemonicParsing="false" onAction="#viewAbnormalOrder" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
          <font>
             <Font size="10.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button fx:id="canceledOrderButton" layoutX="179.0" layoutY="391.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
+      <Button fx:id="canceledOrderButton" layoutX="179.0" layoutY="391.0" mnemonicParsing="false" onAction="#viewCanceledOrderButton" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
          <font>
             <Font size="10.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Label fx:id="numOfCommentLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="248.0" prefHeight="22.0" prefWidth="38.0" text="130" textFill="WHITE">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Button fx:id="reserveButton" layoutX="44.0" layoutY="420.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="预订" textFill="WHITE">
+      <Button fx:id="reserveButton" layoutX="44.0" layoutY="420.0" mnemonicParsing="false" onAction="#reserve" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="预订" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="detailButton" layoutX="141.0" layoutY="420.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="详情" textFill="WHITE">
+      <Button fx:id="detailButton" layoutX="141.0" layoutY="420.0" mnemonicParsing="false" onAction="#viewHotelDetails" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="详情" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
