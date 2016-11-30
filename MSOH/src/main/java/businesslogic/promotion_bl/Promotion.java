@@ -36,11 +36,11 @@ public class Promotion implements Promotion_BLService {
                 //若已经存在该ID的营销策略
                 return ResultMessage.PromotionExist;
             String targetHotel  = "";
-            for(int i=0;i<promotionVO.targetHotel.size();i++){
-                if(i!=promotionVO.targetHotel.size()-1)
-                    targetHotel+=promotionVO.targetHotel.get(i)+";";
+            for(int i=0;i<promotionVO.targetHotel.length;i++){
+                if(i!=promotionVO.targetHotel.length-1)
+                    targetHotel+=promotionVO.targetHotel[i]+";";
                 else
-                    targetHotel+=promotionVO.targetHotel.get(i);
+                    targetHotel+=promotionVO.targetHotel[i];
             }
             promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, promotionVO.targetArea,
