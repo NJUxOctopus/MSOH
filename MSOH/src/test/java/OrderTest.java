@@ -22,7 +22,7 @@ public class OrderTest extends TestCase {
         roomList.add("dachuang");
         ResultMessage resultMessage1 = order.createOrder(new OrderVO("pxr", "12345678910", "320200000000000000", "123",
                 "RUJIA", "12138", new Timestamp(System.currentTimeMillis()), null, new Timestamp(System.currentTimeMillis()), null,
-                new Timestamp(System.currentTimeMillis()), roomList, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
+                new Timestamp(System.currentTimeMillis()), (String[]) roomList.toArray(), 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
         ResultMessage resultMessage2 = order.createOrder(new OrderVO("pxr", "12345678910", "320200000000000000", "123",
                 "RUJIA", "12138", null, null, new Timestamp(System.currentTimeMillis()), null,
                 new Timestamp(System.currentTimeMillis()), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));

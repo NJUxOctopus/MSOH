@@ -16,8 +16,7 @@ public class PromotionTest extends TestCase {
     Promotion promotion = new Promotion();
 
     public void testAddPromotion()throws RemoteException{
-        List<String> targetHotel = new ArrayList<String>();
-        targetHotel.add("RUJIA");
+        String[] targetHotel = "RUJIA;HANTING".split(";");
         ResultMessage resultMessage1 = promotion.addPromotion(new PromotionVO(
                 "pxr", new Timestamp(2016, 11, 27, 9, 0, 0, 0), "1111", MemberType.NORMAL, "XIANLIN",
                 targetHotel,new Timestamp(2016, 11, 27, 9, 0, 0, 0),new Timestamp(2016, 11, 28, 9, 0, 0, 0),9,3,"123456"));
@@ -37,8 +36,7 @@ public class PromotionTest extends TestCase {
     }
 
     public void testModifyPromotion()throws RemoteException{
-        List<String> targetHotel = new ArrayList<String>();
-        targetHotel.add("RUJIA");
+        String[] targetHotel = "RUJIA;HANTING".split(";");
         ResultMessage resultMessage1 = promotion.modifyPromotion(new PromotionVO(
                 "pxr", new Timestamp(2016, 11, 27, 9, 0, 0, 0), "1111", MemberType.NORMAL, "XIANLIN",
                 targetHotel,new Timestamp(2016, 11, 27, 9, 0, 0, 0),new Timestamp(2016, 11, 28, 9, 0, 0, 0),9,3,"123456"));
