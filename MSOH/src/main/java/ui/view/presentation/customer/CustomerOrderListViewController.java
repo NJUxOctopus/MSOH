@@ -1,15 +1,19 @@
 package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import ui.view.presentation.StageController;
 import ui.view.presentation.ControlledStage;
+
+import java.io.IOException;
 
 /**
  * Created by island on 2016/11/23.
@@ -18,10 +22,14 @@ public class CustomerOrderListViewController implements ControlledStage {
     StageController stageController;
 
     CustomerSingleOrderPaneViewController  customerSingleOrderPaneViewController;
+
     private String resources = "customer/CustomerOrderListView.fxml";
 
     @FXML
     private Pane orderListPane;
+
+    @FXML
+    private AnchorPane orderListScrollPane;
 
     @FXML
     private ImageView background;
@@ -70,38 +78,60 @@ public class CustomerOrderListViewController implements ControlledStage {
         stageController.closeStage(resources);
     }
 
+    public CustomerOrderListViewController(){
+
+    }
+
     @FXML
     private void showAllOrder(){
         orderButtonShade.setY(0);
+        orderListScrollPane.getChildren().clear();
+        addOrderPane();
     }
 
     @FXML
     private void showNormalOrder(){
         orderButtonShade.setY(100);
+        orderListScrollPane.getChildren().clear();
+
 
     }
 
     @FXML
     private void showAbnormalOrder(){
         orderButtonShade.setY(200);
+        orderListScrollPane.getChildren().clear();
 
     }
 
     @FXML
     private void showCanceledOrder(){
         orderButtonShade.setY(300);
+        orderListScrollPane.getChildren().clear();
 
     }
 
     @FXML
     private void showEvaluateOrder(){
         orderButtonShade.setY(400);
+        orderListScrollPane.getChildren().clear();
 
     }
 
-    public void addOrderPanel(){
-        Button b = new Button();
-        orderListPane.getChildren().add(b);
+    public void addOrderPane(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("CustomerSingleOrderPaneView.fxml"));
+            Pane singleOrder = (Pane) loader.load();
+            orderListScrollPane.getChildren().add(singleOrder);
+            singleOrder.setLayoutX(5);
+            singleOrder.setLayoutY(5);
+            customerSingleOrderPaneViewController = loader.getController();
+            customerSingleOrderPaneViewController.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

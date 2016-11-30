@@ -6,6 +6,7 @@ package ui.view.presentation.customer;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -103,10 +104,11 @@ public class CustomerMainViewController implements ControlledStage {
      */
     @FXML
     private void showCustomerOrderListView() {
-        CustomerOrderListViewController customerOrderListViewController = new CustomerOrderListViewController();
-        customerOrderListViewController.addOrderPanel();
         stageController = new StageController();
         stageController.loadStage("customer/CustomerOrderListView.fxml", 1);
+        FXMLLoader loader = stageController.getLoader();
+        CustomerOrderListViewController customerOrderListViewController = loader.getController();
+        customerOrderListViewController.addOrderPane();
     }
 
     /**
@@ -116,6 +118,9 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCustomerHotelListView() {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerHotelListView.fxml", 1);
+        FXMLLoader loader = stageController.getLoader();
+        CustomerHotelListViewController customerHotelListViewController = loader.getController();
+        customerHotelListViewController.addHotelPane();
     }
 
     /**
@@ -125,6 +130,10 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCustomerCreditRecordView() {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerCreditRecordView.fxml", 1);
+        FXMLLoader loader = stageController.getLoader();
+        CustomerCreditRecordViewController customerCreditRecordViewController = loader.getController();
+        customerCreditRecordViewController.addCreditPane();
+
     }
 
     /**

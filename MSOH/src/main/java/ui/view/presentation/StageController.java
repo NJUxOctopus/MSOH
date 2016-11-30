@@ -17,6 +17,7 @@ import java.util.HashMap;
  */
 public class StageController {
     private Stage stage;
+    private FXMLLoader loader;
 
     private static HashMap<String, Stage> stages = new HashMap<String, Stage>();
 
@@ -25,7 +26,7 @@ public class StageController {
         double height = 0;
         try {
             //加载FXML资源文件
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+            loader = new FXMLLoader(getClass().getResource(resource));
             Pane pane = (Pane) loader.load();
             width = pane.getPrefWidth();
             height = pane.getPrefHeight();
@@ -54,8 +55,6 @@ public class StageController {
             stage.setY((bounds.getHeight() - height)/2);
             stage.setOpacity(opacity);
             stage.show();
-            System.out.print(stages.size());
-
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,6 +64,10 @@ public class StageController {
 
     public Stage getStage(String resource){
         return stages.get(resource);
+    }
+
+    public FXMLLoader getLoader(){
+        return loader;
     }
 
 

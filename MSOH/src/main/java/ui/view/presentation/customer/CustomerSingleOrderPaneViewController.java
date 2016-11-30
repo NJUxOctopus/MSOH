@@ -51,9 +51,27 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
         this.stageController = stageController;
     }
 
-
-    public Pane getPane(){
-        return singleOrderPane;
+    @FXML
+    private void cancelOrder(){
+        System.out.print("Cancel Successfully");
     }
+
+    @FXML
+    private void viewDetails(){
+        stageController = new StageController();
+        stageController.loadStage("customer/CustomerOrderDetailView.fxml", 1);
+    }
+
+    public void init(){
+        orderIDLabel.setText("222222");
+        peopleLabel.setText("");
+        checkOutTimeLabel.setText("");
+        checkInTimeLabel.setText("");
+        priceLabel.setText("");
+        roomTypeLabel.setText("");
+        orderStatusLabel.setText("");
+        hotelButton.setText("");
+    }
+
 
 }
