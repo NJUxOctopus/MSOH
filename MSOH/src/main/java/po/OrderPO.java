@@ -32,13 +32,13 @@ public class OrderPO implements Serializable {
     private Timestamp actualCheckoutTime;
     // 最晚执行时间
     private Timestamp latestExecutedTime;
-    // 所订客房
-    private List<String> rooms;
+    // 所订客房（用分号进行分割，示例：“双床房;双床房;大床房”
+    private String rooms;
     // 入住人数
     private int numOfCustomers;
     // 是否有儿童
     private boolean haveChildren;
-    // 备注（特殊要求，如：“需要三双拖鞋”
+    // 备注（特殊要求，如：“需要三双拖鞋”）
     private String remarks;
     // 所用策略名称
     private String promotionName;
@@ -55,7 +55,7 @@ public class OrderPO implements Serializable {
 
     public OrderPO(String customerName, String phone, String customerID, String hotelID, String hotelName, String orderID,
                    Timestamp estimatedCheckinTime, Timestamp actualCheckinTime, Timestamp estimatedCheckoutTime, Timestamp actualCheckoutTime,
-                   Timestamp latestExecutedTime, List<String> rooms, int numOfCustomers, boolean haveChildren, String remarks,
+                   Timestamp latestExecutedTime, String rooms, int numOfCustomers, boolean haveChildren, String remarks,
                    String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
         this.customerName = customerName;
         this.phone = phone;
@@ -162,11 +162,11 @@ public class OrderPO implements Serializable {
         this.latestExecutedTime = latestExecutedTime;
     }
 
-    public List<String> getRooms() {
+    public String getRooms() {
         return rooms;
     }
 
-    public void setRooms(List<String> rooms) {
+    public void setRooms(String rooms) {
         this.rooms = rooms;
     }
 

@@ -22,8 +22,8 @@ public class PromotionPO implements Serializable{
 	private MemberType targetUser;
 	// 目标商圈
 	private String targetArea;
-	// 目标酒店
-	private List<String> targetHotel;
+	// 目标酒店ID，用分号进行分割
+	private String targetHotel;
 	// 策略生效时间
 	private Timestamp startTime;
 	// 策略过期时间
@@ -38,7 +38,7 @@ public class PromotionPO implements Serializable{
 	public PromotionPO(){}
 
 	public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-			String targetArea, List<String> targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, String promotionID) {
+			String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, String promotionID) {
 		this.framerName = framerName;
 		this.frameDate = frameDate;
 		this.promotionName = promotionName;
@@ -92,11 +92,11 @@ public class PromotionPO implements Serializable{
 		this.targetArea = targetArea;
 	}
 
-	public List<String> getTargetHotel() {
+	public String getTargetHotel() {
 		return targetHotel;
 	}
 
-	public void setTargetHotel(List<String> targetHotel) {
+	public void setTargetHotel(String targetHotel) {
 		this.targetHotel = targetHotel;
 	}
 
