@@ -9,7 +9,7 @@ public enum ResultMessage {
     Order_CreateOrderSuccess,Order_SetAbnormalSuccess,Order_RenewOrderSuccess,
     Hotel_AddRoomSuccess, Hotel_HotelNotExist,
     Manager_ManagerNotExist,
-   Clerk_ClerkNotExist,
+   Clerk_ClerkNotExist,Hotel_HasClerk,
     Marketer_MarketerNotExist,
     Hotel_HotelAlreadyExist, WrongHotelIDFormat,PromotionExist,PromotionNotExist,Promotion_DeletePromotionSuccess,DataFormatWrong,
     Promotion_AddPromotionSuccess, Order_EndOrderSuccess, Order_ExecuteOrderSuccess, Order_CancelOrderSuccess,

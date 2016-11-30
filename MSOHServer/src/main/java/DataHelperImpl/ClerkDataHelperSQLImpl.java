@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by zqh on 2016/11/24.
  */
+@SuppressWarnings(value = {"Duplicates", "deprecation"})
 public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
     /**
      * 数据库中新增酒店工作人员

@@ -39,10 +39,16 @@ public class Order implements Order_BLService {
         return 0;
     }
 
+    /**
+     * 新建订单
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage createOrder(OrderVO orderVO) throws RemoteException{
         if (orderVO.rooms==null||orderVO.estimatedCheckoutTime == null || orderVO.estimatedCheckinTime == null)
+            //若未填写房间，预计离开时间和预计到达时间
             return ResultMessage.Blank;
-            //有哪些信息是本来就有不用填的呢
         else {
             orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, orderVO.hotelID, orderVO.hotelName, orderVO.orderID,
                     orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime,
@@ -53,6 +59,12 @@ public class Order implements Order_BLService {
         }
     }
 
+    /**
+     * 取消订单
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage cancelOrder(OrderVO orderVO)throws RemoteException {
         //根据orderVO的订单号得到该订单的po,然后在获取订单状态
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
@@ -68,10 +80,18 @@ public class Order implements Order_BLService {
 
     }
 
+    /**
+     * 执行订单
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage executeOrder(OrderVO orderVO)throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
         if (orderVO.orderType.equals(OrderStatus.UNEXECUTED)) {
-            if(orderVO.actualCheckinTime==null)
+            //若订单状态为未执行
+            if(orderVO.actualCheckinTime==null||orderVO.estimatedCheckoutTime==null)
+                //若实际到达时间为空
                 return ResultMessage.Blank;
             orderPO.setOrderType(OrderStatus.EXECUTED);
             orderPO.setEstimatedCheckoutTime(orderVO.estimatedCheckoutTime);
@@ -86,10 +106,18 @@ public class Order implements Order_BLService {
         }
     }
 
+    /**
+     * 结束订单
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage endOrder(OrderVO orderVO)throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
         if (orderVO.orderType.equals(OrderStatus.EXECUTED)) {
+            //若订单状态为已执行
             if(orderVO.actualCheckoutTime==null)
+                //若实际离开时间为空
                 return ResultMessage.Blank;
             orderPO.setOrderType(OrderStatus.FINISHED_UNEVALUATED);
             orderVO.orderType = OrderStatus.FINISHED_UNEVALUATED;
@@ -102,6 +130,12 @@ public class Order implements Order_BLService {
         }
     }
 
+    /**
+     * 设为异常订单（暂时还未考虑透彻）
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage setAbnormal(OrderVO orderVO) throws RemoteException{
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
         orderPO.setOrderType(OrderStatus.ABNORMAL);
@@ -110,9 +144,16 @@ public class Order implements Order_BLService {
         return ResultMessage.Order_SetAbnormalSuccess;
     }
 
+    /**
+     * 恢复异常订单
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException{
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
         if (orderVO.orderType.equals(OrderStatus.ABNORMAL)) {
+            //若订单状态为异常
             orderPO.setOrderType(OrderStatus.REVOKED);
             orderVO.orderType = OrderStatus.REVOKED;
             order_dataService_stub.updateOrder(orderPO);

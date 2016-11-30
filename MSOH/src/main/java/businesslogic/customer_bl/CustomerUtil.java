@@ -16,9 +16,16 @@ import java.util.List;
  */
 public class CustomerUtil implements CustomerUtil_BLService {
     Customer_DataService_Stub customer_dataService_stub = new Customer_DataService_Stub();
+
+    /**
+     * 得到所有的用户
+     * @return
+     * @throws RemoteException
+     */
     public List<CustomerVO> getAll() throws RemoteException {
         List<CustomerPO> customerPOList = customer_dataService_stub.findAllCustomers();
-        if (customerPOList == null)
+        if (customerPOList==null||customerPOList.isEmpty())
+            //若用户列表为空
             return null;
         else {
             List<CustomerVO> customerVOList = new ArrayList<CustomerVO>();
@@ -34,11 +41,17 @@ public class CustomerUtil implements CustomerUtil_BLService {
         }
     }
 
+    /**
+     * 根据ID得到用户
+     * @param ID
+     * @return
+     * @throws RemoteException
+     */
     public CustomerVO getSingle(String ID) throws RemoteException {
-        if(ID.equals(""))
+        if(ID.equals(""))//若ID为空
             return null;
-        //先按照ID查找到用户的列表，在转换成vo
         if(customer_dataService_stub.findCustomerByID(ID)==null)
+            //若用户不存在
             return null;
         CustomerPO customerPO = customer_dataService_stub.findCustomerByID(ID);
         return new CustomerVO(customerPO.getUserName(), customerPO.getPassword(), customerPO.getPhone(),
@@ -46,12 +59,19 @@ public class CustomerUtil implements CustomerUtil_BLService {
                 customerPO.getID(), customerPO.getMemberType());
     }
 
+    /**
+     * 根据名字得到用户列表
+     * @param name
+     * @return
+     * @throws RemoteException
+     */
     public List<CustomerVO> getByName(String name) throws RemoteException {
         if(name.equals(""))
+            //若名字为空
             return null;
-        //先按照名字查找到用户的列表，在转换成vo
         List<CustomerPO> customerPOList = customer_dataService_stub.findCustomerByName(name);
-        if (customerPOList == null)
+        if (customerPOList == null||customerPOList.isEmpty())
+            //若列表为空
             return null;
         else {
             List<CustomerVO> customerVOList = new ArrayList<CustomerVO>();

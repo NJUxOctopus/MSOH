@@ -14,11 +14,20 @@ import java.rmi.RemoteException;
  */
 public class Manager implements Manager_BLService {
     Manager_DataService_Stub manager_dataService_stub = new Manager_DataService_Stub();
+
+    /**
+     * 更改管理人员的信息
+     * @param managerVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage changeInfo(ManagerVO managerVO) throws RemoteException{
         ManagerPO managerPO = manager_dataService_stub.findManager(managerVO.ID);
         if(managerPO==null)
+            //找不到该管理人员
             return ResultMessage.Manager_ManagerNotExist;
         if(managerVO.name.equals("")||managerVO.phone.equals("")){
+            //若姓名，电话为空
             return ResultMessage.Blank;
         }
         managerPO.setPic(managerVO.picUrl);
@@ -28,6 +37,15 @@ public class Manager implements Manager_BLService {
         return ResultMessage.Manager_ChangeManagerInfoSuccess;
     }
 
+    /**
+     * 更改密码
+     * @param ID
+     * @param oldPassword
+     * @param newPassword1
+     * @param newPassword2
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException{
         if (ID.equals("") || oldPassword.equals("") || newPassword1.equals("") || newPassword2.equals("")) {//ID或旧密码或两次新密码未输入
             return ResultMessage.Blank;

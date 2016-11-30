@@ -10,8 +10,6 @@ import java.io.Serializable;
  *
  */
 public class MarketerPO implements Serializable {
-	// 网站营销人员条目在数据库中的索引，仅供数据库使用，无实际意义，不提供setter和getter方法
-	private int _autoId;
 	// 网站营销人员姓名
 	private String name;
 	// 网站营销人员ID

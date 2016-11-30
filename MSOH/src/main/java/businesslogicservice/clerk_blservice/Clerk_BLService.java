@@ -1,5 +1,6 @@
 package businesslogicservice.clerk_blservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import vo.ClerkVO;
 /**
  * @author ST 2016/10/15
  */
-public interface Clerk_BLService {
+public interface Clerk_BLService extends Remote{
 
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException;
 

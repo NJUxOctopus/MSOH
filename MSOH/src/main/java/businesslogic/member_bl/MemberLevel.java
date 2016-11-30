@@ -18,10 +18,19 @@ import java.rmi.RemoteException;
  */
 public class MemberLevel implements MemberLevel_BLService {
     MemberLevel_DataService_Stub memberLevelDataServiceStub = new MemberLevel_DataService_Stub();
+
+    /**
+     * 增加会员等级制度
+     * @param memberLevelVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage addMemberLevel(MemberLevelVO memberLevelVO) throws RemoteException {
         if (memberLevelVO.num < 0)
+            //若数量小于0
             return ResultMessage.DataFormatWrong;
         if (memberLevelVO.creditBoundaries == null)
+            //若未填写信用界限
             return ResultMessage.Blank;
         else {
             memberLevelDataServiceStub.addMemberLevel(new MemberLevelPO(memberLevelVO.framerName
@@ -30,10 +39,18 @@ public class MemberLevel implements MemberLevel_BLService {
         }
     }
 
+    /**
+     * 修改会员等级制度
+     * @param memberLevelVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage modifyMemberLevel(MemberLevelVO memberLevelVO) throws RemoteException {
         if (memberLevelVO.num < 0)
+            //若数量小于0
             return ResultMessage.DataFormatWrong;
         if (memberLevelVO.creditBoundaries == null)
+            //若未填写信用界限
             return ResultMessage.Blank;
         else {
             MemberLevelPO memberLevelPO = memberLevelDataServiceStub.getMemberLevel();

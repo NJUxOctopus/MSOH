@@ -13,11 +13,20 @@ import java.rmi.RemoteException;
  */
 public class MemberUtil implements MemberUtil_BLService {
     Member_DataService_Stub member_dataService_stub = new Member_DataService_Stub();
+
+    /**
+     * 根据用户ID得到用户
+     * @param customerID
+     * @return
+     * @throws RemoteException
+     */
     public MemberVO getSingle(String customerID) throws RemoteException{
         if(customerID.equals(""))
+            //若ID为空
             return null;
         MemberPO memberPO = member_dataService_stub.findMemberByID(customerID);
         if (memberPO==null)
+            //若不存在该用户
             return null;
 
         return new MemberVO(memberPO.getID(),memberPO.getMemberType(),memberPO.getLevel(),memberPO.getBirthday(),
