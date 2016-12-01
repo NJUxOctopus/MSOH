@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "promotion", schema = "msoh_database")
-public class PromotionPO implements Serializable {
+public class PromotionPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
     // 策略制定者名称
     @Column(name = "framerName")
@@ -56,7 +56,7 @@ public class PromotionPO implements Serializable {
     }
 
     public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, int promotionID) {
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -67,7 +67,6 @@ public class PromotionPO implements Serializable {
         this.endTime = endTime;
         this.discount = discount;
         this.minRoom = minRoom;
-        this.promotionID = promotionID;
     }
 
     public String getFramerName() {
@@ -156,5 +155,17 @@ public class PromotionPO implements Serializable {
 
     public void setPromotionID(int promotionID) {
         this.promotionID = promotionID;
+    }
+
+    @Override
+    public Object clone() {
+        PromotionPO promotionPO = null;
+        try {
+            promotionPO = (PromotionPO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return promotionPO;
     }
 }

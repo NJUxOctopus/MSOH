@@ -19,14 +19,23 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
      *
      * @param marketerPO
      */
-    public void addMarketer(MarketerPO marketerPO) {
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+    public boolean addMarketer(MarketerPO marketerPO) {
+        Session session = null;
+        try {
+            session.beginTransaction();
 
-        session.save(marketerPO);
+            session.save(marketerPO);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (null != session) {
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
 
-        session.getTransaction().commit();
-        HibernateUtil.closeSession(session);
+            }
+        }
     }
 
     /**
@@ -34,14 +43,23 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
      *
      * @param marketerPO
      */
-    public void modifyMarketer(MarketerPO marketerPO) {
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+    public boolean modifyMarketer(MarketerPO marketerPO) {
+        Session session = null;
+        try {
+            session.beginTransaction();
 
-        session.update(marketerPO);
+            session.update(marketerPO);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (null != session) {
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
 
-        session.getTransaction().commit();
-        HibernateUtil.closeSession(session);
+            }
+        }
     }
 
     /**
@@ -49,14 +67,23 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
      *
      * @param marketerPO
      */
-    public void deleteMarketer(MarketerPO marketerPO) {
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+    public boolean deleteMarketer(MarketerPO marketerPO) {
+        Session session = null;
+        try {
+            session.beginTransaction();
 
-        session.delete(marketerPO);
+            session.delete(marketerPO);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (null != session) {
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
 
-        session.getTransaction().commit();
-        HibernateUtil.closeSession(session);
+            }
+        }
     }
 
     /**

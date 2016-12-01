@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "clerk", schema = "msoh_database")
-public class ClerkPO implements Serializable,Cloneable {
+public class ClerkPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
 
     // 酒店工作人员姓名
@@ -120,41 +120,11 @@ public class ClerkPO implements Serializable,Cloneable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ClerkPO clerkPO = (ClerkPO) o;
-
-        if (name != null ? !name.equals(clerkPO.name) : clerkPO.name != null) return false;
-        if (phone != null ? !phone.equals(clerkPO.phone) : clerkPO.phone != null) return false;
-        if (password != null ? !password.equals(clerkPO.password) : clerkPO.password != null) return false;
-        if (ID != null ? !ID.equals(clerkPO.ID) : clerkPO.ID != null) return false;
-        if (hotelName != null ? !hotelName.equals(clerkPO.hotelName) : clerkPO.hotelName != null) return false;
-        if (hotelID != null ? !hotelID.equals(clerkPO.hotelID) : clerkPO.hotelID != null) return false;
-        if (position != clerkPO.position) return false;
-        return picUrl != null ? picUrl.equals(clerkPO.picUrl) : clerkPO.picUrl == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (ID != null ? ID.hashCode() : 0);
-        result = 31 * result + (hotelName != null ? hotelName.hashCode() : 0);
-        result = 31 * result + (hotelID != null ? hotelID.hashCode() : 0);
-        result = 31 * result + (position != null ? position.hashCode() : 0);
-        result = 31 * result + (picUrl != null ? picUrl.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public Object clone(){
-        ClerkPO clerkPO=null;
+    public Object clone() {
+        ClerkPO clerkPO = null;
         try {
-            clerkPO=(ClerkPO)super.clone();
-        }catch (CloneNotSupportedException e){
+            clerkPO = (ClerkPO) super.clone();
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
 

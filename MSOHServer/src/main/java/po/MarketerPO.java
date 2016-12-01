@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "marketer", schema = "msoh_database")
-public class MarketerPO implements Serializable,Cloneable {
+public class MarketerPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
 
     // 网站营销人员姓名
@@ -95,11 +95,11 @@ public class MarketerPO implements Serializable,Cloneable {
     }
 
     @Override
-    public Object clone(){
-        MarketerPO marketerPO=null;
-        try{
-            marketerPO=(MarketerPO)super.clone();
-        }catch (CloneNotSupportedException e){
+    public Object clone() {
+        MarketerPO marketerPO = null;
+        try {
+            marketerPO = (MarketerPO) super.clone();
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
 

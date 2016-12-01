@@ -5,7 +5,9 @@ import DataHelper.MarketerDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.marketer_dataservice.Marketer_DataService;
 import po.MarketerPO;
+import util.CopyUtil;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +46,8 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @param marketerPO
      * @throws RemoteException
      */
-    public void addMarketer(MarketerPO marketerPO) throws RemoteException {
-        marketerDataHelper.addMarketer(marketerPO);
+    public boolean addMarketer(MarketerPO marketerPO) throws RemoteException {
+        return marketerDataHelper.addMarketer(marketerPO);
     }
 
     /**
@@ -54,8 +56,8 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @param marketerPO
      * @throws RemoteException
      */
-    public void modifyMarketer(MarketerPO marketerPO) throws RemoteException {
-        marketerDataHelper.modifyMarketer(marketerPO);
+    public boolean modifyMarketer(MarketerPO marketerPO) throws RemoteException {
+        return marketerDataHelper.modifyMarketer(marketerPO);
     }
 
     /**
@@ -65,15 +67,14 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @return 与姓名相匹配的网站营销人员列表
      * @throws RemoteException
      */
-    public List<MarketerPO> findMarketerByName(String name) throws RemoteException {
+    public List<MarketerPO> findMarketerByName(String name) throws IOException, ClassNotFoundException {
         List<MarketerPO> marketersFound = marketerDataHelper.getMarketerByName(name);
 
         if (null == marketersFound) {
             return null;
         }
 
-        List<MarketerPO> returnMarketersFound=new ArrayList<MarketerPO>();
-        returnMarketersFound.addAll(marketersFound);
+        List<MarketerPO> returnMarketersFound = CopyUtil.deepCopy(marketersFound);
         return returnMarketersFound;
     }
 
@@ -90,7 +91,7 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
         if (null == marketerPO) {
             return null;
         }
-        return (MarketerPO)marketerPO.clone();
+        return (MarketerPO) marketerPO.clone();
 
     }
 
@@ -100,11 +101,13 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @return 所有营销人员的列表
      * @throws RemoteException
      */
-    public List<MarketerPO> findAllMarketers() throws RemoteException {
-       List<MarketerPO> marketerList=marketerDataHelper.getAllMarketers();
+    public List<MarketerPO> findAllMarketers() throws IOException, ClassNotFoundException {
+        List<MarketerPO> marketerList = marketerDataHelper.getAllMarketers();
+        if (null == marketerList) {
+            return null;
+        }
 
-       List<MarketerPO> returnMarketerList=new ArrayList<MarketerPO>();
-       returnMarketerList.addAll(marketerList);
+        List<MarketerPO> returnMarketerList = CopyUtil.deepCopy(marketerList);
 
         return returnMarketerList;
     }
@@ -115,8 +118,8 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @param marketerPO
      * @throws RemoteException
      */
-    public void deleteMarketer(MarketerPO marketerPO) throws RemoteException {
-        marketerDataHelper.deleteMarketer(marketerPO);
+    public boolean deleteMarketer(MarketerPO marketerPO) throws RemoteException {
+        return marketerDataHelper.deleteMarketer(marketerPO);
     }
 
 }

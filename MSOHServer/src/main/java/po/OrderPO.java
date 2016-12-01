@@ -12,15 +12,18 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "myorder", schema = "msoh_database")
-public class OrderPO implements Serializable {
+public class OrderPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
-    // 订单号
+    // 数据库自动生成的订单号，仅供数据库使用
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "myorder_id_seq")
     @SequenceGenerator(name = "myorder_id_seq", sequenceName = "myorder_id_seq", allocationSize = 1)
-    @Column(name = "orderID")
-    private int orderID;
+    @Column(name = "_autoID")
+    private int _autoID;
     // 客户姓名
+    // 订单号
+    @Column(name = "orderID")
+    private String orderID;
     @Column(name = "customerName")
     private String customerName;
     // 客户联系方式
@@ -35,7 +38,6 @@ public class OrderPO implements Serializable {
     // 酒店名称
     @Column(name = "hotelName")
     private String hotelName;
-
     // 预计check in时间
     @Column(name = "estimatedCheckInTime")
     private Timestamp estimatedCheckInTime;
@@ -141,11 +143,11 @@ public class OrderPO implements Serializable {
         this.hotelName = hotelName;
     }
 
-    public int getOrderID() {
+    public String getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
 
@@ -261,4 +263,15 @@ public class OrderPO implements Serializable {
         this.orderStatus = orderType;
     }
 
+    @Override
+    public Object clone() {
+        OrderPO orderPO = null;
+        try {
+            orderPO = (OrderPO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return orderPO;
+    }
 }

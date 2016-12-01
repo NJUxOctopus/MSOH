@@ -25,7 +25,7 @@ public interface Customer_DataService extends Remote {
     // 根据姓名查找客户（返回List是考虑了同名的情形）
     public List<CustomerPO> findCustomerByName(String customerName) throws RemoteException;
 
-     // 根据客户ID查找客户信息
+    // 根据客户ID查找客户信息
     public CustomerPO findCustomerByID(String customerID) throws RemoteException;
 
     // 获得所有客户信息

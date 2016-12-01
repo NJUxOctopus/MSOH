@@ -8,7 +8,7 @@ import java.util.List;
  * Created by zqh on 2016/11/24.
  */
 public interface ManagerDataHelper {
-    public void modifyManager(ManagerPO managerPO);
+    public boolean modifyManager(ManagerPO managerPO);
 
     public ManagerPO findManagerByID(String ID);
 

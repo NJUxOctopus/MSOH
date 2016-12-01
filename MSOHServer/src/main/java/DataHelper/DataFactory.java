@@ -22,4 +22,6 @@ public interface DataFactory {
 
     public PromotionDataHelper getPromotionDataHelper();
 
+    public CreditRecordDataHelper getCreditRecordDataHelper();
+
 }

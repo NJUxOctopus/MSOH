@@ -19,14 +19,23 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      *
      * @param clerkPO
      */
-    public void addClerk(ClerkPO clerkPO) {
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+    public boolean addClerk(ClerkPO clerkPO) {
+        Session session = null;
+        try {
+            session.beginTransaction();
 
-        session.save(clerkPO);
+            session.save(clerkPO);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (null != session) {
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
 
-        session.getTransaction().commit();
-        HibernateUtil.closeSession(session);
+            }
+        }
     }
 
     /**
@@ -34,14 +43,23 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      *
      * @param clerkPO
      */
-    public void modifyClerk(ClerkPO clerkPO) {
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+    public boolean modifyClerk(ClerkPO clerkPO) {
+        Session session = null;
+        try {
+            session.beginTransaction();
 
-        session.update(clerkPO);
+            session.update(clerkPO);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (null != session) {
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
 
-        session.getTransaction().commit();
-        HibernateUtil.closeSession(session);
+            }
+        }
 
     }
 
@@ -50,14 +68,23 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      *
      * @param clerkPO
      */
-    public void deleteClerk(ClerkPO clerkPO) {
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+    public boolean deleteClerk(ClerkPO clerkPO) {
+        Session session = null;
+        try {
+            session.beginTransaction();
 
-        session.delete(clerkPO);
+            session.delete(clerkPO);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (null != session) {
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
 
-        session.getTransaction().commit();
-        HibernateUtil.closeSession(session);
+            }
+        }
     }
 
     /**

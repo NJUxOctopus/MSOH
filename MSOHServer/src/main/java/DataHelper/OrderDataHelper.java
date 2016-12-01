@@ -9,11 +9,11 @@ import java.util.List;
  * Created by zqh on 2016/11/24.
  */
 public interface OrderDataHelper {
-    public void addOrder(OrderPO po);
+    public boolean addOrder(OrderPO po);
 
-    public void updateOrder(OrderPO orderPO);
+    public boolean updateOrder(OrderPO orderPO);
 
-    public void deleteOrder(OrderPO orderPO);
+    public boolean deleteOrder(OrderPO orderPO);
 
     public List<OrderPO> getAllOrders();
 

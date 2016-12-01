@@ -1,30 +1,29 @@
 package DataHelperImpl;
 
-import DataHelper.ManagerDataHelper;
+import DataHelper.PromotionDataHelper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
-import po.ManagerPO;
+import po.PromotionPO;
 import util.HibernateUtil;
 
 import java.util.List;
 
 /**
- * Created by zqh on 2016/11/28.
+ * Created by zqh on 2016/12/1.
  */
 @SuppressWarnings(value = {"Duplicates", "deprecation"})
-public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
+public class PromotionDataHelperSQLImpl implements PromotionDataHelper {
     /**
-     * 更新网站管理人员信息
+     * 新增促销策略
      *
-     * @param managerPO
+     * @param po
      */
-    public boolean modifyManager(ManagerPO managerPO) {
+    public boolean addPromotion(PromotionPO po) {
         Session session = null;
         try {
             session.beginTransaction();
 
-            session.update(managerPO);
+            session.save(po);
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -39,20 +38,19 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
     }
 
     /**
-     * 根据ID查找网站管理人员
+     * 获得促销策略
      *
-     * @param ID
-     * @return 网站管理人员信息
+     * @param promotionID
+     * @return 根据ID查找得到的促销策略
      */
-    public ManagerPO findManagerByID(String ID) {
+    public PromotionPO getPromotion(int promotionID) {
         Session session = null;
-
         try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
 
-            ManagerPO managerPO = (ManagerPO) session.get(ManagerPO.class, ID);
-            return managerPO;
+            PromotionPO promotionPO = (PromotionPO) session.get(PromotionPO.class, promotionID);
+            return promotionPO;
         } catch (HibernateException e) {
             e.printStackTrace();
             return null;
@@ -65,27 +63,36 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
     }
 
     /**
-     * 根据姓名查找网站管理人员
+     * 获得所有促销策略
      *
-     * @param name
-     * @return 与姓名相匹配的网站管理人员列表
+     * @return 所有促销策略构成的列表
      */
-    public List<ManagerPO> findManagerByName(String name) {
+    public List<PromotionPO> getAllPromotions() {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+
+        List<PromotionPO> list = session.createQuery("from PromotionPO ").list();
+
+        session.getTransaction().commit();
+        HibernateUtil.closeSession(session);
+
+        return list;
+    }
+
+    /**
+     * 删除促销策略
+     *
+     * @param promotionPO
+     */
+    public boolean deletePromotion(PromotionPO promotionPO) {
         Session session = null;
-
         try {
-            session = HibernateUtil.getSession();
             session.beginTransaction();
-
-            String hql = "from ManagerPO as manager where manager.name=:n";
-            Query query = session.createQuery(hql);
-            query.setString("n", name);
-
-            List<ManagerPO> list = query.list();
-            return list;
+            session.delete(promotionPO);
+            return true;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return false;
         } finally {
             if (null != session) {
                 session.getTransaction().commit();
@@ -95,23 +102,19 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
     }
 
     /**
-     * 获得所有网站管理人员信息
+     * 修改促销策略
      *
-     * @return 所有网站管理人员的列表
+     * @param promotionPO
      */
-    public List<ManagerPO> findAllManagers() {
+    public boolean modifyPromotion(PromotionPO promotionPO) {
         Session session = null;
-
         try {
-            session = HibernateUtil.getSession();
             session.beginTransaction();
-
-            List<ManagerPO> list = session.createQuery("from ManagerPO ").list();
-
-            return list;
+            session.update(promotionPO);
+            return true;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return false;
         } finally {
             if (null != session) {
                 session.getTransaction().commit();
@@ -119,5 +122,4 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             }
         }
     }
-
 }

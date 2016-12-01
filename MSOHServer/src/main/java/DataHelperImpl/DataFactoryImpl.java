@@ -35,15 +35,22 @@ public class DataFactoryImpl implements DataFactory {
     }
 
     public MemberLevelDataHelper getMemberLevelDataHelper() {
-        return null;
+        MemberLevelDataHelper memberLevelDataHelper = new MemberLevelDataHelperSQLImpl();
+        return memberLevelDataHelper;
     }
 
     public OrderDataHelper getOrderDataHelper() {
-        OrderDataHelper orderDataHelper=new OrderDataHelperSQLImpl();
+        OrderDataHelper orderDataHelper = new OrderDataHelperSQLImpl();
         return orderDataHelper;
     }
 
     public PromotionDataHelper getPromotionDataHelper() {
-        return null;
+        PromotionDataHelper promotionDataHelper = new PromotionDataHelperSQLImpl();
+        return promotionDataHelper;
+    }
+
+    public CreditRecordDataHelper getCreditRecordDataHelper(){
+        CreditRecordDataHelper creditRecordDataHelper=new CreditRecordDataHelperSQLImpl();
+        return creditRecordDataHelper;
     }
 }

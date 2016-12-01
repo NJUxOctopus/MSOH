@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 /**
+ * Hibernate工具类
  * Created by zqh on 2016/11/23.
  */
 public class HibernateUtil {

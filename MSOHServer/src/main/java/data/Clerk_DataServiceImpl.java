@@ -3,9 +3,12 @@ package data;
 import DataHelper.ClerkDataHelper;
 import DataHelper.DataFactory;
 import DataHelperImpl.DataFactoryImpl;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import dataservice.clerk_dataservice.Clerk_DataService;
 import po.ClerkPO;
+import util.CopyUtil;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -47,8 +50,8 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 新增酒店工作人员是否成功
      * @throws RemoteException
      */
-    public void addClerk(ClerkPO clerkPO) throws RemoteException {
-        clerkDataHelper.addClerk(clerkPO);
+    public boolean addClerk(ClerkPO clerkPO) throws RemoteException {
+        return clerkDataHelper.addClerk(clerkPO);
     }
 
     /**
@@ -58,8 +61,8 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 更改酒店工作人员信息是否成功
      * @throws RemoteException
      */
-    public void modifyClerk(ClerkPO clerkPO) throws RemoteException {
-        clerkDataHelper.modifyClerk(clerkPO);
+    public boolean modifyClerk(ClerkPO clerkPO) throws RemoteException {
+        return clerkDataHelper.modifyClerk(clerkPO);
     }
 
     /**
@@ -69,14 +72,13 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 酒店工作人员组成的列表，可能为空
      * @throws RemoteException
      */
-    public List<ClerkPO> findClerkByName(String name) throws RemoteException {
+    public List<ClerkPO> findClerkByName(String name) throws IOException, ClassNotFoundException {
         List<ClerkPO> clerksFound = clerkDataHelper.getClerkByName(name);
         if (null == clerksFound) {
             return null;
         }
 
-        List<ClerkPO> returnClerksFound=new ArrayList<ClerkPO>();
-        returnClerksFound.addAll(clerksFound);
+        List<ClerkPO> returnClerksFound = CopyUtil.deepCopy(clerksFound);
 
         return returnClerksFound;
     }
@@ -94,7 +96,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
         if (null == clerkFound) {
             return null;
         }
-        return (ClerkPO)clerkFound.clone();
+        return (ClerkPO) clerkFound.clone();
     }
 
     /**
@@ -103,11 +105,14 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 所有酒店工作人员的列表
      * @throws RemoteException
      */
-    public List<ClerkPO> findAllClerks() throws RemoteException {
-        List<ClerkPO> clerkList=clerkDataHelper.getAllClerks();
+    public List<ClerkPO> findAllClerks() throws IOException, ClassNotFoundException {
+        List<ClerkPO> clerkList = clerkDataHelper.getAllClerks();
+        if (null == clerkList) {
+            return null;
+        }
 
-        List<ClerkPO> returnClerkList=new ArrayList<ClerkPO>();
-        returnClerkList.addAll(clerkList);
+        List<ClerkPO> returnClerkList = CopyUtil.deepCopy(clerkList);
+
         return returnClerkList;
     }
 
@@ -118,7 +123,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @return 删除酒店工作人员是否成功
      * @throws RemoteException
      */
-    public void deleteClerk(ClerkPO clerkPO) throws RemoteException {
-        clerkDataHelper.deleteClerk(clerkPO);
+    public boolean deleteClerk(ClerkPO clerkPO) throws RemoteException {
+        return clerkDataHelper.deleteClerk(clerkPO);
     }
 }

@@ -5,7 +5,9 @@ import DataHelper.ManagerDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.manager_dataservice.Manager_DataService;
 import po.ManagerPO;
+import util.CopyUtil;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +46,8 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      * @param managerPO
      * @throws RemoteException
      */
-    public void modifyManager(ManagerPO managerPO) throws RemoteException {
-        managerDataHelper.modifyManager(managerPO);
+    public boolean modifyManager(ManagerPO managerPO) throws RemoteException {
+        return managerDataHelper.modifyManager(managerPO);
     }
 
     /**
@@ -62,7 +64,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
             return null;
         }
 
-        return (ManagerPO)managerPO.clone();
+        return (ManagerPO) managerPO.clone();
     }
 
     /**
@@ -71,11 +73,13 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      * @return 所有网站管理人员信息
      * @throws RemoteException
      */
-    public List<ManagerPO> findAllManagers() throws RemoteException {
-        List<ManagerPO> managersList=managerDataHelper.findAllManagers();
+    public List<ManagerPO> findAllManagers() throws IOException, ClassNotFoundException {
+        List<ManagerPO> managersList = managerDataHelper.findAllManagers();
+        if (null == managersList) {
+            return null;
+        }
 
-        List<ManagerPO> returnManagersList=new ArrayList<ManagerPO>();
-        returnManagersList.addAll(managersList);
+        List<ManagerPO> returnManagersList = CopyUtil.deepCopy(managersList);
 
         return returnManagersList;
     }
@@ -87,15 +91,14 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      * @return 与姓名相匹配的网站管理人员列表
      * @throws RemoteException
      */
-    public List<ManagerPO> findManagerByName(String name) throws RemoteException {
+    public List<ManagerPO> findManagerByName(String name) throws IOException, ClassNotFoundException {
         List<ManagerPO> list = managerDataHelper.findManagerByName(name);
 
         if (null == list) {
             return null;
         }
 
-        List<ManagerPO> returnManagersList=new ArrayList<ManagerPO>();
-        returnManagersList.addAll(list);
+        List<ManagerPO> returnManagersList = CopyUtil.deepCopy(list);
 
         return returnManagersList;
     }

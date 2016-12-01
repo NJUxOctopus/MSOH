@@ -8,11 +8,11 @@ import java.util.List;
  * Created by zqh on 2016/11/24.
  */
 public interface ClerkDataHelper {
-    public void addClerk(ClerkPO clerkPO);
+    public boolean addClerk(ClerkPO clerkPO);
 
-    public void modifyClerk(ClerkPO clerkPO);
+    public boolean modifyClerk(ClerkPO clerkPO);
 
-    public void deleteClerk(ClerkPO clerkPO);
+    public boolean deleteClerk(ClerkPO clerkPO);
 
     public ClerkPO getClerkByID(String ID);
 

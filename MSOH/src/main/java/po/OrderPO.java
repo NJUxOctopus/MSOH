@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class OrderPO implements Serializable {
     private static final long serialVersionUID=1L;
+    // 数据库自动生成的订单ID，无需使用
+    private int _autoID;
+    // 订单号
+    private String orderID;
     // 客户姓名
     private String customerName;
     // 客户联系方式
@@ -21,8 +25,6 @@ public class OrderPO implements Serializable {
     private String hotelID;
     // 酒店名称
     private String hotelName;
-    // 订单号
-    private String orderID;
     // 预计check in时间
     private Timestamp estimatedCheckinTime;
     // 实际check in时间
