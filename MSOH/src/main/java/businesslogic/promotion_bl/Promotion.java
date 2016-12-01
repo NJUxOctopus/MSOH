@@ -45,7 +45,7 @@ public class Promotion implements Promotion_BLService {
             promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, promotionVO.targetArea,
                     targetHotel, promotionVO.startTime, promotionVO.endTime, promotionVO.discount,
-                    promotionVO.minRoom, promotionVO.promotionID));
+                    promotionVO.minRoom, Integer.parseInt(promotionVO.promotionID)));
             return ResultMessage.Promotion_AddPromotionSuccess;
         }
     }

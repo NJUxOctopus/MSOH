@@ -89,10 +89,9 @@ public class Order implements Order_BLService {
                 else
                     rooms+=orderVO.rooms[i];
             }
-            orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, orderVO.hotelID, orderVO.hotelName, orderVO.orderID,
-                    orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime,
-                    orderVO.latestExecutedTime, rooms, orderVO.numOfCustomers, orderVO.haveChildren, orderVO.remarks,
-                    orderVO.promotionName, orderVO.initialPrice, orderVO.finalPrice, orderVO.orderType);
+            orderPO = new OrderPO(orderVO.customerName,orderVO.phone,orderVO.customerID,orderVO.hotelID,orderVO.hotelName,
+                    orderVO.estimatedCheckinTime,orderVO.actualCheckinTime,orderVO.estimatedCheckoutTime,orderVO.actualCheckoutTime,orderVO.latestExecutedTime,
+                    rooms,orderVO.numOfCustomers,orderVO.haveChildren,orderVO.remarks,orderVO.promotionName,orderVO.initialPrice,orderVO.finalPrice,orderVO.orderType);
             order_dataService_stub.addOrder(orderPO);
             return ResultMessage.Order_CreateOrderSuccess;
         }

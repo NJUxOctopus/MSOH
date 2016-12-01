@@ -92,7 +92,7 @@ public class Customer implements Customer_BLService {
             return null;
         List<HotelVO> listVO = new ArrayList<HotelVO>();
         List<HotelPO> listPO = customer_dataService_stub.getCustomerReservedHotel(customerID);
-        if(listPO.isEmpty())
+        if(listPO==null||listPO.isEmpty())
             //如果列表为空
             return null;
         Iterator iterator = listPO.iterator();

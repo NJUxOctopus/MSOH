@@ -73,8 +73,8 @@ public class Customer_DataService_Stub implements Customer_DataService{
 	public List<HotelPO> getCustomerReservedHotel(String ID) throws RemoteException {
 		if(ID.equals("320200000000000000")){
 			List<HotelPO> hotelPOList = new ArrayList<HotelPO>();
-			hotelPOList.add(new HotelPO("RUJIA", "NJU", "XIANLIN", "wu", null, 5,
-			5, "has", null,new ClerkPO("pxr","123","123","123","RUJIA","123", WorkerPosition.Clerk,"123"), "123", null, null));
+			hotelPOList.add(new HotelPO("RUJIA", "NJU", "XIANLIN", "wu", "",null, 5,
+			5, "has", "",new ClerkPO("pxr","123","123","123","RUJIA","123", WorkerPosition.Clerk,"123"), "123", null, null));
 			return hotelPOList;
 		}else
 			return null;
