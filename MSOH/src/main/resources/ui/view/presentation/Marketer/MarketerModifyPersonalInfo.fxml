@@ -3,13 +3,14 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Marketer.MarketerModifyPersonalInfoController">
     <children>
         <ImageView fitHeight="775.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -74,14 +75,6 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField fx:id="passwordTextField" layoutX="848.0" layoutY="189.0" prefHeight="32.0" prefWidth="268.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
-            <font>
-                <Font name="Microsoft YaHei" size="15.0" />
-            </font>
-            <cursor>
-                <Cursor fx:constant="TEXT" />
-            </cursor>
-        </TextField>
         <Label fx:id="idTextField" layoutX="484.0" layoutY="267.0" text="320581190001010229" textFill="WHITE">
             <font>
                 <Font name="Microsoft YaHei" size="28.0" />
@@ -121,5 +114,18 @@
                 <Font name="Microsoft YaHei" size="28.0" />
             </font>
         </Label>
+      <PasswordField fx:id="passwordTextField1" layoutX="850.0" layoutY="189.0" prefHeight="32.0" prefWidth="205.0" style="-fx-background-color: #ffffff00;">
+         <font>
+            <Font name="Microsoft YaHei" size="15.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="1051.0" layoutY="184.0" mnemonicParsing="false" onAction="#showModifyPW" prefHeight="41.0" prefWidth="84.0" style="-fx-background-color: #ffffff00;" text="修改&gt;" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </Pane>

@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Marketer.MarketerFrameController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1374.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="720.0" fitWidth="1509.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/MarketerBG.png" />
          </image>
@@ -33,12 +32,12 @@
             <Font name="Microsoft YaHei" size="50.0" />
          </font>
       </Label>
-      <Pane layoutX="344.0" layoutY="140.0" prefHeight="474.0" prefWidth="689.0" />
+      <Pane fx:id="marketerFramePane" layoutX="344.0" layoutY="140.0" prefHeight="474.0" prefWidth="689.0" />
       <VBox layoutX="73.0" layoutY="140.0" prefHeight="474.0" prefWidth="267.0">
          <children>
             <Pane prefHeight="127.0" prefWidth="267.0">
                <children>
-                  <Button fx:id="hotelInfo" mnemonicParsing="false" prefHeight="127.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="处 理 订 单" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#showOrderList" prefHeight="127.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="处 理 订 单" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="30.0" />
                      </font>
@@ -61,7 +60,7 @@
             </Pane>
             <Pane prefHeight="121.0" prefWidth="267.0">
                <children>
-                  <Button fx:id="hotelInfo1" mnemonicParsing="false" prefHeight="121.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="促 销 策 略" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#showWebPromotion" prefHeight="121.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="促 销 策 略" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="30.0" />
                      </font>
@@ -84,7 +83,7 @@
             </Pane>
             <Pane prefHeight="110.0" prefWidth="267.0">
                <children>
-                  <Button fx:id="hotelInfo11" mnemonicParsing="false" prefHeight="110.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="会 员 制 度" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#showMemberLevel" prefHeight="110.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="会 员 制 度" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="30.0" />
                      </font>
@@ -107,7 +106,7 @@
             </Pane>
             <Pane prefHeight="110.0" prefWidth="267.0">
                <children>
-                  <Button fx:id="hotelInfo111" mnemonicParsing="false" prefHeight="110.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="信 用 充 值" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#showCreditCharge" prefHeight="110.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="信 用 充 值" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="30.0" />
                      </font>
@@ -135,7 +134,7 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="clerkInfo" layoutX="1064.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="个人信息" textFill="WHITE">
+      <Button layoutX="1064.0" layoutY="360.0" mnemonicParsing="false" onAction="#showModifyMarketerInfo" style="-fx-background-color: #ffffff00;" text="个人信息" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>

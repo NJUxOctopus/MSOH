@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="orderPanel" prefHeight="212.5" prefWidth="688.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkSinglePromotionController">
+<Pane fx:id="orderPanel" prefHeight="212.5" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkSinglePromotionController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="212.5" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: #ffffff00;" width="688.0" />
       <Label fx:id="orderIDLabel" layoutX="165.0" layoutY="38.0" text="优惠名称：" textFill="WHITE">
@@ -49,7 +49,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="469.0" layoutY="165.0" mnemonicParsing="false" onAction="#showCreatePromotion" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="制定/修改" textFill="WHITE">
+      <Button layoutX="503.0" layoutY="165.0" mnemonicParsing="false" onAction="#showModifyPromotion" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>

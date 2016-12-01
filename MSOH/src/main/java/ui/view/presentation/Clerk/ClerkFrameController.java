@@ -59,7 +59,6 @@ public class ClerkFrameController implements ControlledStage {
      */
     public void showHotelInfo() {
         try {
-            // Load hotelInfoView.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkHotelInfo.fxml"));
             Pane hotelInfoView = (Pane) loader.load();
@@ -81,18 +80,17 @@ public class ClerkFrameController implements ControlledStage {
      */
     public void showHotelOrderList() {
         try {
-            // Load hotelInfoView.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkCheckOrderListView.fxml"));
-            Pane hotelInfoView = (Pane) loader.load();
+            Pane orderListPane = (Pane) loader.load();
 
             // Close the previous panel
             clerkFramePane.getChildren().clear();
 
             // Set hotelInfoView into the initial pane.
-            clerkFramePane.getChildren().add(hotelInfoView);
-            hotelInfoView.setLayoutX(0);
-            hotelInfoView.setLayoutY(0);
+            clerkFramePane.getChildren().add(orderListPane);
+            orderListPane.setLayoutX(0);
+            orderListPane.setLayoutY(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,18 +101,17 @@ public class ClerkFrameController implements ControlledStage {
      */
     public void showHotelPromotionList() {
         try {
-            // Load hotelInfoView.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkHotelPromotion.fxml"));
-            Pane hotelInfoView = (Pane) loader.load();
+            Pane promotionPane = (Pane) loader.load();
 
             // Close the previous panel
             clerkFramePane.getChildren().clear();
 
             // Set hotelInfoView into the initial pane.
-            clerkFramePane.getChildren().add(hotelInfoView);
-            hotelInfoView.setLayoutX(0);
-            hotelInfoView.setLayoutY(0);
+            clerkFramePane.getChildren().add(promotionPane);
+            promotionPane.setLayoutX(0);
+            promotionPane.setLayoutY(0);
         } catch (IOException e) {
             e.printStackTrace();
         }

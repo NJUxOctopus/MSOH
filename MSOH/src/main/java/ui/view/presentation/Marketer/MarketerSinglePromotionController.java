@@ -1,12 +1,12 @@
-package ui.view.presentation.Clerk;
+package ui.view.presentation.Marketer;
 
 import ui.view.presentation.ControlledStage;
 import ui.view.presentation.StageController;
 
 /**
- * Created by ST on 2016/11/30.
+ * Created by ST on 2016/12/1.
  */
-public class ClerkSinglePromotionController implements ControlledStage {
+public class MarketerSinglePromotionController implements ControlledStage {
 
     StageController stageController;
 
@@ -16,17 +16,17 @@ public class ClerkSinglePromotionController implements ControlledStage {
     }
 
     /**
-     * 修改按钮结果，显示修改酒店促销策略界面
+     * 修改按钮结果，显示修改网站促销策略界面
      */
     public void showModifyPromotion() {
         stageController = new StageController();
-        stageController.loadStage("Clerk/ClerkModifyPromotion.fxml", 1);
+        stageController.loadStage("Marketer/MarketerModifyPromotion.fxml", 1);
     }
 
     /**
-     * 删除按钮结果，显示确认删除提示弹窗
+     * 删除按钮结果，显示确认删除弹窗
      */
-    public void deletePromotion(){
+    public void deletePromotion() {
 
     }
 
