@@ -20,7 +20,7 @@
             <artifactId>javafx</artifactId>
             <version>8.0.65-b17</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/.idea/Maven__com_oracle_javafx_8_0_65_b17.xml</systemPath>
+            <systemPath>${project.basedir}/.idea/javafx-8.0.65-b17.jar</systemPath>
         </dependency>
 
 
