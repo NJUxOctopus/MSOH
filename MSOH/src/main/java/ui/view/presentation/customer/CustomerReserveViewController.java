@@ -46,6 +46,9 @@ public class CustomerReserveViewController implements ControlledStage{
     private ChoiceBox staffChoiceBox;
 
     @FXML
+    private ChoiceBox roomTypeChoiceBox;
+
+    @FXML
     private ChoiceBox hasChildChoiceBox;
 
     @FXML
@@ -77,12 +80,14 @@ public class CustomerReserveViewController implements ControlledStage{
 
     @FXML
     private void selectCheckInTime(){
-
+        stageController = new StageController();
+        stageController.loadStage("util/SelectTimeView.fxml",0.8);
     }
 
     @FXML
     private void selectCheckOutTime(){
-
+        stageController = new StageController();
+        stageController.loadStage("util/SelectTimeView.fxml",0.8);
     }
 
 

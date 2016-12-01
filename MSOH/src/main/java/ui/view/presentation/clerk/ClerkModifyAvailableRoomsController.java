@@ -25,8 +25,7 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
     public void showConfirmExit() {
         stageController = new StageController();
         stageController.loadStage("clerk/ConfirmExit.fxml", 1);
-        FXMLLoader loader = stageController.getLoader();
-        ConfirmExitController controller = loader.getController();
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
         controller.setToBeClosed(resource);
     }
 }

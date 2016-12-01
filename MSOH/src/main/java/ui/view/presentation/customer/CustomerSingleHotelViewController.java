@@ -52,8 +52,7 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     private void viewHotelDetails(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerHotelDetailsView.fxml", 1);
-        FXMLLoader loader = stageController.getLoader();
-        CustomerHotelDetailsViewController customerHotelDetailsViewController = loader.getController();
+        CustomerHotelDetailsViewController customerHotelDetailsViewController = (CustomerHotelDetailsViewController) stageController.getController();
         customerHotelDetailsViewController.init();
     }
 

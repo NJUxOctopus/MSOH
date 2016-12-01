@@ -78,7 +78,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="hotelNameTextField" editable="false" layoutX="460.0" layoutY="319.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="如家">
+            <TextField fx:id="hotelNameTextField" editable="false" layoutX="460.0" layoutY="320.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="如家">
                <font>
                   <Font size="14.0" />
                </font>
@@ -86,47 +86,47 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <Label layoutX="360.0" layoutY="324.0" text="酒店名称" textFill="WHITE">
+            <Label layoutX="360.0" layoutY="325.0" text="酒店名称" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="706.0" layoutY="324.0" text="酒店ID" textFill="WHITE">
+            <Label layoutX="706.0" layoutY="325.0" text="酒店ID" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="360.0" layoutY="464.0" text="入住人数" textFill="WHITE">
+            <Label layoutX="360.0" layoutY="425.0" text="房间类型" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="700.0" layoutY="534.0" text="优惠策略" textFill="WHITE">
+            <Label layoutX="700.0" layoutY="475.0" text="优惠策略" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="360.0" layoutY="394.0" text="入住日期" textFill="WHITE">
+            <Label layoutX="360.0" layoutY="375.0" text="入住日期" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="700.0" layoutY="394.0" text="退房日期" textFill="WHITE">
+            <Label layoutX="700.0" layoutY="375.0" text="退房日期" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="360.0" layoutY="534.0" text="折前价格" textFill="WHITE">
+            <Label layoutX="360.0" layoutY="525.0" text="折前价格" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="360.0" layoutY="604.0" text="折后价格" textFill="WHITE">
+            <Label layoutX="700.0" layoutY="525.0" text="折后价格" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="hotelIDTextField" editable="false" layoutX="790.0" layoutY="319.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111">
+            <TextField fx:id="hotelIDTextField" editable="false" layoutX="790.0" layoutY="320.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111">
                <font>
                   <Font size="14.0" />
                </font>
@@ -134,12 +134,12 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <Label layoutX="700.0" layoutY="464.0" text="有无儿童" textFill="WHITE">
+            <Label layoutX="700.0" layoutY="425.0" text="有无儿童" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="checkOutTimeTextField1" editable="false" layoutX="790.0" layoutY="389.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111／11／12">
+            <TextField fx:id="checkOutTimeTextField1" editable="false" layoutX="790.0" layoutY="370.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111／11／12">
                <font>
                   <Font size="14.0" />
                </font>
@@ -147,7 +147,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField fx:id="checkInTimeTextField" editable="false" layoutX="460.0" layoutY="389.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111／11／11">
+            <TextField fx:id="checkInTimeTextField" editable="false" layoutX="460.0" layoutY="370.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111／11／11">
                <font>
                   <Font size="14.0" />
                </font>
@@ -155,22 +155,22 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <ChoiceBox fx:id="staffChoiceBox" layoutX="460.0" layoutY="459.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="460.0" layoutY="420.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <ChoiceBox fx:id="hasChildChoiceBox" layoutX="790.0" layoutY="459.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="hasChildChoiceBox" layoutX="790.0" layoutY="420.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <ChoiceBox fx:id="promotionChoiceBox" layoutX="790.0" layoutY="529.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="promotionChoiceBox" layoutX="790.0" layoutY="470.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <TextField fx:id="prePriceTextField" editable="false" layoutX="460.0" layoutY="529.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
+            <TextField fx:id="prePriceTextField" editable="false" layoutX="460.0" layoutY="520.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
                <font>
                   <Font size="14.0" />
                </font>
@@ -178,7 +178,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField fx:id="afterPriceTextField" editable="false" layoutX="460.0" layoutY="599.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
+            <TextField fx:id="afterPriceTextField" editable="false" layoutX="790.0" layoutY="520.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
                <font>
                   <Font size="14.0" />
                </font>
@@ -186,7 +186,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <Button fx:id="confirmButton" layoutX="910.0" layoutY="599.0" mnemonicParsing="false" onAction="#reserve" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="确认订单" textFill="WHITE">
+            <Button fx:id="confirmButton" layoutX="640.0" layoutY="580.0" mnemonicParsing="false" onAction="#reserve" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="确认订单" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -197,7 +197,7 @@
             <Line endX="1000.0" layoutX="100.0" layoutY="650.0" stroke="WHITE" />
             <Line endX="1000.0" layoutX="100.0" layoutY="100.0" stroke="WHITE" />
             <Line endX="550.0" fill="WHITE" layoutX="825.0" layoutY="375.0" rotate="90.0" stroke="WHITE" />
-            <Button fx:id="selectCheckInButton" layoutX="649.0" layoutY="389.0" mnemonicParsing="false" onAction="#selectCheckInTime" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="&gt;" textFill="WHITE">
+            <Button fx:id="selectCheckInButton" layoutX="649.0" layoutY="370.0" mnemonicParsing="false" onAction="#selectCheckInTime" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="&gt;" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -205,7 +205,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="selectCheckOutButton" layoutX="979.0" layoutY="389.0" mnemonicParsing="false" onAction="#selectCheckOutTime" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="&gt;" textFill="WHITE">
+            <Button fx:id="selectCheckOutButton" layoutX="979.0" layoutY="370.0" mnemonicParsing="false" onAction="#selectCheckOutTime" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="&gt;" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -213,6 +213,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label layoutX="360.0" layoutY="475.0" text="入住人数" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="staffChoiceBox" layoutX="460.0" layoutY="470.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
          </children>
       </Pane>
       <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">

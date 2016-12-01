@@ -67,8 +67,8 @@ public class StageController {
         return stages.get(resource);
     }
 
-    public FXMLLoader getLoader(){
-        return loader;
+    public ControlledStage getController(){
+        return loader.getController();
     }
 
 

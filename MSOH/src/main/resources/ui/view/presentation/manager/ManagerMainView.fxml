@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -7,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.manager.ManagerMainViewController">
    <children>
       <ImageView fx:id="backgroundImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,47 +25,65 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane prefHeight="720.0" prefWidth="1280.0">
+      <Pane prefHeight="966.0" prefWidth="1280.0">
          <children>
-            <ImageView fitHeight="242.0" fitWidth="270.0" layoutX="67.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="shadeImage" fitHeight="247.0" fitWidth="270.0" layoutX="65.0" layoutY="720.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image_manager/Rectangle.png" />
+                  <Image url="@image_manager/shade.png" />
                </image>
             </ImageView>
-            <Button fx:id="hotelManageButton" layoutX="64.0" layoutY="116.0" mnemonicParsing="false" prefHeight="242.0" prefWidth="270.0" style="-fx-background-color: 00;" text="酒 店 管 理" textFill="WHITE">
+            <Button fx:id="hotelManageButton" layoutX="64.0" layoutY="116.0" mnemonicParsing="false" onAction="#showHotelManageView" prefHeight="242.0" prefWidth="270.0" style="-fx-background-color: #ffffff00;" text="酒 店 管 理" textFill="WHITE">
                <font>
                   <Font size="43.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="staffManageButton" layoutX="63.0" layoutY="359.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="272.0" style="-fx-background-color: 00;" text="人 员 管 理" textFill="WHITE">
+            <Button fx:id="staffManageButton" layoutX="63.0" layoutY="363.0" mnemonicParsing="false" onAction="#showStaffManageView" prefHeight="246.0" prefWidth="272.0" style="-fx-background-color: #ffffff00;" text="人 员 管 理" textFill="WHITE">
                <font>
                   <Font size="43.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label alignment="CENTER" layoutX="1033.0" layoutY="280.0" prefHeight="26.0" prefWidth="168.0" text="OCTOPUS" textFill="WHITE">
+            <Label fx:id="managerNameLabel" alignment="CENTER" layoutX="1033.0" layoutY="280.0" prefHeight="26.0" prefWidth="168.0" text="OCTOPUS" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="infoButton" layoutX="1047.0" layoutY="344.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: xffffff00;" text="个人信息" textFill="WHITE">
+            <Button fx:id="infoButton" layoutX="1047.0" layoutY="344.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #ffffff00;" text="个人信息" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="settingButton" layoutX="1047.0" layoutY="404.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: xffffff00;" text="设置" textFill="WHITE">
+            <Button fx:id="settingButton" layoutX="1047.0" layoutY="404.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #ffffff00;" text="设置" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="feedbackButton" layoutX="1047.0" layoutY="469.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: xffffff00;" text="反馈" textFill="WHITE">
+            <Button fx:id="feedbackButton" layoutX="1047.0" layoutY="469.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #ffffff00;" text="反馈" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="aboutUsButton" layoutX="1047.0" layoutY="534.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: xffffff00;" text="关于我们" textFill="WHITE">
+            <Button fx:id="aboutUsButton" layoutX="1047.0" layoutY="534.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #ffffff00;" text="关于我们" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <ImageView fx:id="iconImage" fitHeight="145.0" fitWidth="145.0" layoutX="1045.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -72,6 +92,16 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="contentPane" layoutX="337.0" layoutY="115.0" prefHeight="496.0" prefWidth="696.0" />
+      <Pane fx:id="contentPane" layoutX="337.0" layoutY="115.0" prefHeight="496.0" prefWidth="696.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="496.0" prefWidth="696.0" text="Welcome" textFill="WHITE">
+               <font>
+                  <Font name="Zapfino" size="43.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children></Pane>
    </children>
 </Pane>

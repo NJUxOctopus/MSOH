@@ -107,8 +107,7 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCustomerOrderListView() {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerOrderListView.fxml", 1);
-        FXMLLoader loader = stageController.getLoader();
-        CustomerOrderListViewController customerOrderListViewController = loader.getController();
+        CustomerOrderListViewController customerOrderListViewController = (CustomerOrderListViewController) stageController.getController();
         customerOrderListViewController.addOrderPane();
     }
 
@@ -119,8 +118,7 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCustomerHotelListView() {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerMyHotelView.fxml", 1);
-        FXMLLoader loader = stageController.getLoader();
-        CustomerMyHotelViewController customerMyHotelViewController = loader.getController();
+        CustomerMyHotelViewController customerMyHotelViewController = (CustomerMyHotelViewController) stageController.getController();
         customerMyHotelViewController.addHotelPane();
     }
 
@@ -131,8 +129,7 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCustomerCreditRecordView() {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerCreditRecordView.fxml", 1);
-        FXMLLoader loader = stageController.getLoader();
-        CustomerCreditRecordViewController customerCreditRecordViewController = loader.getController();
+        CustomerCreditRecordViewController customerCreditRecordViewController = (CustomerCreditRecordViewController)stageController.getController();
         customerCreditRecordViewController.addCreditPane();
 
     }
@@ -186,8 +183,7 @@ public class CustomerMainViewController implements ControlledStage {
     private void search(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerHotelListView.fxml", 1);
-        FXMLLoader loader = stageController.getLoader();
-        CustomerHotelListViewController customerHotelListViewController = loader.getController();
+        CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController)stageController.getController();
         customerHotelListViewController.addHotelPane();
     }
 }

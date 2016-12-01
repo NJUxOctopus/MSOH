@@ -48,8 +48,7 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     public void showConfirmExit() {
         stageController = new StageController();
         stageController.loadStage("util/ConfirmExit.fxml", 1);
-        FXMLLoader loader = stageController.getLoader();
-        ConfirmExitController controller = loader.getController();
+        ConfirmExitController controller = (ConfirmExitController)stageController.getController();
         controller.setToBeClosed(resource);
     }
 
