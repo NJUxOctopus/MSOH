@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkCreateHotelPromotionController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1415.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -126,7 +125,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <Button fx:id="createButton" layoutX="687.0" layoutY="377.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="制定" textFill="WHITE">
+            <Button fx:id="createButton" layoutX="768.0" layoutY="377.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="制定" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="16.0" />
                </font>

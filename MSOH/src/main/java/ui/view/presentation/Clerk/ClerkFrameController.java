@@ -2,9 +2,11 @@ package ui.view.presentation.Clerk;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import ui.view.presentation.StageController;
 import ui.view.presentation.ControlledStage;
 
@@ -13,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by ST on 2016/11/22.
  */
-public class ClerkFrameController implements ControlledStage{
+public class ClerkFrameController implements ControlledStage {
 
     StageController stageController;
 
@@ -62,10 +64,13 @@ public class ClerkFrameController implements ControlledStage{
             loader.setLocation(ClerkFrame.class.getResource("ClerkHotelInfo.fxml"));
             Pane hotelInfoView = (Pane) loader.load();
 
+            // Close the previous panel
+            clerkFramePane.getChildren().clear();
+
             // Set hotelInfoView into the initial pane.
             clerkFramePane.getChildren().add(hotelInfoView);
-            hotelInfoView.setLayoutX(341);
-            hotelInfoView.setLayoutY(140);
+            hotelInfoView.setLayoutX(0);
+            hotelInfoView.setLayoutY(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,17 +79,20 @@ public class ClerkFrameController implements ControlledStage{
     /**
      * 订单按钮结果，显示酒店订单列表
      */
-    public void showHotelOrderList(){
+    public void showHotelOrderList() {
         try {
             // Load hotelInfoView.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkCheckOrderListView.fxml"));
             Pane hotelInfoView = (Pane) loader.load();
 
+            // Close the previous panel
+            clerkFramePane.getChildren().clear();
+
             // Set hotelInfoView into the initial pane.
             clerkFramePane.getChildren().add(hotelInfoView);
-            hotelInfoView.setLayoutX(341);
-            hotelInfoView.setLayoutY(140);
+            hotelInfoView.setLayoutX(0);
+            hotelInfoView.setLayoutY(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -93,26 +101,31 @@ public class ClerkFrameController implements ControlledStage{
     /**
      * 酒店促销按钮结果，显示酒店促销页面
      */
-    public void showHotelPromotionList(){
+    public void showHotelPromotionList() {
         try {
             // Load hotelInfoView.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkHotelPromotion.fxml"));
             Pane hotelInfoView = (Pane) loader.load();
 
-            //Delete previous panel.
+            // Close the previous panel
+            clerkFramePane.getChildren().clear();
 
             // Set hotelInfoView into the initial pane.
             clerkFramePane.getChildren().add(hotelInfoView);
-            hotelInfoView.setLayoutX(341);
-            hotelInfoView.setLayoutY(140);
+            hotelInfoView.setLayoutX(0);
+            hotelInfoView.setLayoutY(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void modifyClerkInfo(){
+    /**
+     * 个人信息按钮结果，显示修改个人信息界面
+     */
+    public void showModifyClerkInfo() throws IOException {
         stageController = new StageController();
+        stageController.loadStage("Clerk/ClerkModifyPersonalInfo.fxml", 1);
     }
 
 

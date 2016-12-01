@@ -8,7 +8,7 @@ import ui.view.presentation.StageController;
 
 public class ClerkFrame extends Application {
 
-    private static String resources = "Clerk/ClerkFrame.fxml";
+    private static String resource = "Clerk/ClerkFrame.fxml";
 
     private StageController stageController;
 
@@ -19,7 +19,7 @@ public class ClerkFrame extends Application {
     @Override
     public void start(Stage primaryStage) {
         stageController = new StageController();
-        stageController.loadStage(resources, 1);
+        stageController.loadStage(resource, 1);
 
     }
 

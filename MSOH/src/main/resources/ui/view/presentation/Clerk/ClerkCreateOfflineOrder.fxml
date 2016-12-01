@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkCreateOfflineOrderController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1306.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,7 +22,7 @@
             <Image url="@../image/ClerkModifyAvailableRoomsFrame.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" onAction="#showConfirmExit" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
          <graphic>
             <ImageView fx:id="backButton" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -48,12 +47,22 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" layoutX="458.0" layoutY="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="addButton" layoutX="468.0" layoutY="210.0" mnemonicParsing="false" onAction="#addPeopleNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/AddButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="addButton1" layoutX="356.0" layoutY="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="minusButton" layoutX="356.0" layoutY="210.0" mnemonicParsing="false" onAction="#minusPeopleNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -68,7 +77,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField layoutX="406.0" layoutY="212.0" prefHeight="41.0" prefWidth="66.0" promptText="0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;">
+      <TextField fx:id="peopleNumTextField" layoutX="406.0" layoutY="212.0" prefHeight="41.0" prefWidth="66.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="1">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -104,14 +113,6 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="480.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/AddButton.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Label layoutX="256.0" layoutY="350.0" text="入住时间" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />

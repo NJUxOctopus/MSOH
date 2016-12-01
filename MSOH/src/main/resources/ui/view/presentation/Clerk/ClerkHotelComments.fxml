@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkHotelCommentsController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1291.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/clerkBG.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="749.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/ClerkModifyAvailableRoomsFrame.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" onAction="#showConfirmExit" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/BackButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="192.0" layoutY="65.0" text="酒店评价" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="57.0" />
+         </font>
+      </Label>
+      <Pane layoutX="122.0" layoutY="167.0" prefHeight="500.0" prefWidth="1037.0" />
+   </children>
+</Pane>

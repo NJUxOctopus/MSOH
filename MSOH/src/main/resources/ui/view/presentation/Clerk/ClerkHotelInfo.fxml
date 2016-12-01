@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkFrame">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.Clerk.ClerkHotelInfoController">
    <children>
       <Pane prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;">
          <children>
-            <Button fx:id="ChangeInfo" layoutX="539.0" layoutY="423.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改信息" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="ChangeInfo" layoutX="539.0" layoutY="423.0" mnemonicParsing="false" onAction="#showModifyHotelInfo" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改信息" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="16.0" />
                </font>
@@ -36,7 +36,7 @@
                   <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
-            <Button layoutX="331.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="查看详细评价">
+            <Button fx:id="checkCommentsButton" layoutX="331.0" layoutY="34.0" mnemonicParsing="false" onAction="#showHotelComments" style="-fx-background-color: #ffffff00;" text="查看详细评价">
                <font>
                   <Font name="Microsoft YaHei" size="15.0" />
                </font>
@@ -92,7 +92,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <Button fx:id="addRoom" layoutX="403.0" layoutY="423.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="录入客房" textFill="WHITE">
+            <Button fx:id="addRoomButton" layoutX="403.0" layoutY="423.0" mnemonicParsing="false" onAction="#showModifyAvailableRooms" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="录入客房" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="16.0" />
                </font>
