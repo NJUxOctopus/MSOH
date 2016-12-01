@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="50.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleCommentViewController">
+   <children>
+      <Label fx:id="customerNameLabel" layoutX="20.0" text="客户名称" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="scoreLabel" layoutX="220.0" text="评分" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Line endX="860.0" layoutX="20.0" layoutY="49.0" stroke="WHITE" />
+      <Label fx:id="commentLabel" layoutX="42.0" layoutY="32.0" text="&quot;优惠时间。&quot;" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

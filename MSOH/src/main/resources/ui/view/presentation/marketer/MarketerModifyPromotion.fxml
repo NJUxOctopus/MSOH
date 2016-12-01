@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerModifyPromotionController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1368.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MarketerBG.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="1445.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/ClerkModifyAvailableRoomsFrame.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fx:id="backButton" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/BackButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="192.0" layoutY="65.0" text="修改促销策略" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="57.0" />
+         </font>
+      </Label>
+      <Pane layoutX="156.0" layoutY="157.0" prefHeight="522.0" prefWidth="936.0">
+         <children>
+            <Label layoutX="139.0" layoutY="72.0" text="优惠名称" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="136.0" text="优惠时间" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="198.0" text="针对人群" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="261.0" text="优惠折扣" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="257.0" layoutY="74.0" prefHeight="32.0" prefWidth="246.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField layoutX="257.0" layoutY="263.0" prefHeight="32.0" prefWidth="246.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Button fx:id="createButton" layoutX="687.0" layoutY="377.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="制定" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ChoiceBox layoutX="257.0" layoutY="138.0" prefHeight="31.0" prefWidth="71.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label layoutX="334.0" layoutY="136.0" text="年" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="368.0" layoutY="138.0" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label layoutX="427.0" layoutY="136.0" text="月" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="461.0" layoutY="138.0" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label layoutX="520.0" layoutY="136.0" text="日" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="564.0" layoutY="138.0" prefHeight="31.0" prefWidth="71.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label layoutX="641.0" layoutY="136.0" text="年" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="675.0" layoutY="138.0" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label layoutX="734.0" layoutY="136.0" text="月" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="768.0" layoutY="138.0" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <Label layoutX="827.0" layoutY="136.0" text="日" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="545.0" layoutY="136.0" text="~" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="257.0" layoutY="200.0" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </Pane>
+   </children>
+</Pane>

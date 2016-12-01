@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import ui.view.presentation.StageController;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 
 /**
  * Created by island on 2016/11/24.

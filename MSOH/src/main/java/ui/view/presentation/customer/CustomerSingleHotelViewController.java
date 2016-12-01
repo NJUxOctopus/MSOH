@@ -1,10 +1,11 @@
 package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
 /**
@@ -51,6 +52,9 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     private void viewHotelDetails(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerHotelDetailsView.fxml", 1);
+        FXMLLoader loader = stageController.getLoader();
+        CustomerHotelDetailsViewController customerHotelDetailsViewController = loader.getController();
+        customerHotelDetailsViewController.init();
     }
 
     @FXML
@@ -70,7 +74,8 @@ public class CustomerSingleHotelViewController implements ControlledStage {
 
     @FXML
     private void reserve(){
-
+        stageController = new StageController();
+        stageController.loadStage("customer/CustomerReserveView.fxml", 1);
     }
 
     @Override

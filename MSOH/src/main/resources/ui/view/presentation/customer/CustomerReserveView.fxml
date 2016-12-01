@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerReserveViewController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image_customer/ElCapitan2.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="40.0" layoutY="22.5" prefHeight="675.0" prefWidth="1200.0">
+         <children>
+            <ImageView fitHeight="675.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image_customer/customer_reserveframe.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4c4c475" height="550.0" layoutX="97.0" layoutY="99.0" stroke="#ffffff00" strokeType="INSIDE" width="178.0" />
+            <Label layoutX="379.0" layoutY="135.0" text="姓名" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="customerNameTextField" layoutX="460.0" layoutY="132.0" prefHeight="22.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="周沁涵">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="phoneTextField" layoutX="460.0" layoutY="182.0" prefHeight="26.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1383838438">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="370.0" layoutY="185.0" text="手机号" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="140.0" layoutY="180.0" text="客户信息" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Line endX="550.0" fill="WHITE" layoutY="375.0" rotate="90.0" stroke="WHITE" />
+            <TextField fx:id="idTextField" layoutX="460.0" layoutY="233.0" prefHeight="30.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="3200522111111111111">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="361.0" layoutY="235.0" text="身份证号" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Line endX="1000.0" layoutX="100.0" layoutY="300.0" stroke="WHITE" />
+            <Label layoutX="140.0" layoutY="445.0" text="预订信息" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="hotelNameTextField" editable="false" layoutX="460.0" layoutY="319.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="如家">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="360.0" layoutY="324.0" text="酒店名称" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="706.0" layoutY="324.0" text="酒店ID" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="360.0" layoutY="464.0" text="入住人数" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="700.0" layoutY="534.0" text="优惠策略" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="360.0" layoutY="394.0" text="入住日期" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="700.0" layoutY="394.0" text="退房日期" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="360.0" layoutY="534.0" text="折前价格" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="360.0" layoutY="604.0" text="折后价格" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="hotelIDTextField" editable="false" layoutX="790.0" layoutY="319.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="700.0" layoutY="464.0" text="有无儿童" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="checkOutTimeTextField1" editable="false" layoutX="790.0" layoutY="389.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111／11／12">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="checkInTimeTextField" editable="false" layoutX="460.0" layoutY="389.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1111／11／11">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <ChoiceBox fx:id="staffChoiceBox" layoutX="460.0" layoutY="459.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <ChoiceBox fx:id="hasChildChoiceBox" layoutX="790.0" layoutY="459.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <ChoiceBox fx:id="promotionChoiceBox" layoutX="790.0" layoutY="529.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ChoiceBox>
+            <TextField fx:id="prePriceTextField" editable="false" layoutX="460.0" layoutY="529.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="afterPriceTextField" editable="false" layoutX="460.0" layoutY="599.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Button fx:id="confirmButton" layoutX="910.0" layoutY="599.0" mnemonicParsing="false" onAction="#reserve" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="确认订单" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Line endX="1000.0" layoutX="100.0" layoutY="650.0" stroke="WHITE" />
+            <Line endX="1000.0" layoutX="100.0" layoutY="100.0" stroke="WHITE" />
+            <Line endX="550.0" fill="WHITE" layoutX="825.0" layoutY="375.0" rotate="90.0" stroke="WHITE" />
+            <Button fx:id="selectCheckInButton" layoutX="649.0" layoutY="389.0" mnemonicParsing="false" onAction="#selectCheckInTime" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="&gt;" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="selectCheckOutButton" layoutX="979.0" layoutY="389.0" mnemonicParsing="false" onAction="#selectCheckOutTime" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="&gt;" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+      <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fx:id="backButton1" fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image_customer/backButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</Pane>

@@ -2,13 +2,11 @@ package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
 import java.io.IOException;

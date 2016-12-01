@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
 /**

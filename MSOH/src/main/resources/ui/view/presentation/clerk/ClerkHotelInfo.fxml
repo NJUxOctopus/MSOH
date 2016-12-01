@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkHotelInfoController">
+   <children>
+      <Pane prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;">
+         <children>
+            <Button fx:id="ChangeInfo" layoutX="539.0" layoutY="423.0" mnemonicParsing="false" onAction="#showModifyHotelInfo" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改信息" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="hotelName" layoutX="30.0" layoutY="23.0" text="MSOH连锁酒店" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelScore" layoutX="272.0" layoutY="30.0" text="4.8分" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="73.0" text="今日剩余客房" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="checkCommentsButton" layoutX="331.0" layoutY="34.0" mnemonicParsing="false" onAction="#showHotelComments" style="-fx-background-color: #ffffff00;" text="查看详细评价">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="31.0" layoutY="119.0" text="标间：" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="StandardRoomNum" layoutX="86.0" layoutY="120.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="137.0" layoutY="119.0" text="单人房：" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="SingleRoomNum" layoutX="210.0" layoutY="120.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="262.0" layoutY="120.0" text="家庭房：" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="FamilyRoomNum" layoutX="336.0" layoutY="120.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="386.0" layoutY="120.0" text="豪华房：" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="DeluxeRoomNum" layoutX="460.0" layoutY="121.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <LineChart layoutX="16.0" layoutY="145.0" prefHeight="286.0" prefWidth="652.0" style="-fx-background-color: #ffffff00;" title="一周预订数量图">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Button fx:id="addRoomButton" layoutX="403.0" layoutY="423.0" mnemonicParsing="false" onAction="#showModifyAvailableRooms" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="录入客房" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</Pane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="474.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerChargeCreditController">
+   <children>
+      <TextField fx:id="SearchTextField" layoutX="21.0" layoutY="21.0" prefHeight="29.0" prefWidth="648.0" promptText="输入用户身份证号：" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font name="Microsoft YaHei" size="15.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>

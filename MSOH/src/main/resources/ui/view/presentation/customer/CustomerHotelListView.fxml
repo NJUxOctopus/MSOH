@@ -61,7 +61,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="typeOfRoomChoiceBox" layoutX="130.0" layoutY="327.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
+            <ChoiceBox fx:id="starChoiceBox" layoutX="130.0" layoutY="327.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

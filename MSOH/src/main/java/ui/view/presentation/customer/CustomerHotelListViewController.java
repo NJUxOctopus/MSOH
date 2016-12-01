@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class CustomerHotelListViewController implements ControlledStage {
     private ChoiceBox areaChoiceBox;
 
     @FXML
-    private ChoiceBox typeOfRoomChoiceBox;
+    private ChoiceBox starChoiceBox;
 
     @FXML
     private ChoiceBox numOfRoomChoiceBox;

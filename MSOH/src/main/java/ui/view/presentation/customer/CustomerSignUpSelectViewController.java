@@ -3,7 +3,7 @@ package ui.view.presentation.customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import ui.view.presentation.StageController;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 
 /**
  * Created by island on 2016/11/25.

@@ -24,7 +24,7 @@
             <Image url="@image_customer/customer_hoteldetailsframe.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">
          <graphic>
             <ImageView fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,9 +33,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="80.0" layoutY="115.0" prefHeight="561.0" prefWidth="1125.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+      <ScrollPane layoutX="80.0" layoutY="115.0" prefHeight="555.0" prefWidth="1120.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1084.0" prefWidth="1081.0" style="-fx-background-color: #ffffff00;">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1135.0" prefWidth="1083.0" style="-fx-background-color: #ffffff00;">
                <children>
                   <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="60.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-border_color: #ffffffff;" />
                   <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="10.0" prefHeight="355.0" prefWidth="65.0" text="哈哈哈哈哈哈哈哈" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
@@ -98,9 +98,9 @@
                      </font>
                   </Label>
                   <Line endX="1000.0" layoutX="60.0" layoutY="365.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="380.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
+                  <ScrollPane layoutX="60.0" layoutY="380.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;">
                     <content>
-                      <AnchorPane fx:id="roomInfoScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="145.0" prefWidth="990.0">
+                      <AnchorPane fx:id="roomInfoScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="145.0" prefWidth="977.0">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="房间信息" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                                  <font>
@@ -185,27 +185,62 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
+                              <Label layoutX="65.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="房间类型" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="365.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="剩余数量" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="665.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="预订价格" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
                   <Line endX="1000.0" layoutX="60.0" layoutY="545.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="560.0" prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+                  <ScrollPane layoutX="60.0" layoutY="560.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
                      <content>
-                        <AnchorPane fx:id="promotionScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="94.0" prefWidth="990.0" style="-fx-background-color: #ffffff00;">
+                        <AnchorPane fx:id="promotionScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="145.0" prefWidth="977.0" style="-fx-background-color: #ffffff00;">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="促销信息" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="65.0" layoutY="35.0" style="-fx-border-color: #ffffffff;" text="策略名称" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="265.0" layoutY="35.0" style="-fx-border-color: #ffffffff;" text="优惠折扣" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="465.0" layoutY="35.0" style="-fx-border-color: #ffffffff;" text="适用人群" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="665.0" layoutY="35.0" style="-fx-border-color: #ffffffff;" text="优惠时间" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Line endX="1000.0" layoutX="60.0" layoutY="675.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="690.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+                  <Line endX="1000.0" layoutX="60.0" layoutY="725.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="740.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
                      <content>
-                        <AnchorPane fx:id="evaluationScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="986.0" style="-fx-background-color: #ffffff00;">
+                        <AnchorPane fx:id="commentScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="977.0" style="-fx-background-color: #ffffff00;">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="评价详情" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                                  <font>
@@ -221,10 +256,10 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Line endX="1000.0" layoutX="60.0" layoutY="855.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="870.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+                  <Line endX="1000.0" layoutX="60.0" layoutY="905.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="920.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
                      <content>
-                        <AnchorPane fx:id="historyOrderScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="994.0" style="-fx-background-color: #ffffff00;">
+                        <AnchorPane fx:id="historyOrderScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="977.0" style="-fx-background-color: #ffffff00;">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="历史订单" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                                  <font>

@@ -2,7 +2,7 @@ package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
 /**

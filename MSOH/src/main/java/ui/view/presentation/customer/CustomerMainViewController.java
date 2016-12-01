@@ -8,9 +8,10 @@ package ui.view.presentation.customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import ui.view.presentation.ControlledStage;
+import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
 
@@ -22,10 +23,10 @@ public class CustomerMainViewController implements ControlledStage {
     private ImageView background;
 
     @FXML
-    private Button selectAddressButton;
+    private ChoiceBox cityChoiceBox;
 
     @FXML
-    private Button selectAreaButton;
+    private ChoiceBox areaChoiceBox;
 
     @FXML
     private Button selectCheckInTimeButton;
@@ -34,10 +35,10 @@ public class CustomerMainViewController implements ControlledStage {
     private Button selectCheckOutTimeButton;
 
     @FXML
-    private Button selectStarButton;
+    private ChoiceBox starChoiceBox;
 
     @FXML
-    private Button selectScoreButton;
+    private ChoiceBox scoreChoiceBox;
 
     @FXML
     private Button hotelButton;
@@ -117,10 +118,10 @@ public class CustomerMainViewController implements ControlledStage {
     @FXML
     private void showCustomerHotelListView() {
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerHotelListView.fxml", 1);
+        stageController.loadStage("customer/CustomerMyHotelView.fxml", 1);
         FXMLLoader loader = stageController.getLoader();
-        CustomerHotelListViewController customerHotelListViewController = loader.getController();
-        customerHotelListViewController.addHotelPane();
+        CustomerMyHotelViewController customerMyHotelViewController = loader.getController();
+        customerMyHotelViewController.addHotelPane();
     }
 
     /**
@@ -154,36 +155,15 @@ public class CustomerMainViewController implements ControlledStage {
         stageController.loadStage("customer/CustomerInfoView.fxml", 1);
     }
 
-    /**
-     * 地址选择按钮结果，跳出地址选择界面
-     */
-    @FXML
-    private void showCitySelectView(){
-
-    }
-
-    @FXML
-    private void showAreaSelectView(){
-
-    }
 
     @FXML
     private void showCheckInTimeSelectView(){
-
+        stageController = new StageController();
+        stageController.loadStage("util/SelectTimeView.fxml",0.8);
     }
 
     @FXML
     private void showCheckOutTimeSelectView(){
-
-    }
-
-    @FXML
-    private void showStarSelectView(){
-
-    }
-
-    @FXML
-    private void showScoreSelectView(){
 
     }
 
@@ -204,6 +184,10 @@ public class CustomerMainViewController implements ControlledStage {
 
     @FXML
     private void search(){
-
+        stageController = new StageController();
+        stageController.loadStage("customer/CustomerHotelListView.fxml", 1);
+        FXMLLoader loader = stageController.getLoader();
+        CustomerHotelListViewController customerHotelListViewController = loader.getController();
+        customerHotelListViewController.addHotelPane();
     }
 }

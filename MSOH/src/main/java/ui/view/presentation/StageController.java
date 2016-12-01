@@ -8,6 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ui.view.presentation.util.ControlledStage;
 
 import java.util.HashMap;
 
