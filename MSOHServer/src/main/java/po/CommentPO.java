@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "comment", schema = "msoh_database")
-public class CommentPO implements Serializable {
+public class CommentPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
 
     // 评价编号,供数据库存储使用，无实际意义
@@ -129,5 +129,17 @@ public class CommentPO implements Serializable {
 
     public void setCommentId(int commentId) {
         this.commentId = commentId;
+    }
+
+    @Override
+    public Object clone() {
+        CommentPO commentPO = null;
+        try {
+            commentPO = (CommentPO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return commentPO;
     }
 }

@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "customer", schema = "msoh_database")
-public class CustomerPO implements Serializable {
+public class CustomerPO implements Serializable ,Cloneable{
     private static final long serialVersionUID = 1L;
 
     // 客户姓名
@@ -117,5 +117,17 @@ public class CustomerPO implements Serializable {
 
     public void setMemberType(MemberType memberType) {
         this.memberType = memberType;
+    }
+
+    @Override
+    public Object clone(){
+        CustomerPO customerPO=null;
+        try{
+            customerPO=(CustomerPO)super.clone();
+        }catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
+
+        return customerPO;
     }
 }

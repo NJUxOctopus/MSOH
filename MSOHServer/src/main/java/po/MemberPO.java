@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "member", schema = "msoh_database")
-public class MemberPO implements Serializable {
+public class MemberPO implements Serializable,Cloneable {
     private static final long serialVersionUID = 1L;
     // 会员ID
     @Id
@@ -82,4 +82,15 @@ public class MemberPO implements Serializable {
         this.companyName = companyName;
     }
 
+    @Override
+    public Object clone(){
+        MemberPO memberPO=null;
+        try{
+            memberPO=(MemberPO)super.clone();
+        }catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
+
+        return memberPO;
+    }
 }

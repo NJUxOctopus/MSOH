@@ -13,26 +13,27 @@ import java.util.List;
  * Created by zqh on 2016/12/1.
  */
 @SuppressWarnings(value = {"Duplicates"})
-public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper{
+public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
     /**
      * 新增信用记录
+     *
      * @param creditRecordPO
      * @return 是否成功
      */
     public boolean addCreditRecord(CreditRecordPO creditRecordPO) {
-        Session session=null;
-        try{
-            session= HibernateUtil.getSession();
+        Session session = null;
+        try {
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.save(creditRecordPO);
 
             return true;
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             e.printStackTrace();
             return false;
-        }finally {
-            if(session!=null){
+        } finally {
+            if (session != null) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
@@ -41,23 +42,24 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper{
 
     /**
      * 删除信用记录
+     *
      * @param creditRecordPO
      * @return 是否成功
      */
     public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) {
-        Session session=null;
-        try{
-            session= HibernateUtil.getSession();
+        Session session = null;
+        try {
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.delete(creditRecordPO);
 
             return true;
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             e.printStackTrace();
             return false;
-        }finally {
-            if(session!=null){
+        } finally {
+            if (session != null) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }
@@ -67,26 +69,27 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper{
 
     /**
      * 根据客户ID查询信用记录
+     *
      * @param ID
      * @return 与客户对应的信用记录
      */
     public List<CreditRecordPO> findCreditRecordByID(String ID) {
-        Session session=null;
-        try{
-            session=HibernateUtil.getSession();
+        Session session = null;
+        try {
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
-            String hql="from CreditRecordPO as creditrecord where creditrecord.customerID=:n";
-            Query query=session.createQuery(hql);
-            query.setString("n",ID);
+            String hql = "from CreditRecordPO as creditrecord where creditrecord.customerID=:n";
+            Query query = session.createQuery(hql);
+            query.setString("n", ID);
 
-            List<CreditRecordPO> list=query.list();
+            List<CreditRecordPO> list = query.list();
             return list;
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             e.printStackTrace();
             return null;
-        }finally {
-            if(session!=null){
+        } finally {
+            if (session != null) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
             }

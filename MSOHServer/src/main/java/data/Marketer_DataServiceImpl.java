@@ -70,7 +70,7 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
     public List<MarketerPO> findMarketerByName(String name) throws IOException, ClassNotFoundException {
         List<MarketerPO> marketersFound = marketerDataHelper.getMarketerByName(name);
 
-        if (null == marketersFound) {
+        if (null == marketersFound || marketersFound.isEmpty()) {
             return null;
         }
 
@@ -103,7 +103,7 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      */
     public List<MarketerPO> findAllMarketers() throws IOException, ClassNotFoundException {
         List<MarketerPO> marketerList = marketerDataHelper.getAllMarketers();
-        if (null == marketerList) {
+        if (null == marketerList || marketerList.isEmpty()) {
             return null;
         }
 

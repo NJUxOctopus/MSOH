@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  */
 public class CommentPOTest {
     @Test
-    public void testSaveCommentPO(){
-        Session session= HibernateUtil.getSession();
+    public void testSaveCommentPO() {
+        Session session = HibernateUtil.getSession();
 
-        CommentPO c=new CommentPO(55,"bad","st","320581199703032586","hgg","52363523","201611230002",new Timestamp(System.currentTimeMillis()));
+        CommentPO c = new CommentPO(55, "bad", "st", "320581199703032586", "hgg", "52363523", "201611230002", new Timestamp(System.currentTimeMillis()));
         session.beginTransaction();
         session.save(c);
         session.getTransaction().commit();

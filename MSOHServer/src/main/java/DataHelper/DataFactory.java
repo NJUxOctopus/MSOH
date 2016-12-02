@@ -24,4 +24,6 @@ public interface DataFactory {
 
     public CreditRecordDataHelper getCreditRecordDataHelper();
 
+    public CommentDataHelper getCommentDataHelper();
+
 }

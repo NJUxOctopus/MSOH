@@ -68,7 +68,7 @@ public class Order_DataServiceImpl implements Order_DataService {
      */
     public List<OrderPO> getAllOrders() throws IOException, ClassNotFoundException {
         List<OrderPO> orderPOList = orderDataHelper.getAllOrders();
-        if (null == orderPOList) {
+        if (null == orderPOList || orderPOList.isEmpty()) {
             return null;
         }
 
@@ -104,7 +104,7 @@ public class Order_DataServiceImpl implements Order_DataService {
      */
     public List<OrderPO> findOrderByCustomerID(String customerID) throws IOException, ClassNotFoundException {
         List<OrderPO> orderPOList = orderDataHelper.findOrderByCustomerID(customerID);
-        if (null == orderPOList) {
+        if (null == orderPOList || orderPOList.isEmpty()) {
             return null;
         }
 
@@ -123,7 +123,7 @@ public class Order_DataServiceImpl implements Order_DataService {
      */
     public List<OrderPO> findOrderByHotelID(String hotelID) throws IOException, ClassNotFoundException {
         List<OrderPO> orderPOList = orderDataHelper.findOrderByHotelID(hotelID);
-        if (null == orderPOList) {
+        if (null == orderPOList || orderPOList.isEmpty()) {
             return null;
         }
 
@@ -142,7 +142,7 @@ public class Order_DataServiceImpl implements Order_DataService {
      */
     public List<OrderPO> findOrderByOrderStatus(OrderStatus orderStatus) throws IOException, ClassNotFoundException {
         List<OrderPO> orderPOList = orderDataHelper.findOrderByOrderStatus(orderStatus);
-        if (null == orderPOList) {
+        if (null == orderPOList || orderPOList.isEmpty()) {
             return null;
         }
 

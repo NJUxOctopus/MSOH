@@ -10,22 +10,22 @@ import java.rmi.registry.LocateRegistry;
  * Created by zqh on 2016/11/13.
  */
 public class RemoteHelper {
-    public RemoteHelper(){
+    public RemoteHelper() {
         initServer();
     }
 
-    public void initServer(){
+    public void initServer() {
         DataRemoteObject dataRemoteObject;
-        try{
-            dataRemoteObject=new DataRemoteObject();
+        try {
+            dataRemoteObject = new DataRemoteObject();
             dataRemoteObject = new DataRemoteObject();
             LocateRegistry.createRegistry(8888);
             Naming.bind("rmi://localhost:8888/DataRemoteObject", dataRemoteObject);
-        }catch(RemoteException e){
+        } catch (RemoteException e) {
             e.printStackTrace();
-        }catch(MalformedURLException e){
+        } catch (MalformedURLException e) {
             e.printStackTrace();
-        }catch(AlreadyBoundException e){
+        } catch (AlreadyBoundException e) {
             e.printStackTrace();
         }
     }

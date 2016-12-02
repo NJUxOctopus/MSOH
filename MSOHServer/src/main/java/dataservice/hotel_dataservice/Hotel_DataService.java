@@ -5,6 +5,7 @@ import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
 
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -24,13 +25,13 @@ public interface Hotel_DataService extends Remote {
     public boolean deleteHotel(HotelPO po) throws RemoteException;
 
     // 得到所有酒店信息
-    public List<HotelPO> getHotels() throws RemoteException;
+    public List<HotelPO> getHotels() throws IOException, ClassNotFoundException;
 
     // 根据酒店ID查找酒店
     public HotelPO findHotelByID(String hotelID) throws RemoteException;
 
     // 根据酒店名字查找酒店
-    public List<HotelPO> findHotelByName(String hotelName) throws RemoteException;
+    public List<HotelPO> findHotelByName(String hotelName) throws IOException, ClassNotFoundException;
 
     // 新增酒店房间
     public boolean addRoom(RoomPO po) throws RemoteException;
@@ -45,7 +46,7 @@ public interface Hotel_DataService extends Remote {
     public RoomPO getRoom(String hotelID, String roomName) throws RemoteException;
 
     // 获取某酒店的所有房间
-    public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException;
+    public List<RoomPO> getHotelRooms(String hotelID) throws IOException, ClassNotFoundException;
 
     // 获得某酒店的每日房间信息
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
@@ -57,7 +58,7 @@ public interface Hotel_DataService extends Remote {
     public boolean addComment(CommentPO po) throws RemoteException;
 
     // 根据酒店获得评价
-    public List<CommentPO> getCommentByHotel(String hotelID) throws RemoteException;
+    public List<CommentPO> getCommentByHotel(String hotelID) throws IOException, ClassNotFoundException;
 
     // 根据订单获得评价
     public CommentPO getCommentByOrder(String orderID) throws RemoteException;

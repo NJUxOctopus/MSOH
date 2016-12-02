@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "creditrecord", schema = "msoh_database")
-public class CreditRecordPO implements Serializable {
+public class CreditRecordPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
 
     // 信用记录ID，为数据库中自动生成，仅供数据库使用，无实际意义
@@ -110,4 +110,14 @@ public class CreditRecordPO implements Serializable {
         this.marketerName = marketerName;
     }
 
+    @Override
+    public Object clone() {
+        CreditRecordPO creditRecordPO = null;
+        try {
+            creditRecordPO = (CreditRecordPO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return creditRecordPO;
+    }
 }

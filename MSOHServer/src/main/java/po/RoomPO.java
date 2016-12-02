@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "room", schema = "msoh_database")
-public class RoomPO implements Serializable {
+public class RoomPO implements Serializable, Cloneable {
     // 房间ID
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_id_seq")
@@ -105,6 +105,18 @@ public class RoomPO implements Serializable {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    @Override
+    public Object clone() {
+        RoomPO roomPO = null;
+        try {
+            roomPO = (RoomPO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return roomPO;
     }
 
 }

@@ -7,12 +7,12 @@ import rmi.RemoteHelper;
 
 public class ServerDriver {
 
-	public ServerDriver(){
-		new RemoteHelper();
-	}
+    public ServerDriver() {
+        new RemoteHelper();
+    }
 
-	public static void main(String[] args) {
-		new ServerDriver();
-	}
+    public static void main(String[] args) {
+        new ServerDriver();
+    }
 
 }

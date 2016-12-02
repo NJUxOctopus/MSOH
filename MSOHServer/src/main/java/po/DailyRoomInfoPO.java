@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author zqh
  */
-public class DailyRoomInfoPO implements Serializable {
+public class DailyRoomInfoPO implements Serializable, Cloneable {
     // 酒店ID
     private String hotelID;
     // 日期
@@ -47,6 +47,17 @@ public class DailyRoomInfoPO implements Serializable {
 
     public void setRoom(List<RoomPO> room) {
         this.room = room;
+    }
+
+    @Override
+    public Object clone() {
+        DailyRoomInfoPO dailyRoomInfoPO = null;
+        try {
+            dailyRoomInfoPO = (DailyRoomInfoPO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return dailyRoomInfoPO;
     }
 
 }

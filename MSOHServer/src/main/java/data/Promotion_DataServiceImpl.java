@@ -75,7 +75,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
     public List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException {
         List<PromotionPO> list = promotionDataHelper.getAllPromotions();
 
-        if (list == null) {
+        if (list == null || list.isEmpty()) {
             return null;
         }
 

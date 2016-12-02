@@ -75,7 +75,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      */
     public List<ManagerPO> findAllManagers() throws IOException, ClassNotFoundException {
         List<ManagerPO> managersList = managerDataHelper.findAllManagers();
-        if (null == managersList) {
+        if (null == managersList || managersList.isEmpty()) {
             return null;
         }
 
@@ -94,7 +94,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
     public List<ManagerPO> findManagerByName(String name) throws IOException, ClassNotFoundException {
         List<ManagerPO> list = managerDataHelper.findManagerByName(name);
 
-        if (null == list) {
+        if (null == list || list.isEmpty()) {
             return null;
         }
 
