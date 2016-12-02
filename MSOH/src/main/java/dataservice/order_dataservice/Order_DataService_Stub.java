@@ -30,7 +30,7 @@ public class Order_DataService_Stub implements Order_DataService{
 		if(OrderID.equals("12138"))
 			return new OrderPO("pxr", "12345678910", "320200000000000000", "123",
 					"RUJIA",  new Timestamp(System.currentTimeMillis()), null, new Timestamp(System.currentTimeMillis()), null,
-					new Timestamp(System.currentTimeMillis()),null, 2, false, null, null,250.0, 200.0, OrderStatus.UNEXECUTED);
+					new Timestamp(System.currentTimeMillis()),null, 2, false, null, "1",250.0, 200.0, OrderStatus.UNEXECUTED);
 		else
 			return null;
 	}
@@ -40,7 +40,7 @@ public class Order_DataService_Stub implements Order_DataService{
 			List<OrderPO> orderPOList = new ArrayList<OrderPO>();
 			orderPOList.add(new OrderPO("pxr", "12345678910", "320200000000000000", "123",
 					"RUJIA", new Timestamp(System.currentTimeMillis()), null, new Timestamp(System.currentTimeMillis()), null,
-					new Timestamp(System.currentTimeMillis()), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
+					new Timestamp(System.currentTimeMillis()), null, 2, false, null, "1",250, 200, OrderStatus.UNEXECUTED));
 			return orderPOList;
 		}else
 			return null;
@@ -51,7 +51,7 @@ public class Order_DataService_Stub implements Order_DataService{
 			List<OrderPO> orderPOList = new ArrayList<OrderPO>();
 			orderPOList.add(new OrderPO("pxr", "12345678910", "320200000000000000", "123",
 					"RUJIA", new Timestamp(System.currentTimeMillis()), null, new Timestamp(System.currentTimeMillis()), null,
-					new Timestamp(System.currentTimeMillis()), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
+					new Timestamp(System.currentTimeMillis()), null, 2, false, null, "1",250, 200, OrderStatus.UNEXECUTED));
 			return orderPOList;
 		}else
 			return null;
@@ -62,7 +62,7 @@ public class Order_DataService_Stub implements Order_DataService{
 			List<OrderPO> orderPOList = new ArrayList<OrderPO>();
 			orderPOList.add(new OrderPO("pxr", "12345678910", "320200000000000000", "123",
 					"RUJIA", new Timestamp(System.currentTimeMillis()), null, new Timestamp(System.currentTimeMillis()), null,
-					new Timestamp(System.currentTimeMillis()), null, 2, false, null, null,250, 200, OrderStatus.UNEXECUTED));
+					new Timestamp(System.currentTimeMillis()), null, 2, false, null, "1",250, 200, OrderStatus.UNEXECUTED));
 			return orderPOList;
 		}else
 			return null;

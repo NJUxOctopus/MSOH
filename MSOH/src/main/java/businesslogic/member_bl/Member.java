@@ -33,17 +33,21 @@ public class Member implements Member_BLService {
                 if (memberVO.companyName.equals(""))//企业名输入不能为空
                     return ResultMessage.Blank;
                 else {
-                    member_dataService_stub.addMember(new MemberPO(customerID, memberVO.memberType,
-                            memberVO.level, memberVO.birthday, memberVO.companyName));
-                    return ResultMessage.Member_EnterpriseSignupSuccess;
+                    if (member_dataService_stub.addMember(new MemberPO(customerID, memberVO.memberType,
+                            memberVO.level, memberVO.birthday, memberVO.companyName)))
+                        return ResultMessage.Member_EnterpriseSignupSuccess;
+                    else
+                        return ResultMessage.Fail;
                 }
             } else {//若注册为普通会员
                 if (memberVO.birthday == null)//会员生日不能为空
                     return ResultMessage.Blank;
                 else {
-                    member_dataService_stub.addMember(new MemberPO(customerID, memberVO.memberType,
-                            memberVO.level, memberVO.birthday, memberVO.companyName));
-                    return ResultMessage.Member_NormalSignupSuccess;
+                    if (member_dataService_stub.addMember(new MemberPO(customerID, memberVO.memberType,
+                            memberVO.level, memberVO.birthday, memberVO.companyName)))
+                        return ResultMessage.Member_NormalSignupSuccess;
+                    else
+                        return ResultMessage.Fail;
                 }
             }
         } else

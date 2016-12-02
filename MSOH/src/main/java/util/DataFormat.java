@@ -7,4 +7,22 @@ public class DataFormat {
     public static final String Password_Format = "[0-9A-Za-z_]{6,16}$";
     public static final String Email_Format = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@" +
             "([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+
+    public static String code(String ID) {
+        String result = "";
+        for (int i = 0; i < ID.length(); i++) {
+            char ch = ID.charAt(i);
+            result += (char) (ch - 10);
+        }
+        return result;
+    }
+
+    public static String reCode(String ID) {
+        String result = "";
+        for (int i = 0; i < ID.length(); i++) {
+            char c = ID.charAt(i);
+            result += (char) (c + 10);
+        }
+        return result;
+    }
 }

@@ -1,5 +1,6 @@
 package businesslogic.customer_bl;
 
+import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.customer_blservice.Customer_BLService;
 import dataservice.customer_dataservice.Customer_DataService_Stub;
 import po.CustomerPO;
@@ -50,9 +51,11 @@ public class Customer implements Customer_BLService {
             return ResultMessage.Customer_SignupExist;
         } else if (customerVO.password.matches(DataFormat.Password_Format)&&customerVO.email.matches(DataFormat.Email_Format)) {
             //若用户已输入ID并且不存在该ID的用户，则添加该用户，并返回注册成功
-            customer_dataService_stub.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
-                    customerVO.phone, customerVO.email, customerVO.credit, customerVO.picUrl, customerVO.ID, customerVO.memberType));
-            return ResultMessage.Customer_SignupSuccess;
+            if(customer_dataService_stub.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
+                    customerVO.phone, customerVO.email, customerVO.credit, customerVO.picUrl, customerVO.ID, customerVO.memberType)))
+                return ResultMessage.Customer_SignupSuccess;
+            else
+                return ResultMessage.Fail;
         } else
             return ResultMessage.DataFormatWrong;
     }
@@ -76,8 +79,10 @@ public class Customer implements Customer_BLService {
         customerPO.setPhone(customerVO.phone);
         customerPO.setPicture(customerVO.picUrl);
         customerPO.setUserName(customerVO.name);
-        customer_dataService_stub.modifyCustomer(customerPO);
-        return ResultMessage.ChangeInfoSuccess;
+        if(customer_dataService_stub.modifyCustomer(customerPO))
+            return ResultMessage.ChangeInfoSuccess;
+        else
+            return ResultMessage.Fail;
     }
 
     /**
@@ -101,10 +106,12 @@ public class Customer implements Customer_BLService {
             HotelPO hotelPO = (HotelPO) object;
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] infra = hotelPO.getInfra().split(";");
+            String[] roomType = hotelPO.getHotelRoomType().split(";");
+            HotelUtil hotelUtil = new HotelUtil();
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
-                    hotelPO.getIntro(), infra, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),picUrl,
-                    hotelPO.getClerk().getName(), hotelPO.getClerk().getPhone(), hotelPO.getHotelID(), null, null);
-            //TODO
+                    hotelPO.getIntro(), infra, roomType,hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),picUrl,
+                    hotelPO.getClerk().getName(), hotelPO.getClerk().getPhone(), hotelPO.getHotelID(),
+                    hotelUtil.getDailyRoomInfo(hotelPO.getHotelID()), hotelUtil.getComment(hotelPO.getHotelID()));
             listVO.add(hotelVO);
         }
         return listVO;
@@ -141,8 +148,10 @@ public class Customer implements Customer_BLService {
                 //如果两次新密码输入相同
                 CustomerPO customerPO = customer_dataService_stub.findCustomerByID(ID);
                 customerPO.setPassword(newPassword1);
-                customer_dataService_stub.modifyCustomer(customerPO);
-                return ResultMessage.ChangePasswordSuccess;
+                if(customer_dataService_stub.modifyCustomer(customerPO))
+                    return ResultMessage.ChangePasswordSuccess;
+                else
+                    return ResultMessage.Fail;
             } else {
                 //两次新密码输入不同
                 return ResultMessage.ChangePassword2DifferentNew;
