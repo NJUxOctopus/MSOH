@@ -4,89 +4,52 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="497.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.manager.ManagerStaffManageViewController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image_manager/manager_background.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="675.0" fitWidth="1200.0" layoutX="40.0" layoutY="22.5" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image_manager/manager_mainframe.png" />
-         </image>
-      </ImageView>
-      <Pane layoutX="336.0" layoutY="114.0" prefHeight="497.0" prefWidth="696.0">
-         <children>
-            <Button layoutX="596.0" layoutY="21.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="78.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="查询" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Label layoutX="15.0" layoutY="21.0" text="查询" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ChoiceBox fx:id="staffChoiceBox" layoutX="63.0" layoutY="22.0" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" />
-            <TextField layoutX="152.0" layoutY="22.0" prefHeight="29.0" prefWidth="418.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" />
-            <Button fx:id="addManagerButton" layoutX="28.0" layoutY="452.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="添加网站营销人员" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="lastPageButton" layoutX="383.0" layoutY="453.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="&lt; 上一页" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="nextPageButton" layoutX="463.0" layoutY="453.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="下一页 &gt;" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Label layoutX="555.0" layoutY="452.0" prefHeight="39.0" prefWidth="78.0" text="当前页：" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <ChoiceBox fx:id="selectPageBox" layoutX="627.0" layoutY="457.0" prefHeight="29.0" prefWidth="54.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ChoiceBox>
-            <Pane layoutX="33.0" layoutY="68.0" prefHeight="120.0" prefWidth="630.0">
-               <children>
-                  <ImageView fitHeight="129.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image_manager/manager_singlepersonframe.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="modifyButton" layoutX="546.0" layoutY="82.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="修改信息" textFill="WHITE" />
-                  <Label layoutX="20.0" prefHeight="125.0" prefWidth="19.0" text="酒店工作人员" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-                  <Label layoutX="104.0" layoutY="16.0" text="姓名：" textFill="WHITE" />
-                  <Label layoutX="96.0" layoutY="57.0" text="手机号：" textFill="WHITE" />
-                  <Label layoutX="90.0" layoutY="97.0" text="身份证号：" textFill="WHITE" />
-                  <Label layoutX="158.0" layoutY="16.0" text="Octopus" textFill="WHITE" />
-                  <Label layoutX="157.0" layoutY="57.0" text="1383838438" textFill="WHITE" />
-                  <Label layoutX="158.0" layoutY="97.0" text="320510199911111111" textFill="WHITE" />
-               </children>
-            </Pane>
-            <Button fx:id="addCleckButton" layoutX="212.0" layoutY="452.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="添加酒店工作人员" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
+      <Button fx:id="searchButton" layoutX="606.0" layoutY="13.0" mnemonicParsing="false" onAction="#search" prefHeight="29.0" prefWidth="78.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="查询" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="15.0" layoutY="13.0" text="查询" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="staffChoiceBox" layoutX="63.0" layoutY="14.0" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ChoiceBox>
+      <TextField fx:id="textField" layoutX="152.0" layoutY="14.0" prefHeight="29.0" prefWidth="418.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" />
+      <Button fx:id="addMarketerButton" layoutX="100.0" layoutY="455.0" mnemonicParsing="false" onAction="#showAddMarketerView" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="添加网站营销人员" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="addCleckButton" layoutX="400.0" layoutY="455.0" mnemonicParsing="false" onAction="#showAddCleckButton" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="添加酒店工作人员" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ScrollPane layoutX="10.0" layoutY="50.0" prefHeight="390.0" prefWidth="675.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@../customer/customer.css">
+         <content>
+            <AnchorPane fx:id="staffListScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="649.0" style="-fx-background-color: #ffffff00;" />
+         </content>
+      </ScrollPane>
    </children>
 </Pane>

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
 
@@ -37,14 +38,22 @@ public class ManagerHotelManageViewController implements ControlledStage {
 
     @FXML
     private void search(){
-
+        addSingleHotelPane();
     }
 
+    /**
+     * 点击添加酒店按钮，跳转至添加酒店界面
+     */
     @FXML
     private void addHotel(){
-
+        stageController = new StageController();
+        stageController.loadStage("manager/ManagerHotelInfoView.fxml", 1);
+        ManagerHotelInfoViewController managerHotelInfoViewController = (ManagerHotelInfoViewController) stageController.getController();
+        managerHotelInfoViewController.setAddVer();
     }
 
-    public void init(){
+    public void addSingleHotelPane(){
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(hotelListScrollPane,"manager/ManagerSingleHotelView.fxml", 10, 10);
     }
 }

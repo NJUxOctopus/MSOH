@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -42,17 +43,10 @@ public class CustomerCreditRecordViewController implements ControlledStage {
 
 
     public void addCreditPane(){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("CustomerSingleCreditRecordView.fxml"));
-            Pane singleHotel = (Pane) loader.load();
-            creditListScrollPane.getChildren().add(singleHotel);
-            singleHotel.setLayoutX(3);
-            singleHotel.setLayoutY(10);
-            customerSingleCreditRecordViewController = loader.getController();
-            customerSingleCreditRecordViewController.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(creditListScrollPane, "customer/CustomerSingleCreditRecordView.fxml", 3, 10);
+        customerSingleCreditRecordViewController = (CustomerSingleCreditRecordViewController) paneAdder.getController();
+        customerSingleCreditRecordViewController.init();
+
     }
 }

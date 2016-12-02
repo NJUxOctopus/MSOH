@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
 
@@ -117,18 +118,10 @@ public class CustomerOrderListViewController implements ControlledStage {
     }
 
     public void addOrderPane(){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("CustomerSingleOrderPaneView.fxml"));
-            Pane singleOrder = (Pane) loader.load();
-            orderListScrollPane.getChildren().add(singleOrder);
-            singleOrder.setLayoutX(5);
-            singleOrder.setLayoutY(5);
-            customerSingleOrderPaneViewController = loader.getController();
-            customerSingleOrderPaneViewController.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 5);
+        customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
+        customerSingleOrderPaneViewController.init();
 
     }
 

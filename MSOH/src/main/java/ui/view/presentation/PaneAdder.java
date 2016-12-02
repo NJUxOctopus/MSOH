@@ -1,6 +1,7 @@
 package ui.view.presentation;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ui.view.presentation.customer.CustomerSingleCommentViewController;
 import ui.view.presentation.customer.CustomerSingleHotelOrderViewController;
@@ -25,6 +26,20 @@ public class PaneAdder {
             singlePane.setLayoutY(y);
 
             } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addPane(AnchorPane sourcePane, String resource, int x, int y ){
+        try {
+            loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(resource));
+            Pane singlePane = (Pane) loader.load();
+            sourcePane.getChildren().add(singlePane);
+            singlePane.setLayoutX(x);
+            singlePane.setLayoutY(y);
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

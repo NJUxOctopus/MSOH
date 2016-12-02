@@ -55,22 +55,52 @@ public class ManagerMainViewController implements ControlledStage {
         this.stageController = stageController;
     }
 
+    /**
+     * 点击酒店管理按钮，框架中出现酒店管理面板
+     */
     @FXML
     private void showHotelManageView(){
         shadeImage.setY(-604);
         contentPane.getChildren().clear();
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(contentPane,"manager/ManagerHotelManageView.fxml", 0, 0);
-        managerHotelManageViewController = (ManagerHotelManageViewController) paneAdder.getController();
-        managerHotelManageViewController.init();
     }
 
+    /**
+     * 点击人员管理页面，框架中出现人员管理面板
+     */
     @FXML
     private void showStaffManageView(){
         shadeImage.setY(-356);
         contentPane.getChildren().clear();
         PaneAdder paneAdder = new PaneAdder();
-        paneAdder.addPane(contentPane,"manager/ManagerHotelManageView.fxml", 0, 0);
+        paneAdder.addPane(contentPane,"manager/ManagerStaffManageView.fxml", 0, 0);
     }
+
+    /**
+     * 点击个人信息按钮，跳转至个人信息修改界面
+     */
+    @FXML
+    private void showModifyInfoView(){
+        stageController = new StageController();
+        stageController.loadStage("manager/ManagerModifyInfoView.fxml", 1);
+
+    }
+
+    @FXML
+    private void showSettingView(){
+
+    }
+
+    @FXML
+    private void showFeedbackView(){
+
+    }
+
+    @FXML
+    private void showAboutUsView(){
+
+    }
+
 
 }

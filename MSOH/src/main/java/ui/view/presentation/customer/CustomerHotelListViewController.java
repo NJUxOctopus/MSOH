@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -85,17 +86,8 @@ public class CustomerHotelListViewController implements ControlledStage {
     }
 
     public void addHotelPane(){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("CustomerSingleHotelView.fxml"));
-            Pane singleHotel = (Pane) loader.load();
-            hotelListScrollPane.getChildren().add(singleHotel);
-            singleHotel.setLayoutX(5);
-            singleHotel.setLayoutY(10);
-            customerSingleHotelViewController = loader.getController();
-            customerSingleHotelViewController.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5, 10);
+
     }
 }
