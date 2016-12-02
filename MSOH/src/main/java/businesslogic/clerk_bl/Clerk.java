@@ -77,8 +77,11 @@ public class Clerk implements Clerk_BLService{
         if (clerk_dataService.findClerkByID(clerkVO.ID) == null)
             //若该工作人员不存在
             return ResultMessage.Clerk_DeleteClerkNotExist;
-        clerk_dataService.deleteClerk(clerk_dataService.findClerkByID(clerkVO.ID));
-        return ResultMessage.Clerk_DeleteClerkSuccess;
+
+        if(clerk_dataService.deleteClerk(clerk_dataService.findClerkByID(clerkVO.ID)))
+            return ResultMessage.Clerk_DeleteClerkSuccess;
+        else
+            return ResultMessage.Fail;
     }
 
     /**
@@ -104,8 +107,10 @@ public class Clerk implements Clerk_BLService{
                 //如果两次新密码输入相同
                 ClerkPO clerkPO = clerk_dataService.findClerkByID(ID);
                 clerkPO.setPassword(newPassword1);
-                clerk_dataService.modifyClerk(clerkPO);
-                return ResultMessage.ChangePasswordSuccess;
+                if(clerk_dataService.modifyClerk(clerkPO))
+                    return ResultMessage.ChangePasswordSuccess;
+                else
+                    return ResultMessage.Fail;
             } else {
                 //两次新密码输入不同
                 return ResultMessage.ChangePassword2DifferentNew;
