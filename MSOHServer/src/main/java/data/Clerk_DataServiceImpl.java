@@ -74,7 +74,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      */
     public List<ClerkPO> findClerkByName(String name) throws IOException, ClassNotFoundException {
         List<ClerkPO> clerksFound = clerkDataHelper.getClerkByName(name);
-        if (null == clerksFound) {
+        if (null == clerksFound || clerksFound.isEmpty()) {
             return null;
         }
 
@@ -107,7 +107,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      */
     public List<ClerkPO> findAllClerks() throws IOException, ClassNotFoundException {
         List<ClerkPO> clerkList = clerkDataHelper.getAllClerks();
-        if (null == clerkList) {
+        if (null == clerkList || clerkList.isEmpty()) {
             return null;
         }
 

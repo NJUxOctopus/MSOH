@@ -2,6 +2,7 @@ package DataHelper;
 
 import po.CustomerPO;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -14,5 +15,9 @@ public interface CustomerDataHelper {
 
     public boolean modifyCustomer(CustomerPO customerPO);
 
-    public List<CustomerPO> getAllCustomers();
+    public List<CustomerPO> findCustomerByName(String customerName);
+
+    public CustomerPO findCustomerByID(String customerID);
+
+    public List<CustomerPO> findAllCustomers();
 }

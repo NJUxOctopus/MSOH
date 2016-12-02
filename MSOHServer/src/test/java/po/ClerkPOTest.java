@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class ClerkPOTest {
     @Test
-    public void testSaveClerkPO(){
-        ClerkDataHelper clerkDataHelper=new ClerkDataHelperSQLImpl();
+    public void testSaveClerkPO() {
+        ClerkDataHelper clerkDataHelper = new ClerkDataHelperSQLImpl();
 
-        List<ClerkPO> clerkPOList=clerkDataHelper.getClerkByName("桑田");
+        List<ClerkPO> clerkPOList = clerkDataHelper.getClerkByName("桑田");
 
         System.out.print(clerkPOList.size());
     }

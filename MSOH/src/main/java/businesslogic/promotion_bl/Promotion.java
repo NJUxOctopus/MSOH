@@ -35,18 +35,20 @@ public class Promotion implements Promotion_BLService {
             if (promotion_dataService_stub.getPromotion(promotionVO.promotionID) != null)
                 //若已经存在该ID的营销策略
                 return ResultMessage.PromotionExist;
-            String targetHotel  = "";
-            for(int i=0;i<promotionVO.targetHotel.length;i++){
-                if(i!=promotionVO.targetHotel.length-1)
-                    targetHotel+=promotionVO.targetHotel[i]+";";
+            String targetHotel = "";
+            for (int i = 0; i < promotionVO.targetHotel.length; i++) {
+                if (i != promotionVO.targetHotel.length - 1)
+                    targetHotel += promotionVO.targetHotel[i] + ";";
                 else
-                    targetHotel+=promotionVO.targetHotel[i];
+                    targetHotel += promotionVO.targetHotel[i];
             }
-            promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
+            if (promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, promotionVO.targetArea,
                     targetHotel, promotionVO.startTime, promotionVO.endTime, promotionVO.discount,
-                    promotionVO.minRoom, Integer.parseInt(promotionVO.promotionID)));
-            return ResultMessage.Promotion_AddPromotionSuccess;
+                    promotionVO.minRoom, Integer.parseInt(promotionVO.promotionID))))
+                return ResultMessage.Promotion_AddPromotionSuccess;
+            else
+                return ResultMessage.Fail;
         }
     }
 
@@ -76,8 +78,10 @@ public class Promotion implements Promotion_BLService {
             promotionPO.setStartTime(promotionVO.startTime);
             promotionPO.setTargetArea(promotionVO.targetArea);
             promotionPO.setTargetUser(promotionVO.targetUser);
-            promotion_dataService_stub.modifyPromotion(promotionPO);
-            return ResultMessage.Promotion_ModifyPromotionSuccess;
+            if (promotion_dataService_stub.modifyPromotion(promotionPO))
+                return ResultMessage.Promotion_ModifyPromotionSuccess;
+            else
+                return ResultMessage.Fail;
         }
     }
 
@@ -92,8 +96,10 @@ public class Promotion implements Promotion_BLService {
         if (promotion_dataService_stub.getPromotion(promotionID) == null)
             //若不存在该营销策略
             return ResultMessage.PromotionNotExist;
-        promotion_dataService_stub.deletePromotion(promotion_dataService_stub.getPromotion(promotionID));
-        return ResultMessage.Promotion_DeletePromotionSuccess;
+        if (promotion_dataService_stub.deletePromotion(promotion_dataService_stub.getPromotion(promotionID)))
+            return ResultMessage.Promotion_DeletePromotionSuccess;
+        else
+            return ResultMessage.Fail;
     }
 
     /**
@@ -117,31 +123,39 @@ public class Promotion implements Promotion_BLService {
         String[] areaArray = promotionPO.getTargetArea().split(";");
         boolean hotelMeetReq = false;//用来判断酒店ID是否符合要求
         //若所有酒店都满足
-        for (int i = 0; i < hotelIDArray.length; i++) {
-            if (hotelID.equals(hotelIDArray[i])) {
-                hotelMeetReq = true;
-                break;
+        if (hotelIDArray.length == 1 && hotelIDArray[0].equals("All"))
+            hotelMeetReq = true;
+        else {
+            for (int i = 0; i < hotelIDArray.length; i++) {
+                if (hotelID.equals(hotelIDArray[i])) {
+                    hotelMeetReq = true;
+                    break;
+                }
             }
         }
         boolean areaMeetReq = false;//用来判断商圈是否符合
         //若所有商圈都满足
-        for (int i = 0; i < areaArray.length; i++) {
-            if (area.equals(areaArray[i])) {
-                areaMeetReq = true;
-                break;
+        if (areaArray.length == 1 && areaArray[0].equals("All"))
+            areaMeetReq = true;
+        else {
+            for (int i = 0; i < areaArray.length; i++) {
+                if (area.equals(areaArray[i])) {
+                    areaMeetReq = true;
+                    break;
+                }
             }
         }
         boolean memberTypeMeetReq = false;//用来判断会员类型是否符合
-        if(promotionPO.getTargetUser().equals(MemberType.NONMEMBER)){
+        if (promotionPO.getTargetUser().equals(MemberType.NONMEMBER)) {
             //若要求为非会员，所有类型都满足
-            memberTypeMeetReq=true;
-        }else if(promotionPO.getTargetUser().equals(memberType)){
-            memberTypeMeetReq=true;
+            memberTypeMeetReq = true;
+        } else if (promotionPO.getTargetUser().equals(memberType)) {
+            memberTypeMeetReq = true;
         }
 
-        if (roomNum >= promotionPO.getMinRoom() && hotelMeetReq && areaMeetReq &&memberTypeMeetReq) {
+        if (roomNum >= promotionPO.getMinRoom() && hotelMeetReq && areaMeetReq && memberTypeMeetReq) {
             return true;
-        }else
+        } else
             return false;
     }
 }

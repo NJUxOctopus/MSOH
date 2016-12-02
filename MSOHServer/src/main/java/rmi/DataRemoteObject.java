@@ -1,9 +1,6 @@
 package rmi;
 
-import data.Clerk_DataServiceImpl;
-import data.Manager_DataServiceImpl;
-import data.Marketer_DataServiceImpl;
-import data.Order_DataServiceImpl;
+import data.*;
 import dataservice.clerk_dataservice.Clerk_DataService;
 import dataservice.customer_dataservice.Customer_DataService;
 import dataservice.hotel_dataservice.Hotel_DataService;
@@ -25,7 +22,7 @@ import java.util.List;
 /**
  * Created by zqh on 2016/11/13.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService,Customer_DataService,Hotel_DataService,Manager_DataService,Marketer_DataService,MemberLevel_DataService,Member_DataService,Order_DataService,Promotion_DataService{
+public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService {
 
 
     private Customer_DataService customer_dataService;
@@ -38,12 +35,15 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     private Member_DataService member_dataService;
     private MemberLevel_DataService memberLevel_dataService;
 
-    protected DataRemoteObject() throws RemoteException{
-        clerk_dataService= Clerk_DataServiceImpl.getInstance();
-        manager_dataService= Manager_DataServiceImpl.getInstance();
-        marketer_dataService= Marketer_DataServiceImpl.getInstance();
-        order_dataService= Order_DataServiceImpl.getInstance();
-        marketer_dataService=Marketer_DataServiceImpl.getInstance();
+    protected DataRemoteObject() throws RemoteException {
+        clerk_dataService = Clerk_DataServiceImpl.getInstance();
+        manager_dataService = Manager_DataServiceImpl.getInstance();
+        marketer_dataService = Marketer_DataServiceImpl.getInstance();
+        order_dataService = Order_DataServiceImpl.getInstance();
+        marketer_dataService = Marketer_DataServiceImpl.getInstance();
+        memberLevel_dataService = MemberLevel_DataServiceImpl.getInstance();
+        member_dataService = Member_DataServiceImpl.getInstance();
+        customer_dataService = Customer_DataServiceImpl.getInstance();
         // TODO 初始化
     }
 

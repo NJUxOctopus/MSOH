@@ -1,10 +1,9 @@
 package DataHelperImpl;
 
-import DataHelper.CreditRecordDataHelper;
+import DataHelper.MemberDataHelper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
-import po.CreditRecordPO;
+import po.MemberPO;
 import util.HibernateUtil;
 
 import java.util.List;
@@ -13,21 +12,19 @@ import java.util.List;
  * Created by zqh on 2016/12/1.
  */
 @SuppressWarnings(value = {"Duplicates"})
-public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
+public class MemberDataHelperSQLImpl implements MemberDataHelper {
     /**
-     * 新增信用记录
+     * 增加会员
      *
-     * @param creditRecordPO
+     * @param po
      * @return 是否成功
      */
-    public boolean addCreditRecord(CreditRecordPO creditRecordPO) {
+    public boolean addMember(MemberPO po) {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
-
-            session.save(creditRecordPO);
-
+            session.save(po);
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -41,19 +38,17 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
     }
 
     /**
-     * 删除信用记录
+     * 删除会员
      *
-     * @param creditRecordPO
+     * @param po
      * @return 是否成功
      */
-    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) {
+    public boolean deleteMember(MemberPO po) {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
-
-            session.delete(creditRecordPO);
-
+            session.delete(po);
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -64,27 +59,47 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
                 HibernateUtil.closeSession(session);
             }
         }
-
     }
 
     /**
-     * 根据客户ID查询信用记录
+     * 更新会员信息
+     *
+     * @param po
+     * @return 是否成功
+     */
+    public boolean updateMember(MemberPO po) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSession();
+            session.beginTransaction();
+            session.update(po);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (session != null) {
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
+            }
+        }
+    }
+
+    /**
+     * 根据ID查找会员
      *
      * @param ID
-     * @return 与客户对应的信用记录
+     * @return 对应ID的会员
      */
-    public List<CreditRecordPO> findCreditRecordByID(String ID) {
+    public MemberPO findMemberByID(String ID) {
         Session session = null;
         try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
 
-            String hql = "from CreditRecordPO as creditrecord where creditrecord.customerID=:n";
-            Query query = session.createQuery(hql);
-            query.setString("n", ID);
+            MemberPO memberPO = (MemberPO) session.get(MemberPO.class, ID);
 
-            List<CreditRecordPO> list = query.list();
-            return list;
+            return memberPO;
         } catch (HibernateException e) {
             e.printStackTrace();
             return null;
@@ -94,5 +109,22 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
                 HibernateUtil.closeSession(session);
             }
         }
+    }
+
+    /**
+     * 获取所有会员信息
+     *
+     * @return 所有会员的列表
+     */
+    public List<MemberPO> findAllMembers() {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+
+        List<MemberPO> list = session.createQuery("from MemberPO ").list();
+
+        session.getTransaction().commit();
+        HibernateUtil.closeSession(session);
+
+        return list;
     }
 }

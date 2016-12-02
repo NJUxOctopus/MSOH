@@ -3,6 +3,8 @@ package DataHelperImpl;
 import DataHelper.*;
 
 /**
+ * 获得DataHelper
+ * <p>
  * Created by zqh on 2016/11/27.
  */
 public class DataFactoryImpl implements DataFactory {
@@ -13,11 +15,13 @@ public class DataFactoryImpl implements DataFactory {
     }
 
     public CustomerDataHelper getCustomerDataHelper() {
-        return null;
+        CustomerDataHelper customerDataHelper = new CustomerDataHelperSQLImpl();
+        return customerDataHelper;
     }
 
     public HotelDataHelper getHotelDataHelper() {
-        return null;
+        HotelDataHelper hotelDataHelper = new HotelDataHelperSQLImpl();
+        return hotelDataHelper;
     }
 
     public ManagerDataHelper getManagerDataHelper() {
@@ -31,7 +35,8 @@ public class DataFactoryImpl implements DataFactory {
     }
 
     public MemberDataHelper getMemberDataHelper() {
-        return null;
+        MemberDataHelper memberDataHelper = new MemberDataHelperSQLImpl();
+        return memberDataHelper;
     }
 
     public MemberLevelDataHelper getMemberLevelDataHelper() {
@@ -49,8 +54,13 @@ public class DataFactoryImpl implements DataFactory {
         return promotionDataHelper;
     }
 
-    public CreditRecordDataHelper getCreditRecordDataHelper(){
-        CreditRecordDataHelper creditRecordDataHelper=new CreditRecordDataHelperSQLImpl();
+    public CreditRecordDataHelper getCreditRecordDataHelper() {
+        CreditRecordDataHelper creditRecordDataHelper = new CreditRecordDataHelperSQLImpl();
         return creditRecordDataHelper;
+    }
+
+    public CommentDataHelper getCommentDataHelper() {
+        CommentDataHelper commentDataHelper = new CommentDataHelperSQLImpl();
+        return commentDataHelper;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author zqh
  */
-public class HotelPO implements Serializable {
+public class HotelPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
     //TODO 是否需要添加“城市”属性
     // 酒店名称
@@ -170,6 +170,17 @@ public class HotelPO implements Serializable {
 
     public void setComment(List<CommentPO> comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public Object clone() {
+        HotelPO hotelPO = null;
+        try {
+            hotelPO = (HotelPO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return hotelPO;
     }
 
 }

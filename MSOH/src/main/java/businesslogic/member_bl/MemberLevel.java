@@ -21,6 +21,7 @@ public class MemberLevel implements MemberLevel_BLService {
 
     /**
      * 增加会员等级制度
+     *
      * @param memberLevelVO
      * @return
      * @throws RemoteException
@@ -33,14 +34,17 @@ public class MemberLevel implements MemberLevel_BLService {
             //若未填写信用界限
             return ResultMessage.Blank;
         else {
-            memberLevelDataServiceStub.addMemberLevel(new MemberLevelPO(memberLevelVO.framerName
-                    , memberLevelVO.frameDate, memberLevelVO.num, memberLevelVO.creditBoundaries));
-            return ResultMessage.MemberLevel_AddMemberLevelSuccess;
+            if (memberLevelDataServiceStub.addMemberLevel(new MemberLevelPO(memberLevelVO.framerName
+                    , memberLevelVO.frameDate, memberLevelVO.num, memberLevelVO.creditBoundaries)))
+                return ResultMessage.MemberLevel_AddMemberLevelSuccess;
+            else
+                return ResultMessage.Fail;
         }
     }
 
     /**
      * 修改会员等级制度
+     *
      * @param memberLevelVO
      * @return
      * @throws RemoteException
@@ -57,8 +61,10 @@ public class MemberLevel implements MemberLevel_BLService {
             memberLevelPO.setCreditBoundaries(memberLevelVO.creditBoundaries);
             memberLevelPO.setFrameDate(memberLevelVO.frameDate);
             memberLevelPO.setNum(memberLevelVO.num);
-            memberLevelDataServiceStub.updateMemberLevel(memberLevelPO);
-            return ResultMessage.MemberLevel_ModifyMemberLevelSuccess;
+            if (memberLevelDataServiceStub.updateMemberLevel(memberLevelPO))
+                return ResultMessage.MemberLevel_ModifyMemberLevelSuccess;
+            else
+                return ResultMessage.Fail;
         }
     }
 }
