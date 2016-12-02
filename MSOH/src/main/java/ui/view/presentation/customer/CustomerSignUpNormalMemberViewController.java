@@ -3,6 +3,7 @@ package ui.view.presentation.customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -12,7 +13,7 @@ import ui.view.presentation.StageController;
 public class CustomerSignUpNormalMemberViewController implements ControlledStage {
     StageController stageController;
 
-    private String resources = "customer/CustomerSignUpNormalMemberView.fxml";
+    private String resource = "customer/CustomerSignUpNormalMemberView.fxml";
 
     @FXML
     private Button backButton;
@@ -36,7 +37,10 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController = new StageController();
+        stageController.loadStage("util/ConfirmExit.fxml", 0.75);
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        controller.setToBeClosed(resource);
     }
 
     @FXML

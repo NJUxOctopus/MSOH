@@ -22,7 +22,7 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     CustomerSingleOrderPaneViewController  customerSingleOrderPaneViewController;
 
-    private String resources = "customer/CustomerOrderListView.fxml";
+    private String resource = "customer/CustomerOrderListView.fxml";
 
     @FXML
     private Pane orderListPane;
@@ -74,7 +74,7 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
     public CustomerOrderListViewController(){

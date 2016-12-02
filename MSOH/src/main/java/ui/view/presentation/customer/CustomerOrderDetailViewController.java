@@ -12,7 +12,7 @@ import ui.view.presentation.StageController;
 public class CustomerOrderDetailViewController implements ControlledStage {
     StageController stageController;
 
-    private String resources = "customer/CustomerOrderDetailView.fxml";
+    private String resource = "customer/CustomerOrderDetailView.fxml";
 
     @FXML
     private ImageView background;
@@ -30,7 +30,7 @@ public class CustomerOrderDetailViewController implements ControlledStage {
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
     @FXML

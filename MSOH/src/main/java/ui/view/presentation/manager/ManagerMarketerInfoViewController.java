@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 
 /**
@@ -15,7 +16,7 @@ import ui.view.presentation.util.ControlledStage;
 public class ManagerMarketerInfoViewController implements ControlledStage {
     StageController stageController = new StageController();
 
-    private String resources = "manager/ManagerMarketerInfoView.fxml";
+    private String resource = "manager/ManagerMarketerInfoView.fxml";
 
     @FXML
     private Button addButton;
@@ -52,7 +53,10 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
      */
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController = new StageController();
+        stageController.loadStage("util/ConfirmExit.fxml", 0.75);
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        controller.setToBeClosed(resource);
     }
 
     @FXML

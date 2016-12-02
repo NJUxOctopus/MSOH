@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 
 /**
@@ -13,7 +14,7 @@ import ui.view.presentation.util.ControlledStage;
 public class ManagerModifyInfoViewController implements ControlledStage {
     StageController stageController = new StageController();
 
-    private String resources = "manager/ManagerModifyInfoView.fxml";
+    private String resource = "manager/ManagerModifyInfoView.fxml";
 
     @FXML
     private Button saveInfoButton;
@@ -46,7 +47,10 @@ public class ManagerModifyInfoViewController implements ControlledStage {
      */
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController = new StageController();
+        stageController.loadStage("util/ConfirmExit.fxml", 0.75);
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        controller.setToBeClosed(resource);
     }
 
     @FXML

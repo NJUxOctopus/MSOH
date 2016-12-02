@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
-
+import ui.view.presentation.util.SelectTimeViewController;
 
 
 public class CustomerMainViewController implements ControlledStage {
@@ -157,6 +157,8 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCheckInTimeSelectView(){
         stageController = new StageController();
         stageController.loadStage("util/SelectTimeView.fxml",0.8);
+        SelectTimeViewController selectTimeViewController = (SelectTimeViewController) stageController.getController();
+        selectTimeViewController.init();
     }
 
     @FXML

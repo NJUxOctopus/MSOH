@@ -8,7 +8,7 @@ import ui.view.presentation.StageController;
 
 public class ManagerMainView extends Application {
 
-    private static String resources = "manager/ManagerMainView.fxml";
+    private static String resource = "manager/ManagerMainView.fxml";
 
     private StageController stageController;
 
@@ -19,6 +19,6 @@ public class ManagerMainView extends Application {
     @Override
     public void start(Stage primaryStage) {
         stageController = new StageController();
-        stageController.loadStage(resources, 1);
+        stageController.loadStage(resource, 1);
     }
 }

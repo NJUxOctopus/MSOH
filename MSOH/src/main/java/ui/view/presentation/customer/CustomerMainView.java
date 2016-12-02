@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import ui.view.presentation.StageController;
 
 public class CustomerMainView extends Application {
-    private static String resources = "customer/CustomerMainView.fxml";
+    private static String resource = "customer/CustomerMainView.fxml";
 
     private StageController stageController;
 
@@ -18,7 +18,7 @@ public class CustomerMainView extends Application {
     @Override
     public void start(Stage primaryStage) {
         stageController = new StageController();
-        stageController.loadStage(resources, 1);
+        stageController.loadStage(resource, 1);
     }
 }
 

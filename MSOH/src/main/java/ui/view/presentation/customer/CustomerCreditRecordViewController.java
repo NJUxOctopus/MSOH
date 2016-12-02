@@ -18,7 +18,7 @@ import java.io.IOException;
 public class CustomerCreditRecordViewController implements ControlledStage {
     StageController stageController;
 
-    private String resources = "customer/CustomerCreditRecordView.fxml";
+    private String resource = "customer/CustomerCreditRecordView.fxml";
 
     CustomerSingleCreditRecordViewController customerSingleCreditRecordViewController;
 
@@ -38,7 +38,7 @@ public class CustomerCreditRecordViewController implements ControlledStage {
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
 

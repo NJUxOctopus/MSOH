@@ -20,7 +20,7 @@ public class CustomerHotelListViewController implements ControlledStage {
 
     CustomerSingleHotelViewController customerSingleHotelViewController;
 
-    private String resources = "customer/CustomerHotelListView.fxml";
+    private String resource = "customer/CustomerHotelListView.fxml";
 
     @FXML
     private ImageView background;
@@ -82,7 +82,7 @@ public class CustomerHotelListViewController implements ControlledStage {
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
     public void addHotelPane(){

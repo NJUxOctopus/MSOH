@@ -17,7 +17,7 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
     private Pane singleOrderPane;
 
     @FXML
-    private Button cancelOrderButton;
+    private Button processOrderButton;
 
     @FXML
     private Button orderDetailButton;
@@ -52,8 +52,23 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
     }
 
     @FXML
+    private void processOrder(){
+        if(processOrderButton.getText().equals("撤销订单"))
+            cancelOrder();
+        if(processOrderButton.getText().equals("评价酒店"))
+            showEvaluateView();
+
+    }
+
     private void cancelOrder(){
-        System.out.print("Cancel Successfully");
+
+    }
+
+    private void showEvaluateView(){
+        System.out.print("!");
+        stageController = new StageController();
+        stageController.loadStage("customer/CustomerEvaluateView.fxml", 1);
+        System.out.print("?");
     }
 
     @FXML
@@ -71,6 +86,8 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
         roomTypeLabel.setText("");
         orderStatusLabel.setText("");
         hotelButton.setText("");
+        processOrderButton.setText("评价酒店");
+
     }
 
 

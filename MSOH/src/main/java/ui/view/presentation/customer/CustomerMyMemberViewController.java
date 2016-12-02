@@ -13,7 +13,7 @@ import ui.view.presentation.util.ControlledStage;
 public class CustomerMyMemberViewController implements ControlledStage{
     StageController stageController;
 
-    private String resources = "customer/CustomerMyMemberView.fxml";
+    private String resource = "customer/CustomerMyMemberView.fxml";
 
     @FXML
     private ImageView background;
@@ -40,7 +40,7 @@ public class CustomerMyMemberViewController implements ControlledStage{
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
     @FXML

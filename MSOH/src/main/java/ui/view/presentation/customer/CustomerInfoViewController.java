@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 
 /**
@@ -14,7 +15,7 @@ import ui.view.presentation.util.ControlledStage;
 public class CustomerInfoViewController implements ControlledStage{
     private StageController stageController;
 
-    private String resources = "customer/CustomerInfoView.fxml";
+    private String resource = "customer/CustomerInfoView.fxml";
 
     private Stage stage;
 
@@ -58,7 +59,10 @@ public class CustomerInfoViewController implements ControlledStage{
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController = new StageController();
+        stageController.loadStage("util/ConfirmExit.fxml", 0.75);
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        controller.setToBeClosed(resource);
     }
 
     @FXML

@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class CustomerMyHotelViewController implements ControlledStage {
     StageController stageController;
 
-    private String resources = "customer/CustomerMyHotelView.fxml";
+    private String resource = "customer/CustomerMyHotelView.fxml";
 
     private CustomerSingleHotelViewController customerSingleHotelViewController;
 
@@ -37,22 +38,13 @@ public class CustomerMyHotelViewController implements ControlledStage {
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
     public void addHotelPane(){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("CustomerSingleHotelView.fxml"));
-            Pane singleHotel = (Pane) loader.load();
-            hotelListScrollPane.getChildren().add(singleHotel);
-            singleHotel.setLayoutX(5);
-            singleHotel.setLayoutY(10);
-            customerSingleHotelViewController = loader.getController();
-            customerSingleHotelViewController.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5, 10);
+
     }
 
 

@@ -1,5 +1,7 @@
 package ui.view.presentation.util;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -38,7 +40,6 @@ public class SelectTimeViewController implements ControlledStage {
      */
     @FXML
     private void confirm(){
-        //关闭当前窗口
         stageController.closeStage(resources);
     }
 
@@ -49,4 +50,15 @@ public class SelectTimeViewController implements ControlledStage {
     private void cancel(){
         stageController.closeStage(resources);
     }
+
+    public void init(){
+        ObservableList<String> year = FXCollections.observableArrayList();
+        year.add("2016");
+        yearChoiceBox.setItems(year);
+
+        monthChoiceBox.setItems(FXCollections.observableArrayList(
+                "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"));
+
+    }
+
 }

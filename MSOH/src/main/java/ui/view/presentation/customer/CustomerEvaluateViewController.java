@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -14,7 +15,7 @@ import ui.view.presentation.StageController;
 public class CustomerEvaluateViewController implements ControlledStage {
     StageController stageController;
 
-    private String resources = "customer/CustomerEvaluateView.fxml";
+    private String resource = "customer/CustomerEvaluateView.fxml";
 
     @FXML
     private ImageView background;
@@ -38,7 +39,10 @@ public class CustomerEvaluateViewController implements ControlledStage {
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController = new StageController();
+        stageController.loadStage("util/ConfirmExit.fxml", 1);
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        controller.setToBeClosed(resource);
     }
 
     @FXML

@@ -19,7 +19,7 @@ import java.io.IOException;
 public class CustomerHotelDetailsViewController implements ControlledStage {
     StageController stageController;
 
-    private String resources = "customer/CustomerHotelDetailsView.fxml";
+    private String resource = "customer/CustomerHotelDetailsView.fxml";
 
     private CustomerSingleCommentViewController customerSingleCommentViewController;
 
@@ -94,7 +94,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
 
     @FXML
     private void closeStage() {
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
     public void init(){

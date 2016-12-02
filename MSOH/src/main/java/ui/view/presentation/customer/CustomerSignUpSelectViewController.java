@@ -11,7 +11,7 @@ import ui.view.presentation.util.ControlledStage;
 public class CustomerSignUpSelectViewController implements ControlledStage{
     StageController stageController;
 
-    private String resources = "customer/CustomerSignUpSelectView.fxml";
+    private String resource = "customer/CustomerSignUpSelectView.fxml";
 
     @FXML
     private Button cancelButton;
@@ -30,7 +30,7 @@ public class CustomerSignUpSelectViewController implements ControlledStage{
     @FXML
     private void closeStage() {
         stageController = new StageController();
-        stageController.closeStage(resources);
+        stageController.closeStage(resource);
     }
 
     @FXML
