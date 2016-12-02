@@ -1,5 +1,6 @@
 package ui.view.presentation.clerk;
 
+import javafx.fxml.FXML;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -8,7 +9,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkHotelCommentsController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     private static String resource = "clerk/ClerkHotelComments.fxml";
 
@@ -20,7 +21,8 @@ public class ClerkHotelCommentsController implements ControlledStage {
     /**
      * 后退按钮结果，显示上级酒店信息页面
      */
-    public void showConfirmExit() {
+    @FXML
+    private void showConfirmExit() {
         stageController = new StageController();
         stageController.closeStage(resource);
     }

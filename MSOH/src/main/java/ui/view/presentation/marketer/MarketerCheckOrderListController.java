@@ -8,7 +8,7 @@ import ui.view.presentation.StageController;
  */
 public class MarketerCheckOrderListController implements ControlledStage{
 
-    StageController stageController;
+    private StageController stageController;
 
     @Override
     public void setStageController(StageController stageController) {

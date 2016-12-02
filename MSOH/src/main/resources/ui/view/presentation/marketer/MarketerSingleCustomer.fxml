@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSingleCustomerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="689.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSingleCustomerController">
    <children>
       <ImageView fitHeight="151.0" fitWidth="689.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -45,7 +45,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="clerkInfo" layoutX="610.0" layoutY="69.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="65.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="充值" textFill="WHITE">
+      <Button fx:id="clerkInfo" layoutX="603.0" layoutY="20.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="72.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="充值" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -53,5 +53,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <ImageView fitHeight="87.0" fitWidth="90.0" layoutX="20.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/avatar.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

@@ -10,7 +10,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkOrderDetailsController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     private static String resource = "clerk/ClerkOrderDetails.fxml";
 
@@ -25,7 +25,8 @@ public class ClerkOrderDetailsController implements ControlledStage {
     /**
      * 后退按钮结果，显示上级订单列表界面
      */
-    public void showOrderList() {
+    @FXML
+    private void showOrderList() {
         stageController = new StageController();
         stageController.closeStage(resource);
     }
@@ -33,7 +34,8 @@ public class ClerkOrderDetailsController implements ControlledStage {
     /**
      * 入住按钮结果，显示确认入住弹窗
      */
-    public void confirmCheckIn() {
+    @FXML
+    private void confirmCheckIn() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkConfirmCheckIn.fxml", 1);
     }

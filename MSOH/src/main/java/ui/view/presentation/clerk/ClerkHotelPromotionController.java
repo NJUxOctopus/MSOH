@@ -1,5 +1,6 @@
 package ui.view.presentation.clerk;
 
+import javafx.fxml.FXML;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -8,7 +9,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkHotelPromotionController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -18,7 +19,8 @@ public class ClerkHotelPromotionController implements ControlledStage {
     /**
      * 制定按钮结果，显示制定酒店促销策略界面
      */
-    public void showCreatePromotion() {
+    @FXML
+    private void showCreatePromotion() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkCreateHotelPromotion.fxml", 1);
     }

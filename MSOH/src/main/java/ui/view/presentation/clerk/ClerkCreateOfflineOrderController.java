@@ -1,7 +1,6 @@
 package ui.view.presentation.clerk;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
@@ -12,7 +11,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkCreateOfflineOrderController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     private static String resource = "clerk/ClerkCreateOfflineOrder.fxml";
 
@@ -27,7 +26,8 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     /**
      * 减号按钮结果，房客人数减一
      */
-    public void minusPeopleNum() {
+    @FXML
+    private void minusPeopleNum() {
         int peopleNum = Integer.parseInt(peopleNumTextField.getText());
         if (peopleNum != 1) {
             peopleNumTextField.setText(String.valueOf((peopleNum - 1)));
@@ -37,7 +37,8 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     /**
      * 加号按钮结果，房客人数加一
      */
-    public void addPeopleNum() {
+    @FXML
+    private void addPeopleNum() {
         int peopleNum = Integer.parseInt(peopleNumTextField.getText());
         peopleNumTextField.setText(String.valueOf((peopleNum + 1)));
     }
@@ -45,7 +46,8 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     /**
      * 后退按钮结果，显示确认退出提示弹框
      */
-    public void showConfirmExit() {
+    @FXML
+    private void showConfirmExit() {
         stageController = new StageController();
         stageController.loadStage("util/ConfirmExit.fxml", 1);
         ConfirmExitController controller = (ConfirmExitController)stageController.getController();

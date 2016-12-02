@@ -1,5 +1,6 @@
 package ui.view.presentation.clerk;
 
+import javafx.fxml.FXML;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -8,7 +9,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkSingleOrderController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -18,7 +19,8 @@ public class ClerkSingleOrderController implements ControlledStage {
     /**
      * 详情按钮结果，显示订单详情界面
      */
-    public void showOrderDetails() {
+    @FXML
+    private void showOrderDetails() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkOrderDetails.fxml", 1);
     }
@@ -26,7 +28,8 @@ public class ClerkSingleOrderController implements ControlledStage {
     /**
      * 入住按钮结果，把订单转换成已入住订单
      */
-    public void confirmCheckIn() {
+    @FXML
+    private void confirmCheckIn() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkConfirmCheckIn.fxml", 1);
     }

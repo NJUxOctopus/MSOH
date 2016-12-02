@@ -12,7 +12,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkModifyPasswordController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     private static String resource = "clerk/ClerkModifyPassword.fxml";
 
@@ -27,7 +27,8 @@ public class ClerkModifyPasswordController implements ControlledStage {
     /**
      * 后退按钮结果，显示提示确认退出弹窗
      */
-    public void showConfirmExit() {
+    @FXML
+    private void showConfirmExit() {
         stageController = new StageController();
         stageController.loadStage("util/ConfirmExit.fxml", 1);
         ConfirmExitController controller = (ConfirmExitController) stageController.getController();

@@ -24,7 +24,7 @@
             <Image url="@../image/ClerkModifyHotelInfoFrame.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" onAction="#showConfirmExit" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
          <graphic>
             <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>

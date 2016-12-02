@@ -20,7 +20,6 @@ public class ClerkFrame extends Application {
     public void start(Stage primaryStage) {
         stageController = new StageController();
         stageController.loadStage(resource, 1);
-
     }
 
 //    public void initPane() {

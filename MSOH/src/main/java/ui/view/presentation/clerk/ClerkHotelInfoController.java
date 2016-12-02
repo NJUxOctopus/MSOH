@@ -10,7 +10,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkHotelInfoController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     @FXML
     private Button checkCommentsButton;
@@ -25,7 +25,8 @@ public class ClerkHotelInfoController implements ControlledStage {
     /**
      * 查看详细评价按钮结果，显示酒店详细评价页面
      */
-    public void showHotelComments() {
+    @FXML
+    private void showHotelComments() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkHotelComments.fxml", 1);
     }
@@ -33,7 +34,8 @@ public class ClerkHotelInfoController implements ControlledStage {
     /**
      * 录入客房按钮结果，显示录入可用客房界面
      */
-    public void showModifyAvailableRooms() {
+    @FXML
+    private void showModifyAvailableRooms() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkModifyAvailableRooms.fxml", 1);
     }
@@ -41,7 +43,8 @@ public class ClerkHotelInfoController implements ControlledStage {
     /**
      * 修改信息按钮结果，显示修改酒店信息界面
      */
-    public void showModifyHotelInfo(){
+    @FXML
+    private void showModifyHotelInfo(){
 
     }
 

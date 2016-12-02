@@ -14,7 +14,7 @@ import ui.view.presentation.util.ControlledStage;
 public class CustomerSignUpViewController implements ControlledStage{
     StageController stageController;
 
-    private String resource = "customer/CustomerSignUpViewView.fxml";
+    private String resource = "customer/CustomerSignUpView.fxml";
 
     @FXML
     private ImageView background;

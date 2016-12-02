@@ -1,5 +1,7 @@
 package ui.view.presentation.marketer;
 
+import javafx.fxml.FXML;
+import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -8,7 +10,7 @@ import ui.view.presentation.StageController;
  */
 public class MarketerModifyPersonalInfoController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -18,8 +20,20 @@ public class MarketerModifyPersonalInfoController implements ControlledStage {
     /**
      * 修改密码按钮结果，显示修改密码界面
      */
-    public void showModifyPW() {
+    @FXML
+    private void showModifyPW() {
         stageController = new StageController();
         stageController.loadStage("marketer/MarketerModifyPassword.fxml", 1);
+    }
+
+    /**
+     * 后退按钮结果，显示确认退出提示弹窗
+     */
+    @FXML
+    private void showConfirmExit() {
+        stageController = new StageController();
+        stageController.loadStage("util/ConfirmExit.fxml", 0.8);
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        controller.setToBeClosed("marketer/MarketerModifyPassword.fxml");
     }
 }

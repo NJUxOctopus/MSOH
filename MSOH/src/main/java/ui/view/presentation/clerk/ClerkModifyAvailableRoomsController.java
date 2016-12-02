@@ -1,5 +1,6 @@
 package ui.view.presentation.clerk;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
@@ -10,7 +11,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkModifyAvailableRoomsController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     private static String resource = "clerk/ClerkModifyAvailableRooms.fxml";
 
@@ -22,10 +23,11 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
     /**
      * 后退按钮结果，显示确认退出弹窗
      */
+    @FXML
     public void showConfirmExit() {
         stageController = new StageController();
-        stageController.loadStage("clerk/ConfirmExit.fxml", 1);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        stageController.loadStage("util/ConfirmExit.fxml", 1);
+        ConfirmExitController controller = (ConfirmExitController)stageController.getController();
         controller.setToBeClosed(resource);
     }
 }

@@ -46,7 +46,7 @@
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font></TextField>
-      <Button fx:id="rememberPWButton" layoutX="503.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="记住密码" textFill="#7d8bda">
+      <Button fx:id="rememberPWButton" layoutX="503.0" layoutY="339.0" mnemonicParsing="false" onAction="#rememberPW" style="-fx-background-color: #ffffff00;" text="记住密码" textFill="#7d8bda">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -62,7 +62,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="registerButton" layoutX="382.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="注册">
+      <Button fx:id="registerButton" layoutX="382.0" layoutY="388.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="注册">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>

@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class ClerkFrameController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     @FXML
     private Label hotelName;
@@ -55,7 +55,8 @@ public class ClerkFrameController implements ControlledStage {
     /**
      * 酒店按钮结果，显示酒店信息
      */
-    public void showHotelInfo() {
+    @FXML
+    private void showHotelInfo() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkHotelInfo.fxml"));
@@ -76,7 +77,8 @@ public class ClerkFrameController implements ControlledStage {
     /**
      * 订单按钮结果，显示酒店订单列表
      */
-    public void showHotelOrderList() {
+    @FXML
+    private void showHotelOrderList() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkCheckOrderListView.fxml"));
@@ -97,7 +99,8 @@ public class ClerkFrameController implements ControlledStage {
     /**
      * 酒店促销按钮结果，显示酒店促销页面
      */
-    public void showHotelPromotionList() {
+    @FXML
+    private void showHotelPromotionList() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ClerkFrame.class.getResource("ClerkHotelPromotion.fxml"));
@@ -118,7 +121,8 @@ public class ClerkFrameController implements ControlledStage {
     /**
      * 个人信息按钮结果，显示修改个人信息界面
      */
-    public void showModifyClerkInfo() throws IOException {
+    @FXML
+    private void showModifyClerkInfo() throws IOException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkModifyPersonalInfo.fxml", 1);
     }

@@ -1,5 +1,6 @@
 package ui.view.presentation.clerk;
 
+import javafx.fxml.FXML;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -8,7 +9,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkConfirmCheckInController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     private static String resource = "clerk/ClerkConfirmCheckIn.fxml";
 
@@ -20,14 +21,16 @@ public class ClerkConfirmCheckInController implements ControlledStage {
     /**
      * 确认按钮结果，确认入住，记录入住时间
      */
-    public void confirmCheckIn() {
+    @FXML
+    private void confirmCheckIn() {
 
     }
 
     /**
      * 取消按钮结果，取消操作，关闭弹窗
      */
-    public void cancelCheckIn() {
+    @FXML
+    private void cancelCheckIn() {
         stageController = new StageController();
         stageController.closeStage(resource);
     }

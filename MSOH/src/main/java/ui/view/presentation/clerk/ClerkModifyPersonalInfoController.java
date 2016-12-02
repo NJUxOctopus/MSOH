@@ -12,7 +12,7 @@ import ui.view.presentation.StageController;
  */
 public class ClerkModifyPersonalInfoController implements ControlledStage {
 
-    StageController stageController;
+    private StageController stageController;
 
     private static String resource = "clerk/ClerkModifyPersonalInfo.fxml";
 
@@ -27,7 +27,8 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
     /**
      * 修改密码按钮结果，显示修改密码界面
      */
-    public void showModifyPW() {
+    @FXML
+    private void showModifyPW() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkModifyPassword.fxml", 1);
     }
@@ -35,10 +36,11 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
     /**
      * 后退按钮结果，显示确认退出提示弹框
      */
-    public void showConfirmExit() {
+    @FXML
+    private void showConfirmExit() {
         stageController = new StageController();
-        stageController.loadStage("clerk/ConfirmExit.fxml", 1);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+        stageController.loadStage("util/ConfirmExit.fxml", 0.8);
+        ConfirmExitController controller = (ConfirmExitController)stageController.getController();
         controller.setToBeClosed(resource);
     }
 
