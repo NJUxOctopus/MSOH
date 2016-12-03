@@ -12,18 +12,12 @@ public class ErrorBoxController implements ControlledStage {
 
     private StageController stageController;
 
-    private ResultMessage resultMessage;
-
     @FXML
     private Label errorTypeLabel;
 
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
-    }
-
-    public void setErrorType(ResultMessage theResultMessage) {
-        this.resultMessage = theResultMessage;
     }
 
     public void setLabel(String error) {
