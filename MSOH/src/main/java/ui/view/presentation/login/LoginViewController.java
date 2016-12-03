@@ -77,13 +77,11 @@ public class LoginViewController implements ControlledStage {
             // 账号、密码为空
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
-            controller.setErrorType(result);
             controller.setLabel("账号或密码不能为空！");
         } else if (result.equals(ResultMessage.Login_NoUser)) {
             // 不存在该用户
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
-            controller.setErrorType(result);
             controller.setLabel("不存在对应用户！");
         } else if (result.equals(ResultMessage.Login_ClerkSuccess)) {
             // 酒店工作人员登录成功
@@ -106,7 +104,6 @@ public class LoginViewController implements ControlledStage {
             // 密码错误
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
-            controller.setErrorType(result);
             controller.setLabel("密码错误！");
         }
     }
