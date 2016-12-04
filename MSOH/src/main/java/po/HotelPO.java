@@ -32,13 +32,13 @@ public class HotelPO implements Serializable {
     // 酒店照片（在数据库存储时无法存储List<String>，存成String，每个图片链接之间以';'分开）
     private String picUrls;
     // 系统中该酒店负责人
-    private ClerkPO clerk;
+    private String clerkID;
 
     public HotelPO() {
     }
 
     public HotelPO(String hotelName, String hotelAddress, String area, String intro, String infra, String hotelRoomType, int star,
-                   double score, String license, String picUrls, ClerkPO clerk, String hotelID) {
+                   double score, String license, String picUrls, String clerkID, String hotelID) {
         this.hotelName = hotelName;
         this.hotelID = hotelID;
         this.hotelAddress = hotelAddress;
@@ -50,7 +50,7 @@ public class HotelPO implements Serializable {
         this.score = score;
         this.license = license;
         this.picUrls = picUrls;
-        this.clerk = clerk;
+        this.clerkID = clerkID;
     }
 
     public String getHotelName() {
@@ -133,12 +133,12 @@ public class HotelPO implements Serializable {
         this.picUrls = picUrls;
     }
 
-    public ClerkPO getClerk() {
-        return clerk;
+    public String getClerkID() {
+        return clerkID;
     }
 
-    public void setClerk(ClerkPO clerk) {
-        this.clerk = clerk;
+    public void setClerkID(String clerkID) {
+        this.clerkID = clerkID;
     }
 
     public String getHotelID() {
