@@ -83,11 +83,4 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 		return null;
 	}
 
-	public List<HotelPO> getHotelByArea(String area) throws RemoteException {
-		return null;
-	}
-
-	public List<HotelPO> getHotelByData(Timestamp timestamp) throws RemoteException {
-		return null;
-	}
 }

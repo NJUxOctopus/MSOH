@@ -63,9 +63,4 @@ public interface Hotel_DataService extends Remote {
     // 根据订单获得评价
     public CommentPO getCommentByOrder(String orderID) throws RemoteException;
 
-    //
-    public List<HotelPO> getHotelByArea(String area) throws RemoteException;
-    //
-
-    public List<HotelPO> getHotelByData(Timestamp timestamp) throws RemoteException;
 }

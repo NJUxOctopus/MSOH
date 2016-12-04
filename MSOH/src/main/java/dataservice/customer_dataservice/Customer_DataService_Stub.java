@@ -74,7 +74,7 @@ public class Customer_DataService_Stub implements Customer_DataService{
 		if(ID.equals("320200000000000000")){
 			List<HotelPO> hotelPOList = new ArrayList<HotelPO>();
 			hotelPOList.add(new HotelPO("RUJIA", "NJU", "XIANLIN", "wu", "",null, 5,
-			5, "has", "",new ClerkPO("pxr","123","123","123","RUJIA","123",WorkerPosition.Clerk,""),null));
+			5, "has", "","123",null));
 			return hotelPOList;
 		}else
 			return null;

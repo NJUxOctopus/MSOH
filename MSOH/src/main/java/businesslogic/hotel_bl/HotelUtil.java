@@ -70,7 +70,7 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
             hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
+                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                     hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
                     new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
         }
@@ -127,7 +127,7 @@ public class HotelUtil implements HotelUtil_BLService {
         String[] picUrl = hotelPO.getPicUrls().split(";");
         String[] roomType = hotelPO.getHotelRoomType().split(";");
         return new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
+                infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                 hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
                 new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID()));
     }
@@ -152,7 +152,7 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
             hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
+                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                     hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
                     new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
         }
@@ -169,19 +169,21 @@ public class HotelUtil implements HotelUtil_BLService {
     public List<HotelVO> getByArea(String area) throws RemoteException {
         if (area.equals(""))
             return null;
-        List<HotelPO> hotelPOs = hotel_dataService_stub.getHotelByArea(area);
+        List<HotelPO> hotelPOs = hotel_dataService_stub.getHotels();
         if (hotelPOs == null || hotelPOs.isEmpty())
             return null;
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
         for (int i = 0; i < hotelPOs.size(); i++) {
             HotelPO hotelPO = hotelPOs.get(i);
-            String[] infra = hotelPO.getInfra().split(";");
-            String[] picUrl = hotelPO.getPicUrls().split(";");
-            String[] roomType = hotelPO.getHotelRoomType().split(";");
-            hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
-                    hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
-                    new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
+            if (hotelPO.getArea().equals(area)) {
+                String[] infra = hotelPO.getInfra().split(";");
+                String[] picUrl = hotelPO.getPicUrls().split(";");
+                String[] roomType = hotelPO.getHotelRoomType().split(";");
+                hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
+                        infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
+                        hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
+                        new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
+            }
         }
         return hotelVOList;
     }

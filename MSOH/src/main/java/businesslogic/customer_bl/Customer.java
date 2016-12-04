@@ -120,7 +120,7 @@ public class Customer implements Customer_BLService {
             HotelUtil hotelUtil = new HotelUtil();
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
                     hotelPO.getIntro(), infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl,
-                    hotelPO.getClerk().getID(), hotelPO.getHotelID(),
+                    hotelPO.getClerkID(), hotelPO.getHotelID(),
                     hotelUtil.getDailyRoomInfo(hotelPO.getHotelID(), new Timestamp(System.currentTimeMillis())), hotelUtil.getComment(hotelPO.getHotelID()));
             listVO.add(hotelVO);
         }

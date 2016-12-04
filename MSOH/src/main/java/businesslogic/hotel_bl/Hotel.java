@@ -272,10 +272,9 @@ public class Hotel implements Hotel_BLService {
         HotelPO hotelPO = hotel_dataService_stub.findHotelByID(clerkVO.hotelID);
         if (hotelPO == null)
             return ResultMessage.Hotel_HotelNotExist;
-        if (hotelPO.getClerk() != null)
+        if (hotelPO.getClerkID() != "")
             return ResultMessage.Hotel_HasClerk;
-        hotelPO.setClerk(new ClerkPO(clerkVO.name, clerkVO.phone, clerkVO.password, clerkVO.ID, clerkVO.hotelID,
-                clerkVO.hotelName, WorkerPosition.Clerk, clerkVO.picUrl));
+        hotelPO.setClerkID(clerkVO.ID);
         return ResultMessage.Clerk_AddClerkSuccess;
     }
 }
