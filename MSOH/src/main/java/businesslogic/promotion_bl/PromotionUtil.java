@@ -41,7 +41,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
                 datePromotion.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                         getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
-                        ""+promotionPO.getPromotionID()));
+                        ""+promotionPO.getPromotionID(),promotionPO.getPromotionType()));
             }
         }
         return datePromotion;
@@ -65,6 +65,16 @@ public class PromotionUtil implements PromotionUtil_BLService {
         return new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                 promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                 getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
-                ""+promotionPO.getPromotionID());
+                ""+promotionPO.getPromotionID(),promotionPO.getPromotionType());
+    }
+
+    /**
+     * 得到该酒店的所有促销策略
+     * @param hotelID
+     * @return
+     * @throws RemoteException
+     */
+    public List<PromotionVO> getPromotionByHotelID(String hotelID) throws RemoteException {
+        return null;
     }
 }

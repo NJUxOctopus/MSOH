@@ -21,4 +21,6 @@ public interface OrderUtil_BLService {
     public List<OrderVO> getOrderByStatus(OrderStatus status)throws RemoteException;
 
     public List<OrderVO> getOrderByIDAndStatus(String customerID,OrderStatus orderStatus)throws RemoteException;
+
+    public List<OrderVO> getOrderByHotelAndStatus(String hotelID,OrderStatus status)throws RemoteException;
 }

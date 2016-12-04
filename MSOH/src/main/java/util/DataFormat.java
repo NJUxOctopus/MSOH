@@ -7,6 +7,8 @@ public class DataFormat {
     public static final String Password_Format = "[0-9A-Za-z_]{6,16}$";
     public static final String Email_Format = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@" +
             "([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+    public static final String Phone_Format = "[0-9]{11,11}$";
+    public static final String ID_Format = "[0-9]{18,18}$";
 
     public static String code(String ID) {
         String result = "";

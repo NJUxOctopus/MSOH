@@ -8,6 +8,7 @@ import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.security.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,11 +29,13 @@ public interface HotelUtil_BLService {
 
     public List<HotelVO> getByArea(String area) throws RemoteException;
 
+    public List<HotelVO> getHotelByClerkID(String clerkID) throws RemoteException;
+
     public RoomVO getRoomByName(String hotelID, String roomName) throws RemoteException;
 
     public List<CommentVO> getComment(String hotelID) throws RemoteException;
 
-    public List<DailyRoomInfoVO> getDailyRoomInfo(String hotelID) throws RemoteException;
+    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date)throws RemoteException;
 
     public List<HotelVO> filterByStar(String star) throws RemoteException;
 
@@ -44,10 +47,14 @@ public interface HotelUtil_BLService {
 
     public List<HotelVO> filterByArea(String area) throws RemoteException;
 
-    public List<HotelVO> filter(String star, String name,String low, String high, String city, Timestamp timestamp1, Timestamp timestamp2, String area) throws RemoteException;
+    public List<HotelVO> filter(String star, String name, String low, String high, String city, Timestamp timestamp1, Timestamp timestamp2, String area) throws RemoteException;
 
     public List<HotelVO> searchHotel(String address, String area, Timestamp timestamp1, Timestamp timestamp2, String star, String low, String high) throws RemoteException;
 
-    public List<HotelVO> filterByName(String name)throws RemoteException;
+    public List<HotelVO> filterByName(String name) throws RemoteException;
+
+    public List<String> getAllCities() throws RemoteException;
+
+    public List<String> getAreaByCity(String city) throws RemoteException;
 }
 

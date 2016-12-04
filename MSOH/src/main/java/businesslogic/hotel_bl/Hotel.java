@@ -4,12 +4,13 @@ import businesslogic.clerk_bl.Clerk;
 import businesslogic.clerk_bl.ClerkUtil;
 import businesslogicservice.hotel_blservice.Hotel_BLService;
 import dataservice.hotel_dataservice.Hotel_DataService_Stub;
-import po.HotelPO;
-import po.RoomPO;
+import po.*;
 import util.ResultMessage;
+import util.WorkerPosition;
 import vo.*;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -134,19 +135,18 @@ public class Hotel implements Hotel_BLService {
      * @throws RemoteException
      */
     public ResultMessage addComment(CommentVO commentVO, OrderVO orderVO) throws RemoteException {
-        return null;
-    }
+        if (commentVO.score < 0)
+            return ResultMessage.DataFormatWrong;
+        if (commentVO.comment.equals(""))
+            commentVO.comment = "默认好评";
+        int commentNum = hotel_dataService_stub.getCommentByHotel(orderVO.hotelID).size();
+        double score = (commentNum * hotel_dataService_stub.findHotelByID(orderVO.hotelID).getScore() + commentVO.score) / (commentNum + 1);
+        if (hotel_dataService_stub.addComment(new CommentPO(score, commentVO.comment, orderVO.customerName, orderVO.customerID
+                , orderVO.hotelName, orderVO.hotelID, orderVO.orderID, commentVO.commentTime)))
+            return ResultMessage.Hotel_addCommentSuccess;
+        else
+            return ResultMessage.Fail;
 
-    /**
-     * 得到每日房间信息
-     *
-     * @param ID
-     * @param Date
-     * @return
-     * @throws RemoteException
-     */
-    public List<DailyRoomInfoVO> getDailyRoomInfo(String ID, Date Date) throws RemoteException {
-        return null;
     }
 
     /**
@@ -181,7 +181,7 @@ public class Hotel implements Hotel_BLService {
                 picUrl += hotelVO.picUrls[i];
         }
         if (hotel_dataService_stub.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, roomType,
-                hotelVO.star, 0, hotelVO.license, picUrl, null, null, null, null)))
+                hotelVO.star, 0, hotelVO.license, picUrl, null, null)))
             return ResultMessage.Hotel_addHotelSuccess;
         else
             return ResultMessage.Fail;
@@ -201,22 +201,58 @@ public class Hotel implements Hotel_BLService {
     /**
      * 删除酒店
      *
-     * @param hotelVO
+     * @param hotelID
      * @return
      * @throws RemoteException
      */
-    public ResultMessage deleteHotel(HotelVO hotelVO) throws RemoteException {
-        return null;
+    public ResultMessage deleteHotel(String hotelID) throws RemoteException {
+        if (hotel_dataService_stub.findHotelByID(hotelID) == null)
+            return ResultMessage.Hotel_HotelNotExist;
+        if (hotel_dataService_stub.deleteHotel(hotel_dataService_stub.findHotelByID(hotelID)))
+            return ResultMessage.Hotel_deleteHotelSuccess;
+        else
+            return ResultMessage.Fail;
     }
 
     /**
      * 修改每日房间信息
      *
-     * @param list
+     * @param dailyRoomInfoVO
      * @return
      * @throws RemoteException
      */
-    public ResultMessage modifyDailyRoomInfo(List<DailyRoomInfoVO> list) throws RemoteException {
-        return null;
+    public ResultMessage modifyDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
+        DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService_stub.getDailyRoomInfo(dailyRoomInfoVO.hotelID, dailyRoomInfoVO.date);
+        List<RoomVO> roomVOList = dailyRoomInfoVO.room;
+        List<RoomPO> roomPOList = new ArrayList<RoomPO>();
+        for (int i = 0; i < roomVOList.size(); i++) {
+            RoomVO roomVO = roomVOList.get(i);
+            if (roomVO.reservedRooms < 0 || roomVO.occupiedRooms < 0 || roomVO.leftRooms < 0)
+                return ResultMessage.DataFormatWrong;
+            roomPOList.add(new RoomPO(roomVO.hotelID, roomVO.roomType, roomVO.occupiedRooms, roomVO.reservedRooms, roomVO.leftRooms
+                    , roomVO.price));
+        }
+        dailyRoomInfoPO.setRoom(roomPOList);
+
+        return ResultMessage.Hotel_ModifyDailyRoomInfoSuccess;
+    }
+
+
+    /**
+     * 增加酒店工作人员
+     *
+     * @param clerkVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException {
+        HotelPO hotelPO = hotel_dataService_stub.findHotelByID(clerkVO.hotelID);
+        if (hotelPO == null)
+            return ResultMessage.Hotel_HotelNotExist;
+        if (hotelPO.getClerk() != null)
+            return ResultMessage.Hotel_HasClerk;
+        hotelPO.setClerk(new ClerkPO(clerkVO.name, clerkVO.phone, clerkVO.password, clerkVO.ID, clerkVO.hotelID,
+                clerkVO.hotelName, WorkerPosition.Clerk, clerkVO.picUrl));
+        return ResultMessage.Clerk_AddClerkSuccess;
     }
 }

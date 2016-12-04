@@ -3,15 +3,18 @@ package businesslogic.customer_bl;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.customer_blservice.Customer_BLService;
 import dataservice.customer_dataservice.Customer_DataService_Stub;
+import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
 import util.DataFormat;
+import util.MemberType;
 import util.ResultMessage;
 import vo.CreditRecordVO;
 import vo.CustomerVO;
 import vo.HotelVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +27,7 @@ public class Customer implements Customer_BLService {
 
     /**
      * 根据用户id得到用户的信用
+     *
      * @param customerID
      * @return
      * @throws RemoteException
@@ -37,6 +41,7 @@ public class Customer implements Customer_BLService {
 
     /**
      * 用户注册
+     *
      * @param customerVO
      * @return
      * @throws RemoteException
@@ -49,10 +54,11 @@ public class Customer implements Customer_BLService {
         } else if (customer_dataService_stub.findCustomerByID(customerVO.ID) != null) {
             //若用户输入ID，已存在该用户，返回注册已存在
             return ResultMessage.Customer_SignupExist;
-        } else if (customerVO.password.matches(DataFormat.Password_Format)&&customerVO.email.matches(DataFormat.Email_Format)) {
+        } else if (customerVO.password.matches(DataFormat.Password_Format) && customerVO.email.matches(DataFormat.Email_Format) &&
+                customerVO.phone.matches(DataFormat.Phone_Format) && customerVO.ID.matches(DataFormat.ID_Format)) {
             //若用户已输入ID并且不存在该ID的用户，则添加该用户，并返回注册成功
-            if(customer_dataService_stub.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
-                    customerVO.phone, customerVO.email, customerVO.credit, customerVO.picUrl, customerVO.ID, customerVO.memberType)))
+            if (customer_dataService_stub.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
+                    customerVO.phone, customerVO.email, customerVO.credit, customerVO.picUrl, customerVO.ID, MemberType.NONMEMBER)))
                 return ResultMessage.Customer_SignupSuccess;
             else
                 return ResultMessage.Fail;
@@ -62,6 +68,7 @@ public class Customer implements Customer_BLService {
 
     /**
      * 更改用户信息
+     *
      * @param customerVO
      * @return
      * @throws RemoteException
@@ -73,13 +80,15 @@ public class Customer implements Customer_BLService {
         if (customerVO.name.equals("") || customerVO.email.equals("") || customerVO.phone.equals(""))
             //若用户修改时未填写名字，邮箱，手机号，返回有信息空白
             return ResultMessage.Blank;
+        if (!customerVO.email.matches(DataFormat.Email_Format) || !customerVO.phone.matches(DataFormat.Phone_Format))
+            return ResultMessage.DataFormatWrong;
         //根据ID获取该用户后修改用户的po，返回修改信息成功
         CustomerPO customerPO = customer_dataService_stub.findCustomerByID(customerVO.ID);
         customerPO.setEmail(customerVO.email);
         customerPO.setPhone(customerVO.phone);
         customerPO.setPicture(customerVO.picUrl);
         customerPO.setUserName(customerVO.name);
-        if(customer_dataService_stub.modifyCustomer(customerPO))
+        if (customer_dataService_stub.modifyCustomer(customerPO))
             return ResultMessage.ChangeInfoSuccess;
         else
             return ResultMessage.Fail;
@@ -87,6 +96,7 @@ public class Customer implements Customer_BLService {
 
     /**
      * 根据用户id得到预定过的酒店
+     *
      * @param customerID
      * @return
      * @throws RemoteException
@@ -97,7 +107,7 @@ public class Customer implements Customer_BLService {
             return null;
         List<HotelVO> listVO = new ArrayList<HotelVO>();
         List<HotelPO> listPO = customer_dataService_stub.getCustomerReservedHotel(customerID);
-        if(listPO==null||listPO.isEmpty())
+        if (listPO == null || listPO.isEmpty())
             //如果列表为空
             return null;
         Iterator iterator = listPO.iterator();
@@ -109,25 +119,46 @@ public class Customer implements Customer_BLService {
             String[] roomType = hotelPO.getHotelRoomType().split(";");
             HotelUtil hotelUtil = new HotelUtil();
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
-                    hotelPO.getIntro(), infra, roomType,hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(),picUrl,
+                    hotelPO.getIntro(), infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl,
                     hotelPO.getClerk().getName(), hotelPO.getClerk().getPhone(), hotelPO.getHotelID(),
-                    hotelUtil.getDailyRoomInfo(hotelPO.getHotelID()), hotelUtil.getComment(hotelPO.getHotelID()));
+                    hotelUtil.getDailyRoomInfo(hotelPO.getHotelID(), new Timestamp(System.currentTimeMillis())), hotelUtil.getComment(hotelPO.getHotelID()));
             listVO.add(hotelVO);
         }
         return listVO;
     }
 
-    public CreditRecordVO getCreditRecord(String customerID) throws RemoteException {
-        return null;
+    public List<CreditRecordVO> getCreditRecord(String customerID) throws RemoteException {
+        if (customerID.equals(""))
+            return null;
+        if (customer_dataService_stub.findCustomerByID(customerID) == null)
+            return null;
+        List<CreditRecordPO> creditRecordPOList = customer_dataService_stub.findCreditRecordByID(customerID);
+        if (creditRecordPOList == null || creditRecordPOList.isEmpty())
+            return null;
+        List<CreditRecordVO> creditRecordVOList = new ArrayList<CreditRecordVO>();
+        for (int i = 0; i < creditRecordPOList.size(); i++) {
+            CreditRecordPO creditRecordPO = creditRecordPOList.get(i);
+            creditRecordVOList.add(new CreditRecordVO(creditRecordPO.getVariation(), creditRecordPO.getChangeTime(),
+                    creditRecordPO.getCustomerName(), creditRecordPO.getCustomerID(), creditRecordPO.getAfterChangeCredit()
+                    , creditRecordPO.getOrderID(), creditRecordPO.getMarketerName()));
+        }
+        return creditRecordVOList;
     }
 
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException {
-        //暂时还不会写
-        return null;
+        if (customer_dataService_stub.findCustomerByID(ID) == null)
+            return ResultMessage.Customer_CustomerNotExist;
+        CreditRecordPO creditRecordPO = new CreditRecordPO(creditRecordVO.variation, creditRecordVO.changeTime, creditRecordVO.customerName,
+                creditRecordVO.customerID, creditRecordVO.afterChangeCredit, creditRecordVO.orderID, creditRecordVO.marketerName);
+        if (customer_dataService_stub.addCreditRecord(creditRecordPO))
+            return ResultMessage.Customer_AddCreditRecordSuccess;
+        else
+            return ResultMessage.Fail;
     }
 
     /**
      * 修改密码
+     *
      * @param ID
      * @param oldPassword
      * @param newPassword1
@@ -148,7 +179,7 @@ public class Customer implements Customer_BLService {
                 //如果两次新密码输入相同
                 CustomerPO customerPO = customer_dataService_stub.findCustomerByID(ID);
                 customerPO.setPassword(newPassword1);
-                if(customer_dataService_stub.modifyCustomer(customerPO))
+                if (customer_dataService_stub.modifyCustomer(customerPO))
                     return ResultMessage.ChangePasswordSuccess;
                 else
                     return ResultMessage.Fail;

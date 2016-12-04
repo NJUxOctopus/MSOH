@@ -78,30 +78,9 @@ public class OrderUtil implements OrderUtil_BLService {
      * @throws RemoteException
      */
     public List<OrderVO> getOrderByIDAndStatus(String customerID, OrderStatus orderStatus) throws RemoteException {
-        if(customerID.equals(""))
-            //若ID为空
-            return null;
-        List<OrderPO> orderPOList = order_dataService_stub.findOrderByCustomerID(customerID);
-        if (orderPOList == null||orderPOList.isEmpty())
-            //若列表为空
-            return null;
-        else {
-            List<OrderVO> orderVOList = new ArrayList<OrderVO>();
-            Iterator iterator = orderPOList.iterator();
-            while (iterator.hasNext()) {
-                Object object = iterator.next();
-                OrderPO orderPO = (OrderPO) object;
-                if (orderPO.getOrderType().equals(orderStatus))
-                    orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
-                            orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
-                            orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
-                            orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
-                            orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
-            }
-            if(orderVOList.isEmpty())
-                return null;
-            return orderVOList;
-        }
+        List<OrderVO> orderVOList = getOrdersByCustomerID(customerID);
+        orderVOList.retainAll(getOrderByStatus(orderStatus));
+        return orderVOList;
     }
 
     /**
@@ -169,5 +148,19 @@ public class OrderUtil implements OrderUtil_BLService {
             }
             return orderVOList;
         }
+    }
+
+
+    /**
+     * 根据酒店ID得到该酒店不同状态的订单
+     * @param hotelID
+     * @param status
+     * @return
+     * @throws RemoteException
+     */
+    public List<OrderVO> getOrderByHotelAndStatus(String hotelID, OrderStatus status) throws RemoteException {
+        List<OrderVO> orderVOList = getOrdersByHotelID(hotelID);
+        orderVOList.retainAll(getOrderByStatus(status));
+        return orderVOList;
     }
 }

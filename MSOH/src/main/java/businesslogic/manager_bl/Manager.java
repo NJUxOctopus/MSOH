@@ -31,6 +31,8 @@ public class Manager implements Manager_BLService {
             //若姓名，电话为空
             return ResultMessage.Blank;
         }
+        if(!managerVO.phone.matches(DataFormat.Phone_Format))
+            return ResultMessage.DataFormatWrong;
         managerPO.setPic(managerVO.picUrl);
         managerPO.setPhone(managerVO.phone);
         managerPO.setName(managerVO.name);

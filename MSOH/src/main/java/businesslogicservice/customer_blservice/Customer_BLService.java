@@ -21,7 +21,7 @@ public interface Customer_BLService {
 
     public List<HotelVO> getHistoryHotel(String customerID) throws RemoteException;
 
-    public CreditRecordVO getCreditRecord(String customerID) throws RemoteException;
+    public List<CreditRecordVO> getCreditRecord(String customerID) throws RemoteException;
 
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException;
 

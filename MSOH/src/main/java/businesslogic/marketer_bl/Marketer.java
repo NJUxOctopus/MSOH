@@ -51,7 +51,8 @@ public class Marketer implements Marketer_BLService {
         if (marketer_dataService_stub.findMarketerByID(marketerVO.ID) != null)
             //若ID已存在
             return ResultMessage.Marketer_MarketerAlreadyExist;
-        if (marketerVO.password.matches(DataFormat.Password_Format)) {
+        if (marketerVO.password.matches(DataFormat.Password_Format)&&marketerVO.phone.matches(DataFormat.Phone_Format)&&
+                marketerVO.ID.matches(DataFormat.ID_Format)) {
             //若密码格式正确
             if (marketer_dataService_stub.addMarketer(new MarketerPO(marketerVO.name, marketerVO.ID, marketerVO.phone,
                     marketerVO.password, marketerVO.picUrl, WorkerPosition.Marketer)))
@@ -76,6 +77,8 @@ public class Marketer implements Marketer_BLService {
         else if (marketerVO.phone.equals("") || marketerVO.name.equals(""))
             //电话或名称为空
             return ResultMessage.Blank;
+        if(marketerVO.phone.matches(DataFormat.Phone_Format))
+            return ResultMessage.DataFormatWrong;
         MarketerPO marketerPO = marketer_dataService_stub.findMarketerByID(marketerVO.ID);
         marketerPO.setPhone(marketerVO.phone);
         marketerPO.setPicUrl(marketerVO.picUrl);

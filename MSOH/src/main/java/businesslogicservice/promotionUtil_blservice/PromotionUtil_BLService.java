@@ -13,4 +13,6 @@ public interface PromotionUtil_BLService {
     public List<PromotionVO> getAll (Date date)throws RemoteException;
 
     public PromotionVO getSingle(String promotionID)throws RemoteException;
+
+    public List<PromotionVO> getPromotionByHotelID(String hotelID)throws RemoteException;
 }
