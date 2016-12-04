@@ -33,17 +33,13 @@ public class HotelPO implements Serializable, Cloneable {
     private String picUrls;
     // 系统中该酒店负责人
     private ClerkPO clerk;
-    // 酒店每日客房信息<DailyRoomInfoPO>
-    private List<DailyRoomInfoPO> dailyRoomInfo;
-    // 酒店评价
-    private List<CommentPO> comment;
+
 
     public HotelPO() {
     }
 
     public HotelPO(String hotelName, String hotelAddress, String area, String intro, String infra, String hotelRoomType, int star,
-                   double score, String license, String picUrls, ClerkPO clerk, String hotelID, List<DailyRoomInfoPO> dailyRoomInfo,
-                   List<CommentPO> comment) {
+                   double score, String license, String picUrls, ClerkPO clerk, String hotelID) {
         this.hotelName = hotelName;
         this.hotelID = hotelID;
         this.hotelAddress = hotelAddress;
@@ -56,8 +52,6 @@ public class HotelPO implements Serializable, Cloneable {
         this.license = license;
         this.picUrls = picUrls;
         this.clerk = clerk;
-        this.dailyRoomInfo = dailyRoomInfo;
-        this.comment = comment;
     }
 
     public String getHotelName() {
@@ -156,21 +150,6 @@ public class HotelPO implements Serializable, Cloneable {
         this.hotelID = hotelID;
     }
 
-    public List<DailyRoomInfoPO> getDailyRoomInfo() {
-        return dailyRoomInfo;
-    }
-
-    public void setRoom(List<DailyRoomInfoPO> dailyRoomInfo) {
-        this.dailyRoomInfo = dailyRoomInfo;
-    }
-
-    public List<CommentPO> getComment() {
-        return comment;
-    }
-
-    public void setComment(List<CommentPO> comment) {
-        this.comment = comment;
-    }
 
     @Override
     public Object clone() {

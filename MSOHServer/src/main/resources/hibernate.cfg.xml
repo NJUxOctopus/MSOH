@@ -43,6 +43,7 @@
     <mapping class="po.MemberPO"/>
     <mapping class="po.OrderPO"/>
     <mapping class="po.MemberLevelPO"/>
+    <mapping class="po.CityArea"/>
 
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->

@@ -65,6 +65,15 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         return (PromotionPO) promotionPO.clone();
     }
 
+    public List<PromotionPO> getAllWebPromotions() throws IOException, ClassNotFoundException {
+        return null;
+    }
+
+
+    public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException, ClassNotFoundException {
+        return null;
+    }
+
     /**
      * 获得所有促销策略
      *
@@ -72,7 +81,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException {
+    private List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException {
         List<PromotionPO> list = promotionDataHelper.getAllPromotions();
 
         if (list == null || list.isEmpty()) {

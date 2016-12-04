@@ -26,4 +26,6 @@ public interface DataFactory {
 
     public CommentDataHelper getCommentDataHelper();
 
+    public CityDataHelper getCityDataHelper();
+
 }

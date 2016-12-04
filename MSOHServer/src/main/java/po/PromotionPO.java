@@ -1,6 +1,7 @@
 package po;
 
 import util.MemberType;
+import util.PromotionType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -51,12 +52,16 @@ public class PromotionPO implements Serializable, Cloneable {
     @SequenceGenerator(name = "promotion_id_seq", sequenceName = "promotion_id_seq", allocationSize = 1)
     @Column(name = "promotionID")
     private int promotionID;
+    // 策略类型
+    @Column(name = "promotionType")
+    @Enumerated(EnumType.STRING)
+    private PromotionType promotionType;
 
     public PromotionPO() {
     }
 
     public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom) {
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,PromotionType promotionType) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -67,6 +72,7 @@ public class PromotionPO implements Serializable, Cloneable {
         this.endTime = endTime;
         this.discount = discount;
         this.minRoom = minRoom;
+        this.promotionType=promotionType;
     }
 
     public String getFramerName() {
@@ -155,6 +161,14 @@ public class PromotionPO implements Serializable, Cloneable {
 
     public void setPromotionID(int promotionID) {
         this.promotionID = promotionID;
+    }
+
+    public PromotionType getPromotionType() {
+        return promotionType;
+    }
+
+    public void setPromotionType(PromotionType promotionType) {
+        this.promotionType = promotionType;
     }
 
     @Override

@@ -63,4 +63,9 @@ public class DataFactoryImpl implements DataFactory {
         CommentDataHelper commentDataHelper = new CommentDataHelperSQLImpl();
         return commentDataHelper;
     }
+
+    public CityDataHelper getCityDataHelper() {
+        CityDataHelper cityDataHelper=new CityDataHelperSQLImpl();
+        return cityDataHelper;
+    }
 }

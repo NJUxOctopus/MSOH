@@ -1,143 +1,154 @@
 package po;
 
 import util.MemberType;
+import util.PromotionType;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * 
  * @author zqh
- *
  */
-public class PromotionPO implements Serializable{
-	private static final long serialVersionUID=1L;
-	// 策略制定者名称
-	private String framerName;
-	// 策略制定日期
-	private Timestamp frameDate;
-	// 策略名称
-	private String promotionName;
-	// 目标客户
-	private MemberType targetUser;
-	// 目标商圈
-	private String targetArea;
-	// 目标酒店ID，用分号进行分割
-	private String targetHotel;
-	// 策略生效时间
-	private Timestamp startTime;
-	// 策略过期时间
-	private Timestamp endTime;
-	// 策略折扣
-	private double discount;
-	// 策略生效所需最少房间数
-	private int minRoom;
-	// 策略ID（编号）
-	private int promotionID;
-	
-	public PromotionPO(){}
+public class PromotionPO implements Serializable {
+    private static final long serialVersionUID = 1L;
+    // 策略制定者名称
+    private String framerName;
+    // 策略制定日期
+    private Timestamp frameDate;
+    // 策略名称
+    private String promotionName;
+    // 目标客户
+    private MemberType targetUser;
+    // 目标商圈
+    private String targetArea;
+    // 目标酒店ID，用分号进行分割
+    private String targetHotel;
+    // 策略生效时间
+    private Timestamp startTime;
+    // 策略过期时间
+    private Timestamp endTime;
+    // 策略折扣
+    private double discount;
+    // 策略生效所需最少房间数
+    private int minRoom;
+    // 策略ID（编号）
+    private int promotionID;
+    // 策略类型
+    private PromotionType promotionType;
 
-	public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-			String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, int promotionID) {
-		this.framerName = framerName;
-		this.frameDate = frameDate;
-		this.promotionName = promotionName;
-		this.targetUser = targetUser;
-		this.targetArea = targetArea;
-		this.targetHotel = targetHotel;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.discount = discount;
-		this.minRoom = minRoom;
-		this.promotionID=promotionID;
-	}
+    public PromotionPO() {
+    }
 
-	public String getFramerName() {
-		return framerName;
-	}
+    public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, int promotionID, PromotionType promotionType) {
+        this.framerName = framerName;
+        this.frameDate = frameDate;
+        this.promotionName = promotionName;
+        this.targetUser = targetUser;
+        this.targetArea = targetArea;
+        this.targetHotel = targetHotel;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.discount = discount;
+        this.minRoom = minRoom;
+        this.promotionID = promotionID;
+        this.promotionType = promotionType;
+    }
 
-	public void setFramerName(String framerName) {
-		this.framerName = framerName;
-	}
+    public String getFramerName() {
+        return framerName;
+    }
 
-	public Timestamp getFrameDate() {
-		return frameDate;
-	}
+    public void setFramerName(String framerName) {
+        this.framerName = framerName;
+    }
 
-	public void setFrameDate(Timestamp frameDate) {
-		this.frameDate = frameDate;
-	}
+    public Timestamp getFrameDate() {
+        return frameDate;
+    }
 
-	public String getPromotionName() {
-		return promotionName;
-	}
+    public void setFrameDate(Timestamp frameDate) {
+        this.frameDate = frameDate;
+    }
 
-	public void setPromotionName(String promotionName) {
-		this.promotionName = promotionName;
-	}
+    public String getPromotionName() {
+        return promotionName;
+    }
 
-	public MemberType getTargetUser() {
-		return targetUser;
-	}
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+    }
 
-	public void setTargetUser(MemberType targetUser) {
-		this.targetUser = targetUser;
-	}
+    public MemberType getTargetUser() {
+        return targetUser;
+    }
 
-	public String getTargetArea() {
-		return targetArea;
-	}
+    public void setTargetUser(MemberType targetUser) {
+        this.targetUser = targetUser;
+    }
 
-	public void setTargetArea(String targetArea) {
-		this.targetArea = targetArea;
-	}
+    public String getTargetArea() {
+        return targetArea;
+    }
 
-	public String getTargetHotel() {
-		return targetHotel;
-	}
+    public void setTargetArea(String targetArea) {
+        this.targetArea = targetArea;
+    }
 
-	public void setTargetHotel(String targetHotel) {
-		this.targetHotel = targetHotel;
-	}
+    public String getTargetHotel() {
+        return targetHotel;
+    }
 
-	public Timestamp getStartTime() {
-		return startTime;
-	}
+    public void setTargetHotel(String targetHotel) {
+        this.targetHotel = targetHotel;
+    }
 
-	public void setStartTime(Timestamp startTime) {
-		this.startTime = startTime;
-	}
+    public Timestamp getStartTime() {
+        return startTime;
+    }
 
-	public Timestamp getEndTime() {
-		return endTime;
-	}
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
+    }
 
-	public void setEndTime(Timestamp endTime) {
-		this.endTime = endTime;
-	}
+    public Timestamp getEndTime() {
+        return endTime;
+    }
 
-	public double getDiscount() {
-		return discount;
-	}
+    public void setEndTime(Timestamp endTime) {
+        this.endTime = endTime;
+    }
 
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
+    public double getDiscount() {
+        return discount;
+    }
 
-	public int getMinRoom() {
-		return minRoom;
-	}
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
 
-	public void setMinRoom(int minRoom) {
-		this.minRoom = minRoom;
-	}
-	
-	public int getPromotionID(){
-		return promotionID;
-	}
-	
-	public void setPromotionID(int promotionID){
-		this.promotionID=promotionID;
-	}
+    public int getMinRoom() {
+        return minRoom;
+    }
+
+    public void setMinRoom(int minRoom) {
+        this.minRoom = minRoom;
+    }
+
+    public int getPromotionID() {
+        return promotionID;
+    }
+
+    public void setPromotionID(int promotionID) {
+        this.promotionID = promotionID;
+    }
+
+    public PromotionType getPromotionType() {
+        return promotionType;
+    }
+
+    public void setPromotionType(PromotionType promotionType) {
+        this.promotionType = promotionType;
+    }
 }

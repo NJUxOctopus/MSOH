@@ -29,7 +29,7 @@ public class PromotionPOTest {
         Promotion_DataService promotion_dataService = Promotion_DataServiceImpl.getInstance();
 
 //        promotion_dataService.addPromotion(promotionPO);
-        List<PromotionPO> promotionPO = promotion_dataService.getAllPromotions();
+        List<PromotionPO> promotionPO = promotion_dataService.getAllWebPromotions();
 
         for (PromotionPO p : promotionPO) {
             System.out.println(p.getPromotionName());

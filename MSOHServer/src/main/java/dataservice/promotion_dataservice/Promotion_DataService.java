@@ -18,7 +18,10 @@ public interface Promotion_DataService extends Remote {
     public PromotionPO getPromotion(int promotionID) throws RemoteException;
 
     // 得到所有促销策略
-    public List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException;
+    public List<PromotionPO> getAllWebPromotions() throws IOException, ClassNotFoundException;
+
+    // 获得适用于某酒店的营销策略
+    public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException,ClassNotFoundException;
 
     // 删除促销策略
     public boolean deletePromotion(PromotionPO promotionPO) throws RemoteException;

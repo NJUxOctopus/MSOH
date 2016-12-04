@@ -91,6 +91,14 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return null;
     }
 
+    public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException, ClassNotFoundException {
+        return null;
+    }
+
+    public List<PromotionPO> getAllWebPromotions() throws IOException, ClassNotFoundException {
+        return null;
+    }
+
     public boolean modifyMarketer(MarketerPO marketerPO) throws RemoteException {
         return false;
     }

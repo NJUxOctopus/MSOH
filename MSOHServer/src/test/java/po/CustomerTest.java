@@ -21,12 +21,13 @@ public class CustomerTest {
         CustomerPO pxr = new CustomerPO("潘潇睿", "123456", "13025209632", "151250117@nju.edu.cn", 5500, "c:/pxr.png", "320581199703033030", MemberType.NONMEMBER);
         CustomerPO qky = new CustomerPO("钱柯宇", "123456", "13030201234", "151250118@nju.edu.cn", 6000, "c:/qky.png", "320581199704044040", MemberType.NONMEMBER);
 
-//        customerDataHelper.modifyCustomer(st);
+        customerDataHelper.addCustomer(st);
 //        customerDataHelper.addCustomer(zqh);
 //        customerDataHelper.addCustomer(pxr);
 //        customerDataHelper.addCustomer(qky);
 
         List<CustomerPO> list = customerDataHelper.findCustomerByName("钱志豪");
+//        customerDataHelper.deleteCustomer(st);
         System.out.print(list.isEmpty());
     }
 }
