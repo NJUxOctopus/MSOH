@@ -1,5 +1,6 @@
 package businesslogicservice.promotion_blservice;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
@@ -15,5 +16,6 @@ public interface Promotion_BLService {
 
     public ResultMessage deletePromotion(String promotionID) throws RemoteException;
 
-    public boolean promotionRequirements(String promotionID, MemberType memberType, String hotelID, String area, int minRoom) throws RemoteException;
+    public List<PromotionVO> promotionRequirements(String hotelID, MemberType memberType,  String area, int minRoom)
+            throws RemoteException,IOException,ClassNotFoundException;
 }

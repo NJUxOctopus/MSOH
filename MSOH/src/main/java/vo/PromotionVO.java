@@ -37,6 +37,11 @@ public class PromotionVO implements Serializable {
     public PromotionVO() {
     }
 
+    public PromotionVO(double discount,String promotionName){
+        this.discount = discount;
+        this.promotionName = promotionName;
+    }
+
     public PromotionVO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
                        String targetArea, String[] targetHotel, Timestamp startTime, Timestamp endTime, double discount,
                        int minRoom, String promotionID, PromotionType promotionType) {

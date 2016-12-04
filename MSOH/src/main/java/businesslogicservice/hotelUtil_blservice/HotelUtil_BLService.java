@@ -29,7 +29,7 @@ public interface HotelUtil_BLService {
 
     public List<HotelVO> getByArea(String area) throws RemoteException;
 
-    public List<HotelVO> getHotelByClerkID(String clerkID) throws RemoteException;
+    public HotelVO getHotelByClerkID(String clerkID) throws RemoteException;
 
     public RoomVO getRoomByName(String hotelID, String roomName) throws RemoteException;
 
