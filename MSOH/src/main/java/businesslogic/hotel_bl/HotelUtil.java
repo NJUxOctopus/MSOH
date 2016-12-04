@@ -1,11 +1,13 @@
 package businesslogic.hotel_bl;
 
 import businesslogicservice.hotelUtil_blservice.HotelUtil_BLService;
+import dataservice.hotel_dataservice.City_DataService;
 import dataservice.hotel_dataservice.Hotel_DataService_Stub;
 import po.CommentPO;
 import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
+import rmi.RemoteHelper;
 import vo.CommentVO;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
@@ -21,6 +23,8 @@ import java.util.List;
  * Created by apple on 16/11/10.
  */
 public class HotelUtil implements HotelUtil_BLService {
+    City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
+
     /**
      * 该方法主要是把酒店的评论的po改成vo
      *
@@ -66,8 +70,8 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
             hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getName(),
-                    hotelPO.getClerk().getPhone(), hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
+                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
+                    hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
                     new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
         }
         return hotelVOList;
@@ -123,8 +127,8 @@ public class HotelUtil implements HotelUtil_BLService {
         String[] picUrl = hotelPO.getPicUrls().split(";");
         String[] roomType = hotelPO.getHotelRoomType().split(";");
         return new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getName(),
-                hotelPO.getClerk().getPhone(), hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
+                infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
+                hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
                 new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID()));
     }
 
@@ -148,8 +152,8 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
             hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getName(),
-                    hotelPO.getClerk().getPhone(), hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
+                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
+                    hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
                     new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
         }
         return hotelVOList;
@@ -175,8 +179,8 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
             hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
-                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getName(),
-                    hotelPO.getClerk().getPhone(), hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
+                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerk().getID(),
+                    hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
                     new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
         }
         return hotelVOList;
@@ -392,18 +396,44 @@ public class HotelUtil implements HotelUtil_BLService {
         return hotelVOList;
     }
 
-    @Override
-    public List<HotelVO> getHotelByClerkID(String clerkID) throws RemoteException {
+    /**
+     * 通过酒店工作人员的ID获得他所工作的酒店
+     *
+     * @param clerkID
+     * @return
+     * @throws RemoteException
+     */
+    public HotelVO getHotelByClerkID(String clerkID) throws RemoteException {
+        if (clerkID.equals(""))
+            return null;
+        List<HotelVO> hotelVOList = getAll();
+        if (hotelVOList == null || hotelVOList.isEmpty())
+            return null;
+        for (int i = 0; i < hotelVOList.size(); i++) {
+            if (hotelVOList.get(i).clerkID.equals(clerkID))
+                return hotelVOList.get(i);
+        }
         return null;
     }
 
-    @Override
+    /**
+     * 得到所有的城市信息
+     *
+     * @return
+     * @throws RemoteException
+     */
     public List<String> getAllCities() throws RemoteException {
-        return null;
+        return city_dataService.getAllCities();
     }
 
-    @Override
+    /**
+     * 得到该城市的所有商圈
+     *
+     * @param city
+     * @return
+     * @throws RemoteException
+     */
     public List<String> getAreaByCity(String city) throws RemoteException {
-        return null;
+        return city_dataService.getAreaByCity(city);
     }
 }

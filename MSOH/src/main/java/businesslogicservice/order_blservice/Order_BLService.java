@@ -1,5 +1,6 @@
 package businesslogicservice.order_blservice;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -22,6 +23,6 @@ public interface Order_BLService {
 
     public double getTotal(OrderVO orderVO) throws RemoteException;
 
-    public List<OrderPriceVO> usePromotion(OrderVO orderVO)throws RemoteException;
+    public List<OrderPriceVO> usePromotion(OrderVO orderVO)throws RemoteException,IOException,ClassNotFoundException;
 
 }

@@ -195,7 +195,30 @@ public class Hotel implements Hotel_BLService {
      * @throws RemoteException
      */
     public ResultMessage modifyHotel(HotelVO hotelVO) throws RemoteException {
-        return null;
+        HotelPO hotelPO = hotel_dataService_stub.findHotelByID(hotelVO.hotelID);
+        if (hotelPO == null)
+            return ResultMessage.Hotel_HotelNotExist;
+        if (hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals("") || hotelVO.area.equals(""))
+            return ResultMessage.Blank;
+        if (hotelVO.star < 0)
+            return ResultMessage.DataFormatWrong;
+        hotelPO.setArea(hotelVO.area);
+        hotelPO.setHotelName(hotelVO.hotelName);
+        hotelPO.setHotelAddress(hotelVO.hotelAddress);
+        String infra = "";
+        for (int i = 0; i < hotelVO.infra.length; i++) {
+            if (i != hotelVO.infra.length - 1)
+                infra += hotelVO.infra[i] + ";";
+            else
+                infra += hotelVO.infra[i];
+        }
+        hotelPO.setInfra(infra);
+        hotelPO.setIntro(hotelVO.intro);
+        hotelPO.setStar(hotelVO.star);
+        if(hotel_dataService_stub.modifyHotel(hotelPO))
+            return ResultMessage.Hotel_modifyHotelInfoSuccess;
+        else
+            return ResultMessage.Fail;
     }
 
     /**

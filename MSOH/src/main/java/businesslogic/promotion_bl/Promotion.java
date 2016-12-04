@@ -8,7 +8,10 @@ import util.MemberType;
 import util.ResultMessage;
 import vo.PromotionVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by apple on 16/11/10.
@@ -32,7 +35,7 @@ public class Promotion implements Promotion_BLService {
         } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
             return ResultMessage.DataFormatWrong;
         } else {
-            if (promotion_dataService_stub.getPromotion(promotionVO.promotionID) != null)
+            if (promotion_dataService_stub.getPromotion(Integer.parseInt(promotionVO.promotionID)) != null)
                 //若已经存在该ID的营销策略
                 return ResultMessage.PromotionExist;
             String targetHotel = "";
@@ -45,7 +48,7 @@ public class Promotion implements Promotion_BLService {
             if (promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, promotionVO.targetArea,
                     targetHotel, promotionVO.startTime, promotionVO.endTime, promotionVO.discount,
-                    promotionVO.minRoom, Integer.parseInt(promotionVO.promotionID),promotionVO.promotionType)))
+                    promotionVO.minRoom, Integer.parseInt(promotionVO.promotionID), promotionVO.promotionType)))
                 return ResultMessage.Promotion_AddPromotionSuccess;
             else
                 return ResultMessage.Fail;
@@ -67,7 +70,7 @@ public class Promotion implements Promotion_BLService {
         } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
             return ResultMessage.DataFormatWrong;
         } else {
-            PromotionPO promotionPO = promotion_dataService_stub.getPromotion(promotionVO.promotionID);
+            PromotionPO promotionPO = promotion_dataService_stub.getPromotion(Integer.parseInt(promotionVO.promotionID));
             if (promotionPO == null)
                 return ResultMessage.PromotionNotExist;
             promotionPO.setDiscount(promotionVO.discount);
@@ -93,69 +96,57 @@ public class Promotion implements Promotion_BLService {
      * @throws RemoteException
      */
     public ResultMessage deletePromotion(String promotionID) throws RemoteException {
-        if (promotion_dataService_stub.getPromotion(promotionID) == null)
+        if (promotion_dataService_stub.getPromotion(Integer.parseInt(promotionID)) == null)
             //若不存在该营销策略
             return ResultMessage.PromotionNotExist;
-        if (promotion_dataService_stub.deletePromotion(promotion_dataService_stub.getPromotion(promotionID)))
+        if (promotion_dataService_stub.deletePromotion(promotion_dataService_stub.getPromotion(Integer.parseInt(promotionID))))
             return ResultMessage.Promotion_DeletePromotionSuccess;
         else
             return ResultMessage.Fail;
     }
 
     /**
-     * 判断是否符合策略要求
+     * 判断是否符合策略要求，返回满足要求的promotion
      *
-     * @param promotionID
-     * @param memberType
      * @param hotelID
+     * @param memberType
      * @param area
      * @param roomNum
      * @return
      * @throws RemoteException
      */
-    public boolean promotionRequirements(String promotionID, MemberType memberType, String hotelID, String area, int roomNum) throws RemoteException {
-        if (promotionID.equals("") || hotelID.equals("") || area.equals("") || roomNum < 0)
-            return false;
-        PromotionPO promotionPO = promotion_dataService_stub.getPromotion(promotionID);
-        if (promotionPO == null)
-            return false;
-        String[] hotelIDArray = promotionPO.getTargetHotel().split(";");
-        String[] areaArray = promotionPO.getTargetArea().split(";");
-        boolean hotelMeetReq = false;//用来判断酒店ID是否符合要求
-        //若所有酒店都满足
-        if (hotelIDArray.length == 1 && hotelIDArray[0].equals("All"))
-            hotelMeetReq = true;
-        else {
-            for (int i = 0; i < hotelIDArray.length; i++) {
-                if (hotelID.equals(hotelIDArray[i])) {
-                    hotelMeetReq = true;
-                    break;
-                }
-            }
-        }
-        boolean areaMeetReq = false;//用来判断商圈是否符合
-        //若所有商圈都满足
-        if (areaArray.length == 1 && areaArray[0].equals("All"))
-            areaMeetReq = true;
-        else {
-            for (int i = 0; i < areaArray.length; i++) {
-                if (area.equals(areaArray[i])) {
-                    areaMeetReq = true;
-                    break;
-                }
-            }
-        }
-        boolean memberTypeMeetReq = false;//用来判断会员类型是否符合
-        if (promotionPO.getTargetUser().equals(MemberType.NONMEMBER)) {
-            //若要求为非会员，所有类型都满足
-            memberTypeMeetReq = true;
-        } else if (promotionPO.getTargetUser().equals(memberType)) {
-            memberTypeMeetReq = true;
-        }
+    public List<PromotionVO> promotionRequirements(String hotelID, MemberType memberType, String area, int roomNum) throws RemoteException, IOException, ClassNotFoundException {
+        List<PromotionPO> promotionPOList = promotion_dataService_stub.getPromotionByHotelID(hotelID);
+        if (promotionPOList == null || promotionPOList.isEmpty())
+            return null;
+        List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
+        for (int i = 0; i < promotionPOList.size(); i++) {
+            PromotionPO promotionPO = promotionPOList.get(i);
+            String[] areaArray = promotionPO.getTargetArea().split(";");
 
-        if (roomNum >= promotionPO.getMinRoom() && hotelMeetReq && areaMeetReq && memberTypeMeetReq) {
-            return true;
-        } else
-            return false;
+            boolean areaMeetReq = false;//用来判断商圈是否符合
+            //若所有商圈都满足
+            if (areaArray.length == 1 && areaArray[0].equals("All"))
+                areaMeetReq = true;
+            else {
+                for (int j = 0; j < areaArray.length; j++) {
+                    if (area.equals(areaArray[j])) {
+                        areaMeetReq = true;
+                        break;
+                    }
+                }
+            }
+            boolean memberTypeMeetReq = false;//用来判断会员类型是否符合
+            if (promotionPO.getTargetUser().equals(MemberType.NONMEMBER)) {
+                //若要求为非会员，所有类型都满足
+                memberTypeMeetReq = true;
+            } else if (promotionPO.getTargetUser().equals(memberType)) {
+                memberTypeMeetReq = true;
+            }
+
+            if (roomNum >= promotionPO.getMinRoom() && areaMeetReq && memberTypeMeetReq)
+                promotionVOList.add(new PromotionVO(promotionPO.getDiscount(),promotionPO.getPromotionName()));
+        }
+        return promotionVOList;
     }
 }

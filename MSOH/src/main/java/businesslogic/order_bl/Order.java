@@ -20,6 +20,7 @@ import vo.*;
 
 import javax.swing.text.html.HTMLDocument;
 import javax.xml.transform.Result;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,28 +41,23 @@ public class Order implements Order_BLService {
      * @return
      * @throws RemoteException
      */
-    public List<OrderPriceVO> usePromotion(OrderVO orderVO) throws RemoteException {
-        PromotionUtil promotionUtil = new PromotionUtil();
-        HotelUtil hotelUtil = new HotelUtil();
-        CustomerUtil customerUtil = new CustomerUtil();
+    public List<OrderPriceVO> usePromotion(OrderVO orderVO) throws RemoteException, IOException, ClassNotFoundException {
         Promotion promotion = new Promotion();
+        CustomerUtil customerUtil = new CustomerUtil();
+        HotelUtil hotelUtil = new HotelUtil();
         List<OrderPriceVO> orderPriceVOList = new ArrayList<OrderPriceVO>();
-
-        List<PromotionVO> promotionVOList = promotionUtil.getAll(orderVO.estimatedCheckinTime);
+        List<PromotionVO> promotionVOList = promotion.promotionRequirements(orderVO.hotelID, customerUtil.getSingle(orderVO.customerID).memberType
+                , hotelUtil.getByID(orderVO.hotelID).area, orderVO.rooms.length);
         if (promotionVOList == null || promotionVOList.isEmpty())
             return null;
-        Iterator iterator = promotionVOList.iterator();
-        while (iterator.hasNext()) {
-            PromotionVO promotionVO = (PromotionVO) iterator.next();
-            if (promotion.promotionRequirements(promotionVO.promotionID, customerUtil.getSingle(orderVO.customerID).
-                    memberType, orderVO.hotelID, hotelUtil.getByID(orderVO.hotelID).area, orderVO.rooms.length)) {
-                double initPrice = 0;
-                for (int i = 0; i < orderVO.rooms.length; i++) {
-                    initPrice += hotelUtil.getRoomByName(orderVO.hotelID, orderVO.rooms[i]).price;
-                }
-                double finalPrice = initPrice * promotionVO.discount;
-                orderPriceVOList.add(new OrderPriceVO(promotionVO.promotionName, initPrice, finalPrice));
+        for (int i = 0; i < promotionVOList.size(); i++) {
+            PromotionVO promotionVO = promotionVOList.get(i);
+            double initPrice = 0;
+            for (int j = 0; j < orderVO.rooms.length; j++) {
+                initPrice += hotelUtil.getRoomByName(orderVO.hotelID, orderVO.rooms[i]).price;
             }
+            double finalPrice = initPrice * promotionVO.discount;
+            orderPriceVOList.add(new OrderPriceVO(promotionVO.promotionName, initPrice, finalPrice));
         }
         return orderPriceVOList;
     }
