@@ -15,7 +15,7 @@
             <Image url="@image_customer/customer_singleorder.png" />
          </image>
       </ImageView>
-      <Button fx:id="cancelOrderButton" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="667.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="撤销订单" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Button fx:id="processOrderButton" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="667.0" layoutY="15.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#processOrder" prefHeight="124.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="撤销订单" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>

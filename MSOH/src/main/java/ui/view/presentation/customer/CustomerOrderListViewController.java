@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import vo.HotelVO;
 
 import java.io.IOException;
 
@@ -77,10 +78,6 @@ public class CustomerOrderListViewController implements ControlledStage {
         stageController.closeStage(resource);
     }
 
-    public CustomerOrderListViewController(){
-
-    }
-
     @FXML
     private void showAllOrder(){
         orderButtonShade.setY(0);
@@ -122,6 +119,10 @@ public class CustomerOrderListViewController implements ControlledStage {
         paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 5);
         customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
         customerSingleOrderPaneViewController.init();
+
+    }
+
+    public void init(){
 
     }
 
