@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -55,6 +55,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
 
     /**
      * 新增酒店
+     *
      * @param po
      * @return 是否成功
      * @throws RemoteException
@@ -70,6 +71,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
 
     /**
      * 修改酒店信息
+     *
      * @param po
      * @return 是否成功
      * @throws RemoteException
@@ -80,6 +82,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
 
     /**
      * 删除酒店
+     *
      * @param po
      * @return 是否成功
      * @throws RemoteException
@@ -90,95 +93,171 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
 
     /**
      * 获得所有酒店
+     *
      * @return 所有酒店列表
      * @throws IOException
      * @throws ClassNotFoundException
      */
     public List<HotelPO> getHotels() throws IOException, ClassNotFoundException {
-        List<HotelPO> hotelList=hotelDataHelper.getHotels();
+        List<HotelPO> hotelList = hotelDataHelper.getHotels();
 
-        if(hotelList.isEmpty()||hotelList==null){
+        if (hotelList.isEmpty() || hotelList == null) {
             return null;
         }
 
-        List<HotelPO> list= CopyUtil.deepCopy(hotelList);
+        List<HotelPO> list = CopyUtil.deepCopy(hotelList);
 
         return list;
     }
 
     /**
      * 根据ID查找酒店
+     *
      * @param hotelID
      * @return 与酒店ID匹配的酒店信息
      * @throws RemoteException
      */
     public HotelPO findHotelByID(String hotelID) throws RemoteException {
-        HotelPO hotel=hotelDataHelper.getHotelByID(hotelID);
+        HotelPO hotel = hotelDataHelper.getHotelByID(hotelID);
 
-        if(hotel==null){
+        if (hotel == null) {
             return null;
         }
 
-        return (HotelPO)hotel.clone();
+        return (HotelPO) hotel.clone();
     }
 
     /**
      * 根据酒店名称查找酒店
+     *
      * @param hotelName
      * @return 与酒店名称匹配的所有酒店
      * @throws IOException
      * @throws ClassNotFoundException
      */
     public List<HotelPO> findHotelByName(String hotelName) throws IOException, ClassNotFoundException {
-        List<HotelPO> hotelList=hotelDataHelper.getHotelByName(hotelName);
+        List<HotelPO> hotelList = hotelDataHelper.getHotelByName(hotelName);
 
-        if(hotelList.isEmpty()||hotelList==null){
+        if (hotelList.isEmpty() || hotelList == null) {
             return null;
         }
 
-        List<HotelPO> list=CopyUtil.deepCopy(hotelList);
+        List<HotelPO> list = CopyUtil.deepCopy(hotelList);
 
         return list;
     }
 
-    public boolean addRoom(RoomPO po) throws RemoteException {
-        return false;
-    }
+//    public boolean addRoom(RoomPO po) throws RemoteException {
+//        return roomDataHelper.addRoom(po);
+//    }
+//
+//    public boolean modifyRoom(RoomPO po) throws RemoteException {
+//        return roomDataHelper.modifyRoom(po);
+//    }
+//
+//    public boolean deleteRoom(RoomPO po) throws RemoteException {
+//        return roomDataHelper.deleteRoom(po);
+//    }
+//
+//    public RoomPO getRoom(String hotelID, String roomName) throws RemoteException {
+//        return null;
+//    }
+//
+//    public List<RoomPO> getHotelRooms(String hotelID) throws IOException, ClassNotFoundException {
+//        return null;
+//    }
 
-    public boolean modifyRoom(RoomPO po) throws RemoteException {
-        return false;
-    }
-
-    public boolean deleteRoom(RoomPO po) throws RemoteException {
-        return false;
-    }
-
-    public RoomPO getRoom(String hotelID, String roomName) throws RemoteException {
-        return null;
-    }
-
-    public List<RoomPO> getHotelRooms(String hotelID) throws IOException, ClassNotFoundException {
-        return null;
-    }
-
+    /**
+     * 根据酒店ID和日期，获得该酒店当日的房间信息
+     *
+     * @param hotelID
+     * @param date
+     * @return 该酒店当日的房间信息
+     * @throws RemoteException
+     */
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Timestamp date) throws RemoteException {
-        return null;
+        List<RoomPO> roomList = roomDataHelper.getRoomsByHotel(hotelID);
+
+        if (roomList.isEmpty() || roomList == null) {
+            return null;
+        }
+
+        List<RoomPO> list = new ArrayList<RoomPO>();
+
+        for (RoomPO roomPO : roomList) {
+            if (roomPO.getDate().equals(date)) {
+                list.add(roomPO);
+            }
+        }
+
+        DailyRoomInfoPO dailyRoomInfoPO = new DailyRoomInfoPO(hotelID, date, list);
+
+        return (DailyRoomInfoPO) dailyRoomInfoPO.clone();
     }
 
+    /**
+     * 新增每日客房信息
+     *
+     * @param dailyRoomInfoPO
+     * @return 是否成功
+     * @throws RemoteException
+     */
     public boolean addDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
-        return false;
+        boolean isSuccess;
+
+        for (RoomPO roomPO : dailyRoomInfoPO.getRoom()) {
+            isSuccess = roomDataHelper.addRoom(roomPO);
+            if (!isSuccess) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
+    /**
+     * 删除每日客房信息
+     *
+     * @param dailyRoomInfoPO
+     * @return 是否成功
+     * @throws RemoteException
+     */
     public boolean deleteDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
-        return false;
+        boolean isSuccess;
+
+        for (RoomPO roomPO : dailyRoomInfoPO.getRoom()) {
+            isSuccess = roomDataHelper.deleteRoom(roomPO);
+            if (!isSuccess) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
+    /**
+     * 更新每日客房信息
+     *
+     * @param dailyRoomInfoPO
+     * @return 是否成功
+     * @throws RemoteException
+     */
     public boolean updateDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
-        return false;
+        boolean isSuccess;
+
+        for (RoomPO roomPO : dailyRoomInfoPO.getRoom()) {
+            isSuccess = roomDataHelper.modifyRoom(roomPO);
+            if (!isSuccess) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
      * 新增评价
+     *
      * @param po
      * @return
      * @throws RemoteException
@@ -189,42 +268,45 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
 
     /**
      * 根据酒店ID获得酒店评价
+     *
      * @param hotelID
      * @return 该酒店的所有评价列表
      * @throws IOException
      * @throws ClassNotFoundException
      */
     public List<CommentPO> getCommentByHotel(String hotelID) throws IOException, ClassNotFoundException {
-        List<CommentPO> commentList=commentDataHelper.getCommentsByHotel(hotelID);
+        List<CommentPO> commentList = commentDataHelper.getCommentsByHotel(hotelID);
 
-        if(commentList.isEmpty()||commentList==null){
+        if (commentList.isEmpty() || commentList == null) {
             return null;
         }
 
-        List<CommentPO> list=CopyUtil.deepCopy(commentList);
+        List<CommentPO> list = CopyUtil.deepCopy(commentList);
 
         return list;
     }
 
     /**
      * 根据订单获得评价
+     *
      * @param orderID
      * @return
      * @throws RemoteException
      */
     public CommentPO getCommentByOrder(String orderID) throws RemoteException {
-        CommentPO comment=commentDataHelper.getCommentByOrder(orderID);
+        CommentPO comment = commentDataHelper.getCommentByOrder(orderID);
 
-        if(comment==null){
+        if (comment == null) {
             return null;
         }
 
-        return (CommentPO)comment.clone();
+        return (CommentPO) comment.clone();
     }
 
     /**
      * 生成酒店ID
      * 格式：20161205
+     *
      * @return 酒店ID
      */
     private String generateHotelID() {

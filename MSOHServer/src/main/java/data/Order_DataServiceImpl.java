@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by zqh on 2016/12/1.
  */
-//TODO 自动生成订单号
+
 public class Order_DataServiceImpl implements Order_DataService {
     private OrderDataHelper orderDataHelper;
 

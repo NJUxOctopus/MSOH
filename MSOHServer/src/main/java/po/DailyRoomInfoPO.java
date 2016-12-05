@@ -1,5 +1,8 @@
 package po;
 
+import util.CopyUtil;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -54,7 +57,12 @@ public class DailyRoomInfoPO implements Serializable, Cloneable {
         DailyRoomInfoPO dailyRoomInfoPO = null;
         try {
             dailyRoomInfoPO = (DailyRoomInfoPO) super.clone();
+            dailyRoomInfoPO.setRoom(CopyUtil.deepCopy(dailyRoomInfoPO.getRoom()));
         } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
             e.printStackTrace();
         }
         return dailyRoomInfoPO;

@@ -11,10 +11,9 @@ import java.util.List;
  * @author zqh
  */
 @Entity
-@Table(name = "hotel",schema = "msoh_database")
+@Table(name = "hotel", schema = "msoh_database")
 public class HotelPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
-    //TODO 是否需要添加“城市”属性
     // 酒店名称
     @Column(name = "hotelName")
     private String hotelName;

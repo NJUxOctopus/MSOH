@@ -3,15 +3,12 @@ package data;
 import DataHelper.ClerkDataHelper;
 import DataHelper.DataFactory;
 import DataHelperImpl.DataFactoryImpl;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import dataservice.clerk_dataservice.Clerk_DataService;
 import po.ClerkPO;
 import util.CopyUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**

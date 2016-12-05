@@ -6,10 +6,12 @@ import dataservice.customer_dataservice.Customer_DataService;
 import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
+import po.OrderPO;
 import util.CopyUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -131,8 +133,6 @@ public class Customer_DataServiceImpl implements Customer_DataService {
         return list;
     }
 
-    //TODO 获得预定过的酒店
-
     /**
      * 获得客户预定过的酒店列表
      *
@@ -141,7 +141,33 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public List<HotelPO> getCustomerReservedHotel(String ID) throws IOException, ClassNotFoundException {
-        return null;
+        List<OrderPO> customerOrderList = orderDataHelper.findOrderByCustomerID(ID);
+
+        // 获得预定过的所有酒店ID（不重复的）
+        List<String> reservedHotelIDList = new ArrayList<String>();
+        String hotelIDinOrder = "";
+
+        for (OrderPO orderPO : customerOrderList) {
+            hotelIDinOrder = orderPO.getHotelID();
+            if (!reservedHotelIDList.contains(hotelIDinOrder)) {
+                reservedHotelIDList.add(hotelIDinOrder);
+            }
+        }
+
+        if (reservedHotelIDList.isEmpty() || reservedHotelIDList == null) {
+            return null;
+        }
+
+        // 根据酒店ID查找酒店
+        List<HotelPO> reservedHotelList = new ArrayList<HotelPO>();
+        for (String hotelID : reservedHotelIDList) {
+            if (hotelDataHelper.getHotelByID(hotelID) == null) {
+                continue;
+            }
+            reservedHotelList.add(hotelDataHelper.getHotelByID(hotelID));
+        }
+
+        return reservedHotelList;
     }
 
     /**

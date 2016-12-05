@@ -94,7 +94,7 @@ public class Member_DataServiceImpl implements Member_DataService {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public List<MemberPO> findAllMemebers() throws IOException, ClassNotFoundException {
+    public List<MemberPO> findAllMembers() throws IOException, ClassNotFoundException {
         List<MemberPO> memberPOList = memberDataHelper.findAllMembers();
 
         if (null == memberPOList || memberPOList.isEmpty()) {

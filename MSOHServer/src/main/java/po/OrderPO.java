@@ -263,6 +263,14 @@ public class OrderPO implements Serializable, Cloneable {
         this.orderStatus = orderType;
     }
 
+    public String getHotelID() {
+        return hotelID;
+    }
+
+    public void setHotelID(String hotelID) {
+        this.hotelID = hotelID;
+    }
+
     @Override
     public Object clone() {
         OrderPO orderPO = null;

@@ -24,6 +24,6 @@ public interface Member_DataService extends Remote {
     public MemberPO findMemberByID(String ID) throws RemoteException;
 
     // 得到所有会员
-    public List<MemberPO> findAllMemebers() throws IOException, ClassNotFoundException;
+    public List<MemberPO> findAllMembers() throws IOException, ClassNotFoundException;
 
 }
