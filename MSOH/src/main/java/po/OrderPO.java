@@ -228,4 +228,7 @@ public class OrderPO implements Serializable {
         this.orderType = orderType;
     }
 
+    public void setHotelID(String hotelID) {
+        this.hotelID = hotelID;
+    }
 }
