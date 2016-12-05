@@ -7,7 +7,7 @@ import vo.HotelVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 

@@ -8,7 +8,7 @@ import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
