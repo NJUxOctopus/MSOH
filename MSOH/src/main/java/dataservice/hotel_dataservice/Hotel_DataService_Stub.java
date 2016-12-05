@@ -43,25 +43,25 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 		return null;
 	}
 
-	public boolean addRoom(RoomPO po) throws RemoteException {
-		return false;
-	}
-
-	public boolean modifyRoom(RoomPO po) throws RemoteException {
-		return false;
-	}
-
-	public boolean deleteRoom(RoomPO po) throws RemoteException {
-		return false;
-	}
-
-	public RoomPO getRoom(String hotelID, String roomName) throws RemoteException {
-		return null;
-	}
-
-	public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException {
-		return null;
-	}
+//	public boolean addRoom(RoomPO po) throws RemoteException {
+//		return false;
+//	}
+//
+//	public boolean modifyRoom(RoomPO po) throws RemoteException {
+//		return false;
+//	}
+//
+//	public boolean deleteRoom(RoomPO po) throws RemoteException {
+//		return false;
+//	}
+//
+//	public RoomPO getRoom(String hotelID, String roomName) throws RemoteException {
+//		return null;
+//	}
+//
+//	public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException {
+//		return null;
+//	}
 
 	public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Date date) throws RemoteException {
 		return null;

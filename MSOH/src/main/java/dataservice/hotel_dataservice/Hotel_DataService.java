@@ -33,20 +33,20 @@ public interface Hotel_DataService extends Remote {
     // 根据酒店名字查找酒店
     public List<HotelPO> findHotelByName(String hotelName) throws RemoteException;
 
-    // 新增酒店房间
-    public boolean addRoom(RoomPO po) throws RemoteException;
-
-    // 更新酒店房间信息
-    public boolean modifyRoom(RoomPO po) throws RemoteException;
-
-    // 删除酒店房间
-    public boolean deleteRoom(RoomPO po) throws RemoteException;
-
-    // 获得房间信息
-    public RoomPO getRoom(String hotelID, String roomName) throws RemoteException;
-
-    // 获取某酒店的所有房间
-    public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException;
+//    // 新增酒店房间
+//    public boolean addRoom(RoomPO po) throws RemoteException;
+//
+//    // 更新酒店房间信息
+//    public boolean modifyRoom(RoomPO po) throws RemoteException;
+//
+//    // 删除酒店房间
+//    public boolean deleteRoom(RoomPO po) throws RemoteException;
+//
+//    // 获得房间信息
+//    public RoomPO getRoom(String hotelID, String roomName) throws RemoteException;
+//
+//    // 获取某酒店的所有房间
+//    public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException;
 
     // 获得某酒店的每日房间信息
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
