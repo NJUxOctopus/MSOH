@@ -28,4 +28,6 @@ public interface DataFactory {
 
     public CityDataHelper getCityDataHelper();
 
+    public RoomDataHelper getRoomDataHelper();
+
 }

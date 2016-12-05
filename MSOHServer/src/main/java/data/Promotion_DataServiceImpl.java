@@ -6,9 +6,11 @@ import DataHelperImpl.DataFactoryImpl;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
 import util.CopyUtil;
+import util.PromotionType;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,32 +67,64 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         return (PromotionPO) promotionPO.clone();
     }
 
-    public List<PromotionPO> getAllWebPromotions() throws IOException, ClassNotFoundException {
-        return null;
-    }
-
-
-    public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException, ClassNotFoundException {
-        return null;
-    }
-
     /**
-     * 获得所有促销策略
+     * 获得所有网站营销策略列表
      *
-     * @return 所有促销策略组成的列表
+     * @return 所有网站营销策略的列表
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException {
-        List<PromotionPO> list = promotionDataHelper.getAllPromotions();
+    public List<PromotionPO> getAllWebPromotions() throws IOException, ClassNotFoundException {
+        List<PromotionPO> promotionList = getAllPromotions();
 
-        if (list == null || list.isEmpty()) {
+        if (promotionList.isEmpty() || promotionList == null) {
             return null;
         }
 
-        List<PromotionPO> returnPromotionList = CopyUtil.deepCopy(list);
+        List<PromotionPO> webPromotionList = new ArrayList<PromotionPO>();
 
-        return returnPromotionList;
+        for (PromotionPO promotionPO : promotionList) {
+            if (promotionPO.getPromotionType().equals(PromotionType.WebPromotion)) {
+                webPromotionList.add(promotionPO);
+            }
+        }
+
+        if (webPromotionList.isEmpty() || webPromotionList == null) {
+            return null;
+        }
+
+        return webPromotionList;
+    }
+
+    /**
+     * 获得适用于某酒店的促销策略
+     *
+     * @param hotelID
+     * @return 适用于该酒店的促销策略
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException, ClassNotFoundException {
+        List<PromotionPO> promotionList = getAllPromotions();
+
+        if (promotionList.isEmpty() || promotionList == null) {
+            return null;
+        }
+
+        List<PromotionPO> hotelPromotionList = new ArrayList<PromotionPO>();
+
+        for (PromotionPO promotion : promotionList) {
+            // 促销策略适用于所有酒店，或适用酒店中包含该酒店
+            if (promotion.getTargetHotel().equals("All") || promotion.getTargetHotel().contains(hotelID)) {
+                hotelPromotionList.add(promotion);
+            }
+        }
+
+        if (hotelPromotionList.isEmpty() || hotelPromotionList == null) {
+            return null;
+        }
+
+        return hotelPromotionList;
     }
 
     /**
@@ -111,5 +145,25 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
      */
     public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException {
         return promotionDataHelper.modifyPromotion(promotionPO);
+    }
+
+    /**
+     * 获得所有促销策略
+     * 私有方法
+     *
+     * @return 所有促销策略组成的列表
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException {
+        List<PromotionPO> list = promotionDataHelper.getAllPromotions();
+
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+
+        List<PromotionPO> returnPromotionList = CopyUtil.deepCopy(list);
+
+        return returnPromotionList;
     }
 }

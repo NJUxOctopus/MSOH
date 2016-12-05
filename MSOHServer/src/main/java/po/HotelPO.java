@@ -1,45 +1,64 @@
 package po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author zqh
  */
+@Entity
+@Table(name = "hotel",schema = "msoh_database")
 public class HotelPO implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
     //TODO 是否需要添加“城市”属性
     // 酒店名称
+    @Column(name = "hotelName")
     private String hotelName;
     // 酒店ID
+    @Id
+    @Column(name = "hotelID")
     private String hotelID;
     // 酒店地址
+    @Column(name = "hotelAddress")
     private String hotelAddress;
     // 酒店所处商圈
+    @Column(name = "area")
     private String area;
     // 酒店简介
+    @Column(name = "intro")
     private String intro;
     // 酒店设施（在数据库存储时无法存储List<String>，存成String，每个设施之间以';'分开
+    @Column(name = "infra")
     private String infra;
     // 酒店房间类型（在数据库存储时无法存储List<String>，存成String，每种房间类型之间以';'分开
+    @Column(name = "hotelRoomType")
     private String hotelRoomType;
     // 酒店星级
+    @Column(name = "star")
     private int star;
     // 酒店评分
+    @Column(name = "score")
     private double score;
     // 酒店经营许可证号
+    @Column(name = "license")
     private String license;
     // 酒店照片（在数据库存储时无法存储List<String>，存成String，每个图片链接之间以';'分开
+    @Column(name = "picUrl")
     private String picUrls;
     // 系统中该酒店负责人
-    private ClerkPO clerk;
+    @Column(name = "clerkID")
+    private String clerkID;
 
 
     public HotelPO() {
     }
 
     public HotelPO(String hotelName, String hotelAddress, String area, String intro, String infra, String hotelRoomType, int star,
-                   double score, String license, String picUrls, ClerkPO clerk, String hotelID) {
+                   double score, String license, String picUrls, String clerkID, String hotelID) {
         this.hotelName = hotelName;
         this.hotelID = hotelID;
         this.hotelAddress = hotelAddress;
@@ -51,7 +70,7 @@ public class HotelPO implements Serializable, Cloneable {
         this.score = score;
         this.license = license;
         this.picUrls = picUrls;
-        this.clerk = clerk;
+        this.clerkID = clerkID;
     }
 
     public String getHotelName() {
@@ -134,12 +153,12 @@ public class HotelPO implements Serializable, Cloneable {
         this.picUrls = picUrls;
     }
 
-    public ClerkPO getClerk() {
-        return clerk;
+    public String getClerkID() {
+        return clerkID;
     }
 
-    public void setClerk(ClerkPO clerk) {
-        this.clerk = clerk;
+    public void setClerkID(String clerkID) {
+        this.clerkID = clerkID;
     }
 
     public String getHotelID() {

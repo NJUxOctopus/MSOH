@@ -67,7 +67,18 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 		return null;
 	}
 
-	public boolean setDailyRoomInfo(List<DailyRoomInfoPO> list) throws RemoteException {
+	@Override
+	public boolean addDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
+		return false;
+	}
+
+	@Override
+	public boolean deleteDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
+		return false;
+	}
+
+	@Override
+	public boolean updateDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
 		return false;
 	}
 
