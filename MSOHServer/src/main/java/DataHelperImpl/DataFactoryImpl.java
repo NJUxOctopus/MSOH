@@ -68,4 +68,9 @@ public class DataFactoryImpl implements DataFactory {
         CityDataHelper cityDataHelper=new CityDataHelperSQLImpl();
         return cityDataHelper;
     }
+
+    public RoomDataHelper getRoomDataHelper() {
+        RoomDataHelper roomDataHelper=new RoomDataHelperSQLImpl();
+        return roomDataHelper;
+    }
 }

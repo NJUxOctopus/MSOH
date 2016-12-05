@@ -16,6 +16,7 @@ import util.OrderStatus;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +46,22 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         member_dataService = Member_DataServiceImpl.getInstance();
         customer_dataService = Customer_DataServiceImpl.getInstance();
         // TODO 初始化
+    }
+
+    public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Timestamp date) throws RemoteException {
+        return null;
+    }
+
+    public boolean addDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean deleteDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
+        return false;
+    }
+
+    public boolean updateDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
+        return false;
     }
 
     public boolean addMember(MemberPO po) throws RemoteException {
