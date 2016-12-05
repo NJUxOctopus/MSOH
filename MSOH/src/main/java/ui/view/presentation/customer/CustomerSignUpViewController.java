@@ -4,9 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import ui.controller.CustomerSignUpController;
+import ui.view.controllerservice.CustomerSignUp;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
+import ui.view.presentation.util.ErrorBoxController;
+import util.MemberType;
+import vo.CustomerVO;
 
 /**
  * Created by island on 2016/11/25.
@@ -46,6 +51,9 @@ public class CustomerSignUpViewController implements ControlledStage{
     @FXML
     private TextField secondPasswordTextField;
 
+    @FXML
+    private ImageView iconImage;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -66,8 +74,23 @@ public class CustomerSignUpViewController implements ControlledStage{
 
     @FXML
     private void signUp(){
-        stageController = new StageController();
-        stageController.loadStage("customer/CustomerSignUpSelectView.fxml", 1);
+        String name = nameTextField.getText();
+        String email = emailTextField.getText();
+        String phone = phoneTextField.getText();
+        String ID = idTextField.getText();
+        String firstPassword = fisrtPasswordTextField.getText();
+        String secondPassword = secondPasswordTextField.getText();
+        String picUrl = "";
+
+        if(!firstPassword.equals(secondPassword)){
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController controller = (ErrorBoxController) stageController.getController();
+            controller.setLabel("两次输入密码不一致！");
+        }
+        else{
+            CustomerSignUp customerSignUp = new CustomerSignUpController();
+            customerSignUp.signUp(new CustomerVO(name, firstPassword, phone, email, 500,  picUrl,  ID, MemberType.NONMEMBER));
+        }
     }
 
 }

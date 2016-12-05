@@ -8,4 +8,6 @@ import ui.view.presentation.StageController;
 public interface ControlledStage {
     public void setStageController(StageController stageController);
 
+
+
 }

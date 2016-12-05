@@ -1,5 +1,6 @@
 package ui.view.presentation.customer;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -9,8 +10,10 @@ import javafx.scene.layout.Pane;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import vo.HotelVO;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by island on 2016/11/24.
@@ -22,6 +25,8 @@ public class CustomerHotelListViewController implements ControlledStage {
 
     private String resource = "customer/CustomerHotelListView.fxml";
 
+    private String customerID;
+
     @FXML
     private ImageView background;
 
@@ -29,7 +34,7 @@ public class CustomerHotelListViewController implements ControlledStage {
     private Button backButton;
 
     @FXML
-    private ChoiceBox addressChoiceBox;
+    private ChoiceBox cityChoiceBox;
 
     @FXML
     private ChoiceBox areaChoiceBox;
@@ -85,9 +90,22 @@ public class CustomerHotelListViewController implements ControlledStage {
         stageController.closeStage(resource);
     }
 
-    public void addHotelPane(){
+    public void addHotelPane(List<HotelVO> hotelList){
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5, 10);
+        paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 250, 10);
+
+    }
+
+    public void init(HotelVO hotelVO, String customerId){
+        this.customerID = customerId;
+        cityChoiceBox.setItems(FXCollections.observableArrayList(
+                "南京"));
+        cityChoiceBox.setValue(hotelVO.city);
+
+        System.out.print(hotelVO.city);
+
+
 
     }
 }

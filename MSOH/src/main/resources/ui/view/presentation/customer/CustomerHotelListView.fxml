@@ -36,7 +36,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="addressChoiceBox" layoutX="130.0" layoutY="150.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
+            <ChoiceBox fx:id="cityChoiceBox" layoutX="130.0" layoutY="150.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

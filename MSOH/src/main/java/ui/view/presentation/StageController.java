@@ -22,12 +22,18 @@ public class StageController {
 
     private static HashMap<String, Stage> stages = new HashMap<String, Stage>();
 
+    private static HashMap<String, FXMLLoader> loaders = new HashMap<String, FXMLLoader>();
+
+
+
+
     public boolean loadStage(String resource, double opacity) {
         double width = 0;
         double height = 0;
         try {
             //加载FXML资源文件
             loader = new FXMLLoader(getClass().getResource(resource));
+            loaders.put(resource, loader);
             Pane pane = (Pane) loader.load();
             width = pane.getPrefWidth();
             height = pane.getPrefHeight();
@@ -71,9 +77,12 @@ public class StageController {
         return loader.getController();
     }
 
+    public ControlledStage getController(String resource){
+        return loaders.get(resource).getController();
+    }
+
 
     public void closeStage(String resource){
-        //System.out.print(stages.size());
         getStage(resource).close();
         stages.remove(resource);
     }
