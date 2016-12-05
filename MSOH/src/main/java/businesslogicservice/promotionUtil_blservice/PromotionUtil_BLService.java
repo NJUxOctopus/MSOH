@@ -5,7 +5,6 @@ import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.Date;
 import java.util.List;
 
 /**
