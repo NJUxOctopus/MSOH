@@ -135,7 +135,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     /**
      * HotelDataService的DataRemoteObject
      */
-    public boolean addHotel(HotelPO po) throws RemoteException {
+    public boolean addHotel(HotelPO po) throws IOException,ClassNotFoundException {
         return hotel_dataService.addHotel(po);
     }
 

@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.ManagerPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,7 +86,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<ManagerPO>();
         } finally {
             if (null != session) {
                 session.getTransaction().commit();
@@ -111,7 +112,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<ManagerPO>();
         } finally {
             if (null != session) {
                 session.getTransaction().commit();

@@ -69,6 +69,10 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public boolean modifyCustomer(CustomerPO customerPO) throws RemoteException {
+        // 数据库中主键不能为空，否则更新不成功
+        if (customerPO.getID() == null) {
+            return false;
+        }
         return customerDataHelper.modifyCustomer(customerPO);
     }
 
@@ -80,6 +84,10 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public boolean deleteCustomer(CustomerPO customerPO) throws RemoteException {
+        // 数据库中主键不能为空，否则删除不成功
+        if (customerPO.getID() == null) {
+            return false;
+        }
         return customerDataHelper.deleteCustomer(customerPO);
     }
 

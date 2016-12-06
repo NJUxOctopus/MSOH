@@ -201,7 +201,7 @@ public class Hotel implements Hotel_BLService {
                 picUrl += hotelVO.picUrls[i];
         }
         if (hotel_dataService_stub.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, roomType,
-                hotelVO.star, 0, hotelVO.license, picUrl, null, null)))
+                hotelVO.star, 0, hotelVO.license, picUrl, null)))
             return ResultMessage.Hotel_addHotelSuccess;
         else
             return ResultMessage.Fail;

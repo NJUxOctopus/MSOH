@@ -15,9 +15,7 @@ import util.CopyUtil;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,7 +58,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
      * @return 是否成功
      * @throws RemoteException
      */
-    public boolean addHotel(HotelPO po) throws RemoteException {
+    public boolean addHotel(HotelPO po) throws IOException,ClassNotFoundException {
         // 自动生成酒店ID
         String hotelID = generateHotelID();
         // 设置酒店ID
@@ -72,23 +70,31 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     /**
      * 修改酒店信息
      *
-     * @param po
+     * @param hotelPO
      * @return 是否成功
      * @throws RemoteException
      */
-    public boolean modifyHotel(HotelPO po) throws RemoteException {
-        return hotelDataHelper.modifyHotel(po);
+    public boolean modifyHotel(HotelPO hotelPO) throws RemoteException {
+        // 数据库中的主键存在，否则更新不成功
+        if (hotelPO.getHotelID() == null) {
+            return false;
+        }
+        return hotelDataHelper.modifyHotel(hotelPO);
     }
 
     /**
      * 删除酒店
      *
-     * @param po
+     * @param hotelPO
      * @return 是否成功
      * @throws RemoteException
      */
-    public boolean deleteHotel(HotelPO po) throws RemoteException {
-        return hotelDataHelper.deleteHotel(po);
+    public boolean deleteHotel(HotelPO hotelPO) throws RemoteException {
+        // 数据库中的主键存在，否则删除不成功
+        if (hotelPO.getHotelID() == null) {
+            return false;
+        }
+        return hotelDataHelper.deleteHotel(hotelPO);
     }
 
     /**
@@ -102,7 +108,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         List<HotelPO> hotelList = hotelDataHelper.getHotels();
 
         if (hotelList.isEmpty() || hotelList == null) {
-            return null;
+            return hotelList;
         }
 
         List<HotelPO> list = CopyUtil.deepCopy(hotelList);
@@ -139,7 +145,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         List<HotelPO> hotelList = hotelDataHelper.getHotelByName(hotelName);
 
         if (hotelList.isEmpty() || hotelList == null) {
-            return null;
+            return hotelList;
         }
 
         List<HotelPO> list = CopyUtil.deepCopy(hotelList);
@@ -246,6 +252,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         boolean isSuccess;
 
         for (RoomPO roomPO : dailyRoomInfoPO.getRoom()) {
+
             isSuccess = roomDataHelper.modifyRoom(roomPO);
             if (!isSuccess) {
                 return false;
@@ -278,7 +285,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         List<CommentPO> commentList = commentDataHelper.getCommentsByHotel(hotelID);
 
         if (commentList.isEmpty() || commentList == null) {
-            return null;
+            return commentList;
         }
 
         List<CommentPO> list = CopyUtil.deepCopy(commentList);
@@ -303,18 +310,28 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         return (CommentPO) comment.clone();
     }
 
+    // TODO 更换生成酒店ID的策略
+
     /**
      * 生成酒店ID
      * 格式：20161205
      *
      * @return 酒店ID
      */
-    private String generateHotelID() {
-        Date today = new Date();
+    private String generateHotelID() throws ClassNotFoundException, IOException {
+        int id = 10000000;
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        int size = 0;
+        List<HotelPO> list = getHotels();
 
-        String hotelID = dateFormat.format(today);
+        if (list.isEmpty() || list == null) {
+            size = 0;
+        }else{
+            size = list.size();
+        }
+
+        id += (size + 1);
+        String hotelID = String.valueOf(id);
 
         return hotelID;
     }

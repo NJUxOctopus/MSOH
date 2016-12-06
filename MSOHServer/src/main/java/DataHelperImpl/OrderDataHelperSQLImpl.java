@@ -8,6 +8,7 @@ import po.OrderPO;
 import util.HibernateUtil;
 import util.OrderStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -145,7 +146,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<OrderPO>();
         } finally {
             session.getTransaction().commit();
             HibernateUtil.closeSession(session);
@@ -172,7 +173,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<OrderPO>();
         } finally {
             session.getTransaction().commit();
             HibernateUtil.closeSession(session);
@@ -201,7 +202,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<OrderPO>();
         } finally {
             session.getTransaction().commit();
             HibernateUtil.closeSession(session);

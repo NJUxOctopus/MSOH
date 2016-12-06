@@ -46,6 +46,10 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      * @throws RemoteException
      */
     public boolean modifyManager(ManagerPO managerPO) throws RemoteException {
+        // 数据库中主键必须存在，否则更新不成功
+        if(managerPO.getID()==null){
+            return false;
+        }
         return managerDataHelper.modifyManager(managerPO);
     }
 
@@ -75,7 +79,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
     public List<ManagerPO> findAllManagers() throws IOException, ClassNotFoundException {
         List<ManagerPO> managersList = managerDataHelper.findAllManagers();
         if (null == managersList || managersList.isEmpty()) {
-            return null;
+            return managersList;
         }
 
         List<ManagerPO> returnManagersList = CopyUtil.deepCopy(managersList);
@@ -94,7 +98,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
         List<ManagerPO> list = managerDataHelper.findManagerByName(name);
 
         if (null == list || list.isEmpty()) {
-            return null;
+            return list;
         }
 
         List<ManagerPO> returnManagersList = CopyUtil.deepCopy(list);

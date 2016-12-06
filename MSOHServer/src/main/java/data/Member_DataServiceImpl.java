@@ -51,23 +51,31 @@ public class Member_DataServiceImpl implements Member_DataService {
     /**
      * 删除会员
      *
-     * @param po
+     * @param memberPO
      * @return 是否成功
      * @throws RemoteException
      */
-    public boolean deleteMember(MemberPO po) throws RemoteException {
-        return memberDataHelper.deleteMember(po);
+    public boolean deleteMember(MemberPO memberPO) throws RemoteException {
+        // 数据库中的主键必须存在，否则删除失败
+        if (memberPO.getID() == null) {
+            return false;
+        }
+        return memberDataHelper.deleteMember(memberPO);
     }
 
     /**
      * 更新会员信息
      *
-     * @param po
+     * @param memberPO
      * @return 是否成功
      * @throws RemoteException
      */
-    public boolean updateMember(MemberPO po) throws RemoteException {
-        return memberDataHelper.updateMember(po);
+    public boolean updateMember(MemberPO memberPO) throws RemoteException {
+        // 数据库中的主键必须存在，否则更新失败
+        if(memberPO.getID()==null){
+            return false;
+        }
+        return memberDataHelper.updateMember(memberPO);
     }
 
     /**
@@ -98,7 +106,7 @@ public class Member_DataServiceImpl implements Member_DataService {
         List<MemberPO> memberPOList = memberDataHelper.findAllMembers();
 
         if (null == memberPOList || memberPOList.isEmpty()) {
-            return null;
+            return memberPOList;
         }
 
         List<MemberPO> list = CopyUtil.deepCopy(memberPOList);

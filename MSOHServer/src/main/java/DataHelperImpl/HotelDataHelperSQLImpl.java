@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.HotelPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -105,7 +106,7 @@ public class HotelDataHelperSQLImpl implements HotelDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<HotelPO>();
         } finally {
             if (session != null) {
                 session.getTransaction().commit();
@@ -160,7 +161,7 @@ public class HotelDataHelperSQLImpl implements HotelDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<HotelPO>();
         } finally {
             if (session != null) {
                 session.getTransaction().commit();

@@ -56,6 +56,10 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @throws RemoteException
      */
     public boolean modifyMarketer(MarketerPO marketerPO) throws RemoteException {
+        // 数据库中的主键必须存在，否则更新不成功
+        if(marketerPO.getID()==null){
+            return false;
+        }
         return marketerDataHelper.modifyMarketer(marketerPO);
     }
 
@@ -70,7 +74,7 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
         List<MarketerPO> marketersFound = marketerDataHelper.getMarketerByName(name);
 
         if (null == marketersFound || marketersFound.isEmpty()) {
-            return null;
+            return marketersFound;
         }
 
         List<MarketerPO> returnMarketersFound = CopyUtil.deepCopy(marketersFound);
@@ -103,7 +107,7 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
     public List<MarketerPO> findAllMarketers() throws IOException, ClassNotFoundException {
         List<MarketerPO> marketerList = marketerDataHelper.getAllMarketers();
         if (null == marketerList || marketerList.isEmpty()) {
-            return null;
+            return marketerList;
         }
 
         List<MarketerPO> returnMarketerList = CopyUtil.deepCopy(marketerList);
@@ -118,6 +122,10 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @throws RemoteException
      */
     public boolean deleteMarketer(MarketerPO marketerPO) throws RemoteException {
+        // 数据库中的主键必须存在，否则更新不成功
+        if(marketerPO.getID()==null){
+            return false;
+        }
         return marketerDataHelper.deleteMarketer(marketerPO);
     }
 

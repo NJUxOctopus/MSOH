@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface Hotel_DataService extends Remote {
     // 新增酒店
-    public boolean addHotel(HotelPO po) throws RemoteException;
+    public boolean addHotel(HotelPO po) throws IOException,ClassNotFoundException;
 
     // 更新酒店信息
     public boolean modifyHotel(HotelPO po) throws RemoteException;
