@@ -44,6 +44,6 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("util/ConfirmExit.fxml", 0.8);
         ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed("marketer/MarketerModifyHotelPromotion.fxml");
+        controller.setToBeClosed("marketer/MarketerCreateWebPromotion.fxml");
     }
 }

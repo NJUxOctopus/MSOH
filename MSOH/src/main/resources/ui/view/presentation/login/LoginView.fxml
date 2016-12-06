@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -32,7 +33,7 @@
             <Font name="Microsoft YaHei" size="22.0" />
          </font>
       </Label>
-      <PasswordField fx:id="passwordField" layoutX="228.0" layoutY="339.0" prefHeight="29.0" prefWidth="275.0" style="-fx-text-fill: black;">
+      <PasswordField fx:id="passwordField" layoutX="228.0" layoutY="339.0" onAction="#autoPW" prefHeight="29.0" prefWidth="275.0" style="-fx-text-fill: black;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -46,14 +47,6 @@
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font></TextField>
-      <Button fx:id="rememberPWButton" layoutX="503.0" layoutY="339.0" mnemonicParsing="false" onAction="#rememberPW" style="-fx-background-color: #ffffff00;" text="记住密码" textFill="#7d8bda">
-         <font>
-            <Font name="Microsoft YaHei" size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button fx:id="loginButton" layoutX="228.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="登录">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
@@ -78,5 +71,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <CheckBox fx:id="rememberPW" layoutX="509.0" layoutY="344.0" mnemonicParsing="false" onAction="#cancelRememberPW" text="记住密码" textFill="#7d8bda">
+         <font>
+            <Font name="Microsoft YaHei" size="15.0" />
+         </font>
+      </CheckBox>
    </children>
 </Pane>

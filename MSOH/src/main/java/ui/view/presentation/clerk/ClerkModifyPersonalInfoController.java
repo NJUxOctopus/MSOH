@@ -3,9 +3,20 @@ package ui.view.presentation.clerk;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import ui.controller.ClerkInfoChangeController;
+import ui.controller.UserAdminController;
+import ui.view.controllerservice.ClerkInfoChange;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ErrorBoxController;
+import util.ResultMessage;
+import vo.ClerkVO;
+
+import java.rmi.RemoteException;
 
 /**
  * Created by ST on 2016/11/28.
@@ -18,10 +29,41 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
 
     @FXML
     private Button modifyPWButton;
+    @FXML
+    private Label clerkName;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField passwordTextField;
+    @FXML
+    private Label idTextField;
+    @FXML
+    private TextField phoneTextField;
+
+
+    private String clerkID;
+    private ClerkVO clerkVO;
+    private UserAdmin userAdmin;
+    private ClerkInfoChange clerkInfoChange;
 
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
+    }
+
+    /**
+     * initial方法，初始化界面
+     */
+    public void initial(String ID) throws RemoteException {
+        //初始化工作人员姓名、密码、身份证号、手机号信息
+        clerkID = ID;
+        userAdmin = new UserAdminController();
+        clerkVO = userAdmin.findClerkByID(clerkID);
+        clerkName.setText(clerkVO.name);
+        nameTextField.setText(clerkVO.name);
+        passwordTextField.setText(clerkVO.password);
+        idTextField.setText(clerkID);
+        phoneTextField.setText(clerkVO.phone);
     }
 
     /**
@@ -31,6 +73,8 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
     private void showModifyPW() {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkModifyPassword.fxml", 1);
+        ClerkModifyPasswordController clerkModifyPasswordController = (ClerkModifyPasswordController) stageController.getController();
+        clerkModifyPasswordController.initial(clerkID);
     }
 
     /**
@@ -40,8 +84,39 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
     private void showConfirmExit() {
         stageController = new StageController();
         stageController.loadStage("util/ConfirmExit.fxml", 0.8);
-        ConfirmExitController controller = (ConfirmExitController)stageController.getController();
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
         controller.setToBeClosed(resource);
+    }
+
+    /**
+     * 确认修改按钮结果，修改信息
+     */
+    @FXML
+    private void confirmModify() throws RemoteException {
+        String name = nameTextField.getText();
+        String phone = phoneTextField.getText();
+        ClerkVO clerkVO = new ClerkVO(name, phone, clerkID);
+        clerkInfoChange = new ClerkInfoChangeController();
+        ResultMessage resultMessage = clerkInfoChange.changeInfo(clerkVO);
+        stageController = new StageController();
+        if (resultMessage.equals(ResultMessage.Blank)) {
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+            errorBoxController.setLabel("信息填写不完整！");
+        } else if (resultMessage.equals(ResultMessage.DataFormatWrong)) {
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+            errorBoxController.setLabel("手机号格式错误！");
+        } else if (resultMessage.equals(ResultMessage.ChangeInfoSuccess)) {
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+            errorBoxController.setLabel("修改成功！");
+            stageController.closeStage(resource);
+        } else {
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+            errorBoxController.setLabel("未知错误！");
+        }
     }
 
 }

@@ -2,7 +2,6 @@ package ui.view.controllerservice;
 
 import vo.HotelVO;
 
-import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -15,5 +14,5 @@ public interface HotelInfo {
 
     public List<HotelVO> sortByScore(List<HotelVO> list);
 
-    public List<HotelVO> searchHotel (HotelVO hotelVO) throws RemoteException;
+    public List<HotelVO> searchHotel (HotelVO hotelVO);
 }

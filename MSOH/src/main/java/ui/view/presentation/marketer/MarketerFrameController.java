@@ -3,6 +3,7 @@ package ui.view.presentation.marketer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
@@ -29,19 +30,11 @@ public class MarketerFrameController implements ControlledStage {
      */
     @FXML
     private void showOrderList() throws IOException {
-//        stageController = new StageController();
-//        FXMLLoader loader = stageController.getLoader();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MarketerFrame.class.getResource("MarketerCheckOrderList.fxml"));
-        Pane orderListPane = (Pane) loader.load();
-
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
-        // Set orderListPane into the initial pane.
-        marketerFramePane.getChildren().add(orderListPane);
-        orderListPane.setLayoutX(0);
-        orderListPane.setLayoutY(0);
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(marketerFramePane, "marketer/MarketerCheckOrderList.fxml", 0, 0);
     }
 
     /**
@@ -49,19 +42,11 @@ public class MarketerFrameController implements ControlledStage {
      */
     @FXML
     private void showWebPromotion() throws IOException {
-//        stageController = new StageController();
-//        FXMLLoader loader = stageController.getLoader();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MarketerFrame.class.getResource("MarketerWebPromotion.fxml"));
-        Pane promotionPane = (Pane) loader.load();
-
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
-        // Set orderListPane into the initial pane.
-        marketerFramePane.getChildren().add(promotionPane);
-        promotionPane.setLayoutX(0);
-        promotionPane.setLayoutY(0);
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(marketerFramePane, "marketer/MarketerWebPromotion.fxml", 0, 0);
     }
 
     /**
@@ -69,19 +54,11 @@ public class MarketerFrameController implements ControlledStage {
      */
     @FXML
     private void showMemberLevel() throws IOException {
-//        stageController = new StageController();
-//        FXMLLoader loader = stageController.getLoader();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MarketerFrame.class.getResource("MarketerMemberLevel.fxml"));
-        Pane memberPane = (Pane) loader.load();
-
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
-        // Set orderListPane into the initial pane.
-        marketerFramePane.getChildren().add(memberPane);
-        memberPane.setLayoutX(0);
-        memberPane.setLayoutY(0);
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(marketerFramePane, "marketer/MarketerMemberLevel.fxml", 0, 0);
     }
 
     /**
@@ -89,19 +66,11 @@ public class MarketerFrameController implements ControlledStage {
      */
     @FXML
     private void showCreditCharge() throws IOException {
-//        stageController = new StageController();
-//        FXMLLoader loader = stageController.getLoader();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MarketerFrame.class.getResource("MarketerChargeCredit.fxml"));
-        Pane creditPane = (Pane) loader.load();
-
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
-        // Set orderListPane into the initial pane.
-        marketerFramePane.getChildren().add(creditPane);
-        creditPane.setLayoutX(0);
-        creditPane.setLayoutY(0);
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(marketerFramePane, "marketer/MarketerChargeCredit.fxml", 0, 0);
     }
 
     /**
@@ -112,7 +81,6 @@ public class MarketerFrameController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("marketer/MarketerModifyPersonalInfo.fxml", 1);
     }
-
 
 
 }

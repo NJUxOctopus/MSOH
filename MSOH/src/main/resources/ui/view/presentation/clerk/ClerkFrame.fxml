@@ -28,7 +28,7 @@
       </Label>
       <Pane layoutX="74.0" layoutY="141.0" prefHeight="165.0" prefWidth="265.0">
          <children>
-            <Button fx:id="hotelInfo" mnemonicParsing="false" onAction="#showHotelInfo" prefHeight="163.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="酒 店 信 息" textFill="WHITE">
+            <Button fx:id="hotelInfo" layoutX="1.0" layoutY="14.0" mnemonicParsing="false" onAction="#showHotelInfo" prefHeight="163.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="酒 店 信 息" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="30.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="72.0" fitWidth="85.0" layoutX="97.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="72.0" fitWidth="85.0" layoutX="97.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/hotelIcon.png" />
                </image>

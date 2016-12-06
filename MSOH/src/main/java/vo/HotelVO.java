@@ -38,12 +38,6 @@ public class HotelVO implements Serializable{
 
 	public List<CommentVO> comment;
 
-	public String city;
-
-	public String checkInTime;
-
-	public String checkOutTime;
-
 	public HotelVO() {
 	}
 
@@ -65,15 +59,5 @@ public class HotelVO implements Serializable{
 		this.dailyRoomInfo = dailyRoomInfo;
 		this.comment = comment;
 	}
-
-	public HotelVO(String city, String area, int star, int score, String checkInTime, String checkOutTime) {
-		this.city = city;
-		this.area = area;
-		this.star = star;
-		this.score = score;
-		this.checkInTime = checkInTime;
-		this.checkOutTime = checkOutTime;
-	}
-
-
+	
 }

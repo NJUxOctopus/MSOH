@@ -62,11 +62,6 @@
             <Font name="Microsoft YaHei" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="392.0" layoutY="431.0" text="邮箱" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="28.0" />
-         </font>
-      </Label>
       <TextField fx:id="nameTextField" layoutX="484.0" layoutY="189.0" prefHeight="32.0" prefWidth="268.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
@@ -91,15 +86,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="emailTextField" layoutX="484.0" layoutY="435.0" prefHeight="32.0" prefWidth="268.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
-         <font>
-            <Font name="Microsoft YaHei" size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <Button fx:id="confirmButton" layoutX="1036.0" layoutY="503.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认修改" textFill="WHITE">
+      <Button fx:id="confirmButton" layoutX="1036.0" layoutY="503.0" mnemonicParsing="false" onAction="#confirmModify" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认修改" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="16.0" />
          </font>

@@ -1,9 +1,27 @@
 package ui.view.presentation.clerk;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import ui.controller.HotelAdminController;
+import ui.view.controllerservice.HotelAdmin;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import vo.HotelVO;
+import vo.RoomVO;
+
+import java.rmi.RemoteException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Observable;
 
 /**
  * Created by ST on 2016/11/28.
@@ -16,10 +34,60 @@ public class ClerkHotelInfoController implements ControlledStage {
     private Button checkCommentsButton;
     @FXML
     private Button addRoomButton;
+    @FXML
+    private Label hotelName;
+    @FXML
+    private Label roomNum;
+    @FXML
+    private Label hotelScore;
+    @FXML
+    private ChoiceBox roomTypeChoiceBox;
+
+    private String clerkID;
+    private HotelAdmin hotelAdmin;
+    private HotelVO hotelVO;
+
+    //获取当前时间
+    private Date date = new Date();
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+
+    //当前酒店房间信息
+    private ObservableList<String> roomType = FXCollections.observableArrayList();
+    private ArrayList<String> leftRooms = new ArrayList<String>();
 
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
+    }
+
+    /**
+     * initial方法，初始化界面
+     */
+    public void initial(String ID) throws RemoteException {
+        clerkID = ID;
+        //显示酒店名称
+        hotelAdmin = new HotelAdminController();
+        hotelVO = hotelAdmin.findByID(clerkID);
+        hotelName.setText(hotelVO.hotelName);
+        //显示酒店评分
+        hotelScore.setText(String.valueOf(hotelVO.score) + "分");
+        //加载酒店房间类型列表
+        for (RoomVO room : hotelAdmin.getDailyRoomInfo(hotelVO.hotelID, time).room) {
+            roomType.add(room.roomType);
+            leftRooms.add(String.valueOf(room.leftRooms));
+        }
+        roomTypeChoiceBox.setItems(roomType);
+        //设置提示信息
+        roomTypeChoiceBox.setTooltip(new Tooltip("选择房间类型"));
+        //设置ChoicebBox监听
+        roomTypeChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                int index = roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+                roomNum.setText(leftRooms.get(index));
+            }
+        });
     }
 
     /**
@@ -44,8 +112,9 @@ public class ClerkHotelInfoController implements ControlledStage {
      * 修改信息按钮结果，显示修改酒店信息界面
      */
     @FXML
-    private void showModifyHotelInfo(){
-
+    private void showModifyHotelInfo() {
+        stageController = new StageController();
+        stageController.loadStage("clerk/ClerkModifyHotelInfo.fxml", 1);
     }
 
 }

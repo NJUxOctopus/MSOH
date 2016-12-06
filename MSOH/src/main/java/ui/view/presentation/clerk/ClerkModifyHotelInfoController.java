@@ -20,7 +20,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
     @FXML
     private void showConfirmExit() {
         stageController = new StageController();
-        stageController.loadStage("util/ConfirmExit.fxml", 1);
+        stageController.loadStage("util/ConfirmExit.fxml", 0.8);
         ConfirmExitController controller = (ConfirmExitController) stageController.getController();
         controller.setToBeClosed("clerk/ClerkModifyHotelInfo.fxml");
     }

@@ -6,6 +6,7 @@ import vo.CustomerVO;
 import vo.MarketerVO;
 import vo.UserVO;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public interface UserAdmin {
 
     public List<ClerkVO> findClerkByName(String name);
 
-    public ClerkVO findClerkByID(String ID);
+    public ClerkVO findClerkByID(String ID) throws RemoteException;
 
     public List<MarketerVO> findAllMarketer();
 
@@ -43,8 +44,6 @@ public interface UserAdmin {
     public ResultMessage deleteMarketer(MarketerVO vo);
 
     public ResultMessage updateCustomerInfo(CustomerVO vo);
-
-    public ResultMessage updateClerkInfo(ClerkVO vo);
 
     public ResultMessage updateMarketerInfo(MarketerVO vo);
 }
