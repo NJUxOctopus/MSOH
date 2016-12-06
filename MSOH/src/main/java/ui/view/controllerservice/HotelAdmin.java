@@ -1,22 +1,30 @@
 package ui.view.controllerservice;
 
 import util.ResultMessage;
+import vo.DailyRoomInfoVO;
 import vo.HotelVO;
+
+import java.rmi.RemoteException;
+import java.util.Date;
 
 /**
  * Created by zqh on 2016/11/10.
  */
 public interface HotelAdmin {
-    public HotelVO findByID(String ID);
+    HotelVO findByID(String ID);
 
-    public HotelVO findByName(String name);
+    HotelVO findByName(String name);
 
-    public HotelVO findByAddress(String address);
+    HotelVO findByAddress(String address);
 
-    public ResultMessage addHotel(HotelVO hotelVO);
+    HotelVO findByClerkID(String clerkID) throws RemoteException;
 
-    public ResultMessage deleteHotel(HotelVO hotelVO);
+    ResultMessage addHotel(HotelVO hotelVO);
 
-    public ResultMessage updateHotelInfo(HotelVO hotelVO);
+    ResultMessage deleteHotel(HotelVO hotelVO);
+
+    ResultMessage updateHotelInfo(HotelVO hotelVO);
+
+    DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
 
 }

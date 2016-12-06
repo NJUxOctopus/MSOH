@@ -49,4 +49,8 @@ public class CustomerEvaluateViewController implements ControlledStage {
     private void submitEvaluation(){
 
     }
+
+    public void init(String customerID, String orderID){
+
+    }
 }

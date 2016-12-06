@@ -38,7 +38,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="scoreChoiceBox" layoutX="520.0" layoutY="160.0" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;">
+            <ChoiceBox fx:id="scoreChoiceBox" layoutX="520.0" layoutY="160.0" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ChoiceBox>
@@ -71,6 +71,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </Pane>

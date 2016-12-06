@@ -9,4 +9,10 @@ import java.rmi.RemoteException;
  */
 public interface LogIn {
     public ResultMessage login(String ID,String password) throws RemoteException;
+
+    public String ifRememberPW(String ID) throws RemoteException;
+
+    public ResultMessage rememberPassword(String ID, String password) throws RemoteException;
+
+    public ResultMessage cancelRemPassword(String ID) throws RemoteException;
 }

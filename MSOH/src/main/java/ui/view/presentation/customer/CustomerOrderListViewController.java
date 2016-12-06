@@ -8,12 +8,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import po.OrderPO;
+import ui.controller.ProcessOrderController;
+import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import util.OrderStatus;
 import vo.HotelVO;
+import vo.OrderVO;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by island on 2016/11/23.
@@ -25,8 +32,7 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     private String resource = "customer/CustomerOrderListView.fxml";
 
-    @FXML
-    private Pane orderListPane;
+    private String customerID = "";
 
     @FXML
     private AnchorPane orderListScrollPane;
@@ -78,52 +84,112 @@ public class CustomerOrderListViewController implements ControlledStage {
         stageController.closeStage(resource);
     }
 
+    /**
+     * 显示所有订单
+     */
     @FXML
     private void showAllOrder(){
         orderButtonShade.setY(0);
         orderListScrollPane.getChildren().clear();
-        addOrderPane();
+        ProcessOrder processOrder = new ProcessOrderController();
+        List<OrderVO> orderVOList = processOrder.getOrderByCustomerName(customerID);
+        addOrderPane(orderVOList);
     }
 
+    /**
+     * 显示
+     */
     @FXML
-    private void showNormalOrder(){
-        orderButtonShade.setY(100);
+    private void showUnexecutedOrder(){
+        orderButtonShade.setY(200);
         orderListScrollPane.getChildren().clear();
-
+        ProcessOrder processOrder = new ProcessOrderController();
+        try {
+            List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.UNEXECUTED);
+            addOrderPane(orderVOList);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     private void showAbnormalOrder(){
-        orderButtonShade.setY(200);
+        orderButtonShade.setY(100);
         orderListScrollPane.getChildren().clear();
-
+        ProcessOrder processOrder = new ProcessOrderController();
+        try {
+            List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.ABNORMAL);
+            addOrderPane(orderVOList);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void showCanceledOrder(){
         orderButtonShade.setY(300);
         orderListScrollPane.getChildren().clear();
-
+        ProcessOrder processOrder = new ProcessOrderController();
+        try {
+            List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.REVOKED);
+            addOrderPane(orderVOList);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void showEvaluateOrder(){
         orderButtonShade.setY(400);
         orderListScrollPane.getChildren().clear();
-
+        ProcessOrder processOrder = new ProcessOrderController();
+        try {
+            List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.FINISHED_UNEVALUATED);
+            addOrderPane(orderVOList);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addOrderPane(){
+    @FXML
+    private void showFinishedOrder(){
+        orderButtonShade.setY(500);
+        orderListScrollPane.getChildren().clear();
+        ProcessOrder processOrder = new ProcessOrderController();
+        try {
+            List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.FINISHED_EVALUATED);
+            addOrderPane(orderVOList);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addOrderPane(List<OrderVO> orderList){
+        int num = 1;
+        String orderID = "";
+//        if (!(orderList.isEmpty()))
+//            num = orderList.size();
+        /*
+        for(int i = 0; i < num; i++) {
+            String orderID = orderList.get(num).orderID;
+            orderID = "";
+            orderListScrollPane.setPrefHeight(175);
+            PaneAdder paneAdder = new PaneAdder();
+            paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 5);
+            customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
+            customerSingleOrderPaneViewController.init(customerID, orderID);
+        }
+        */
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 5);
         customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
-        customerSingleOrderPaneViewController.init();
-
+        customerSingleOrderPaneViewController.init(customerID, orderID);
     }
 
-    public void init(){
-
+    public void init(String customerID){
+        this.customerID = customerID;
+        showAllOrder();
     }
 
 

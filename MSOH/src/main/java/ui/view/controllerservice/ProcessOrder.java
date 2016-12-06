@@ -4,6 +4,7 @@ import util.OrderStatus;
 import util.ResultMessage;
 import vo.OrderVO;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -21,5 +22,11 @@ public interface ProcessOrder {
     public List<OrderVO> getOrderByCustomerName (String customerName);
 
     public List<OrderVO> getOrderByHotelName(String hotelID);
+
+    public List<OrderVO> getOrderByIDAndStatus(String customerID,OrderStatus orderStatus)throws RemoteException;
+
+    public OrderVO getSingle(String ID)throws RemoteException;
+
+
 
 }
