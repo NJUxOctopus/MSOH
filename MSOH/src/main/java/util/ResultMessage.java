@@ -3,7 +3,7 @@ package util;
 public enum ResultMessage {
     Login_CustomerSuccess, Blank, Login_NoUser, Login_WrongPassword,Login_ClerkSuccess,Login_ManagerSuccess,Login_MarketerSuccess,
     Customer_SignupSuccess, WrongPhoneFormat, WrongIDFormat, WrongEmailFormat, Customer_SignupExist,
-    ChangeInfoSuccess, Customer_CustomerNotExist,
+    ChangeInfoSuccess, Customer_CustomerNotExist,Hotel_changeAvailableRoomSuccess,Hotel_changeReservedRoomSuccess,Hotel_changeOccupiedRoomSuccess,
     ChangePasswordWrongOldPw, ChangePassword2DifferentNew, ChangePasswordSuccess,
     Member_NormalSignupSuccess, Member_EnterpriseSignupSuccess, Member_SignupCreditNotEnough,
     Order_CreateOrderSuccess,Order_SetAbnormalSuccess,Order_RenewOrderSuccess,

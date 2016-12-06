@@ -2,14 +2,17 @@ package businesslogic.hotel_bl;
 
 import businesslogic.clerk_bl.Clerk;
 import businesslogic.clerk_bl.ClerkUtil;
+import businesslogic.order_bl.OrderUtil;
 import businesslogicservice.hotel_blservice.Hotel_BLService;
 import dataservice.hotel_dataservice.Hotel_DataService_Stub;
 import po.*;
+import util.OrderStatus;
 import util.ResultMessage;
 import util.WorkerPosition;
 import vo.*;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,43 +49,101 @@ public class Hotel implements Hotel_BLService {
 
 
     /**
-     * 更改可用房间数量
+     * 更改剩余房间数量，change 值纯属一个标记值，因为担心传来的ordervo的订单状态，如果是生成订单后，该标记位为－1，结束订单时标记位为1
      *
-     * @param ID
-     * @param type
-     * @param number
-     * @param dailyRoomInfoVO
+     * @param orderVO
+     * @param change
      * @return
      * @throws RemoteException
      */
-    public ResultMessage changeAvailableRoom(String ID, String type, int number, DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
-        return null;
+    public ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException {
+        long oneDay = 1000 * 60 * 60 * 24;
+        Timestamp startTime = orderVO.estimatedCheckinTime;
+        Timestamp endTime = orderVO.estimatedCheckoutTime;
+        String[] rooms = orderVO.rooms;
+        long days = (endTime.getTime() - startTime.getTime()) / oneDay;//算共住多少天
+        List<Timestamp> list = new ArrayList<Timestamp>();
+        for (int i = 0; i < days; i++) {
+            list.add(new Timestamp(startTime.getTime() + i * oneDay));
+        }
+        for (int j = 0; j < list.size(); j++) {//从开始到结束每一天循环
+            DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService_stub.getDailyRoomInfo(orderVO.hotelID, list.get(j));
+            List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+            for (int k = 0; k < rooms.length; k++) {//将订单中的房间类型每一个与酒店的房间类型对比
+                for (int m = 0; m < roomPOList.size(); m++) {
+                    RoomPO roomPO = roomPOList.get(m);
+                    if (rooms[k].equals(roomPO.getRoomType()))
+                        roomPO.setLeftRooms(roomPO.getLeftRooms() + change);
+                }
+            }
+            hotel_dataService_stub.updateDailyRoomInfo(dailyRoomInfoPO);
+        }
+        return ResultMessage.Hotel_changeAvailableRoomSuccess;
     }
 
     /**
-     * 更改预定过的房间数量
+     * 更改预定过的房间数量，change 值纯属一个标记值，因为担心传来的ordervo的订单状态，如果是生成订单后，该标记位为1，执行订单时为－1
      *
-     * @param type
-     * @param number
-     * @param dailyRoomInfoVO
+     * @param orderVO
+     * @param change
      * @return
      * @throws RemoteException
      */
-    public ResultMessage changeReservedRoom(String type, int number, DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
-        return null;
+    public ResultMessage changeReservedRoom(OrderVO orderVO, int change) throws RemoteException {
+        long oneDay = 1000 * 60 * 60 * 24;
+        Timestamp startTime = orderVO.estimatedCheckinTime;
+        Timestamp endTime = orderVO.estimatedCheckoutTime;
+        String[] rooms = orderVO.rooms;
+        long days = (endTime.getTime() - startTime.getTime()) / oneDay;//算共住多少天
+        List<Timestamp> list = new ArrayList<Timestamp>();
+        for (int i = 0; i < days; i++) {
+            list.add(new Timestamp(startTime.getTime() + i * oneDay));
+        }
+        for (int j = 0; j < list.size(); j++) {//从开始到结束每一天循环
+            DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService_stub.getDailyRoomInfo(orderVO.hotelID, list.get(j));
+            List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+            for (int k = 0; k < rooms.length; k++) {//将订单中的房间类型每一个与酒店的房间类型对比
+                for (int m = 0; m < roomPOList.size(); m++) {
+                    RoomPO roomPO = roomPOList.get(m);
+                    if (rooms[k].equals(roomPO.getRoomType()))
+                        roomPO.setReservedRooms(roomPO.getLeftRooms() + change);
+                }
+            }
+            hotel_dataService_stub.updateDailyRoomInfo(dailyRoomInfoPO);
+        }
+        return ResultMessage.Hotel_changeReservedRoomSuccess;
     }
 
     /**
-     * 更改已入住的房间数量
-     *
-     * @param type
-     * @param number
-     * @param dailyRoomInfoVO
+     * 更改入住中的房间数量，change 值纯属一个标记值，因为担心传来的ordervo的订单状态，如果是执行订单后，该标记位为－1，结束订单时为1
+     * @param orderVO
+     * @param change
      * @return
      * @throws RemoteException
      */
-    public ResultMessage changeOccupiedRoom(String type, int number, DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
-        return null;
+    public ResultMessage changeOccupiedRoom(OrderVO orderVO, int change) throws RemoteException {
+        long oneDay = 1000 * 60 * 60 * 24;
+        Timestamp startTime = orderVO.estimatedCheckinTime;
+        Timestamp endTime = orderVO.estimatedCheckoutTime;
+        String[] rooms = orderVO.rooms;
+        long days = (endTime.getTime() - startTime.getTime()) / oneDay;//算共住多少天
+        List<Timestamp> list = new ArrayList<Timestamp>();
+        for (int i = 0; i < days; i++) {
+            list.add(new Timestamp(startTime.getTime() + i * oneDay));
+        }
+        for (int j = 0; j < list.size(); j++) {//从开始到结束每一天循环
+            DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService_stub.getDailyRoomInfo(orderVO.hotelID, list.get(j));
+            List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+            for (int k = 0; k < rooms.length; k++) {//将订单中的房间类型每一个与酒店的房间类型对比
+                for (int m = 0; m < roomPOList.size(); m++) {
+                    RoomPO roomPO = roomPOList.get(m);
+                    if (rooms[k].equals(roomPO.getRoomType()))
+                        roomPO.setOccupiedRooms(roomPO.getLeftRooms() + change);
+                }
+            }
+            hotel_dataService_stub.updateDailyRoomInfo(dailyRoomInfoPO);
+        }
+        return ResultMessage.Hotel_changeOccupiedRoomSuccess;
     }
 
     /**

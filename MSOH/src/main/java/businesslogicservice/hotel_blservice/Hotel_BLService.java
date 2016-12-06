@@ -9,15 +9,15 @@ import vo.*;
 
 public interface Hotel_BLService {
 
-    public ResultMessage addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO)throws RemoteException;
+    public ResultMessage addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
 
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException;
 
-    public ResultMessage changeAvailableRoom(String ID, String type, int number, DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
+    public ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException;
 
-    public ResultMessage changeReservedRoom(String type, int number, DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
+    public ResultMessage changeReservedRoom(OrderVO orderVO, int change) throws RemoteException;
 
-    public ResultMessage changeOccupiedRoom(String type, int number, DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
+    public ResultMessage changeOccupiedRoom(OrderVO orderVO, int change) throws RemoteException;
 
     public ResultMessage addComment(CommentVO commentVO, OrderVO orderVO) throws RemoteException;
 
