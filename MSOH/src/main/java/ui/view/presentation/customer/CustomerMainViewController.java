@@ -112,7 +112,8 @@ public class CustomerMainViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerOrderListView.fxml", 1);
         CustomerOrderListViewController customerOrderListViewController = (CustomerOrderListViewController) stageController.getController();
-        customerOrderListViewController.addOrderPane();
+        customerOrderListViewController.init(customerID);
+
     }
 
     /**
@@ -164,7 +165,7 @@ public class CustomerMainViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("util/SelectTimeView.fxml",0.8);
         SelectTimeViewController selectTimeViewController = (SelectTimeViewController) stageController.getController();
-        selectTimeViewController.setToBeSet(resource);
+        selectTimeViewController.setToBeSet(resource, "checkIn");
         selectTimeViewController.init();
     }
 
@@ -180,8 +181,12 @@ public class CustomerMainViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("util/SelectTimeView.fxml",0.8);
         SelectTimeViewController selectTimeViewController = (SelectTimeViewController) stageController.getController();
-        selectTimeViewController.setToBeSet(resource);
+        selectTimeViewController.setToBeSet(resource, "checkOut");
         selectTimeViewController.init();
+    }
+
+    public void setCheckOutTime(String checkOutTime){
+        checkOutTimeLabel.setText(checkOutTime);
     }
 
     @FXML
@@ -198,6 +203,18 @@ public class CustomerMainViewController implements ControlledStage {
 
     }
 
+    @FXML
+    private void setColor1(){
+        searchButton.setStyle("-fx-background-color: #ffffff00");
+
+
+    }
+
+    @FXML
+    private void setColor2(){
+        searchButton.setStyle("-fx-background-color: #ffffff30");
+
+    }
     /**
      * 搜索酒店按钮
      */
@@ -215,25 +232,15 @@ public class CustomerMainViewController implements ControlledStage {
         if(city != null &&  area != null){
             stageController = new StageController();
             stageController.loadStage("customer/CustomerHotelListView.fxml", 1);
-            HotelInfo hotelInfo = new HotelInfoController();
-            /*try {
-                //List<HotelVO> hotelList = hotelInfo.searchHotel(hotelVO);
-                CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController)stageController.getController();
-                //customerHotelListViewController.addHotelPane(hotelList);
-                customerHotelListViewController.init(hotelVO);
-            } catch (RemoteException e) {
-            e.printStackTrace();
-            }
-            */
             CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController)stageController.getController();
             customerHotelListViewController.init(hotelVO, customerID);
-
         }
         else{
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
             controller.setLabel("请先选择城市与商圈！");
         }
+
     }
 
     /**

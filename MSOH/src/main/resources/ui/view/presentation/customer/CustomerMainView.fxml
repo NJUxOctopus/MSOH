@@ -32,12 +32,12 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="checkInTimeLabel" layoutX="488.0" layoutY="340.0" text="2016/09/18">
+            <Label fx:id="checkInTimeLabel" layoutX="488.0" layoutY="340.0" text="2016/09/18" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="checkOutTimeLabel" layoutX="717.0" layoutY="340.0" text="2016/09/19">
+            <Label fx:id="checkOutTimeLabel" layoutX="717.0" layoutY="340.0" text="2016/09/19" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
@@ -55,33 +55,33 @@
                   <Image url="@image_customer/头像.png" />
                </image>
             </ImageView>
-            <ChoiceBox fx:id="cityChoiceBox" layoutX="530.0" layoutY="214.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="cityChoiceBox" layoutX="530.0" layoutY="214.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <ChoiceBox fx:id="starChoiceBox" layoutX="490.0" layoutY="399.0" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="starChoiceBox" layoutX="490.0" layoutY="399.0" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <ChoiceBox fx:id="scoreChoiceBox" layoutX="683.0" layoutY="399.0" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="scoreChoiceBox" layoutX="683.0" layoutY="399.0" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <ChoiceBox fx:id="areaChoiceBox" layoutX="530.0" layoutY="268.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="areaChoiceBox" layoutX="530.0" layoutY="268.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
          </children>
       </Pane>
-      <Button fx:id="hotelButton" layoutX="290.0" layoutY="460.0" mnemonicParsing="false" onAction="#showCustomerHotelListView" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF00;">
+      <Button fx:id="orderButton" layoutX="289.0" layoutY="143.0" mnemonicParsing="false" onAction="#showCustomerOrderListView" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="orderButton" layoutX="289.0" layoutY="143.0" mnemonicParsing="false" onAction="#showCustomerOrderListView" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF00;">
+      <Button fx:id="hotelButton" layoutX="290.0" layoutY="460.0" mnemonicParsing="false" onAction="#showCustomerHotelListView" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -93,7 +93,8 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="searchButton" layoutX="562.0" layoutY="500.0" mnemonicParsing="false" onAction="#search" prefHeight="45.0" prefWidth="152.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="搜索" textFill="WHITE">
+      <Label layoutX="562.0" layoutY="500.0" prefHeight="49.0" prefWidth="152.0" style="-fx-border-color: #ffffffff; -fx-border-width: 2;" />
+      <Button fx:id="searchButton" layoutX="562.0" layoutY="500.0" mnemonicParsing="false" onAction="#search" onMouseEntered="#setColor2" onMouseExited="#setColor1" prefHeight="45.0" prefWidth="152.0" style="-fx-background-color: #ffffff00;" text="搜索" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

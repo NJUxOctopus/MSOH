@@ -12,6 +12,8 @@ public class HotelVO implements Serializable{
 
 	public String hotelName;
 
+	//public
+
 	public String hotelAddress;
 
 	public String area;
@@ -38,12 +40,19 @@ public class HotelVO implements Serializable{
 
 	public List<CommentVO> comment;
 
+	public String city;
+
+	public String checkInTime;
+
+	public String checkOutTime;
+
+
 	public HotelVO() {
 	}
 
 	public HotelVO(String hotelName, String hotelAddress, String area, String intro, String[] infra, String[] roomType,int star,
-			double score, String license,String[] picUrls, String clerkID, String hotelID, DailyRoomInfoVO dailyRoomInfo,
-			List<CommentVO> comment) {
+						double score, String license,String[] picUrls, String clerkID, String hotelID, DailyRoomInfoVO dailyRoomInfo,
+						List<CommentVO> comment) {
 		this.hotelName = hotelName;
 		this.hotelAddress = hotelAddress;
 		this.area = area;
@@ -59,5 +68,15 @@ public class HotelVO implements Serializable{
 		this.dailyRoomInfo = dailyRoomInfo;
 		this.comment = comment;
 	}
+
+	public HotelVO(String city, String area, int star, int score, String checkInTime, String checkOutTime) {
+		this.city = city;
+		this.area = area;
+		this.star = star;
+		this.score = score;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+	}
+
 	
 }

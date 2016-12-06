@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import ui.view.presentation.StageController;
+import ui.view.presentation.customer.CustomerHotelListViewController;
 import ui.view.presentation.customer.CustomerMainViewController;
 
 import java.text.SimpleDateFormat;
@@ -22,6 +23,8 @@ public class SelectTimeViewController implements ControlledStage {
     private String resources = "util/SelectTimeView.fxml";
 
     private String toBeSet = "";
+
+    private String type;
 
     private int[] int_date;
 
@@ -70,7 +73,17 @@ public class SelectTimeViewController implements ControlledStage {
     private void setStage(String time){
         if(toBeSet.equals("customer/CustomerMainView.fxml")){
             CustomerMainViewController customerMainViewController = (CustomerMainViewController) stageController.getController(toBeSet);
-            customerMainViewController.setCheckInTime(time);
+            if(type.equals("checkIn"))
+                customerMainViewController.setCheckInTime(time);
+            if(type.equals("checkOut"))
+                customerMainViewController.setCheckOutTime(time);
+        }
+        if(toBeSet.equals("customer/CustomerHotelListView.fxml")){
+            CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController) stageController.getController(toBeSet);
+            if(type.equals("checkIn"))
+                customerHotelListViewController.setCheckInTime(time);
+            if(type.equals("checkOut"))
+                customerHotelListViewController.setCheckOutTime(time);
         }
     }
 
@@ -160,8 +173,9 @@ public class SelectTimeViewController implements ControlledStage {
     /**
      * set方法，设置要被改变的界面
      */
-    public void setToBeSet(String theStage){
-        toBeSet = theStage;
+    public void setToBeSet(String theStage, String type){
+        this.toBeSet = theStage;
+        this.type = type;
     }
 
 }

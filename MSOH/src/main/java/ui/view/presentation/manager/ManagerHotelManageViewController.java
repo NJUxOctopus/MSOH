@@ -54,6 +54,6 @@ public class ManagerHotelManageViewController implements ControlledStage {
 
     public void addSingleHotelPane(){
         PaneAdder paneAdder = new PaneAdder();
-        paneAdder.addPane(hotelListScrollPane,"manager/ManagerSingleHotelView.fxml", 10, 10);
+        paneAdder.addPane(hotelListScrollPane,"manager/ManagerSingleHotelView.fxml", 10, 10 );
     }
 }

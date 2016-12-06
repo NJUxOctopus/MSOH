@@ -112,17 +112,17 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox fx:id="checkInYearChoiceBox" layoutX="200.0" layoutY="5.0" prefHeight="6.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                              <ChoiceBox fx:id="checkInYearChoiceBox" layoutX="200.0" layoutY="5.0" prefHeight="6.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ChoiceBox>
-                              <ChoiceBox fx:id="checkInMonthChoiceBox" layoutX="320.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                              <ChoiceBox fx:id="checkInMonthChoiceBox" layoutX="320.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ChoiceBox>
-                              <ChoiceBox fx:id="checkInDayChoiceBox" layoutX="410.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                              <ChoiceBox fx:id="checkInDayChoiceBox" layoutX="410.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -147,17 +147,17 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox fx:id="checkOutYearChoiceBox" layoutX="594.0" layoutY="5.0" prefHeight="6.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                              <ChoiceBox fx:id="checkOutYearChoiceBox" layoutX="594.0" layoutY="5.0" prefHeight="6.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ChoiceBox>
-                              <ChoiceBox fx:id="checkOutMonthChoiceBox" layoutX="714.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                              <ChoiceBox fx:id="checkOutMonthChoiceBox" layoutX="714.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ChoiceBox>
-                              <ChoiceBox fx:id="checkOutDayChoiceBox" layoutX="804.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+                              <ChoiceBox fx:id="checkOutDayChoiceBox" layoutX="804.0" layoutY="5.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
