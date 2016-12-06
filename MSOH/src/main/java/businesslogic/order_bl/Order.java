@@ -14,18 +14,20 @@ import dataservice.order_dataservice.Order_DataService_Stub;
 import po.HotelPO;
 import po.OrderPO;
 import rmi.RemoteHelper;
+import util.DataFormat;
 import util.OrderStatus;
 import util.ResultMessage;
 import vo.*;
 
 import javax.swing.text.html.HTMLDocument;
+import javax.xml.crypto.Data;
 import javax.xml.transform.Result;
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.sql.*;
+import java.text.DateFormat;
+import java.util.*;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by apple on 16/11/10.
@@ -35,28 +37,39 @@ public class Order implements Order_BLService {
     Order_DataService_Stub order_dataService_stub = new Order_DataService_Stub();
 
     /**
+     * 在订单的所有促销策略中返回价格最低的策略
+     *
+     * @param orderPriceVOs
+     * @return
+     * @throws RemoteException
+     */
+    public OrderPriceVO getLowestPrice(List<OrderPriceVO> orderPriceVOs) throws RemoteException {
+        return null;
+    }
+
+    /**
      * 该方法用于判断订单是否符合当日的营销策略，如果可以的话生成价格
      *
      * @param orderVO
      * @return
      * @throws RemoteException
      */
-    public List<OrderPriceVO> usePromotion(OrderVO orderVO) throws RemoteException, IOException, ClassNotFoundException {
+    public List<OrderPriceVO> usePromotion(OrderVO orderVO) throws IOException, ClassNotFoundException {
         Promotion promotion = new Promotion();
         CustomerUtil customerUtil = new CustomerUtil();
         HotelUtil hotelUtil = new HotelUtil();
         List<OrderPriceVO> orderPriceVOList = new ArrayList<OrderPriceVO>();
         List<PromotionVO> promotionVOList = promotion.promotionRequirements(orderVO.hotelID, customerUtil.getSingle(orderVO.customerID).memberType
-                , hotelUtil.getByID(orderVO.hotelID).area, orderVO.rooms.length);
+                , hotelUtil.getByID(orderVO.hotelID).area, orderVO.rooms.length);//先调促销策略的方法判断订单信息是否符合该酒店的所有策略
         if (promotionVOList == null || promotionVOList.isEmpty())
             return null;
         for (int i = 0; i < promotionVOList.size(); i++) {
             PromotionVO promotionVO = promotionVOList.get(i);
-            double initPrice = 0;
+            double initPrice = 0;//初始价格
             for (int j = 0; j < orderVO.rooms.length; j++) {
-                initPrice += hotelUtil.getRoomByName(orderVO.hotelID, orderVO.rooms[i]).price;
+                initPrice += hotelUtil.getRoomByName(orderVO.hotelID, orderVO.rooms[i], orderVO.estimatedCheckinTime).price;//得到所有房间的类型与价格
             }
-            double finalPrice = initPrice * promotionVO.discount;
+            double finalPrice = initPrice * promotionVO.discount;//折后价格
             orderPriceVOList.add(new OrderPriceVO(promotionVO.promotionName, initPrice, finalPrice));
         }
         return orderPriceVOList;
@@ -86,8 +99,9 @@ public class Order implements Order_BLService {
                 else
                     rooms += orderVO.rooms[i];
             }
+            Calendar calendar = Calendar.getInstance();
             orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, null, orderVO.hotelName,
-                    orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime, orderVO.latestExecutedTime,
+                    orderVO.estimatedCheckinTime, null, orderVO.estimatedCheckoutTime, null, null,
                     rooms, orderVO.numOfCustomers, orderVO.haveChildren, orderVO.remarks, orderVO.promotionName, orderVO.initialPrice, orderVO.finalPrice, OrderStatus.UNEXECUTED);
             if (order_dataService_stub.addOrder(orderPO))
                 return ResultMessage.Order_CreateOrderSuccess;
@@ -174,20 +188,42 @@ public class Order implements Order_BLService {
     }
 
     /**
-     * 设为异常订单（暂时还未考虑透彻），定时器
+     * 设为异常订单
      *
-     * @param orderVO
+     * @param orderID
      * @return
      * @throws RemoteException
      */
-    public ResultMessage setAbnormal(OrderVO orderVO) throws RemoteException {
-        orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        orderPO.setOrderType(OrderStatus.ABNORMAL);
-        orderVO.orderType = OrderStatus.ABNORMAL;
-        if (order_dataService_stub.updateOrder(orderPO))
-            return ResultMessage.Order_SetAbnormalSuccess;
-        else
+    public ResultMessage setAbnormal(String orderID) throws RemoteException {
+        orderPO = order_dataService_stub.getOrderByOrderID(orderID);
+        if (orderPO.getOrderType().equals(OrderStatus.UNEXECUTED)) {
+            orderPO.setOrderType(OrderStatus.ABNORMAL);
+            if (order_dataService_stub.updateOrder(orderPO))
+                return ResultMessage.Order_SetAbnormalSuccess;
+            else
+                return ResultMessage.Fail;
+        } else
             return ResultMessage.Fail;
+    }
+
+    /**
+     * 在订单生成后，判断订单预计到达那天23点前是否入住
+     *
+     * @param timestamp
+     * @throws RemoteException
+     */
+    public void examineAbnormal(String orderID, Timestamp timestamp) throws RemoteException {
+        Calendar calendar = Calendar.getInstance();
+
+        /**
+         * 指定触发的时间现在指定时间为预计到达那天的23点前
+         */
+        calendar.set(Calendar.DAY_OF_MONTH, timestamp.getDay());
+        calendar.set(Calendar.MONTH, timestamp.getMonth());
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        Date time = calendar.getTime();
+        Timer timer = new Timer();
+        timer.schedule(new MyTask(orderID), time);
     }
 
     /**
@@ -213,3 +249,22 @@ public class Order implements Order_BLService {
     }
 
 }
+
+class MyTask extends TimerTask {
+    String orderID;
+
+    public MyTask(String orderID) {
+        this.orderID = orderID;
+    }
+
+    @Override
+    public void run() {
+        Order order = new Order();
+        try {
+            order.setAbnormal(orderID);
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+

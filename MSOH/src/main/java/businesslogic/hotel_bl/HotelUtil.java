@@ -329,19 +329,19 @@ public class HotelUtil implements HotelUtil_BLService {
     }
 
     /**
-     * 得到酒店某个名称的房间的信息
-     *
      * @param hotelID
      * @param roomName
+     * @param timestamp
      * @return
      * @throws RemoteException
      */
-    public RoomVO getRoomByName(String hotelID, String roomName) throws RemoteException {
+    public RoomVO getRoomByName(String hotelID, String roomName, Timestamp timestamp) throws RemoteException {
         if (hotelID.equals("") || roomName.equals(""))
             return null;
-        List<RoomPO> roomPOList = hotel_dataService_stub.getHotelRooms(hotelID);
-        if (roomPOList == null || roomPOList.isEmpty())
+        DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService_stub.getDailyRoomInfo(hotelID, timestamp);
+        if (dailyRoomInfoPO == null)
             return null;
+        List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
         for (int i = 0; i < roomPOList.size(); i++) {
             RoomPO roomPO = roomPOList.get(i);
             if (roomName.equals(roomPO.getRoomType()))

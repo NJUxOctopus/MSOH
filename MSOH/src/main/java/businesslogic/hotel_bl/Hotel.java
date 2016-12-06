@@ -21,70 +21,29 @@ public class Hotel implements Hotel_BLService {
     Hotel_DataService_Stub hotel_dataService_stub = new Hotel_DataService_Stub();
 
     /**
-     * 增加房间
+     * 录入房间
      *
-     * @param roomVO
+     * @param dailyRoomInfoVO
      * @return
      * @throws RemoteException
      */
-    public ResultMessage addRoom(RoomVO roomVO) throws RemoteException {
-        if (hotel_dataService_stub.findHotelByID(roomVO.hotelID) == null)
+    public ResultMessage addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
+        if (hotel_dataService_stub.findHotelByID(dailyRoomInfoVO.hotelID) == null)
             return ResultMessage.Hotel_HotelNotExist;
-        if (roomVO.leftRooms < 0 || roomVO.occupiedRooms < 0 || roomVO.reservedRooms < 0 || roomVO.price < 0)
-            return ResultMessage.DataFormatWrong;
-        if (roomVO.roomType.equals(""))
+        List<RoomVO> roomVOList = dailyRoomInfoVO.room;
+        if (roomVOList == null || roomVOList.isEmpty())
             return ResultMessage.Blank;
-        if (hotel_dataService_stub.addRoom(new RoomPO(roomVO.hotelID, roomVO.roomType, roomVO.occupiedRooms,
-                roomVO.reservedRooms, roomVO.leftRooms, roomVO.price)))
+        List<RoomPO> roomPOList = new ArrayList<RoomPO>();
+        for (int i = 0; i < roomVOList.size(); i++) {
+            RoomVO roomVO = roomVOList.get(i);
+            roomPOList.add(new RoomPO(roomVO.hotelID, roomVO.roomType, roomVO.occupiedRooms, roomVO.reservedRooms, roomVO.leftRooms, roomVO.price));
+        }
+        if (hotel_dataService_stub.addDailyRoomInfo(new DailyRoomInfoPO(dailyRoomInfoVO.hotelID, dailyRoomInfoVO.date, roomPOList)))
             return ResultMessage.Hotel_AddRoomSuccess;
         else
             return ResultMessage.Fail;
     }
 
-    /**
-     * 修改房间
-     *
-     * @param roomVO
-     * @return
-     * @throws RemoteException
-     */
-    public ResultMessage modifyRoom(RoomVO roomVO) throws RemoteException {
-        if (hotel_dataService_stub.findHotelByID(roomVO.hotelID) == null)
-            return ResultMessage.Hotel_HotelNotExist;
-        if (roomVO.roomType.equals(""))
-            return ResultMessage.Blank;
-        if (roomVO.leftRooms < 0 || roomVO.occupiedRooms < 0 || roomVO.reservedRooms < 0 || roomVO.price < 0)
-            return ResultMessage.DataFormatWrong;
-        RoomPO roomPO = hotel_dataService_stub.getRoom(roomVO.hotelID, roomVO.roomType);
-        roomPO.setLeftRooms(roomVO.leftRooms);
-        roomPO.setOccupiedRooms(roomVO.occupiedRooms);
-        roomPO.setPrice(roomVO.price);
-        roomPO.setReservedRooms(roomVO.reservedRooms);
-        roomPO.setRoomType(roomVO.roomType);
-        if (hotel_dataService_stub.modifyRoom(roomPO))
-            return ResultMessage.Hotel_ModifyRoomSuccess;
-        else
-            return ResultMessage.Fail;
-    }
-
-    /**
-     * 删除房间
-     *
-     * @param roomVO
-     * @return
-     * @throws RemoteException
-     */
-    public ResultMessage deleteRoom(RoomVO roomVO) throws RemoteException {
-        if (roomVO.hotelID.equals("") || roomVO.roomType.equals(""))
-            return ResultMessage.Blank;
-        RoomPO roomPO = hotel_dataService_stub.getRoom(roomVO.hotelID, roomVO.roomType);
-        if (roomPO == null)
-            return ResultMessage.Hotel_RoomNotExist;
-        if (hotel_dataService_stub.deleteRoom(roomPO))
-            return ResultMessage.Hotel_DeleteRoomSuccess;
-        else
-            return ResultMessage.Fail;
-    }
 
     /**
      * 更改可用房间数量
@@ -215,7 +174,7 @@ public class Hotel implements Hotel_BLService {
         hotelPO.setInfra(infra);
         hotelPO.setIntro(hotelVO.intro);
         hotelPO.setStar(hotelVO.star);
-        if(hotel_dataService_stub.modifyHotel(hotelPO))
+        if (hotel_dataService_stub.modifyHotel(hotelPO))
             return ResultMessage.Hotel_modifyHotelInfoSuccess;
         else
             return ResultMessage.Fail;
@@ -272,7 +231,7 @@ public class Hotel implements Hotel_BLService {
         HotelPO hotelPO = hotel_dataService_stub.findHotelByID(clerkVO.hotelID);
         if (hotelPO == null)
             return ResultMessage.Hotel_HotelNotExist;
-        if (hotelPO.getClerkID() != "")
+        if (!hotelPO.getClerkID().equals(""))
             return ResultMessage.Hotel_HasClerk;
         hotelPO.setClerkID(clerkVO.ID);
         return ResultMessage.Clerk_AddClerkSuccess;

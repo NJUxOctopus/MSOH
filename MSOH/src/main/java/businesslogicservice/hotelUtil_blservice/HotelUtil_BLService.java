@@ -31,7 +31,7 @@ public interface HotelUtil_BLService {
 
     public HotelVO getHotelByClerkID(String clerkID) throws RemoteException;
 
-    public RoomVO getRoomByName(String hotelID, String roomName) throws RemoteException;
+    public RoomVO getRoomByName(String hotelID, String roomName,Timestamp timestamp) throws RemoteException;
 
     public List<CommentVO> getComment(String hotelID) throws RemoteException;
 

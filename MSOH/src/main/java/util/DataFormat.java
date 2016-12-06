@@ -10,6 +10,8 @@ public class DataFormat {
     public static final String Phone_Format = "[0-9]{11,11}$";
     public static final String ID_Format = "[0-9]{18,18}$";
 
+    public static final long LastestExecutedTime = 1000*60*60*4;//最晚执行时间在预计到达后4小时
+
     public static String code(String ID) {
         String result = "";
         for (int i = 0; i < ID.length(); i++) {

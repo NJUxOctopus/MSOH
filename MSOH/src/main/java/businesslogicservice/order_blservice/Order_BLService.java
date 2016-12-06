@@ -2,6 +2,7 @@ package businesslogicservice.order_blservice;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import util.OrderStatus;
@@ -17,12 +18,16 @@ public interface Order_BLService {
 
     public ResultMessage endOrder(OrderVO orderVO) throws RemoteException;
 
-    public ResultMessage setAbnormal(OrderVO orderVO) throws RemoteException;
+    public ResultMessage setAbnormal(String orderID) throws RemoteException;
 
     public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException;
 
     public double getTotal(OrderVO orderVO) throws RemoteException;
 
-    public List<OrderPriceVO> usePromotion(OrderVO orderVO)throws RemoteException,IOException,ClassNotFoundException;
+    public List<OrderPriceVO> usePromotion(OrderVO orderVO)throws IOException,ClassNotFoundException;
+
+    public OrderPriceVO getLowestPrice(List<OrderPriceVO> orderPriceVOs)throws RemoteException;
+
+    public void examineAbnormal(String orderID,Timestamp timestamp)throws RemoteException;
 
 }
