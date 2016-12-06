@@ -1,13 +1,27 @@
 package ui.view.presentation.customer;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import ui.controller.CommentHotelController;
+import ui.controller.ProcessOrderController;
+import ui.view.controllerservice.CommentHotel;
+import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import vo.CommentVO;
+import vo.OrderVO;
+
+import java.rmi.RemoteException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by island on 2016/11/24.
@@ -16,6 +30,18 @@ public class CustomerEvaluateViewController implements ControlledStage {
     StageController stageController;
 
     private String resource = "customer/CustomerEvaluateView.fxml";
+
+    private OrderVO orderVO;
+
+    private String customerID;
+
+    private String orderID;
+
+    private String hotelName;
+
+    private String hotelID ;
+
+    private String customerName;
 
     @FXML
     private ImageView background;
@@ -32,25 +58,82 @@ public class CustomerEvaluateViewController implements ControlledStage {
     @FXML
     private Button confirmButton;
 
+    @FXML
+    private Label hotelNameLabel;
+
+    @FXML
+    private Label hotelIDLabel;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
     }
 
+    /**
+     * 关闭评论界面
+     */
     @FXML
     private void closeStage() {
         stageController = new StageController();
-        stageController.loadStage("util/ConfirmExit.fxml", 1);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed(resource);
+        System.out.print(textArea.getText());
+        if (textArea.getText().equals("")){
+            stageController.closeStage(resource);
+        }
+        else {
+            stageController.loadStage("util/ConfirmExit.fxml", 1);
+            ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+            controller.setToBeClosed(resource);
+        }
     }
 
+    /**
+     * 添加评论方法
+     */
     @FXML
     private void submitEvaluation(){
+        String comment = textArea.getText();
+        double score = scoreChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+        Date date=new Date();
+        DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time=format.format(date);
+        Timestamp commentTime = Timestamp.valueOf(time);
+        CommentVO commentVO = new CommentVO(score, comment, customerName, customerID, hotelName, hotelID, orderID, commentTime);
+        try {
+            CommentHotel commentHotel = new CommentHotelController();
+            commentHotel.addComment(commentVO, orderVO);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 评论界面的初始化方法
+     * @param customerID
+     * @param orderID
+     */
+    public void init(String customerID, String orderID){
+        this.customerID = customerID;
+        this.orderID = orderID;
+        scoreChoiceBox.setItems(FXCollections.observableArrayList(
+                "1","2", "3", "4", "5"));
+        //setHotelInfo();
 
     }
 
-    public void init(String customerID, String orderID){
-
+    /**
+     * 获得评论对应酒店的信息
+     */
+    private void setHotelInfo(){
+        try {
+            ProcessOrder processOrder = new ProcessOrderController();
+            orderVO = processOrder.getSingle(customerID);
+            hotelName = orderVO.hotelName;
+            hotelID = orderVO.hotelID;
+            customerName = orderVO.customerName;
+            hotelIDLabel.setText(hotelID);
+            hotelNameLabel.setText(hotelName);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 }

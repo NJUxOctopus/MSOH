@@ -135,7 +135,7 @@ public class CustomerMainViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerCreditRecordView.fxml", 1);
         CustomerCreditRecordViewController customerCreditRecordViewController = (CustomerCreditRecordViewController)stageController.getController();
-        customerCreditRecordViewController.addCreditPane();
+        customerCreditRecordViewController.init(customerID);
 
     }
 
