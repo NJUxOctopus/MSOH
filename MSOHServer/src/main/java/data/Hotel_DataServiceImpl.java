@@ -153,6 +153,24 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         return list;
     }
 
+    /**
+     * 根据商圈获得酒店
+     * @param areaName
+     * @return 在该商圈内的酒店
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public List<HotelPO> getHotelByArea(String areaName) throws IOException, ClassNotFoundException {
+        List<HotelPO> hotelInThisArea=hotelDataHelper.getHotelByArea(areaName);
+
+        if(hotelInThisArea.isEmpty()||hotelInThisArea==null){
+            return hotelInThisArea;
+        }
+
+        List<HotelPO> list=CopyUtil.deepCopy(hotelInThisArea);
+
+        return list;
+    }
 //    public boolean addRoom(RoomPO po) throws RemoteException {
 //        return roomDataHelper.addRoom(po);
 //    }

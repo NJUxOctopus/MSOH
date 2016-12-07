@@ -169,4 +169,26 @@ public class HotelDataHelperSQLImpl implements HotelDataHelper {
             }
         }
     }
+
+    /**
+     * 根据商圈获得该商圈内的所有酒店
+     * @param areaName
+     * @return 该商圈内的所有酒店
+     */
+    public List<HotelPO> getHotelByArea(String areaName) {
+        List<HotelPO> hotelList=getHotels();
+
+        if(hotelList.isEmpty()||hotelList==null){
+            return hotelList;
+        }
+
+        List<HotelPO> hotelInThisArea=new ArrayList<HotelPO>();
+        for(HotelPO hotel:hotelList){
+            if(hotel.getArea().equals(areaName)){
+                hotelInThisArea.add(hotel);
+            }
+        }
+
+        return hotelInThisArea;
+    }
 }

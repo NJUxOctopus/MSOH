@@ -34,6 +34,9 @@ public interface Hotel_DataService extends Remote {
     // 根据酒店名字查找酒店
     public List<HotelPO> findHotelByName(String hotelName) throws IOException, ClassNotFoundException;
 
+    // 根据商圈获得酒店
+    public List<HotelPO> getHotelByArea(String areaName) throws IOException,ClassNotFoundException;
+
 //    // 新增酒店房间
 //    public boolean addRoom(RoomPO po) throws RemoteException;
 //

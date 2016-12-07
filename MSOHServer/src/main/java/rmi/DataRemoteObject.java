@@ -159,6 +159,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return hotel_dataService.findHotelByName(hotelName);
     }
 
+    public List<HotelPO> getHotelByArea(String areaName) throws IOException, ClassNotFoundException {
+        return hotel_dataService.getHotelByArea(areaName);
+    }
+
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Timestamp date) throws RemoteException {
         return hotel_dataService.getDailyRoomInfo(hotelID,date);
     }
