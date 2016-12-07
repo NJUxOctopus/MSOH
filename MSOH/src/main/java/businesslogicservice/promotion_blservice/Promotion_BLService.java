@@ -7,15 +7,16 @@ import java.util.List;
 
 import util.MemberType;
 import util.ResultMessage;
+import vo.OrderVO;
 import vo.PromotionVO;
 
 public interface Promotion_BLService {
-    public ResultMessage addPromotion(PromotionVO promotionVO) throws RemoteException;
+    public ResultMessage addPromotion(PromotionVO promotionVO) throws IOException,ClassNotFoundException;
 
-    public ResultMessage modifyPromotion(PromotionVO promotionVO) throws RemoteException;
+    public ResultMessage modifyPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException;
 
     public ResultMessage deletePromotion(String promotionID) throws RemoteException;
 
-    public List<PromotionVO> promotionRequirements(String hotelID, MemberType memberType,  String area, int minRoom)
-            throws RemoteException,IOException,ClassNotFoundException;
+    public List<PromotionVO> promotionRequirements(OrderVO orderVO)
+            throws IOException,ClassNotFoundException;
 }

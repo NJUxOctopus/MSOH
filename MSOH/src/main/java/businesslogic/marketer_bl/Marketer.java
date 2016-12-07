@@ -77,7 +77,7 @@ public class Marketer implements Marketer_BLService {
         else if (marketerVO.phone.equals("") || marketerVO.name.equals(""))
             //电话或名称为空
             return ResultMessage.Blank;
-        if(marketerVO.phone.matches(DataFormat.Phone_Format))
+        if(!marketerVO.phone.matches(DataFormat.Phone_Format))
             return ResultMessage.DataFormatWrong;
         MarketerPO marketerPO = marketer_dataService_stub.findMarketerByID(marketerVO.ID);
         marketerPO.setPhone(marketerVO.phone);

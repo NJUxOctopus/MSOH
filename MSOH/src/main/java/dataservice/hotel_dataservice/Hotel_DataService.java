@@ -5,6 +5,7 @@ import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
 
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.security.Timestamp;
@@ -68,5 +69,8 @@ public interface Hotel_DataService extends Remote {
 
     // 根据订单获得评价
     public CommentPO getCommentByOrder(String orderID) throws RemoteException;
+
+    // 根据商圈获得酒店
+    public List<HotelPO> getHotelByArea(String areaName) throws IOException,ClassNotFoundException;
 
 }

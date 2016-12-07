@@ -1,4 +1,4 @@
-package businesslogicservice.marketerUtil_blservice;
+package businesslogicservice.marketer_blservice;
 
 import vo.MarketerVO;
 

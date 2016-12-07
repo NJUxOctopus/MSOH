@@ -1,9 +1,8 @@
 package businesslogic.member_bl;
 
-import businesslogicservice.memberUtil_blservice.MemberUtil_BLService;
+import businesslogicservice.member_blservice.MemberUtil_BLService;
 import dataservice.member_dataservice.Member_DataService_Stub;
 import po.MemberPO;
-import rmi.RemoteHelper;
 import vo.MemberVO;
 
 import java.rmi.RemoteException;

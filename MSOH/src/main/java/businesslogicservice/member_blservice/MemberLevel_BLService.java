@@ -1,4 +1,4 @@
-package businesslogicservice.memberLevel_blservice;
+package businesslogicservice.member_blservice;
 
 import util.ResultMessage;
 import vo.MemberLevelVO;

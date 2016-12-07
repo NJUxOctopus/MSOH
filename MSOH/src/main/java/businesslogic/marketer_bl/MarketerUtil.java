@@ -1,6 +1,6 @@
 package businesslogic.marketer_bl;
 
-import businesslogicservice.marketerUtil_blservice.MarketerUtil_BLService;
+import businesslogicservice.marketer_blservice.MarketerUtil_BLService;
 import dataservice.marketer_dataservice.Marketer_DataService_Stub;
 import po.MarketerPO;
 import vo.MarketerVO;

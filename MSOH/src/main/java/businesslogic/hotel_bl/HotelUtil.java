@@ -1,6 +1,10 @@
 package businesslogic.hotel_bl;
 
-import businesslogicservice.hotelUtil_blservice.HotelUtil_BLService;
+import util.OrderStatus;
+import util.filter.*;
+import util.sort.sortHotelByScore;
+import util.sort.sortHotelByStar;
+import businesslogicservice.hotel_blservice.HotelUtil_BLService;
 import dataservice.hotel_dataservice.City_DataService;
 import dataservice.hotel_dataservice.Hotel_DataService_Stub;
 import po.CommentPO;
@@ -13,10 +17,10 @@ import vo.DailyRoomInfoVO;
 import vo.HotelVO;
 import vo.RoomVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.sql.Timestamp;
 
 /**
@@ -24,6 +28,9 @@ import java.sql.Timestamp;
  */
 public class HotelUtil implements HotelUtil_BLService {
     City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+    Timestamp timestamp = Timestamp.valueOf(sdf.format(date));
 
     /**
      * 该方法主要是把酒店的评论的po改成vo
@@ -72,7 +79,7 @@ public class HotelUtil implements HotelUtil_BLService {
             hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                     hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
-                    new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
+                    timestamp), getComment(hotelPO.getHotelID())));
         }
         return hotelVOList;
     }
@@ -98,16 +105,30 @@ public class HotelUtil implements HotelUtil_BLService {
         return new DailyRoomInfoVO(dailyRoomInfoPO.getHotelID(), dailyRoomInfoPO.getDate(), roomVOList);
     }
 
-    public List<HotelVO> sortByPrice(List<HotelVO> list) throws RemoteException {
-        return null;
-    }
-
+    /**
+     * 按照星级排序（正序）
+     *
+     * @param list
+     * @return
+     * @throws RemoteException
+     */
     public List<HotelVO> sortByStar(List<HotelVO> list) throws RemoteException {
-        return null;
+        Comparator<HotelVO> comparator = new sortHotelByStar();
+        Collections.sort(list, comparator);
+        return list;
     }
 
+    /**
+     * 按照分数排序（正序）
+     *
+     * @param list
+     * @return
+     * @throws RemoteException
+     */
     public List<HotelVO> sortByScore(List<HotelVO> list) throws RemoteException {
-        return null;
+        Comparator<HotelVO> comparator = new sortHotelByScore();
+        Collections.sort(list, comparator);
+        return list;
     }
 
     /**
@@ -129,7 +150,7 @@ public class HotelUtil implements HotelUtil_BLService {
         return new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                 infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                 hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
-                new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID()));
+                timestamp), getComment(hotelPO.getHotelID()));
     }
 
     /**
@@ -154,7 +175,7 @@ public class HotelUtil implements HotelUtil_BLService {
             hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                     hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
-                    new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
+                    timestamp), getComment(hotelPO.getHotelID())));
         }
         return hotelVOList;
     }
@@ -182,7 +203,7 @@ public class HotelUtil implements HotelUtil_BLService {
                 hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                         infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                         hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
-                        new java.sql.Timestamp(System.currentTimeMillis())), getComment(hotelPO.getHotelID())));
+                        timestamp), getComment(hotelPO.getHotelID())));
             }
         }
         return hotelVOList;
@@ -196,18 +217,8 @@ public class HotelUtil implements HotelUtil_BLService {
      * @throws RemoteException
      */
     public List<HotelVO> filterByStar(String star) throws RemoteException {
-        if (star.equals(""))
-            return getAll();
-        List<HotelVO> allHotels = getAll();
-        if (allHotels == null || allHotels.isEmpty())
-            return null;
-        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        for (int i = 0; i < allHotels.size(); i++) {
-            if (allHotels.get(i).star >= Integer.parseInt(star)) {
-                hotelVOList.add(allHotels.get(i));
-            }
-        }
-        return hotelVOList;
+        FilterCriteria filterCriteria = new FilterCriteriaStar(star);
+        return filterCriteria.meetCriteria(getAll());
     }
 
     /**
@@ -219,24 +230,8 @@ public class HotelUtil implements HotelUtil_BLService {
      * @throws RemoteException
      */
     public List<HotelVO> filterByScore(String low, String high) throws RemoteException {
-        if (low.equals("") && high.equals(""))
-            return getAll();
-        List<HotelVO> allHotels = getAll();
-        if (allHotels == null || allHotels.isEmpty())
-            return null;
-        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        for (int i = 0; i < allHotels.size(); i++) {
-            HotelVO hotelVO = allHotels.get(i);
-            if (low.equals(""))
-                if (hotelVO.score <= Double.parseDouble(high))
-                    hotelVOList.add(hotelVO);
-            if (high.equals(""))
-                if (hotelVO.score >= Double.parseDouble(low))
-                    hotelVOList.add(hotelVO);
-                else if (hotelVO.score <= Double.parseDouble(high) && hotelVO.score >= Double.parseDouble(low))
-                    hotelVOList.add(hotelVO);
-        }
-        return hotelVOList;
+        FilterCriteria filterCriteria = new FilterCriteriaScore(low, high);
+        return filterCriteria.meetCriteria(getAll());
     }
 
     /**
@@ -247,18 +242,8 @@ public class HotelUtil implements HotelUtil_BLService {
      * @throws RemoteException
      */
     public List<HotelVO> filterByName(String name) throws RemoteException {
-        if (name.equals(""))
-            return getAll();
-        List<HotelVO> allHotels = getAll();
-        if (allHotels == null || allHotels.isEmpty())
-            return null;
-        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        for (int i = 0; i < allHotels.size(); i++) {
-            if (allHotels.get(i).hotelName.contains(name)) {
-                hotelVOList.add(allHotels.get(i));
-            }
-        }
-        return hotelVOList;
+        FilterCriteria filterCriteria = new FilterCriteriaName(name);
+        return filterCriteria.meetCriteria(getAll());
     }
 
     /**
@@ -269,41 +254,21 @@ public class HotelUtil implements HotelUtil_BLService {
      * @throws RemoteException
      */
     public List<HotelVO> filterByCity(String city) throws RemoteException {
-        if (city.equals(""))
-            return getAll();
-        List<HotelVO> allHotels = getAll();
-        if (allHotels == null || allHotels.isEmpty())
-            return null;
-        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        for (int i = 0; i < allHotels.size(); i++) {
-            if (allHotels.get(i).hotelAddress.contains(city)) {
-                hotelVOList.add(allHotels.get(i));
-            }
-        }
-        return hotelVOList;
+        FilterCriteria filterCriteria = new FilterCriteriaCity(city);
+        return filterCriteria.meetCriteria(getAll());
     }
 
     /**
      * 按照时间筛选酒店
      *
-     * @param timestamp1
-     * @param timestamp2
+     * @param firstDate
+     * @param secondDate
      * @return
      * @throws RemoteException
      */
-    public List<HotelVO> filterByDate(Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
-        if (timestamp1 == null && timestamp2 == null)
-            return getAll();
-        List<HotelVO> allHotels = getAll();
-        if (allHotels == null || allHotels.isEmpty())
-            return null;
-        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        for (int i = 0; i < allHotels.size(); i++) {
-            HotelVO hotelVO = allHotels.get(i);
-            DailyRoomInfoVO dailyRoomInfoVO = hotelVO.dailyRoomInfo;
-            //TODO
-        }
-        return hotelVOList;
+    public List<HotelVO> filterByDate(Timestamp firstDate, Timestamp secondDate) throws RemoteException {
+        FilterCriteria filterCriteria = new FilterCriteriaDate(firstDate, secondDate);
+        return filterCriteria.meetCriteria(getAll());
     }
 
     /**
@@ -314,18 +279,8 @@ public class HotelUtil implements HotelUtil_BLService {
      * @throws RemoteException
      */
     public List<HotelVO> filterByArea(String area) throws RemoteException {
-        if (area.equals(""))
-            return getAll();
-        List<HotelVO> allHotels = getAll();
-        if (allHotels == null || allHotels.isEmpty())
-            return null;
-        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        for (int i = 0; i < allHotels.size(); i++) {
-            if (allHotels.get(i).area.equals(area)) {
-                hotelVOList.add(allHotels.get(i));
-            }
-        }
-        return hotelVOList;
+        FilterCriteria filterCriteria = new FilterCriteriaArea(area);
+        return filterCriteria.meetCriteria(getAll());
     }
 
     /**
@@ -437,5 +392,32 @@ public class HotelUtil implements HotelUtil_BLService {
      */
     public List<String> getAreaByCity(String city) throws RemoteException {
         return city_dataService.getAreaByCity(city);
+    }
+
+    /**
+     * 得到某个商圈的所有酒店
+     *
+     * @param area
+     * @return
+     * @throws RemoteException
+     */
+    public List<HotelVO> getHotelByArea(String area) throws IOException, ClassNotFoundException {
+        if (area.equals(""))
+            return null;
+        if (area.equals("All"))
+            return getAll();
+        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
+        if (hotel_dataService_stub.getHotelByArea(area) == null || hotel_dataService_stub.getHotelByArea(area).isEmpty())
+            return null;
+        for (HotelPO hotelPO : hotel_dataService_stub.getHotelByArea(area)) {
+            String[] infra = hotelPO.getInfra().split(";");
+            String[] picUrl = hotelPO.getPicUrls().split(";");
+            String[] roomType = hotelPO.getHotelRoomType().split(";");
+            hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
+                    infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
+                    hotelPO.getHotelID(), getDailyRoomInfo(hotelPO.getHotelID(),
+                    timestamp), getComment(hotelPO.getHotelID())));
+        }
+        return hotelVOList;
     }
 }

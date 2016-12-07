@@ -58,7 +58,7 @@ public class Customer implements Customer_BLService {
                 customerVO.phone.matches(DataFormat.Phone_Format) && customerVO.ID.matches(DataFormat.ID_Format)) {
             //若用户已输入ID并且不存在该ID的用户，则添加该用户，并返回注册成功
             if (customer_dataService_stub.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
-                    customerVO.phone, customerVO.email, customerVO.credit, customerVO.picUrl, customerVO.ID, MemberType.NONMEMBER)))
+                    customerVO.phone, customerVO.email, 1000, customerVO.picUrl, customerVO.ID, MemberType.NONMEMBER)))
                 return ResultMessage.Customer_SignupSuccess;
             else
                 return ResultMessage.Fail;

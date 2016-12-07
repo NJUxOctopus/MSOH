@@ -1,4 +1,4 @@
-package businesslogicservice.memberUtil_blservice;
+package businesslogicservice.member_blservice;
 
 import vo.MemberVO;
 

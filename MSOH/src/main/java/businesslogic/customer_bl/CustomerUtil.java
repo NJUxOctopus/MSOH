@@ -1,9 +1,8 @@
 package businesslogic.customer_bl;
 
-import businesslogicservice.customerUtil_blservice.CustomerUtil_BLService;
+import businesslogicservice.customer_blservice.CustomerUtil_BLService;
 import dataservice.customer_dataservice.Customer_DataService_Stub;
 import po.CustomerPO;
-import rmi.RemoteHelper;
 import vo.CustomerVO;
 
 import java.rmi.RemoteException;

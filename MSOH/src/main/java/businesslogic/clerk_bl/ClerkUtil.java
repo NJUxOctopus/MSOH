@@ -1,6 +1,6 @@
 package businesslogic.clerk_bl;
 
-import businesslogicservice.clerkUtil_blservice.ClerkUtil_BLService;
+import businesslogicservice.clerk_blservice.ClerkUtil_BLService;
 import dataservice.clerk_dataservice.Clerk_DataService;
 import po.ClerkPO;
 import rmi.RemoteHelper;

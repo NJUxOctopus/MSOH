@@ -63,7 +63,7 @@ public class Clerk implements Clerk_BLService {
         if (clerkVO.name.equals("") || clerkVO.phone.equals("") || clerkVO.ID.equals(""))
             //若工作人员的名字或电话或ID或所在酒店ID，名称为空
             return ResultMessage.Blank;
-        if (clerkVO.phone.matches(DataFormat.Phone_Format))
+        if (!clerkVO.phone.matches(DataFormat.Phone_Format))
             return ResultMessage.DataFormatWrong;
         ClerkPO clerkPO = clerk_dataService.findClerkByID(clerkVO.ID);
         clerkPO.setPhone(clerkVO.phone);

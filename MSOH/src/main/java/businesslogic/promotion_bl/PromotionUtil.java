@@ -1,17 +1,14 @@
 package businesslogic.promotion_bl;
 
-import businesslogicservice.promotionUtil_blservice.PromotionUtil_BLService;
-import businesslogicservice.promotion_blservice.Promotion_BLService;
+import businesslogicservice.promotion_blservice.PromotionUtil_BLService;
 import dataservice.promotion_dataservice.Promotion_DataService_Stub;
 import po.PromotionPO;
 import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**

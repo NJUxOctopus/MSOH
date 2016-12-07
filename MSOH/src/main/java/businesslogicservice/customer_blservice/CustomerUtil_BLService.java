@@ -1,4 +1,4 @@
-package businesslogicservice.customerUtil_blservice;
+package businesslogicservice.customer_blservice;
 
 import vo.CustomerVO;
 

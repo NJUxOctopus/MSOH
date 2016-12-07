@@ -1,4 +1,4 @@
-package businesslogicservice.promotionUtil_blservice;
+package businesslogicservice.promotion_blservice;
 
 import po.PromotionPO;
 import vo.PromotionVO;

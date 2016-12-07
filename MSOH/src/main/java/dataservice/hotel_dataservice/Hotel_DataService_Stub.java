@@ -1,5 +1,6 @@
 package dataservice.hotel_dataservice;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.security.Timestamp;
 import java.util.ArrayList;
@@ -80,6 +81,11 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 	@Override
 	public boolean updateDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
 		return false;
+	}
+
+	@Override
+	public List<HotelPO> getHotelByArea(String areaName) throws IOException, ClassNotFoundException {
+		return null;
 	}
 
 	public boolean addComment(CommentPO po) throws RemoteException {

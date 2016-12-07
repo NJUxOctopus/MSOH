@@ -1,4 +1,4 @@
-package businesslogicservice.clerkUtil_blservice;
+package businesslogicservice.clerk_blservice;
 
 import vo.ClerkVO;
 

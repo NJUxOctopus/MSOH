@@ -1,8 +1,7 @@
 package ui.controller;
 
 import businesslogic.hotel_bl.HotelUtil;
-import businesslogicservice.hotelUtil_blservice.HotelUtil_BLService;
-import businesslogicservice.hotel_blservice.Hotel_BLService;
+import businesslogicservice.hotel_blservice.HotelUtil_BLService;
 import ui.view.controllerservice.HotelAdmin;
 import util.ResultMessage;
 import vo.DailyRoomInfoVO;

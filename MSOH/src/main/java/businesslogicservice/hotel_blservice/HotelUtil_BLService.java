@@ -1,11 +1,13 @@
-package businesslogicservice.hotelUtil_blservice;
+package businesslogicservice.hotel_blservice;
 
 import businesslogic.hotel_bl.Hotel;
+import util.OrderStatus;
 import vo.CommentVO;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
 import vo.RoomVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -16,8 +18,6 @@ import java.util.List;
  */
 public interface HotelUtil_BLService {
     public List<HotelVO> getAll() throws RemoteException;
-
-    public List<HotelVO> sortByPrice(List<HotelVO> list) throws RemoteException;
 
     public List<HotelVO> sortByStar(List<HotelVO> list) throws RemoteException;
 
@@ -31,11 +31,11 @@ public interface HotelUtil_BLService {
 
     public HotelVO getHotelByClerkID(String clerkID) throws RemoteException;
 
-    public RoomVO getRoomByName(String hotelID, String roomName,Timestamp timestamp) throws RemoteException;
+    public RoomVO getRoomByName(String hotelID, String roomName, Timestamp timestamp) throws RemoteException;
 
     public List<CommentVO> getComment(String hotelID) throws RemoteException;
 
-    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date)throws RemoteException;
+    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
 
     public List<HotelVO> filterByStar(String star) throws RemoteException;
 
@@ -56,5 +56,7 @@ public interface HotelUtil_BLService {
     public List<String> getAllCities() throws RemoteException;
 
     public List<String> getAreaByCity(String city) throws RemoteException;
+
+    public List<HotelVO> getHotelByArea(String area) throws IOException,ClassNotFoundException;
 }
 

@@ -48,7 +48,7 @@ public class Order implements Order_BLService {
     }
 
     /**
-     * 该方法用于判断订单是否符合当日的营销策略，如果可以的话生成价格
+     * 该方法用于判断订单是否符合当日的营销策略，如果可以的话生成价格，如果不能用的话仅返回初始价格
      *
      * @param orderVO
      * @return
@@ -56,19 +56,24 @@ public class Order implements Order_BLService {
      */
     public List<OrderPriceVO> usePromotion(OrderVO orderVO) throws IOException, ClassNotFoundException {
         Promotion promotion = new Promotion();
-        CustomerUtil customerUtil = new CustomerUtil();
         HotelUtil hotelUtil = new HotelUtil();
         List<OrderPriceVO> orderPriceVOList = new ArrayList<OrderPriceVO>();
-        List<PromotionVO> promotionVOList = promotion.promotionRequirements(orderVO.hotelID, customerUtil.getSingle(orderVO.customerID).memberType
-                , hotelUtil.getByID(orderVO.hotelID).area, orderVO.rooms.length);//先调促销策略的方法判断订单信息是否符合该酒店的所有策略
-        if (promotionVOList == null || promotionVOList.isEmpty())
-            return null;
+        List<PromotionVO> promotionVOList = promotion.promotionRequirements(orderVO);//先调促销策略的方法判断订单信息是否符合该酒店的所有策略
+
+        double initPrice = 0;//初始价格
+        for (int j = 0; j < orderVO.rooms.length; j++) {
+            initPrice += hotelUtil.getRoomByName(orderVO.hotelID, orderVO.rooms[j], orderVO.estimatedCheckinTime).price;
+            //得到所有房间的类型与价格
+        }
+
+        if (promotionVOList == null || promotionVOList.isEmpty()) {
+            orderPriceVOList.add(new OrderPriceVO(null, initPrice, initPrice));//若无促销策略可使用
+            return orderPriceVOList;
+        }
+
         for (int i = 0; i < promotionVOList.size(); i++) {
             PromotionVO promotionVO = promotionVOList.get(i);
-            double initPrice = 0;//初始价格
-            for (int j = 0; j < orderVO.rooms.length; j++) {
-                initPrice += hotelUtil.getRoomByName(orderVO.hotelID, orderVO.rooms[i], orderVO.estimatedCheckinTime).price;//得到所有房间的类型与价格
-            }
+
             double finalPrice = initPrice * promotionVO.discount;//折后价格
             orderPriceVOList.add(new OrderPriceVO(promotionVO.promotionName, initPrice, finalPrice));
         }

@@ -6,6 +6,7 @@ import businesslogic.order_bl.OrderUtil;
 import businesslogicservice.hotel_blservice.Hotel_BLService;
 import dataservice.hotel_dataservice.Hotel_DataService_Stub;
 import po.*;
+import util.CalculateDays;
 import util.OrderStatus;
 import util.ResultMessage;
 import util.WorkerPosition;
@@ -57,6 +58,7 @@ public class Hotel implements Hotel_BLService {
      * @throws RemoteException
      */
     public ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException {
+        CalculateDays calculateDays = new CalculateDays(orderVO.estimatedCheckinTime, orderVO.estimatedCheckoutTime);
         long oneDay = 1000 * 60 * 60 * 24;
         Timestamp startTime = orderVO.estimatedCheckinTime;
         Timestamp endTime = orderVO.estimatedCheckoutTime;
@@ -116,6 +118,7 @@ public class Hotel implements Hotel_BLService {
 
     /**
      * 更改入住中的房间数量，change 值纯属一个标记值，因为担心传来的ordervo的订单状态，如果是执行订单后，该标记位为－1，结束订单时为1
+     *
      * @param orderVO
      * @param change
      * @return

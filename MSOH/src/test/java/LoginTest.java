@@ -28,10 +28,11 @@ public class LoginTest extends TestCase{
 
     public void test()throws RemoteException{
         Login login = new Login();
-//        ResultMessage resultMessage1 = login.rememberPassword("123","456");
-//        assertEquals(resultMessage1,ResultMessage.Password_rememberSuccess);
+       String str = login.autoLogin("123321");
+        //assertEquals(resultMessage1,ResultMessage.Password_rememberSuccess);
 //        ResultMessage resultMessage = login.cancelRemPassword("123");
 //        assertEquals(resultMessage,ResultMessage.Password_CancelRememberSuccess);
+        assertEquals(str,"320581190011223111");
     }
 
 }
