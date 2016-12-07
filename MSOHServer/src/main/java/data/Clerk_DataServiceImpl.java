@@ -59,6 +59,10 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @throws RemoteException
      */
     public boolean modifyClerk(ClerkPO clerkPO) throws RemoteException {
+        // 数据库中主键不能为空，否则更新不成功
+        if(clerkPO.getID()==null){
+            return false;
+        }
         return clerkDataHelper.modifyClerk(clerkPO);
     }
 
@@ -72,7 +76,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
     public List<ClerkPO> findClerkByName(String name) throws IOException, ClassNotFoundException {
         List<ClerkPO> clerksFound = clerkDataHelper.getClerkByName(name);
         if (null == clerksFound || clerksFound.isEmpty()) {
-            return null;
+            return clerksFound;
         }
 
         List<ClerkPO> returnClerksFound = CopyUtil.deepCopy(clerksFound);
@@ -105,7 +109,7 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
     public List<ClerkPO> findAllClerks() throws IOException, ClassNotFoundException {
         List<ClerkPO> clerkList = clerkDataHelper.getAllClerks();
         if (null == clerkList || clerkList.isEmpty()) {
-            return null;
+            return clerkList;
         }
 
         List<ClerkPO> returnClerkList = CopyUtil.deepCopy(clerkList);
@@ -121,6 +125,10 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @throws RemoteException
      */
     public boolean deleteClerk(ClerkPO clerkPO) throws RemoteException {
+        // 数据库中主键不能为空，否则删除不成功
+        if(clerkPO.getID()==null){
+            return false;
+        }
         return clerkDataHelper.deleteClerk(clerkPO);
     }
 }

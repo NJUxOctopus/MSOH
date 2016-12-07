@@ -135,7 +135,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     /**
      * HotelDataService的DataRemoteObject
      */
-    public boolean addHotel(HotelPO po) throws RemoteException {
+    public boolean addHotel(HotelPO po) throws IOException,ClassNotFoundException {
         return hotel_dataService.addHotel(po);
     }
 
@@ -157,6 +157,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
 
     public List<HotelPO> findHotelByName(String hotelName) throws IOException, ClassNotFoundException {
         return hotel_dataService.findHotelByName(hotelName);
+    }
+
+    public List<HotelPO> getHotelByArea(String areaName) throws IOException, ClassNotFoundException {
+        return hotel_dataService.getHotelByArea(areaName);
     }
 
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Timestamp date) throws RemoteException {

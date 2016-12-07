@@ -9,7 +9,7 @@ import util.HibernateUtil;
 import java.util.List;
 
 /**
- * Created by 名 on 2016/12/1.
+ * Created by zqh on 2016/12/1.
  */
 @SuppressWarnings(value = {"Duplicates"})
 public class MemberLevelDataHelperSQLImpl implements MemberLevelDataHelper {

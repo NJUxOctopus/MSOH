@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.CreditRecordPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -87,7 +88,7 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<CreditRecordPO>();
         } finally {
             if (session != null) {
                 session.getTransaction().commit();

@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.CustomerPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -113,7 +114,7 @@ public class CustomerDataHelperSQLImpl implements CustomerDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<CustomerPO>();
         } finally {
             if (session != null) {
                 session.getTransaction().commit();

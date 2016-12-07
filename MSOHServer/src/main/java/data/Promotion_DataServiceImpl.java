@@ -78,7 +78,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         List<PromotionPO> promotionList = getAllPromotions();
 
         if (promotionList.isEmpty() || promotionList == null) {
-            return null;
+            return promotionList;
         }
 
         List<PromotionPO> webPromotionList = new ArrayList<PromotionPO>();
@@ -90,7 +90,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         }
 
         if (webPromotionList.isEmpty() || webPromotionList == null) {
-            return null;
+            return webPromotionList;
         }
 
         return webPromotionList;
@@ -108,7 +108,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         List<PromotionPO> promotionList = getAllPromotions();
 
         if (promotionList.isEmpty() || promotionList == null) {
-            return null;
+            return promotionList;
         }
 
         List<PromotionPO> hotelPromotionList = new ArrayList<PromotionPO>();
@@ -121,7 +121,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         }
 
         if (hotelPromotionList.isEmpty() || hotelPromotionList == null) {
-            return null;
+            return hotelPromotionList;
         }
 
         return hotelPromotionList;
@@ -159,7 +159,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         List<PromotionPO> list = promotionDataHelper.getAllPromotions();
 
         if (list == null || list.isEmpty()) {
-            return null;
+            return list;
         }
 
         List<PromotionPO> returnPromotionList = CopyUtil.deepCopy(list);

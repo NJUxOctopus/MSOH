@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.MarketerPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -106,7 +107,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<MarketerPO>();
         } finally {
             if (null != session) {
                 session.getTransaction().commit();

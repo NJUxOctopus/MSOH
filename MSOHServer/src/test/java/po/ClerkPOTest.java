@@ -19,6 +19,6 @@ public class ClerkPOTest {
 
         List<ClerkPO> clerkPOList = clerkDataHelper.getClerkByName("桑田");
 
-        System.out.print(clerkPOList.size());
+        clerkDataHelper.deleteClerk(clerkPOList.get(0));
     }
 }

@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.CommentPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,7 +62,7 @@ public class CommentDataHelperSQLImpl implements CommentDataHelper {
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<CommentPO>();
         } finally {
             if (session != null) {
                 session.getTransaction().commit();

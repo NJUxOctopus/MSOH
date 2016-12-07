@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.ClerkPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,6 +72,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
     public boolean deleteClerk(ClerkPO clerkPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
 
             session.delete(clerkPO);
@@ -134,7 +136,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
 
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<ClerkPO>();
         } finally {
             if (session != null) {
                 session.getTransaction().commit();

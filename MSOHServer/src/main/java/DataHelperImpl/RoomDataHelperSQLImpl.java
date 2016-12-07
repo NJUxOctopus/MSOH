@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import po.RoomPO;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -112,7 +113,7 @@ public class RoomDataHelperSQLImpl implements RoomDataHelper {
             return roomList;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<RoomPO>();
         } finally {
             if (session != null) {
                 session.getTransaction().commit();
