@@ -6,11 +6,16 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import ui.controller.ReservedHotelController;
+import ui.view.controllerservice.ReservedHotel;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import vo.HotelVO;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by island on 2016/11/24.
@@ -21,6 +26,10 @@ public class CustomerMyHotelViewController implements ControlledStage {
     private String resource = "customer/CustomerMyHotelView.fxml";
 
     private CustomerSingleHotelViewController customerSingleHotelViewController;
+
+    private String customerID;
+
+    private String hotelID;
 
     @FXML
     private ImageView background;
@@ -42,9 +51,31 @@ public class CustomerMyHotelViewController implements ControlledStage {
     }
 
     public void addHotelPane(){
-        PaneAdder paneAdder = new PaneAdder();
-        paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5, 10);
+        ReservedHotel reservedHotel = new ReservedHotelController();
+        try {
+            List<HotelVO> hotelVOList = reservedHotel.getHistoryHotel(customerID);
+            int num = hotelVOList.size();
+            hotelListScrollPane.setPrefWidth(260*num - 5);
+            PaneAdder paneAdder = new PaneAdder();
+            for(int i =0; i < num; i++) {
+                paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 250 * num, 10);
+                customerSingleHotelViewController = (CustomerSingleHotelViewController) stageController.getController();
+                customerSingleHotelViewController.init(customerID, hotelID);
+            }
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+    }
 
+    public void init(String customerID){
+        this.customerID = customerID;
+
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 , 10);
+        CustomerSingleHotelViewController customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
+        customerSingleHotelViewController.init(customerID, hotelID);
+
+        //addHotelPane();
     }
 
 

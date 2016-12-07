@@ -19,4 +19,6 @@ public interface HotelDataHelper {
     public HotelPO getHotelByID(String ID);
 
     public List<HotelPO> getHotelByName(String hotelName);
+
+    public List<HotelPO> getHotelByArea(String areaName);
 }
