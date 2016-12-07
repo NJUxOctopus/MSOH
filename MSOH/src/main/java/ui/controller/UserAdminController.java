@@ -2,8 +2,10 @@ package ui.controller;
 
 import businesslogic.clerk_bl.Clerk;
 import businesslogic.clerk_bl.ClerkUtil;
+import businesslogic.customer_bl.CustomerUtil;
 import businesslogicservice.clerkUtil_blservice.ClerkUtil_BLService;
 import businesslogicservice.clerk_blservice.Clerk_BLService;
+import businesslogicservice.customerUtil_blservice.CustomerUtil_BLService;
 import ui.view.controllerservice.UserAdmin;
 import util.ResultMessage;
 import vo.ClerkVO;
@@ -21,7 +23,13 @@ public class UserAdminController implements UserAdmin {
 
     private ClerkUtil_BLService clerkUtil_blService;
 
+    private CustomerUtil_BLService customerUtil_blService;
+
     private Clerk_BLService clerk_blService;
+
+    public UserAdminController(){
+        customerUtil_blService = new CustomerUtil();
+    }
 
     public UserVO findAllByID(String ID) {
         return null;
@@ -64,8 +72,8 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    public CustomerVO findCustomerByID(String ID) {
-        return null;
+    public CustomerVO findCustomerByID(String ID) throws RemoteException {
+        return customerUtil_blService.getSingle(ID);
     }
 
     public ResultMessage addClerk(ClerkVO vo) {

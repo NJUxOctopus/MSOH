@@ -31,6 +31,26 @@ public class HotelInfoController implements HotelInfo {
     }
 
     public List<HotelVO> searchHotel(HotelVO hotelVO) throws RemoteException {
-        return hotelUtil_blService.searchHotel(hotelVO.city,hotelVO.toString(), Timestamp.valueOf(hotelVO.checkInTime + " 00:00:00"),Timestamp.valueOf(hotelVO.checkOutTime + " 00:00:00"), hotelVO.star + "", hotelVO.score + "", 5 + "");
+        Timestamp checkIn ;
+        Timestamp checkOut ;
+
+        if(hotelVO.checkInTime == null)
+            checkIn = null;
+        else
+            checkIn = Timestamp.valueOf(hotelVO.checkInTime + " 00:00:00");
+
+        if(hotelVO.checkOutTime == null)
+            checkOut = null;
+        else
+            checkOut = Timestamp.valueOf(hotelVO.checkOutTime + " 00:00:00");
+        return hotelUtil_blService.searchHotel(hotelVO.city,hotelVO.toString(), checkIn, checkOut, hotelVO.star + "", hotelVO.score + "", 5 + "");
+    }
+
+    public List<String> getAllCities() throws RemoteException{
+        return hotelUtil_blService.getAllCities();
+    }
+
+    public List<String> getAreaByCity(String city) throws RemoteException{
+        return hotelUtil_blService.getAreaByCity(city);
     }
 }

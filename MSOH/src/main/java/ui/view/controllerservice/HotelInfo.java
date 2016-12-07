@@ -16,4 +16,9 @@ public interface HotelInfo {
     public List<HotelVO> sortByScore(List<HotelVO> list);
 
     public List<HotelVO> searchHotel (HotelVO hotelVO) throws RemoteException;
+
+    public List<String> getAllCities() throws RemoteException;
+
+    public List<String> getAreaByCity(String city) throws RemoteException;
+
 }

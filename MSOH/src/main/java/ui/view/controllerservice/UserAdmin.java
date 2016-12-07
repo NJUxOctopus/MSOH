@@ -33,7 +33,7 @@ public interface UserAdmin {
 
     public List<CustomerVO> findCustomerByName(String name);
 
-    public CustomerVO findCustomerByID(String ID);
+    public CustomerVO findCustomerByID(String ID) throws RemoteException;
 
     public ResultMessage addClerk(ClerkVO vo);
 

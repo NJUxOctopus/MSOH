@@ -5,7 +5,10 @@ package ui.view.presentation.customer;
  */
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -257,21 +260,44 @@ public class CustomerMainViewController implements ControlledStage {
         this.customerID = customerID;
 
         String customerName = "";
-        /*UserAdmin userAdmin = new UserAdminController();
-        customerName = userAdmin.findAllByID(customerID).name;
-        */
-        nameLabel.setText(customerName);
-        cityChoiceBox.setItems(FXCollections.observableArrayList(
-                "南京"));
+        try {
+            UserAdmin userAdmin = new UserAdminController();
+            customerName = userAdmin.findAllByID(customerID).name;
+            nameLabel.setText(customerName);
 
-        areaChoiceBox.setItems(FXCollections.observableArrayList(
-                "新街口"));
+            HotelInfo hotelInfo = new HotelInfoController();
+            List<String> city = hotelInfo.getAllCities();
+            ObservableList<String> citys = FXCollections.observableArrayList();
+            for(int i = 0; i < city.size(); i++)
+                citys.add(city.get(i));
+            cityChoiceBox.setItems(citys);
 
-        starChoiceBox.setItems(FXCollections.observableArrayList(
-                "任意星级","★", "★★", "★★★", "★★★★", "★★★★★"));
+            cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    String selectedCity = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
+                    HotelInfo hotelInfo = new HotelInfoController();
+                    try {
+                        List<String> area = hotelInfo.getAreaByCity(selectedCity);
+                        ObservableList<String> areas = FXCollections.observableArrayList();
 
-        scoreChoiceBox.setItems(FXCollections.observableArrayList(
-                "任意分数","1分以上", "2分以上", "3分以上", "4分以上", "5分以上"));
+                        for (int i = 0; i < area.size(); i++)
+                            areas.add(area.get(i));
+                        areaChoiceBox.setItems(areas);
+                    }catch(RemoteException e){
+                        e.printStackTrace();;
+                    }
+                }
+            });
+
+            starChoiceBox.setItems(FXCollections.observableArrayList(
+                    "任意星级", "★", "★★", "★★★", "★★★★", "★★★★★"));
+
+            scoreChoiceBox.setItems(FXCollections.observableArrayList(
+                    "任意分数", "1分以上", "2分以上", "3分以上", "4分以上", "5分以上"));
+        }catch(RemoteException e){
+            e.printStackTrace();
+        }
 
         checkInTimeLabel.setText("");
         checkOutTimeLabel.setText("");
