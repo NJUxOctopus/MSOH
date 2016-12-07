@@ -24,6 +24,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
     public boolean addOrder(OrderPO po) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
             session.save(po);
             return true;
@@ -46,6 +47,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
     public boolean updateOrder(OrderPO orderPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
             session.update(orderPO);
             return true;
@@ -68,6 +70,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
     public boolean deleteOrder(OrderPO orderPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
             session.delete(orderPO);
             return true;

@@ -23,6 +23,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
     public boolean modifyManager(ManagerPO managerPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
 
             session.update(managerPO);
