@@ -1,7 +1,7 @@
 package ui.controller;
 
 import businesslogic.hotel_bl.HotelUtil;
-import businesslogicservice.hotelUtil_blservice.HotelUtil_BLService;
+import businesslogicservice.hotel_blservice.HotelUtil_BLService;
 import ui.view.controllerservice.HotelInfo;
 import vo.HotelVO;
 
@@ -34,16 +34,8 @@ public class HotelInfoController implements HotelInfo {
         Timestamp checkIn ;
         Timestamp checkOut ;
 
-        if(hotelVO.checkInTime == null)
-            checkIn = null;
-        else
-            checkIn = Timestamp.valueOf(hotelVO.checkInTime + " 00:00:00");
 
-        if(hotelVO.checkOutTime == null)
-            checkOut = null;
-        else
-            checkOut = Timestamp.valueOf(hotelVO.checkOutTime + " 00:00:00");
-        return hotelUtil_blService.searchHotel(hotelVO.city,hotelVO.toString(), checkIn, checkOut, hotelVO.star + "", hotelVO.score + "", 5 + "");
+        return hotelUtil_blService.searchHotel(hotelVO.city,hotelVO.area, null, null, hotelVO.star + "", hotelVO.score + "", 5 + "");
     }
 
     public List<String> getAllCities() throws RemoteException{

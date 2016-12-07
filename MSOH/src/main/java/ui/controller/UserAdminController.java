@@ -1,11 +1,10 @@
 package ui.controller;
 
-import businesslogic.clerk_bl.Clerk;
 import businesslogic.clerk_bl.ClerkUtil;
 import businesslogic.customer_bl.CustomerUtil;
-import businesslogicservice.clerkUtil_blservice.ClerkUtil_BLService;
+import businesslogicservice.clerk_blservice.ClerkUtil_BLService;
 import businesslogicservice.clerk_blservice.Clerk_BLService;
-import businesslogicservice.customerUtil_blservice.CustomerUtil_BLService;
+import businesslogicservice.customer_blservice.CustomerUtil_BLService;
 import ui.view.controllerservice.UserAdmin;
 import util.ResultMessage;
 import vo.ClerkVO;

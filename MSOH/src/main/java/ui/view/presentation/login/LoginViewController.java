@@ -10,6 +10,8 @@ import ui.controller.LogInController;
 import ui.view.controllerservice.LogIn;
 import ui.view.presentation.StageController;
 import ui.view.presentation.clerk.ClerkFrameController;
+import ui.view.presentation.customer.CustomerMainView;
+import ui.view.presentation.customer.CustomerMainViewController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
 import util.ResultMessage;
@@ -126,6 +128,8 @@ public class LoginViewController implements ControlledStage {
             rememberPW(rememberPWSelected, userID, password);
             stageController.loadStage("customer/CustomerMainView.fxml", 1);
             stageController.closeStage(resource);
+            CustomerMainViewController customerMainViewController = (CustomerMainViewController) stageController.getController();
+            customerMainViewController.init(userID);
         } else {
             // 密码错误
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);

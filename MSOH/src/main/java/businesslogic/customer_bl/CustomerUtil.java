@@ -1,8 +1,10 @@
 package businesslogic.customer_bl;
 
 import businesslogicservice.customer_blservice.CustomerUtil_BLService;
+import dataservice.customer_dataservice.Customer_DataService;
 import dataservice.customer_dataservice.Customer_DataService_Stub;
 import po.CustomerPO;
+import rmi.RemoteHelper;
 import vo.CustomerVO;
 
 import java.rmi.RemoteException;
@@ -14,7 +16,7 @@ import java.util.List;
  * Created by Pxr on 16/11/17.
  */
 public class CustomerUtil implements CustomerUtil_BLService {
-    Customer_DataService_Stub customer_dataService_stub = new Customer_DataService_Stub();
+    Customer_DataService customer_dataService_stub = RemoteHelper.getInstance().getCustomerDataService();
 
     /**
      * 得到所有的用户

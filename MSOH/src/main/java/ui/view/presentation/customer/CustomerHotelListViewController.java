@@ -134,6 +134,7 @@ public class CustomerHotelListViewController implements ControlledStage {
         hotelListScrollPane.setPrefWidth(270*num);
         PaneAdder paneAdder = new PaneAdder();
         for(int i =0; i < num; i++) {
+            System.out.print("!");
             paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
             customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
             customerSingleHotelViewController.init(customerID, hotelList.get(num).hotelID);
@@ -177,21 +178,23 @@ public class CustomerHotelListViewController implements ControlledStage {
         checkInTimeTextField.setText(hotelVO.checkInTime);
         checkOutTimeTextField.setText(hotelVO.checkOutTime);
 
-        //addHotelPane(getAllHotel(hotelVO));
+        getAllHotel(hotelVO);
+        System.out.print(hotelVO.city);
+        System.out.print(hotelVO.area);
+
     }
 
 
 
-    private List<HotelVO> getAllHotel(HotelVO hotelVO){
+    private void getAllHotel(HotelVO hotelVO){
         HotelInfo hotelInfo = new HotelInfoController();
         try {
             List<HotelVO> hotelList = hotelInfo.searchHotel(hotelVO);
-            CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController)stageController.getController();
-            customerHotelListViewController.addHotelPane(hotelList);
-            return hotelList;
+            System.out.print(hotelList.size());
+
+            addHotelPane(hotelList);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        return null;
     }
 }

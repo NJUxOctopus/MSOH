@@ -262,7 +262,7 @@ public class CustomerMainViewController implements ControlledStage {
         String customerName = "";
         try {
             UserAdmin userAdmin = new UserAdminController();
-            customerName = userAdmin.findAllByID(customerID).name;
+            customerName = userAdmin.findCustomerByID(customerID).name;
             nameLabel.setText(customerName);
 
             HotelInfo hotelInfo = new HotelInfoController();

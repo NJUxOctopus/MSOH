@@ -1,7 +1,7 @@
 package ui.controller;
 
 import businesslogic.promotion_bl.PromotionUtil;
-import businesslogicservice.promotionUtil_blservice.PromotionUtil_BLService;
+import businesslogicservice.promotion_blservice.PromotionUtil_BLService;
 import ui.view.controllerservice.EditPromotion;
 import util.ResultMessage;
 import vo.PromotionVO;
