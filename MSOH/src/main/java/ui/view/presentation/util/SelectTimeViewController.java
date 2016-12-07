@@ -61,7 +61,7 @@ public class SelectTimeViewController implements ControlledStage {
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
             controller.setLabel("未完成日期选择！");
         }else{
-            String time = year + "/" + month + "/" + day;
+            String time = year + "-" + month + "-" + day;
             setStage(time);
             stageController.closeStage(resources);
         }

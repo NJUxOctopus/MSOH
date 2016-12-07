@@ -11,7 +11,9 @@ import java.util.Date;
  * Created by zqh on 2016/11/10.
  */
 public interface HotelAdmin {
-    HotelVO findByID(String ID);
+    public HotelVO getByID(String ID) throws RemoteException;
+
+    public HotelVO findByID(String ID);
 
     HotelVO findByName(String name);
 

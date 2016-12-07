@@ -20,6 +20,7 @@ import java.util.List;
 public class UserAdminController implements UserAdmin {
 
     private ClerkUtil_BLService clerkUtil_blService;
+
     private Clerk_BLService clerk_blService;
 
     public UserVO findAllByID(String ID) {

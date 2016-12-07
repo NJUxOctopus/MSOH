@@ -1,5 +1,6 @@
 package ui.controller;
 
+import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.hotelUtil_blservice.HotelUtil_BLService;
 import businesslogicservice.hotel_blservice.Hotel_BLService;
@@ -24,6 +25,10 @@ public class HotelAdminController implements HotelAdmin {
 
     public HotelVO findByID(String ID) {
         return null;
+    }
+
+    public HotelVO getByID(String ID) throws RemoteException {
+        return hotelUtil_blService.getByID(ID);
     }
 
     public HotelVO findByName(String name) {

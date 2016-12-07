@@ -61,16 +61,12 @@ public class CustomerCreditRecordViewController implements ControlledStage {
         for(int i = 0; i < num; i++){
             paneAdder.addPane(creditListScrollPane, "customer/CustomerSingleCreditRecordView.fxml", 3, 180 * num - 170);
             customerSingleCreditRecordViewController = (CustomerSingleCreditRecordViewController) paneAdder.getController();
-            customerSingleCreditRecordViewController.init();
+            customerSingleCreditRecordViewController.init(creditRecordVOList.get(num));
         }
     }
 
     public void init(String customerID){
         this.customerID = customerID;
-        PaneAdder paneAdder = new PaneAdder();
-        paneAdder.addPane(creditListScrollPane, "customer/CustomerSingleCreditRecordView.fxml", 3, 10);
-        customerSingleCreditRecordViewController = (CustomerSingleCreditRecordViewController) paneAdder.getController();
-        customerSingleCreditRecordViewController.init();
         //getAllCreditRecord(customerID);
     }
 

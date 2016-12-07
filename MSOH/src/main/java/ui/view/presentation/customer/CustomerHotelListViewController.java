@@ -8,7 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ui.controller.HotelInfoController;
+import ui.controller.ReservedHotelController;
 import ui.view.controllerservice.HotelInfo;
+import ui.view.controllerservice.ReservedHotel;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
@@ -16,6 +18,7 @@ import ui.view.presentation.util.SelectTimeViewController;
 import vo.HotelVO;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -73,9 +76,6 @@ public class CustomerHotelListViewController implements ControlledStage {
     private ChoiceBox sortChoiceBox;
 
     @FXML
-    private ChoiceBox selcetChoiceBox;
-
-    @FXML
     private CheckBox reservedCheckBox;
 
     @FXML
@@ -128,15 +128,26 @@ public class CustomerHotelListViewController implements ControlledStage {
         checkOutTimeTextField.setText(checkOutTime);
     }
 
-    public void addHotelPane(List<HotelVO> hotelList){
+    private void addHotelPane(List<HotelVO> hotelList){
+
+        int num = hotelList.size();
+        hotelListScrollPane.setPrefWidth(270*num);
         PaneAdder paneAdder = new PaneAdder();
-        paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5, 10);
-        paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 250, 10);
+        for(int i =0; i < num; i++) {
+            paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
+            customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
+            customerSingleHotelViewController.init(customerID, hotelList.get(num).hotelID);
+        }
+
 
     }
 
+    /**
+     * 酒店列表界面初始化方法
+     * @param hotelVO
+     * @param customerId
+     */
     public void init(HotelVO hotelVO, String customerId){
-        getAllHotel(hotelVO);
         this.customerID = customerId;
         cityChoiceBox.setItems(FXCollections.observableArrayList(
                 "南京"));
@@ -153,6 +164,10 @@ public class CustomerHotelListViewController implements ControlledStage {
                 "任意分数","1分以上", "2分以上", "3分以上", "4分以上", "5分以上"));
 
 
+        sortChoiceBox.setItems(FXCollections.observableArrayList(
+                "星级↑","星级↓","评分↑","评分↓"));
+
+
         cityChoiceBox.setValue(hotelVO.city);
         areaChoiceBox.setValue(hotelVO.area);
         if(hotelVO.star != -1)
@@ -161,19 +176,22 @@ public class CustomerHotelListViewController implements ControlledStage {
             scoreChoiceBox.setValue(score[(int)hotelVO.score]);
         checkInTimeTextField.setText(hotelVO.checkInTime);
         checkOutTimeTextField.setText(hotelVO.checkOutTime);
+
+        //addHotelPane(getAllHotel(hotelVO));
     }
 
-    private void getAllHotel(HotelVO hotelVO){
+
+
+    private List<HotelVO> getAllHotel(HotelVO hotelVO){
         HotelInfo hotelInfo = new HotelInfoController();
-            /*
-            try {
-                //List<HotelVO> hotelList = hotelInfo.searchHotel(hotelVO);
-                CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController)stageController.getController();
-                //customerHotelListViewController.addHotelPane(hotelList);
-                customerHotelListViewController.init(hotelVO);
-            } catch (RemoteException e) {
+        try {
+            List<HotelVO> hotelList = hotelInfo.searchHotel(hotelVO);
+            CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController)stageController.getController();
+            customerHotelListViewController.addHotelPane(hotelList);
+            return hotelList;
+        } catch (RemoteException e) {
             e.printStackTrace();
-            }
-            */
+        }
+        return null;
     }
 }

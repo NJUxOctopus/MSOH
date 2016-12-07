@@ -23,7 +23,12 @@ import ui.view.presentation.util.SelectTimeViewController;
 import vo.HotelVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 /**
  * 客户主界面控制器
@@ -124,7 +129,7 @@ public class CustomerMainViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerMyHotelView.fxml", 1);
         CustomerMyHotelViewController customerMyHotelViewController = (CustomerMyHotelViewController) stageController.getController();
-        customerMyHotelViewController.addHotelPane();
+        customerMyHotelViewController.init(customerID);
     }
 
     /**
@@ -241,6 +246,7 @@ public class CustomerMainViewController implements ControlledStage {
             controller.setLabel("请先选择城市与商圈！");
         }
 
+
     }
 
     /**
@@ -267,5 +273,7 @@ public class CustomerMainViewController implements ControlledStage {
         scoreChoiceBox.setItems(FXCollections.observableArrayList(
                 "任意分数","1分以上", "2分以上", "3分以上", "4分以上", "5分以上"));
 
+        checkInTimeLabel.setText("");
+        checkOutTimeLabel.setText("");
     }
 }

@@ -50,6 +50,7 @@ public class HotelVO implements Serializable{
 	public HotelVO() {
 	}
 
+	//加价格 促销策略
 	public HotelVO(String hotelName, String hotelAddress, String area, String intro, String[] infra, String[] roomType,int star,
 						double score, String license,String[] picUrls, String clerkID, String hotelID, DailyRoomInfoVO dailyRoomInfo,
 						List<CommentVO> comment) {
