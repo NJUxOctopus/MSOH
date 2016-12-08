@@ -52,6 +52,9 @@ public class PromotionPO implements Serializable, Cloneable {
     @SequenceGenerator(name = "promotion_id_seq", sequenceName = "promotion_id_seq", allocationSize = 1)
     @Column(name = "promotionID")
     private int promotionID;
+    // 企业名称
+    @Column(name="companyName")
+    private String companyName;
     // 策略类型
     @Column(name = "promotionType")
     @Enumerated(EnumType.STRING)
@@ -61,7 +64,7 @@ public class PromotionPO implements Serializable, Cloneable {
     }
 
     public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,PromotionType promotionType) {
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,String companyName,PromotionType promotionType) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -72,6 +75,7 @@ public class PromotionPO implements Serializable, Cloneable {
         this.endTime = endTime;
         this.discount = discount;
         this.minRoom = minRoom;
+        this.companyName=companyName;
         this.promotionType=promotionType;
     }
 
@@ -161,6 +165,14 @@ public class PromotionPO implements Serializable, Cloneable {
 
     public void setPromotionID(int promotionID) {
         this.promotionID = promotionID;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public PromotionType getPromotionType() {

@@ -34,6 +34,8 @@ public class PromotionPO implements Serializable {
     private int minRoom;
     // 策略ID（编号）
     private int promotionID;
+    // companyName
+    private String companyName;
     // 策略类型
     private PromotionType promotionType;
 
@@ -41,7 +43,7 @@ public class PromotionPO implements Serializable {
     }
 
     public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,  PromotionType promotionType) {
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,  String companyName,PromotionType promotionType) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -52,6 +54,7 @@ public class PromotionPO implements Serializable {
         this.endTime = endTime;
         this.discount = discount;
         this.minRoom = minRoom;
+        this.companyName=companyName;
         this.promotionType = promotionType;
     }
 
@@ -141,6 +144,14 @@ public class PromotionPO implements Serializable {
 
     public void setPromotionID(int promotionID) {
         this.promotionID = promotionID;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public PromotionType getPromotionType() {
