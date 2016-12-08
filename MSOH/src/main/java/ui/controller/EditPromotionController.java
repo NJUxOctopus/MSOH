@@ -8,6 +8,7 @@ import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class EditPromotionController implements EditPromotion {
         return  promotionUtil_blService.getSingle(promotionID);
     }
 
-    public List<PromotionVO> getPromotionByHotelID(String hotelID) throws RemoteException, ClassNotFoundException, IOException {
-        return promotionUtil_blService.getPromotionByHotelID(hotelID);
+    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp time) throws RemoteException, ClassNotFoundException, IOException {
+        return promotionUtil_blService.getPromotionByHotelID(hotelID, time);
     }
 }

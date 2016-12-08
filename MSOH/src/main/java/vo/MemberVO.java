@@ -32,4 +32,18 @@ public class MemberVO implements Serializable{
 		this.birthday = birthday;
 		this.companyName = companyName;
 	}
+
+	public MemberVO(String ID, MemberType memberType, int level, Timestamp birthday){
+		this.ID = ID;
+		this.memberType = memberType;
+		this.level = level;
+		this.birthday = birthday;
+	}
+
+	public MemberVO(String ID, MemberType memberType, int level, String companyName) {
+		this.ID = ID;
+		this.memberType = memberType;
+		this.level = level;
+		this.companyName = companyName;
+	}
 }

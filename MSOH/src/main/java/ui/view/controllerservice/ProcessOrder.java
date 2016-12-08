@@ -11,7 +11,7 @@ import java.util.List;
  * Created by apple on 16/11/10.
  */
 public interface ProcessOrder {
-    public ResultMessage cancelOrder(OrderVO orderVO);
+    public ResultMessage cancelOrder(OrderVO orderVO) throws  RemoteException;
 
     public ResultMessage setAbnormal(OrderVO orderVO);
 
@@ -27,6 +27,7 @@ public interface ProcessOrder {
 
     public OrderVO getSingle(String ID)throws RemoteException;
 
+    public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID, String hotelID, OrderStatus orderStatus) throws RemoteException;
 
 
 }

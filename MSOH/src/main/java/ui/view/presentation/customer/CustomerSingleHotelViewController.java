@@ -7,10 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import ui.controller.EditPromotionController;
 import ui.controller.HotelAdminController;
+import ui.controller.ProcessOrderController;
 import ui.view.controllerservice.EditPromotion;
 import ui.view.controllerservice.HotelAdmin;
+import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import util.OrderStatus;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
 import vo.PromotionVO;
@@ -76,24 +79,11 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     }
 
     @FXML
-    private void viewNormalOrder(){
-
-    }
-
-    @FXML
-    private void viewAbnormalOrder(){
-
-    }
-
-    @FXML
-    private void viewCanceledOrderButton(){
-
-    }
-
-    @FXML
     private void reserve(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerReserveView.fxml", 1);
+        CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
+        customerReserveViewController.init(customerID, hotelID);
     }
 
     @Override
@@ -120,9 +110,9 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         normalOrderButton.setText("");
         abnormalOrderButton.setText("");
         canceledOrderButton.setText("");
-        //setHotelInfo(hotelID);
-        //setHotelPromotion(hotelID);
-        //setOrderInfo(customerID, hotelID);
+        setHotelInfo(hotelID);
+        setHotelPromotion(hotelID);
+        setOrderInfo(customerID, hotelID);
     }
 
     /**
@@ -161,7 +151,11 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     private void setHotelPromotion(String hotelID){
         EditPromotion editPromotion = new EditPromotionController();
         try {
-            List<PromotionVO> promotionVOList = editPromotion.getPromotionByHotelID(hotelID);
+            //获得当前日期
+            Date today=new Date();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Timestamp day = Timestamp.valueOf(df.format(today));
+            List<PromotionVO> promotionVOList = editPromotion.getPromotionByHotelID(hotelID, day);
             double minDiscount = promotionVOList.get(0).discount;
             for(int i = 1; i < promotionVOList.size(); i++){
                 if(minDiscount > promotionVOList.get(i).discount)
@@ -184,6 +178,13 @@ public class CustomerSingleHotelViewController implements ControlledStage {
      * @param hotelID
      */
     private void setOrderInfo(String customerID, String hotelID){
-
+        ProcessOrder processOrder = new ProcessOrderController();
+        try {
+            normalOrderButton.setText(processOrder.getOrderByIDAndHotelIDAndStatus(customerID, hotelID, OrderStatus.FINISHED_EVALUATED).size() + "");
+            abnormalOrderButton.setText(processOrder.getOrderByIDAndHotelIDAndStatus(customerID, hotelID, OrderStatus.ABNORMAL).size() + "");
+            canceledOrderButton.setText(processOrder.getOrderByIDAndHotelIDAndStatus(customerID, hotelID, OrderStatus.REVOKED).size() + "");
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 }

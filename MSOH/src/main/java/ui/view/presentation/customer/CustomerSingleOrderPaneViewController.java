@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import ui.controller.ProcessOrderController;
 import ui.view.controllerservice.ProcessOrder;
+import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import util.OrderStatus;
@@ -23,10 +24,6 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
     private String customerID;
 
     private String orderID;
-
-    @FXML
-    private Pane singleOrderPane;
-
     @FXML
     private Button processOrderButton;
 
@@ -62,6 +59,9 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
         this.stageController = stageController;
     }
 
+    /**
+     * 修改按钮种类
+     */
     @FXML
     private void processOrder(){
         if(processOrderButton.getText().equals("撤销订单"))
@@ -71,10 +71,19 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
 
     }
 
+    /**
+     * 跳出确认撤销订单窗口
+     */
     private void cancelOrder(){
-
+        stageController = new StageController();
+        stageController.loadStage("customer/CustomerConfirmCancelOrderView.fxml", 1);
+        CustomerConfirmCancelOrderViewController customerConfirmCancelOrderViewController = (CustomerConfirmCancelOrderViewController) stageController.getController();
+        customerConfirmCancelOrderViewController.init(orderID, orderStatusLabel);
     }
 
+    /**
+     * 跳转至评价订单页面
+     */
     private void showEvaluateView(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerEvaluateView.fxml", 1);
@@ -82,6 +91,9 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
         customerEvaluateViewController.init(customerID, orderID);
     }
 
+    /**
+     * 跳转至订单详情页面
+     */
     @FXML
     private void viewDetails(){
         stageController = new StageController();
@@ -98,7 +110,6 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
     public void init(String customerID, String orderID){
         this.customerID = customerID;
         this.orderID = orderID;
-        /*
         ProcessOrder processOrder = new ProcessOrderController();
         try{
              OrderVO orderVO = processOrder.getSingle(orderID);
@@ -108,30 +119,30 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
             checkInTimeLabel.setText(orderVO.estimatedCheckoutTime.toString());
             priceLabel.setText(orderVO.finalPrice + "");
             roomTypeLabel.setText(orderVO.rooms[0]);
-            orderStatusLabel.setText(orderVO.orderType.toString());
             hotelButton.setText(orderVO.hotelName);
             processOrderButton.setOpacity(0);
-            if(orderVO.orderType == OrderStatus.FINISHED_UNEVALUATED) {
+            OrderStatus orderStatus = orderVO.orderType;
+            if(orderStatus == OrderStatus.FINISHED_UNEVALUATED) {
+                orderStatusLabel.setText("未评价订单");
                 processOrderButton.setText("评价酒店");
                 processOrderButton.setOpacity(1);
             }
-            if(orderVO.orderType == OrderStatus.UNEXECUTED){
-                processOrderButton.setText("撤销订单");
+            if(orderStatus == OrderStatus.UNEXECUTED){
+                orderStatusLabel.setText("未执行订单");
                 processOrderButton.setOpacity(1);
+            }
+            if(orderStatus == OrderStatus.REVOKED){
+                orderStatusLabel.setText("已撤销订单");
+            }
+            if(orderStatus == OrderStatus.ABNORMAL){
+                orderStatusLabel.setText("异常订单");
+            }
+            if(orderStatus == OrderStatus.FINISHED_EVALUATED){
+                orderStatusLabel.setText("已完成订单");
             }
         } catch (RemoteException e) {
              e.printStackTrace();
         }
-        */
-        orderIDLabel.setText(orderID);
-        peopleLabel.setText("");
-        checkOutTimeLabel.setText("");
-        checkInTimeLabel.setText("");
-        priceLabel.setText("");
-        roomTypeLabel.setText("");
-        orderStatusLabel.setText("");
-        hotelButton.setText("");
-        processOrderButton.setText("评价酒店");
 
     }
 

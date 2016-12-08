@@ -1,6 +1,9 @@
 package ui.view.presentation.customer;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -9,8 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ui.controller.HotelInfoController;
 import ui.controller.ReservedHotelController;
+import ui.controller.UserAdminController;
 import ui.view.controllerservice.HotelInfo;
 import ui.view.controllerservice.ReservedHotel;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
@@ -81,16 +86,32 @@ public class CustomerHotelListViewController implements ControlledStage {
     @FXML
     private AnchorPane hotelListScrollPane;
 
+    @FXML
+    private Label emptyHotelLabel;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
     }
 
+    /**
+     * 确认修改搜索条件，重新搜索
+     */
     @FXML
     private void research() {
+        String city = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
+        String area = (String) areaChoiceBox.getSelectionModel().getSelectedItem();
+        int star = starChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+        int score = scoreChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+        String checkInTime = checkInTimeTextField.getText();
+        String checkOutTime = checkOutTimeTextField.getText();
+        HotelVO hotelVO = new HotelVO(city, area, star, score, checkInTime, checkOutTime);
 
     }
 
+    /**
+     * 关闭酒店列表界面
+     */
     @FXML
     private void closeStage() {
         stageController.closeStage(resource);
@@ -130,16 +151,19 @@ public class CustomerHotelListViewController implements ControlledStage {
 
     private void addHotelPane(List<HotelVO> hotelList){
 
-        int num = hotelList.size();
-        hotelListScrollPane.setPrefWidth(270*num);
-        PaneAdder paneAdder = new PaneAdder();
-        for(int i =0; i < num; i++) {
-            System.out.print("!");
-            paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
-            customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
-            customerSingleHotelViewController.init(customerID, hotelList.get(num).hotelID);
+        if(!hotelList.isEmpty()) {
+            int num = hotelList.size();
+            hotelListScrollPane.setPrefWidth(270 * num);
+            PaneAdder paneAdder = new PaneAdder();
+            for (int i = 0; i < num; i++) {
+                System.out.print("!");
+                paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
+                customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
+                customerSingleHotelViewController.init(customerID, hotelList.get(num).hotelID);
+            }
+        }else{
+            emptyHotelLabel.setOpacity(1);
         }
-
 
     }
 
@@ -150,11 +174,35 @@ public class CustomerHotelListViewController implements ControlledStage {
      */
     public void init(HotelVO hotelVO, String customerId){
         this.customerID = customerId;
-        cityChoiceBox.setItems(FXCollections.observableArrayList(
-                "南京"));
+        try {
 
-        areaChoiceBox.setItems(FXCollections.observableArrayList(
-                "新街口"));
+            HotelInfo hotelInfo = new HotelInfoController();
+            List<String> city = hotelInfo.getAllCities();
+            ObservableList<String> citys = FXCollections.observableArrayList();
+            for(int i = 0; i < city.size(); i++)
+                citys.add(city.get(i));
+            cityChoiceBox.setItems(citys);
+
+            cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    String selectedCity = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
+                    HotelInfo hotelInfo = new HotelInfoController();
+                    try {
+                        List<String> area = hotelInfo.getAreaByCity(selectedCity);
+                        ObservableList<String> areas = FXCollections.observableArrayList();
+
+                        for (int i = 0; i < area.size(); i++)
+                            areas.add(area.get(i));
+                        areaChoiceBox.setItems(areas);
+                    }catch(RemoteException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }catch(RemoteException e){
+            e.printStackTrace();
+        }
 
         String[] star = {"任意星级","★", "★★", "★★★", "★★★★", "★★★★★"};
         starChoiceBox.setItems(FXCollections.observableArrayList(
@@ -179,9 +227,6 @@ public class CustomerHotelListViewController implements ControlledStage {
         checkOutTimeTextField.setText(hotelVO.checkOutTime);
 
         getAllHotel(hotelVO);
-        System.out.print(hotelVO.city);
-        System.out.print(hotelVO.area);
-
     }
 
 
