@@ -13,7 +13,7 @@ public class MockLogin extends Login{
     }
 
     public boolean login(){
-        if(ID=="123456"&&password=="123456")
+        if(ID.equals("123456")&&password.equals("123456"))
             return true;
         else
             return false;

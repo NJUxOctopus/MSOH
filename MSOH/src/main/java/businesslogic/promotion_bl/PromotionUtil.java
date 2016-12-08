@@ -7,6 +7,7 @@ import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,54 +38,50 @@ public class PromotionUtil implements PromotionUtil_BLService {
         return new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                 promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                 getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
-                "" + promotionPO.getPromotionID(), promotionPO.getPromotionType());
+                "" + promotionPO.getPromotionID(),promotionPO.getPromotionType(), promotionPO.getCompanyName());
     }
 
     /**
-     * 得到该酒店当天的所有促销策略
+     * 得到该酒店当天的所有促销策略,时间参数传入搜索当天的时间
      *
      * @param hotelID
      * @return
      * @throws RemoteException
      */
-    public List<PromotionVO> getPromotionByHotelID(String hotelID) throws RemoteException, ClassNotFoundException, IOException {
+    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws RemoteException, ClassNotFoundException, IOException {
         List<PromotionPO> promotionPOList = promotion_dataService_stub.getPromotionByHotelID(hotelID);
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         if (promotionPOList == null || promotionPOList.isEmpty())
-            return null;
-        for (int i = 0; i < promotionPOList.size(); i++) {
-            PromotionPO promotionPO = promotionPOList.get(i);
+            return new ArrayList<PromotionVO>();
+        for (PromotionPO promotionPO : promotionPOList) {
             String[] targetHotel = promotionPO.getTargetHotel().split(";");
-            if (new Date(System.currentTimeMillis()).after(promotionPO.getStartTime()) && new Date(System.currentTimeMillis()).after(
-                    promotionPO.getEndTime()))
+            if (timestamp.after(promotionPO.getStartTime()) && timestamp.before(promotionPO.getEndTime()))
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                         getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
-                        "" + promotionPO.getPromotionID(), promotionPO.getPromotionType()));
+                        "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
     }
 
     /**
      * 得到当天所有的网站促销策略
+     *
      * @return
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public List<PromotionVO> getAllWebPromotions() throws IOException, ClassNotFoundException {
+    public List<PromotionVO> getAllWebPromotions(Timestamp timestamp) throws IOException, ClassNotFoundException {
         List<PromotionPO> promotionPOList = promotion_dataService_stub.getAllWebPromotions();
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         if (promotionPOList == null || promotionPOList.isEmpty())
-            return null;
-        for (int i = 0; i < promotionPOList.size(); i++) {
-            PromotionPO promotionPO = promotionPOList.get(i);
-            String[] targetHotel = promotionPO.getTargetHotel().split(";");
-            if (new Date(System.currentTimeMillis()).after(promotionPO.getStartTime()) && new Date(System.currentTimeMillis()).after(
-                    promotionPO.getEndTime()))
+            return new ArrayList<PromotionVO>();
+        for (PromotionPO promotionPO : promotionPOList) {
+            if (timestamp.after(promotionPO.getStartTime()) && timestamp.before(promotionPO.getEndTime()))
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
-                        promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
+                        promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
                         getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
-                        "" + promotionPO.getPromotionID(), promotionPO.getPromotionType()));
+                        "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
     }

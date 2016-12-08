@@ -34,17 +34,19 @@ public class PromotionVO implements Serializable {
 
     public PromotionType promotionType;
 
+    public String companyName;
+
     public PromotionVO() {
     }
 
-    public PromotionVO(double discount,String promotionName){
+    public PromotionVO(double discount, String promotionName) {
         this.discount = discount;
         this.promotionName = promotionName;
     }
 
     public PromotionVO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
                        String targetArea, String[] targetHotel, Timestamp startTime, Timestamp endTime, double discount,
-                       int minRoom, String promotionID, PromotionType promotionType) {
+                       int minRoom, String promotionID, PromotionType promotionType,String companyName) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -57,5 +59,7 @@ public class PromotionVO implements Serializable {
         this.minRoom = minRoom;
         this.promotionID = promotionID;
         this.promotionType = promotionType;
+        this.companyName = companyName;
     }
+
 }

@@ -5,6 +5,7 @@ import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public interface PromotionUtil_BLService {
 
-    public PromotionVO getSingle(String promotionID)throws RemoteException;
+    public PromotionVO getSingle(String promotionID) throws RemoteException;
 
-    public List<PromotionVO> getPromotionByHotelID(String hotelID)throws RemoteException,ClassNotFoundException,IOException;
+    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws RemoteException, ClassNotFoundException, IOException;
 
-    public List<PromotionVO> getAllWebPromotions() throws IOException, ClassNotFoundException;
+    public List<PromotionVO> getAllWebPromotions(Timestamp timestamp) throws IOException, ClassNotFoundException;
 }
