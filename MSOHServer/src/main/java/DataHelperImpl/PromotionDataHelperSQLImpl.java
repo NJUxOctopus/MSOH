@@ -21,6 +21,7 @@ public class PromotionDataHelperSQLImpl implements PromotionDataHelper {
     public boolean addPromotion(PromotionPO po) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
 
             session.save(po);
@@ -87,6 +88,7 @@ public class PromotionDataHelperSQLImpl implements PromotionDataHelper {
     public boolean deletePromotion(PromotionPO promotionPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
             session.delete(promotionPO);
             return true;
@@ -109,6 +111,7 @@ public class PromotionDataHelperSQLImpl implements PromotionDataHelper {
     public boolean modifyPromotion(PromotionPO promotionPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
             session.update(promotionPO);
             return true;

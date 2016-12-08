@@ -23,6 +23,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
     public boolean addClerk(ClerkPO clerkPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
 
             session.save(clerkPO);

@@ -23,6 +23,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
     public boolean addMarketer(MarketerPO marketerPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
 
             session.save(marketerPO);
@@ -47,6 +48,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
     public boolean modifyMarketer(MarketerPO marketerPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
 
             session.update(marketerPO);
@@ -71,6 +73,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
     public boolean deleteMarketer(MarketerPO marketerPO) {
         Session session = null;
         try {
+            session=HibernateUtil.getSession();
             session.beginTransaction();
 
             session.delete(marketerPO);
