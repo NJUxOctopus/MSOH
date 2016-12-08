@@ -1,7 +1,7 @@
 package po;
 
-import DataHelper.CustomerDataHelper;
-import DataHelperImpl.CustomerDataHelperSQLImpl;
+import DataHelper.customerDataHelper.CustomerDataHelper;
+import DataHelperImpl.customerDataHelperImpl.CustomerDataHelperSQLImpl;
 import org.junit.Test;
 import util.MemberType;
 

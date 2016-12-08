@@ -1,11 +1,10 @@
 package po;
 
-import data.Hotel_DataServiceImpl;
+import data.hotel_dataserviceImpl.Hotel_DataServiceImpl;
 import dataservice.hotel_dataservice.Hotel_DataService;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.List;
 
 /**

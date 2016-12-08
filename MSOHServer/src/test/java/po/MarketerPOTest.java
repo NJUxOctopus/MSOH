@@ -1,8 +1,6 @@
 package po;
 
-import data.Manager_DataServiceImpl;
-import data.Marketer_DataServiceImpl;
-import dataservice.manager_dataservice.Manager_DataService;
+import data.marketer_dataserviceImpl.Marketer_DataServiceImpl;
 import dataservice.marketer_dataservice.Marketer_DataService;
 import org.junit.Test;
 import util.WorkerPosition;

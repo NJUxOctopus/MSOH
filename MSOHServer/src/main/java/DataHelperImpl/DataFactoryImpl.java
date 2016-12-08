@@ -1,6 +1,34 @@
 package DataHelperImpl;
 
 import DataHelper.*;
+import DataHelper.clerkDataHelper.ClerkDataHelper;
+import DataHelper.customerDataHelper.CreditRecordDataHelper;
+import DataHelper.customerDataHelper.CustomerDataHelper;
+import DataHelper.hotelDataHelper.CityDataHelper;
+import DataHelper.hotelDataHelper.CommentDataHelper;
+import DataHelper.hotelDataHelper.HotelDataHelper;
+import DataHelper.hotelDataHelper.RoomDataHelper;
+import DataHelper.managerDataHelper.ManagerDataHelper;
+import DataHelper.marketerDataHelper.MarketerDataHelper;
+import DataHelper.memberDataHelper.CompanyDataHelper;
+import DataHelper.memberDataHelper.MemberDataHelper;
+import DataHelper.memberLevelDataHelper.MemberLevelDataHelper;
+import DataHelper.orderDataHelper.OrderDataHelper;
+import DataHelper.promotionDataHelper.PromotionDataHelper;
+import DataHelperImpl.clerkDataHelperImpl.ClerkDataHelperSQLImpl;
+import DataHelperImpl.customerDataHelperImpl.CreditRecordDataHelperSQLImpl;
+import DataHelperImpl.customerDataHelperImpl.CustomerDataHelperSQLImpl;
+import DataHelperImpl.hotelDataHelperImpl.CityDataHelperSQLImpl;
+import DataHelperImpl.hotelDataHelperImpl.CommentDataHelperSQLImpl;
+import DataHelperImpl.hotelDataHelperImpl.HotelDataHelperSQLImpl;
+import DataHelperImpl.hotelDataHelperImpl.RoomDataHelperSQLImpl;
+import DataHelperImpl.managerDataHelperImpl.ManagerDataHelperSQLImpl;
+import DataHelperImpl.marketerDataHelperImpl.MarketerDataHelperSQLImpl;
+import DataHelperImpl.memberDataHelperImpl.CompanyDataHelperSQLImpl;
+import DataHelperImpl.memberDataHelperImpl.MemberDataHelperSQLImpl;
+import DataHelperImpl.memberLevelDataHelperImpl.MemberLevelDataHelperSQLImpl;
+import DataHelperImpl.orderDataHelperImpl.OrderDataHelperSQLImpl;
+import DataHelperImpl.promotionDataHelperImpl.PromotionDataHelperSQLImpl;
 
 /**
  * 获得DataHelper
@@ -72,5 +100,10 @@ public class DataFactoryImpl implements DataFactory {
     public RoomDataHelper getRoomDataHelper() {
         RoomDataHelper roomDataHelper = new RoomDataHelperSQLImpl();
         return roomDataHelper;
+    }
+
+    public CompanyDataHelper getCompanyDataHelper() {
+        CompanyDataHelper companyDataHelper=new CompanyDataHelperSQLImpl();
+        return companyDataHelper;
     }
 }

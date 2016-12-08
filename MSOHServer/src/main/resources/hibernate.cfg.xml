@@ -45,6 +45,7 @@
     <mapping class="po.MemberLevelPO"/>
     <mapping class="po.CityArea"/>
     <mapping class="po.HotelPO"/>
+    <mapping class="po.Company"/>
 
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->

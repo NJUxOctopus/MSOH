@@ -1,7 +1,5 @@
 package po;
 
-import data.Manager_DataServiceImpl;
-import dataservice.manager_dataservice.Manager_DataService;
 import org.hibernate.Session;
 import org.junit.Test;
 import util.HibernateUtil;
