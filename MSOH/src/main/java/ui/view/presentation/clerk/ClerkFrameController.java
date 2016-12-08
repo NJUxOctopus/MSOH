@@ -90,12 +90,16 @@ public class ClerkFrameController implements ControlledStage {
      * 订单按钮结果，显示酒店订单列表
      */
     @FXML
-    private void showHotelOrderList() {
+    private void showHotelOrderList() throws RemoteException {
         // Close the previous panel
         clerkFramePane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(clerkFramePane, "clerk/ClerkCheckOrderList.fxml", 0, 0);
+
+        //初始化界面
+        ClerkCheckOrderListController clerkCheckOrderListController = (ClerkCheckOrderListController) paneAdder.getController();
+        clerkCheckOrderListController.initial(clerkID);
     }
 
     /**

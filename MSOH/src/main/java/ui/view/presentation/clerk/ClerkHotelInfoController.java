@@ -21,6 +21,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -54,7 +55,7 @@ public class ClerkHotelInfoController implements ControlledStage {
 
     //当前酒店房间信息
     private ObservableList<String> roomType = FXCollections.observableArrayList();
-    private ArrayList<String> leftRooms = new ArrayList<String>();
+    private List<String> leftRooms = new ArrayList<String>();
 
     @Override
     public void setStageController(StageController stageController) {

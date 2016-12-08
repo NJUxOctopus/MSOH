@@ -75,4 +75,24 @@ public class OrderVO implements Serializable{
 		this.orderType = orderType;
 	}
 
+	public OrderVO(String customerName, String phone, String customerID, String hotelID, String hotelName,
+				   Timestamp estimatedCheckinTime, Timestamp actualCheckinTime, Timestamp estimatedCheckoutTime,
+				   String[] rooms, int numOfCustomers, boolean haveChildren,
+				   double initialPrice, double finalPrice, OrderStatus orderType) {
+		this.customerName = customerName;
+		this.phone = phone;
+		this.customerID = customerID;
+		this.hotelID=hotelID;
+		this.hotelName = hotelName;
+		this.estimatedCheckinTime = estimatedCheckinTime;
+		this.actualCheckinTime = actualCheckinTime;
+		this.estimatedCheckoutTime = estimatedCheckoutTime;
+		this.rooms = rooms;
+		this.numOfCustomers = numOfCustomers;
+		this.haveChildren = haveChildren;
+		this.initialPrice = initialPrice;
+		this.finalPrice = finalPrice;
+		this.orderType = orderType;
+	}
+
 }

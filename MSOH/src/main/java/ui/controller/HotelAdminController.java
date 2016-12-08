@@ -7,8 +7,10 @@ import ui.view.controllerservice.HotelAdmin;
 import util.ResultMessage;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
+import vo.RoomVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -26,6 +28,13 @@ public class HotelAdminController implements HotelAdmin {
         return null;
     }
 
+    /**
+     * 按照ID搜索酒店
+     *
+     * @param ID
+     * @return
+     * @throws RemoteException
+     */
     public HotelVO getByID(String ID) throws RemoteException {
         return hotelUtil_blService.getByID(ID);
     }
@@ -58,9 +67,7 @@ public class HotelAdminController implements HotelAdmin {
      * @throws RemoteException
      */
     public HotelVO findByClerkID(String clerkID) throws RemoteException {
-        hotelUtil_blService = new HotelUtil();
-        HotelVO hotelVO = hotelUtil_blService.getHotelByClerkID(clerkID);
-        return hotelVO;
+        return hotelUtil_blService.getHotelByClerkID(clerkID);
     }
 
     /**
@@ -71,8 +78,19 @@ public class HotelAdminController implements HotelAdmin {
      * @return
      */
     public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException {
-        hotelUtil_blService = new HotelUtil();
-        DailyRoomInfoVO dailyRoomInfoVO = hotelUtil_blService.getDailyRoomInfo(hotelID, date);
-        return dailyRoomInfoVO;
+        return hotelUtil_blService.getDailyRoomInfo(hotelID, date);
+    }
+
+    /**
+     * 根据酒店ID时间和房间类型得到房间信息
+     *
+     * @param hotelID
+     * @param roomType
+     * @param timestamp
+     * @return
+     * @throws RemoteException
+     */
+    public RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException {
+        return hotelUtil_blService.getRoomInfo(hotelID, roomType, timestamp);
     }
 }
