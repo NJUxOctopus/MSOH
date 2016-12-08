@@ -16,17 +16,20 @@ public class MemberLevelPO implements Serializable{
 	private Timestamp frameDate;
 	// 等级个数
 	private int num;
-	// 等级界限值
-	private int[] creditBoundaries;
+	// 等级界限值，分号隔开
+	private String creditBoundaries;
+	// 折扣，分号隔开
+	private String discountList;
 	
 	public MemberLevelPO(){
 	}
 	
-	public MemberLevelPO(String framerName, Timestamp frameDate, int num, int[] creditBoundaries){
+	public MemberLevelPO(String framerName, Timestamp frameDate, int num, String creditBoundaries,String discountList){
 		this.framerName=framerName;
 		this.frameDate=frameDate;
 		this.num=num;
 		this.creditBoundaries=creditBoundaries;
+		this.discountList=discountList;
 	}
 
 	public String getFramerName() {
@@ -53,13 +56,19 @@ public class MemberLevelPO implements Serializable{
 		this.num = num;
 	}
 
-	public int[] getCreditBoundaries() {
+	public String getCreditBoundaries() {
 		return creditBoundaries;
 	}
 
-	public void setCreditBoundaries(int[] creditBoundaries) {
+	public void setCreditBoundaries(String creditBoundaries) {
 		this.creditBoundaries = creditBoundaries;
 	}
-	
-	
+
+	public String getDiscountList() {
+		return discountList;
+	}
+
+	public void setDiscountList(String discountList) {
+		this.discountList = discountList;
+	}
 }

@@ -14,28 +14,6 @@ import java.rmi.RemoteException;
 public class MemberLevel implements MemberLevel_BLService {
     MemberLevel_DataService_Stub memberLevelDataServiceStub = new MemberLevel_DataService_Stub();
 
-    /**
-     * 增加会员等级制度
-     *
-     * @param memberLevelVO
-     * @return
-     * @throws RemoteException
-     */
-    public ResultMessage addMemberLevel(MemberLevelVO memberLevelVO) throws RemoteException {
-        if (memberLevelVO.num < 0)
-            //若数量小于0
-            return ResultMessage.DataFormatWrong;
-        if (memberLevelVO.creditBoundaries == null)
-            //若未填写信用界限
-            return ResultMessage.Blank;
-        else {
-            if (memberLevelDataServiceStub.addMemberLevel(new MemberLevelPO(memberLevelVO.framerName
-                    , memberLevelVO.frameDate, memberLevelVO.num, memberLevelVO.creditBoundaries)))
-                return ResultMessage.MemberLevel_AddMemberLevelSuccess;
-            else
-                return ResultMessage.Fail;
-        }
-    }
 
     /**
      * 修改会员等级制度
@@ -52,8 +30,15 @@ public class MemberLevel implements MemberLevel_BLService {
             //若未填写信用界限
             return ResultMessage.Blank;
         else {
+            String creditBoundaries = "";
+            for (int i = 0; i < memberLevelVO.creditBoundaries.length; i++) {
+                if (i != memberLevelVO.creditBoundaries.length - 1)
+                    creditBoundaries += memberLevelVO.creditBoundaries[i] + ";";
+                else
+                    creditBoundaries += memberLevelVO.creditBoundaries[i];
+            }
             MemberLevelPO memberLevelPO = memberLevelDataServiceStub.getMemberLevel();
-            memberLevelPO.setCreditBoundaries(memberLevelVO.creditBoundaries);
+            memberLevelPO.setCreditBoundaries(creditBoundaries);
             memberLevelPO.setFrameDate(memberLevelVO.frameDate);
             memberLevelPO.setNum(memberLevelVO.num);
             if (memberLevelDataServiceStub.updateMemberLevel(memberLevelPO))

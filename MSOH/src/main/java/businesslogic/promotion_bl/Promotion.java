@@ -11,6 +11,7 @@ import util.MemberType;
 import util.PromotionType;
 import util.ResultMessage;
 import util.strategy.BirthdayPromotion;
+import util.strategy.CompanyPromotion;
 import util.strategy.NormalPromotion;
 import util.strategy.Strategy;
 import vo.HotelVO;
@@ -201,9 +202,13 @@ public class Promotion implements Promotion_BLService {
         for (PromotionPO promotionPO : promotionPOList) {
             if (promotionPO.getPromotionName().equals("生日特惠")) {
                 Strategy birthdayPromotion = new BirthdayPromotion();
-                if (birthdayPromotion.usePromotion(orderVO)) {
+                if (birthdayPromotion.usePromotion(orderVO))
                     promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
-                }
+            }
+            if (promotionPO.getPromotionName().equals("合作企业优惠")) {
+                Strategy companyPromotion = new CompanyPromotion(promotionPO.getCompanyName());
+                if (companyPromotion.usePromotion(orderVO))
+                    promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
             }
             Strategy normalPromotion = new NormalPromotion(customerUtil.getSingle(orderVO.customerID).memberType, orderVO.rooms.length);
             if (normalPromotion.usePromotion(orderVO))

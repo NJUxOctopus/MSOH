@@ -23,7 +23,10 @@ public class MemberLevelTest {
         Session session= HibernateUtil.getSession();
         session.beginTransaction();
 
-        session.save(memberLevel);
+
+        memberLevel=session.get(MemberLevelPO.class,1);
+        memberLevel.setDiscountList("0.9;0.85;0.8;0.75;0.7;0.6;0.55");
+        session.update(memberLevel);
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);

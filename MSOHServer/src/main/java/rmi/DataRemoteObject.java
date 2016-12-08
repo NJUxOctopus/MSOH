@@ -1,12 +1,23 @@
 package rmi;
 
-import data.*;
+import data.clerk_dataserviceImpl.Clerk_DataServiceImpl;
+import data.customer_dataserviceImpl.Customer_DataServiceImpl;
+import data.hotel_dataserviceImpl.City_DataServiceImpl;
+import data.hotel_dataserviceImpl.Hotel_DataServiceImpl;
+import data.manager_dataserviceImpl.Manager_DataServiceImpl;
+import data.marketer_dataserviceImpl.Marketer_DataServiceImpl;
+import data.member_dataserviceImpl.Company_DataServiceImpl;
+import data.member_dataserviceImpl.Member_DataServiceImpl;
+import data.memberlevel_dataserviceImpl.MemberLevel_DataServiceImpl;
+import data.order_dataserviceImpl.Order_DataServiceImpl;
+import data.promotion_dataserviceImpl.Promotion_DataServiceImpl;
 import dataservice.clerk_dataservice.Clerk_DataService;
 import dataservice.customer_dataservice.Customer_DataService;
 import dataservice.hotel_dataservice.City_DataService;
 import dataservice.hotel_dataservice.Hotel_DataService;
 import dataservice.manager_dataservice.Manager_DataService;
 import dataservice.marketer_dataservice.Marketer_DataService;
+import dataservice.member_dataservice.Company_DataService;
 import dataservice.member_dataservice.Member_DataService;
 import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import dataservice.order_dataservice.Order_DataService;
@@ -18,13 +29,12 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by zqh on 2016/11/13.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService,City_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService {
+public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService,City_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService,Company_DataService {
 
 
     private Customer_DataService customer_dataService;
@@ -37,6 +47,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     private Member_DataService member_dataService;
     private MemberLevel_DataService memberLevel_dataService;
     private City_DataService city_dataService;
+    private Company_DataService company_dataService;
 
     protected DataRemoteObject() throws RemoteException {
         clerk_dataService = Clerk_DataServiceImpl.getInstance();
@@ -47,8 +58,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         memberLevel_dataService = MemberLevel_DataServiceImpl.getInstance();
         member_dataService = Member_DataServiceImpl.getInstance();
         customer_dataService = Customer_DataServiceImpl.getInstance();
-        hotel_dataService=Hotel_DataServiceImpl.getInstance();
-        city_dataService=City_DataServiceImpl.getInstance();
+        hotel_dataService= Hotel_DataServiceImpl.getInstance();
+        city_dataService= City_DataServiceImpl.getInstance();
+        promotion_dataService= Promotion_DataServiceImpl.getInstance();
+        company_dataService= Company_DataServiceImpl.getInstance();
     }
 
     /**
@@ -331,5 +344,12 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
 
     public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException {
         return promotion_dataService.modifyPromotion(promotionPO);
+    }
+
+    /**
+     * CompanyDataService的DataRemoteObject
+     */
+    public List<String> getAllCompanies() throws IOException, ClassNotFoundException {
+        return company_dataService.getAllCompanies();
     }
 }

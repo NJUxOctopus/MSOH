@@ -6,6 +6,7 @@ import dataservice.hotel_dataservice.City_DataService;
 import dataservice.hotel_dataservice.Hotel_DataService;
 import dataservice.manager_dataservice.Manager_DataService;
 import dataservice.marketer_dataservice.Marketer_DataService;
+import dataservice.member_dataservice.Company_DataService;
 import dataservice.member_dataservice.Member_DataService;
 import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import dataservice.order_dataservice.Order_DataService;
@@ -69,5 +70,9 @@ public class RemoteHelper {
 
     public City_DataService getCityDataService() {
         return (City_DataService) remote;
+    }
+
+    public Company_DataService getCompanyDataService(){
+        return (Company_DataService)remote;
     }
 }
