@@ -41,7 +41,7 @@ public class PromotionPO implements Serializable {
     }
 
     public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, int promotionID, PromotionType promotionType) {
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,  PromotionType promotionType) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -52,7 +52,6 @@ public class PromotionPO implements Serializable {
         this.endTime = endTime;
         this.discount = discount;
         this.minRoom = minRoom;
-        this.promotionID = promotionID;
         this.promotionType = promotionType;
     }
 
