@@ -32,15 +32,19 @@ public class MemberLevelPO implements Serializable,Cloneable {
     // 等级界限值,divided by ';'
     @Column(name = "creditBoundaries")
     private String creditBoundaries;
+    // 折扣,divided by ";"
+    @Column(name = "discountList")
+    private String discountList;
 
     public MemberLevelPO() {
     }
 
-    public MemberLevelPO(String framerName, Timestamp frameDate, int num, String creditBoundaries) {
+    public MemberLevelPO(String framerName, Timestamp frameDate, int num, String creditBoundaries,String discountList) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.num = num;
         this.creditBoundaries = creditBoundaries;
+        this.discountList=discountList;
     }
 
     public String getFramerName() {
@@ -73,6 +77,14 @@ public class MemberLevelPO implements Serializable,Cloneable {
 
     public void setCreditBoundaries(String creditBoundaries) {
         this.creditBoundaries = creditBoundaries;
+    }
+
+    public String getDiscountList() {
+        return discountList;
+    }
+
+    public void setDiscountList(String discountList) {
+        this.discountList = discountList;
     }
 
     @Override
