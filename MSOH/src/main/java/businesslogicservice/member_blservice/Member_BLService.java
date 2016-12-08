@@ -9,6 +9,8 @@ import java.rmi.RemoteException;
 
 public interface Member_BLService {
 
-	public ResultMessage signUp(MemberVO memberVO,String customerID) throws RemoteException;
+    public ResultMessage signUp(MemberVO memberVO, String customerID) throws RemoteException;
+
+    public ResultMessage changeGrade(String customerID, int change) throws RemoteException;
 
 }
