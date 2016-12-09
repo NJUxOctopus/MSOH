@@ -8,7 +8,7 @@ public enum ResultMessage {
     Member_NormalSignupSuccess, Member_EnterpriseSignupSuccess, Member_SignupCreditNotEnough,
     Order_CreateOrderSuccess,Order_SetAbnormalSuccess,Order_RenewOrderSuccess,
     Hotel_AddRoomSuccess, Hotel_HotelNotExist,Hotel_deleteHotelSuccess,Hotel_ModifyDailyRoomInfoSuccess,Hotel_modifyHotelInfoSuccess,
-    Manager_ManagerNotExist,Customer_isNotMember,
+    Manager_ManagerNotExist,Customer_isNotMember,levelNotChange,levelChangeSuccess,emailFormatWrong,phoneFormatWrong,
    Clerk_ClerkNotExist,Hotel_HasClerk,Password_isRemembered,Password_rememberSuccess,Password_CancelRememberSuccess,Customer_AddCreditRecordSuccess,
     Marketer_MarketerNotExist,Hotel_RoomNotExist,Hotel_addHotelSuccess,Fail,
     Hotel_HotelAlreadyExist, WrongHotelIDFormat,PromotionExist,PromotionNotExist,Promotion_DeletePromotionSuccess,DataFormatWrong,

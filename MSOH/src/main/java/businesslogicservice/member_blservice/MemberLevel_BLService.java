@@ -10,4 +10,6 @@ import java.rmi.RemoteException;
  */
 public interface MemberLevel_BLService {
     public ResultMessage modifyMemberLevel(MemberLevelVO memberLevelVO)throws RemoteException;
+
+    public MemberLevelVO getMemberLevel()throws RemoteException;
 }

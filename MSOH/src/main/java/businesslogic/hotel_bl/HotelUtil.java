@@ -1,6 +1,5 @@
 package businesslogic.hotel_bl;
 
-import util.OrderStatus;
 import util.filter.*;
 import util.sort.sortHotelByScore;
 import util.sort.sortHotelByStar;
@@ -17,7 +16,6 @@ import vo.DailyRoomInfoVO;
 import vo.HotelVO;
 import vo.RoomVO;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -185,7 +183,7 @@ public class HotelUtil implements HotelUtil_BLService {
      * @return
      * @throws RemoteException
      */
-    public List<HotelVO> getByArea(String area) throws IOException, ClassNotFoundException {
+    public List<HotelVO> getByArea(String area) throws RemoteException {
         if (area.equals(""))
             return null;
         List<HotelPO> hotelPOs = hotel_dataService_stub.getHotelByArea(area);
@@ -242,16 +240,17 @@ public class HotelUtil implements HotelUtil_BLService {
     }
 
     /**
-     * 按照时间筛选酒店
+     * 按照日期与房间类型及数量一起筛选
      *
-     * @param firstDate
-     * @param secondDate
+     * @param timestamp1
+     * @param timestamp2
+     * @param roomType
+     * @param roomNum
      * @return
      * @throws RemoteException
      */
-    public List<HotelVO> filterByDate(Timestamp firstDate, Timestamp secondDate) throws RemoteException {
-        FilterCriteria filterCriteria = new FilterCriteriaDate(firstDate, secondDate);
-        return filterCriteria.meetCriteria(getAll());
+    public List<HotelVO> filterByDateAndRoomType(Timestamp timestamp1, Timestamp timestamp2, String roomType, int roomNum) throws RemoteException {
+        return null;
     }
 
     /**
@@ -302,11 +301,11 @@ public class HotelUtil implements HotelUtil_BLService {
      * @throws RemoteException
      */
     public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2,
-                                String area) throws RemoteException {
+                                String roomType, int roomNum, String area) throws RemoteException {
         List<HotelVO> hotelVOList = filterByStar(star);
         hotelVOList.retainAll(filterByName(name));
         hotelVOList.retainAll(filterByScore(low, high));
-        hotelVOList.retainAll(filterByDate(timestamp1, timestamp2));
+        hotelVOList.retainAll(filterByDateAndRoomType(timestamp1, timestamp2, roomType, roomNum));
         hotelVOList.retainAll(filterByArea(area));
         return hotelVOList;
     }
@@ -324,12 +323,23 @@ public class HotelUtil implements HotelUtil_BLService {
     public List<HotelVO> searchHotel(String area, Timestamp timestamp1, Timestamp timestamp2,
                                      String star, String low, String high) throws RemoteException {
         List<HotelVO> hotelVOList = filterByArea(area);
-        hotelVOList.retainAll(filterByDate(timestamp1, timestamp2));
+        hotelVOList.retainAll(searchByDate(timestamp1, timestamp2));
         hotelVOList.retainAll(filterByStar(star));
         hotelVOList.retainAll(filterByScore(low, high));
         if (hotelVOList.isEmpty())
-            return null;
+            return new ArrayList<HotelVO>();
         return hotelVOList;
+    }
+
+    /**
+     * @param timestamp1
+     * @param timestamp2
+     * @return
+     * @throws RemoteException
+     */
+    public List<HotelVO> searchByDate(Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
+        FilterCriteria searchByDate = new FilterCriteriaDate(timestamp1, timestamp2);
+        return searchByDate.meetCriteria(getAll());
     }
 
     /**
@@ -373,22 +383,5 @@ public class HotelUtil implements HotelUtil_BLService {
         return city_dataService.getAreaByCity(city);
     }
 
-    /**
-     * 根据酒店ID时间和房间类型得到房间信息
-     *
-     * @param hotelID
-     * @param roomType
-     * @param timestamp
-     * @return
-     * @throws RemoteException
-     */
-    public RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException {
-        List<RoomPO> roomPOList = hotel_dataService_stub.getDailyRoomInfo(hotelID, timestamp).getRoom();
-        for (RoomPO roomPO : roomPOList) {
-            if (roomPO.getRoomType().equals(roomType))
-                return new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
-                        roomPO.getLeftRooms(), roomPO.getPrice());
-        }
-        return null;
-    }
+
 }

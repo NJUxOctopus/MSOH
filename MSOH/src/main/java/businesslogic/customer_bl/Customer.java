@@ -62,8 +62,12 @@ public class Customer implements Customer_BLService {
                 return ResultMessage.Customer_SignupSuccess;
             else
                 return ResultMessage.Fail;
-        } else
-            return ResultMessage.DataFormatWrong;
+        } else if (!customerVO.email.matches(DataFormat.Email_Format))
+            return ResultMessage.emailFormatWrong;
+        else if (!customerVO.phone.matches(DataFormat.Phone_Format))
+            return ResultMessage.phoneFormatWrong;
+        else
+            return ResultMessage.Fail;
     }
 
     /**
@@ -80,8 +84,10 @@ public class Customer implements Customer_BLService {
         if (customerVO.name.equals("") || customerVO.email.equals("") || customerVO.phone.equals(""))
             //若用户修改时未填写名字，邮箱，手机号，返回有信息空白
             return ResultMessage.Blank;
-        if (!customerVO.email.matches(DataFormat.Email_Format) || !customerVO.phone.matches(DataFormat.Phone_Format))
-            return ResultMessage.DataFormatWrong;
+        if (!customerVO.email.matches(DataFormat.Email_Format))
+            return ResultMessage.emailFormatWrong;
+        if (!customerVO.phone.matches(DataFormat.Phone_Format))
+            return ResultMessage.phoneFormatWrong;
         //根据ID获取该用户后修改用户的po，返回修改信息成功
         CustomerPO customerPO = customer_dataService_stub.findCustomerByID(customerVO.ID);
         customerPO.setEmail(customerVO.email);
