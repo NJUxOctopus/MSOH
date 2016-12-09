@@ -5,3 +5,19 @@
 .text-area *.content {
     -fx-background-color: #ffffff00;
 }
+
+.choice-box .label {
+     -fx-text-fill: white;
+}
+
+.choice-box .context-menu {
+   -fx-background-color: #e0dfdf;
+}
+
+.choice-box .menu-item:focused {
+   -fx-background-color: #d0d0d0;
+}
+
+.choice-box {
+  -fx-mark-color: white ;
+}

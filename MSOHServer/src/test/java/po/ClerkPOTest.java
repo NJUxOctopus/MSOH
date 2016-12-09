@@ -1,16 +1,11 @@
 package po;
 
-import DataHelper.ClerkDataHelper;
-import DataHelperImpl.ClerkDataHelperSQLImpl;
-import data.Clerk_DataServiceImpl;
+import data.clerk_dataserviceImpl.Clerk_DataServiceImpl;
 import dataservice.clerk_dataservice.Clerk_DataService;
-import org.hibernate.Session;
 import org.junit.Test;
-import util.HibernateUtil;
 import util.WorkerPosition;
 
 import java.rmi.RemoteException;
-import java.util.List;
 
 /**
  * Created by zqh on 2016/11/23.

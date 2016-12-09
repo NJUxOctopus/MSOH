@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="orderPanel" prefHeight="140.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
+<Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="688.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
    <children>
       <ImageView fitHeight="170.0" fitWidth="688.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,17 +20,17 @@
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="peopleLabel" layoutX="110.0" layoutY="72.0" text="2" textFill="WHITE">
+      <Label fx:id="numOfPeopleLabel" layoutX="110.0" layoutY="72.0" text="2" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="checkInTimeLabel" layoutX="147.0" layoutY="100.0" text="2016／09／18" textFill="WHITE">
+      <Label fx:id="estimatedCheckInTimeLabel" layoutX="147.0" layoutY="100.0" text="2016／09／18" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="checkOutTimeLabel" layoutX="412.0" layoutY="100.0" text="2016／09／19" textFill="WHITE">
+      <Label fx:id="estimatedCheckOutTimeLabel" layoutX="412.0" layoutY="100.0" text="2016／09／19" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
@@ -40,7 +40,7 @@
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="roomTypeLabel" layoutX="377.0" layoutY="45.0" text="双人房" textFill="WHITE">
+      <Label fx:id="roomTypeLabel" layoutX="377.0" layoutY="45.0" prefHeight="19.0" prefWidth="234.0" text="双人房" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
@@ -50,12 +50,12 @@
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="orderStatusLabel1" layoutX="111.0" layoutY="45.0" text="MSOH连锁酒店" textFill="WHITE">
+      <Label fx:id="hotelNameLabel" layoutX="111.0" layoutY="45.0" text="MSOH连锁酒店" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="616.0" layoutY="9.0" mnemonicParsing="false" onAction="#confirmCheckIn" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="入住" textFill="WHITE" wrapText="true">
+      <Button fx:id="checkButton" layoutX="616.0" layoutY="9.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="入住" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>

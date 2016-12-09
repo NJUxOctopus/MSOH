@@ -3,8 +3,10 @@ package ui.view.controllerservice;
 import util.ResultMessage;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
+import vo.RoomVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -28,5 +30,7 @@ public interface HotelAdmin {
     ResultMessage updateHotelInfo(HotelVO hotelVO);
 
     DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
+
+    RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException;
 
 }
