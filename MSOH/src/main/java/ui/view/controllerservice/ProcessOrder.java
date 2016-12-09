@@ -34,6 +34,6 @@ public interface ProcessOrder {
 
     public OrderVO getSingle(String ID)throws RemoteException;
 
-
+    public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID,String hotelID,OrderStatus orderStatus)throws RemoteException;
 
 }
