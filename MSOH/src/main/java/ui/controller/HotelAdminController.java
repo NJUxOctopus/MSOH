@@ -88,7 +88,7 @@ public class HotelAdminController implements HotelAdmin {
      * @throws RemoteException
      */
     public RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException {
-        return hotelUtil_blService.getRoomInfo(hotelID, roomType, timestamp);
+        return hotelUtil_blService.getRoomByName(hotelID, roomType, timestamp);
     }
 
     /**
