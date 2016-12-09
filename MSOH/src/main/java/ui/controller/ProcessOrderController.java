@@ -35,8 +35,13 @@ public class ProcessOrderController implements ProcessOrder {
         return order_blService.createOrder(orderVO);
     }
 
-    public ResultMessage cancelOrder(OrderVO orderVO) {
-        return null;
+    /**
+     * 撤销订单
+     * @param orderVO
+     * @return
+     */
+    public ResultMessage cancelOrder(OrderVO orderVO) throws RemoteException{
+        return order_blService.cancelOrder(orderVO);
     }
 
     public ResultMessage setAbnormal(OrderVO orderVO) {
