@@ -19,19 +19,13 @@ public class FilterCriteriaScore implements FilterCriteria {
 
     @Override
     public List<HotelVO> meetCriteria(List<HotelVO> list) {
-        if (low.equals("") && high.equals(""))
+        if (low.equals("-1.0"))
             return list;
         if (list == null || list.isEmpty())
-            return null;
+            return new ArrayList<HotelVO>();
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
         for (HotelVO hotelVO : list) {
-            if (low.equals(""))
-                if (hotelVO.score <= Double.parseDouble(high))
-                    hotelVOList.add(hotelVO);
-            if (high.equals(""))
-                if (hotelVO.score >= Double.parseDouble(low))
-                    hotelVOList.add(hotelVO);
-                else if (hotelVO.score <= Double.parseDouble(high) && hotelVO.score >= Double.parseDouble(low))
+            if (hotelVO.score <= Double.parseDouble(high) && hotelVO.score >= Double.parseDouble(low))
                     hotelVOList.add(hotelVO);
         }
         return hotelVOList;

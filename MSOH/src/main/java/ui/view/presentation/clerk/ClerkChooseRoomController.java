@@ -41,7 +41,7 @@ public class ClerkChooseRoomController implements ControlledStage {
     @FXML
     private Pane chooseRoomPane;
 
-    private String resource = "clerk/ClerkChooseRoomController.fxml";
+    private String resource = "clerk/ClerkChooseRoom.fxml";
 
     //获取当前时间
     private Date date = new Date();

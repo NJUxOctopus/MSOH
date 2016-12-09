@@ -19,7 +19,7 @@ public class CustomerVO extends UserVO implements Serializable  {
 
 	public String name;
 
-	public String customerID;
+	public String ID;
 
 	public String phone;
 
@@ -29,14 +29,17 @@ public class CustomerVO extends UserVO implements Serializable  {
 
 	public CustomerVO(String userName, String password, String phone, String email, int credit, String picUrl,
 			String ID,MemberType memberType) {
-		super(userName,phone,password,ID,picUrl);
+		this.name = userName;
+		this.phone = phone;
+		this.ID = ID;
+		this.password = password;
 		this.email = email;
 		this.credit = credit;
 		this.memberType=memberType;
 	}
 
-	public CustomerVO(String customerID, String name, String phone, String email){
-		this.customerID = customerID;
+	public CustomerVO(String ID, String name, String phone, String email){
+		this.ID = ID;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;

@@ -36,7 +36,6 @@ public class FilterCriteriaDateAndRoomType implements FilterCriteria {
             return new ArrayList<HotelVO>();
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
         HotelUtil hotelUtil = new HotelUtil();
-        CalculateDays calculateDays = new CalculateDays(firstDate, secondDate);
         long oneDay = 1000 * 60 * 60 * 24;
         long days = (firstDate.getTime() - secondDate.getTime()) / oneDay + 1;//算共住多少天
         List<Timestamp> timestamps = new ArrayList<Timestamp>();
