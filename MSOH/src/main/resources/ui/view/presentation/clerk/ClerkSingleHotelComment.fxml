@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1037.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1037.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleHotelCommentController">
    <children>
       <Label layoutX="82.0" layoutY="14.0" text="客户姓名" textFill="WHITE">
          <font>
@@ -18,12 +17,12 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="168.0" layoutY="14.0" text="钱柯宇" textFill="WHITE">
+      <Label fx:id="customerNameLabel" layoutX="168.0" layoutY="14.0" text="钱柯宇" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="14.0" text="4.8" textFill="WHITE">
+      <Label fx:id="scoreLabel" layoutX="324.0" layoutY="14.0" text="4.8" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
@@ -33,7 +32,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="502.0" layoutY="14.0" text="2016/11/11 11:11" textFill="WHITE">
+      <Label fx:id="commentTimeLabel" layoutX="502.0" layoutY="14.0" text="2016/11/11 11:11" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
@@ -43,7 +42,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <TextArea layoutX="156.0" layoutY="34.0" prefHeight="55.0" prefWidth="857.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffff;" stylesheets="@clerk.css" text="“服务很好。”">
+      <TextArea fx:id="commentTextArea" layoutX="156.0" layoutY="34.0" prefHeight="55.0" prefWidth="857.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffff;" stylesheets="@clerk.css" text="“服务很好。”" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>

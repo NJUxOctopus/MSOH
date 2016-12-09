@@ -46,9 +46,9 @@
             <Font name="Microsoft YaHei" size="57.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="77.0" layoutY="153.0" prefHeight="468.0" prefWidth="1124.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css">
+      <ScrollPane layoutX="77.0" layoutY="153.0" prefHeight="474.0" prefWidth="1125.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="674.0" prefWidth="1102.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="1102.0">
                <children>
                   <Label layoutX="123.0" layoutY="53.0" text="酒店名称" textFill="WHITE">
                      <font>
@@ -60,17 +60,12 @@
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="171.0" layoutY="153.0" text="商圈" textFill="WHITE">
+                  <Label layoutX="592.0" layoutY="103.0" text="商圈" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="345.0" layoutY="103.0" text="市" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="498.0" layoutY="103.0" text="区" textFill="WHITE">
+                  <Label layoutX="363.0" layoutY="103.0" text="市" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
@@ -80,17 +75,12 @@
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="625.0" layoutY="153.0" text="星级" textFill="WHITE">
+                  <Label layoutX="593.0" layoutY="54.0" text="星级" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="241.0" layoutY="263.0" text="其他" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="123.0" layoutY="320.0" text="酒店简介" textFill="WHITE">
+                  <Label layoutX="121.0" layoutY="264.0" text="酒店简介" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
@@ -103,45 +93,32 @@
                         <Font name="Microsoft YaHei" size="15.0" />
                      </font>
                   </TextField>
-                  <ChoiceBox layoutX="391.0" layoutY="105.0" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+                  <ChoiceBox fx:id="cityChoiceBox" layoutX="241.0" layoutY="105.0" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox layoutX="241.0" layoutY="105.0" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+                  <ChoiceBox fx:id="starLevelChoiceBox" layoutX="663.0" layoutY="56.0" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox layoutX="704.0" layoutY="155.0" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+                  <ChoiceBox fx:id="businessAreaChoiceBox" layoutX="456.0" layoutY="105.0" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox layoutX="241.0" layoutY="155.0" prefHeight="31.0" prefWidth="342.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ChoiceBox>
-                  <CheckBox layoutX="388.0" layoutY="207.0" mnemonicParsing="false" text="停车场" textFill="WHITE">
+                  <CheckBox fx:id="haveParkingLotCheckBox" layoutX="388.0" layoutY="207.0" mnemonicParsing="false" text="停车场" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox layoutX="693.0" layoutY="207.0" mnemonicParsing="false" text="健身房" textFill="WHITE">
+                  <CheckBox fx:id="haveGymCheckBox" layoutX="693.0" layoutY="207.0" mnemonicParsing="false" text="健身房" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                      </font>
                   </CheckBox>
-                  <TextField layoutX="298.0" layoutY="261.0" prefHeight="32.0" prefWidth="655.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                     <font>
-                        <Font name="Microsoft YaHei" size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextArea layoutX="234.0" layoutY="326.0" prefHeight="117.0" prefWidth="719.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css" wrapText="true">
+                  <TextArea fx:id="hotelIntroductionTextArea" layoutX="241.0" layoutY="272.0" prefHeight="117.0" prefWidth="719.0" promptText="介绍一下你的酒店吧！" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css" wrapText="true">
                      <font>
                         <Font name="Microsoft YaHei" size="15.0" />
                      </font>
@@ -149,22 +126,22 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextArea>
-                  <CheckBox layoutX="241.0" layoutY="207.0" mnemonicParsing="false" text="Wi-Fi" textFill="WHITE">
+                  <CheckBox fx:id="haveWIFICheckBox" layoutX="241.0" layoutY="207.0" mnemonicParsing="false" text="Wi-Fi" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox layoutX="544.0" layoutY="207.0" mnemonicParsing="false" text="游泳池" textFill="WHITE">
+                  <CheckBox fx:id="haveSwimmingPoolCheckBox" layoutX="544.0" layoutY="207.0" mnemonicParsing="false" text="游泳池" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                      </font>
                   </CheckBox>
-                  <Label layoutX="121.0" layoutY="478.0" text="酒店图片" textFill="WHITE">
+                  <Label layoutX="121.0" layoutY="417.0" text="酒店图片" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
                   </Label>
-                  <Pane layoutX="233.0" layoutY="478.0" prefHeight="148.0" prefWidth="719.0" style="-fx-border-color: #ffffff;">
+                  <Pane layoutX="238.0" layoutY="425.0" prefHeight="148.0" prefWidth="719.0" style="-fx-border-color: #ffffff;">
                      <children>
                         <Label layoutX="295.0" layoutY="61.0" text="上传图片" textFill="#c6c2c2">
                            <font>
@@ -185,11 +162,24 @@
                         </Button>
                      </children>
                   </Pane>
+                  <Label layoutX="123.0" layoutY="152.0" text="详细地址" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei" size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="hotelAddressTextField" layoutX="241.0" layoutY="154.0" prefHeight="32.0" prefWidth="712.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font name="Microsoft YaHei" size="15.0" />
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Button fx:id="confirmButton" layoutX="1084.0" layoutY="632.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认修改" textFill="WHITE">
+      <Button fx:id="confirmButton" layoutX="1084.0" layoutY="632.0" mnemonicParsing="false" onAction="#confirmModifyHotelInfo" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认修改" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="16.0" />
          </font>

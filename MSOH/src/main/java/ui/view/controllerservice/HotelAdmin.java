@@ -27,7 +27,7 @@ public interface HotelAdmin {
 
     ResultMessage deleteHotel(HotelVO hotelVO);
 
-    ResultMessage updateHotelInfo(HotelVO hotelVO);
+    ResultMessage updateHotelInfo(HotelVO hotelVO) throws RemoteException;
 
     DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
 

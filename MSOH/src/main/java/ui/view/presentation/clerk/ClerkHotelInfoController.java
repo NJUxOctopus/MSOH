@@ -95,9 +95,11 @@ public class ClerkHotelInfoController implements ControlledStage {
      * 查看详细评价按钮结果，显示酒店详细评价页面
      */
     @FXML
-    private void showHotelComments() {
+    private void showHotelComments() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkHotelComments.fxml", 1);
+        ClerkHotelCommentsController clerkHotelCommentsController = (ClerkHotelCommentsController) stageController.getController();
+        clerkHotelCommentsController.initial(hotelVO.hotelID);
     }
 
     /**

@@ -3,6 +3,7 @@ package ui.controller;
 import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.hotel_blservice.HotelUtil_BLService;
+import businesslogicservice.hotel_blservice.Hotel_BLService;
 import ui.view.controllerservice.HotelAdmin;
 import util.ResultMessage;
 import vo.DailyRoomInfoVO;
@@ -21,8 +22,11 @@ public class HotelAdminController implements HotelAdmin {
 
     private HotelUtil_BLService hotelUtil_blService;
 
+    private Hotel_BLService hotel_blService;
+
     public HotelAdminController() {
         hotelUtil_blService = new HotelUtil();
+        hotel_blService = new Hotel();
     }
 
     /**
@@ -52,8 +56,15 @@ public class HotelAdminController implements HotelAdmin {
         return null;
     }
 
-    public ResultMessage updateHotelInfo(HotelVO hotelVO) {
-        return null;
+    /**
+     * 修改酒店信息
+     *
+     * @param hotelVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage updateHotelInfo(HotelVO hotelVO) throws RemoteException {
+        return hotel_blService.modifyHotel(hotelVO);
     }
 
     /**

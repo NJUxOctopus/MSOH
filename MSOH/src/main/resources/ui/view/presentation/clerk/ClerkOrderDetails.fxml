@@ -41,7 +41,7 @@
             <Font name="Microsoft YaHei" size="57.0" />
          </font>
       </Label>
-      <Pane layoutX="74.0" layoutY="160.0" prefHeight="524.0" prefWidth="1119.0">
+      <Pane fx:id="orderDetailsPane" layoutX="74.0" layoutY="160.0" prefHeight="524.0" prefWidth="1119.0">
          <children>
             <ImageView fitHeight="473.0" fitWidth="1020.0" layoutX="50.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -133,7 +133,7 @@
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="checkButton" layoutX="969.0" layoutY="479.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" textFill="WHITE" wrapText="true">
+            <Button fx:id="checkButton" layoutX="969.0" layoutY="479.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="入住" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Microsoft YaHei" size="18.0" />
                </font>
