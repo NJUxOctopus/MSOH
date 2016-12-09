@@ -12,6 +12,7 @@ import vo.RoomVO;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zqh on 2016/11/10.
@@ -24,10 +25,6 @@ public class HotelAdminController implements HotelAdmin {
         hotelUtil_blService = new HotelUtil();
     }
 
-    public HotelVO findByID(String ID) {
-        return null;
-    }
-
     /**
      * 按照ID搜索酒店
      *
@@ -35,7 +32,7 @@ public class HotelAdminController implements HotelAdmin {
      * @return
      * @throws RemoteException
      */
-    public HotelVO getByID(String ID) throws RemoteException {
+    public HotelVO findByID(String ID) throws RemoteException {
         return hotelUtil_blService.getByID(ID);
     }
 
@@ -92,5 +89,26 @@ public class HotelAdminController implements HotelAdmin {
      */
     public RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException {
         return hotelUtil_blService.getRoomInfo(hotelID, roomType, timestamp);
+    }
+
+    /**
+     * 得到所有的城市信息
+     *
+     * @return
+     * @throws RemoteException
+     */
+    public List<String> getAllCities() throws RemoteException {
+        return hotelUtil_blService.getAllCities();
+    }
+
+    /**
+     * 得到该城市的所有商圈
+     *
+     * @param city
+     * @return
+     * @throws RemoteException
+     */
+    public List<String> getAreaByCity(String city) throws RemoteException {
+        return hotelUtil_blService.getAreaByCity(city);
     }
 }

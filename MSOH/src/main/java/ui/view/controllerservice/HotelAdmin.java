@@ -8,14 +8,14 @@ import vo.RoomVO;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zqh on 2016/11/10.
  */
 public interface HotelAdmin {
-    public HotelVO getByID(String ID) throws RemoteException;
 
-    public HotelVO findByID(String ID);
+    HotelVO findByID(String ID) throws RemoteException;
 
     HotelVO findByName(String name);
 
@@ -32,5 +32,9 @@ public interface HotelAdmin {
     DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
 
     RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException;
+
+    List<String> getAllCities() throws RemoteException;
+
+    List<String> getAreaByCity(String city) throws RemoteException;
 
 }
