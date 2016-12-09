@@ -8,7 +8,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import po.CreditRecordPO;
 import ui.controller.CreditRecordController;
+import ui.controller.UserAdminController;
 import ui.view.controllerservice.CreditRecord;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
@@ -39,6 +41,9 @@ public class CustomerCreditRecordViewController implements ControlledStage {
     @FXML
     private AnchorPane creditListScrollPane;
 
+    @FXML
+    private Label emptyRecordLabel;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -55,19 +60,30 @@ public class CustomerCreditRecordViewController implements ControlledStage {
      */
     private void addCreditPane(List<CreditRecordVO> creditRecordVOList){
         PaneAdder paneAdder = new PaneAdder();
-
-        int num = creditRecordVOList.size();
-        creditListScrollPane.setPrefHeight(180 * num);
-        for(int i = 0; i < num; i++){
-            paneAdder.addPane(creditListScrollPane, "customer/CustomerSingleCreditRecordView.fxml", 3, 180 * num - 170);
-            customerSingleCreditRecordViewController = (CustomerSingleCreditRecordViewController) paneAdder.getController();
-            customerSingleCreditRecordViewController.init(creditRecordVOList.get(num));
+        if(!creditRecordVOList.isEmpty()) {
+            int num = creditRecordVOList.size();
+            creditListScrollPane.setPrefHeight(180 * num);
+            for (int i = 0; i < num; i++) {
+                paneAdder.addPane(creditListScrollPane, "customer/CustomerSingleCreditRecordView.fxml", 3, 180 * num - 170);
+                customerSingleCreditRecordViewController = (CustomerSingleCreditRecordViewController) paneAdder.getController();
+                customerSingleCreditRecordViewController.init(creditRecordVOList.get(num));
+            }
+        }
+        else{
+            emptyRecordLabel.setOpacity(1);
         }
     }
 
     public void init(String customerID){
         this.customerID = customerID;
-        //getAllCreditRecord(customerID);
+
+        try {
+            UserAdmin userAdmin = new UserAdminController();
+            creditLabel.setText(userAdmin.findCustomerByID(customerID).credit + "");
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+        getAllCreditRecord(customerID);
     }
 
     private void getAllCreditRecord(String customerID){

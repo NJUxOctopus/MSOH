@@ -47,4 +47,21 @@ public class MemberLevel implements MemberLevel_BLService {
                 return ResultMessage.Fail;
         }
     }
+
+    /**
+     * 获取会员等级制度
+     *
+     * @return
+     * @throws RemoteException
+     */
+    public MemberLevelVO getMemberLevel() throws RemoteException {
+        MemberLevelPO memberLevelPO = memberLevelDataServiceStub.getMemberLevel();
+        String[] creditBoundaries = memberLevelPO.getCreditBoundaries().split(";");
+        int[] boundaries = new int[creditBoundaries.length];
+        for (int i = 0; i < creditBoundaries.length; i++) {
+            boundaries[i] = Integer.parseInt(creditBoundaries[i]);
+        }
+        return new MemberLevelVO(memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
+                boundaries);
+    }
 }

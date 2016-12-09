@@ -79,7 +79,7 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="idTextField" layoutX="565.0" layoutY="550.0" prefHeight="35.0" prefWidth="561.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="3200522111111111111">
+            <TextField fx:id="idTextField" editable="false" layoutX="565.0" layoutY="550.0" prefHeight="35.0" prefWidth="561.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="3200522111111111111">
                <font>
                   <Font size="18.0" />
                </font>

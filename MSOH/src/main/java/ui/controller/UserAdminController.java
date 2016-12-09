@@ -2,15 +2,14 @@ package ui.controller;
 
 import businesslogic.clerk_bl.ClerkUtil;
 import businesslogic.customer_bl.CustomerUtil;
+import businesslogic.member_bl.MemberUtil;
 import businesslogicservice.clerk_blservice.ClerkUtil_BLService;
 import businesslogicservice.clerk_blservice.Clerk_BLService;
 import businesslogicservice.customer_blservice.CustomerUtil_BLService;
+import businesslogicservice.member_blservice.MemberUtil_BLService;
 import ui.view.controllerservice.UserAdmin;
 import util.ResultMessage;
-import vo.ClerkVO;
-import vo.CustomerVO;
-import vo.MarketerVO;
-import vo.UserVO;
+import vo.*;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -26,8 +25,11 @@ public class UserAdminController implements UserAdmin {
 
     private Clerk_BLService clerk_blService;
 
+    private MemberUtil_BLService memberUtil_blService;
+
     public UserAdminController(){
         customerUtil_blService = new CustomerUtil();
+        memberUtil_blService = new MemberUtil();
     }
 
     public UserVO findAllByID(String ID) {
@@ -98,4 +100,9 @@ public class UserAdminController implements UserAdmin {
     public ResultMessage updateMarketerInfo(MarketerVO vo) {
         return null;
     }
+
+    public MemberVO findMemberByID(String ID) throws RemoteException{
+        return memberUtil_blService.getSingle(ID);
+    }
+
 }

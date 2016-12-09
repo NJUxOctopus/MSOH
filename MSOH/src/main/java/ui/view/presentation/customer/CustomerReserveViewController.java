@@ -16,6 +16,10 @@ public class CustomerReserveViewController implements ControlledStage{
 
     private String resource = "customer/CustomerReserveView.fxml";
 
+    private String customerID;
+
+    private String hotlID;
+
     @FXML
     private TextField customerNameTextField;
 
@@ -95,7 +99,8 @@ public class CustomerReserveViewController implements ControlledStage{
     }
 
 
-    private void init(){
-
+    public void init(String customerID, String hotelID){
+        this.customerID = customerID;
+        this.hotlID = hotelID;
     }
 }

@@ -43,28 +43,28 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="normalOrderButton" layoutX="180.0" layoutY="357.0" mnemonicParsing="false" onAction="#viewNormalOrder" style="-fx-background-color: #ffffff00;" text="1" textFill="WHITE" underline="true">
+      <Button fx:id="normalOrderButton" layoutX="180.0" layoutY="357.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="1" textFill="WHITE" underline="true">
          <font>
             <Font size="10.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
-      <Button fx:id="abnormalOrderButton" layoutX="179.0" layoutY="375.0" mnemonicParsing="false" onAction="#viewAbnormalOrder" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
+      <Button fx:id="abnormalOrderButton" layoutX="179.0" layoutY="375.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
          <font>
             <Font size="10.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
-      <Button fx:id="canceledOrderButton" layoutX="179.0" layoutY="391.0" mnemonicParsing="false" onAction="#viewCanceledOrderButton" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
+      <Button fx:id="canceledOrderButton" layoutX="179.0" layoutY="391.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
          <font>
             <Font size="10.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
       <Label fx:id="numOfCommentLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="248.0" prefHeight="22.0" prefWidth="38.0" text="130" textFill="WHITE">

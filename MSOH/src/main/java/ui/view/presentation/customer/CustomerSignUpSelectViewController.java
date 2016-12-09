@@ -13,6 +13,8 @@ public class CustomerSignUpSelectViewController implements ControlledStage{
 
     private String resource = "customer/CustomerSignUpSelectView.fxml";
 
+    private String customerID;
+
     @FXML
     private Button cancelButton;
 
@@ -34,14 +36,11 @@ public class CustomerSignUpSelectViewController implements ControlledStage{
     }
 
     @FXML
-    private void cancelOrder(){
-
-    }
-
-    @FXML
     private void signUpNormalMember(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerSignUpNormalMemberView.fxml", 1);
+        CustomerSignUpNormalMemberViewController customerSignUpNormalMemberViewController = (CustomerSignUpNormalMemberViewController) stageController.getController();
+        customerSignUpNormalMemberViewController.init(customerID);
         closeStage();
     }
 
@@ -49,6 +48,12 @@ public class CustomerSignUpSelectViewController implements ControlledStage{
     private void signUpEnterpriseMember(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerSignUpEnterpriseMemberView.fxml", 1);
+        CustomerSignUpEnterpriseMemberViewController customerSignUpEnterpriseMemberViewController = (CustomerSignUpEnterpriseMemberViewController) stageController.getController();
+        customerSignUpEnterpriseMemberViewController.init(customerID);
         closeStage();
+    }
+
+    public void init(String customerID){
+        this.customerID = customerID;
     }
 }

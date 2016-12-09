@@ -71,6 +71,6 @@ public interface Hotel_DataService extends Remote {
     public CommentPO getCommentByOrder(String orderID) throws RemoteException;
 
     // 根据商圈获得酒店
-    public List<HotelPO> getHotelByArea(String areaName) throws IOException,ClassNotFoundException;
+    public List<HotelPO> getHotelByArea(String areaName) throws RemoteException;
 
 }

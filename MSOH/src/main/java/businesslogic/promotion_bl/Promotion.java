@@ -80,8 +80,9 @@ public class Promotion implements Promotion_BLService {
         } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
             return ResultMessage.DataFormatWrong;
         } else {
+            String targetArea = hotelUtil.getByID(promotionVO.targetHotel[0]).area;
             if (promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
-                    promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, null,
+                    promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
                     promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
                     promotionVO.minRoom, promotionVO.companyName, PromotionType.HotelPromotion)))
                 return ResultMessage.Promotion_AddPromotionSuccess;
@@ -215,6 +216,7 @@ public class Promotion implements Promotion_BLService {
                 promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
 
         }
+        List<PromotionPO> webPromotionList = promotion_dataService_stub.getAllWebPromotions();
         return promotionVOList;
     }
 

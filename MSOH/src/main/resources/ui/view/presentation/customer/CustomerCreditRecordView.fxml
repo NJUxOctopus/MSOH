@@ -31,7 +31,14 @@
             </Label>
             <ScrollPane layoutX="243.0" layoutY="103.0" prefHeight="538.0" prefWidth="876.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
                <content>
-                  <AnchorPane fx:id="creditListScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="849.0" style="-fx-background-color: #ffffff00;" />
+                  <AnchorPane fx:id="creditListScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="849.0" style="-fx-background-color: #ffffff00;">
+                     <children>
+                        <Label fx:id="emptyRecordLabel" layoutX="244.0" layoutY="234.0" opacity="0.0" text="暂 无 信 用 变 更 记 录" textFill="WHITE">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
                </content>
             </ScrollPane>
          </children>

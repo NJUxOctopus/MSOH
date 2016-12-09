@@ -84,7 +84,7 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 	}
 
 	@Override
-	public List<HotelPO> getHotelByArea(String areaName) throws IOException, ClassNotFoundException {
+	public List<HotelPO> getHotelByArea(String areaName) throws RemoteException {
 		return null;
 	}
 

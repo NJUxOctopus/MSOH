@@ -14,7 +14,7 @@ public interface ProcessOrder {
 
     public ResultMessage createOrder(OrderVO orderVO) throws RemoteException;
 
-    public ResultMessage cancelOrder(OrderVO orderVO);
+    public ResultMessage cancelOrder(OrderVO orderVO) throws RemoteException;
 
     public ResultMessage setAbnormal(OrderVO orderVO);
 

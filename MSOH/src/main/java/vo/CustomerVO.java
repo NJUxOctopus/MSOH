@@ -17,6 +17,13 @@ public class CustomerVO extends UserVO implements Serializable  {
 
 	public MemberType memberType;
 
+	public String name;
+
+	public String customerID;
+
+	public String phone;
+
+
 	public CustomerVO() {
 	}
 
@@ -26,6 +33,13 @@ public class CustomerVO extends UserVO implements Serializable  {
 		this.email = email;
 		this.credit = credit;
 		this.memberType=memberType;
+	}
+
+	public CustomerVO(String customerID, String name, String phone, String email){
+		this.customerID = customerID;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
 	}
 
 }

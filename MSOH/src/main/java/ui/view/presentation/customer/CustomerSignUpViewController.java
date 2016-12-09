@@ -11,7 +11,10 @@ import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
 import util.MemberType;
+import util.ResultMessage;
 import vo.CustomerVO;
+
+import java.rmi.RemoteException;
 
 /**
  * Created by island on 2016/11/25.
@@ -61,10 +64,18 @@ public class CustomerSignUpViewController implements ControlledStage{
 
     @FXML
     private void closeStage() {
-        stageController = new StageController();
-        stageController.loadStage("util/ConfirmExit.fxml", 0.75);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed(resource);
+        if (nameTextField.getText() != "" || emailTextField.getText() != ""
+                || phoneTextField.getText() != "" || idTextField.getText() != ""
+                || fisrtPasswordTextField.getText() != "" || secondPasswordTextField.getText() != ""){
+            stageController = new StageController();
+            stageController.loadStage("util/ConfirmExit.fxml", 0.75);
+            ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+            controller.setToBeClosed(resource);
+        }
+        else{
+            stageController = new StageController();
+            stageController.closeStage(resource);
+        }
     }
 
     @FXML
@@ -89,7 +100,30 @@ public class CustomerSignUpViewController implements ControlledStage{
         }
         else{
             CustomerSignUp customerSignUp = new CustomerSignUpController();
-            customerSignUp.signUp(new CustomerVO(name, firstPassword, phone, email, 500,  picUrl,  ID, MemberType.NONMEMBER));
+            try{
+                ResultMessage resultMessage = customerSignUp.signUp(new CustomerVO(name, firstPassword, phone, email, 500,  picUrl,  ID, MemberType.NONMEMBER));
+                stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+                ErrorBoxController controller = (ErrorBoxController) stageController.getController();
+                if(resultMessage == ResultMessage.WrongEmailFormat){
+                    controller.setLabel("邮件格式错误！");
+                }
+                else if (resultMessage == ResultMessage.WrongPhoneFormat){
+                    controller.setLabel("手机格式错误！");
+                }
+                else if (resultMessage == ResultMessage.Blank){
+                    controller.setLabel("未填写完整信息！");
+                }
+                else if (resultMessage == ResultMessage.Customer_SignupExist){
+                    controller.setLabel("该用户已存在！");
+                }
+                else if (resultMessage == ResultMessage.Customer_SignupSuccess){
+                    controller.setLabel("注册成功！");
+                    stageController = new StageController();
+                    stageController.closeStage(resource);
+                }
+            }catch (RemoteException e){
+                e.printStackTrace();
+            }
         }
     }
 

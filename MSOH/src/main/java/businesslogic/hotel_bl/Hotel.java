@@ -58,7 +58,6 @@ public class Hotel implements Hotel_BLService {
      * @throws RemoteException
      */
     public ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException {
-        CalculateDays calculateDays = new CalculateDays(orderVO.estimatedCheckinTime, orderVO.estimatedCheckoutTime);
         long oneDay = 1000 * 60 * 60 * 24;
         Timestamp startTime = orderVO.estimatedCheckinTime;
         Timestamp endTime = orderVO.estimatedCheckoutTime;

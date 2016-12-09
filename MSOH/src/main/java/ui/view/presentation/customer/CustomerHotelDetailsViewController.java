@@ -21,6 +21,8 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
 
     private String resource = "customer/CustomerHotelDetailsView.fxml";
 
+    private String customerID;
+
     private CustomerSingleCommentViewController customerSingleCommentViewController;
 
     private CustomerSinglePromotionViewController customerSinglePromotionViewController;
@@ -134,7 +136,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             }
             if(type == 2){
                 customerSinglePromotionViewController = loader.getController();
-                customerSinglePromotionViewController.init();
+                customerSinglePromotionViewController.init("");
             }
             if(type == 3){
                 customerSingleRoomTypeViewController = loader.getController();
@@ -142,7 +144,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             }
             if(type == 4){
                 customerSingleHotelOrderViewController = loader.getController();
-                customerSingleHotelOrderViewController.init();
+                customerSingleHotelOrderViewController.init("","");
             }
 
 

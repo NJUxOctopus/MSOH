@@ -1,10 +1,7 @@
 package ui.view.controllerservice;
 
 import util.ResultMessage;
-import vo.ClerkVO;
-import vo.CustomerVO;
-import vo.MarketerVO;
-import vo.UserVO;
+import vo.*;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -46,4 +43,6 @@ public interface UserAdmin {
     public ResultMessage updateCustomerInfo(CustomerVO vo);
 
     public ResultMessage updateMarketerInfo(MarketerVO vo);
+
+    public MemberVO findMemberByID(String ID) throws RemoteException;
 }
