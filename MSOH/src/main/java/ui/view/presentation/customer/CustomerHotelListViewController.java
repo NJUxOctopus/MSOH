@@ -81,6 +81,9 @@ public class CustomerHotelListViewController implements ControlledStage {
     private ChoiceBox sortChoiceBox;
 
     @FXML
+    private ChoiceBox typeOfRoomChoiceBox;
+
+    @FXML
     private CheckBox reservedCheckBox;
 
     @FXML
@@ -101,8 +104,10 @@ public class CustomerHotelListViewController implements ControlledStage {
     private void research() {
         String city = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
         String area = (String) areaChoiceBox.getSelectionModel().getSelectedItem();
+        String hotelName = nameTextField.getText();
         int star = starChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
         int score = scoreChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+        String roomType = (String) typeOfRoomChoiceBox.getSelectionModel().getSelectedItem();
         String checkInTime = checkInTimeTextField.getText();
         String checkOutTime = checkOutTimeTextField.getText();
         HotelVO hotelVO = new HotelVO(city, area, star, score, checkInTime, checkOutTime);

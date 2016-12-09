@@ -6,10 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="470.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleHotelViewController">
+<Pane prefHeight="470.0" prefWidth="250.0" style="-fx-background-color: #00000000;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleHotelViewController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6c6d6f47" height="455.0" layoutX="6.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="241.0" />
       <ImageView fitHeight="470.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image_customer/customer_singlehotelpanel.png" />
@@ -51,7 +53,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
-      <Button fx:id="abnormalOrderButton" layoutX="179.0" layoutY="375.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="0" textFill="WHITE" underline="true">
+      <Button fx:id="abnormalOrderButton" layoutX="179.0" layoutY="375.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="1" textFill="WHITE" underline="true">
          <font>
             <Font size="10.0" />
          </font>
@@ -72,11 +74,11 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <Button fx:id="reserveButton" layoutX="44.0" layoutY="420.0" mnemonicParsing="false" onAction="#reserve" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="预订" textFill="WHITE">
+      <Button fx:id="reserveButton" layoutX="44.0" layoutY="420.0" mnemonicParsing="false" onAction="#reserve" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="预 订" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="detailButton" layoutX="141.0" layoutY="420.0" mnemonicParsing="false" onAction="#viewHotelDetails" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="详情" textFill="WHITE">
+      <Button fx:id="detailButton" layoutX="141.0" layoutY="420.0" mnemonicParsing="false" onAction="#viewHotelDetails" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="详 情" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

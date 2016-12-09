@@ -34,12 +34,12 @@
             </Label>
             <Label fx:id="checkInTimeLabel" layoutX="488.0" layoutY="340.0" text="2016/09/18" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
             <Label fx:id="checkOutTimeLabel" layoutX="717.0" layoutY="340.0" text="2016/09/19" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
             <Button fx:id="selectCheckInTimeButton" layoutX="571.0" layoutY="337.0" mnemonicParsing="false" onAction="#showCheckInTimeSelectView" style="-fx-background-color: #ffffff00;" text="&gt;" textFill="WHITE">

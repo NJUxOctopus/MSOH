@@ -39,11 +39,6 @@ public class CustomerSingleCreditRecordViewController implements ControlledStage
      * 单个信用记录面板初始化方法
      */
     public void init(CreditRecordVO creditRecordVO ){
-        timeLabel.setText("");
-        actionLabel.setText("");
-        orderLabel.setText("");
-        changeNumberLabel.setText("");
-        creditResultLabel.setText("");
         setCreditRecordInfo(creditRecordVO);
     }
 

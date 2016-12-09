@@ -141,6 +141,8 @@ public class CustomerInfoViewController implements ControlledStage{
             }
             else if(resultMessage == ResultMessage.ChangeInfoSuccess){
                 errorBoxController.setLabel("成功修改信息！");
+                stageController = new StageController();
+                stageController.closeStage(resource);
             }
         }catch (RemoteException e){
             e.printStackTrace();
@@ -168,7 +170,13 @@ public class CustomerInfoViewController implements ControlledStage{
             email = customerVO.email;
             phone = customerVO.phone;
             credit = customerVO.credit + "";
-            member = customerVO.memberType + "";
+            if(customerVO.memberType == MemberType.ENTREPRISE) {
+                member = "企业会员";
+            }else if(customerVO.memberType == MemberType.NORMAL){
+                member = "普通会员";
+            }else if(customerVO.memberType == MemberType.NONMEMBER){
+                member = "非会员";
+            }
             ID = customerVO.ID;
             nameTextField.setText(name);
             emailTextField.setText(email);

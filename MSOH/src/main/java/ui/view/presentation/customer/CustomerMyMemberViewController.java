@@ -9,6 +9,8 @@ import ui.controller.UserAdminController;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import util.MemberType;
+import vo.CustomerVO;
 import vo.MemberVO;
 
 import java.rmi.RemoteException;
@@ -78,14 +80,24 @@ public class CustomerMyMemberViewController implements ControlledStage{
             creditLabel.setText(credit + "");
             double locate = 957 / 10000 * credit;
             creditPane.setLayoutX(locate);
-
+            CustomerVO customerVO = userAdmin.findCustomerByID(customerID);
+            if(customerVO.memberType == MemberType.ENTREPRISE) {
+                typeOfMemberLabel.setText("企业会员");
+            }else if(customerVO.memberType == MemberType.NORMAL){
+                typeOfMemberLabel.setText("普通会员");
+            }else if(customerVO.memberType == MemberType.NONMEMBER){
+                typeOfMemberLabel.setText("非会员");
+            }
             //会员信息
-            MemberVO memberVO = userAdmin.findMemberByID(customerID);
-            if(memberVO != null) {
-                typeOfMemberLabel.setText(memberVO.memberType + "");
+            if(customerVO.memberType != MemberType.NONMEMBER) {
+                MemberVO memberVO = userAdmin.findMemberByID(customerID);
                 gradeOfMemberLabel.setText(memberVO.level + "");
-                //discountOfMemberLabel.setText(memberVO);
-                //// TODO: 2016/12/8  
+                //// TODO: 2016/12/9  获得该等级会员折扣
+                discountOfMemberLabel.setText("部分酒店" );
+            }
+            else{
+                gradeOfMemberLabel.setText("无");
+                gradeOfMemberLabel.setText("非会员无法享受");
             }
 
         }catch (RemoteException e) {

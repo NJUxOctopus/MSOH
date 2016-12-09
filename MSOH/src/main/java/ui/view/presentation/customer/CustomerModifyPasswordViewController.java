@@ -77,7 +77,8 @@ public class CustomerModifyPasswordViewController implements ControlledStage {
             }
             else if(resultMessage == ResultMessage.ChangePasswordSuccess){
                 errorBoxController.setLabel("成功修改密码！");
-                clearField();
+                stageController = new StageController();
+                stageController.closeStage(resource);
             }
         }catch (RemoteException e){
             e.printStackTrace();
