@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class MemberLevelTest extends TestCase {
     MemberLevel memberLevel = new MemberLevel();
+    /*
     public void testAddMemberLevel()throws RemoteException{
         int a[] = {10,20,30};
         ResultMessage resultMessage1 = memberLevel.addMemberLevel(new MemberLevelVO("pxr",new Timestamp(System.currentTimeMillis()),3,a));
@@ -21,7 +22,7 @@ public class MemberLevelTest extends TestCase {
         assertEquals(resultMessage2,ResultMessage.Blank);
         assertEquals(resultMessage3,ResultMessage.DataFormatWrong);
     }
-
+*/
     public void testModifyMemberLevel()throws RemoteException{
         int a[] = {10,20,30};
         ResultMessage resultMessage1 = memberLevel.modifyMemberLevel(new MemberLevelVO("pxr",new Timestamp(System.currentTimeMillis()),3,a));

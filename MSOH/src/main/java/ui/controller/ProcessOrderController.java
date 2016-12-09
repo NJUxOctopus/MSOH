@@ -102,5 +102,9 @@ public class ProcessOrderController implements ProcessOrder {
         return orderUtil_blService.getSingle(ID);
     }
 
+    public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID,String hotelID,OrderStatus orderStatus)throws RemoteException{
+        return orderUtil_blService.getOrderByIDAndHotelIDAndStatus(ID, hotelID, orderStatus);
+    }
+
 
 }
