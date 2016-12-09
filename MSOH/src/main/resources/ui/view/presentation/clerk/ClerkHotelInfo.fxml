@@ -61,7 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="208.0" layoutY="89.0" prefHeight="11.0" prefWidth="94.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+            <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="208.0" layoutY="89.0" prefHeight="11.0" prefWidth="94.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

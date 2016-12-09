@@ -126,19 +126,23 @@ public class CustomerSingleHotelViewController implements ControlledStage {
             hotelButton.setText(hotelVO.hotelName);
             scoreLabel.setText(hotelVO.score + "");
 
-
+/*
             List<RoomVO> roomVOList = hotelVO.dailyRoomInfo.room;
-            double price = roomVOList.get(0).price;;
-            for(int i = 1; i < roomVOList.size(); i++){
-                if(price > roomVOList.get(i).price)
-                    price = roomVOList.get(i).price;
+            if(!roomVOList.isEmpty()) {
+                double price = roomVOList.get(0).price;
+                for (int i = 1; i < roomVOList.size(); i++) {
+                    if (price > roomVOList.get(i).price)
+                        price = roomVOList.get(i).price;
+                }
+                priceLabel.setText(price + "");
             }
-            priceLabel.setText(price + "");
-
+            else{
+                priceLabel.setText("0");
+            }
+*/
             numOfCommentLabel.setText(hotelVO.comment.size() + "");
-            normalOrderButton.setText("");
-            abnormalOrderButton.setText("");
-            canceledOrderButton.setText("");
+            priceLabel.setText("0");
+
         } catch (RemoteException e){
             e.printStackTrace();
         }
@@ -156,13 +160,17 @@ public class CustomerSingleHotelViewController implements ControlledStage {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Timestamp day = Timestamp.valueOf(df.format(today));
             List<PromotionVO> promotionVOList = editPromotion.getPromotionByHotelID(hotelID, day);
-            double minDiscount = promotionVOList.get(0).discount;
-            for(int i = 1; i < promotionVOList.size(); i++){
-                if(minDiscount > promotionVOList.get(i).discount)
-                    minDiscount = promotionVOList.get(i).discount;
+            if(!promotionVOList.isEmpty()) {
+                double minDiscount = promotionVOList.get(0).discount;
+                for (int i = 1; i < promotionVOList.size(); i++) {
+                    if (minDiscount > promotionVOList.get(i).discount)
+                        minDiscount = promotionVOList.get(i).discount;
+                }
+                discountLabel.setText(minDiscount + "");
             }
-            discountLabel.setText(minDiscount + "");
-
+            else{
+                discountLabel.setText("无");
+            }
         }catch (RemoteException e1) {
             e1.printStackTrace();
         }catch (IOException e2){

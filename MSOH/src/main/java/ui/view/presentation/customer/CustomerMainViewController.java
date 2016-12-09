@@ -163,6 +163,8 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCustomerInfoView() {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerInfoView.fxml", 1);
+        CustomerInfoViewController customerInfoViewController = (CustomerInfoViewController) stageController.getController();
+        customerInfoViewController.init(customerID);
     }
 
     /**

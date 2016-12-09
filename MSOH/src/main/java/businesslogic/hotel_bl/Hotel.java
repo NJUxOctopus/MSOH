@@ -4,8 +4,10 @@ import businesslogic.clerk_bl.Clerk;
 import businesslogic.clerk_bl.ClerkUtil;
 import businesslogic.order_bl.OrderUtil;
 import businesslogicservice.hotel_blservice.Hotel_BLService;
+import dataservice.hotel_dataservice.Hotel_DataService;
 import dataservice.hotel_dataservice.Hotel_DataService_Stub;
 import po.*;
+import rmi.RemoteHelper;
 import util.CalculateDays;
 import util.OrderStatus;
 import util.ResultMessage;
@@ -22,7 +24,7 @@ import java.util.List;
  * Created by apple on 16/11/10.
  */
 public class Hotel implements Hotel_BLService {
-    Hotel_DataService_Stub hotel_dataService_stub = new Hotel_DataService_Stub();
+    Hotel_DataService hotel_dataService_stub = RemoteHelper.getInstance().getHotelDataService();
 
     /**
      * 录入房间

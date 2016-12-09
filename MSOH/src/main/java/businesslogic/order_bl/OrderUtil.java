@@ -53,7 +53,7 @@ public class OrderUtil implements OrderUtil_BLService {
         List<OrderPO> orderPOList = order_dataService_stub.findOrderByCustomerID(customerID);
         if (orderPOList == null || orderPOList.isEmpty())
             //若订单列表为空
-            return null;
+            return new ArrayList<OrderVO>();
         else {
             List<OrderVO> orderVOList = new ArrayList<OrderVO>();
             Iterator iterator = orderPOList.iterator();
@@ -99,7 +99,7 @@ public class OrderUtil implements OrderUtil_BLService {
         List<OrderPO> orderPOList = order_dataService_stub.findOrderByHotelID(hotelID);
         if (orderPOList == null || orderPOList.isEmpty())
             //若酒店无订单
-            return null;
+            return new ArrayList<OrderVO>();
         else {
             List<OrderVO> orderVOList = new ArrayList<OrderVO>();
             Iterator iterator = orderPOList.iterator();
@@ -140,7 +140,7 @@ public class OrderUtil implements OrderUtil_BLService {
         List<OrderPO> orderPOList = order_dataService_stub.findOrderByOrderStatus(status);
         if (orderPOList == null || orderPOList.isEmpty())
             //若订单列表为空
-            return null;
+            return new ArrayList<OrderVO>();
         else {
             List<OrderVO> orderVOList = new ArrayList<OrderVO>();
             Iterator iterator = orderPOList.iterator();

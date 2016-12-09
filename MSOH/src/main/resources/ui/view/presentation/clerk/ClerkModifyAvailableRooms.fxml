@@ -57,16 +57,8 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <TextField layoutX="455.0" layoutY="276.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
-         <font>
-            <Font name="Microsoft YaHei" size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <ChoiceBox layoutX="455.0" layoutY="215.0" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" />
-      <TextField layoutX="455.0" layoutY="337.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
+      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="455.0" layoutY="215.0" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" />
+      <TextField fx:id="roomPriceTextField" layoutX="455.0" layoutY="337.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -95,7 +87,7 @@
             </Button>
          </children>
       </Pane>
-      <Button fx:id="confirmButton" layoutX="843.0" layoutY="607.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认添加" textFill="WHITE">
+      <Button fx:id="confirmButton" layoutX="843.0" layoutY="607.0" mnemonicParsing="false" onAction="#confirmAddRoom" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认添加" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="16.0" />
          </font>
@@ -103,5 +95,40 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="addButton1" layoutX="565.0" layoutY="270.0" mnemonicParsing="false" onAction="#addRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/AddButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="minusButton" layoutX="453.0" layoutY="270.0" mnemonicParsing="false" onAction="#minusRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/MinusButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="roomNumTextField" layoutX="503.0" layoutY="272.0" prefHeight="41.0" prefWidth="66.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="1">
+         <font>
+            <Font name="Microsoft YaHei" size="20.0" />
+         </font>
+      </TextField>
    </children>
 </Pane>

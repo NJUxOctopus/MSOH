@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import ui.controller.ProcessOrderController;
 import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.util.ControlledStage;
@@ -60,6 +61,8 @@ public class ClerkOrderDetailsController implements ControlledStage {
     private Label finalPriceLabel;
     @FXML
     private Button checkButton;
+    @FXML
+    private Pane orderDetailsPane;
 
 
     //    private String clerkID;
@@ -109,6 +112,8 @@ public class ClerkOrderDetailsController implements ControlledStage {
             checkButton.setText("入住");
         } else if (orderVO.orderType.equals(OrderStatus.EXECUTED)) {
             checkButton.setText("退房");
+        } else {
+            orderDetailsPane.getChildren().remove(checkButton);
         }
     }
 

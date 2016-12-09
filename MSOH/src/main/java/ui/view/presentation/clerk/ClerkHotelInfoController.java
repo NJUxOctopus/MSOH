@@ -69,7 +69,7 @@ public class ClerkHotelInfoController implements ControlledStage {
         clerkID = ID;
         //显示酒店名称
         hotelAdmin = new HotelAdminController();
-        hotelVO = hotelAdmin.findByID(clerkID);
+        hotelVO = hotelAdmin.findByClerkID(clerkID);
         hotelName.setText(hotelVO.hotelName);
         //显示酒店评分
         hotelScore.setText(String.valueOf(hotelVO.score) + "分");
@@ -95,9 +95,11 @@ public class ClerkHotelInfoController implements ControlledStage {
      * 查看详细评价按钮结果，显示酒店详细评价页面
      */
     @FXML
-    private void showHotelComments() {
+    private void showHotelComments() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkHotelComments.fxml", 1);
+        ClerkHotelCommentsController clerkHotelCommentsController = (ClerkHotelCommentsController) stageController.getController();
+        clerkHotelCommentsController.initial(hotelVO.hotelID);
     }
 
     /**
@@ -113,9 +115,11 @@ public class ClerkHotelInfoController implements ControlledStage {
      * 修改信息按钮结果，显示修改酒店信息界面
      */
     @FXML
-    private void showModifyHotelInfo() {
+    private void showModifyHotelInfo() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkModifyHotelInfo.fxml", 1);
+        ClerkModifyHotelInfoController clerkModifyHotelInfoController = (ClerkModifyHotelInfoController)stageController.getController();
+        clerkModifyHotelInfoController.initial(hotelVO.hotelID);
     }
 
 }

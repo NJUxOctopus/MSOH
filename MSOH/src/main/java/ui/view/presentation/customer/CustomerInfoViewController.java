@@ -88,6 +88,7 @@ public class CustomerInfoViewController implements ControlledStage{
      */
     @FXML
     private void closeStage() {
+        getNewInfo();
         if(newName.equals(name) && newEmail.equals(email) && newPhone.equals(phone)){
             stageController = new StageController();
             stageController.closeStage(resource);
@@ -121,6 +122,7 @@ public class CustomerInfoViewController implements ControlledStage{
      */
     @FXML
     private void modifyInfo(){
+        getNewInfo();
         name = newName;
         email = newEmail;
         phone = newPhone;
@@ -133,10 +135,10 @@ public class CustomerInfoViewController implements ControlledStage{
             if(resultMessage == ResultMessage.Blank){
                 errorBoxController.setLabel("请填写完整信息！");
             }
-            else if(resultMessage == ResultMessage.WrongPhoneFormat){
+            else if(resultMessage == ResultMessage.phoneFormatWrong){
                 errorBoxController.setLabel("手机格式错误！");
             }
-            else if(resultMessage == ResultMessage.WrongEmailFormat){
+            else if(resultMessage == ResultMessage.emailFormatWrong){
                 errorBoxController.setLabel("邮件格式错误！");
             }
             else if(resultMessage == ResultMessage.ChangeInfoSuccess){
