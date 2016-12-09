@@ -91,9 +91,13 @@ public class CustomerOrderListViewController implements ControlledStage {
     private void showAllOrder(){
         orderButtonShade.setY(0);
         orderListScrollPane.getChildren().clear();
-        ProcessOrder processOrder = new ProcessOrderController();
-        List<OrderVO> orderVOList = processOrder.getOrderByCustomerName(customerID);
-        addOrderPane(orderVOList);
+        try {
+            ProcessOrder processOrder = new ProcessOrderController();
+            List<OrderVO> orderVOList = processOrder.getOrderByCustomerID(customerID);
+            addOrderPane(orderVOList);
+        }catch (RemoteException e){
+
+        }
     }
 
     /**

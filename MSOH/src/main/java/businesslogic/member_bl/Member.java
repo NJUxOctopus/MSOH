@@ -25,11 +25,11 @@ public class Member implements Member_BLService {
      * 会员注册
      *
      * @param memberVO
-     * @param customerID
      * @return
      * @throws RemoteException
      */
-    public ResultMessage signUp(MemberVO memberVO, String customerID) throws RemoteException {
+    public ResultMessage signUp(MemberVO memberVO) throws RemoteException {
+        String customerID  = memberVO.ID;
         if (customer_dataService_stub.findCustomerByID(customerID).getMemberType().equals(MemberType.NONMEMBER)) {//首先用户必须是非会员
             if (memberVO.memberType.equals(MemberType.ENTREPRISE)) {//若注册为企业会员
                 if (memberVO.companyName.equals(""))//企业名输入不能为空

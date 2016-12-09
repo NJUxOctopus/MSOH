@@ -122,7 +122,7 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     private void setHotelInfo(String hotelID){
         HotelAdmin hotelAdmin = new HotelAdminController();
         try {
-            HotelVO hotelVO = hotelAdmin.getByID(hotelID);
+            HotelVO hotelVO = hotelAdmin.findByID(hotelID);
             hotelButton.setText(hotelVO.hotelName);
             scoreLabel.setText(hotelVO.score + "");
 
