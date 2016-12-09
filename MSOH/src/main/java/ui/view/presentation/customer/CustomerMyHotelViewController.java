@@ -58,7 +58,7 @@ public class CustomerMyHotelViewController implements ControlledStage {
             hotelListScrollPane.setPrefWidth(260*num - 5);
             PaneAdder paneAdder = new PaneAdder();
             for(int i =0; i < num; i++) {
-                paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 260 * num, 10);
+                paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 260 * i, 10);
                 customerSingleHotelViewController = (CustomerSingleHotelViewController) stageController.getController();
                 customerSingleHotelViewController.init(customerID, hotelID);
             }

@@ -156,10 +156,9 @@ public class CustomerHotelListViewController implements ControlledStage {
             hotelListScrollPane.setPrefWidth(270 * num);
             PaneAdder paneAdder = new PaneAdder();
             for (int i = 0; i < num; i++) {
-                System.out.print("!");
-                paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
+                paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml",  270 * i + 5, 10);
                 customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
-                customerSingleHotelViewController.init(customerID, hotelList.get(num).hotelID);
+                customerSingleHotelViewController.init(customerID, hotelList.get(i).hotelID);
             }
         }else{
             emptyHotelLabel.setOpacity(1);
@@ -235,7 +234,6 @@ public class CustomerHotelListViewController implements ControlledStage {
         HotelInfo hotelInfo = new HotelInfoController();
         try {
             List<HotelVO> hotelList = hotelInfo.searchHotel(hotelVO);
-            System.out.print(hotelList.size());
 
             addHotelPane(hotelList);
         } catch (RemoteException e) {

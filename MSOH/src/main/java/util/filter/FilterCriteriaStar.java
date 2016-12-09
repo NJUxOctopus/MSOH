@@ -17,10 +17,10 @@ public class FilterCriteriaStar implements FilterCriteria {
 
     @Override
     public List<HotelVO> meetCriteria(List<HotelVO> list) {
-        if (star.equals(""))
+        if (star.equals("-1"))
             return list;
         if (list == null || list.isEmpty())
-            return null;
+            return new ArrayList<HotelVO>();
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
         for (HotelVO hotelVO : list) {
             if (hotelVO.star >= Integer.parseInt(star)) {

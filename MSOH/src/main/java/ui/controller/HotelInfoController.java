@@ -32,18 +32,20 @@ public class HotelInfoController implements HotelInfo {
 
     public List<HotelVO> searchHotel(HotelVO hotelVO) throws RemoteException {
         Timestamp checkIn;
-        if(hotelVO.checkInTime != ""){
+        if(!hotelVO.checkInTime .equals( "")){
             checkIn = Timestamp.valueOf(hotelVO.checkInTime + " 00:00:00");
         }else{
             checkIn = null;
         }
 
         Timestamp checkOut;
-        if(hotelVO.checkOutTime != ""){
+        if(!hotelVO.checkOutTime .equals( "")){
             checkOut = Timestamp.valueOf(hotelVO.checkOutTime + " 00:00:00");
         }else{
             checkOut = null;
         }
+        String score = hotelVO.score+"";
+        System.out.print(score.equals("-1.0"));
         return hotelUtil_blService.searchHotel(hotelVO.area, checkIn, checkOut, hotelVO.star + "", hotelVO.score + "", 5 + "");
     }
 

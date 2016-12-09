@@ -20,7 +20,7 @@ public class FilterCriteriaName implements FilterCriteria {
         if (name.equals(""))
             return list;
         if (list == null || list.isEmpty())
-            return null;
+            return new ArrayList<HotelVO>();
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
         for (HotelVO hotelVO : list) {
             if (hotelVO.hotelName.contains(name)) {

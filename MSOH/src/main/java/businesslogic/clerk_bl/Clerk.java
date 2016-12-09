@@ -67,7 +67,7 @@ public class Clerk implements Clerk_BLService {
             return ResultMessage.DataFormatWrong;
         ClerkPO clerkPO = clerk_dataService.findClerkByID(clerkVO.ID);
         clerkPO.setPhone(clerkVO.phone);
-        clerkPO.setPicUrl(clerkVO.picUrl);
+//        clerkPO.setPicUrl(clerkVO.picUrl);
         clerkPO.setName(clerkVO.name);
         if (clerk_dataService.modifyClerk(clerkPO))
             return ResultMessage.ChangeInfoSuccess;

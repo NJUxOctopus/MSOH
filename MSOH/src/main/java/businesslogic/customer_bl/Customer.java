@@ -2,10 +2,12 @@ package businesslogic.customer_bl;
 
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.customer_blservice.Customer_BLService;
+import dataservice.customer_dataservice.Customer_DataService;
 import dataservice.customer_dataservice.Customer_DataService_Stub;
 import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
+import rmi.RemoteHelper;
 import util.DataFormat;
 import util.MemberType;
 import util.ResultMessage;
@@ -23,7 +25,7 @@ import java.util.List;
  * Created by Pxr on 16/11/16.
  */
 public class Customer implements Customer_BLService {
-    Customer_DataService_Stub customer_dataService_stub = new Customer_DataService_Stub();
+    Customer_DataService customer_dataService_stub = RemoteHelper.getInstance().getCustomerDataService();
 
     /**
      * 根据用户id得到用户的信用
@@ -78,9 +80,7 @@ public class Customer implements Customer_BLService {
      * @throws RemoteException
      */
     public ResultMessage changeInfo(CustomerVO customerVO) throws RemoteException {
-        if (customer_dataService_stub.findCustomerByID(customerVO.ID) == null)
-            //若找不到该用户
-            return ResultMessage.Customer_CustomerNotExist;
+
         if (customerVO.name.equals("") || customerVO.email.equals("") || customerVO.phone.equals(""))
             //若用户修改时未填写名字，邮箱，手机号，返回有信息空白
             return ResultMessage.Blank;
@@ -89,10 +89,10 @@ public class Customer implements Customer_BLService {
         if (!customerVO.phone.matches(DataFormat.Phone_Format))
             return ResultMessage.phoneFormatWrong;
         //根据ID获取该用户后修改用户的po，返回修改信息成功
+        System.out.print(customerVO.ID);
         CustomerPO customerPO = customer_dataService_stub.findCustomerByID(customerVO.ID);
         customerPO.setEmail(customerVO.email);
         customerPO.setPhone(customerVO.phone);
-        customerPO.setPicture(customerVO.picUrl);
         customerPO.setUserName(customerVO.name);
         if (customer_dataService_stub.modifyCustomer(customerPO))
             return ResultMessage.ChangeInfoSuccess;

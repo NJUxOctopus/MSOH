@@ -17,10 +17,8 @@ public class FilterCriteriaArea implements FilterCriteria {
 
     @Override
     public List<HotelVO> meetCriteria(List<HotelVO> list) {
-        if (area.equals(""))
-            return list;
         if (list == null || list.isEmpty())
-            return null;
+            return new ArrayList<HotelVO>();
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
         for (HotelVO hotelVO:list) {
             if (hotelVO.area.equals(area)) {
