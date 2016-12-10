@@ -121,4 +121,28 @@ public class RoomDataHelperSQLImpl implements RoomDataHelper {
             }
         }
     }
+
+    /**
+     * 获得所有房间，供自动按日期删除房间使用
+     * @return 所有房间的列表
+     */
+    public List<RoomPO> getAllRooms() {
+        Session session=null;
+        try{
+            session=HibernateUtil.getSession();
+            session.beginTransaction();
+
+            List<RoomPO> roomList=session.createQuery("from RoomPO ").list();
+
+            return roomList;
+        }catch (HibernateException e){
+            e.printStackTrace();
+            return new ArrayList<RoomPO>();
+        }finally {
+            if(session!=null){
+                session.getTransaction().commit();
+                HibernateUtil.closeSession(session);
+            }
+        }
+}
 }

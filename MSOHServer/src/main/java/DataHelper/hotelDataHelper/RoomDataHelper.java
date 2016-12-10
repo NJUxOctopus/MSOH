@@ -15,4 +15,6 @@ public interface RoomDataHelper {
     public boolean deleteRoom(RoomPO roomPO);
 
     public List<RoomPO> getRoomsByHotel(String hotelID);
+
+    public List<RoomPO> getAllRooms();
 }
