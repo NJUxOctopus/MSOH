@@ -31,7 +31,7 @@ public interface HotelAdmin {
 
     ResultMessage updateHotelInfo(HotelVO hotelVO) throws RemoteException;
 
-    DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
+    DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException;
 
     RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException;
 
