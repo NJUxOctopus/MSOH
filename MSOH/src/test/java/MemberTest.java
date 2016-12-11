@@ -14,23 +14,23 @@ import java.util.Date;
 public class MemberTest extends TestCase {
     Member member = new Member();
 
-    /*
+
     public void testSignUp() throws RemoteException {
-        ResultMessage resultMessage1 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
-                "NJU"), "320200000000000000");
-        ResultMessage resultMessage2 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
-                ""), "320200000000000000");
-        ResultMessage resultMessage3 = member.signUp(new MemberVO("320200000000000000", MemberType.NORMAL, 1,new Timestamp(System.currentTimeMillis()),
-                ""), "320200000000000000");
-        ResultMessage resultMessage4 = member.signUp(new MemberVO("320200000000000000", MemberType.NORMAL, 1, null,
-                ""), "320200000000000000");
-        ResultMessage resultMessage5 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
-                "NJU"), "12345678");
-        assertEquals(resultMessage1,ResultMessage.Member_EnterpriseSignupSuccess);
-        assertEquals(resultMessage2,ResultMessage.Blank);
-        assertEquals(resultMessage3,ResultMessage.Member_NormalSignupSuccess);
-        assertEquals(resultMessage4,ResultMessage.Blank);
-        assertEquals(resultMessage5,ResultMessage.Member_AddMemberAlreadyExist);
+//        ResultMessage resultMessage1 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
+//                "NJU"), "320200000000000000");
+//        ResultMessage resultMessage2 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
+//                ""), "320200000000000000");
+//        ResultMessage resultMessage3 = member.signUp(new MemberVO("320200000000000000", MemberType.NORMAL, 1,new Timestamp(System.currentTimeMillis()),
+//                ""), "320200000000000000");
+//        ResultMessage resultMessage4 = member.signUp(new MemberVO("320200000000000000", MemberType.NORMAL, 1, null,
+//                ""), "320200000000000000");
+//        ResultMessage resultMessage5 = member.signUp(new MemberVO("320200000000000000", MemberType.ENTREPRISE, 1, null,
+//                "NJU"), "12345678");
+//        assertEquals(resultMessage1,ResultMessage.Member_EnterpriseSignupSuccess);
+//        assertEquals(resultMessage2,ResultMessage.Blank);
+//        assertEquals(resultMessage3,ResultMessage.Member_NormalSignupSuccess);
+//        assertEquals(resultMessage4,ResultMessage.Blank);
+//        assertEquals(resultMessage5,ResultMessage.Member_AddMemberAlreadyExist);
     }
-    */
+
 }
