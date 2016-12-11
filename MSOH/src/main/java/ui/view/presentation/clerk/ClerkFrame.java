@@ -22,6 +22,8 @@ public class ClerkFrame extends Application {
         stageController.loadStage(resource, 1);
     }
 
+
+
 //    public void initPane() {
 //        try {
 //            // Load root layout from fxml file.

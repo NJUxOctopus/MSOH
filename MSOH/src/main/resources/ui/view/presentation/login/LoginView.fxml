@@ -33,13 +33,6 @@
             <Font name="Microsoft YaHei" size="22.0" />
          </font>
       </Label>
-      <PasswordField fx:id="passwordField" layoutX="228.0" layoutY="339.0" onAction="#autoPW" prefHeight="29.0" prefWidth="275.0" style="-fx-text-fill: black;">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-         <font>
-            <Font name="Microsoft YaHei" size="15.0" />
-         </font></PasswordField>
       <TextField fx:id="userNameField" layoutX="228.0" layoutY="294.0" prefHeight="29.0" prefWidth="275.0" style="-fx-text-fill: black;">
          <cursor>
             <Cursor fx:constant="TEXT" />
@@ -47,6 +40,13 @@
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font></TextField>
+      <PasswordField fx:id="passwordField" layoutX="228.0" layoutY="339.0" onAction="#autoPW" prefHeight="29.0" prefWidth="275.0" style="-fx-text-fill: black;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font name="Microsoft YaHei" size="15.0" />
+         </font></PasswordField>
       <Button fx:id="loginButton" layoutX="228.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="登录">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />

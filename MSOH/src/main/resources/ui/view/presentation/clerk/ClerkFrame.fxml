@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkFrameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkFrameController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1309.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -96,7 +96,7 @@
             <Image url="@../image/avatar.png" />
          </image>
       </ImageView>
-      <Button layoutX="1065.0" layoutY="356.0" mnemonicParsing="false" onAction="#showModifyClerkInfo" style="-fx-background-color: #ffffff00;" text="个人信息" textFill="WHITE">
+      <Button layoutX="1039.0" layoutY="359.0" mnemonicParsing="false" onAction="#showModifyClerkInfo" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="个 人 信 息" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -117,7 +117,7 @@
                </font>
             </Label>
          </children></Pane>
-      <Button layoutX="1065.0" layoutY="414.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="切换账号" textFill="WHITE">
+      <Button layoutX="1040.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchAccount" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="切 换 账 号" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -125,7 +125,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="1065.0" layoutY="517.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="关于我们" textFill="WHITE">
+      <Button layoutX="1040.0" layoutY="470.0" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="退 出 系 统" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -133,7 +133,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="1085.0" layoutY="465.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="反馈" textFill="WHITE">
+      <Button layoutX="1039.0" layoutY="520.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="关 于 我 们" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>

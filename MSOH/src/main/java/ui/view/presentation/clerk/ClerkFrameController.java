@@ -23,6 +23,8 @@ public class ClerkFrameController implements ControlledStage {
 
     private StageController stageController;
 
+    private String resource = "cleck/CleckFrame.fxml";
+
     @FXML
     private Label hotelName;
     @FXML
@@ -125,6 +127,24 @@ public class ClerkFrameController implements ControlledStage {
         //初始化界面
         ClerkModifyPersonalInfoController clerkModifyPersonalInfoController = (ClerkModifyPersonalInfoController) stageController.getController();
         clerkModifyPersonalInfoController.initial(clerkID);
+    }
+
+    /**
+     * 切换账号
+     */
+    @FXML
+    private void switchAccount() {
+        stageController = new StageController();
+        stageController.closeStage(resource);
+        stageController.loadStage("login/LoginView.fxml", 1);
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
 //    /**
