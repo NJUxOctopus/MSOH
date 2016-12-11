@@ -32,7 +32,7 @@ public class DailyRoomUpdater {
         if(deleteYesterdayRooms(timestamp,allRoomList)){
             System.out.println("Octopus: 昨日房间信息不存在，无需更新");
         }else{
-            System.out.println("Octopus: 服务器房间信息已更新");
+            System.out.println("Octopus: 服务器房间信息已更新，等待继续更新");
         }
 
         // 新增第30天的房间
@@ -48,7 +48,7 @@ public class DailyRoomUpdater {
      * @param timestamp
      * @param allRoomList
      */
-    private boolean deleteYesterdayRooms(Timestamp timestamp,List<RoomPO> allRoomList){
+    private boolean deleteYesterdayRooms(Timestamp timestamp,final List<RoomPO> allRoomList){
         boolean deletedBeforeThisTime=true;
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal=Calendar.getInstance();
@@ -82,7 +82,7 @@ public class DailyRoomUpdater {
      * @param allRoomList
      * @return 第30天的房间信息是否添加成功
      */
-    private boolean addRoomsIn30DaysAfter(Timestamp timestamp,List<RoomPO> allRoomList){
+    private boolean addRoomsIn30DaysAfter(Timestamp timestamp,final List<RoomPO> allRoomList){
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal=Calendar.getInstance();
         Date date30=new Date();
@@ -90,13 +90,13 @@ public class DailyRoomUpdater {
         // 先根据今天的日期，得到30天后的日期
         date30=timestamp;
         cal.setTime(date30);
-        cal.add(Calendar.DATE,30);
+        cal.add(Calendar.DATE,29);
         // 将30天后的日期转换为string
         String thirtyDayStr=simpleDateFormat.format(cal.getTime());
         // 再根据今天的日期，得到29天后的日期
         date29=timestamp;
         cal.setTime(date29);
-        cal.add(Calendar.DATE,29);
+        cal.add(Calendar.DATE,28);
         // 将29天后的日期转换为string
         String twentyNineDayStr=simpleDateFormat.format(cal.getTime());
         // 遍历所有房间，获得第29天的房间信息
