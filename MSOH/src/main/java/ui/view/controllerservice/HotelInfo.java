@@ -3,6 +3,7 @@ package ui.view.controllerservice;
 import vo.HotelVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -16,6 +17,8 @@ public interface HotelInfo {
     public List<HotelVO> sortByScore(List<HotelVO> list);
 
     public List<HotelVO> searchHotel (HotelVO hotelVO) throws RemoteException;
+
+    public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2, String roomType, int roomNum, String area) throws RemoteException;
 
     public List<String> getAllCities() throws RemoteException;
 

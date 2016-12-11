@@ -102,9 +102,27 @@ public class ProcessOrderController implements ProcessOrder {
         return orderUtil_blService.getSingle(ID);
     }
 
+    /**
+     * 获得该用户在酒店对应状态的订单
+     * @param ID
+     * @param hotelID
+     * @param orderStatus
+     * @return
+     * @throws RemoteException
+     */
     public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID,String hotelID,OrderStatus orderStatus)throws RemoteException{
         return orderUtil_blService.getOrderByIDAndHotelIDAndStatus(ID, hotelID, orderStatus);
     }
 
+    /**
+     * 获得用户在该酒店的订单
+     * @param ID
+     * @param hotelID
+     * @return
+     * @throws RemoteException
+     */
+    public List<OrderVO> getOrderByIDAndHotelID(String ID,String hotelID)throws RemoteException{
+        return orderUtil_blService.getOrderByIDAndHotelID(ID, hotelID);
+    }
 
 }

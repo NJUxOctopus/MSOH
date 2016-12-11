@@ -24,6 +24,7 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
     private String customerID;
 
     private String orderID;
+
     @FXML
     private Button processOrderButton;
 
@@ -118,7 +119,25 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
             checkOutTimeLabel.setText(orderVO.estimatedCheckinTime.toString());
             checkInTimeLabel.setText(orderVO.estimatedCheckoutTime.toString());
             priceLabel.setText(orderVO.finalPrice + "");
-            roomTypeLabel.setText(orderVO.rooms[0]);
+
+            String[] room = {"单人房", "标间", "大床房"};
+            int[] roomNum = {0, 0, 0};
+            for(int i = 0; i < orderVO.rooms.length; i++) {
+                if(orderVO.rooms[i].equals(room[0])){
+                    roomNum[0]++;
+                }else if(orderVO.rooms[i].equals(room[1])){
+                    roomNum[1]++;
+                }else if(orderVO.rooms[i].equals(room[2])){
+                    roomNum[2]++;
+                }
+            }
+            String roomType = "";
+            for(int i = 0; i < 3; i++){
+                if(roomNum[i] != 0){
+                    roomType += room[i] + "*" + roomNum[i] + '\n';
+                }
+            }
+            roomTypeLabel.setText(roomType);
             hotelButton.setText(orderVO.hotelName);
             processOrderButton.setOpacity(0);
             OrderStatus orderStatus = orderVO.orderType;

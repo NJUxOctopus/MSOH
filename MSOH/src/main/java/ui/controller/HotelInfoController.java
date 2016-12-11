@@ -18,6 +18,7 @@ public class HotelInfoController implements HotelInfo {
     public HotelInfoController(){
         hotelUtil_blService = new HotelUtil();
     }
+
     public List<HotelVO> sortByPrice(List<HotelVO> list) {
         return null;
     }
@@ -47,6 +48,10 @@ public class HotelInfoController implements HotelInfo {
         String score = hotelVO.score+"";
         System.out.print(score.equals("-1.0"));
         return hotelUtil_blService.searchHotel(hotelVO.area, checkIn, checkOut, hotelVO.star + "", hotelVO.score + "", 5 + "");
+    }
+
+    public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2, String roomType,int roomNum,String area) throws RemoteException{
+        return hotelUtil_blService.filter(star, name, low, high, timestamp1, timestamp2, roomType, roomNum, area);
     }
 
     public List<String> getAllCities() throws RemoteException{

@@ -36,4 +36,6 @@ public interface ProcessOrder {
 
     public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID,String hotelID,OrderStatus orderStatus)throws RemoteException;
 
+    public List<OrderVO> getOrderByIDAndHotelID(String ID,String hotelID)throws RemoteException;
+
 }

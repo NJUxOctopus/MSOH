@@ -95,4 +95,35 @@ public class OrderVO implements Serializable{
 		this.orderType = orderType;
 	}
 
+	/**
+	 * 生成订单的构造方法
+	 * @param customerName
+	 * @param phone
+	 * @param customerID
+	 * @param hotelID
+	 * @param hotelName
+	 * @param estimatedCheckinTime
+	 * @param estimatedCheckoutTime
+	 * @param rooms
+	 * @param numOfCustomers
+	 * @param haveChildren
+	 * @param finalPrice
+	 */
+	public OrderVO(String customerName, String phone, String customerID, String hotelID, String hotelName,
+				   Timestamp estimatedCheckinTime, Timestamp estimatedCheckoutTime,
+				   String[] rooms, int numOfCustomers, boolean haveChildren,
+				   double finalPrice) {
+		this.customerName = customerName;
+		this.phone = phone;
+		this.customerID = customerID;
+		this.hotelID=hotelID;
+		this.hotelName = hotelName;
+		this.estimatedCheckinTime = estimatedCheckinTime;
+		this.estimatedCheckoutTime = estimatedCheckoutTime;
+		this.rooms = rooms;
+		this.numOfCustomers = numOfCustomers;
+		this.haveChildren = haveChildren;
+		this.finalPrice = finalPrice;
+	}
+
 }

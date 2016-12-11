@@ -141,5 +141,6 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
                 dayChoiceBox.setItems(dayList);
             }
         });
+    yearChoiceBox.setValue("1970");
     }
 }

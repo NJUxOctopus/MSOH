@@ -20,6 +20,7 @@ public class EditPromotionController implements EditPromotion {
     public EditPromotionController(){
         promotionUtil_blService = new PromotionUtil();
     }
+
     public ResultMessage addHotelPromotion(PromotionVO promotionVO) {
         return null;
     }
@@ -36,10 +37,25 @@ public class EditPromotionController implements EditPromotion {
         return null;
     }
 
+    /**
+     * 根据促销策略id获得策略
+     * @param promotionID
+     * @return
+     * @throws RemoteException
+     */
     public PromotionVO getSingle(String promotionID) throws RemoteException {
         return  promotionUtil_blService.getSingle(promotionID);
     }
 
+    /**
+     * 根据酒店id获得促销策略
+     * @param hotelID
+     * @param time
+     * @return
+     * @throws RemoteException
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp time) throws RemoteException, ClassNotFoundException, IOException {
         return promotionUtil_blService.getPromotionByHotelID(hotelID, time);
     }

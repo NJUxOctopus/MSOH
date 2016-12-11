@@ -1,16 +1,20 @@
 package ui.view.presentation.customer;
 
+import businesslogic.member_bl.MemberLevel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import ui.controller.EditMemberLevelController;
 import ui.controller.UserAdminController;
+import ui.view.controllerservice.EditMemberLevel;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
 import util.MemberType;
 import vo.CustomerVO;
+import vo.MemberLevelVO;
 import vo.MemberVO;
 
 import java.rmi.RemoteException;
@@ -67,11 +71,18 @@ public class CustomerMyMemberViewController implements ControlledStage{
         customerSignUpSelectViewController.init(customerID);
     }
 
+    /**
+     * 我的会员界面初始化方法
+     * param customerID
+     */
     public void init(String customerID){
         this.customerID = customerID;
         setCustomerInfo();
     }
 
+    /**
+     * 设置客户信息
+     */
     private void setCustomerInfo(){
         UserAdmin userAdmin = new UserAdminController();
         try {
@@ -103,6 +114,16 @@ public class CustomerMyMemberViewController implements ControlledStage{
         }catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setMemberLevelInfo(){
+        EditMemberLevel editMemberLevel = new EditMemberLevelController();
+        try {
+            MemberLevelVO memberLevelVO = editMemberLevel.getMemberLevel();
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+
     }
 
 
