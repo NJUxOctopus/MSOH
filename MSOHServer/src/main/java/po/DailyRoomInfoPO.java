@@ -12,6 +12,7 @@ import java.util.List;
  * @author zqh
  */
 public class DailyRoomInfoPO implements Serializable, Cloneable {
+    private static final long serialVersionUID=1L;
     // 酒店ID
     private String hotelID;
     // 日期

@@ -205,7 +205,10 @@ public class CustomerReserveViewController implements ControlledStage{
 
     @FXML
     private void selectRoom(){
-
+        stageController = new StageController();
+        stageController.loadStage("customer/CustomerChooseRoomController.fxml", 1);
+        CustomerChooseRoomController customerChooseRoomController = (CustomerChooseRoomController) stageController.getController();
+        customerChooseRoomController.initial(hotelIDTextField.getText());
     }
 
     public void setRoomAndPrice(String[] rooms,double totalPrice){
@@ -237,7 +240,6 @@ public class CustomerReserveViewController implements ControlledStage{
         this.hotelVO = hotelVO;
         setCustomerInfo();
         setHotelInfo();
-        setRoomInfo();
     }
 
     private void setRoomInfo(){

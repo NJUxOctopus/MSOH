@@ -32,11 +32,11 @@ public class OrderPOTest {
         esChOut = Timestamp.valueOf(estimatedCheckOutTime);
         acChOut = Timestamp.valueOf(actualCheckoutTime);
         laEx = Timestamp.valueOf(latestExecutedTime);
-
-        OrderPO orderPO = new OrderPO("桑田", "13013822266", "320581199707210555", "12345678", "如家", esChIn, acChIn, esChOut, acChOut, laEx, "双人房", 2, false, "无", 1, "双十一", 520, 480, OrderStatus.ABNORMAL);
-        Order_DataService order_dataService = Order_DataServiceImpl.getInstance();
-
-        order_dataService.addOrder(orderPO);
+//
+//        OrderPO orderPO = new OrderPO("桑田", "13013822266", "320581199707210555", "12345678", "如家", esChIn, acChIn, esChOut, acChOut, laEx, "双人房", 2, false, "无", 1, "双十一", 520, 480, OrderStatus.ABNORMAL);
+//        Order_DataService order_dataService = Order_DataServiceImpl.getInstance();
+//
+//        order_dataService.addOrder(orderPO);
     }
 
 }

@@ -157,10 +157,7 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
 
         if (customerNameTextField.getText().equals("") || customerIDTextField.getText().equals("") || customerPhoneTextField.getText().equals("")) {
             //信息填写不完整
-            stageController = new StageController();
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("信息填写不完整！");
+            this.returnMessage("信息填写不完整！");
         } else {
             processOrder = new ProcessOrderController();
             String hotelName = clerkVO.hotelName;
@@ -172,26 +169,40 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
             boolean haveChildren = childCheckBox.isSelected();
             Timestamp checkInTime = Timestamp.valueOf(checkInTimeButton.getText() + " 00:00:00");
             Timestamp estimatedCheckOutTime = Timestamp.valueOf(estimatedCheckOutTimeButton.getText() + " 00:00:00");
-            ResultMessage resultMessage = processOrder.createOrder(new OrderVO(customerName, phone, customerID, hotelID, hotelName,
+            ResultMessage resultMessage = processOrder.createOrderOffline(new OrderVO(customerName, phone, customerID, hotelID, hotelName,
                     checkInTime, checkInTime, estimatedCheckOutTime, rooms, numOfCustomers,
                     haveChildren, price, price, OrderStatus.EXECUTED));
 
             if (resultMessage.equals(ResultMessage.Order_CreateOrderSuccess)) {
                 //创建订单成功
-                stageController = new StageController();
-                stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-                errorBoxController.setLabel("创建订单成功！");
+                stageController = this.returnMessage("创建订单成功！");
                 stageController.closeStage(resource);
+            } else if (resultMessage.equals(ResultMessage.DataFormatWrong)) {
+                this.returnMessage("ID格式错误！");
+            } else if (resultMessage.equals(ResultMessage.phoneFormatWrong)) {
+                this.returnMessage("手机号格式错误！");
+            } else if (resultMessage.equals(ResultMessage.Blank)) {
+                this.returnMessage("信息填写不完整！");
             } else {
-                stageController = new StageController();
-                stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-                errorBoxController.setLabel("未知错误！");
+                this.returnMessage("未知错误！");
             }
         }
 
 
+    }
+
+    /**
+     * 返回提示信息
+     *
+     * @param error
+     * @return
+     */
+    private StageController returnMessage(String error) {
+        stageController = new StageController();
+        stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+        ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+        errorBoxController.setLabel(error);
+        return stageController;
     }
 
 }

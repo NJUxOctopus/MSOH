@@ -83,11 +83,11 @@ public class HotelUtil implements HotelUtil_BLService {
      * 得到酒店某一天的房间信息
      *
      * @param hotelID
-     * @param date
+     * @param timestamp
      * @return
      */
-    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException {
-        DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService_stub.getDailyRoomInfo(hotelID, date);
+    public DailyRoomInfoVO getDailyRoomInfo(String hotelID,Timestamp timestamp) throws RemoteException {
+        DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService_stub.getDailyRoomInfo(hotelID,timestamp);
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
         if (roomPOList == null || roomPOList.isEmpty())
             return new DailyRoomInfoVO(dailyRoomInfoPO.getHotelID(), dailyRoomInfoPO.getDate(), new ArrayList<RoomVO>());

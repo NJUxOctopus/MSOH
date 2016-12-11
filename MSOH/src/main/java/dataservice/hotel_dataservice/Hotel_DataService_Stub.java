@@ -44,6 +44,11 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 		return null;
 	}
 
+	@Override
+	public DailyRoomInfoPO getDailyRoomInfo(String hotelID, java.sql.Timestamp timestamp) throws RemoteException {
+		return null;
+	}
+
 //	public boolean addRoom(RoomPO po) throws RemoteException {
 //		return false;
 //	}
@@ -63,10 +68,6 @@ public class Hotel_DataService_Stub implements Hotel_DataService{
 //	public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException {
 //		return null;
 //	}
-
-	public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Date date) throws RemoteException {
-		return null;
-	}
 
 	@Override
 	public boolean addDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {

@@ -35,7 +35,7 @@ public interface HotelUtil_BLService {
 
     public List<CommentVO> getComment(String hotelID) throws RemoteException;
 
-    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
+    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException;
 
     public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2, String roomType,int roomNum,String area) throws RemoteException;
 
