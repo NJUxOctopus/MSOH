@@ -9,8 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import ui.view.presentation.StageController;
 import ui.view.presentation.clerk.ClerkCreateOfflineOrderController;
+import ui.view.presentation.customer.CustomerHotelDetailsViewController;
 import ui.view.presentation.customer.CustomerHotelListViewController;
 import ui.view.presentation.customer.CustomerMainViewController;
+import ui.view.presentation.customer.CustomerReserveViewController;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -87,6 +89,28 @@ public class SelectTimeViewController implements ControlledStage {
                 customerHotelListViewController.setCheckOutTime(time);
         }
         if (toBeSet.equals("clerk/ClerkCreateOfflineOrder.fxml")) {
+            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            if (type.equals("checkIn"))
+                clerkCreateOfflineOrderController.setCheckInTime(time);
+            if (type.equals("checkOut"))
+                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+        }
+        if (toBeSet.equals("customer/CustomerHotelDetailsView.fxml")) {
+            CustomerHotelDetailsViewController customerHotelDetailsViewController = (CustomerHotelDetailsViewController)stageController.getController(toBeSet);
+            if (type.equals("checkIn"))
+                customerHotelDetailsViewController.setCheckInTime(time);
+            if (type.equals("checkOut"))
+                customerHotelDetailsViewController.setCheckOutTime(time);
+        }
+        if (toBeSet.equals("customer/CustomerReserveView.fxml")) {
+            CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController(toBeSet);
+            if (type.equals("checkIn"))
+                customerReserveViewController.setCheckInTime(time);
+            if (type.equals("checkOut"))
+                customerReserveViewController.setCheckOutTime(time);
+        }
+        //工作人员 生日特惠界面
+        if (toBeSet.equals("clerk/ClerkBirthdayPromotion.fxml")) {
             ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController();
             if (type.equals("checkIn"))
                 clerkCreateOfflineOrderController.setCheckInTime(time);
