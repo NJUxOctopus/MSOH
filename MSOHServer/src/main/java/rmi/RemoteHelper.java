@@ -20,6 +20,7 @@ public class RemoteHelper {
             dataRemoteObject = new DataRemoteObject();
             LocateRegistry.createRegistry(8888);
             Naming.bind("rmi://localhost:8888/DataRemoteObject", dataRemoteObject);
+            System.out.println("Octopus: 连接客户端成功");
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {

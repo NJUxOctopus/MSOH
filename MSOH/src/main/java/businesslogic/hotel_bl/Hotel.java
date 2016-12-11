@@ -15,7 +15,9 @@ import util.WorkerPosition;
 import vo.*;
 
 import java.rmi.RemoteException;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +27,9 @@ import java.util.List;
  */
 public class Hotel implements Hotel_BLService {
     Hotel_DataService hotel_dataService_stub = RemoteHelper.getInstance().getHotelDataService();
-
+    Date date1 = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+    Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date1));
     /**
      * 录入房间
      *
@@ -36,18 +40,18 @@ public class Hotel implements Hotel_BLService {
     public ResultMessage addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
         if (hotel_dataService_stub.findHotelByID(dailyRoomInfoVO.hotelID) == null)
             return ResultMessage.Hotel_HotelNotExist;
-        List<RoomVO> roomVOList = dailyRoomInfoVO.room;
-        if (roomVOList == null || roomVOList.isEmpty())
-            return ResultMessage.Blank;
-        List<RoomPO> roomPOList = new ArrayList<RoomPO>();
-        for (int i = 0; i < roomVOList.size(); i++) {
-            RoomVO roomVO = roomVOList.get(i);
-            roomPOList.add(new RoomPO(roomVO.hotelID, roomVO.roomType, roomVO.occupiedRooms, roomVO.reservedRooms, roomVO.leftRooms, roomVO.price));
+        long oneDay = 1000 * 60 * 60 * 24;
+        List<Timestamp> timestampList = new ArrayList<Timestamp>();
+        timestampList.add(dailyRoomInfoVO.date);
+        for (int i = 1; i < 30; i++) {
+            timestampList.add(new Timestamp(dailyRoomInfoVO.date.getTime() + i * oneDay));
         }
-        if (hotel_dataService_stub.addDailyRoomInfo(new DailyRoomInfoPO(dailyRoomInfoVO.hotelID, dailyRoomInfoVO.date, roomPOList)))
+        for(Timestamp timestamp:timestampList){
+            if(hotel_dataService_stub.addDailyRoomInfo(new DailyRoomInfoPO(dailyRoomInfoVO.hotelID,timestamp, null)));
+            else
+                return ResultMessage.Fail;
+        }
             return ResultMessage.Hotel_AddRoomSuccess;
-        else
-            return ResultMessage.Fail;
     }
 
 
@@ -205,8 +209,10 @@ public class Hotel implements Hotel_BLService {
                 picUrl += hotelVO.picUrls[i];
         }
         if (hotel_dataService_stub.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, roomType,
-                hotelVO.star, 0, hotelVO.license, picUrl, null)))
+                hotelVO.star, 0, hotelVO.license, picUrl, null))) {
+            addDailyRoomInfo(new DailyRoomInfoVO(hotelVO.hotelID, timestamp1, null));
             return ResultMessage.Hotel_addHotelSuccess;
+        }
         else
             return ResultMessage.Fail;
     }
@@ -274,9 +280,7 @@ public class Hotel implements Hotel_BLService {
         List<RoomPO> roomPOList = new ArrayList<RoomPO>();
         for (int i = 0; i < roomVOList.size(); i++) {
             RoomVO roomVO = roomVOList.get(i);
-            if (roomVO.reservedRooms < 0 || roomVO.occupiedRooms < 0 || roomVO.leftRooms < 0)
-                return ResultMessage.DataFormatWrong;
-            roomPOList.add(new RoomPO(roomVO.hotelID, roomVO.roomType, roomVO.occupiedRooms, roomVO.reservedRooms, roomVO.leftRooms
+            roomPOList.add(new RoomPO(roomVO.hotelID, roomVO.roomType, 0, 0, roomVO.leftRooms
                     , roomVO.price));
         }
         dailyRoomInfoPO.setRoom(roomPOList);

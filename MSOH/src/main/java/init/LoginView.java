@@ -34,7 +34,7 @@ public class LoginView extends Application {
         try{
             remoteHelper=RemoteHelper.getInstance();
             remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
-            System.out.println("linked");
+            System.out.println("Octopus: 连接服务器成功");
         }catch(MalformedURLException e){
             e.printStackTrace();
         }catch(RemoteException e){
