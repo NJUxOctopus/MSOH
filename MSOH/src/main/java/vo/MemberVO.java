@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 /**
  * 
- * @author �L�ߺ� 2016-10-15 15:11:44
+ * @author pxr
  *
  */
 public class MemberVO implements Serializable{

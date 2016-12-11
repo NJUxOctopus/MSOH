@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 /**
  * 
- * @author �L�ߺ� 2016-10-15 15:10:19
+ * @author pxr
  *
  */
 public class CreditRecordVO implements Serializable{

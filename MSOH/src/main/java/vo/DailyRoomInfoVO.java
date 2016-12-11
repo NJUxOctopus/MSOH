@@ -5,7 +5,9 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * @author pxr
+ */
 public class DailyRoomInfoVO implements Serializable{
 
 	public String hotelID;
