@@ -3,6 +3,7 @@ package ui.view.presentation.clerk;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import ui.controller.ProcessOrderController;
 import ui.controller.UserAdminController;
@@ -46,6 +47,8 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     private TextField customerIDTextField;
     @FXML
     private TextField customerPhoneTextField;
+    @FXML
+    private Label priceLabel;
 
     private String clerkID;
     private ClerkVO clerkVO;
@@ -69,6 +72,7 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
         clerkVO = userAdmin.findClerkByID(clerkID);
         this.rooms = rooms;
         this.price = price;
+        priceLabel.setText(String.valueOf(price));
     }
 
     /**
@@ -173,7 +177,7 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
                     haveChildren, price, price, OrderStatus.EXECUTED));
 
             if (resultMessage.equals(ResultMessage.Order_CreateOrderSuccess)) {
-                //信息填写不完整
+                //创建订单成功
                 stageController = new StageController();
                 stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
                 ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
