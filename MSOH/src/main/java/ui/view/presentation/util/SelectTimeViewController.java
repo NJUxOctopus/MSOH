@@ -111,7 +111,7 @@ public class SelectTimeViewController implements ControlledStage {
         }
         //工作人员 生日特惠界面
         if (toBeSet.equals("clerk/ClerkBirthdayPromotion.fxml")) {
-            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController();
+            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
             if (type.equals("checkIn"))
                 clerkCreateOfflineOrderController.setCheckInTime(time);
             if (type.equals("checkOut"))
