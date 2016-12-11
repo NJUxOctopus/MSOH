@@ -232,10 +232,9 @@ public class CustomerReserveViewController implements ControlledStage{
     }
 
 
-    public void init(String customerID, HotelVO hotelVO, String[] rooms){
+    public void init(String customerID, HotelVO hotelVO){
         this.customerID = customerID;
         this.hotelVO = hotelVO;
-        this.rooms = rooms;
         setCustomerInfo();
         setHotelInfo();
         setRoomInfo();

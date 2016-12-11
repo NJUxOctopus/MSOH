@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ui.controller.EditMemberLevelController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.EditMemberLevel;
 import ui.view.controllerservice.UserAdmin;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
 import util.MemberType;
@@ -53,6 +55,9 @@ public class CustomerMyMemberViewController implements ControlledStage{
     @FXML
     private Pane creditPane;
 
+    @FXML
+    private AnchorPane memberLevlScrollPane;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -78,6 +83,7 @@ public class CustomerMyMemberViewController implements ControlledStage{
     public void init(String customerID){
         this.customerID = customerID;
         setCustomerInfo();
+        setMemberLevelInfo();
     }
 
     /**
@@ -120,6 +126,15 @@ public class CustomerMyMemberViewController implements ControlledStage{
         EditMemberLevel editMemberLevel = new EditMemberLevelController();
         try {
             MemberLevelVO memberLevelVO = editMemberLevel.getMemberLevel();
+            int grade = memberLevelVO.num;
+            int[] bounds = memberLevelVO.creditBoundaries;
+            memberLevlScrollPane.setPrefWidth(60 * grade);
+            PaneAdder paneAdder = new PaneAdder();
+            for(int i = 0; i < grade; i++ ){
+                paneAdder.addPane(memberLevlScrollPane, "customer/CustomerSingleHotelView.fxml",  60 * i, 0);
+                CustomerSingleLevelController customerSingleLevelController = (CustomerSingleLevelController) paneAdder.getController();
+                customerSingleLevelController.init(i, bounds[i]);
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }

@@ -83,7 +83,12 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerReserveView.fxml", 1);
         CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
-        //customerReserveViewController.init(customerID, hotelID);
+        HotelAdmin hotelAdmin = new HotelAdminController();
+        try {
+            customerReserveViewController.init(customerID, hotelAdmin.findByID(hotelID));
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
