@@ -65,9 +65,6 @@ public class OrderPO implements Serializable, Cloneable {
     // 备注（特殊要求，如：“需要三双拖鞋”）
     @Column(name = "remarks")
     private String remarks;
-    // 所用策略ID
-    @Column(name = "promotionID")
-    private int promotionID;
     // 所用策略名称
     @Column(name = "promotionName")
     private String promotionName;
@@ -89,7 +86,7 @@ public class OrderPO implements Serializable, Cloneable {
     public OrderPO(String customerName, String phone, String customerID, String hotelID, String hotelName,
                    Timestamp estimatedCheckinTime, Timestamp actualCheckinTime, Timestamp estimatedCheckoutTime, Timestamp actualCheckoutTime,
                    Timestamp latestExecutedTime, String rooms, int numOfCustomers, boolean haveChildren, String remarks,
-                   int promotionID, String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
+                   String promotionName, double initialPrice, double finalPrice, OrderStatus orderType) {
         this.customerName = customerName;
         this.phone = phone;
         this.customerID = customerID;
@@ -104,7 +101,6 @@ public class OrderPO implements Serializable, Cloneable {
         this.numOfCustomers = numOfCustomers;
         this.haveChildren = haveChildren;
         this.remarks = remarks;
-        this.promotionID = promotionID;
         this.promotionName = promotionName;
         this.initialPrice = initialPrice;
         this.finalPrice = finalPrice;
@@ -221,14 +217,6 @@ public class OrderPO implements Serializable, Cloneable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
-    }
-
-    public int getPromotionID() {
-        return promotionID;
-    }
-
-    public void setPromotionID(int promotionID) {
-        this.promotionID = promotionID;
     }
 
     public String getPromotionName() {

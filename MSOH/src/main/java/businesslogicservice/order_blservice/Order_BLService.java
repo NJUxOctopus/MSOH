@@ -12,6 +12,8 @@ import vo.*;
 public interface Order_BLService {
     public ResultMessage createOrder(OrderVO orderVO) throws RemoteException;
 
+    public ResultMessage createOrderOffline(OrderVO orderVO)throws RemoteException;
+
     public ResultMessage cancelOrder(OrderVO orderVO) throws RemoteException ;
 
     public ResultMessage executeOrder(OrderVO orderVO) throws RemoteException;

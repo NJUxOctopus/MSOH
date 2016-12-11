@@ -107,14 +107,6 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         setHotelInfo(hotelID);
         setHotelPromotion(hotelID);
         setOrderInfo(customerID, hotelID);
-        hotelButton.setText("");
-        scoreLabel.setText("");
-        discountLabel.setText("");
-        priceLabel.setText("");
-        numOfCommentLabel.setText("");
-        normalOrderButton.setText("");
-        abnormalOrderButton.setText("");
-        canceledOrderButton.setText("");
         setHotelInfo(hotelID);
         setHotelPromotion(hotelID);
         setOrderInfo(customerID, hotelID);

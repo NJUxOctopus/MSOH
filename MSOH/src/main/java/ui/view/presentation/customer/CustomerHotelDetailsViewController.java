@@ -177,13 +177,10 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
     private void reserve(){
         HotelVO newHotelVO = new HotelVO(hotelID, hotelVO.hotelName, checkInTimeTextField.getText(), checkOutTimeTextField.getText());
         stageController = new StageController();
-        stageController.loadStage("clerk/ClerkChooseRoom.fxml", 1);
-        ClerkChooseRoomController clerkChooseRoomController = (ClerkChooseRoomController)stageController.getController();
-        try {
-            clerkChooseRoomController.initial(hotelID);
-        }catch (RemoteException e){
-            e.printStackTrace();
-        }
+        stageController.loadStage("customer/CustomerReserveView.fxml", 1);
+        CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
+        customerReserveViewController.init(customerID, newHotelVO);
+
     }
 
     public void init(String customerID, String hotelID){
@@ -279,7 +276,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             int count = 0;
             for(int j = 0; j < 3; j++){
                 if(roomNum[j] != 0){
-                    addPane("CustomerSingleRoomTypeView.fxml", 45 , 75 + 35 * count, roomInfoScrollPane, 4, null, null, new RoomVO(), null);
+                    addPane("CustomerSingleRoomTypeView.fxml", 45 , 75 + 35 * count, roomInfoScrollPane, 3, null, null, new RoomVO(), null);
                     count++;
                 }
             }

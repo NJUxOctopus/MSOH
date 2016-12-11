@@ -1,8 +1,9 @@
 package businesslogic.order_bl;
 
+import dataservice.order_dataservice.Order_DataService;
+import rmi.RemoteHelper;
 import util.sort.sortOrderByDate;
 import businesslogicservice.order_blservice.OrderUtil_BLService;
-import dataservice.order_dataservice.Order_DataService_Stub;
 import util.OrderStatus;
 import vo.OrderVO;
 import po.OrderPO;
@@ -15,7 +16,7 @@ import java.util.*;
  * Created by apple on 16/11/10.
  */
 public class OrderUtil implements OrderUtil_BLService {
-    Order_DataService_Stub order_dataService_stub = new Order_DataService_Stub();
+    Order_DataService order_dataService_stub = RemoteHelper.getInstance().getOrderDataService();
 
     /**
      * 根据订单号得到一个订单
@@ -33,10 +34,10 @@ public class OrderUtil implements OrderUtil_BLService {
             //若不存在该订单
             return null;
         return new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
-                orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
-                orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
+                orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
+                orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
                 orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
-                orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType());
+                orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderStatus());
     }
 
     /**
@@ -61,10 +62,10 @@ public class OrderUtil implements OrderUtil_BLService {
                 Object object = iterator.next();
                 OrderPO orderPO = (OrderPO) object;
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
-                        orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
-                        orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
+                        orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
+                        orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
                         orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
-                        orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
+                        orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderStatus()));
             }
             return orderVOList;
         }
@@ -107,10 +108,10 @@ public class OrderUtil implements OrderUtil_BLService {
                 Object object = iterator.next();
                 OrderPO orderPO = (OrderPO) object;
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
-                        orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
-                        orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
+                        orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
+                        orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
                         orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
-                        orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
+                        orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderStatus()));
             }
             return orderVOList;
         }
@@ -143,15 +144,12 @@ public class OrderUtil implements OrderUtil_BLService {
             return new ArrayList<OrderVO>();
         else {
             List<OrderVO> orderVOList = new ArrayList<OrderVO>();
-            Iterator iterator = orderPOList.iterator();
-            while (iterator.hasNext()) {
-                Object object = iterator.next();
-                OrderPO orderPO = (OrderPO) object;
+            for(OrderPO orderPO:orderPOList){
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
-                        orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckinTime(),
-                        orderPO.getActualCheckinTime(), orderPO.getEstimatedCheckoutTime(), orderPO.getActualCheckoutTime(),
+                        orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
+                        orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
                         orderPO.getLatestExecutedTime(), orderPO.getRooms().split(";"), orderPO.getNumOfCustomers(), orderPO.isHaveChildren(),
-                        orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderType()));
+                        orderPO.getRemarks(), orderPO.getPromotionName(), orderPO.getInitialPrice(), orderPO.getFinalPrice(), orderPO.getOrderStatus()));
             }
             return orderVOList;
         }
@@ -168,8 +166,14 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByHotelAndStatus(String hotelID, OrderStatus status) throws RemoteException {
         List<OrderVO> orderVOList = getOrdersByHotelID(hotelID);
-        orderVOList.retainAll(getOrderByStatus(status));
-        return orderVOList;
+        if(orderVOList==null||orderVOList.isEmpty())
+            return new ArrayList<OrderVO>();
+        List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
+        for(OrderVO orderVO:orderVOList){
+            if(orderVO.orderType.equals(status))
+                orderVOList2.add(orderVO);
+        }
+        return orderVOList2;
     }
 
     /**
@@ -182,8 +186,14 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByIDAndHotelID(String ID, String hotelID) throws RemoteException {
         List<OrderVO> orderVOList = getOrdersByCustomerID(ID);
-        orderVOList.retainAll(getOrdersByHotelID(hotelID));
-        return orderVOList;
+        if(orderVOList==null||orderVOList.isEmpty())
+            return new ArrayList<OrderVO>();
+        List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
+        for(OrderVO orderVO:orderVOList){
+            if(orderVO.hotelID.equals(hotelID))
+                orderVOList2.add(orderVO);
+        }
+        return orderVOList2;
     }
 
     /**
@@ -197,8 +207,14 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID, String hotelID, OrderStatus orderStatus) throws RemoteException {
         List<OrderVO> orderVOList = getOrderByHotelAndStatus(hotelID, orderStatus);
-        orderVOList.retainAll(getOrdersByCustomerID(ID));
-        return orderVOList;
+        if(orderVOList==null&&orderVOList.isEmpty())
+            return new ArrayList<OrderVO>();
+        List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
+        for(OrderVO orderVO:orderVOList){
+            if(orderVO.orderType.equals(orderStatus))
+                orderVOList2.add(orderVO);
+        }
+        return orderVOList2;
     }
 
     /**

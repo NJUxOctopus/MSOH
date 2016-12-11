@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "room", schema = "msoh_database")
 public class RoomPO implements Serializable, Cloneable {
+    private static final long serialVersionUID=1L;
     // 房间ID
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_id_seq")

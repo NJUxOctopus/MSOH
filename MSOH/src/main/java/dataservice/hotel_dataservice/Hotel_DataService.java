@@ -50,7 +50,7 @@ public interface Hotel_DataService extends Remote {
 //    public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException;
 
     // 获得某酒店的每日房间信息
-    public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
+    public DailyRoomInfoPO getDailyRoomInfo(String hotelID, java.sql.Timestamp timestamp) throws RemoteException;
 
     // 新增某酒店的每日房间信息
     public boolean addDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException;

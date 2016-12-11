@@ -35,6 +35,11 @@ public class ProcessOrderController implements ProcessOrder {
         return order_blService.createOrder(orderVO);
     }
 
+    @Override
+    public ResultMessage createOrderOffline(OrderVO orderVO) throws RemoteException {
+        return order_blService.createOrderOffline(orderVO);
+    }
+
     /**
      * 撤销订单
      * @param orderVO

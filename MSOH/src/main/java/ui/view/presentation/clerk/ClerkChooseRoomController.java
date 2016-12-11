@@ -45,14 +45,14 @@ public class ClerkChooseRoomController implements ControlledStage {
 
     //获取当前时间
     private Date date = new Date();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
     private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
     private String hotelID;
     private String clerkID;
     private HotelVO hotelVO;
     private HotelAdmin hotelAdmin;
-    private List<PaneAdder> paneAdders;
+    private List<PaneAdder> paneAdders = new ArrayList<PaneAdder>();
 
     @Override
     public void setStageController(StageController stageController) {
@@ -72,9 +72,9 @@ public class ClerkChooseRoomController implements ControlledStage {
         for (int i = 0; i < roomTypes; i++) {
             PaneAdder paneAdder = new PaneAdder();
             paneAdders.add(paneAdder);
+            paneAdder.addPane(chooseRoomPane, "clerk/ClerkSingleRoom.fxml", 0, 108 + i * 40);
             ClerkSingleRoomController clerkSingleRoomController = (ClerkSingleRoomController) paneAdder.getController();
             clerkSingleRoomController.initial(roomVOs.get(i));
-            paneAdder.addPane(chooseRoomPane, "clerk/ClerkSingleRoom.fxml", 0, 108 + i * 40);
         }
     }
 
@@ -96,7 +96,11 @@ public class ClerkChooseRoomController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkCreateOfflineOrder.fxml", 1);
         ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController();
-        clerkCreateOfflineOrderController.initial(clerkID, (String[]) rooms.toArray(), totalPrice);
+        String[] roomlist = new String[rooms.size()];
+        for(int i=0;i<rooms.size();i++){
+            roomlist[i]=rooms.get(i);
+        }
+        clerkCreateOfflineOrderController.initial(clerkID, roomlist, totalPrice);
         stageController.closeStage(resource);
     }
 
