@@ -37,21 +37,9 @@ public interface HotelUtil_BLService {
 
     public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException;
 
-    public List<HotelVO> searchByDate(Timestamp timestamp1,Timestamp timestamp2)throws RemoteException;
-
-    public List<HotelVO> filterByStar(String star) throws RemoteException;
-
-    public List<HotelVO> filterByScore(String low, String high) throws RemoteException;
-
-    public List<HotelVO> filterByDateAndRoomType(Timestamp timestamp1, Timestamp timestamp2,String roomType,int roomNum) throws RemoteException;
-
-    public List<HotelVO> filterByArea(String area) throws RemoteException;
-
     public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2, String roomType,int roomNum,String area) throws RemoteException;
 
     public List<HotelVO> searchHotel(String area, Timestamp timestamp1, Timestamp timestamp2, String star, String low, String high) throws RemoteException;
-
-    public List<HotelVO> filterByName(String name) throws RemoteException;
 
     public List<String> getAllCities() throws RemoteException;
 
