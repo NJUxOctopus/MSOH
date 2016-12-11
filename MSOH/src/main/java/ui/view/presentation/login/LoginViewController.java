@@ -41,6 +41,8 @@ public class LoginViewController implements ControlledStage {
     private PasswordField passwordField;
     @FXML
     private TextField userNameField;
+    @FXML
+    private Button exitButton;
 
     private LogIn logIn;
 
@@ -179,5 +181,13 @@ public class LoginViewController implements ControlledStage {
             logIn = new LogInController();
             logIn.rememberPassword(userID, password);
         }
+    }
+
+    /**
+     * 退出系统方法
+     */
+    @FXML
+    private void exit(){
+        System.exit(0);
     }
 }

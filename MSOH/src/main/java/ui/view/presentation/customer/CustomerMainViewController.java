@@ -142,7 +142,7 @@ public class CustomerMainViewController implements ControlledStage {
     private void showCustomerCreditRecordView() {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerCreditRecordView.fxml", 1);
-        CustomerCreditRecordViewController customerCreditRecordViewController = (CustomerCreditRecordViewController)stageController.getController();
+        CustomerCreditRecordViewController customerCreditRecordViewController = (CustomerCreditRecordViewController) stageController.getController();
         customerCreditRecordViewController.init(customerID);
 
     }
@@ -171,15 +171,15 @@ public class CustomerMainViewController implements ControlledStage {
      * 点击选择入住日期，跳出日期选择框
      */
     @FXML
-    private void showCheckInTimeSelectView(){
+    private void showCheckInTimeSelectView() {
         stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml",0.8);
+        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
         SelectTimeViewController selectTimeViewController = (SelectTimeViewController) stageController.getController();
         selectTimeViewController.setToBeSet(resource, "checkIn");
         selectTimeViewController.init();
     }
 
-    public void setCheckInTime(String checkInTime){
+    public void setCheckInTime(String checkInTime) {
         checkInTimeLabel.setText(checkInTime);
     }
 
@@ -187,49 +187,59 @@ public class CustomerMainViewController implements ControlledStage {
      * 点击选择退房日期，跳出日期选择框
      */
     @FXML
-    private void showCheckOutTimeSelectView(){
+    private void showCheckOutTimeSelectView() {
         stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml",0.8);
+        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
         SelectTimeViewController selectTimeViewController = (SelectTimeViewController) stageController.getController();
         selectTimeViewController.setToBeSet(resource, "checkOut");
         selectTimeViewController.init();
     }
 
-    public void setCheckOutTime(String checkOutTime){
+    public void setCheckOutTime(String checkOutTime) {
         checkOutTimeLabel.setText(checkOutTime);
     }
 
+    /**
+     * 切换账号
+     */
     @FXML
-    private void showCustomerSettingView(){
+    private void switchAccount() {
+        stageController = new StageController();
+        stageController.closeStage(resource);
+        stageController.loadStage("login/LoginView.fxml", 1);
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
     @FXML
-    private void showFeedbackView(){
+    private void showAboutUsView() {
 
     }
 
     @FXML
-    private void showAboutUsView(){
-
-    }
-
-    @FXML
-    private void setColor1(){
+    private void setColor1() {
         searchButton.setStyle("-fx-background-color: #ffffff00");
 
 
     }
 
     @FXML
-    private void setColor2(){
+    private void setColor2() {
         searchButton.setStyle("-fx-background-color: #ffffff30");
 
     }
+
     /**
      * 搜索酒店按钮
      */
     @FXML
-    private void search(){
+    private void search() {
         String city = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
         String area = (String) areaChoiceBox.getSelectionModel().getSelectedItem();
         int star = starChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
@@ -239,13 +249,12 @@ public class CustomerMainViewController implements ControlledStage {
 
         HotelVO hotelVO = new HotelVO(city, area, star, score, checkInTime, checkOutTime);
 
-        if(city != null &&  area != null){
+        if (city != null && area != null) {
             stageController = new StageController();
             stageController.loadStage("customer/CustomerHotelListView.fxml", 1);
-            CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController)stageController.getController();
+            CustomerHotelListViewController customerHotelListViewController = (CustomerHotelListViewController) stageController.getController();
             customerHotelListViewController.init(hotelVO, customerID);
-        }
-        else{
+        } else {
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
             controller.setLabel("请先选择城市与商圈！");
@@ -256,9 +265,10 @@ public class CustomerMainViewController implements ControlledStage {
 
     /**
      * 客户主界面初始化方法
+     *
      * @param customerID
      */
-    public void init(String customerID){
+    public void init(String customerID) {
         this.customerID = customerID;
 
         String customerName = "";
@@ -270,11 +280,11 @@ public class CustomerMainViewController implements ControlledStage {
             HotelInfo hotelInfo = new HotelInfoController();
             List<String> city = hotelInfo.getAllCities();
             ObservableList<String> citys = FXCollections.observableArrayList();
-            for(int i = 0; i < city.size(); i++)
+            for (int i = 0; i < city.size(); i++)
                 citys.add(city.get(i));
             cityChoiceBox.setItems(citys);
 
-            cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
+            cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
                 @Override
                 public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                     String selectedCity = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
@@ -286,8 +296,8 @@ public class CustomerMainViewController implements ControlledStage {
                         for (int i = 0; i < area.size(); i++)
                             areas.add(area.get(i));
                         areaChoiceBox.setItems(areas);
-                    }catch(RemoteException e){
-                        e.printStackTrace();;
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
                     }
                 }
             });
@@ -297,11 +307,16 @@ public class CustomerMainViewController implements ControlledStage {
 
             scoreChoiceBox.setItems(FXCollections.observableArrayList(
                     "任意分数", "1分以上", "2分以上", "3分以上", "4分以上", "5分以上"));
-        }catch(RemoteException e){
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
 
         checkInTimeLabel.setText("");
         checkOutTimeLabel.setText("");
+    }
+
+    public void init2(String customerID) {
+        starChoiceBox.setItems(FXCollections.observableArrayList(
+                "任意星级", "★", "★★", "★★★", "★★★★", "★★★★★"));
     }
 }

@@ -20,7 +20,7 @@ public class CustomerMainView extends Application {
         stageController = new StageController();
         stageController.loadStage(resource, 1);
         CustomerMainViewController customerMainViewController = (CustomerMainViewController) stageController.getController();
-        customerMainViewController.init("111");
+        customerMainViewController.init2("111");
     }
 }
 

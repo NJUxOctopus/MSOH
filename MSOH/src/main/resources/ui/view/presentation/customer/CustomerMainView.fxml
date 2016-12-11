@@ -101,28 +101,28 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="infoButton" layoutX="975.0" layoutY="340.0" mnemonicParsing="false" onAction="#showCustomerInfoView" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="个人信息" textFill="WHITE">
+      <Button fx:id="infoButton" layoutX="975.0" layoutY="340.0" mnemonicParsing="false" onAction="#showCustomerInfoView" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="个 人 信 息" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="settingButton" layoutX="975.0" layoutY="400.0" mnemonicParsing="false" onAction="#showCustomerSettingView" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="设置" textFill="WHITE">
+      <Button fx:id="switchButton" layoutX="975.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchAccount" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="切 换 账 号" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="feedbackButton" layoutX="975.0" layoutY="465.0" mnemonicParsing="false" onAction="#showFeedbackView" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="反馈" textFill="WHITE">
+      <Button fx:id="exitButton" layoutX="975.0" layoutY="465.0" mnemonicParsing="false" onAction="#exit" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="退 出 系 统" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="aboutUsButton" layoutX="975.0" layoutY="530.0" mnemonicParsing="false" onAction="#showAboutUsView" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="关于我们" textFill="WHITE">
+      <Button fx:id="aboutUsButton" layoutX="975.0" layoutY="530.0" mnemonicParsing="false" onAction="#showAboutUsView" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF00;" text="关 于 我 们" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
