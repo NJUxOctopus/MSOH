@@ -161,6 +161,8 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     public void addOrderPane(List<OrderVO> orderList){
         orderListScrollPane.getChildren().clear();
+        emptyOrderLabel.setOpacity(0);
+
         int num = 1;
         if (!(orderList.isEmpty())) {
             num = orderList.size();

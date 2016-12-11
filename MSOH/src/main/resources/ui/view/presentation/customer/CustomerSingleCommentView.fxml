@@ -23,5 +23,10 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Label fx:id="timeLabel" layoutX="339.0" layoutY="5.0" text="时间" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

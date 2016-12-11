@@ -76,16 +76,14 @@
             </Button>
             <ScrollPane layoutX="384.0" layoutY="117.0" prefHeight="552.0" prefWidth="779.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
               <content>
-                <AnchorPane fx:id="orderListScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="754.0" style="-fx-background-color: #ffffff00;">
-                     <children>
-                        <Label fx:id="emptyOrderLabel" layoutX="287.0" layoutY="253.0" opacity="0.0" text="暂无订单" textFill="WHITE">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                     </children></AnchorPane>
+                <AnchorPane fx:id="orderListScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="754.0" style="-fx-background-color: #ffffff00;" />
               </content>
             </ScrollPane>
+            <Label fx:id="emptyOrderLabel" layoutX="680.0" layoutY="370.0" opacity="0.0" text="暂 无 订 单" textFill="WHITE">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
             <Button fx:id="evaluateOrderButton1" layoutX="150.0" layoutY="649.0" mnemonicParsing="false" onAction="#showFinishedOrder" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;" text="已 完 成 订 单" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="26.0" />

@@ -68,11 +68,27 @@ public class HotelVO implements Serializable {
         this.comment = comment;
     }
 
+    /**
+     * 主界面搜索界面时构造方法
+     * @param city
+     * @param area
+     * @param star
+     * @param score
+     * @param checkInTime
+     * @param checkOutTime
+     */
     public HotelVO(String city, String area, int star, int score, String checkInTime, String checkOutTime) {
         this.city = city;
         this.area = area;
         this.star = star;
         this.score = score;
+        this.checkInTime = checkInTime;
+        this.checkOutTime = checkOutTime;
+    }
+
+    public HotelVO(String hotelID, String hotelName, String checkInTime, String checkOutTime){
+        this.hotelID = hotelID;
+        this.hotelName = hotelName;
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
     }

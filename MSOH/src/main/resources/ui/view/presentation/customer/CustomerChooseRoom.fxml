@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerChooseRoomController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="350.0" stroke="#575eda" strokeType="INSIDE" strokeWidth="3.0" width="450.0" />
+      <Button layoutX="97.0" layoutY="295.0" mnemonicParsing="false" onAction="#confirmSelect" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="确认" textFill="#458ee0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="274.0" layoutY="295.0" mnemonicParsing="false" onAction="#cancelSelect" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="取消" textFill="#458ee0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="37.0" layoutY="61.0" text="请选择房间：" textFill="#458ee0">
+         <font>
+            <Font name="Microsoft YaHei" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

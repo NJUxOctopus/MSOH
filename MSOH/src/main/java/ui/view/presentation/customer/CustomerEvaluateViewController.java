@@ -14,6 +14,8 @@ import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ErrorBoxController;
+import util.ResultMessage;
 import vo.CommentVO;
 import vo.OrderVO;
 
@@ -100,7 +102,16 @@ public class CustomerEvaluateViewController implements ControlledStage {
         CommentVO commentVO = new CommentVO(score, comment, customerName, customerID, hotelName, hotelID, orderID, commentTime);
         try {
             CommentHotel commentHotel = new CommentHotelController();
-            commentHotel.addComment(commentVO, orderVO);
+            ResultMessage resultMessage = commentHotel.addComment(commentVO, orderVO);
+            if(resultMessage == ResultMessage.Hotel_addCommentSuccess){
+                stageController = new StageController();
+                stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+                errorBoxController.setLabel("评价已提交！");
+                CustomerOrderDetailViewController customerOrderDetailViewController = (CustomerOrderDetailViewController) stageController.getController("cutsomer/CustomerEvaluateView.fxml");
+                customerOrderDetailViewController.hideButton();
+                stageController.closeStage(resource);
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }

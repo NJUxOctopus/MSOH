@@ -174,7 +174,7 @@ public class CustomerReserveViewController implements ControlledStage{
      * 点击选择入住日期，跳出日期选择框
      */
     @FXML
-    private void showCheckInTimeSelectView(){
+    private void selectCheckInTime(){
         stageController = new StageController();
         stageController.loadStage("util/SelectTimeView.fxml",0.8);
         SelectTimeViewController selectTimeViewController = (SelectTimeViewController) stageController.getController();
@@ -190,7 +190,7 @@ public class CustomerReserveViewController implements ControlledStage{
      * 点击选择退房日期，跳出日期选择框
      */
     @FXML
-    private void showCheckOutTimeSelectView(){
+    private void selectCheckOutTime(){
         stageController = new StageController();
         stageController.loadStage("util/SelectTimeView.fxml",0.8);
         SelectTimeViewController selectTimeViewController = (SelectTimeViewController) stageController.getController();
@@ -202,6 +202,11 @@ public class CustomerReserveViewController implements ControlledStage{
         checkOutTimeTextField.setText(checkOutTime);
     }
 
+
+    @FXML
+    private void selectRoom(){
+
+    }
 
     public void setRoomAndPrice(String[] rooms,double totalPrice){
         this.rooms = rooms;

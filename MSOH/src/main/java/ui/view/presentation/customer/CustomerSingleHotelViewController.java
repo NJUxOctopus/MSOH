@@ -75,7 +75,7 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerHotelDetailsView.fxml", 1);
         CustomerHotelDetailsViewController customerHotelDetailsViewController = (CustomerHotelDetailsViewController) stageController.getController();
-        customerHotelDetailsViewController.init();
+        customerHotelDetailsViewController.init(customerID, hotelID);
     }
 
     @FXML
@@ -83,7 +83,7 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("customer/CustomerReserveView.fxml", 1);
         CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
-        customerReserveViewController.init(customerID, hotelID);
+        //customerReserveViewController.init(customerID, hotelID);
     }
 
     @Override
