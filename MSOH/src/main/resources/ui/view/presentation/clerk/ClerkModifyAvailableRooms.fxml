@@ -95,7 +95,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="addButton1" layoutX="565.0" layoutY="270.0" mnemonicParsing="false" onAction="#addRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="addButton1" layoutX="590.0" layoutY="270.0" mnemonicParsing="false" onAction="#addRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -125,10 +125,15 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField fx:id="roomNumTextField" layoutX="503.0" layoutY="272.0" prefHeight="41.0" prefWidth="66.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="1">
+      <TextField fx:id="roomNumTextField" layoutX="503.0" layoutY="272.0" prefHeight="41.0" prefWidth="66.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="0">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
       </TextField>
+      <Label layoutX="658.0" layoutY="217.0" text="（每次只能修改一种房间！）" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

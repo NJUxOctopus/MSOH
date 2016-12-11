@@ -82,18 +82,15 @@ public class HotelVO implements Serializable {
      *
      * @param hotelName
      * @param hotelAddress
-     * @param area
      * @param intro
      * @param infra
      * @param star
      * @param hotelID
      */
-    public HotelVO(String hotelName, String hotelAddress, String city, String area, String intro, String[] infra, int star,
+    public HotelVO(String hotelName, String hotelAddress, String intro, String[] infra, int star,
                    String hotelID) {
         this.hotelName = hotelName;
         this.hotelAddress = hotelAddress;
-        this.city = city;
-        this.area = area;
         this.intro = intro;
         this.infra = infra;
         this.star = star;

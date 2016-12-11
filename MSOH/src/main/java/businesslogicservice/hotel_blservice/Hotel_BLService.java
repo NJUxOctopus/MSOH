@@ -29,4 +29,6 @@ public interface Hotel_BLService {
 
     public ResultMessage modifyDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
 
+
+
 }

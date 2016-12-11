@@ -57,6 +57,17 @@ public class HotelAdminController implements HotelAdmin {
     }
 
     /**
+     * 修改每日房间信息
+     *
+     * @param dailyRoomInfoVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage modifyDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
+        return hotel_blService.modifyDailyRoomInfo(dailyRoomInfoVO);
+    }
+
+    /**
      * 修改酒店信息
      *
      * @param hotelVO
@@ -82,11 +93,11 @@ public class HotelAdminController implements HotelAdmin {
      * 得到酒店某一天的房间信息
      *
      * @param hotelID
-     * @param date
+     * @param timestamp
      * @return
      */
-    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Date date) throws RemoteException {
-        return hotelUtil_blService.getDailyRoomInfo(hotelID, date);
+    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException {
+        return hotelUtil_blService.getDailyRoomInfo(hotelID, timestamp);
     }
 
     /**

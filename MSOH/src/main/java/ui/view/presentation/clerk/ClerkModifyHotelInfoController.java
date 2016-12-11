@@ -3,10 +3,7 @@ package ui.view.presentation.clerk;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.ChoiceBoxListCell;
 import ui.controller.HotelAdminController;
 import ui.view.controllerservice.HotelAdmin;
@@ -33,10 +30,6 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
     @FXML
     private TextField hotelAddressTextField;
     @FXML
-    private ChoiceBox cityChoiceBox;
-    @FXML
-    private ChoiceBox businessAreaChoiceBox;
-    @FXML
     private ChoiceBox starLevelChoiceBox;
     @FXML
     private CheckBox haveWIFICheckBox;
@@ -48,6 +41,10 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
     private CheckBox haveGymCheckBox;
     @FXML
     private TextArea hotelIntroductionTextArea;
+    @FXML
+    private Label cityLabel;
+    @FXML
+    private Label areaLabel;
 
     private String resource = "clerk/ClerkModifyHotelInfoController.fxml";
 
@@ -76,15 +73,9 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
         starLevelChoiceBox.setItems(star);
         starLevelChoiceBox.setValue(star.get(hotelVO.star - 1));
 
-        ObservableList<String> city = FXCollections.observableArrayList();
-        city.addAll(hotelAdmin.getAllCities());
-        cityChoiceBox.setItems(city);
-        cityChoiceBox.setValue(hotelVO.city);
+        cityLabel.setText(hotelVO.city);
+        areaLabel.setText(hotelVO.area);
 
-        ObservableList<String> businessArea = FXCollections.observableArrayList();
-        businessArea.addAll(hotelAdmin.getAreaByCity(cityChoiceBox.getSelectionModel().selectedItemProperty().toString()));
-        businessAreaChoiceBox.setItems(businessArea);
-        businessAreaChoiceBox.setValue(hotelVO.area);
 
         List<String> infra = new ArrayList<String>();
         for (String s : hotelVO.infra) {
@@ -121,9 +112,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
         } else {
             hotelAdmin = new HotelAdminController();
             ResultMessage resultMessage = hotelAdmin.updateHotelInfo(new HotelVO(hotelNameTextField.getText(),
-                    hotelAddressTextField.getText(), cityChoiceBox.getSelectionModel().selectedItemProperty().toString(),
-                    businessAreaChoiceBox.getSelectionModel().selectedItemProperty().toString(),
-                    hotelIntroductionTextArea.getText(),
+                    hotelAddressTextField.getText(), hotelIntroductionTextArea.getText(),
                     (String[]) infras.toArray(), starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1,
                     hotelID));
             if (resultMessage.equals(ResultMessage.Blank)) {
@@ -136,7 +125,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
     }
 
     /**
-     * 显示错误提示的方法
+     * 显示提示弹窗
      *
      * @param error
      */
@@ -169,8 +158,6 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
 
         if (hotelNameTextField.getText().equals(hotelVO.hotelName)
                 && starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1 == hotelVO.star
-                && cityChoiceBox.getSelectionModel().selectedItemProperty().toString().equals(hotelVO.city)
-                && businessAreaChoiceBox.getSelectionModel().selectedItemProperty().toString().equals(hotelVO.area)
                 && hotelAddressTextField.getText().equals(hotelVO.hotelAddress)
                 && infras.toArray().equals(hotelVO.infra)
                 && hotelIntroductionTextArea.getText().equals(hotelVO.intro)) {
