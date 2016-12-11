@@ -5,7 +5,9 @@ import util.OrderStatus;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
-
+/**
+ * @author pxr
+ */
 public class OrderVO implements Serializable{
 
 	public String customerName;

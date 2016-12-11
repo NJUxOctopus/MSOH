@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author �L�ߺ� 2016-10-15 15:09:12
+ * @author pxr
  */
 public class HotelVO implements Serializable {
 
