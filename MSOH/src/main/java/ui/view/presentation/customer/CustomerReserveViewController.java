@@ -206,7 +206,7 @@ public class CustomerReserveViewController implements ControlledStage{
     @FXML
     private void selectRoom(){
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerChooseRoomController.fxml", 1);
+        stageController.loadStage("customer/CustomerChooseRoom.fxml", 1);
         CustomerChooseRoomController customerChooseRoomController = (CustomerChooseRoomController) stageController.getController();
         customerChooseRoomController.initial(hotelIDTextField.getText());
     }
