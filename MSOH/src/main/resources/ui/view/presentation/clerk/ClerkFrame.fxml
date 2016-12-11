@@ -21,7 +21,7 @@
             <Image url="@../image/clerkFrame.png" />
          </image>
       </ImageView>
-      <Label fx:id="hotelName" layoutX="90.0" layoutY="50.0" text="MSOH酒店工作人员" textFill="WHITE">
+      <Label fx:id="hotelName" layoutX="90.0" layoutY="50.0" text="MSOH酒店" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="57.0" />
          </font>
@@ -86,7 +86,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Label fx:id="clerkName" layoutX="1069.0" layoutY="305.0" text="Octopus" textFill="WHITE">
+      <Label fx:id="clerkName" alignment="CENTER" layoutX="1036.0" layoutY="305.0" prefHeight="35.0" prefWidth="165.0" text="Octopus" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
@@ -96,7 +96,7 @@
             <Image url="@../image/avatar.png" />
          </image>
       </ImageView>
-      <Button fx:id="clerkInfo" layoutX="1065.0" layoutY="360.0" mnemonicParsing="false" onAction="#showModifyClerkInfo" style="-fx-background-color: #ffffff00;" text="个人信息" textFill="WHITE">
+      <Button layoutX="1065.0" layoutY="356.0" mnemonicParsing="false" onAction="#showModifyClerkInfo" style="-fx-background-color: #ffffff00;" text="个人信息" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -104,7 +104,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="settings" layoutX="1085.0" layoutY="417.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="设置" textFill="WHITE">
+      <Pane fx:id="clerkFramePane" layoutX="344.0" layoutY="140.0" prefHeight="473.0" prefWidth="688.0">
+         <children>
+            <Label fx:id="hotelName1" layoutX="90.0" layoutY="148.0" prefHeight="79.0" prefWidth="508.0" text="宾客至上 服务第一" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="57.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelName11" layoutX="90.0" layoutY="246.0" prefHeight="79.0" prefWidth="508.0" text="团结高效 勇争一流" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="57.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Button layoutX="1065.0" layoutY="414.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="切换账号" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -112,7 +125,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="feedBack" layoutX="1085.0" layoutY="469.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="反馈" textFill="WHITE">
+      <Button layoutX="1065.0" layoutY="517.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="关于我们" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -120,7 +133,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="aboutUs" layoutX="1065.0" layoutY="521.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="关于我们" textFill="WHITE">
+      <Button layoutX="1085.0" layoutY="465.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="反馈" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -128,6 +141,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Pane fx:id="clerkFramePane" layoutX="344.0" layoutY="140.0" prefHeight="473.0" prefWidth="688.0" />
    </children>
 </Pane>

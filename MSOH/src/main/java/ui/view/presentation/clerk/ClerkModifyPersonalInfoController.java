@@ -83,9 +83,15 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
     @FXML
     private void showConfirmExit() {
         stageController = new StageController();
-        stageController.loadStage("util/ConfirmExit.fxml", 0.8);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed(resource);
+        if (!isModified()) {
+            //未修改任何信息
+            stageController.closeStage(resource);
+        } else {
+            stageController.loadStage("util/ConfirmExit.fxml", 0.8);
+            ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+            controller.setToBeClosed(resource);
+        }
+
     }
 
     /**
@@ -93,30 +99,54 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
      */
     @FXML
     private void confirmModify() throws RemoteException {
-        String name = nameTextField.getText();
-        String phone = phoneTextField.getText();
-        ClerkVO clerkVO = new ClerkVO(name, phone, clerkID);
-        clerkInfoChange = new ClerkInfoChangeController();
-        ResultMessage resultMessage = clerkInfoChange.changeInfo(clerkVO);
-        stageController = new StageController();
-        if (resultMessage.equals(ResultMessage.Blank)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("信息填写不完整！");
-        } else if (resultMessage.equals(ResultMessage.DataFormatWrong)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("手机号格式错误！");
-        } else if (resultMessage.equals(ResultMessage.ChangeInfoSuccess)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("修改成功！");
-            stageController.closeStage(resource);
+        if (!isModified()) {
+            //未修改任何信息
+            this.returnMessage("信息未修改！");
         } else {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("未知错误！");
+            String name = nameTextField.getText();
+            String phone = phoneTextField.getText();
+            ClerkVO clerkVO = new ClerkVO(name, phone, clerkID);
+            clerkInfoChange = new ClerkInfoChangeController();
+            ResultMessage resultMessage = clerkInfoChange.changeInfo(clerkVO);
+            if (resultMessage.equals(ResultMessage.Blank)) {
+                this.returnMessage("信息填写不完整！");
+            } else if (resultMessage.equals(ResultMessage.DataFormatWrong)) {
+                this.returnMessage("手机号格式错误！");
+            } else if (resultMessage.equals(ResultMessage.ChangeInfoSuccess)) {
+                stageController = this.returnMessage("修改成功！");
+                stageController.closeStage(resource);
+            } else {
+                this.returnMessage("未知错误！");
+            }
         }
+
+    }
+
+    /**
+     * 返回信息是否被修改
+     *
+     * @return
+     */
+    private boolean isModified() {
+        if (nameTextField.getText().equals(clerkVO.name) && passwordTextField.getText().equals(clerkVO.password)
+                && phoneTextField.getText().equals(clerkVO.phone)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 返回修改结果
+     *
+     * @return
+     */
+    private StageController returnMessage(String error) {
+        stageController = new StageController();
+        stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+        ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+        errorBoxController.setLabel(error);
+        return stageController;
     }
 
 }

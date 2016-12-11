@@ -63,7 +63,7 @@ public class ClerkFrameController implements ControlledStage {
         clerkID = ID;
 
         hotelAdmin = new HotelAdminController();
-        hotelName.setText(hotelAdmin.findByClerkID(clerkID).hotelName + "工作人员");
+        hotelName.setText(hotelAdmin.findByClerkID(clerkID).hotelName);
 
         userAdmin = new UserAdminController();
         clerkName.setText(userAdmin.findClerkByID(clerkID).name);
@@ -126,6 +126,14 @@ public class ClerkFrameController implements ControlledStage {
         ClerkModifyPersonalInfoController clerkModifyPersonalInfoController = (ClerkModifyPersonalInfoController) stageController.getController();
         clerkModifyPersonalInfoController.initial(clerkID);
     }
+
+//    /**
+//     * 系统设置按钮结果，显示选择具体设置弹框
+//     */
+//    @FXML
+//    private void showSpecificSettings(){
+//
+//    }
 
 
 }

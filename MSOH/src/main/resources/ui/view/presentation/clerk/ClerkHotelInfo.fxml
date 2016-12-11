@@ -27,7 +27,7 @@
                   <Font name="Microsoft YaHei" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="hotelScore" layoutX="272.0" layoutY="30.0" text="4.8分" textFill="WHITE">
+            <Label fx:id="hotelScore" layoutX="484.0" layoutY="26.0" text="4.8分" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="25.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
-            <Button fx:id="checkCommentsButton" layoutX="331.0" layoutY="34.0" mnemonicParsing="false" onAction="#showHotelComments" style="-fx-background-color: #ffffff00;" text="查看详细评价">
+            <Button fx:id="checkCommentsButton" layoutX="543.0" layoutY="30.0" mnemonicParsing="false" onAction="#showHotelComments" style="-fx-background-color: #ffffff00;" text="查看详细评价">
                <font>
                   <Font name="Microsoft YaHei" size="15.0" />
                </font>
@@ -61,12 +61,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="208.0" layoutY="89.0" prefHeight="11.0" prefWidth="94.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
+            <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="186.0" layoutY="89.0" prefHeight="31.0" prefWidth="148.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <Label fx:id="roomNum" layoutX="316.0" layoutY="87.0" text="0" textFill="WHITE">
+            <Label fx:id="roomNum" layoutX="337.0" layoutY="87.0" text="0" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="25.0" />
                </font>

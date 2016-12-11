@@ -57,6 +57,17 @@ public class HotelAdminController implements HotelAdmin {
     }
 
     /**
+     * 修改每日房间信息
+     *
+     * @param dailyRoomInfoVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage modifyDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
+        return hotel_blService.modifyDailyRoomInfo(dailyRoomInfoVO);
+    }
+
+    /**
      * 修改酒店信息
      *
      * @param hotelVO
