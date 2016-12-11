@@ -39,8 +39,6 @@ public class CustomerChooseRoomController implements ControlledStage {
 
     private String hotelID;
 
-    private String clerkID;
-
     private HotelVO hotelVO;
 
     private HotelAdmin hotelAdmin;
@@ -60,15 +58,14 @@ public class CustomerChooseRoomController implements ControlledStage {
         hotelAdmin = new HotelAdminController();
         try {
             hotelVO = hotelAdmin.findByID(hotelID);
-            clerkID = hotelVO.clerkID;
             List<RoomVO> roomVOs = hotelAdmin.getDailyRoomInfo(hotelID, time).room;
             int roomTypes = roomVOs.size();
             for (int i = 0; i < roomTypes; i++) {
                 PaneAdder paneAdder = new PaneAdder();
                 paneAdders.add(paneAdder);
                 paneAdder.addPane(chooseRoomPane, "customer/CustomerSingleRoom.fxml", 0, 108 + i * 40);
-                ClerkSingleRoomController clerkSingleRoomController = (ClerkSingleRoomController) paneAdder.getController();
-                clerkSingleRoomController.initial(roomVOs.get(i));
+                CustomerSingleRoomController customerSingleRoomController = (CustomerSingleRoomController) paneAdder.getController();
+                customerSingleRoomController.initial(roomVOs.get(i));
             }
         }catch (RemoteException e){
             e.printStackTrace();

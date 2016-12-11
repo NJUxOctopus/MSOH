@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -136,15 +135,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <Label layoutX="488.0" layoutY="119.0" text="只显示预订过的酒店" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <CheckBox fx:id="reservedCheckBox" contentDisplay="CENTER" layoutX="706.0" layoutY="124.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></CheckBox>
             <Label alignment="CENTER" layoutX="126.0" layoutY="330.0" prefHeight="31.0" prefWidth="119.0" text="房 间 数 量" textFill="WHITE">
                <font>
                   <Font size="24.0" />

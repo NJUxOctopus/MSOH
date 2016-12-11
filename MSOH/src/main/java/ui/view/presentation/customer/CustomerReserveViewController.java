@@ -183,7 +183,7 @@ public class CustomerReserveViewController implements ControlledStage{
     }
 
     public void setCheckInTime(String checkInTime){
-        checkOutTimeTextField.setText(checkInTime);
+        checkInTimeTextField.setText(checkInTime);
     }
 
     /**

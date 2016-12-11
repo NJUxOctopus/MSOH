@@ -43,61 +43,51 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Label layoutX="480.0" layoutY="30.0" text="城市：" textFill="WHITE">
+                  <Line endX="420.0" layoutX="581.0" layoutY="20.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="481.0" layoutY="35.0" text="商圈：" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="cityLabel" layoutX="535.0" layoutY="30.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                  <Label fx:id="areaLabel" layoutX="536.0" layoutY="35.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="420.0" layoutX="580.0" layoutY="65.0" startX="-100.0" stroke="WHITE" />
-                  <Label layoutX="480.0" layoutY="80.0" text="商圈：" textFill="WHITE">
+                  <Line endX="420.0" layoutX="581.0" layoutY="70.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="481.0" layoutY="85.0" text="地址：" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="areaLabel" layoutX="535.0" layoutY="80.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                  <Label fx:id="addressLabel" layoutX="536.0" layoutY="85.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="420.0" layoutX="580.0" layoutY="115.0" startX="-100.0" stroke="WHITE" />
-                  <Label layoutX="480.0" layoutY="130.0" text="地址：" textFill="WHITE">
+                  <Line endX="420.0" layoutX="581.0" layoutY="120.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="481.0" layoutY="135.0" text="星级：" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="addressLabel" layoutX="535.0" layoutY="130.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                  <Label fx:id="starLabel" layoutX="536.0" layoutY="135.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="420.0" layoutX="580.0" layoutY="165.0" startX="-100.0" stroke="WHITE" />
-                  <Label layoutX="480.0" layoutY="180.0" text="星级：" textFill="WHITE">
+                  <Line endX="420.0" layoutX="581.0" layoutY="170.0" startX="-100.0" stroke="WHITE" />
+                  <Label layoutX="481.0" layoutY="230.0" text="简介：" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="starLabel" layoutX="535.0" layoutY="180.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                  <Label fx:id="briefInfoLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="536.0" layoutY="229.0" prefHeight="123.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="420.0" layoutX="580.0" layoutY="215.0" startX="-100.0" stroke="WHITE" />
-                  <Label layoutX="480.0" layoutY="275.0" text="简介：" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="briefInfoLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="535.0" layoutY="275.0" prefHeight="85.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Line endX="420.0" layoutX="580.0" layoutY="265.0" startX="-100.0" stroke="WHITE" />
+                  <Line endX="420.0" layoutX="581.0" layoutY="220.0" startX="-100.0" stroke="WHITE" />
                   <Line endX="1000.0" layoutX="60.0" layoutY="365.0" stroke="WHITE" />
                   <ScrollPane layoutX="60.0" layoutY="380.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;">
                     <content>
@@ -259,12 +249,12 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Label layoutX="480.0" layoutY="230.0" text="设施：" textFill="WHITE">
+                  <Label layoutX="480.0" layoutY="185.0" text="设施：" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="facilityLabel" layoutX="535.0" layoutY="230.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
+                  <Label fx:id="facilityLabel" layoutX="535.0" layoutY="185.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>

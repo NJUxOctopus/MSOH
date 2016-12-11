@@ -83,9 +83,6 @@ public class CustomerHotelListViewController implements ControlledStage {
     private ChoiceBox typeOfRoomChoiceBox;
 
     @FXML
-    private CheckBox reservedCheckBox;
-
-    @FXML
     private AnchorPane hotelListScrollPane;
 
     @FXML

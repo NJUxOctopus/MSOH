@@ -47,7 +47,7 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     private Label scoreLabel;
 
     @FXML
-    private Label discountLabel;
+    private Label starLabel;
 
     @FXML
     private Label priceLabel;
@@ -104,11 +104,8 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     public void init(String customerID, String hotelID){
         this.customerID = customerID;
         this.hotelID = hotelID;
+
         setHotelInfo(hotelID);
-        setHotelPromotion(hotelID);
-        setOrderInfo(customerID, hotelID);
-        setHotelInfo(hotelID);
-        setHotelPromotion(hotelID);
         setOrderInfo(customerID, hotelID);
     }
 
@@ -121,9 +118,8 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         try {
             HotelVO hotelVO = hotelAdmin.findByID(hotelID);
             hotelButton.setText(hotelVO.hotelName);
-            scoreLabel.setText(hotelVO.score + "");
 
-/*
+            //房间信息
             List<RoomVO> roomVOList = hotelVO.dailyRoomInfo.room;
             if(!roomVOList.isEmpty()) {
                 double price = roomVOList.get(0).price;
@@ -136,46 +132,22 @@ public class CustomerSingleHotelViewController implements ControlledStage {
             else{
                 priceLabel.setText("0");
             }
-*/
-            numOfCommentLabel.setText(hotelVO.comment.size() + "");
-            priceLabel.setText("0");
 
+            //评价信息
+            numOfCommentLabel.setText(hotelVO.comment.size() + "");
+            scoreLabel.setText(hotelVO.score + "");
+
+            //星级信息
+            String star = "";
+            for(int i = 0; i < hotelVO.star; i++){
+                star += "★";
+            }
+            starLabel.setText(star);
         } catch (RemoteException e){
             e.printStackTrace();
         }
     }
 
-    /**
-     * 设置促销相关信息
-     * @param hotelID
-     */
-    private void setHotelPromotion(String hotelID){
-        EditPromotion editPromotion = new EditPromotionController();
-        try {
-            //获得当前日期
-            Date today=new Date();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            Timestamp day = Timestamp.valueOf(df.format(today));
-            List<PromotionVO> promotionVOList = editPromotion.getPromotionByHotelID(hotelID, day);
-            if(!promotionVOList.isEmpty()) {
-                double minDiscount = promotionVOList.get(0).discount;
-                for (int i = 1; i < promotionVOList.size(); i++) {
-                    if (minDiscount > promotionVOList.get(i).discount)
-                        minDiscount = promotionVOList.get(i).discount;
-                }
-                discountLabel.setText(minDiscount + "");
-            }
-            else{
-                discountLabel.setText("无");
-            }
-        }catch (RemoteException e1) {
-            e1.printStackTrace();
-        }catch (IOException e2){
-            e2.printStackTrace();
-        }catch (ClassNotFoundException e3){
-            e3.printStackTrace();
-        }
-    }
 
     /**
      * 设置该用户的酒店订单信息

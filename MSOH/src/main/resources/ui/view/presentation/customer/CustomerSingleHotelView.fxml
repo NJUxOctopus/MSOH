@@ -35,11 +35,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="discountLabel" alignment="CENTER_RIGHT" layoutX="43.0" layoutY="285.0" prefHeight="22.0" prefWidth="58.0" text="8.8" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <Label fx:id="starLabel" layoutX="125.0" layoutY="288.0" prefHeight="22.0" prefWidth="58.0" text="8.8" textFill="WHITE" />
       <Label fx:id="priceLabel" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="324.0" prefHeight="22.0" prefWidth="58.0" text="130" textFill="WHITE">
          <font>
             <Font size="18.0" />
