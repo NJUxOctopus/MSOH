@@ -7,7 +7,9 @@ import java.util.List;
 
 import util.MemberType;
 import util.PromotionType;
-
+/**
+ * @author pxr
+ */
 public class PromotionVO implements Serializable {
 
     public String framerName;

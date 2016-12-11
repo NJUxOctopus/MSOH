@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
-
+/**
+ * @author pxr
+ */
 public class MemberLevelVO implements Serializable{
 
 	public String framerName;

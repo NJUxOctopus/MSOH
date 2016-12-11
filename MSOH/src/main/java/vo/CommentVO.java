@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * @author pxr
+ */
+
 public class CommentVO implements Serializable {
 
 	public double score;

@@ -2,6 +2,7 @@ package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import ui.controller.MemberRegisterController;
 import ui.view.controllerservice.MemberRegister;
@@ -29,7 +30,7 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
     private Button backButton;
 
     @FXML
-    private TextField corporateNameTextField;
+    private ChoiceBox companyChoiceBox;
 
     @FXML
     private Button confirmButton;
@@ -46,7 +47,7 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
     private void closeStage() {
         stageController = new StageController();
 
-        if(corporateNameTextField.getText() != "") {
+        if(companyChoiceBox.getSelectionModel().getSelectedItem().equals("")) {
             stageController.loadStage("util/ConfirmExit.fxml", 0.75);
             ConfirmExitController controller = (ConfirmExitController) stageController.getController();
             controller.setToBeClosed(resource);
@@ -56,9 +57,12 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
         }
     }
 
+    /**
+     * 注册企业会员
+     */
     @FXML
     private void signUpCorporate(){
-        String companyName = corporateNameTextField.getText();
+        String companyName = (String)companyChoiceBox.getSelectionModel().getSelectedItem();
         MemberVO memberVO = new MemberVO(customerID, MemberType.ENTREPRISE, 0, companyName);
         try{
             MemberRegister memberRegister = new MemberRegisterController();
@@ -82,6 +86,7 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
 
     public void init(String customerID){
         this.customerID = customerID;
+        //// TODO: 2016/12/11 获得所有酒店 
     }
 
 }
