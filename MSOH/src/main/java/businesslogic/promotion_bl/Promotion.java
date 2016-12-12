@@ -1,14 +1,11 @@
 package businesslogic.promotion_bl;
 
 import businesslogic.customer_bl.CustomerUtil;
-import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.promotion_blservice.Promotion_BLService;
-import dataservice.promotion_dataservice.Promotion_DataService_Stub;
+import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
 import rmi.RemoteHelper;
-import util.MemberType;
-import util.PromotionType;
 import util.ResultMessage;
 import util.strategy.BirthdayPromotion;
 import util.strategy.CompanyPromotion;
@@ -28,7 +25,7 @@ import java.util.List;
  */
 public class Promotion implements Promotion_BLService {
 
-    Promotion_DataService_Stub promotion_dataService_stub = new Promotion_DataService_Stub();
+    private Promotion_DataService promotion_dataService = RemoteHelper.getInstance().getPromotionDataService();
 
     /**
      * 增加网站营销策略，只需要填写目标商圈，自动获得商圈内所有酒店，用分号隔开
@@ -54,10 +51,10 @@ public class Promotion implements Promotion_BLService {
                 else
                     targetHotel += hotelVOList.get(i).hotelID;
             }
-            if (promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
+            if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, promotionVO.targetArea,
                     targetHotel, promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
-                    promotionVO.minRoom, null, PromotionType.WebPromotion)))
+                    promotionVO.minRoom, null, promotionVO.promotionType)))
                 return ResultMessage.Promotion_AddPromotionSuccess;
             else
                 return ResultMessage.Fail;
@@ -81,10 +78,10 @@ public class Promotion implements Promotion_BLService {
             return ResultMessage.DataFormatWrong;
         } else {
             String targetArea = hotelUtil.getByID(promotionVO.targetHotel[0]).area;
-            if (promotion_dataService_stub.addPromotion(new PromotionPO(promotionVO.framerName,
+            if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
                     promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
-                    promotionVO.minRoom, promotionVO.companyName, PromotionType.HotelPromotion)))
+                    promotionVO.minRoom, promotionVO.companyName, promotionVO.promotionType)))
                 return ResultMessage.Promotion_AddPromotionSuccess;
             else
                 return ResultMessage.Fail;
@@ -108,7 +105,7 @@ public class Promotion implements Promotion_BLService {
         } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
             return ResultMessage.DataFormatWrong;
         } else {
-            PromotionPO promotionPO = promotion_dataService_stub.getPromotion(Integer.parseInt(promotionVO.promotionID));
+            PromotionPO promotionPO = promotion_dataService.getPromotion(Integer.parseInt(promotionVO.promotionID));
             if (promotionPO == null)
                 return ResultMessage.PromotionNotExist;
             List<HotelVO> hotelVOList = hotelUtil.getByArea(promotionVO.targetArea);
@@ -129,7 +126,7 @@ public class Promotion implements Promotion_BLService {
             promotionPO.setStartTime(promotionVO.startTime);
             promotionPO.setTargetArea(promotionVO.targetArea);
             promotionPO.setTargetUser(promotionVO.targetUser);
-            if (promotion_dataService_stub.modifyPromotion(promotionPO))
+            if (promotion_dataService.modifyPromotion(promotionPO))
                 return ResultMessage.Promotion_ModifyPromotionSuccess;
             else
                 return ResultMessage.Fail;
@@ -152,7 +149,7 @@ public class Promotion implements Promotion_BLService {
         } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
             return ResultMessage.DataFormatWrong;
         } else {
-            PromotionPO promotionPO = promotion_dataService_stub.getPromotion(Integer.parseInt(promotionVO.promotionID));
+            PromotionPO promotionPO = promotion_dataService.getPromotion(Integer.parseInt(promotionVO.promotionID));
             if (promotionPO == null)
                 return ResultMessage.PromotionNotExist;
             promotionPO.setDiscount(promotionVO.discount);
@@ -161,7 +158,7 @@ public class Promotion implements Promotion_BLService {
             promotionPO.setPromotionName(promotionVO.promotionName);
             promotionPO.setStartTime(promotionVO.startTime);
             promotionPO.setTargetUser(promotionVO.targetUser);
-            if (promotion_dataService_stub.modifyPromotion(promotionPO))
+            if (promotion_dataService.modifyPromotion(promotionPO))
                 return ResultMessage.Promotion_ModifyPromotionSuccess;
             else
                 return ResultMessage.Fail;
@@ -176,10 +173,10 @@ public class Promotion implements Promotion_BLService {
      * @throws RemoteException
      */
     public ResultMessage deletePromotion(String promotionID) throws RemoteException {
-        if (promotion_dataService_stub.getPromotion(Integer.parseInt(promotionID)) == null)
+        if (promotion_dataService.getPromotion(Integer.parseInt(promotionID)) == null)
             //若不存在该营销策略
             return ResultMessage.PromotionNotExist;
-        if (promotion_dataService_stub.deletePromotion(promotion_dataService_stub.getPromotion(Integer.parseInt(promotionID))))
+        if (promotion_dataService.deletePromotion(promotion_dataService.getPromotion(Integer.parseInt(promotionID))))
             return ResultMessage.Promotion_DeletePromotionSuccess;
         else
             return ResultMessage.Fail;
@@ -194,19 +191,18 @@ public class Promotion implements Promotion_BLService {
      */
     public List<PromotionVO> promotionRequirements(OrderVO orderVO) throws IOException, ClassNotFoundException {
         //得到该酒店所有的促销策略
-        List<PromotionPO> promotionPOList = promotion_dataService_stub.getPromotionByHotelID(orderVO.hotelID);
-        HotelUtil hotelUtil = new HotelUtil();
+        List<PromotionPO> promotionPOList = promotion_dataService.getPromotionByHotelID(orderVO.hotelID);
         CustomerUtil customerUtil = new CustomerUtil();
         if (promotionPOList == null || promotionPOList.isEmpty())
             return null;
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         for (PromotionPO promotionPO : promotionPOList) {
-            if (promotionPO.getPromotionName().equals("生日特惠")) {
+            if (promotionPO.getPromotionName().contains("生日")) {
                 Strategy birthdayPromotion = new BirthdayPromotion();
                 if (birthdayPromotion.usePromotion(orderVO))
                     promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
             }
-            if (promotionPO.getPromotionName().equals("合作企业优惠")) {
+            if (promotionPO.getPromotionName().contains("合作企业")) {
                 Strategy companyPromotion = new CompanyPromotion(promotionPO.getCompanyName());
                 if (companyPromotion.usePromotion(orderVO))
                     promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
@@ -216,7 +212,6 @@ public class Promotion implements Promotion_BLService {
                 promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
 
         }
-        List<PromotionPO> webPromotionList = promotion_dataService_stub.getAllWebPromotions();
         return promotionVOList;
     }
 

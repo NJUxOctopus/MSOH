@@ -1,18 +1,21 @@
 package businesslogic.member_bl;
 
 import businesslogicservice.member_blservice.MemberLevel_BLService;
-import dataservice.memberlevel_dataservice.MemberLevel_DataService_Stub;
+import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import po.MemberLevelPO;
+import rmi.RemoteHelper;
 import util.ResultMessage;
 import vo.MemberLevelVO;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by apple on 16/11/10.
  */
 public class MemberLevel implements MemberLevel_BLService {
-    MemberLevel_DataService_Stub memberLevelDataServiceStub = new MemberLevel_DataService_Stub();
+    private MemberLevel_DataService memberLevel_dataService = RemoteHelper.getInstance().getMemberLevelDataService();
 
 
     /**
@@ -37,11 +40,19 @@ public class MemberLevel implements MemberLevel_BLService {
                 else
                     creditBoundaries += memberLevelVO.creditBoundaries[i];
             }
-            MemberLevelPO memberLevelPO = memberLevelDataServiceStub.getMemberLevel();
+            String discountList = "";
+            for (int i = 0; i < memberLevelVO.discountList.size(); i++) {
+                if (i != memberLevelVO.creditBoundaries.length - 1)
+                    discountList += memberLevelVO.discountList.get(i) + ";";
+                else
+                    discountList+= memberLevelVO.discountList.get(i);
+            }
+            MemberLevelPO memberLevelPO = memberLevel_dataService.getMemberLevel();
             memberLevelPO.setCreditBoundaries(creditBoundaries);
             memberLevelPO.setFrameDate(memberLevelVO.frameDate);
             memberLevelPO.setNum(memberLevelVO.num);
-            if (memberLevelDataServiceStub.updateMemberLevel(memberLevelPO))
+            memberLevelPO.setDiscountList(discountList);
+            if (memberLevel_dataService.updateMemberLevel(memberLevelPO))
                 return ResultMessage.MemberLevel_ModifyMemberLevelSuccess;
             else
                 return ResultMessage.Fail;
@@ -55,13 +66,18 @@ public class MemberLevel implements MemberLevel_BLService {
      * @throws RemoteException
      */
     public MemberLevelVO getMemberLevel() throws RemoteException {
-        MemberLevelPO memberLevelPO = memberLevelDataServiceStub.getMemberLevel();
+        MemberLevelPO memberLevelPO = memberLevel_dataService.getMemberLevel();
         String[] creditBoundaries = memberLevelPO.getCreditBoundaries().split(";");
         int[] boundaries = new int[creditBoundaries.length];
         for (int i = 0; i < creditBoundaries.length; i++) {
             boundaries[i] = Integer.parseInt(creditBoundaries[i]);
         }
+        List<String> discountList = new ArrayList<String>();
+        String[] str = memberLevelPO.getDiscountList().split(";");
+        for(int i=0;i<str.length;i++){
+            discountList.add(str[i]);
+        }
         return new MemberLevelVO(memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
-                boundaries);
+                boundaries,discountList);
     }
 }

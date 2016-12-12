@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 public class ClerkUtil implements ClerkUtil_BLService {
-    Clerk_DataService clerk_dataService = RemoteHelper.getInstance().getClerkDataService();
+    private Clerk_DataService clerk_dataService = RemoteHelper.getInstance().getClerkDataService();
 
     /**
      * 得到所有工作人员的vo
@@ -27,13 +27,10 @@ public class ClerkUtil implements ClerkUtil_BLService {
         List<ClerkPO> clerkPOList = clerk_dataService.findAllClerks();
         //如果没有员工
         if (clerkPOList==null||clerkPOList.isEmpty())
-            return null;
+            return new ArrayList<ClerkVO>();
         else{
             List<ClerkVO> clerkVOList = new ArrayList<ClerkVO>();
-            Iterator iterator = clerkPOList.iterator();
-            while (iterator.hasNext()){
-                Object object = iterator.next();
-                ClerkPO clerkPO = (ClerkPO)object;
+            for(ClerkPO clerkPO:clerkPOList){
                 clerkVOList.add(new ClerkVO(clerkPO.getName(),clerkPO.getPhone(),clerkPO.getPassword(),clerkPO.getID(),
                         clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
             }
@@ -72,13 +69,10 @@ public class ClerkUtil implements ClerkUtil_BLService {
         List<ClerkPO> clerkPOList = clerk_dataService.findClerkByName(name);
         if (clerkPOList==null||clerkPOList.isEmpty())
             //若列表为空
-            return null;
+            return new ArrayList<ClerkVO>();
         else{
             List<ClerkVO> clerkVOList = new ArrayList<ClerkVO>();
-            Iterator iterator = clerkPOList.iterator();
-            while (iterator.hasNext()){
-                Object object = iterator.next();
-                ClerkPO clerkPO = (ClerkPO)object;
+            for(ClerkPO clerkPO:clerkPOList){
                 clerkVOList.add(new ClerkVO(clerkPO.getName(),clerkPO.getPhone(),clerkPO.getPassword(),clerkPO.getID()
                         ,clerkPO.getPicUrl(),clerkPO.getHotelName(),clerkPO.getHotelID()));
             }

@@ -1,22 +1,22 @@
 package businesslogic.promotion_bl;
 
 import businesslogicservice.promotion_blservice.PromotionUtil_BLService;
-import dataservice.promotion_dataservice.Promotion_DataService_Stub;
+import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
+import rmi.RemoteHelper;
 import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by apple on 16/11/10.
  */
 public class PromotionUtil implements PromotionUtil_BLService {
-    Promotion_DataService_Stub promotion_dataService_stub = new Promotion_DataService_Stub();
+    private Promotion_DataService promotion_dataService = RemoteHelper.getInstance().getPromotionDataService();
 
 
     /**
@@ -30,10 +30,10 @@ public class PromotionUtil implements PromotionUtil_BLService {
         if (promotionID.equals(""))
             //若ID为空
             return null;
-        if (promotion_dataService_stub.getPromotion(Integer.parseInt(promotionID)) == null)
+        if (promotion_dataService.getPromotion(Integer.parseInt(promotionID)) == null)
             //若不存在该营销策略
             return null;
-        PromotionPO promotionPO = promotion_dataService_stub.getPromotion(Integer.parseInt(promotionID));
+        PromotionPO promotionPO = promotion_dataService.getPromotion(Integer.parseInt(promotionID));
         String[] targetHotel = promotionPO.getTargetHotel().split(";");
         return new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                 promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
@@ -49,7 +49,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
      * @throws RemoteException
      */
     public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws RemoteException, ClassNotFoundException, IOException {
-        List<PromotionPO> promotionPOList = promotion_dataService_stub.getPromotionByHotelID(hotelID);
+        List<PromotionPO> promotionPOList = promotion_dataService.getPromotionByHotelID(hotelID);
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         if (promotionPOList == null || promotionPOList.isEmpty())
             return new ArrayList<PromotionVO>();
@@ -72,7 +72,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
      * @throws ClassNotFoundException
      */
     public List<PromotionVO> getAllWebPromotions(Timestamp timestamp) throws IOException, ClassNotFoundException {
-        List<PromotionPO> promotionPOList = promotion_dataService_stub.getAllWebPromotions();
+        List<PromotionPO> promotionPOList = promotion_dataService.getAllWebPromotions();
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         if (promotionPOList == null || promotionPOList.isEmpty())
             return new ArrayList<PromotionVO>();

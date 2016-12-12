@@ -14,7 +14,12 @@ import java.sql.Timestamp;
  * Created by Pxr on 16/12/7.
  */
 public class BirthdayPromotion implements Strategy {
-
+    /**
+     * 判断生日特惠能否使用
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public Boolean usePromotion(OrderVO orderVO) throws RemoteException {
         CustomerUtil customerUtil = new CustomerUtil();

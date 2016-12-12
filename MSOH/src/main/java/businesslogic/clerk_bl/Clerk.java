@@ -18,7 +18,7 @@ import java.rmi.RemoteException;
  * Created by Pxr on 16/11/17.
  */
 public class Clerk implements Clerk_BLService {
-    Clerk_DataService clerk_dataService = RemoteHelper.getInstance().getClerkDataService();
+    private Clerk_DataService clerk_dataService = RemoteHelper.getInstance().getClerkDataService();
 
     /**
      * 添加工作人员

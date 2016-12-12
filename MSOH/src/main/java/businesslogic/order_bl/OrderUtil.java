@@ -1,6 +1,7 @@
 package businesslogic.order_bl;
 
 import dataservice.order_dataservice.Order_DataService;
+import po.HotelPO;
 import rmi.RemoteHelper;
 import util.sort.sortOrderByDate;
 import businesslogicservice.order_blservice.OrderUtil_BLService;
@@ -16,7 +17,7 @@ import java.util.*;
  * Created by apple on 16/11/10.
  */
 public class OrderUtil implements OrderUtil_BLService {
-    Order_DataService order_dataService_stub = RemoteHelper.getInstance().getOrderDataService();
+    private Order_DataService order_dataService = RemoteHelper.getInstance().getOrderDataService();
 
     /**
      * 根据订单号得到一个订单
@@ -29,7 +30,7 @@ public class OrderUtil implements OrderUtil_BLService {
         if (orderID.equals(""))
             //若ID为空
             return null;
-        OrderPO orderPO = order_dataService_stub.getOrderByOrderID(orderID);
+        OrderPO orderPO = order_dataService.getOrderByOrderID(orderID);
         if (orderPO == null)
             //若不存在该订单
             return null;
@@ -51,16 +52,13 @@ public class OrderUtil implements OrderUtil_BLService {
         if (customerID.equals(""))
             //若用户ID为空
             return null;
-        List<OrderPO> orderPOList = order_dataService_stub.findOrderByCustomerID(customerID);
+        List<OrderPO> orderPOList = order_dataService.findOrderByCustomerID(customerID);
         if (orderPOList == null || orderPOList.isEmpty())
             //若订单列表为空
             return new ArrayList<OrderVO>();
         else {
             List<OrderVO> orderVOList = new ArrayList<OrderVO>();
-            Iterator iterator = orderPOList.iterator();
-            while (iterator.hasNext()) {
-                Object object = iterator.next();
-                OrderPO orderPO = (OrderPO) object;
+            for (OrderPO orderPO : orderPOList) {
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                         orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
                         orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
@@ -82,8 +80,14 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByIDAndStatus(String customerID, OrderStatus orderStatus) throws RemoteException {
         List<OrderVO> orderVOList = getOrdersByCustomerID(customerID);
-        orderVOList.retainAll(getOrderByStatus(orderStatus));
-        return orderVOList;
+        if(orderVOList==null||orderVOList.isEmpty())
+            return new ArrayList<OrderVO>();
+        List<OrderVO> list = new ArrayList<OrderVO>();
+        for (OrderVO orderVO : orderVOList) {
+            if (orderVO.orderType.equals(orderStatus))
+                list.add(orderVO);
+        }
+        return list;
     }
 
     /**
@@ -97,16 +101,13 @@ public class OrderUtil implements OrderUtil_BLService {
         if (hotelID.equals(""))
             //若酒店ID为空
             return null;
-        List<OrderPO> orderPOList = order_dataService_stub.findOrderByHotelID(hotelID);
+        List<OrderPO> orderPOList = order_dataService.findOrderByHotelID(hotelID);
         if (orderPOList == null || orderPOList.isEmpty())
             //若酒店无订单
             return new ArrayList<OrderVO>();
         else {
             List<OrderVO> orderVOList = new ArrayList<OrderVO>();
-            Iterator iterator = orderPOList.iterator();
-            while (iterator.hasNext()) {
-                Object object = iterator.next();
-                OrderPO orderPO = (OrderPO) object;
+            for (OrderPO orderPO : orderPOList) {
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                         orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
                         orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
@@ -138,13 +139,13 @@ public class OrderUtil implements OrderUtil_BLService {
      * @throws RemoteException
      */
     public List<OrderVO> getOrderByStatus(OrderStatus status) throws RemoteException {
-        List<OrderPO> orderPOList = order_dataService_stub.findOrderByOrderStatus(status);
+        List<OrderPO> orderPOList = order_dataService.findOrderByOrderStatus(status);
         if (orderPOList == null || orderPOList.isEmpty())
             //若订单列表为空
             return new ArrayList<OrderVO>();
         else {
             List<OrderVO> orderVOList = new ArrayList<OrderVO>();
-            for(OrderPO orderPO:orderPOList){
+            for (OrderPO orderPO : orderPOList) {
                 orderVOList.add(new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                         orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
                         orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
@@ -166,11 +167,11 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByHotelAndStatus(String hotelID, OrderStatus status) throws RemoteException {
         List<OrderVO> orderVOList = getOrdersByHotelID(hotelID);
-        if(orderVOList==null||orderVOList.isEmpty())
+        if (orderVOList == null || orderVOList.isEmpty())
             return new ArrayList<OrderVO>();
         List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
-        for(OrderVO orderVO:orderVOList){
-            if(orderVO.orderType.equals(status))
+        for (OrderVO orderVO : orderVOList) {
+            if (orderVO.orderType.equals(status))
                 orderVOList2.add(orderVO);
         }
         return orderVOList2;
@@ -186,11 +187,11 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByIDAndHotelID(String ID, String hotelID) throws RemoteException {
         List<OrderVO> orderVOList = getOrdersByCustomerID(ID);
-        if(orderVOList==null||orderVOList.isEmpty())
+        if (orderVOList == null || orderVOList.isEmpty())
             return new ArrayList<OrderVO>();
         List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
-        for(OrderVO orderVO:orderVOList){
-            if(orderVO.hotelID.equals(hotelID))
+        for (OrderVO orderVO : orderVOList) {
+            if (orderVO.hotelID.equals(hotelID))
                 orderVOList2.add(orderVO);
         }
         return orderVOList2;
@@ -207,11 +208,11 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID, String hotelID, OrderStatus orderStatus) throws RemoteException {
         List<OrderVO> orderVOList = getOrderByHotelAndStatus(hotelID, orderStatus);
-        if(orderVOList==null&&orderVOList.isEmpty())
+        if (orderVOList == null && orderVOList.isEmpty())
             return new ArrayList<OrderVO>();
         List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
-        for(OrderVO orderVO:orderVOList){
-            if(orderVO.orderType.equals(orderStatus))
+        for (OrderVO orderVO : orderVOList) {
+            if (orderVO.orderType.equals(orderStatus))
                 orderVOList2.add(orderVO);
         }
         return orderVOList2;
@@ -219,6 +220,7 @@ public class OrderUtil implements OrderUtil_BLService {
 
     /**
      * 获得某一天某一种状态的订单
+     *
      * @param timestamp
      * @param orderStatus
      * @return
@@ -226,8 +228,11 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByStatusAndDate(Timestamp timestamp, OrderStatus orderStatus) throws RemoteException {
         List<OrderVO> list = new ArrayList<OrderVO>();
-        for(OrderVO orderVO:getOrderByStatus(orderStatus)){
-            if(orderVO.estimatedCheckinTime.getDay()==timestamp.getDay())
+        List<OrderVO> orderVOList = getOrderByStatus(orderStatus);
+        if(orderVOList==null||orderVOList.isEmpty())
+            return new ArrayList<OrderVO>();
+        for (OrderVO orderVO : orderVOList) {
+            if (orderVO.estimatedCheckinTime.getDay() == timestamp.getDay())
                 list.add(orderVO);
         }
         return list;

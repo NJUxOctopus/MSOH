@@ -2,13 +2,12 @@ package businesslogic.member_bl;
 
 import businesslogic.customer_bl.CustomerUtil;
 import businesslogicservice.member_blservice.Member_BLService;
-import dataservice.customer_dataservice.Customer_DataService_Stub;
-import dataservice.member_dataservice.Member_DataService_Stub;
+import dataservice.customer_dataservice.Customer_DataService;
+import dataservice.member_dataservice.Member_DataService;
 import po.MemberPO;
 import rmi.RemoteHelper;
 import util.MemberType;
 import util.ResultMessage;
-import vo.CustomerVO;
 import vo.MemberLevelVO;
 import vo.MemberVO;
 
@@ -18,8 +17,8 @@ import java.rmi.RemoteException;
  * Created by apple on 16/11/10.
  */
 public class Member implements Member_BLService {
-    Member_DataService_Stub member_dataService_stub = new Member_DataService_Stub();
-    Customer_DataService_Stub customer_dataService_stub = new Customer_DataService_Stub();
+    private Member_DataService member_dataService = RemoteHelper.getInstance().getMemberDataService();
+    private Customer_DataService customer_dataService = RemoteHelper.getInstance().getCustomerDataService();
 
     /**
      * 会员注册
@@ -30,12 +29,12 @@ public class Member implements Member_BLService {
      */
     public ResultMessage signUp(MemberVO memberVO) throws RemoteException {
         String customerID  = memberVO.ID;
-        if (customer_dataService_stub.findCustomerByID(customerID).getMemberType().equals(MemberType.NONMEMBER)) {//首先用户必须是非会员
+        if (customer_dataService.findCustomerByID(customerID).getMemberType().equals(MemberType.NONMEMBER)) {//首先用户必须是非会员
             if (memberVO.memberType.equals(MemberType.ENTREPRISE)) {//若注册为企业会员
                 if (memberVO.companyName.equals(""))//企业名输入不能为空
                     return ResultMessage.Blank;
                 else {
-                    if (member_dataService_stub.addMember(new MemberPO(customerID, memberVO.memberType,
+                    if (member_dataService.addMember(new MemberPO(customerID, memberVO.memberType,
                             memberVO.level, memberVO.birthday, memberVO.companyName)))
                         return ResultMessage.Member_EnterpriseSignupSuccess;
                     else
@@ -45,7 +44,7 @@ public class Member implements Member_BLService {
                 if (memberVO.birthday == null)//会员生日不能为空
                     return ResultMessage.Blank;
                 else {
-                    if (member_dataService_stub.addMember(new MemberPO(customerID, memberVO.memberType,
+                    if (member_dataService.addMember(new MemberPO(customerID, memberVO.memberType,
                             memberVO.level, memberVO.birthday, memberVO.companyName)))
                         return ResultMessage.Member_NormalSignupSuccess;
                     else
@@ -64,9 +63,9 @@ public class Member implements Member_BLService {
      * @throws RemoteException
      */
     public ResultMessage changeGrade(String customerID) throws RemoteException {
-        if (member_dataService_stub.findMemberByID(customerID) == null)//若该用户不是会员
+        if (member_dataService.findMemberByID(customerID) == null)//若该用户不是会员
             return ResultMessage.Customer_isNotMember;
-        MemberPO memberPO = member_dataService_stub.findMemberByID(customerID);
+        MemberPO memberPO = member_dataService.findMemberByID(customerID);
         MemberLevel memberLevel = new MemberLevel();
         MemberLevelVO memberLevelVO = memberLevel.getMemberLevel();//获取会员等级制度
         CustomerUtil customerUtil = new CustomerUtil();
@@ -87,7 +86,7 @@ public class Member implements Member_BLService {
                         memberPO.setLevel(i + 1);//若信用值大于最高界限
                 }
             }
-            if (member_dataService_stub.updateMember(memberPO))
+            if (member_dataService.updateMember(memberPO))
                 return ResultMessage.levelChangeSuccess;
         }
         return ResultMessage.Fail;
