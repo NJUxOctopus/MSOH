@@ -4,6 +4,7 @@ import businesslogicservice.promotion_blservice.PromotionUtil_BLService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
 import rmi.RemoteHelper;
+import util.PromotionType;
 import vo.PromotionVO;
 
 import java.io.IOException;
@@ -85,4 +86,23 @@ public class PromotionUtil implements PromotionUtil_BLService {
         }
         return promotionVOList;
     }
+
+    /**
+     * 根据促销策略类型和酒店ID获得促销策略
+     * @param promotionType
+     * @param hotelID
+     * @return
+     * @throws RemoteException
+     */
+    public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType, String hotelID,Timestamp timestamp) throws IOException, ClassNotFoundException {
+        List<PromotionVO> promotionVOList = getPromotionByHotelID(hotelID,timestamp);
+        List<PromotionVO> list = new ArrayList<PromotionVO>();
+        for(PromotionVO promotionVO:promotionVOList){
+            if(promotionVO.promotionType.equals(promotionType))
+                list.add(promotionVO);
+        }
+        return list;
+    }
 }
+
+

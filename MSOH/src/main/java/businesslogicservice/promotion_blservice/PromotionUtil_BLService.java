@@ -1,6 +1,7 @@
 package businesslogicservice.promotion_blservice;
 
 import po.PromotionPO;
+import util.PromotionType;
 import vo.PromotionVO;
 
 import java.io.IOException;
@@ -18,4 +19,6 @@ public interface PromotionUtil_BLService {
     public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws RemoteException, ClassNotFoundException, IOException;
 
     public List<PromotionVO> getAllWebPromotions(Timestamp timestamp) throws IOException, ClassNotFoundException;
+
+    public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType,String hotelID,Timestamp timestamp)throws IOException, ClassNotFoundException;
 }
