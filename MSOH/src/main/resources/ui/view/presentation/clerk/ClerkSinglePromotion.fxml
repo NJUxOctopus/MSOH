@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="orderPanel" prefHeight="212.5" prefWidth="669.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSinglePromotionController">
+<Pane fx:id="orderPanel" prefHeight="212.5" prefWidth="669.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSinglePromotionController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="212.5" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: #ffffff00;" width="669.0" />
       <Label fx:id="orderIDLabel" layoutX="62.0" layoutY="44.0" text="优惠名称：" textFill="WHITE">
