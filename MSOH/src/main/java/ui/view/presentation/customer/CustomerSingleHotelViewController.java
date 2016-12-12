@@ -118,9 +118,12 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         try {
             HotelVO hotelVO = hotelAdmin.findByID(hotelID);
             hotelButton.setText(hotelVO.hotelName);
+            Date date = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
             //房间信息
-            List<RoomVO> roomVOList = hotelVO.dailyRoomInfo.room;
+            List<RoomVO> roomVOList = hotelAdmin.getDailyRoomInfo(hotelID, time).room;
             if(!roomVOList.isEmpty()) {
                 double price = roomVOList.get(0).price;
                 for (int i = 1; i < roomVOList.size(); i++) {
