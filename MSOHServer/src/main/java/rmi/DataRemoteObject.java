@@ -33,9 +33,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
+ * 远程方法的连接
+ * <p>
  * Created by zqh on 2016/11/13.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService,City_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService,Company_DataService {
+public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService, City_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService, Company_DataService {
 
 
     private Customer_DataService customer_dataService;
@@ -59,10 +61,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         memberLevel_dataService = MemberLevel_DataServiceImpl.getInstance();
         member_dataService = Member_DataServiceImpl.getInstance();
         customer_dataService = Customer_DataServiceImpl.getInstance();
-        hotel_dataService= Hotel_DataServiceImpl.getInstance();
-        city_dataService= City_DataServiceImpl.getInstance();
-        promotion_dataService= Promotion_DataServiceImpl.getInstance();
-        company_dataService= Company_DataServiceImpl.getInstance();
+        hotel_dataService = Hotel_DataServiceImpl.getInstance();
+        city_dataService = City_DataServiceImpl.getInstance();
+        promotion_dataService = Promotion_DataServiceImpl.getInstance();
+        company_dataService = Company_DataServiceImpl.getInstance();
     }
 
     /**
@@ -149,7 +151,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     /**
      * HotelDataService的DataRemoteObject
      */
-    public boolean addHotel(HotelPO po) throws IOException,ClassNotFoundException {
+    public boolean addHotel(HotelPO po) throws IOException, ClassNotFoundException {
         return hotel_dataService.addHotel(po);
     }
 
@@ -178,7 +180,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     }
 
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Timestamp date) throws RemoteException {
-        return hotel_dataService.getDailyRoomInfo(hotelID,date);
+        return hotel_dataService.getDailyRoomInfo(hotelID, date);
     }
 
     public boolean addDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException {
