@@ -114,13 +114,13 @@ public class ClerkCheckOrderListController implements ControlledStage {
     private void addOrder(List<OrderVO> orderVOList) throws RemoteException {
         PaneAdder paneAdder = new PaneAdder();
         int numOfOrder = orderVOList.size();
-        orderListPane.setPrefWidth(numOfOrder * 160);
+        orderListPane.setPrefHeight(numOfOrder * 160);
 
         for (int i = 0; i < numOfOrder; i++) {
             orderVO = orderVOList.get(i);
+            paneAdder.addPane(orderListPane, "clerk/ClerkSingleOrder.fxml", 0, i * 160);
             ClerkSingleOrderController clerkSingleOrderController = (ClerkSingleOrderController) paneAdder.getController();
             clerkSingleOrderController.initial(orderVO);
-            paneAdder.addPane(orderListPane, "clerk/ClerkSingleOrder.fxml", 0, i * 160);
         }
     }
 

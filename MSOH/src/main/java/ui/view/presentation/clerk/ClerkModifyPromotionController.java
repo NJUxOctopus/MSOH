@@ -2,9 +2,14 @@ package ui.view.presentation.clerk;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import vo.PromotionVO;
+
+import java.rmi.RemoteException;
 
 /**
  * Created by ST on 2016/12/1.
@@ -13,27 +18,49 @@ public class ClerkModifyPromotionController implements ControlledStage {
 
     private StageController stageController;
 
+    @FXML
+    private Pane promotionPane;
+
+    private PromotionVO promotionVO;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
     }
 
     /**
-     * 开始时间按钮结果，显示选择开始时间弹窗
+     * initial方法，初始化界面
      */
-    @FXML
-    private void showBeginTime() {
-        stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
-    }
-
-    /**
-     * 结束时间按钮结果，显示选择结束时间弹窗
-     */
-    @FXML
-    private void showEndTime() {
-        stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
+    public void initial(PromotionVO promotionVO) throws RemoteException {
+        this.promotionVO = promotionVO;
+        PaneAdder paneAdder = new PaneAdder();
+        switch (promotionVO.promotionType) {
+            case HotelPromotion_Birthday:
+                paneAdder.addPane(promotionPane, "clerk/ClerkBirthdayPromotion.fxml", 0, 0);
+                ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController)paneAdder.getController();
+                clerkBirthdayPromotionController.initial(promotionVO);
+                break;
+            case HotelPromotion_Holiday:
+                paneAdder.addPane(promotionPane, "clerk/ClerkHolidayPromotion.fxml", 0, 0);
+                ClerkHolidayPromotionController clerkHolidayPromotionController = (ClerkHolidayPromotionController)paneAdder.getController();
+                clerkHolidayPromotionController.initial(promotionVO);
+                break;
+            case HotelPromotion_Reserve:
+                paneAdder.addPane(promotionPane, "clerk/ClerkReservePromotion.fxml", 0, 0);
+                ClerkReservePromotionController clerkReservePromotionController = (ClerkReservePromotionController)paneAdder.getController();
+                clerkReservePromotionController.initial(promotionVO);
+                break;
+            case HotelPromotion_Company:
+                paneAdder.addPane(promotionPane, "clerk/ClerkEnterprisePromotion.fxml", 0, 0);
+                ClerkEnterprisePromotionController clerkEnterprisePromotionController = (ClerkEnterprisePromotionController)paneAdder.getController();
+                clerkEnterprisePromotionController.initial(promotionVO);
+                break;
+            case HotelPromotion_Other:
+                paneAdder.addPane(promotionPane, "clerk/ClerkOtherPromotion.fxml", 0, 0);
+                ClerkOtherPromotionController clerkOtherPromotionController = (ClerkOtherPromotionController)paneAdder.getController();
+                clerkOtherPromotionController.initial(promotionVO);
+                break;
+        }
     }
 
     /**
@@ -43,7 +70,7 @@ public class ClerkModifyPromotionController implements ControlledStage {
     private void showConfirmExit() {
         stageController = new StageController();
         stageController.loadStage("util/ConfirmExit.fxml", 0.8);
-        ConfirmExitController controller = (ConfirmExitController)stageController.getController();
+        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
         controller.setToBeClosed("clerk/ClerkModifyHotelPromotion.fxml");
     }
 }

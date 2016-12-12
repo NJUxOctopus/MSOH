@@ -2,9 +2,15 @@ package ui.view.presentation.clerk;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.SelectTimeViewController;
+
+import java.rmi.RemoteException;
 
 /**
  * Created by ST on 2016/11/30.
@@ -13,27 +19,96 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
 
     private StageController stageController;
 
+    @FXML
+    private Pane promotionPane;
+    @FXML
+    private Rectangle promotionSelectShade;
+
+    private String resource = "clerk/ClerkCreateHotelPromotion.fxml";
+    private String clerkID;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
     }
 
     /**
-     * 开始时间按钮结果，显示选择开始时间弹窗
+     * initial方法，初始化界面
      */
-    @FXML
-    private void showBeginTime() {
-        stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
+    public void initial(String clerkID) throws RemoteException {
+        this.clerkID = clerkID;
+        //默认显示生日特惠
+        this.showBirthdayPromotion();
     }
 
     /**
-     * 结束时间按钮结果，显示选择结束时间弹窗
+     * 生日特惠按钮结果，显示制定生日特惠界面
      */
     @FXML
-    private void showEndTime() {
-        stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
+    private void showBirthdayPromotion() throws RemoteException {
+        promotionSelectShade.setY(156);
+        promotionPane.getChildren().clear();
+
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(promotionPane, "clerk/ClerkBirthdayPromotion.fxml", 0, 0);
+        ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) paneAdder.getController();
+        clerkBirthdayPromotionController.initial(clerkID);
+    }
+
+    /**
+     * 节日特惠按钮结果，显示制定节日特惠界面
+     */
+    @FXML
+    private void showHolidayPromotion() throws RemoteException {
+        promotionSelectShade.setY(226);
+        promotionPane.getChildren().clear();
+
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(promotionPane, "clerk/ClerkHolidayPromotion.fxml", 0, 0);
+        ClerkHolidayPromotionController clerkHolidayPromotionController = (ClerkHolidayPromotionController) paneAdder.getController();
+        clerkHolidayPromotionController.initial(clerkID);
+    }
+
+    /**
+     * 多订多惠按钮结果，显示制定多订多惠界面
+     */
+    @FXML
+    private void showReservePromotion() throws RemoteException {
+        promotionSelectShade.setY(294);
+        promotionPane.getChildren().clear();
+
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(promotionPane, "clerk/ClerkReservePromotion.fxml", 0, 0);
+        ClerkReservePromotionController clerkReservePromotionController = (ClerkReservePromotionController) paneAdder.getController();
+        clerkReservePromotionController.initial(clerkID);
+    }
+
+    /**
+     * 合作企业优惠按钮结果，显示制定合作企业优惠界面
+     */
+    @FXML
+    private void showEnterprisePromotion() throws RemoteException {
+        promotionSelectShade.setY(362);
+        promotionPane.getChildren().clear();
+
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(promotionPane, "clerk/ClerkEnterprisePromotion.fxml", 0, 0);
+        ClerkEnterprisePromotionController clerkEnterprisePromotionController = (ClerkEnterprisePromotionController) paneAdder.getController();
+        clerkEnterprisePromotionController.initial(clerkID);
+    }
+
+    /**
+     * 其他优惠按钮结果，显示制定其他优惠界面
+     */
+    @FXML
+    private void showOtherPromotion() throws RemoteException {
+        promotionSelectShade.setY(429);
+        promotionPane.getChildren().clear();
+
+        PaneAdder paneAdder = new PaneAdder();
+        paneAdder.addPane(promotionPane, "clerk/ClerkOtherPromotion.fxml", 0, 0);
+        ClerkOtherPromotionController clerkOtherPromotionController = (ClerkOtherPromotionController) paneAdder.getController();
+        clerkOtherPromotionController.initial(clerkID);
     }
 
     /**

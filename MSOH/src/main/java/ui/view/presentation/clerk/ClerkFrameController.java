@@ -108,12 +108,16 @@ public class ClerkFrameController implements ControlledStage {
      * 酒店促销按钮结果，显示酒店促销页面
      */
     @FXML
-    private void showHotelPromotionList() {
+    private void showHotelPromotionList() throws IOException, ClassNotFoundException {
         // Close the previous panel
         clerkFramePane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(clerkFramePane, "clerk/ClerkHotelPromotion.fxml", 0, 0);
+
+        //初始化界面
+        ClerkHotelPromotionController clerkHotelPromotionController = (ClerkHotelPromotionController)paneAdder.getController();
+        clerkHotelPromotionController.initial(clerkID);
     }
 
     /**

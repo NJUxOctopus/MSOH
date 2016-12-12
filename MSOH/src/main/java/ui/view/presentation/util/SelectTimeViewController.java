@@ -112,9 +112,32 @@ public class SelectTimeViewController implements ControlledStage {
         //工作人员 生日特惠界面
         if (toBeSet.equals("clerk/ClerkBirthdayPromotion.fxml")) {
             ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
-            if (type.equals("checkIn"))
+            if (type.equals("start"))
                 clerkCreateOfflineOrderController.setCheckInTime(time);
-            if (type.equals("checkOut"))
+            if (type.equals("end"))
+                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+        }//工作人员 节日特惠界面
+        if (toBeSet.equals("clerk/ClerkHolidayPromotion.fxml")) {
+            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            if (type.equals("start"))
+                clerkCreateOfflineOrderController.setCheckInTime(time);
+            if (type.equals("end"))
+                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+        }
+        //工作人员 合作企业优惠界面
+        if (toBeSet.equals("clerk/ClerkEnterprisePromotion.fxml")) {
+            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            if (type.equals("start"))
+                clerkCreateOfflineOrderController.setCheckInTime(time);
+            if (type.equals("end"))
+                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+        }
+        //工作人员 多订多惠界面
+        if (toBeSet.equals("clerk/ClerkReservePromotion.fxml")) {
+            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            if (type.equals("start"))
+                clerkCreateOfflineOrderController.setCheckInTime(time);
+            if (type.equals("end"))
                 clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
         }
     }
