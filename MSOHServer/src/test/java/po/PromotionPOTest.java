@@ -24,7 +24,7 @@ public class PromotionPOTest {
         String str3 = "2016-12-31 00:00:00";
         Timestamp endTime = Timestamp.valueOf(str3);
 
-        PromotionPO promotionPO=new PromotionPO("梁静茹", frameDate,"悠闲圣诞，优惠享不停", MemberType.NONMEMBER,"新街口地区","10000006",startTime,endTime,0.75,1,null, PromotionType.HotelPromotion);
+//        PromotionPO promotionPO=new PromotionPO("梁静茹", frameDate,"悠闲圣诞，优惠享不停", MemberType.NONMEMBER,"新街口地区","10000006",startTime,endTime,0.75,1,null, PromotionType.HotelPromotion);
 
 
 
@@ -32,7 +32,7 @@ public class PromotionPOTest {
 //        PromotionPO promotionPO=promotion_dataService.getPromotion(8);
 //        promotionPO.setTargetUser(MemberType.NONMEMBER);
 //        promotion_dataService.modifyPromotion(promotionPO);
-        promotion_dataService.addPromotion(promotionPO);
+//        promotion_dataService.addPromotion(promotionPO);
 
     }
 }

@@ -47,4 +47,9 @@ public class Promotion_DataService_Stub implements Promotion_DataService {
     public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException {
         return false;
     }
+
+    @Override
+    public List<PromotionPO> getPromotionByPromotionType(PromotionType promotionType) throws IOException, ClassNotFoundException {
+        return null;
+    }
 }

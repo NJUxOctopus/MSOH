@@ -24,7 +24,7 @@ public class Manager implements Manager_BLService {
      * @throws RemoteException
      */
     public ResultMessage changeInfo(ManagerVO managerVO) throws RemoteException {
-        ManagerPO managerPO = manager_dataService.findManager(managerVO.ID);
+        ManagerPO managerPO = manager_dataService.findManagerByID(managerVO.ID);
         if (managerPO == null)
             //找不到该管理人员
             return ResultMessage.Manager_ManagerNotExist;
@@ -56,12 +56,12 @@ public class Manager implements Manager_BLService {
     public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException {
         if (ID.equals("") || oldPassword.equals("") || newPassword1.equals("") || newPassword2.equals("")) {//ID或旧密码或两次新密码未输入
             return ResultMessage.Blank;
-        } else if (manager_dataService.findManager(ID) == null) {
+        } else if (manager_dataService.findManagerByID(ID) == null) {
             return ResultMessage.Manager_ManagerNotExist;
-        } else if (manager_dataService.findManager(ID).getPassword().equals(oldPassword) && newPassword1.matches
+        } else if (manager_dataService.findManagerByID(ID).getPassword().equals(oldPassword) && newPassword1.matches
                 (DataFormat.Password_Format) && newPassword2.matches(DataFormat.Password_Format)) {//若旧密码输入正确
             if (newPassword1.equals(newPassword2)) {//如果两次新密码输入相同
-                ManagerPO managerPO = manager_dataService.findManager(ID);
+                ManagerPO managerPO = manager_dataService.findManagerByID(ID);
                 managerPO.setPassword(newPassword1);
                 if (manager_dataService.modifyManager(managerPO))
                     return ResultMessage.ChangePasswordSuccess;
@@ -70,7 +70,7 @@ public class Manager implements Manager_BLService {
             } else {//两次新密码输入不同
                 return ResultMessage.ChangePassword2DifferentNew;
             }
-        } else if (!manager_dataService.findManager(ID).getPassword().equals(oldPassword)) {//旧密码输入错误
+        } else if (!manager_dataService.findManagerByID(ID).getPassword().equals(oldPassword)) {//旧密码输入错误
             return ResultMessage.ChangePasswordWrongOldPw;
         } else
             return ResultMessage.DataFormatWrong;

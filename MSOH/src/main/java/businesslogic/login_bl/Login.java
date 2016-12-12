@@ -37,15 +37,15 @@ public class Login implements Login_BLService {
         if (ID.equals("") || password.equals("")) {
             return ResultMessage.Blank;//若账号密码为空
         } else if (clerk_dataService.findClerkByID(ID) == null &&
-                manager_dataService.findManager(ID) == null &&
+                manager_dataService.findManagerByID(ID) == null &&
                 customer_dataService.findCustomerByID(ID) == null &&
                 marketer_dataService.findMarketerByID(ID) == null) {
             return ResultMessage.Login_NoUser;//若未找到该ID的用户，返回无该用户
         } else if (clerk_dataService.findClerkByID(ID) != null &&
                 clerk_dataService.findClerkByID(ID).getPassword().equals(password)) {
             return ResultMessage.Login_ClerkSuccess;//返回工作人员登录成功
-        } else if (manager_dataService.findManager(ID) != null &&
-                manager_dataService.findManager(ID).getPassword().equals(password)) {
+        } else if (manager_dataService.findManagerByID(ID) != null &&
+                manager_dataService.findManagerByID(ID).getPassword().equals(password)) {
             return ResultMessage.Login_ManagerSuccess;//返回管理人员登录成功
         } else if (marketer_dataService.findMarketerByID(ID) != null &&
                 marketer_dataService.findMarketerByID(ID).getPassword().equals(password)) {

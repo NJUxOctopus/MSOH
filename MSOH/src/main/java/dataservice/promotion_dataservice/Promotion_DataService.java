@@ -1,6 +1,7 @@
 package dataservice.promotion_dataservice;
 
 import po.PromotionPO;
+import util.PromotionType;
 
 import java.io.IOException;
 import java.rmi.Remote;
@@ -31,4 +32,6 @@ public interface Promotion_DataService extends Remote{
 	// 更新促销策略
 	public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException;
 
+	// 根据促销策略类型获得促销策略
+	public List<PromotionPO> getPromotionByPromotionType(PromotionType promotionType) throws IOException,ClassNotFoundException;
 }

@@ -84,7 +84,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         List<PromotionPO> webPromotionList = new ArrayList<PromotionPO>();
 
         for (PromotionPO promotionPO : promotionList) {
-            if (promotionPO.getPromotionType().equals(PromotionType.WebPromotion)) {
+            if (promotionPO.getPromotionType().equals(PromotionType.WebPromotion_Holiday) || promotionPO.getPromotionType().equals(PromotionType.WebPromotion_VIP)) {
                 webPromotionList.add(promotionPO);
             }
         }
@@ -165,5 +165,35 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         List<PromotionPO> returnPromotionList = CopyUtil.deepCopy(list);
 
         return returnPromotionList;
+    }
+
+    /**
+     * 根据促销策略类型获得促销策略
+     *
+     * @param promotionType
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public List<PromotionPO> getPromotionByPromotionType(PromotionType promotionType) throws IOException, ClassNotFoundException {
+        List<PromotionPO> list = promotionDataHelper.getAllPromotions();
+
+        if (list == null || list.isEmpty()) {
+            return list;
+        }
+
+        List<PromotionPO> certainTypePromotionList = new ArrayList<PromotionPO>();
+
+        for (PromotionPO promotion : list) {
+            if (promotion.getPromotionType().equals(promotionType)) {
+                certainTypePromotionList.add(promotion);
+            }
+        }
+
+        if (certainTypePromotionList.isEmpty()) {
+            return certainTypePromotionList;
+        } else {
+            return CopyUtil.deepCopy(certainTypePromotionList);
+        }
     }
 }

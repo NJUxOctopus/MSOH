@@ -24,6 +24,7 @@ import dataservice.order_dataservice.Order_DataService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.*;
 import util.OrderStatus;
+import util.PromotionType;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -344,6 +345,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
 
     public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException {
         return promotion_dataService.modifyPromotion(promotionPO);
+    }
+
+    public List<PromotionPO> getPromotionByPromotionType(PromotionType promotionType) throws IOException, ClassNotFoundException {
+        return promotion_dataService.getPromotionByPromotionType(promotionType);
     }
 
     /**
