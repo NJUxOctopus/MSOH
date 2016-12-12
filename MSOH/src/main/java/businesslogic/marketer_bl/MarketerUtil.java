@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Pxr on 16/11/23.
  */
 public class MarketerUtil implements MarketerUtil_BLService {
-    Marketer_DataService_Stub marketer_dataService_stub = new Marketer_DataService_Stub();
+    private Marketer_DataService_Stub marketer_dataService_stub = new Marketer_DataService_Stub();
 
     /**
      * 根据营销人员ID得到营销人员

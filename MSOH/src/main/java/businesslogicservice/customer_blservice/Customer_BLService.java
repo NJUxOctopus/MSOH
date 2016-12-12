@@ -26,4 +26,6 @@ public interface Customer_BLService {
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException;
 
     public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2) throws RemoteException;
+
+    public ResultMessage creditCharge(String ID, int credit) throws RemoteException;
 }

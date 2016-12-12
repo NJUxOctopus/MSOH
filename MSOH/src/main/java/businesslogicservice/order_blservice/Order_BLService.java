@@ -20,7 +20,7 @@ public interface Order_BLService {
 
     public ResultMessage endOrder(OrderVO orderVO) throws RemoteException;
 
-    public ResultMessage setAbnormal(String orderID) throws RemoteException;
+//    public ResultMessage setAbnormal(String orderID) throws RemoteException;
 
     public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException;
 
@@ -30,6 +30,6 @@ public interface Order_BLService {
 
     public OrderPriceVO getLowestPrice(List<OrderPriceVO> orderPriceVOs)throws RemoteException;
 
-    public void examineAbnormal(String orderID,Timestamp timestamp)throws RemoteException;
+//    public void examineAbnormal(String orderID,Timestamp timestamp)throws RemoteException;
 
 }

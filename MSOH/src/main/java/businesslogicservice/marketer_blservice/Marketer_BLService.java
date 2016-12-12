@@ -17,5 +17,4 @@ public interface Marketer_BLService {
 
     public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2)throws RemoteException;
 
-    public ResultMessage CreditCharge(String ID, int credit, CustomerVO customerVO)throws RemoteException;
 }
