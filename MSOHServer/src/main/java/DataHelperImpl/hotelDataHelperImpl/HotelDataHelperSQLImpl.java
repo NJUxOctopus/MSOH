@@ -178,7 +178,7 @@ public class HotelDataHelperSQLImpl implements HotelDataHelper {
     public List<HotelPO> getHotelByArea(String areaName) {
         List<HotelPO> hotelList=getHotels();
 
-        if(hotelList.isEmpty()||hotelList==null){
+        if(hotelList==null||hotelList.isEmpty()){
             return hotelList;
         }
 

@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.ManagerPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -21,9 +22,13 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
      * @param managerPO
      */
     public boolean modifyManager(ManagerPO managerPO) {
+        // 密码加密
+        String pw = EncryptionUtil.encode(managerPO.getPassword());
+        managerPO.setPassword(pw);
+
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.update(managerPO);
@@ -54,6 +59,14 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             session.beginTransaction();
 
             ManagerPO managerPO = (ManagerPO) session.get(ManagerPO.class, ID);
+
+            if (managerPO == null) {
+                return managerPO;
+            } else {
+                // 密码解密
+                managerPO.setPassword(EncryptionUtil.decode(managerPO.getPassword()));
+            }
+
             return managerPO;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -84,6 +97,15 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             query.setString("n", name);
 
             List<ManagerPO> list = query.list();
+
+            if (list == null || list.isEmpty()) {
+                return new ArrayList<ManagerPO>();
+            } else {
+                // 密码解密
+                for (ManagerPO manager : list) {
+                    manager.setPassword(EncryptionUtil.decode(manager.getPassword()));
+                }
+            }
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -109,6 +131,15 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             session.beginTransaction();
 
             List<ManagerPO> list = session.createQuery("from ManagerPO ").list();
+
+            if(list==null||list.isEmpty()){
+                return new ArrayList<ManagerPO>();
+            }else{
+                // 密码解密
+                for(ManagerPO manager:list){
+                    manager.setPassword(EncryptionUtil.decode(manager.getPassword()));
+                }
+            }
 
             return list;
         } catch (HibernateException e) {

@@ -107,7 +107,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<HotelPO> getHotels() throws IOException, ClassNotFoundException {
         List<HotelPO> hotelList = hotelDataHelper.getHotels();
 
-        if (hotelList.isEmpty() || hotelList == null) {
+        if (hotelList == null || hotelList.isEmpty()) {
             return hotelList;
         }
 
@@ -144,7 +144,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<HotelPO> findHotelByName(String hotelName) throws IOException, ClassNotFoundException {
         List<HotelPO> hotelList = hotelDataHelper.getHotelByName(hotelName);
 
-        if (hotelList.isEmpty() || hotelList == null) {
+        if (hotelList == null || hotelList.isEmpty()) {
             return hotelList;
         }
 
@@ -164,7 +164,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<HotelPO> getHotelByArea(String areaName) throws IOException, ClassNotFoundException {
         List<HotelPO> hotelInThisArea = hotelDataHelper.getHotelByArea(areaName);
 
-        if (hotelInThisArea.isEmpty() || hotelInThisArea == null) {
+        if (hotelInThisArea == null || hotelInThisArea.isEmpty()) {
             return hotelInThisArea;
         }
 
@@ -203,7 +203,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Timestamp date) throws RemoteException {
         List<RoomPO> roomList = roomDataHelper.getRoomsByHotel(hotelID);
 
-        if (roomList.isEmpty() || roomList == null) {
+        if (roomList == null || roomList.isEmpty()) {
             return null;
         }
 
@@ -303,7 +303,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<CommentPO> getCommentByHotel(String hotelID) throws IOException, ClassNotFoundException {
         List<CommentPO> commentList = commentDataHelper.getCommentsByHotel(hotelID);
 
-        if (commentList.isEmpty() || commentList == null) {
+        if (commentList == null||commentList.isEmpty()) {
             return commentList;
         }
 
@@ -343,7 +343,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         int size = 0;
         List<HotelPO> list = getHotels();
 
-        if (list.isEmpty() || list == null) {
+        if ( list == null||list.isEmpty()) {
             size = 0;
         } else {
             size = list.size();

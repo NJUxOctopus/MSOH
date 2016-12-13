@@ -17,16 +17,18 @@ public class EncryptionUtil {
     // TODO 给DAOImpl加数据加密方法
     public static final String ALGORITHM_DES = "DES/CBC/PKCS5Padding";
 
+    // 加密私钥,长度不小于8位
+    private static final String key="136950231";
+
     /**
      * DES算法，加密
      *
      * @param data 待加密字符串
-     * @param key  加密私钥，长度不能够小于8位
      * @return 加密后的字节数组，一般结合Base64编码使用
      * @throws InvalidAlgorithmParameterException
      * @throws Exception
      */
-    public static String encode(String key, String data) {
+    public static String encode(String data) {
         if (data == null)
             return null;
         try {
@@ -54,7 +56,7 @@ public class EncryptionUtil {
      * @return 解密后的字节数组
      * @throws Exception 异常
      */
-    public static String decode(String key, String data) {
+    public static String decode(String data) {
         if (data == null)
             return null;
         try {

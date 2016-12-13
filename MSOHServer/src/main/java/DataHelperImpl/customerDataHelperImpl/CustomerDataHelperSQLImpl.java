@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.CustomerPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -22,6 +23,10 @@ public class CustomerDataHelperSQLImpl implements CustomerDataHelper {
      * @return 是否成功
      */
     public boolean addCustomer(CustomerPO customerPO) {
+        // 密码加密
+        String pw = EncryptionUtil.encode(customerPO.getPassword());
+        customerPO.setPassword(pw);
+
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -48,6 +53,10 @@ public class CustomerDataHelperSQLImpl implements CustomerDataHelper {
      * @return 是否成功
      */
     public boolean deleteCustomer(CustomerPO customerPO) {
+        // 密码加密
+        String pw = EncryptionUtil.encode(customerPO.getPassword());
+        customerPO.setPassword(pw);
+
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -74,6 +83,10 @@ public class CustomerDataHelperSQLImpl implements CustomerDataHelper {
      * @return 是否成功
      */
     public boolean modifyCustomer(CustomerPO customerPO) {
+        // 密码加密
+        String pw = EncryptionUtil.encode(customerPO.getPassword());
+        customerPO.setPassword(pw);
+
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -111,6 +124,15 @@ public class CustomerDataHelperSQLImpl implements CustomerDataHelper {
 
             List<CustomerPO> list = query.list();
 
+            if (list == null || list.isEmpty()) {
+                return new ArrayList<CustomerPO>();
+            } else {
+                // 密码解密
+                for (CustomerPO customer : list) {
+                    customer.setPassword(EncryptionUtil.decode(customer.getPassword()));
+                }
+            }
+
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -137,6 +159,13 @@ public class CustomerDataHelperSQLImpl implements CustomerDataHelper {
 
             CustomerPO customerPO = session.get(CustomerPO.class, customerID);
 
+            if (customerPO == null) {
+                return customerPO;
+            } else {
+                // 密码解密
+                customerPO.setPassword(EncryptionUtil.decode(customerPO.getPassword()));
+            }
+
             return customerPO;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -159,6 +188,15 @@ public class CustomerDataHelperSQLImpl implements CustomerDataHelper {
         session.beginTransaction();
 
         List<CustomerPO> list = session.createQuery("from CustomerPO ").list();
+
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<CustomerPO>();
+        } else {
+            // 密码解密
+            for (CustomerPO customer : list) {
+                customer.setPassword(EncryptionUtil.decode(customer.getPassword()));
+            }
+        }
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);

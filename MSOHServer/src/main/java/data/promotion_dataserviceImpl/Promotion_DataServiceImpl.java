@@ -77,7 +77,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
     public List<PromotionPO> getAllWebPromotions() throws IOException, ClassNotFoundException {
         List<PromotionPO> promotionList = getAllPromotions();
 
-        if (promotionList.isEmpty() || promotionList == null) {
+        if (promotionList == null || promotionList.isEmpty()) {
             return promotionList;
         }
 
@@ -89,7 +89,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
             }
         }
 
-        if (webPromotionList.isEmpty() || webPromotionList == null) {
+        if (webPromotionList == null || webPromotionList.isEmpty()) {
             return webPromotionList;
         }
 
@@ -107,7 +107,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
     public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException, ClassNotFoundException {
         List<PromotionPO> promotionList = getAllPromotions();
 
-        if (promotionList.isEmpty() || promotionList == null) {
+        if (promotionList == null || promotionList.isEmpty()) {
             return promotionList;
         }
 
@@ -120,7 +120,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
             }
         }
 
-        if (hotelPromotionList.isEmpty() || hotelPromotionList == null) {
+        if (hotelPromotionList == null || hotelPromotionList.isEmpty()) {
             return hotelPromotionList;
         }
 

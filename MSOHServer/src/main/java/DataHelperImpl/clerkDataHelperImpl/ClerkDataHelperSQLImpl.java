@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.ClerkPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -21,9 +22,13 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      * @param clerkPO
      */
     public boolean addClerk(ClerkPO clerkPO) {
+        // 密码加密
+        String pw = EncryptionUtil.encode(clerkPO.getPassword());
+        clerkPO.setPassword(pw);
+
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.save(clerkPO);
@@ -46,9 +51,13 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      * @param clerkPO
      */
     public boolean modifyClerk(ClerkPO clerkPO) {
+        // 密码加密
+        String pw = EncryptionUtil.encode(clerkPO.getPassword());
+        clerkPO.setPassword(pw);
+
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.update(clerkPO);
@@ -72,9 +81,13 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      * @param clerkPO
      */
     public boolean deleteClerk(ClerkPO clerkPO) {
+        // 密码加密
+        String pw = EncryptionUtil.encode(clerkPO.getPassword());
+        clerkPO.setPassword(pw);
+
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.delete(clerkPO);
@@ -105,6 +118,13 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
 
             ClerkPO clerkPO = (ClerkPO) session.get(ClerkPO.class, ID);
 
+            if (clerkPO == null) {
+                return clerkPO;
+            } else {
+                // 密码解密
+                clerkPO.setPassword(EncryptionUtil.decode(clerkPO.getPassword()));
+            }
+
             return clerkPO;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -134,6 +154,16 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             query.setString("n", name);
 
             List<ClerkPO> list = query.list();
+
+            if (list == null || list.isEmpty()) {
+                return new ArrayList<ClerkPO>();
+            } else {
+                // 密码解密
+                for (ClerkPO clerk : list) {
+                    clerk.setPassword(EncryptionUtil.decode(clerk.getPassword()));
+                }
+            }
+
             return list;
 
         } catch (HibernateException e) {
@@ -157,6 +187,15 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
         session.beginTransaction();
 
         List<ClerkPO> list = session.createQuery("from ClerkPO").list();
+
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<ClerkPO>();
+        } else {
+            // 密码解密
+            for (ClerkPO clerk : list) {
+                clerk.setPassword(EncryptionUtil.decode(clerk.getPassword()));
+            }
+        }
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);

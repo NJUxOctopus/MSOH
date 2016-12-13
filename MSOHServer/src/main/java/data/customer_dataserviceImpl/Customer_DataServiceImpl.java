@@ -105,7 +105,7 @@ public class Customer_DataServiceImpl implements Customer_DataService {
     public List<CustomerPO> findCustomerByName(String customerName) throws IOException, ClassNotFoundException {
         List<CustomerPO> customerPOList = customerDataHelper.findCustomerByName(customerName);
 
-        if (customerPOList.isEmpty() || customerPOList == null) {
+        if (customerPOList == null || customerPOList.isEmpty()) {
             return null;
         }
 
@@ -166,7 +166,7 @@ public class Customer_DataServiceImpl implements Customer_DataService {
             }
         }
 
-        if (reservedHotelIDList.isEmpty() || reservedHotelIDList == null) {
+        if (reservedHotelIDList == null || reservedHotelIDList.isEmpty()) {
             return null;
         }
 
