@@ -1,5 +1,7 @@
 package businesslogic.promotion_bl;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogic.customer_bl.CustomerUtil;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.promotion_blservice.Promotion_BLService;
@@ -30,6 +32,10 @@ import java.util.List;
 public class Promotion implements Promotion_BLService {
 
     private Promotion_DataService promotion_dataService = RemoteHelper.getInstance().getPromotionDataService();
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
+    private PromotionUtil promotionUtil = abstract_blFactory.createPromotionUtil();
+    private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
 
     /**
      * 增加网站营销策略，只需要填写目标商圈，自动获得商圈内所有酒店，用分号隔开
@@ -40,7 +46,6 @@ public class Promotion implements Promotion_BLService {
      * @throws ClassNotFoundException
      */
     public ResultMessage addWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
-        HotelUtil hotelUtil = new HotelUtil();
         if (promotionVO.endTime == null || promotionVO.promotionName.equals("") || promotionVO.startTime == null ||
                 promotionVO.targetUser == null) {//若结束时间，策略名称，开始时间，目标用户为空
             return ResultMessage.Blank;
@@ -72,7 +77,6 @@ public class Promotion implements Promotion_BLService {
      * @throws ClassNotFoundException
      */
     public ResultMessage addHotelPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
-        HotelUtil hotelUtil = new HotelUtil();
         if (promotionVO.endTime == null || promotionVO.promotionName.equals("") || promotionVO.startTime == null ||
                 promotionVO.targetUser == null) {//若结束时间，策略名称，开始时间，目标用户为空
             return ResultMessage.Blank;
@@ -97,7 +101,6 @@ public class Promotion implements Promotion_BLService {
      * @throws ClassNotFoundException
      */
     public ResultMessage modifyWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
-        HotelUtil hotelUtil = new HotelUtil();
         if (promotionVO.frameDate == null || promotionVO.endTime == null || promotionVO.promotionName.equals("") || promotionVO.startTime == null ||
                 promotionVO.targetUser == null) {
             //若结束时间，策略名称，开始时间，目标用户为空
@@ -188,10 +191,8 @@ public class Promotion implements Promotion_BLService {
      * @throws RemoteException
      */
     public List<PromotionVO> promotionRequirements(OrderVO orderVO) throws IOException, ClassNotFoundException {
-        PromotionUtil promotionUtil = new PromotionUtil();
         //得到该酒店所有的促销策略在入住期间的
         List<PromotionVO> hotelPromotion = promotionUtil.getHotelPromotionBetweenTwoDate(orderVO.hotelID, orderVO.estimatedCheckinTime, orderVO.estimatedCheckoutTime);
-        CustomerUtil customerUtil = new CustomerUtil();
         if (hotelPromotion == null || hotelPromotion.isEmpty())
             return null;
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();

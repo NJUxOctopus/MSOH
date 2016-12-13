@@ -1,5 +1,7 @@
 package businesslogic.customer_bl;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.customer_blservice.Customer_BLService;
 import dataservice.customer_dataservice.Customer_DataService;
@@ -25,6 +27,8 @@ import java.util.List;
  */
 public class Customer implements Customer_BLService {
     private Customer_DataService customer_dataService = RemoteHelper.getInstance().getCustomerDataService();
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
 
     /**
      * 根据用户id得到用户的信用
@@ -119,7 +123,6 @@ public class Customer implements Customer_BLService {
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] infra = hotelPO.getInfra().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
-            HotelUtil hotelUtil = new HotelUtil();
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
                     hotelPO.getIntro(), infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl,
                     hotelPO.getClerkID(), hotelPO.getHotelID(),
