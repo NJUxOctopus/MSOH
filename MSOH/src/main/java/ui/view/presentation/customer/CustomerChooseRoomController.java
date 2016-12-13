@@ -101,4 +101,5 @@ public class CustomerChooseRoomController implements ControlledStage {
         stageController.closeStage(resource);
     }
 
+
 }

@@ -50,6 +50,9 @@ public class CustomerMyHotelViewController implements ControlledStage {
         stageController.closeStage(resource);
     }
 
+    /**
+     * 酒店列表面板初始化方法
+     */
     public void addHotelPane(){
         ReservedHotel reservedHotel = new ReservedHotelController();
         try {
@@ -67,11 +70,21 @@ public class CustomerMyHotelViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 我的酒店界面初始化方法
+     * @param customerID
+     */
     public void init(String customerID){
         this.customerID = customerID;
 
         addHotelPane();
     }
 
-
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

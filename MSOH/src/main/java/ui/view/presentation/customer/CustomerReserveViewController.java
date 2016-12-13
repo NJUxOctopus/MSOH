@@ -1,12 +1,18 @@
 package ui.view.presentation.customer;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import ui.controller.EditPromotionController;
 import ui.controller.ProcessOrderController;
 import ui.controller.UserAdminController;
+import ui.view.controllerservice.EditPromotion;
 import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.ProcessOrder;
 import ui.view.controllerservice.UserAdmin;
@@ -19,9 +25,14 @@ import util.ResultMessage;
 import vo.CustomerVO;
 import vo.HotelVO;
 import vo.OrderVO;
+import vo.PromotionVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by island on 2016/12/1.
@@ -65,7 +76,7 @@ public class CustomerReserveViewController implements ControlledStage{
     private TextField afterPriceTextField;
 
     @FXML
-    private TextField numOfPeopleTextField;
+    private TextField roomNumTextField;
 
     @FXML
     private TextField roomTypeTextField;
@@ -97,7 +108,7 @@ public class CustomerReserveViewController implements ControlledStage{
     private void reserve(){
         String customerName = customerNameTextField.getText();
         String phone = phoneTextField.getText();
-        int numOfCustomers = Integer.parseInt(numOfPeopleTextField.getText());
+        int numOfCustomers = Integer.parseInt(roomNumTextField.getText());
         boolean haveChildren = false;
         if( ((String)hasChildChoiceBox.getSelectionModel().getSelectedItem()) .equals("有"))
             haveChildren = true;
@@ -235,11 +246,33 @@ public class CustomerReserveViewController implements ControlledStage{
     }
 
 
+    /**
+     * 加号按钮结果，房间数量+1
+     */
+    @FXML
+    private void addRoomNum() {
+        int peopleNum = Integer.parseInt(roomNumTextField.getText());
+        roomNumTextField.setText(String.valueOf((peopleNum + 1)));
+    }
+
+    /**
+     * 减号按钮结果，房间数量-1
+     */
+    @FXML
+    private void minusRoomNum() {
+        int peopleNum = Integer.parseInt(roomNumTextField.getText());
+        if (peopleNum != 0) {
+            roomNumTextField.setText(String.valueOf((peopleNum - 1)));
+        }
+    }
     public void init(String customerID, HotelVO hotelVO){
         this.customerID = customerID;
         this.hotelVO = hotelVO;
         setCustomerInfo();
         setHotelInfo();
+        hasChildChoiceBox.setItems(FXCollections.observableArrayList(
+                "有", "无"));
+        setPromotionInfo();
     }
 
     private void setRoomInfo(){
@@ -264,6 +297,9 @@ public class CustomerReserveViewController implements ControlledStage{
 
     }
 
+    /**
+     * 设置客户相关信息
+     */
     private void setCustomerInfo(){
         UserAdmin userAdmin = new UserAdminController();
         try {
@@ -276,10 +312,55 @@ public class CustomerReserveViewController implements ControlledStage{
         }
     }
 
+    /**
+     * 设置酒店相关信息
+     */
     private void setHotelInfo(){
         hotelNameTextField.setText(hotelVO.hotelName);
         hotelIDTextField.setText(hotelVO.hotelID);
         checkInTimeTextField.setText(hotelVO.checkInTime);
         checkOutTimeTextField.setText(hotelVO.checkOutTime);
+    }
+
+
+    /**
+     * 设置促销相关信息
+     */
+    private void setPromotionInfo(){
+        EditPromotion editPromotion = new EditPromotionController();
+
+        //获取当前时间
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+        try {
+            final List<PromotionVO> promotionVOList = editPromotion.getPromotionByHotelID(hotelVO.hotelID, time);
+            ObservableList<String> promotions = FXCollections.observableArrayList();
+            for (int i = 0; i < promotionVOList.size(); i++)
+                promotions.add(promotionVOList.get(i).promotionName);
+            promotionChoiceBox.setItems(promotions);
+
+            promotionChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    int selected = promotionChoiceBox.getSelectionModel().getSelectedIndex();
+                    afterPriceTextField.setText(Double.parseDouble(prePriceTextField.getText()) * promotionVOList.get(selected).discount + "");
+                }
+            });
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 }

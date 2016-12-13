@@ -269,5 +269,12 @@ public class CustomerOrderDetailViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 
 }

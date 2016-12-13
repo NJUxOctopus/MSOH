@@ -130,6 +130,9 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         this.stageController = stageController;
     }
 
+    /**
+     * 关闭酒店详情界面，返回上一界面
+     */
     @FXML
     private void closeStage() {
         stageController.closeStage(resource);
@@ -167,12 +170,20 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         checkOutTimeTextField.setText(checkOutTime);
     }
 
+    /**
+     * 修改日期信息，重新显示房间信息
+     */
     @FXML
     private void resetRoomInfo(){
-        roomInfoScrollPane.getChildren().clear();
-        addRoomTypePane();
+        if(!checkInTimeTextField.getText().equals("") && !checkOutTimeTextField.getText().equals("")) {
+            roomInfoScrollPane.getChildren().clear();
+            addRoomTypePane();
+        }
     }
 
+    /**
+     * 预定酒店酒店方法，跳转至预订界面
+     */
     @FXML
     private void reserve(){
         HotelVO newHotelVO = new HotelVO(hotelID, hotelVO.hotelName, checkInTimeTextField.getText(), checkOutTimeTextField.getText());
@@ -183,6 +194,11 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
 
     }
 
+    /**
+     * 酒店详情界面初始化方法
+     * @param customerID
+     * @param hotelID
+     */
     public void init(String customerID, String hotelID){
         this.customerID = customerID;
         this.hotelID = hotelID;
@@ -193,12 +209,19 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             e.printStackTrace();
         }
         setInfo();
-        addRoomTypePane();
+        checkInTimeTextField.setText(hotelVO.checkInTime);
+        checkOutTimeTextField.setText(hotelVO.checkOutTime);
+        if(!checkInTimeTextField.getText().equals("") && !checkOutTimeTextField.getText().equals("")) {
+            addRoomTypePane();
+        }
         addPromotionPane();
         addCommentPane();
         addOrderPane();
     }
 
+    /**
+     * 设置酒店信息
+     */
     private void setInfo(){
         hotelNameLabel.setText(hotelVO.hotelName);
         cityLabel.setText(hotelVO.city);
@@ -216,8 +239,12 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         facilityLabel.setText(facility);
         briefInfoLabel.setText(hotelVO.intro);
         scoreLabel.setText(hotelVO.score + "");
-    }
 
+        }
+
+    /**
+     * 初始化酒店评论面板
+     */
     private void addCommentPane(){
         List<CommentVO> commentVOList = hotelVO.comment;
         if(commentVOList.isEmpty()){
@@ -229,6 +256,9 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 初始化酒店促销策略面板
+     */
     private void addPromotionPane(){
         EditPromotion editPromotion = new EditPromotionController();
         Date today = new Date();
@@ -252,10 +282,16 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 初始化酒店房间信息面板
+     */
     private void addRoomTypePane(){
-        String[] roomType = hotelVO.roomType;
+        Timestamp checkInTime = Timestamp.valueOf(checkInTimeTextField.getText() + " 00:00:00");
+        Timestamp checkOutTime = Timestamp.valueOf(checkOutTimeTextField.getText() + " 00:00:00");
         //hotelVO.dailyRoomInfo.room
         //// TODO: 2016/12/10  获得选择区间内房间类型的数量和价格
+        String[] roomType = hotelVO.roomType;
+
         int singleBed = 0;
         int twoBed = 0;
         int kingBed = 0;
@@ -284,6 +320,9 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         }
     }
 
+    /**
+     *初始化历史订单面板
+     */
     private void addOrderPane(){
         ProcessOrder processOrder = new ProcessOrderController();
         try {
@@ -300,6 +339,18 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 添加单个面板
+     * @param resource 需要添加的面板类型
+     * @param x 横坐标
+     * @param y 纵坐标
+     * @param sourcePane 添加面板的目标pane
+     * @param type 类型标识
+     * @param commentVO
+     * @param promotionID
+     * @param roomVO
+     * @param orderID
+     */
     private void addPane(String resource, int x, int y, AnchorPane sourcePane, int type, CommentVO commentVO, String promotionID, RoomVO roomVO, String orderID){
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -331,4 +382,11 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

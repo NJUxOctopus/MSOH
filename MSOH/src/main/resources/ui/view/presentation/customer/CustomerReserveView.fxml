@@ -165,7 +165,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <TextField fx:id="prePriceTextField" editable="false" layoutX="460.0" layoutY="520.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
+            <TextField fx:id="prePriceTextField" editable="false" layoutX="460.0" layoutY="520.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;">
                <font>
                   <Font size="14.0" />
                </font>
@@ -173,7 +173,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField fx:id="afterPriceTextField" editable="false" layoutX="790.0" layoutY="520.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="111">
+            <TextField fx:id="afterPriceTextField" editable="false" layoutX="790.0" layoutY="520.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;">
                <font>
                   <Font size="14.0" />
                </font>
@@ -221,14 +221,6 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField fx:id="numOfPeopleTextField" editable="false" layoutX="460.0" layoutY="472.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
             <Button fx:id="selectRoomButton" layoutX="649.0" layoutY="420.0" mnemonicParsing="false" onAction="#selectRoom" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="&gt;" textFill="WHITE">
                <font>
                   <Font size="14.0" />
@@ -236,6 +228,41 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+            </Button>
+            <TextField fx:id="roomNumTextField" alignment="CENTER" editable="false" layoutX="507.0" layoutY="467.0" prefHeight="37.0" prefWidth="125.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="0">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </TextField>
+            <Button fx:id="minusButton" layoutX="460.0" layoutY="466.0" mnemonicParsing="false" onAction="#minusRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/MinusButton.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="addButton" layoutX="632.0" layoutY="467.0" mnemonicParsing="false" onAction="#addRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/AddButton.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </Pane>

@@ -204,6 +204,10 @@ public class CustomerHotelListViewController implements ControlledStage {
         checkOutTimeTextField.setText(checkOutTime);
     }
 
+    /**
+     * 初始化酒店列表面板
+     * @param hotelList
+     */
     private void addHotelPane(List<HotelVO> hotelList){
         hotelListScrollPane.getChildren().clear();
         emptyHotelLabel.setOpacity(0);
@@ -306,7 +310,10 @@ public class CustomerHotelListViewController implements ControlledStage {
     }
 
 
-
+    /**
+     * 获得所有酒店
+     * @param hotelVO
+     */
     private void getAllHotel(HotelVO hotelVO){
         HotelInfo hotelInfo = new HotelInfoController();
         try {
@@ -316,5 +323,13 @@ public class CustomerHotelListViewController implements ControlledStage {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 }
