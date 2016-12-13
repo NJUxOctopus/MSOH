@@ -16,9 +16,13 @@ public interface PromotionUtil_BLService {
 
     public PromotionVO getSingle(String promotionID) throws RemoteException;
 
-    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws RemoteException, ClassNotFoundException, IOException;
+    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws ClassNotFoundException, IOException;
 
     public List<PromotionVO> getAllWebPromotions(Timestamp timestamp) throws IOException, ClassNotFoundException;
 
     public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType,String hotelID,Timestamp timestamp)throws IOException, ClassNotFoundException;
+
+    public List<PromotionVO> getHotelPromotionBetweenTwoDate(String hotelID,Timestamp timestamp1,Timestamp timestamp2)throws IOException, ClassNotFoundException;
+
+    public List<PromotionVO> mergePromotionList(List<PromotionVO> list1,List<PromotionVO> list2)throws RemoteException;
 }

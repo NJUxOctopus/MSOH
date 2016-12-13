@@ -6,6 +6,7 @@ import businesslogicservice.promotion_blservice.Promotion_BLService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
 import rmi.RemoteHelper;
+import util.PromotionType;
 import util.ResultMessage;
 import util.strategy.BirthdayPromotion;
 import util.strategy.CompanyPromotion;
@@ -17,7 +18,10 @@ import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,10 +42,8 @@ public class Promotion implements Promotion_BLService {
     public ResultMessage addWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
         HotelUtil hotelUtil = new HotelUtil();
         if (promotionVO.endTime == null || promotionVO.promotionName.equals("") || promotionVO.startTime == null ||
-                promotionVO.targetUser == null || promotionVO.promotionID.equals("")) {//若结束时间，策略名称，开始时间，目标用户，策略ID为空
+                promotionVO.targetUser == null) {//若结束时间，策略名称，开始时间，目标用户为空
             return ResultMessage.Blank;
-        } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
-            return ResultMessage.DataFormatWrong;
         } else {
             List<HotelVO> hotelVOList = hotelUtil.getByArea(promotionVO.targetArea);
             String targetHotel = "";
@@ -72,10 +74,8 @@ public class Promotion implements Promotion_BLService {
     public ResultMessage addHotelPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
         HotelUtil hotelUtil = new HotelUtil();
         if (promotionVO.endTime == null || promotionVO.promotionName.equals("") || promotionVO.startTime == null ||
-                promotionVO.targetUser == null || promotionVO.promotionID.equals("")) {//若结束时间，策略名称，开始时间，目标用户，策略ID为空
+                promotionVO.targetUser == null) {//若结束时间，策略名称，开始时间，目标用户为空
             return ResultMessage.Blank;
-        } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
-            return ResultMessage.DataFormatWrong;
         } else {
             String targetArea = hotelUtil.getByID(promotionVO.targetHotel[0]).area;
             if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
@@ -102,8 +102,6 @@ public class Promotion implements Promotion_BLService {
                 promotionVO.targetUser == null) {
             //若结束时间，策略名称，开始时间，目标用户为空
             return ResultMessage.Blank;
-        } else if (promotionVO.discount <= 0 || promotionVO.discount >= 10) {//若折扣小于0或大于10
-            return ResultMessage.DataFormatWrong;
         } else {
             PromotionPO promotionPO = promotion_dataService.getPromotion(Integer.parseInt(promotionVO.promotionID));
             if (promotionPO == null)
@@ -190,27 +188,39 @@ public class Promotion implements Promotion_BLService {
      * @throws RemoteException
      */
     public List<PromotionVO> promotionRequirements(OrderVO orderVO) throws IOException, ClassNotFoundException {
-        //得到该酒店所有的促销策略
-        List<PromotionPO> promotionPOList = promotion_dataService.getPromotionByHotelID(orderVO.hotelID);
+        PromotionUtil promotionUtil = new PromotionUtil();
+        //得到该酒店所有的促销策略在入住期间的
+        List<PromotionVO> hotelPromotion = promotionUtil.getHotelPromotionBetweenTwoDate(orderVO.hotelID, orderVO.estimatedCheckinTime, orderVO.estimatedCheckoutTime);
         CustomerUtil customerUtil = new CustomerUtil();
-        if (promotionPOList == null || promotionPOList.isEmpty())
+        if (hotelPromotion == null || hotelPromotion.isEmpty())
             return null;
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
-        for (PromotionPO promotionPO : promotionPOList) {
-            if (promotionPO.getPromotionName().contains("生日")) {
+        for (PromotionVO promotionVO : hotelPromotion) {
+            if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Birthday)) {
                 Strategy birthdayPromotion = new BirthdayPromotion();
                 if (birthdayPromotion.usePromotion(orderVO))
-                    promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
-            }
-            if (promotionPO.getPromotionName().contains("合作企业")) {
-                Strategy companyPromotion = new CompanyPromotion(promotionPO.getCompanyName());
+                    promotionVOList.add(new PromotionVO(promotionVO.discount, promotionVO.promotionName));
+            } else if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Company)) {
+                Strategy companyPromotion = new CompanyPromotion(promotionVO.companyName);
                 if (companyPromotion.usePromotion(orderVO))
-                    promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
+                    promotionVOList.add(new PromotionVO(promotionVO.discount, promotionVO.promotionName));
+            } else if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Holiday)) {
+                //酒店的节日特惠是入住期间有优惠,在获取时直接就根据入住和离开时间获取了，所以直接加入优惠的list
+                promotionVOList.add(promotionVO);
+            } else if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Reserve) || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other)) {
+                Strategy normalPromotion = new NormalPromotion(customerUtil.getSingle(orderVO.customerID).memberType, orderVO.rooms.length);
+                if (normalPromotion.usePromotion(orderVO))
+                    promotionVOList.add(new PromotionVO(promotionVO.discount, promotionVO.promotionName));
             }
-            Strategy normalPromotion = new NormalPromotion(customerUtil.getSingle(orderVO.customerID).memberType, orderVO.rooms.length);
-            if (normalPromotion.usePromotion(orderVO))
-                promotionVOList.add(new PromotionVO(promotionPO.getDiscount(), promotionPO.getPromotionName()));
-
+        }
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+        Timestamp timestamp = Timestamp.valueOf(sdf.format(date));
+        List<PromotionVO> webPromotion = promotionUtil.getAllWebPromotions(timestamp);
+        //网站的节日特惠是根据预定的那一天判断的
+        for (PromotionVO promotionVO : webPromotion) {
+            if (promotionVO.promotionType.equals(PromotionType.WebPromotion_Holiday))
+                promotionVOList.add(promotionVO);
         }
         return promotionVOList;
     }

@@ -218,4 +218,24 @@ public class Customer implements Customer_BLService {
         else
             return ResultMessage.Fail;
     }
+
+    /**
+     * 更该信用值
+     * @param ID
+     * @param change
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage changeCredit(String ID, int change) throws RemoteException {
+        if (customer_dataService.findCustomerByID(ID) == null)
+            //若无该用户
+            return ResultMessage.Customer_CustomerNotExist;
+        CustomerPO customerPO = customer_dataService.findCustomerByID(ID);
+        customerPO.setCredit(customerPO.getCredit() + change);
+
+        if (customer_dataService.modifyCustomer(customerPO))
+            return ResultMessage.Marketer_CreditChargeSuccess;
+        else
+            return ResultMessage.Fail;
+    }
 }

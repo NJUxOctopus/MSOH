@@ -10,6 +10,7 @@ import rmi.RemoteHelper;
 import util.DataFormat;
 import util.OrderStatus;
 import util.ResultMessage;
+import util.sort.sortPromotionByPrice;
 import vo.*;
 
 import java.io.IOException;
@@ -34,7 +35,9 @@ public class Order implements Order_BLService {
      * @throws RemoteException
      */
     public OrderPriceVO getLowestPrice(List<OrderPriceVO> orderPriceVOs) throws RemoteException {
-        return null;
+        Comparator<OrderPriceVO> comparator = new sortPromotionByPrice();
+        Collections.sort(orderPriceVOs, comparator);
+        return orderPriceVOs.get(0);
     }
 
     /**
@@ -55,13 +58,19 @@ public class Order implements Order_BLService {
             return orderPriceVOList;
         }
 
-        for (PromotionVO promotionVO:promotionVOList){
+        for (PromotionVO promotionVO : promotionVOList) {
             double finalPrice = initPrice * promotionVO.discount;//折后价格
             orderPriceVOList.add(new OrderPriceVO(promotionVO.promotionName, initPrice, finalPrice));
         }
         return orderPriceVOList;
     }
 
+    /**
+     * 获得订单原始总价
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     public double getTotal(OrderVO orderVO) throws RemoteException {
         HotelUtil hotelUtil = new HotelUtil();
         long oneDay = 1000 * 60 * 60 * 24;
@@ -70,7 +79,7 @@ public class Order implements Order_BLService {
             initPrice += hotelUtil.getRoomByName(orderVO.hotelID, orderVO.rooms[j], orderVO.estimatedCheckinTime).price;
             //得到所有房间的类型与价格
         }
-        return initPrice*(orderVO.estimatedCheckoutTime.getTime()-orderVO.estimatedCheckinTime.getTime())/oneDay;
+        return initPrice * (orderVO.estimatedCheckoutTime.getTime() - orderVO.estimatedCheckinTime.getTime()) / oneDay;
     }
 
     /**
@@ -104,16 +113,17 @@ public class Order implements Order_BLService {
 
     /**
      * 线下创建订单
+     *
      * @param orderVO
      * @return
      * @throws RemoteException
      */
     public ResultMessage createOrderOffline(OrderVO orderVO) throws RemoteException {
-        if(orderVO.customerName.equals("")||orderVO.phone.equals("")||orderVO.customerID.equals(""))
+        if (orderVO.customerName.equals("") || orderVO.phone.equals("") || orderVO.customerID.equals(""))
             return ResultMessage.Blank;
-        if(!orderVO.customerID.matches(DataFormat.ID_Format))
+        if (!orderVO.customerID.matches(DataFormat.ID_Format))
             return ResultMessage.DataFormatWrong;
-        if(!orderVO.phone.matches(DataFormat.Phone_Format))
+        if (!orderVO.phone.matches(DataFormat.Phone_Format))
             return ResultMessage.phoneFormatWrong;
         String rooms = "";
         for (int i = 0; i < orderVO.rooms.length; i++) {

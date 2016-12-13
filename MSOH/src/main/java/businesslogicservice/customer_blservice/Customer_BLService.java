@@ -28,4 +28,6 @@ public interface Customer_BLService {
     public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2) throws RemoteException;
 
     public ResultMessage creditCharge(String ID, int credit) throws RemoteException;
+
+    public ResultMessage changeCredit(String ID,int change)throws RemoteException;
 }
