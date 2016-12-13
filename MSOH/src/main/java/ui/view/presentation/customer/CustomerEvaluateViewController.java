@@ -147,4 +147,12 @@ public class CustomerEvaluateViewController implements ControlledStage {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

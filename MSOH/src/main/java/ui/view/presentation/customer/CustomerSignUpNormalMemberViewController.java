@@ -143,4 +143,12 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
         });
     yearChoiceBox.setValue("1970");
     }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

@@ -75,7 +75,7 @@ public class MemberLevel implements MemberLevel_BLService {
         List<String> discountList = new ArrayList<String>();
         String[] str = memberLevelPO.getDiscountList().split(";");
         for(int i=0;i<str.length;i++){
-            discountList.add(str[i]);
+            discountList.add((Double.parseDouble(str[i])*10+""));
         }
         return new MemberLevelVO(memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
                 boundaries,discountList);

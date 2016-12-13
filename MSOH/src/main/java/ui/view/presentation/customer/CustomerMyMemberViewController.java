@@ -109,8 +109,9 @@ public class CustomerMyMemberViewController implements ControlledStage{
             if(customerVO.memberType != MemberType.NONMEMBER) {
                 MemberVO memberVO = userAdmin.findMemberByID(customerID);
                 gradeOfMemberLabel.setText(memberVO.level + "");
-                //// TODO: 2016/12/9  获得该等级会员折扣
-                discountOfMemberLabel.setText("部分酒店" );
+                EditMemberLevel editMemberLevel = new EditMemberLevelController();
+                String discount = editMemberLevel.getMemberLevel().discountList.get(memberVO.level);
+                discountOfMemberLabel.setText("部分酒店"  + discount + "折");
             }
             else{
                 gradeOfMemberLabel.setText("无");
@@ -122,6 +123,9 @@ public class CustomerMyMemberViewController implements ControlledStage{
         }
     }
 
+    /**
+     * 设置会员等级信息
+     */
     private void setMemberLevelInfo(){
         EditMemberLevel editMemberLevel = new EditMemberLevelController();
         try {
@@ -141,5 +145,11 @@ public class CustomerMyMemberViewController implements ControlledStage{
 
     }
 
-
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

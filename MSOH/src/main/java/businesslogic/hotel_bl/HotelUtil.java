@@ -11,6 +11,7 @@ import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
 import rmi.RemoteHelper;
+import util.sort.sortRoomByNum;
 import vo.CommentVO;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
@@ -45,7 +46,7 @@ public class HotelUtil implements HotelUtil_BLService {
         List<CommentVO> commentVOList = new ArrayList<CommentVO>();
         if (commentPOs == null || commentPOs.isEmpty())
             return new ArrayList<CommentVO>();
-        for (CommentPO commentPO:commentPOs){
+        for (CommentPO commentPO : commentPOs) {
             commentVOList.add(new CommentVO(commentPO.getScore(), commentPO.getComment(), commentPO.getCustomerName(),
                     commentPO.getCustomerID(), commentPO.getHotelName(), commentPO.getHotelID(), commentPO.getOrderID(), commentPO.getCommentTime()));
         }
@@ -63,7 +64,7 @@ public class HotelUtil implements HotelUtil_BLService {
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
         if (hotelPOList == null || hotelPOList.isEmpty())
             return new ArrayList<HotelVO>();
-        for (HotelPO hotelPO:hotelPOList){
+        for (HotelPO hotelPO : hotelPOList) {
             String[] infra = hotelPO.getInfra().split(";");
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
@@ -81,8 +82,8 @@ public class HotelUtil implements HotelUtil_BLService {
      * @param timestamp
      * @return
      */
-    public DailyRoomInfoVO getDailyRoomInfo(String hotelID,Timestamp timestamp) throws RemoteException {
-        DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(hotelID,timestamp);
+    public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException {
+        DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(hotelID, timestamp);
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
         if (roomPOList == null || roomPOList.isEmpty())
             return new DailyRoomInfoVO(dailyRoomInfoPO.getHotelID(), dailyRoomInfoPO.getDate(), new ArrayList<RoomVO>());
@@ -156,7 +157,7 @@ public class HotelUtil implements HotelUtil_BLService {
         if (hotelPOs == null || hotelPOs.isEmpty())
             return new ArrayList<HotelVO>();
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        for (HotelPO hotelPO:hotelPOs){
+        for (HotelPO hotelPO : hotelPOs) {
             String[] infra = hotelPO.getInfra().split(";");
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
@@ -215,6 +216,32 @@ public class HotelUtil implements HotelUtil_BLService {
     }
 
     /**
+     * 得到一段时间内最少房间数量的房间信息
+     *
+     * @param hotelID
+     * @param roomName
+     * @param timestamp1
+     * @param timestamp2
+     * @return
+     */
+    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2)throws RemoteException {
+        long oneDay = 1000 * 60 * 60 * 24;
+        long days = (timestamp2.getTime() - timestamp1.getTime()) / oneDay;//算共住多少天
+        List<Timestamp> list = new ArrayList<Timestamp>();
+        for (int i = 0; i < days - 1; i++) {//除了最后一天，获得所有的房间信息
+            list.add(new Timestamp(timestamp1.getTime() + i * oneDay));
+        }
+        List<RoomVO> roomVOList = new ArrayList<RoomVO>();
+        for (Timestamp temp : list) {
+            roomVOList.add(getRoomByName(hotelID, roomName, temp));
+        }
+        Comparator<RoomVO> comparator = new sortRoomByNum();
+        Collections.sort(roomVOList,comparator);
+        //将房间剩余数量从小到大排序，最后返回第一个房间
+        return roomVOList.get(0);
+    }
+
+    /**
      * 多条件筛选,不断取交集
      *
      * @param star
@@ -247,7 +274,6 @@ public class HotelUtil implements HotelUtil_BLService {
      */
     public List<HotelVO> searchHotel(String area, Timestamp timestamp1, Timestamp timestamp2,
                                      String star, String low, String high) throws RemoteException {
-        //System.out.print(getAll().size());
         List<HotelVO> hotelVOList = getByArea(area);
         FilterCriteria filterCriteriaDate = new FilterCriteriaDate(timestamp1, timestamp2);
         FilterCriteria filterCriteriaStar = new FilterCriteriaStar(star);
@@ -268,7 +294,7 @@ public class HotelUtil implements HotelUtil_BLService {
         List<HotelVO> hotelVOList = getAll();
         if (hotelVOList == null || hotelVOList.isEmpty())
             return null;
-        for (HotelVO hotelVO:hotelVOList) {
+        for (HotelVO hotelVO : hotelVOList) {
             if (hotelVO.clerkID.equals(clerkID))
                 return hotelVO;
         }

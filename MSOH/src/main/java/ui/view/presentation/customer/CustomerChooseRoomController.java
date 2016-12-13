@@ -43,7 +43,7 @@ public class CustomerChooseRoomController implements ControlledStage {
 
     private HotelAdmin hotelAdmin;
 
-    private List<PaneAdder> paneAdders;
+    private List<PaneAdder> paneAdders = new ArrayList<PaneAdder>();
 
     @Override
     public void setStageController(StageController stageController) {
@@ -100,5 +100,6 @@ public class CustomerChooseRoomController implements ControlledStage {
         stageController = new StageController();
         stageController.closeStage(resource);
     }
+
 
 }
