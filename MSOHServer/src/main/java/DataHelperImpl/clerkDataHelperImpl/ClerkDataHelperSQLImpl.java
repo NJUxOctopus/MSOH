@@ -16,16 +16,13 @@ import java.util.List;
  */
 @SuppressWarnings(value = {"Duplicates", "deprecation"})
 public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
+
     /**
      * 数据库中新增酒店工作人员
      *
      * @param clerkPO
      */
     public boolean addClerk(ClerkPO clerkPO) {
-        // 密码加密
-        String pw = EncryptionUtil.encode(clerkPO.getPassword());
-        clerkPO.setPassword(pw);
-
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -40,7 +37,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -51,10 +47,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      * @param clerkPO
      */
     public boolean modifyClerk(ClerkPO clerkPO) {
-        // 密码加密
-        String pw = EncryptionUtil.encode(clerkPO.getPassword());
-        clerkPO.setPassword(pw);
-
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -69,10 +61,8 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
-
     }
 
     /**
@@ -81,10 +71,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
      * @param clerkPO
      */
     public boolean deleteClerk(ClerkPO clerkPO) {
-        // 密码加密
-        String pw = EncryptionUtil.encode(clerkPO.getPassword());
-        clerkPO.setPassword(pw);
-
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -99,7 +85,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -117,13 +102,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             session.beginTransaction();
 
             ClerkPO clerkPO = (ClerkPO) session.get(ClerkPO.class, ID);
-
-            if (clerkPO == null) {
-                return clerkPO;
-            } else {
-                // 密码解密
-                clerkPO.setPassword(EncryptionUtil.decode(clerkPO.getPassword()));
-            }
 
             return clerkPO;
         } catch (HibernateException e) {
@@ -155,15 +133,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
 
             List<ClerkPO> list = query.list();
 
-            if (list == null || list.isEmpty()) {
-                return new ArrayList<ClerkPO>();
-            } else {
-                // 密码解密
-                for (ClerkPO clerk : list) {
-                    clerk.setPassword(EncryptionUtil.decode(clerk.getPassword()));
-                }
-            }
-
             return list;
 
         } catch (HibernateException e) {
@@ -187,15 +156,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
         session.beginTransaction();
 
         List<ClerkPO> list = session.createQuery("from ClerkPO").list();
-
-        if (list == null || list.isEmpty()) {
-            return new ArrayList<ClerkPO>();
-        } else {
-            // 密码解密
-            for (ClerkPO clerk : list) {
-                clerk.setPassword(EncryptionUtil.decode(clerk.getPassword()));
-            }
-        }
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);

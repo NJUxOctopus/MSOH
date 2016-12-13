@@ -32,6 +32,16 @@ public class ClerkPOTest {
 
 
 
-        clerk_dataService.addClerk(clerkPO13);
+//        clerk_dataService.addClerk(clerkPO4);
+//        clerk_dataService.addClerk(clerkPO5);
+//        clerk_dataService.addClerk(clerkPO6);
+//        clerk_dataService.addClerk(clerkPO7);
+//        clerk_dataService.addClerk(clerkPO8);
+//        clerk_dataService.addClerk(clerkPO9);
+//        clerk_dataService.addClerk(clerkPO10);
+//        clerk_dataService.addClerk(clerkPO11);
+//        clerk_dataService.addClerk(clerkPO12);
+//        clerk_dataService.addClerk(clerkPO13);
+
     }
 }

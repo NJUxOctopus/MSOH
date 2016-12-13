@@ -6,9 +6,11 @@ import DataHelperImpl.DataFactoryImpl;
 import dataservice.member_dataservice.Member_DataService;
 import po.MemberPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +22,8 @@ public class Member_DataServiceImpl implements Member_DataService {
     private DataFactory dataFactory;
 
     private static Member_DataServiceImpl member_dataService;
+
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -45,6 +49,8 @@ public class Member_DataServiceImpl implements Member_DataService {
      * @throws RemoteException
      */
     public boolean addMember(MemberPO po) throws RemoteException {
+        po.setID(EncryptionUtil.encode(key, po.getID()));
+
         return memberDataHelper.addMember(po);
     }
 
@@ -60,6 +66,9 @@ public class Member_DataServiceImpl implements Member_DataService {
         if (memberPO.getID() == null) {
             return false;
         }
+
+        memberPO.setID(EncryptionUtil.encode(key, memberPO.getID()));
+
         return memberDataHelper.deleteMember(memberPO);
     }
 
@@ -72,9 +81,12 @@ public class Member_DataServiceImpl implements Member_DataService {
      */
     public boolean updateMember(MemberPO memberPO) throws RemoteException {
         // 数据库中的主键必须存在，否则更新失败
-        if(memberPO.getID()==null){
+        if (memberPO.getID() == null) {
             return false;
         }
+
+        memberPO.setID(EncryptionUtil.encode(key, memberPO.getID()));
+
         return memberDataHelper.updateMember(memberPO);
     }
 
@@ -86,10 +98,12 @@ public class Member_DataServiceImpl implements Member_DataService {
      * @throws RemoteException
      */
     public MemberPO findMemberByID(String ID) throws RemoteException {
+        ID = EncryptionUtil.encode(key, ID);
+
         MemberPO memberPO = memberDataHelper.findMemberByID(ID);
 
-        if (memberPO == null) {
-            return null;
+        if (memberPO != null) {
+            memberPO.setID(EncryptionUtil.decode(key, memberPO.getID()));
         }
 
         return (MemberPO) memberPO.clone();
@@ -106,7 +120,11 @@ public class Member_DataServiceImpl implements Member_DataService {
         List<MemberPO> memberPOList = memberDataHelper.findAllMembers();
 
         if (null == memberPOList || memberPOList.isEmpty()) {
-            return memberPOList;
+            return new ArrayList<MemberPO>();
+        } else {
+            for (MemberPO member : memberPOList) {
+                member.setID(EncryptionUtil.decode(key, member.getID()));
+            }
         }
 
         List<MemberPO> list = CopyUtil.deepCopy(memberPOList);

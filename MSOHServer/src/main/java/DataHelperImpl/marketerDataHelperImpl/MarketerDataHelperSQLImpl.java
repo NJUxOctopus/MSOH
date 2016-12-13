@@ -22,10 +22,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
      * @param marketerPO
      */
     public boolean addMarketer(MarketerPO marketerPO) {
-        // 密码加密
-        String pw = EncryptionUtil.encode(marketerPO.getPassword());
-        marketerPO.setPassword(pw);
-
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -40,7 +36,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -51,10 +46,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
      * @param marketerPO
      */
     public boolean modifyMarketer(MarketerPO marketerPO) {
-        // 密码加密
-        String pw = EncryptionUtil.encode(marketerPO.getPassword());
-        marketerPO.setPassword(pw);
-
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -69,7 +60,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -80,10 +70,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
      * @param marketerPO
      */
     public boolean deleteMarketer(MarketerPO marketerPO) {
-        // 密码加密
-        String pw = EncryptionUtil.encode(marketerPO.getPassword());
-        marketerPO.setPassword(pw);
-
         Session session = null;
         try {
             session = HibernateUtil.getSession();
@@ -98,7 +84,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -120,16 +105,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             query.setString("n", name);
 
             List<MarketerPO> list = query.list();
-
-            if(list==null||list.isEmpty()){
-                return new ArrayList<MarketerPO>();
-            }else{
-                // 密码解密
-                for(MarketerPO marketer:list){
-                    marketer.setPassword(EncryptionUtil.decode(marketer.getPassword()));
-                }
-            }
-
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -156,13 +131,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
 
             MarketerPO marketerPO = (MarketerPO) session.get(MarketerPO.class, ID);
 
-            if(marketerPO==null){
-                return marketerPO;
-            }else{
-                // 密码解密
-                marketerPO.setPassword(EncryptionUtil.decode(marketerPO.getPassword()));
-            }
-
             return marketerPO;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -188,11 +156,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
 
         if(list==null||list.isEmpty()){
             return new ArrayList<MarketerPO>();
-        }else{
-            // 密码解密
-            for(MarketerPO marketer:list){
-                marketer.setPassword(EncryptionUtil.decode(marketer.getPassword()));
-            }
         }
 
         session.getTransaction().commit();

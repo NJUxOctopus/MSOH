@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * @author zqh
  */
 public class OrderPO implements Serializable {
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
     // 数据库自动生成的订单ID，无需使用
     private int _autoID;
     // 订单号
@@ -50,6 +50,8 @@ public class OrderPO implements Serializable {
     private double finalPrice;
     // 订单状态
     private OrderStatus orderStatus;
+    // 若是撤销的订单，记录撤销时间
+    private Timestamp revokedTime;
 
     public OrderPO() {
 
@@ -229,5 +231,13 @@ public class OrderPO implements Serializable {
 
     public void setHotelID(String hotelID) {
         this.hotelID = hotelID;
+    }
+
+    public Timestamp getRevokedTime() {
+        return revokedTime;
+    }
+
+    public void setRevokedTime(Timestamp revokedTime) {
+        this.revokedTime = revokedTime;
     }
 }

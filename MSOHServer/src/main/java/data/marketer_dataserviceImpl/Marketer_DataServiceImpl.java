@@ -6,14 +6,17 @@ import DataHelperImpl.DataFactoryImpl;
 import dataservice.marketer_dataservice.Marketer_DataService;
 import po.MarketerPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zqh on 2016/11/28.
  */
+@SuppressWarnings(value = {"Duplicates"})
 public class Marketer_DataServiceImpl implements Marketer_DataService {
 
     private MarketerDataHelper marketerDataHelper;
@@ -21,6 +24,8 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
     private DataFactory dataFactory;
 
     private static Marketer_DataServiceImpl marketer_dataServiceImpl;
+
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -46,6 +51,16 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @throws RemoteException
      */
     public boolean addMarketer(MarketerPO marketerPO) throws RemoteException {
+        // 姓名、密码、联系方式、ID加密
+        String name = EncryptionUtil.encode(key, marketerPO.getName());
+        String pw = EncryptionUtil.encode(key, marketerPO.getPassword());
+        String phone = EncryptionUtil.encode(key, marketerPO.getPhone());
+        String marketerID = EncryptionUtil.encode(key, marketerPO.getID());
+        marketerPO.setName(name);
+        marketerPO.setPassword(pw);
+        marketerPO.setPhone(phone);
+        marketerPO.setID(marketerID);
+
         return marketerDataHelper.addMarketer(marketerPO);
     }
 
@@ -57,9 +72,20 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      */
     public boolean modifyMarketer(MarketerPO marketerPO) throws RemoteException {
         // 数据库中的主键必须存在，否则更新不成功
-        if(marketerPO.getID()==null){
+        if (marketerPO.getID() == null) {
             return false;
         }
+
+        // 姓名、密码、联系方式、ID加密
+        String name = EncryptionUtil.encode(key, marketerPO.getName());
+        String pw = EncryptionUtil.encode(key, marketerPO.getPassword());
+        String phone = EncryptionUtil.encode(key, marketerPO.getPhone());
+        String marketerID = EncryptionUtil.encode(key, marketerPO.getID());
+        marketerPO.setName(name);
+        marketerPO.setPassword(pw);
+        marketerPO.setPhone(phone);
+        marketerPO.setID(marketerID);
+
         return marketerDataHelper.modifyMarketer(marketerPO);
     }
 
@@ -71,10 +97,20 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @throws RemoteException
      */
     public List<MarketerPO> findMarketerByName(String name) throws IOException, ClassNotFoundException {
+        name = EncryptionUtil.encode(key, name);
+
         List<MarketerPO> marketersFound = marketerDataHelper.getMarketerByName(name);
 
         if (null == marketersFound || marketersFound.isEmpty()) {
             return marketersFound;
+        } else {
+            // 姓名、密码、联系方式、ID解密
+            for (MarketerPO marketer : marketersFound) {
+                marketer.setName(EncryptionUtil.decode(key, marketer.getName()));
+                marketer.setPassword(EncryptionUtil.decode(key, marketer.getPassword()));
+                marketer.setPhone(EncryptionUtil.decode(key, marketer.getPhone()));
+                marketer.setID(EncryptionUtil.decode(key, marketer.getID()));
+            }
         }
 
         List<MarketerPO> returnMarketersFound = CopyUtil.deepCopy(marketersFound);
@@ -89,10 +125,18 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      * @throws RemoteException
      */
     public MarketerPO findMarketerByID(String id) throws RemoteException {
+        id = EncryptionUtil.encode(key, id);
+
         MarketerPO marketerPO = marketerDataHelper.getMarketerByID(id);
 
-        if (null == marketerPO) {
-            return null;
+        if (marketerPO == null) {
+            return marketerPO;
+        } else {
+            // 姓名、密码、联系方式、ID解密
+            marketerPO.setName(EncryptionUtil.decode(key, marketerPO.getName()));
+            marketerPO.setPassword(EncryptionUtil.decode(key, marketerPO.getPassword()));
+            marketerPO.setPhone(EncryptionUtil.decode(key, marketerPO.getPhone()));
+            marketerPO.setID(EncryptionUtil.decode(key, marketerPO.getID()));
         }
         return (MarketerPO) marketerPO.clone();
 
@@ -106,8 +150,17 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      */
     public List<MarketerPO> findAllMarketers() throws IOException, ClassNotFoundException {
         List<MarketerPO> marketerList = marketerDataHelper.getAllMarketers();
-        if (null == marketerList || marketerList.isEmpty()) {
-            return marketerList;
+
+        if (marketerList == null || marketerList.isEmpty()) {
+            return new ArrayList<MarketerPO>();
+        } else {
+            // 姓名、密码、联系方式、ID解密
+            for (MarketerPO marketer : marketerList) {
+                marketer.setName(EncryptionUtil.decode(key, marketer.getName()));
+                marketer.setPassword(EncryptionUtil.decode(key, marketer.getPassword()));
+                marketer.setPhone(EncryptionUtil.decode(key, marketer.getPhone()));
+                marketer.setID(EncryptionUtil.decode(key, marketer.getID()));
+            }
         }
 
         List<MarketerPO> returnMarketerList = CopyUtil.deepCopy(marketerList);
@@ -123,9 +176,20 @@ public class Marketer_DataServiceImpl implements Marketer_DataService {
      */
     public boolean deleteMarketer(MarketerPO marketerPO) throws RemoteException {
         // 数据库中的主键必须存在，否则更新不成功
-        if(marketerPO.getID()==null){
+        if (marketerPO.getID() == null) {
             return false;
         }
+
+        // 姓名、密码、联系方式、ID加密
+        String name = EncryptionUtil.encode(key, marketerPO.getName());
+        String pw = EncryptionUtil.encode(key, marketerPO.getPassword());
+        String phone = EncryptionUtil.encode(key, marketerPO.getPhone());
+        String marketerID = EncryptionUtil.encode(key, marketerPO.getID());
+        marketerPO.setName(name);
+        marketerPO.setPassword(pw);
+        marketerPO.setPhone(phone);
+        marketerPO.setID(marketerID);
+
         return marketerDataHelper.deleteMarketer(marketerPO);
     }
 

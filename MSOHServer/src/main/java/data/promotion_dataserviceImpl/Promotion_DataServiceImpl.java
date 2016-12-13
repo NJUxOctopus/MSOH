@@ -6,6 +6,7 @@ import DataHelperImpl.DataFactoryImpl;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 import util.PromotionType;
 
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
     private DataFactory dataFactory;
 
     private static Promotion_DataServiceImpl promotion_dataService;
+
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -47,6 +50,8 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
      * @throws RemoteException
      */
     public boolean addPromotion(PromotionPO po) throws RemoteException {
+        po.setFramerName(EncryptionUtil.encode(key, po.getFramerName()));
+
         return promotionDataHelper.addPromotion(po);
     }
 
@@ -63,6 +68,8 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         if (promotionPO == null) {
             return null;
         }
+
+        promotionPO.setFramerName(EncryptionUtil.decode(key, promotionPO.getFramerName()));
 
         return (PromotionPO) promotionPO.clone();
     }
@@ -134,6 +141,8 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
      * @throws RemoteException
      */
     public boolean deletePromotion(PromotionPO promotionPO) throws RemoteException {
+        promotionPO.setFramerName(EncryptionUtil.encode(key, promotionPO.getFramerName()));
+
         return promotionDataHelper.deletePromotion(promotionPO);
     }
 
@@ -144,6 +153,8 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
      * @throws RemoteException
      */
     public boolean modifyPromotion(PromotionPO promotionPO) throws RemoteException {
+        promotionPO.setFramerName(EncryptionUtil.encode(key, promotionPO.getFramerName()));
+
         return promotionDataHelper.modifyPromotion(promotionPO);
     }
 
@@ -159,9 +170,12 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         List<PromotionPO> list = promotionDataHelper.getAllPromotions();
 
         if (list == null || list.isEmpty()) {
-            return list;
+            return new ArrayList<PromotionPO>();
+        } else {
+            for (PromotionPO promotion : list) {
+                promotion.setFramerName(EncryptionUtil.decode(key, promotion.getFramerName()));
+            }
         }
-
         List<PromotionPO> returnPromotionList = CopyUtil.deepCopy(list);
 
         return returnPromotionList;
@@ -176,7 +190,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
      * @throws ClassNotFoundException
      */
     public List<PromotionPO> getPromotionByPromotionType(PromotionType promotionType) throws IOException, ClassNotFoundException {
-        List<PromotionPO> list = promotionDataHelper.getAllPromotions();
+        List<PromotionPO> list = getAllPromotions();
 
         if (list == null || list.isEmpty()) {
             return list;

@@ -4,8 +4,10 @@ import DataHelper.promotionDataHelper.PromotionDataHelper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import po.PromotionPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +35,6 @@ public class PromotionDataHelperSQLImpl implements PromotionDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -51,6 +52,7 @@ public class PromotionDataHelperSQLImpl implements PromotionDataHelper {
             session.beginTransaction();
 
             PromotionPO promotionPO = (PromotionPO) session.get(PromotionPO.class, promotionID);
+
             return promotionPO;
         } catch (HibernateException e) {
             e.printStackTrace();
