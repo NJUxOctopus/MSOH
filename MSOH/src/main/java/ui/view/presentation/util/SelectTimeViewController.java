@@ -55,7 +55,7 @@ public class SelectTimeViewController implements ControlledStage {
      * 保存当前选择的日期，关闭窗口
      */
     @FXML
-    private void confirm() {
+    private String confirm() {
         String year = (String) yearChoiceBox.getSelectionModel().getSelectedItem();
         String month = (String) monthChoiceBox.getSelectionModel().getSelectedItem();
         String day = (String) dayChoiceBox.getSelectionModel().getSelectedItem();
@@ -63,10 +63,12 @@ public class SelectTimeViewController implements ControlledStage {
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
             controller.setLabel("未完成日期选择！");
+            return "";
         } else {
             String time = year + "-" + month + "-" + day;
             setStage(time);
             stageController.closeStage(resources);
+            return time;
         }
     }
 

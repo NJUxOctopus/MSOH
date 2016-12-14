@@ -34,6 +34,13 @@ public abstract class UserVO implements Serializable {
         this.ID = ID;
     }
 
+    public UserVO(String name, String phone, String ID, String password) {
+        this.name = name;
+        this.phone = phone;
+        this.ID = ID;
+        this.password = password;
+    }
+
     public UserVO(String password) {
         this.password = password;
     }

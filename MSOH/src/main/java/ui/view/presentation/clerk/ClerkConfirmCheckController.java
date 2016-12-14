@@ -2,6 +2,8 @@ package ui.view.presentation.clerk;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import ui.controller.ProcessOrderController;
+import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -26,6 +28,9 @@ public class ClerkConfirmCheckController implements ControlledStage {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
+    private String type;
+    private ProcessOrder processOrder;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -38,19 +43,26 @@ public class ClerkConfirmCheckController implements ControlledStage {
      * @param status
      */
     public void initial(String status) {
+        type = status;
         if (status.equals("checkIn")) {
             cueLabel.setText("确认入住？");
         } else if (status.equals("checkOut")) {
             cueLabel.setText("确认退房？");
+        } else if (status.equals("delay")) {
+            cueLabel.setText("确认延迟？");
         }
     }
 
     /**
-     * 确认按钮结果，确认入住或退房，记录入住或退房时间
+     * 确认按钮结果，确认入住或退房或延迟入住，记录入住或退房或延迟入住的时间
      */
     @FXML
     private void confirmCheck() {
+        processOrder = new ProcessOrderController();
+        if(type.equals("checkIn")){
+            //办理入住
 
+        }
     }
 
     /**

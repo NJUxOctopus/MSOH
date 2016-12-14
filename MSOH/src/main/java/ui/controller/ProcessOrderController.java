@@ -35,6 +35,12 @@ public class ProcessOrderController implements ProcessOrder {
         return order_blService.createOrder(orderVO);
     }
 
+    /**
+     * 线下创建订单
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public ResultMessage createOrderOffline(OrderVO orderVO) throws RemoteException {
         return order_blService.createOrderOffline(orderVO);
@@ -55,6 +61,17 @@ public class ProcessOrderController implements ProcessOrder {
 
     public ResultMessage renewOrder(OrderVO orderVO) {
         return null;
+    }
+
+    /**
+     * 执行订单
+     *
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage executeOrder(OrderVO orderVO) throws RemoteException {
+        return order_blService.executeOrder(orderVO);
     }
 
     public List<OrderVO> getOrderByStatus(OrderStatus status) {

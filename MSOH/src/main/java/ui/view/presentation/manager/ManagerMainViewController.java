@@ -6,9 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import ui.controller.UserAdminController;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import vo.ManagerVO;
 
 import java.io.IOException;
 
@@ -18,7 +21,9 @@ import java.io.IOException;
 public class ManagerMainViewController implements ControlledStage {
     StageController stageController = new StageController();
 
-    ManagerHotelManageViewController managerHotelManageViewController;
+    private String resource = "manager/ManagerMainView.fxml";
+
+    private String managerID;
 
     @FXML
     private Button hotelManageButton;
@@ -64,6 +69,8 @@ public class ManagerMainViewController implements ControlledStage {
         contentPane.getChildren().clear();
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(contentPane,"manager/ManagerHotelManageView.fxml", 0, 0);
+        ManagerHotelManageViewController managerHotelManageViewController = (ManagerHotelManageViewController) paneAdder.getController();
+        managerHotelManageViewController.init();
     }
 
     /**
@@ -75,6 +82,8 @@ public class ManagerMainViewController implements ControlledStage {
         contentPane.getChildren().clear();
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(contentPane,"manager/ManagerStaffManageView.fxml", 0, 0);
+        ManagerStaffManageViewController managerStaffManageViewController = (ManagerStaffManageViewController) paneAdder.getController();
+        managerStaffManageViewController.init();
     }
 
     /**
@@ -84,23 +93,40 @@ public class ManagerMainViewController implements ControlledStage {
     private void showModifyInfoView(){
         stageController = new StageController();
         stageController.loadStage("manager/ManagerModifyInfoView.fxml", 1);
+        ManagerModifyInfoViewController managerModifyInfoViewController = (ManagerModifyInfoViewController) stageController.getController();
+        managerModifyInfoViewController.init(managerID);
+    }
 
+    /**
+     * 切换账号
+     */
+    @FXML
+    private void switchAccount() {
+        stageController = new StageController();
+        stageController.closeStage(resource);
+        stageController.loadStage("login/LoginView.fxml", 1);
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
     @FXML
-    private void showSettingView(){
+    private void showAboutUsView() {
 
     }
 
-    @FXML
-    private void showFeedbackView(){
+    /**
+     * 初始化网管id
+     * @param managerID
+     */
+    public void init(String managerID){
+        this.managerID = managerID;
 
     }
-
-    @FXML
-    private void showAboutUsView(){
-
-    }
-
 
 }

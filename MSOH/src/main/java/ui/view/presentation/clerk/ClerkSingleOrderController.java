@@ -25,8 +25,6 @@ public class ClerkSingleOrderController implements ControlledStage {
     @FXML
     private Label orderStatusLabel;
     @FXML
-    private Label hotelNameLabel;
-    @FXML
     private Label roomTypeLabel;
     @FXML
     private Label numOfPeopleLabel;
@@ -46,7 +44,6 @@ public class ClerkSingleOrderController implements ControlledStage {
     public void initial(OrderVO orderVO) throws RemoteException {
         orderIDLabel.setText(orderVO.orderID);
         orderStatusLabel.setText(orderVO.orderType.toString());
-        hotelNameLabel.setText(orderVO.hotelName);
         String roomTypes = "";
         for (String types : orderVO.rooms) {
             roomTypes += types + "; ";
@@ -61,6 +58,9 @@ public class ClerkSingleOrderController implements ControlledStage {
         } else if (orderVO.orderType.equals(OrderStatus.EXECUTED)) {
             //已执行订单，添加退房按钮
             checkButton.setText("退房");
+        } else if (orderVO.orderType.equals(OrderStatus.ABNORMAL)) {
+            //异常订单，添加延迟入住按钮
+            checkButton.setText("延迟");
         } else {
             singleOrderPane.getChildren().remove(checkButton);
         }
@@ -89,6 +89,8 @@ public class ClerkSingleOrderController implements ControlledStage {
             clerkConfirmCheckController.initial("checkIn");
         } else if (checkButton.getText().equals("退房")) {
             clerkConfirmCheckController.initial("checkOut");
+        } else if (checkButton.getText().equals("延迟")) {
+            clerkConfirmCheckController.initial("delay");
         }
     }
 
