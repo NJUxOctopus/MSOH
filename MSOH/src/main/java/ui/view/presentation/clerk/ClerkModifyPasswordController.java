@@ -66,26 +66,30 @@ public class ClerkModifyPasswordController implements ControlledStage {
         clerkInfoChange = new ClerkInfoChangeController();
         ResultMessage resultMessage = clerkInfoChange.changePassword(clerkID, oldPWTextField.getText(), newPWTextField1.getText(), newPWTextField2.getText());
         if (resultMessage.equals(ResultMessage.Blank)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("信息填写不完整！");
+            this.returnMessage("信息填写不完整！");
         } else if (resultMessage.equals(ResultMessage.DataFormatWrong)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("密码格式错误！");
+            this.returnMessage("密码格式错误！");
         } else if (resultMessage.equals(ResultMessage.ChangePassword2DifferentNew)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("新密码不一致！");
+            this.returnMessage("新密码不一致！");
         } else if (resultMessage.equals(ResultMessage.ChangePasswordWrongOldPw)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("旧密码错误！");
+            this.returnMessage("旧密码错误！");
         } else if (resultMessage.equals(ResultMessage.ChangePasswordSuccess)) {
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            errorBoxController.setLabel("密码修改成功！");
+            stageController = this.returnMessage("修改成功！");
             stageController.closeStage(resource);
         }
+    }
+
+    /**
+     * 显示提示信息
+     *
+     * @param error
+     * @return
+     */
+    private StageController returnMessage(String error) {
+        stageController = new StageController();
+        stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+        ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+        errorBoxController.setLabel(error);
+        return stageController;
     }
 }

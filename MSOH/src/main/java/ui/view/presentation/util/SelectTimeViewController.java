@@ -8,11 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import ui.view.presentation.StageController;
-import ui.view.presentation.clerk.ClerkCreateOfflineOrderController;
+import ui.view.presentation.clerk.*;
 import ui.view.presentation.customer.CustomerHotelDetailsViewController;
 import ui.view.presentation.customer.CustomerHotelListViewController;
 import ui.view.presentation.customer.CustomerMainViewController;
 import ui.view.presentation.customer.CustomerReserveViewController;
+import ui.view.presentation.marketer.MarketerHolidayPromotionController;
+import ui.view.presentation.marketer.MarketerOtherPromotionController;
+import ui.view.presentation.marketer.MarketerVIPPromotionController;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -113,34 +116,66 @@ public class SelectTimeViewController implements ControlledStage {
         }
         //工作人员 生日特惠界面
         if (toBeSet.equals("clerk/ClerkBirthdayPromotion.fxml")) {
-            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) stageController.getController(toBeSet);
             if (type.equals("start"))
-                clerkCreateOfflineOrderController.setCheckInTime(time);
+                clerkBirthdayPromotionController.setStartTime(time);
             if (type.equals("end"))
-                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+                clerkBirthdayPromotionController.setEndTime(time);
         }//工作人员 节日特惠界面
         if (toBeSet.equals("clerk/ClerkHolidayPromotion.fxml")) {
-            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            ClerkHolidayPromotionController clerkHolidayPromotionController = (ClerkHolidayPromotionController) stageController.getController(toBeSet);
             if (type.equals("start"))
-                clerkCreateOfflineOrderController.setCheckInTime(time);
+                clerkHolidayPromotionController.setStartTime(time);
             if (type.equals("end"))
-                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+                clerkHolidayPromotionController.setEndTime(time);
         }
         //工作人员 合作企业优惠界面
         if (toBeSet.equals("clerk/ClerkEnterprisePromotion.fxml")) {
-            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            ClerkEnterprisePromotionController clerkEnterprisePromotionController = (ClerkEnterprisePromotionController) stageController.getController(toBeSet);
             if (type.equals("start"))
-                clerkCreateOfflineOrderController.setCheckInTime(time);
+                clerkEnterprisePromotionController.setStartTime(time);
             if (type.equals("end"))
-                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+                clerkEnterprisePromotionController.setEndTime(time);
         }
         //工作人员 多订多惠界面
         if (toBeSet.equals("clerk/ClerkReservePromotion.fxml")) {
-            ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController(toBeSet);
+            ClerkReservePromotionController clerkReservePromotionController = (ClerkReservePromotionController) stageController.getController(toBeSet);
             if (type.equals("start"))
-                clerkCreateOfflineOrderController.setCheckInTime(time);
+                clerkReservePromotionController.setStartTime(time);
             if (type.equals("end"))
-                clerkCreateOfflineOrderController.setExpectedCheckOutTime(time);
+                clerkReservePromotionController.setEndTime(time);
+        }
+        //工作人员 其他优惠界面
+        if (toBeSet.equals("clerk/ClerkOtherPromotion.fxml")) {
+            ClerkOtherPromotionController clerkOtherPromotionController = (ClerkOtherPromotionController) stageController.getController(toBeSet);
+            if (type.equals("start"))
+                clerkOtherPromotionController.setStartTime(time);
+            if (type.equals("end"))
+                clerkOtherPromotionController.setEndTime(time);
+        }
+        //营销人员 节日特惠界面
+        if (toBeSet.equals("marketer/MarketerHolidayPromotion.fxml")) {
+            MarketerHolidayPromotionController marketerHolidayPromotionController = (MarketerHolidayPromotionController) stageController.getController(toBeSet);
+            if (type.equals("start"))
+                marketerHolidayPromotionController.setStartTime(time);
+            if (type.equals("end"))
+                marketerHolidayPromotionController.setEndTime(time);
+        }
+        //营销人员 VIP界面
+        if (toBeSet.equals("marketer/MarketerVIPPromotion.fxml")) {
+            MarketerVIPPromotionController marketerVIPPromotionController = (MarketerVIPPromotionController) stageController.getController(toBeSet);
+            if (type.equals("start"))
+                marketerVIPPromotionController.setStartTime(time);
+            if (type.equals("end"))
+                marketerVIPPromotionController.setEndTime(time);
+        }
+        //营销人员 其他特惠界面
+        if (toBeSet.equals("marketer/MarketerOtherPromotion.fxml")) {
+            MarketerOtherPromotionController marketerOtherPromotionController = (MarketerOtherPromotionController) stageController.getController(toBeSet);
+            if (type.equals("start"))
+                marketerOtherPromotionController.setStartTime(time);
+            if (type.equals("end"))
+                marketerOtherPromotionController.setEndTime(time);
         }
     }
 

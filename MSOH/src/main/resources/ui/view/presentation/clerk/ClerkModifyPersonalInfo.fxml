@@ -99,7 +99,7 @@
             <Image url="@../image/avatar.png" />
          </image>
       </ImageView>
-      <Label fx:id="clerkName" layoutX="155.0" layoutY="341.0" text="小明同学" textFill="WHITE">
+      <Label fx:id="clerkName" alignment="CENTER" layoutX="79.0" layoutY="341.0" prefHeight="39.0" prefWidth="259.0" text="小明同学" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="28.0" />
          </font>

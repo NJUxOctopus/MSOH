@@ -1,11 +1,15 @@
 package ui.controller;
 
+import businesslogic.clerk_bl.Clerk;
 import businesslogic.clerk_bl.ClerkUtil;
 import businesslogic.customer_bl.CustomerUtil;
+import businesslogic.marketer_bl.MarketerUtil;
 import businesslogic.member_bl.MemberUtil;
 import businesslogicservice.clerk_blservice.ClerkUtil_BLService;
 import businesslogicservice.clerk_blservice.Clerk_BLService;
 import businesslogicservice.customer_blservice.CustomerUtil_BLService;
+import businesslogicservice.marketer_blservice.MarketerUtil_BLService;
+import businesslogicservice.marketer_blservice.Marketer_BLService;
 import businesslogicservice.member_blservice.MemberUtil_BLService;
 import ui.view.controllerservice.UserAdmin;
 import util.ResultMessage;
@@ -27,9 +31,14 @@ public class UserAdminController implements UserAdmin {
 
     private MemberUtil_BLService memberUtil_blService;
 
-    public UserAdminController(){
+    private MarketerUtil_BLService marketerUtil_blService;
+
+    public UserAdminController() {
+        clerk_blService = new Clerk();
+        clerkUtil_blService = new ClerkUtil();
         customerUtil_blService = new CustomerUtil();
         memberUtil_blService = new MemberUtil();
+        marketerUtil_blService = new MarketerUtil();
     }
 
     public UserVO findAllByID(String ID) {
@@ -49,7 +58,6 @@ public class UserAdminController implements UserAdmin {
     }
 
     public ClerkVO findClerkByID(String ID) throws RemoteException {
-        clerkUtil_blService = new ClerkUtil();
         return clerkUtil_blService.getSingle(ID);
     }
 
@@ -61,8 +69,15 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    public MarketerVO findMarketerByID(String ID) {
-        return null;
+    /**
+     * 根据营销人员ID得到营销人员
+     *
+     * @param ID
+     * @return
+     * @throws RemoteException
+     */
+    public MarketerVO findMarketerByID(String ID) throws RemoteException {
+        return marketerUtil_blService.getSingle(ID);
     }
 
     public List<CustomerVO> findAllCustomer() {
@@ -101,7 +116,7 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    public MemberVO findMemberByID(String ID) throws RemoteException{
+    public MemberVO findMemberByID(String ID) throws RemoteException {
         return memberUtil_blService.getSingle(ID);
     }
 

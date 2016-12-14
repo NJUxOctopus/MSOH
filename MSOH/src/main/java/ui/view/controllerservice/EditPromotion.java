@@ -15,19 +15,21 @@ import java.util.List;
 public interface EditPromotion {
     public ResultMessage addHotelPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException;
 
-    public ResultMessage addWebPromotion(PromotionVO promotionVO);
+    public ResultMessage addWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException;
 
     public ResultMessage modifyHotelPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException;
+
+    public ResultMessage modifyWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException;
 
     public ResultMessage deletePromotion(String promotionID) throws RemoteException;
 
     public PromotionVO getSingle(String promotionID) throws RemoteException;
 
-    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp time) throws RemoteException, ClassNotFoundException, IOException ;
+    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp time) throws RemoteException, ClassNotFoundException, IOException;
 
     public List<String> getCompany() throws RemoteException;
 
     public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType, String hotelID, Timestamp timestamp) throws IOException, ClassNotFoundException;
 
 
-    }
+}

@@ -12,6 +12,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.clerk.ClerkFrameController;
 import ui.view.presentation.customer.CustomerMainView;
 import ui.view.presentation.customer.CustomerMainViewController;
+import ui.view.presentation.marketer.MarketerFrameController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
 import util.ResultMessage;
@@ -124,6 +125,8 @@ public class LoginViewController implements ControlledStage {
             rememberPW(rememberPWSelected, userID, password);
             stageController.loadStage("marketer/MarketerFrame.fxml", 1);
             stageController.closeStage(resource);
+            MarketerFrameController marketerFrameController = (MarketerFrameController)stageController.getController();
+            marketerFrameController.initial(userID);
         } else if (loginResult.equals(ResultMessage.Login_CustomerSuccess)) {
 //        } else if (userID.equals("Admin") && password.equals("123456")) {
             // 客户登录成功

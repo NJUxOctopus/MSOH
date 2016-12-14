@@ -204,4 +204,20 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
         errorBoxController.setLabel(error);
         return stageController;
     }
+
+    /**
+     * 回显选择的开始时间
+     * @param time
+     */
+    public void setStartTime(String time){
+        startTimeButton.setText(time);
+    }
+
+    /**
+     * 回显选择的结束时间
+     * @param time
+     */
+    public void setEndTime(String time){
+        endTimeButton.setText(time);
+    }
 }

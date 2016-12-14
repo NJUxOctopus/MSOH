@@ -62,11 +62,6 @@ public class ClerkOtherPromotionController implements ControlledStage {
     private HotelAdmin hotelAdmin;
     private EditPromotion editPromotion;
 
-    //获取当前时间
-    private Date date = new Date();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
-
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -174,6 +169,11 @@ public class ClerkOtherPromotionController implements ControlledStage {
     @FXML
     private void confirmCreate() throws IOException, ClassNotFoundException {
 
+        //获取当前时间
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+
         editPromotion = new EditPromotionController();
 
         String promotionName = promotionNameTextField.getText();
@@ -232,5 +232,21 @@ public class ClerkOtherPromotionController implements ControlledStage {
         ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
         errorBoxController.setLabel(error);
         return stageController;
+    }
+
+    /**
+     * 回显选择的开始时间
+     * @param time
+     */
+    public void setStartTime(String time){
+        startTimeButton.setText(time);
+    }
+
+    /**
+     * 回显选择的结束时间
+     * @param time
+     */
+    public void setEndTime(String time){
+        endTimeButton.setText(time);
     }
 }

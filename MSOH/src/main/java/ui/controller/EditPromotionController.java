@@ -42,8 +42,16 @@ public class EditPromotionController implements EditPromotion {
         return promotion_blService.addHotelPromotion(promotionVO);
     }
 
-    public ResultMessage addWebPromotion(PromotionVO promotionVO) {
-        return null;
+    /**
+     * 增加网站营销策略，只需要填写目标商圈，自动获得商圈内所有酒店，用分号隔开
+     *
+     * @param promotionVO
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public ResultMessage addWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
+        return promotion_blService.addWebPromotion(promotionVO);
     }
 
     /**
@@ -56,6 +64,18 @@ public class EditPromotionController implements EditPromotion {
      */
     public ResultMessage modifyHotelPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
         return promotion_blService.modifyHotelPromotion(promotionVO);
+    }
+
+    /**
+     * 修改网站营销策略
+     *
+     * @param promotionVO
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public ResultMessage modifyWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
+        return promotion_blService.modifyWebPromotion(promotionVO);
     }
 
     /**

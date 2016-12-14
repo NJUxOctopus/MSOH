@@ -44,7 +44,7 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="startTimeButton" layoutX="256.0" layoutY="162.0" mnemonicParsing="false" onAction="#showBeginTime" prefHeight="53.0" prefWidth="192.0" style="-fx-background-color: #ffffff00;" text="2016/11/10" textFill="WHITE">
+      <Button fx:id="startTimeButton" layoutX="256.0" layoutY="162.0" mnemonicParsing="false" onAction="#showBeginTime" prefHeight="53.0" prefWidth="192.0" style="-fx-background-color: #ffffff00;" text="2016-11-10" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="22.0" />
          </font>
@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="endTimeButton" layoutX="483.0" layoutY="162.0" mnemonicParsing="false" onAction="#showEndTime" prefHeight="53.0" prefWidth="192.0" style="-fx-background-color: #ffffff00;" text="2016/11/20" textFill="WHITE">
+      <Button fx:id="endTimeButton" layoutX="483.0" layoutY="162.0" mnemonicParsing="false" onAction="#showEndTime" prefHeight="53.0" prefWidth="192.0" style="-fx-background-color: #ffffff00;" text="2016-11-20" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="22.0" />
          </font>
@@ -65,7 +65,7 @@
             <Image url="@../image/holiday.png" />
          </image>
       </ImageView>
-      <Label layoutX="256.0" layoutY="233.0" text="所有会员" textFill="WHITE">
+      <Label layoutX="256.0" layoutY="233.0" text="所有客户" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>

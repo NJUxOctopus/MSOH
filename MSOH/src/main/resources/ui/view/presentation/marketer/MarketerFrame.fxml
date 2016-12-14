@@ -129,7 +129,7 @@
             </Pane>
          </children>
       </VBox>
-      <Label fx:id="clerkName" layoutX="1068.0" layoutY="305.0" text="Octopus" textFill="WHITE">
+      <Label fx:id="marketerName" alignment="CENTER" layoutX="1036.0" layoutY="305.0" prefHeight="35.0" prefWidth="165.0" text="Octopus" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>

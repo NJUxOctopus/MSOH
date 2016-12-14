@@ -19,24 +19,6 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
     }
 
     /**
-     * 开始时间按钮结果，显示选择开始时间弹窗
-     */
-    @FXML
-    private void showBeginTime() {
-        stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
-    }
-
-    /**
-     * 结束时间按钮结果，显示选择结束时间弹窗
-     */
-    @FXML
-    private void showEndTime() {
-        stageController = new StageController();
-        stageController.loadStage("util/SelectTimeView.fxml", 0.8);
-    }
-
-    /**
      * 后退按钮结果，显示确认退出提示弹窗
      */
     @FXML

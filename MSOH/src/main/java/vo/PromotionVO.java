@@ -124,4 +124,62 @@ public class PromotionVO implements Serializable {
         this.companyName = companyName;
     }
 
+    /**
+     * 制定网站节日特惠时使用的构造方法
+     * @param framerName
+     * @param frameDate
+     * @param promotionName
+     * @param targetUser
+     * @param targetArea
+     * @param startTime
+     * @param endTime
+     * @param discount
+     * @param minRoom
+     * @param promotionType
+     */
+    public PromotionVO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
+                       String targetArea, Timestamp startTime, Timestamp endTime, double discount,
+                       int minRoom, PromotionType promotionType) {
+        this.framerName = framerName;
+        this.frameDate = frameDate;
+        this.promotionName = promotionName;
+        this.targetUser = targetUser;
+        this.targetArea = targetArea;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.discount = discount;
+        this.minRoom = minRoom;
+        this.promotionType = promotionType;
+    }
+
+    /**
+     * 制定网站VIP特惠时使用的构造方法
+     * @param framerName
+     * @param frameDate
+     * @param promotionName
+     * @param targetUser
+     * @param targetArea
+     * @param memberLevel
+     * @param startTime
+     * @param endTime
+     * @param discount
+     * @param minRoom
+     * @param promotionType
+     */
+    public PromotionVO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
+                       String targetArea, int memberLevel, Timestamp startTime, Timestamp endTime, double discount,
+                       int minRoom, PromotionType promotionType) {
+        this.framerName = framerName;
+        this.frameDate = frameDate;
+        this.promotionName = promotionName;
+        this.targetUser = targetUser;
+        this.targetArea = targetArea;
+        this.memberLevel = memberLevel;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.discount = discount;
+        this.minRoom = minRoom;
+        this.promotionType = promotionType;
+    }
+
 }

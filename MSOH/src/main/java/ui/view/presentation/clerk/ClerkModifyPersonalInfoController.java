@@ -28,8 +28,6 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
     private static String resource = "clerk/ClerkModifyPersonalInfo.fxml";
 
     @FXML
-    private Button modifyPWButton;
-    @FXML
     private Label clerkName;
     @FXML
     private TextField nameTextField;

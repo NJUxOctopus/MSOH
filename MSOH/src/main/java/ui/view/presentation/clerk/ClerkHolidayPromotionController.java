@@ -56,11 +56,6 @@ public class ClerkHolidayPromotionController implements ControlledStage {
 
     private String resource = "clerk/ClerkHolidayPromotion.fxml";
 
-    //获取当前时间
-    private Date date = new Date();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
-
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -142,6 +137,11 @@ public class ClerkHolidayPromotionController implements ControlledStage {
     @FXML
     private void confirmCreate() throws IOException, ClassNotFoundException {
 
+        //获取当前时间
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+
         editPromotion = new EditPromotionController();
 
         String name = promotionNameTextField.getText();
@@ -152,7 +152,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
         double discount = Double.parseDouble(discountLabel.getText());
 
         if(confirmButton.getText().equals("制定")){
-            ResultMessage resultMessage = editPromotion.addHotelPromotion(new PromotionVO(clerkName, time, name + "节日特惠", MemberType.NORMAL
+            ResultMessage resultMessage = editPromotion.addHotelPromotion(new PromotionVO(clerkName, time, name + "节日特惠", MemberType.NONMEMBER
                     , targetHotel, startTime, endTime, discount, 0, PromotionType.HotelPromotion_Holiday));
             if (resultMessage.equals(ResultMessage.Blank)) {
                 this.returnMessage("信息未填写完整！");
@@ -163,7 +163,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
                 this.returnMessage("未知错误！");
             }
         }else if(confirmButton.getText().equals("修改")){
-            ResultMessage resultMessage = editPromotion.modifyHotelPromotion(new PromotionVO(clerkName, time, name + "节日特惠", MemberType.NORMAL
+            ResultMessage resultMessage = editPromotion.modifyHotelPromotion(new PromotionVO(clerkName, time, name + "节日特惠", MemberType.NONMEMBER
                     , targetHotel, startTime, endTime, discount, 0, PromotionType.HotelPromotion_Holiday));
             if (resultMessage.equals(ResultMessage.Blank)) {
                 this.returnMessage("信息未填写完整！");
@@ -189,6 +189,22 @@ public class ClerkHolidayPromotionController implements ControlledStage {
         ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
         errorBoxController.setLabel(error);
         return stageController;
+    }
+
+    /**
+     * 回显选择的开始时间
+     * @param time
+     */
+    public void setStartTime(String time){
+        startTimeButton.setText(time);
+    }
+
+    /**
+     * 回显选择的结束时间
+     * @param time
+     */
+    public void setEndTime(String time){
+        endTimeButton.setText(time);
     }
 
 }

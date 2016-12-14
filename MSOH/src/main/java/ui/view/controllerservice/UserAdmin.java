@@ -24,7 +24,7 @@ public interface UserAdmin {
 
     public List<MarketerVO> findMarketerByName(String name);
 
-    public MarketerVO findMarketerByID(String ID);
+    public MarketerVO findMarketerByID(String ID) throws RemoteException;
 
     public List<CustomerVO> findAllCustomer();
 

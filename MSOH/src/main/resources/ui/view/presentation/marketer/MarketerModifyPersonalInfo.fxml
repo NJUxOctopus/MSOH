@@ -62,11 +62,6 @@
                 <Font name="Microsoft YaHei" size="28.0" />
             </font>
         </Label>
-        <Label layoutX="392.0" layoutY="431.0" text="邮箱" textFill="WHITE">
-            <font>
-                <Font name="Microsoft YaHei" size="28.0" />
-            </font>
-        </Label>
         <TextField fx:id="nameTextField" layoutX="484.0" layoutY="189.0" prefHeight="32.0" prefWidth="268.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
             <font>
                 <Font name="Microsoft YaHei" size="15.0" />
@@ -88,14 +83,6 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <TextField fx:id="emailTextField" layoutX="484.0" layoutY="435.0" prefHeight="32.0" prefWidth="268.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
-            <font>
-                <Font name="Microsoft YaHei" size="15.0" />
-            </font>
-            <cursor>
-                <Cursor fx:constant="TEXT" />
-            </cursor>
-        </TextField>
         <Button fx:id="confirmButton" layoutX="1036.0" layoutY="553.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认修改" textFill="WHITE">
             <font>
                 <Font name="Microsoft YaHei" size="16.0" />
@@ -109,12 +96,12 @@
                 <Image url="@../image/avatar.png" />
             </image>
         </ImageView>
-        <Label fx:id="clerkName" layoutX="155.0" layoutY="335.0" text="Octopus" textFill="WHITE">
+        <Label fx:id="marketerName" alignment="CENTER" layoutX="77.0" layoutY="341.0" prefHeight="39.0" prefWidth="268.0" text="Octopus" textFill="WHITE">
             <font>
                 <Font name="Microsoft YaHei" size="28.0" />
             </font>
         </Label>
-      <PasswordField fx:id="passwordTextField1" layoutX="850.0" layoutY="189.0" prefHeight="32.0" prefWidth="205.0" style="-fx-background-color: #ffffff00;">
+      <PasswordField fx:id="passwordTextField" layoutX="850.0" layoutY="189.0" prefHeight="32.0" prefWidth="205.0" style="-fx-background-color: #ffffff00;">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
