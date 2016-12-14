@@ -1,13 +1,23 @@
 package ui.view.presentation.manager;
 
+import businesslogic.manager_bl.Manager;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import ui.controller.HotelAdminController;
+import ui.view.controllerservice.HotelAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import ui.view.presentation.util.ErrorBoxController;
+import vo.HotelVO;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by island on 2016/12/1.
@@ -36,9 +46,37 @@ public class ManagerHotelManageViewController implements ControlledStage {
         this.stageController = stageController;
     }
 
+    /**
+     * 搜索酒店方法
+     */
     @FXML
     private void search(){
-        addSingleHotelPane();
+        String type = (String)typeChoiceBox.getSelectionModel().getSelectedItem();
+        String input = textField.getText();
+        List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
+        HotelVO hotelVO;
+        try {
+            HotelAdmin hotelAdmin = new HotelAdminController();
+            if (type == null){
+                stageController = new StageController();
+                stageController.loadStage("util/ErrorBox.fxml", 0.75);
+                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+                errorBoxController.setLabel("请先选择搜索条件！");
+            }
+            if (type.equals("酒店ID")) {
+                hotelVO = hotelAdmin.findByID(input);
+                hotelVOList.add(hotelVO);
+            }
+            if (type.equals("酒店名称")) {
+                hotelVOList = hotelAdmin.findByName(input);
+            }
+            if (type.equals("所属商圈")) {
+                hotelVOList = hotelAdmin.findByArea(input);
+            }
+            addHotelPane(hotelVOList);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -46,14 +84,37 @@ public class ManagerHotelManageViewController implements ControlledStage {
      */
     @FXML
     private void addHotel(){
-        stageController = new StageController();
-        stageController.loadStage("manager/ManagerHotelInfoView.fxml", 1);
-        ManagerHotelInfoViewController managerHotelInfoViewController = (ManagerHotelInfoViewController) stageController.getController();
-        managerHotelInfoViewController.setAddVer();
+
+            stageController = new StageController();
+            stageController.loadStage("manager/ManagerHotelInfoView.fxml", 1);
+            ManagerHotelInfoViewController managerHotelInfoViewController = (ManagerHotelInfoViewController) stageController.getController();
+            managerHotelInfoViewController.setAddVer();
+
     }
 
-    public void addSingleHotelPane(){
-        PaneAdder paneAdder = new PaneAdder();
-        paneAdder.addPane(hotelListScrollPane,"manager/ManagerSingleHotelView.fxml", 10, 10 );
+    /**
+     * 添加单个酒店面板
+     * @param hotelVOs
+     */
+    public void addHotelPane(List<HotelVO> hotelVOs){
+        hotelListScrollPane.getChildren().clear();
+        if(!hotelVOs.isEmpty()) {
+            int num = hotelVOs.size();
+            hotelListScrollPane.setPrefWidth(250 * num);
+            for(int i = 0; i < num; i++) {
+                PaneAdder paneAdder = new PaneAdder();
+                paneAdder.addPane(hotelListScrollPane, "manager/ManagerSingleHotelView.fxml", 10 + 250*i, 10);
+                ManagerSingleHotelViewController managerSingleHotelViewController = (ManagerSingleHotelViewController) paneAdder.getController();
+                managerSingleHotelViewController.init(hotelVOs.get(i).hotelID);
+            }
+        }
+    }
+
+    /**
+     * 初始化选择框
+     */
+    public void init(){
+        typeChoiceBox.setItems(FXCollections.observableArrayList(
+                "酒店ID", "酒店名称", "所属商圈"));
     }
 }

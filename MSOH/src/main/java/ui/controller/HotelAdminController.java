@@ -40,16 +40,16 @@ public class HotelAdminController implements HotelAdmin {
         return hotelUtil_blService.getByID(ID);
     }
 
-    public HotelVO findByName(String name) {
-        return null;
+    public List<HotelVO> findByName(String name) throws RemoteException {
+        return hotelUtil_blService.getByName(name);
     }
 
-    public HotelVO findByAddress(String address) {
-        return null;
+    public List<HotelVO> findByArea(String area) throws RemoteException {
+        return hotelUtil_blService.getByArea(area);
     }
 
-    public ResultMessage addHotel(HotelVO hotelVO) {
-        return null;
+    public ResultMessage addHotel(HotelVO hotelVO) throws RemoteException{
+        return hotel_blService.addHotel(hotelVO);
     }
 
     public ResultMessage deleteHotel(HotelVO hotelVO) {

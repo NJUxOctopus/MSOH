@@ -46,7 +46,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="licenceTextField" layoutX="560.0" layoutY="545.0" prefHeight="35.0" prefWidth="561.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;">
+            <TextField fx:id="licenseTextField" layoutX="560.0" layoutY="545.0" prefHeight="35.0" prefWidth="561.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -96,14 +96,9 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="cityChoiceBox" layoutX="560.0" layoutY="245.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" />
-            <ChoiceBox fx:id="areaChoiceBox" layoutX="560.0" layoutY="320.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" />
-            <ChoiceBox fx:id="starChoiceBox" layoutX="560.0" layoutY="395.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" />
-            <TextField fx:id="facilityTextField" disable="true" layoutX="900.0" layoutY="475.0" prefHeight="27.0" prefWidth="216.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
+            <ChoiceBox fx:id="cityChoiceBox" layoutX="560.0" layoutY="245.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@manager.css" />
+            <ChoiceBox fx:id="areaChoiceBox" layoutX="560.0" layoutY="320.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@manager.css" />
+            <ChoiceBox fx:id="starChoiceBox" layoutX="560.0" layoutY="395.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@manager.css" />
             <CheckBox fx:id="depotCheckBox" layoutX="560.0" layoutY="476.0" mnemonicParsing="false" text="停车场" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -112,7 +107,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </CheckBox>
-            <CheckBox fx:id="swimmingPoolCheckBox" layoutX="650.0" layoutY="476.0" mnemonicParsing="false" text="游泳池" textFill="WHITE">
+            <CheckBox fx:id="swimmingPoolCheckBox" layoutX="720.0" layoutY="476.0" mnemonicParsing="false" text="游泳池" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -120,7 +115,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </CheckBox>
-            <CheckBox fx:id="gymCheckBox" layoutX="740.0" layoutY="476.0" mnemonicParsing="false" text="健身房" textFill="WHITE">
+            <CheckBox fx:id="gymCheckBox" layoutX="880.0" layoutY="476.0" mnemonicParsing="false" text="健身房" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -128,7 +123,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </CheckBox>
-            <CheckBox fx:id="otherCheckBox" layoutX="830.0" layoutY="476.0" mnemonicParsing="false" text="其他" textFill="WHITE">
+            <CheckBox fx:id="wifiCheckBox" layoutX="1040.0" layoutY="476.0" mnemonicParsing="false" text="WIFI" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -158,6 +153,21 @@
                <image>
                   <Image url="@../customer/image_customer/backButton.png" />
                </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="exitButton" layoutX="1190.0" layoutY="15.0" mnemonicParsing="false" onAction="#exit" prefHeight="16.0" prefWidth="15.0" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/exit1.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </graphic>
          <cursor>

@@ -25,11 +25,11 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="staffChoiceBox" layoutX="63.0" layoutY="14.0" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;">
+      <ChoiceBox fx:id="staffChoiceBox" layoutX="64.0" layoutY="14.0" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@manager.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ChoiceBox>
-      <TextField fx:id="textField" layoutX="152.0" layoutY="14.0" prefHeight="29.0" prefWidth="418.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" />
+      <TextField fx:id="textField" layoutX="241.0" layoutY="14.0" prefHeight="29.0" prefWidth="329.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" />
       <Button fx:id="addMarketerButton" layoutX="100.0" layoutY="455.0" mnemonicParsing="false" onAction="#showAddMarketerView" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="添加网站营销人员" textFill="WHITE">
          <font>
             <Font size="18.0" />
@@ -51,5 +51,15 @@
             <AnchorPane fx:id="staffListScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="649.0" style="-fx-background-color: #ffffff00;" />
          </content>
       </ScrollPane>
+      <ChoiceBox fx:id="typeChoiceBox" layoutX="181.0" layoutY="14.0" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@manager.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ChoiceBox>
+      <Label fx:id="emptyLabel" layoutX="300.0" layoutY="200.0" opacity="0.0" text="无 结 果" textFill="WHITE">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

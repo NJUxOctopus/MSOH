@@ -180,6 +180,7 @@ public class CustomerInfoViewController implements ControlledStage{
                 member = "非会员";
             }
             ID = customerVO.ID;
+
             nameTextField.setText(name);
             emailTextField.setText(email);
             phoneTextField.setText(phone);
@@ -190,6 +191,7 @@ public class CustomerInfoViewController implements ControlledStage{
         }catch (RemoteException e){
             e.printStackTrace();
         }
+            getNewInfo();
     }
 
     private void getNewInfo(){
