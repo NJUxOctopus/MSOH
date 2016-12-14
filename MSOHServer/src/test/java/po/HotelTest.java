@@ -17,17 +17,19 @@ public class HotelTest {
 
         List<HotelPO> list = hotel_dataService.getHotelByArea("新街口地区");
 
-        for (HotelPO hotelPO : list) {
-            System.out.println(hotelPO.getHotelName());
-        }
+//        for (HotelPO hotelPO : list) {
+//            System.out.println(hotelPO.getHotelName());
+//        }
 
-        HotelPO hotelPO = hotel_dataService.findHotelByID("10000012");
-        if (hotelPO == null) {
-            System.out.println("No Hotel");
-        } else {
-            System.out.println(hotelPO.getHotelName() + " " + hotelPO.getHotelAddress() + " " + hotelPO.getIntro());
-        }
+//        HotelPO hotelPO = hotel_dataService.findHotelByID("10000006");
+//        if (hotelPO == null) {
+//            System.out.println("No Hotel");
+//        } else {
+//            System.out.println(hotelPO.getHotelName() +" "+hotelPO.getClerkID()+ " " + hotelPO.getHotelAddress() + " " + hotelPO.getLicense());
+//        }
 
-
+//
+        HotelPO hotel=new HotelPO("hdhdnd","dddd","dd","dd","ddd","dd",2,5,"2010006","f","F");
+        System.out.print(hotel_dataService.addHotel(hotel));
     }
 }

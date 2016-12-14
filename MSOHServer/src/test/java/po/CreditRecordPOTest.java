@@ -12,11 +12,11 @@ import java.sql.Timestamp;
 public class CreditRecordPOTest {
     @Test
     public void testSaveCreditRecord() {
-        CreditRecordPO cr = new CreditRecordPO(200, new Timestamp(System.currentTimeMillis()), "zqh", "320581199707230236", 3200, "201611240001", "pxr");
+//        CreditRecordPO cr = new CreditRecordPO(200, new Timestamp(System.currentTimeMillis()), "zqh", "320581199707230236", 3200, "201611240001", "pxr");
 
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
-        session.save(cr);
+//        session.save(cr);
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);
     }
