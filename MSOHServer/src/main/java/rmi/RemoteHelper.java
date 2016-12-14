@@ -7,6 +7,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 /**
+ * RMI远程连接助手
+ * <p>
  * Created by zqh on 2016/11/13.
  */
 public class RemoteHelper {

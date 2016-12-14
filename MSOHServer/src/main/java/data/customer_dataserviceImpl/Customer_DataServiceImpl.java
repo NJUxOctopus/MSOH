@@ -12,6 +12,7 @@ import po.CustomerPO;
 import po.HotelPO;
 import po.OrderPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -21,6 +22,7 @@ import java.util.List;
 /**
  * Created by zqh on 2016/12/2.
  */
+@SuppressWarnings(value = {"Duplicates"})
 public class Customer_DataServiceImpl implements Customer_DataService {
     private CustomerDataHelper customerDataHelper;
 
@@ -31,6 +33,8 @@ public class Customer_DataServiceImpl implements Customer_DataService {
     private OrderDataHelper orderDataHelper;
 
     private DataFactory dataFactory;
+
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -62,6 +66,18 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public boolean addCustomer(CustomerPO customerPO) throws RemoteException {
+        // 姓名、密码、联系方式、ID、email加密
+        String name = EncryptionUtil.encode(key, customerPO.getUserName());
+        String pw = EncryptionUtil.encode(key, customerPO.getPassword());
+        String phone = EncryptionUtil.encode(key, customerPO.getPhone());
+        String customerID = EncryptionUtil.encode(key, customerPO.getID());
+        String email = EncryptionUtil.encode(key, customerPO.getEmail());
+        customerPO.setUserName(name);
+        customerPO.setPassword(pw);
+        customerPO.setPhone(phone);
+        customerPO.setID(customerID);
+        customerPO.setEmail(email);
+
         return customerDataHelper.addCustomer(customerPO);
     }
 
@@ -77,6 +93,19 @@ public class Customer_DataServiceImpl implements Customer_DataService {
         if (customerPO.getID() == null) {
             return false;
         }
+
+        // 姓名、密码、联系方式、ID、email加密
+        String name = EncryptionUtil.encode(key, customerPO.getUserName());
+        String pw = EncryptionUtil.encode(key, customerPO.getPassword());
+        String phone = EncryptionUtil.encode(key, customerPO.getPhone());
+        String customerID = EncryptionUtil.encode(key, customerPO.getID());
+        String email = EncryptionUtil.encode(key, customerPO.getEmail());
+        customerPO.setUserName(name);
+        customerPO.setPassword(pw);
+        customerPO.setPhone(phone);
+        customerPO.setID(customerID);
+        customerPO.setEmail(email);
+
         return customerDataHelper.modifyCustomer(customerPO);
     }
 
@@ -92,6 +121,19 @@ public class Customer_DataServiceImpl implements Customer_DataService {
         if (customerPO.getID() == null) {
             return false;
         }
+
+        // 姓名、密码、联系方式、ID、email加密
+        String name = EncryptionUtil.encode(key, customerPO.getUserName());
+        String pw = EncryptionUtil.encode(key, customerPO.getPassword());
+        String phone = EncryptionUtil.encode(key, customerPO.getPhone());
+        String customerID = EncryptionUtil.encode(key, customerPO.getID());
+        String email = EncryptionUtil.encode(key, customerPO.getEmail());
+        customerPO.setUserName(name);
+        customerPO.setPassword(pw);
+        customerPO.setPhone(phone);
+        customerPO.setID(customerID);
+        customerPO.setEmail(email);
+
         return customerDataHelper.deleteCustomer(customerPO);
     }
 
@@ -103,10 +145,21 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public List<CustomerPO> findCustomerByName(String customerName) throws IOException, ClassNotFoundException {
+        customerName = EncryptionUtil.encode(key, customerName);
+
         List<CustomerPO> customerPOList = customerDataHelper.findCustomerByName(customerName);
 
-        if (customerPOList.isEmpty() || customerPOList == null) {
-            return null;
+        if (customerPOList == null || customerPOList.isEmpty()) {
+            return new ArrayList<CustomerPO>();
+        }
+
+        for (CustomerPO customer : customerPOList) {
+            // 姓名、密码、联系方式、ID、email解密
+            customer.setUserName(EncryptionUtil.decode(key, customer.getUserName()));
+            customer.setPassword(EncryptionUtil.decode(key, customer.getPassword()));
+            customer.setPhone(EncryptionUtil.decode(key, customer.getPhone()));
+            customer.setID(EncryptionUtil.decode(key, customer.getID()));
+            customer.setEmail(EncryptionUtil.decode(key, customer.getEmail()));
         }
 
         List<CustomerPO> list = CopyUtil.deepCopy(customerPOList);
@@ -122,7 +175,20 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public CustomerPO findCustomerByID(String customerID) throws RemoteException {
+        customerID = EncryptionUtil.encode(key, customerID);
+
         CustomerPO customerPO = customerDataHelper.findCustomerByID(customerID);
+
+        if (customerPO == null) {
+            return customerPO;
+        } else {
+            // 姓名、密码、联系方式、ID、email解密
+            customerPO.setUserName(EncryptionUtil.decode(key, customerPO.getUserName()));
+            customerPO.setPassword(EncryptionUtil.decode(key, customerPO.getPassword()));
+            customerPO.setPhone(EncryptionUtil.decode(key, customerPO.getPhone()));
+            customerPO.setID(EncryptionUtil.decode(key, customerPO.getID()));
+            customerPO.setEmail(EncryptionUtil.decode(key, customerPO.getEmail()));
+        }
 
         return (CustomerPO) customerPO.clone();
     }
@@ -137,7 +203,16 @@ public class Customer_DataServiceImpl implements Customer_DataService {
         List<CustomerPO> customerList = customerDataHelper.findAllCustomers();
 
         if (customerList == null || customerList.isEmpty()) {
-            return null;
+            return new ArrayList<CustomerPO>();
+        }
+
+        for (CustomerPO customer : customerList) {
+            // 姓名、密码、联系方式、ID、email解密
+            customer.setUserName(EncryptionUtil.decode(key, customer.getUserName()));
+            customer.setPassword(EncryptionUtil.decode(key, customer.getPassword()));
+            customer.setPhone(EncryptionUtil.decode(key, customer.getPhone()));
+            customer.setID(EncryptionUtil.decode(key, customer.getID()));
+            customer.setEmail(EncryptionUtil.decode(key, customer.getEmail()));
         }
 
         List<CustomerPO> list = CopyUtil.deepCopy(customerList);
@@ -153,6 +228,8 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public List<HotelPO> getCustomerReservedHotel(String ID) throws IOException, ClassNotFoundException {
+        ID = EncryptionUtil.encode(key, ID);
+
         List<OrderPO> customerOrderList = orderDataHelper.findOrderByCustomerID(ID);
 
         // 获得预定过的所有酒店ID（不重复的）
@@ -166,8 +243,8 @@ public class Customer_DataServiceImpl implements Customer_DataService {
             }
         }
 
-        if (reservedHotelIDList.isEmpty() || reservedHotelIDList == null) {
-            return null;
+        if (reservedHotelIDList == null || reservedHotelIDList.isEmpty()) {
+            return new ArrayList<HotelPO>();
         }
 
         // 根据酒店ID查找酒店
@@ -179,7 +256,12 @@ public class Customer_DataServiceImpl implements Customer_DataService {
             reservedHotelList.add(hotelDataHelper.getHotelByID(hotelID));
         }
 
-        return reservedHotelList;
+        for (HotelPO hotel : reservedHotelList) {
+            // 酒店工作人员ID解密
+            hotel.setClerkID(EncryptionUtil.decode(key, hotel.getClerkID()));
+        }
+
+        return CopyUtil.deepCopy(reservedHotelList);
     }
 
     /**
@@ -190,6 +272,16 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public boolean addCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException {
+        // 客户ID、姓名、营销人员姓名加密
+        String customerID = EncryptionUtil.encode(key, creditRecordPO.getCustomerID());
+        String customerName = EncryptionUtil.encode(key, creditRecordPO.getCustomerName());
+        creditRecordPO.setCustomerID(customerID);
+        creditRecordPO.setCustomerName(customerName);
+        if (creditRecordPO.getMarketerName() != null || creditRecordPO.getMarketerName() != "") {
+            String marketerName = EncryptionUtil.encode(key, creditRecordPO.getMarketerName());
+            creditRecordPO.setMarketerName(marketerName);
+        }
+
         return creditRecordDataHelper.addCreditRecord(creditRecordPO);
     }
 
@@ -201,6 +293,16 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException {
+        // 客户ID、姓名、营销人员姓名加密
+        String customerID = EncryptionUtil.encode(key, creditRecordPO.getCustomerID());
+        String customerName = EncryptionUtil.encode(key, creditRecordPO.getCustomerName());
+        creditRecordPO.setCustomerID(customerID);
+        creditRecordPO.setCustomerName(customerName);
+        if (creditRecordPO.getMarketerName() != null || creditRecordPO.getMarketerName() != "") {
+            String marketerName = EncryptionUtil.encode(key, creditRecordPO.getMarketerName());
+            creditRecordPO.setMarketerName(marketerName);
+        }
+
         return creditRecordDataHelper.deleteCreditRecord(creditRecordPO);
     }
 
@@ -212,13 +314,25 @@ public class Customer_DataServiceImpl implements Customer_DataService {
      * @throws RemoteException
      */
     public List<CreditRecordPO> findCreditRecordByID(String ID) throws IOException, ClassNotFoundException {
+        ID = EncryptionUtil.encode(key, ID);
+
         List<CreditRecordPO> creditRecordList = creditRecordDataHelper.findCreditRecordByID(ID);
 
         if (creditRecordList == null || creditRecordList.isEmpty()) {
-            return null;
+            return new ArrayList<CreditRecordPO>();
+        } else {
+            // 客户姓名、ID、营销人员姓名解密
+            for (CreditRecordPO creditRecord : creditRecordList) {
+                creditRecord.setCustomerName(EncryptionUtil.decode(key, creditRecord.getCustomerName()));
+                creditRecord.setCustomerID(EncryptionUtil.decode(key, creditRecord.getCustomerID()));
+                if (creditRecord.getMarketerName() != null || creditRecord.getMarketerName() != "") {
+                    creditRecord.setMarketerName(EncryptionUtil.decode(key, creditRecord.getMarketerName()));
+                }
+            }
         }
 
         List<CreditRecordPO> list = CopyUtil.deepCopy(creditRecordList);
+
         return list;
     }
 }

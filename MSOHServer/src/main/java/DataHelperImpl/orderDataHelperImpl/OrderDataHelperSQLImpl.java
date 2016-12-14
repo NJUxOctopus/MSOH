@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.OrderPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 import util.OrderStatus;
 
@@ -24,7 +25,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
     public boolean addOrder(OrderPO po) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
             session.save(po);
             return true;
@@ -47,7 +48,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
     public boolean updateOrder(OrderPO orderPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
             session.update(orderPO);
             return true;
@@ -70,7 +71,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
     public boolean deleteOrder(OrderPO orderPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
             session.delete(orderPO);
             return true;
@@ -173,6 +174,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
             query.setString("n", hotelID);
 
             List<OrderPO> list = query.list();
+
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -202,6 +204,7 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
 
             query.setString("n", orderStatusStr);
             List<OrderPO> list = query.list();
+
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();

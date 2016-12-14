@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.CreditRecordPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -65,7 +66,6 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
                 HibernateUtil.closeSession(session);
             }
         }
-
     }
 
     /**
@@ -85,6 +85,7 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
             query.setString("n", ID);
 
             List<CreditRecordPO> list = query.list();
+
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();

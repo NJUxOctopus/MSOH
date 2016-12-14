@@ -4,8 +4,9 @@ import java.io.*;
 import java.util.List;
 
 /**
+ * 列表深拷贝的工具包
+ * <p>
  * Created by zqh on 2016/12/1.
- * 对列表进行深拷贝的工具类
  */
 public class CopyUtil {
 

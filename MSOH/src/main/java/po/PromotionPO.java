@@ -38,12 +38,14 @@ public class PromotionPO implements Serializable {
     private String companyName;
     // 策略类型
     private PromotionType promotionType;
+    // 适用的会员等级
+    private int targetMemberLevel;
 
     public PromotionPO() {
     }
 
     public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,  String companyName,PromotionType promotionType) {
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, String companyName, PromotionType promotionType) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -54,7 +56,7 @@ public class PromotionPO implements Serializable {
         this.endTime = endTime;
         this.discount = discount;
         this.minRoom = minRoom;
-        this.companyName=companyName;
+        this.companyName = companyName;
         this.promotionType = promotionType;
     }
 
@@ -160,5 +162,13 @@ public class PromotionPO implements Serializable {
 
     public void setPromotionType(PromotionType promotionType) {
         this.promotionType = promotionType;
+    }
+
+    public int getTargetMemberLevel() {
+        return targetMemberLevel;
+    }
+
+    public void setTargetMemberLevel(int targetMemberLevel) {
+        this.targetMemberLevel = targetMemberLevel;
     }
 }

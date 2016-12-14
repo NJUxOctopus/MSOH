@@ -1,5 +1,7 @@
 package util.strategy;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogic.customer_bl.CustomerUtil;
 import businesslogic.hotel_bl.HotelUtil;
 import po.PromotionPO;
@@ -15,8 +17,10 @@ import java.util.List;
  * Created by Pxr on 16/12/7.
  */
 public class NormalPromotion implements Strategy {
-    MemberType memberType;
-    int roomNum;
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
+    private MemberType memberType;
+    private int roomNum;
 
     public NormalPromotion(MemberType memberType, int roomNum) {
         this.memberType = memberType;
@@ -25,7 +29,6 @@ public class NormalPromotion implements Strategy {
 
     @Override
     public Boolean usePromotion(OrderVO orderVO) throws RemoteException {
-        CustomerUtil customerUtil = new CustomerUtil();
 
         boolean memberTypeMeetReq = false;//用来判断会员类型是否符合
         if (memberType.equals(MemberType.NONMEMBER)) {
@@ -35,7 +38,7 @@ public class NormalPromotion implements Strategy {
             memberTypeMeetReq = true;
         }
 
-        if (roomNum >= orderVO.rooms.length &&  memberTypeMeetReq)
+        if (roomNum >= orderVO.rooms.length && memberTypeMeetReq)
             return true;
         else
             return false;

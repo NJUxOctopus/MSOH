@@ -89,12 +89,11 @@ public class CustomerInfoViewController implements ControlledStage{
     @FXML
     private void closeStage() {
         getNewInfo();
+        stageController = new StageController();
         if(newName.equals(name) && newEmail.equals(email) && newPhone.equals(phone)){
-            stageController = new StageController();
             stageController.closeStage(resource);
         }
         else {
-            stageController = new StageController();
             stageController.loadStage("util/ConfirmExit.fxml", 0.75);
             ConfirmExitController controller = (ConfirmExitController) stageController.getController();
             controller.setToBeClosed(resource);
@@ -171,6 +170,7 @@ public class CustomerInfoViewController implements ControlledStage{
             name = customerVO.name;
             email = customerVO.email;
             phone = customerVO.phone;
+
             credit = customerVO.credit + "";
             if(customerVO.memberType == MemberType.ENTREPRISE) {
                 member = "企业会员";
@@ -186,6 +186,7 @@ public class CustomerInfoViewController implements ControlledStage{
             creditTextField.setText(credit);
             memberTextField.setText(member);
             idTextField.setText(ID);
+            getNewInfo();
         }catch (RemoteException e){
             e.printStackTrace();
         }
@@ -195,6 +196,14 @@ public class CustomerInfoViewController implements ControlledStage{
         newName = nameTextField.getText();
         newEmail = emailTextField.getText();
         newPhone = phoneTextField.getText();
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 }
 

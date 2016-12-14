@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.MarketerPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
     public boolean addMarketer(MarketerPO marketerPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.save(marketerPO);
@@ -35,7 +36,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -48,7 +48,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
     public boolean modifyMarketer(MarketerPO marketerPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.update(marketerPO);
@@ -60,7 +60,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -73,7 +72,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
     public boolean deleteMarketer(MarketerPO marketerPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.delete(marketerPO);
@@ -85,7 +84,6 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -132,6 +130,7 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
             session.beginTransaction();
 
             MarketerPO marketerPO = (MarketerPO) session.get(MarketerPO.class, ID);
+
             return marketerPO;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -154,6 +153,10 @@ public class MarketerDataHelperSQLImpl implements MarketerDataHelper {
         session.beginTransaction();
 
         List<MarketerPO> list = session.createQuery("from MarketerPO ").list();
+
+        if(list==null||list.isEmpty()){
+            return new ArrayList<MarketerPO>();
+        }
 
         session.getTransaction().commit();
         HibernateUtil.closeSession(session);

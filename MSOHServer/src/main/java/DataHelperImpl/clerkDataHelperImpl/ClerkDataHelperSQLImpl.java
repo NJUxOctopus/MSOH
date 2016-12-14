@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.ClerkPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 @SuppressWarnings(value = {"Duplicates", "deprecation"})
 public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
+
     /**
      * 数据库中新增酒店工作人员
      *
@@ -23,7 +25,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
     public boolean addClerk(ClerkPO clerkPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.save(clerkPO);
@@ -35,7 +37,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -48,7 +49,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
     public boolean modifyClerk(ClerkPO clerkPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.update(clerkPO);
@@ -60,10 +61,8 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
-
     }
 
     /**
@@ -74,7 +73,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
     public boolean deleteClerk(ClerkPO clerkPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.delete(clerkPO);
@@ -86,7 +85,6 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -134,6 +132,7 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
             query.setString("n", name);
 
             List<ClerkPO> list = query.list();
+
             return list;
 
         } catch (HibernateException e) {

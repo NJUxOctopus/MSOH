@@ -78,6 +78,9 @@ public class OrderPO implements Serializable, Cloneable {
     @Column(name = "orderStatus")
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+    // 若是撤销的订单，记录撤销时间
+    @Column(name = "revokedTime")
+    private Timestamp revokedTime;
 
     public OrderPO() {
 
@@ -257,6 +260,14 @@ public class OrderPO implements Serializable, Cloneable {
 
     public void setHotelID(String hotelID) {
         this.hotelID = hotelID;
+    }
+
+    public Timestamp getRevokedTime() {
+        return revokedTime;
+    }
+
+    public void setRevokedTime(Timestamp revokedTime) {
+        this.revokedTime = revokedTime;
     }
 
     @Override

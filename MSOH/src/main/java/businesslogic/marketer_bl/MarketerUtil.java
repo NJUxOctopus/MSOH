@@ -46,11 +46,9 @@ public class MarketerUtil implements MarketerUtil_BLService {
         List<MarketerPO> marketerPOList = marketer_dataService_stub.findMarketerByName(name);
         if(marketerPOList==null||marketerPOList.isEmpty())
             //若列表为空
-            return null;
+            return new ArrayList<MarketerVO>();
         List<MarketerVO> marketerVOList = new ArrayList<MarketerVO>();
-        Iterator iterator = marketerPOList.iterator();
-        while(iterator.hasNext()){
-            MarketerPO marketerPO = (MarketerPO)iterator.next();
+        for(MarketerPO marketerPO:marketerPOList){
             marketerVOList.add(new MarketerVO(marketerPO.getName(), marketerPO.getPhone(), marketerPO.getPassword(),
                     marketerPO.getID(), marketerPO.getPicUrl()));
 
@@ -67,11 +65,9 @@ public class MarketerUtil implements MarketerUtil_BLService {
         List<MarketerPO> marketerPOList = marketer_dataService_stub.findAllMarketers();
         if(marketerPOList==null||marketerPOList.isEmpty())
             //若列表为空
-            return null;
+            return new ArrayList<MarketerVO>();
         List<MarketerVO> marketerVOList = new ArrayList<MarketerVO>();
-        Iterator iterator = marketerPOList.iterator();
-        while(iterator.hasNext()){
-            MarketerPO marketerPO = (MarketerPO)iterator.next();
+        for(MarketerPO marketerPO:marketerPOList){
             marketerVOList.add(new MarketerVO(marketerPO.getName(), marketerPO.getPhone(), marketerPO.getPassword(),
                     marketerPO.getID(), marketerPO.getPicUrl()));
 

@@ -11,6 +11,7 @@ import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -21,6 +22,7 @@ import java.util.List;
 /**
  * Created by zqh on 2016/12/5.
  */
+@SuppressWarnings(value = {"Duplicates"})
 public class Hotel_DataServiceImpl implements Hotel_DataService {
     private DataFactory dataFactory;
 
@@ -31,6 +33,8 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     private CommentDataHelper commentDataHelper;
 
     private RoomDataHelper roomDataHelper;
+
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -63,6 +67,9 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         String hotelID = generateHotelID();
         // 设置酒店ID
         po.setHotelID(hotelID);
+        // 酒店工作人员ID加密
+        String clerkID = EncryptionUtil.encode(key, po.getClerkID());
+        po.setClerkID(clerkID);
 
         return hotelDataHelper.addHotel(po);
     }
@@ -79,6 +86,10 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         if (hotelPO.getHotelID() == null) {
             return false;
         }
+        // 酒店工作人员ID加密
+        String clerkID = EncryptionUtil.encode(key, hotelPO.getClerkID());
+        hotelPO.setClerkID(clerkID);
+
         return hotelDataHelper.modifyHotel(hotelPO);
     }
 
@@ -94,6 +105,10 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         if (hotelPO.getHotelID() == null) {
             return false;
         }
+        // 酒店工作人员ID加密
+        String clerkID = EncryptionUtil.encode(key, hotelPO.getClerkID());
+        hotelPO.setClerkID(clerkID);
+
         return hotelDataHelper.deleteHotel(hotelPO);
     }
 
@@ -107,9 +122,15 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<HotelPO> getHotels() throws IOException, ClassNotFoundException {
         List<HotelPO> hotelList = hotelDataHelper.getHotels();
 
-        if (hotelList.isEmpty() || hotelList == null) {
-            return hotelList;
+        if (hotelList == null || hotelList.isEmpty()) {
+            return new ArrayList<HotelPO>();
+        } else {
+            for (HotelPO hotel : hotelList) {
+                // 酒店工作人员ID解密
+                hotel.setClerkID(EncryptionUtil.decode(key, hotel.getClerkID()));
+            }
         }
+
 
         List<HotelPO> list = CopyUtil.deepCopy(hotelList);
 
@@ -128,6 +149,9 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
 
         if (hotel == null) {
             return null;
+        } else {
+            // 酒店工作人员ID解密
+            hotel.setClerkID(EncryptionUtil.decode(key, hotel.getClerkID()));
         }
 
         return (HotelPO) hotel.clone();
@@ -144,8 +168,13 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<HotelPO> findHotelByName(String hotelName) throws IOException, ClassNotFoundException {
         List<HotelPO> hotelList = hotelDataHelper.getHotelByName(hotelName);
 
-        if (hotelList.isEmpty() || hotelList == null) {
-            return hotelList;
+        if (hotelList == null || hotelList.isEmpty()) {
+            return new ArrayList<HotelPO>();
+        } else {
+            for (HotelPO hotel : hotelList) {
+                // 酒店工作人员ID解密
+                hotel.setClerkID(EncryptionUtil.decode(key, hotel.getClerkID()));
+            }
         }
 
         List<HotelPO> list = CopyUtil.deepCopy(hotelList);
@@ -164,8 +193,13 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<HotelPO> getHotelByArea(String areaName) throws IOException, ClassNotFoundException {
         List<HotelPO> hotelInThisArea = hotelDataHelper.getHotelByArea(areaName);
 
-        if (hotelInThisArea.isEmpty() || hotelInThisArea == null) {
-            return hotelInThisArea;
+        if (hotelInThisArea == null || hotelInThisArea.isEmpty()) {
+            return new ArrayList<HotelPO>();
+        } else {
+            for (HotelPO hotel : hotelInThisArea) {
+                // 酒店工作人员ID解密
+                hotel.setClerkID(EncryptionUtil.decode(key, hotel.getClerkID()));
+            }
         }
 
         List<HotelPO> list = CopyUtil.deepCopy(hotelInThisArea);
@@ -203,7 +237,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, Timestamp date) throws RemoteException {
         List<RoomPO> roomList = roomDataHelper.getRoomsByHotel(hotelID);
 
-        if (roomList.isEmpty() || roomList == null) {
+        if (roomList == null || roomList.isEmpty()) {
             return null;
         }
 
@@ -289,6 +323,12 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
      * @throws RemoteException
      */
     public boolean addComment(CommentPO po) throws RemoteException {
+        // 客户姓名、ID加密
+        String customerName = EncryptionUtil.encode(key, po.getCustomerName());
+        String customerID = EncryptionUtil.encode(key, po.getCustomerID());
+        po.setCustomerName(customerName);
+        po.setCustomerID(customerID);
+
         return commentDataHelper.addComment(po);
     }
 
@@ -303,8 +343,14 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
     public List<CommentPO> getCommentByHotel(String hotelID) throws IOException, ClassNotFoundException {
         List<CommentPO> commentList = commentDataHelper.getCommentsByHotel(hotelID);
 
-        if (commentList.isEmpty() || commentList == null) {
-            return commentList;
+        if (commentList == null || commentList.isEmpty()) {
+            return new ArrayList<CommentPO>();
+        } else {
+            for (CommentPO comment : commentList) {
+                // 客户姓名、ID解密
+                comment.setCustomerName(EncryptionUtil.decode(key, comment.getCustomerName()));
+                comment.setCustomerID(EncryptionUtil.decode(key, comment.getCustomerID()));
+            }
         }
 
         List<CommentPO> list = CopyUtil.deepCopy(commentList);
@@ -326,10 +372,13 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
             return null;
         }
 
+        // 客户姓名、ID解密
+        comment.setCustomerName(EncryptionUtil.decode(key, comment.getCustomerName()));
+        comment.setCustomerID(EncryptionUtil.decode(key, comment.getCustomerID()));
+
         return (CommentPO) comment.clone();
     }
 
-    // TODO 更换生成酒店ID的策略
 
     /**
      * 生成酒店ID
@@ -343,7 +392,7 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
         int size = 0;
         List<HotelPO> list = getHotels();
 
-        if (list.isEmpty() || list == null) {
+        if (list == null || list.isEmpty()) {
             size = 0;
         } else {
             size = list.size();

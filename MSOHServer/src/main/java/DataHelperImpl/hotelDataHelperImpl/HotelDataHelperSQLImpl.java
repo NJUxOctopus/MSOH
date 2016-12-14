@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.HotelPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class HotelDataHelperSQLImpl implements HotelDataHelper {
             session.beginTransaction();
 
             session.delete(hotelPO);
+
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -158,6 +160,7 @@ public class HotelDataHelperSQLImpl implements HotelDataHelper {
             query.setString("n", hotelName);
 
             List<HotelPO> list = query.list();
+
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -172,19 +175,21 @@ public class HotelDataHelperSQLImpl implements HotelDataHelper {
 
     /**
      * 根据商圈获得该商圈内的所有酒店
+     *
      * @param areaName
      * @return 该商圈内的所有酒店
      */
     public List<HotelPO> getHotelByArea(String areaName) {
-        List<HotelPO> hotelList=getHotels();
+        List<HotelPO> hotelList = getHotels();
 
-        if(hotelList.isEmpty()||hotelList==null){
+        if (hotelList == null || hotelList.isEmpty()) {
             return hotelList;
         }
 
-        List<HotelPO> hotelInThisArea=new ArrayList<HotelPO>();
-        for(HotelPO hotel:hotelList){
-            if(hotel.getArea().equals(areaName)){
+        List<HotelPO> hotelInThisArea = new ArrayList<HotelPO>();
+
+        for (HotelPO hotel : hotelList) {
+            if (hotel.getArea().equals(areaName)) {
                 hotelInThisArea.add(hotel);
             }
         }

@@ -19,8 +19,10 @@ public class MarketerPOTest {
 
         Marketer_DataService marketer_dataService= Marketer_DataServiceImpl.getInstance();
 
-//        marketer_dataService.addMarketer(marketerPO);
+        marketer_dataService.addMarketer(marketerPO);
 
-        marketer_dataService.addMarketer(marketerPO1);
+//        marketer_dataService.addMarketer(marketerPO1);
+//        MarketerPO m=marketer_dataService.findMarketerByID("320581201612102017");
+//        System.out.print(m.getName()+m.getID()+m.getPhone()+m.getPassword());
     }
 }

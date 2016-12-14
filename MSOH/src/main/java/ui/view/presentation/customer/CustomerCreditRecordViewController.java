@@ -74,6 +74,10 @@ public class CustomerCreditRecordViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 信用记录界面初始化方法
+     * @param customerID
+     */
     public void init(String customerID){
         this.customerID = customerID;
 
@@ -86,6 +90,10 @@ public class CustomerCreditRecordViewController implements ControlledStage {
         getAllCreditRecord(customerID);
     }
 
+    /**
+     * 获得所有的信用记录并添加信用记录面板
+     * @param customerID
+     */
     private void getAllCreditRecord(String customerID){
         CreditRecord creditRecord = new CreditRecordController();
         try {
@@ -94,5 +102,13 @@ public class CustomerCreditRecordViewController implements ControlledStage {
         }catch(RemoteException e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 }

@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.CustomerPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;

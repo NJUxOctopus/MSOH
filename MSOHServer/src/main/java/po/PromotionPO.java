@@ -53,18 +53,21 @@ public class PromotionPO implements Serializable, Cloneable {
     @Column(name = "promotionID")
     private int promotionID;
     // 企业名称
-    @Column(name="companyName")
+    @Column(name = "companyName")
     private String companyName;
     // 策略类型
     @Column(name = "promotionType")
     @Enumerated(EnumType.STRING)
     private PromotionType promotionType;
+    // 适用的会员等级
+    @Column(name = "targetMemberLevel")
+    private int targetMemberLevel;
 
     public PromotionPO() {
     }
 
     public PromotionPO(String framerName, Timestamp frameDate, String promotionName, MemberType targetUser,
-                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom,String companyName,PromotionType promotionType) {
+                       String targetArea, String targetHotel, Timestamp startTime, Timestamp endTime, double discount, int minRoom, String companyName, PromotionType promotionType) {
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.promotionName = promotionName;
@@ -75,8 +78,8 @@ public class PromotionPO implements Serializable, Cloneable {
         this.endTime = endTime;
         this.discount = discount;
         this.minRoom = minRoom;
-        this.companyName=companyName;
-        this.promotionType=promotionType;
+        this.companyName = companyName;
+        this.promotionType = promotionType;
     }
 
     public String getFramerName() {
@@ -181,6 +184,14 @@ public class PromotionPO implements Serializable, Cloneable {
 
     public void setPromotionType(PromotionType promotionType) {
         this.promotionType = promotionType;
+    }
+
+    public int getTargetMemberLevel() {
+        return targetMemberLevel;
+    }
+
+    public void setTargetMemberLevel(int targetMemberLevel) {
+        this.targetMemberLevel = targetMemberLevel;
     }
 
     @Override

@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.ManagerPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
     public boolean modifyManager(ManagerPO managerPO) {
         Session session = null;
         try {
-            session=HibernateUtil.getSession();
+            session = HibernateUtil.getSession();
             session.beginTransaction();
 
             session.update(managerPO);
@@ -35,7 +36,6 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             if (null != session) {
                 session.getTransaction().commit();
                 HibernateUtil.closeSession(session);
-
             }
         }
     }
@@ -54,6 +54,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             session.beginTransaction();
 
             ManagerPO managerPO = (ManagerPO) session.get(ManagerPO.class, ID);
+
             return managerPO;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -84,6 +85,7 @@ public class ManagerDataHelperSQLImpl implements ManagerDataHelper {
             query.setString("n", name);
 
             List<ManagerPO> list = query.list();
+
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();

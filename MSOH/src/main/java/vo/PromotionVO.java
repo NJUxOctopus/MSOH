@@ -38,6 +38,8 @@ public class PromotionVO implements Serializable {
 
     public String companyName;
 
+    public int memberLevel;
+
     public PromotionVO() {
     }
 

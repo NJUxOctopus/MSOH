@@ -6,14 +6,17 @@ import DataHelperImpl.DataFactoryImpl;
 import dataservice.manager_dataservice.Manager_DataService;
 import po.ManagerPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zqh on 2016/11/28.
  */
+@SuppressWarnings(value = {"Duplicates"})
 public class Manager_DataServiceImpl implements Manager_DataService {
     private ManagerDataHelper managerDataHelper;
 
@@ -21,6 +24,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
 
     private static Manager_DataServiceImpl manager_dataServiceImpl;
 
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -47,9 +51,20 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      */
     public boolean modifyManager(ManagerPO managerPO) throws RemoteException {
         // 数据库中主键必须存在，否则更新不成功
-        if(managerPO.getID()==null){
+        if (managerPO.getID() == null) {
             return false;
         }
+
+        // 网站管理人员姓名、密码、联系方式、ID加密
+        String name = EncryptionUtil.encode(key, managerPO.getName());
+        String pw = EncryptionUtil.encode(key, managerPO.getPassword());
+        String phone = EncryptionUtil.encode(key, managerPO.getID());
+        String manangerID = EncryptionUtil.encode(key, managerPO.getID());
+        managerPO.setName(name);
+        managerPO.setPassword(pw);
+        managerPO.setPhone(phone);
+        managerPO.setID(manangerID);
+
         return managerDataHelper.modifyManager(managerPO);
     }
 
@@ -61,10 +76,18 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      * @throws RemoteException
      */
     public ManagerPO findManagerByID(String ID) throws RemoteException {
+        ID = EncryptionUtil.encode(key, ID);
+
         ManagerPO managerPO = managerDataHelper.findManagerByID(ID);
 
         if (null == managerPO) {
             return null;
+        } else {
+            // 姓名、密码、联系方式、ID解密
+            managerPO.setName(EncryptionUtil.decode(key, managerPO.getName()));
+            managerPO.setPassword(EncryptionUtil.decode(key, managerPO.getPassword()));
+            managerPO.setPhone(EncryptionUtil.decode(key, managerPO.getPhone()));
+            managerPO.setID(EncryptionUtil.decode(key, managerPO.getID()));
         }
 
         return (ManagerPO) managerPO.clone();
@@ -79,7 +102,15 @@ public class Manager_DataServiceImpl implements Manager_DataService {
     public List<ManagerPO> findAllManagers() throws IOException, ClassNotFoundException {
         List<ManagerPO> managersList = managerDataHelper.findAllManagers();
         if (null == managersList || managersList.isEmpty()) {
-            return managersList;
+            return new ArrayList<ManagerPO>();
+        } else {
+            // 姓名、密码、联系方式、ID解密
+            for (ManagerPO manager : managersList) {
+                manager.setName(EncryptionUtil.decode(key, manager.getName()));
+                manager.setPassword(EncryptionUtil.decode(key, manager.getPassword()));
+                manager.setPhone(EncryptionUtil.decode(key, manager.getPhone()));
+                manager.setID(EncryptionUtil.decode(key, manager.getID()));
+            }
         }
 
         List<ManagerPO> returnManagersList = CopyUtil.deepCopy(managersList);
@@ -95,10 +126,20 @@ public class Manager_DataServiceImpl implements Manager_DataService {
      * @throws RemoteException
      */
     public List<ManagerPO> findManagerByName(String name) throws IOException, ClassNotFoundException {
+        name = EncryptionUtil.encode(key, name);
+
         List<ManagerPO> list = managerDataHelper.findManagerByName(name);
 
-        if (null == list || list.isEmpty()) {
-            return list;
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<ManagerPO>();
+        } else {
+            // 姓名、密码、联系方式、ID解密
+            for (ManagerPO manager : list) {
+                manager.setPassword(EncryptionUtil.decode(key, manager.getPassword()));
+                manager.setName(EncryptionUtil.decode(key, manager.getName()));
+                manager.setPhone(EncryptionUtil.decode(key, manager.getPhone()));
+                manager.setID(EncryptionUtil.decode(key, manager.getID()));
+            }
         }
 
         List<ManagerPO> returnManagersList = CopyUtil.deepCopy(list);

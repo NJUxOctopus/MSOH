@@ -6,14 +6,17 @@ import DataHelperImpl.DataFactoryImpl;
 import dataservice.clerk_dataservice.Clerk_DataService;
 import po.ClerkPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zqh on 2016/11/27.
  */
+@SuppressWarnings(value = {"Duplicates"})
 public class Clerk_DataServiceImpl implements Clerk_DataService {
 
     private ClerkDataHelper clerkDataHelper;
@@ -21,6 +24,8 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
     private DataFactory dataFactory;
 
     private static Clerk_DataServiceImpl clerk_dataServiceImpl;
+
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -33,7 +38,6 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
         }
         return clerk_dataServiceImpl;
     }
-
 
     private Clerk_DataServiceImpl() {
         dataFactory = new DataFactoryImpl();
@@ -48,6 +52,16 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @throws RemoteException
      */
     public boolean addClerk(ClerkPO clerkPO) throws RemoteException {
+        // 姓名、密码、联系方式、ID加密
+        String pw = EncryptionUtil.encode(key, clerkPO.getPassword());
+        String name = EncryptionUtil.encode(key, clerkPO.getName());
+        String phone = EncryptionUtil.encode(key, clerkPO.getPhone());
+        String clerkID = EncryptionUtil.encode(key, clerkPO.getID());
+        clerkPO.setPassword(pw);
+        clerkPO.setName(name);
+        clerkPO.setPhone(phone);
+        clerkPO.setID(clerkID);
+
         return clerkDataHelper.addClerk(clerkPO);
     }
 
@@ -60,9 +74,20 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      */
     public boolean modifyClerk(ClerkPO clerkPO) throws RemoteException {
         // 数据库中主键不能为空，否则更新不成功
-        if(clerkPO.getID()==null){
+        if (clerkPO.getID() == null) {
             return false;
         }
+
+        // 姓名、密码、联系方式、ID加密
+        String pw = EncryptionUtil.encode(key, clerkPO.getPassword());
+        String name = EncryptionUtil.encode(key, clerkPO.getName());
+        String phone = EncryptionUtil.encode(key, clerkPO.getPhone());
+        String clerkID = EncryptionUtil.encode(key, clerkPO.getID());
+        clerkPO.setPassword(pw);
+        clerkPO.setName(name);
+        clerkPO.setPhone(phone);
+        clerkPO.setID(clerkID);
+
         return clerkDataHelper.modifyClerk(clerkPO);
     }
 
@@ -74,9 +99,20 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @throws RemoteException
      */
     public List<ClerkPO> findClerkByName(String name) throws IOException, ClassNotFoundException {
+        name = EncryptionUtil.encode(key, name);
+
         List<ClerkPO> clerksFound = clerkDataHelper.getClerkByName(name);
+
         if (null == clerksFound || clerksFound.isEmpty()) {
             return clerksFound;
+        }
+
+        for (ClerkPO clerk : clerksFound) {
+            // 姓名、密码、联系方式、ID解密
+            clerk.setName(EncryptionUtil.decode(key, clerk.getName()));
+            clerk.setPassword(EncryptionUtil.decode(key, clerk.getPassword()));
+            clerk.setPhone(EncryptionUtil.decode(key, clerk.getPhone()));
+            clerk.setID(EncryptionUtil.decode(key, clerk.getID()));
         }
 
         List<ClerkPO> returnClerksFound = CopyUtil.deepCopy(clerksFound);
@@ -92,11 +128,20 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      * @throws RemoteException
      */
     public ClerkPO findClerkByID(String id) throws RemoteException {
+        id = EncryptionUtil.encode(key, id);
+
         ClerkPO clerkFound = clerkDataHelper.getClerkByID(id);
 
         if (null == clerkFound) {
             return null;
+        } else {
+            // 姓名、密码、联系方式、ID解密
+            clerkFound.setName(EncryptionUtil.decode(key, clerkFound.getName()));
+            clerkFound.setPassword(EncryptionUtil.decode(key, clerkFound.getPassword()));
+            clerkFound.setPhone(EncryptionUtil.decode(key, clerkFound.getPhone()));
+            clerkFound.setID(EncryptionUtil.decode(key, clerkFound.getID()));
         }
+
         return (ClerkPO) clerkFound.clone();
     }
 
@@ -110,6 +155,14 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
         List<ClerkPO> clerkList = clerkDataHelper.getAllClerks();
         if (null == clerkList || clerkList.isEmpty()) {
             return clerkList;
+        }
+
+        for (ClerkPO clerk : clerkList) {
+            // 姓名、密码、联系方式、ID解密
+            clerk.setName(EncryptionUtil.decode(key, clerk.getName()));
+            clerk.setPassword(EncryptionUtil.decode(key, clerk.getPassword()));
+            clerk.setPhone(EncryptionUtil.decode(key, clerk.getPhone()));
+            clerk.setID(EncryptionUtil.decode(key, clerk.getID()));
         }
 
         List<ClerkPO> returnClerkList = CopyUtil.deepCopy(clerkList);
@@ -126,9 +179,20 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
      */
     public boolean deleteClerk(ClerkPO clerkPO) throws RemoteException {
         // 数据库中主键不能为空，否则删除不成功
-        if(clerkPO.getID()==null){
+        if (clerkPO.getID() == null) {
             return false;
         }
+
+        // 姓名、密码、联系方式、ID加密
+        String pw = EncryptionUtil.encode(key, clerkPO.getPassword());
+        String name = EncryptionUtil.encode(key, clerkPO.getName());
+        String phone = EncryptionUtil.encode(key, clerkPO.getPhone());
+        String clerkID = EncryptionUtil.encode(key, clerkPO.getID());
+        clerkPO.setPassword(pw);
+        clerkPO.setName(name);
+        clerkPO.setPhone(phone);
+        clerkPO.setID(clerkID);
+
         return clerkDataHelper.deleteClerk(clerkPO);
     }
 }

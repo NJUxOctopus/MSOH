@@ -1,5 +1,7 @@
 package ui.view.presentation.customer;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -15,6 +17,7 @@ import util.ResultMessage;
 import vo.MemberVO;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by island on 2016/11/24.
@@ -86,7 +89,23 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
 
     public void init(String customerID){
         this.customerID = customerID;
-        //// TODO: 2016/12/11 获得所有酒店 
+        MemberRegister memberRegister = new MemberRegisterController();
+        try {
+            List<String> companys = memberRegister.getCompany();
+            ObservableList<String> companyList = FXCollections.observableArrayList();
+            for (int i = 0; i < companys.size(); i++)
+                companyList.add(companys.get(i));
+            companyChoiceBox.setItems(companyList);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

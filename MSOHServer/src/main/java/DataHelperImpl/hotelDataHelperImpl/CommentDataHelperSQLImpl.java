@@ -5,6 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.CommentPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class CommentDataHelperSQLImpl implements CommentDataHelper {
 
             query.setString("n", hotelID);
             List<CommentPO> list = query.list();
+
             return list;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -89,7 +91,7 @@ public class CommentDataHelperSQLImpl implements CommentDataHelper {
             query.setString("n", orderID);
             List<CommentPO> list = query.list();
 
-            if (list.isEmpty()) {
+            if (list==null||list.isEmpty()) {
                 return null;
             }
 

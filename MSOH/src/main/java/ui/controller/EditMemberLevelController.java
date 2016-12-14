@@ -17,6 +17,7 @@ public class EditMemberLevelController implements EditMemberLevel {
     public EditMemberLevelController(){
         memberLevel_blService = new MemberLevel();
     }
+
     public ResultMessage addMemberLevel(MemberLevelVO memberLevelVO) {
         return null;
     }

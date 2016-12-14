@@ -4,6 +4,7 @@ import DataHelper.memberLevelDataHelper.MemberLevelDataHelper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import po.MemberLevelPO;
+import util.EncryptionUtil;
 import util.HibernateUtil;
 
 import java.util.List;
@@ -54,6 +55,10 @@ public class MemberLevelDataHelperSQLImpl implements MemberLevelDataHelper {
             return null;
         }
 
+        session.getTransaction().commit();
+        HibernateUtil.closeSession(session);
+
         return list.get(0);
+
     }
 }

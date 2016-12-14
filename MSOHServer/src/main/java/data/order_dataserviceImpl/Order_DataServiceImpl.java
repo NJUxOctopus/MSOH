@@ -6,6 +6,7 @@ import DataHelperImpl.DataFactoryImpl;
 import dataservice.order_dataservice.Order_DataService;
 import po.OrderPO;
 import util.CopyUtil;
+import util.EncryptionUtil;
 import util.OrderStatus;
 
 import java.io.IOException;
@@ -19,13 +20,15 @@ import java.util.List;
 /**
  * Created by zqh on 2016/12/1.
  */
-
+@SuppressWarnings(value = {"Duplicates"})
 public class Order_DataServiceImpl implements Order_DataService {
     private OrderDataHelper orderDataHelper;
 
     private DataFactory dataFactory;
 
     private static Order_DataServiceImpl order_dataServiceImpl;
+
+    private static final String key = "20162017";
 
     /**
      * 提供给外界获取实例的方法，采用单例模式使该类构造方法私有化
@@ -56,6 +59,11 @@ public class Order_DataServiceImpl implements Order_DataService {
         String thisOrderID = generateOrderID();
 
         po.setOrderID(thisOrderID);
+
+        po.setCustomerID(EncryptionUtil.encode(key, po.getCustomerID()));
+        po.setCustomerName(EncryptionUtil.encode(key, po.getCustomerName()));
+        po.setPhone(EncryptionUtil.encode(key, po.getPhone()));
+
         return orderDataHelper.addOrder(po);
     }
 
@@ -69,7 +77,13 @@ public class Order_DataServiceImpl implements Order_DataService {
     public List<OrderPO> getAllOrders() throws IOException, ClassNotFoundException {
         List<OrderPO> orderPOList = orderDataHelper.getAllOrders();
         if (null == orderPOList || orderPOList.isEmpty()) {
-            return orderPOList;
+            return new ArrayList<OrderPO>();
+        } else {
+            for (OrderPO order : orderPOList) {
+                order.setCustomerName(EncryptionUtil.decode(key, order.getCustomerName()));
+                order.setCustomerID(EncryptionUtil.decode(key, order.getCustomerID()));
+                order.setPhone(EncryptionUtil.decode(key, order.getPhone()));
+            }
         }
 
         List<OrderPO> copiedList = CopyUtil.deepCopy(orderPOList);
@@ -91,6 +105,10 @@ public class Order_DataServiceImpl implements Order_DataService {
             return null;
         }
 
+        orderPO.setCustomerName(EncryptionUtil.decode(key, orderPO.getCustomerName()));
+        orderPO.setCustomerID(EncryptionUtil.decode(key, orderPO.getCustomerID()));
+        orderPO.setPhone(EncryptionUtil.decode(key, orderPO.getPhone()));
+
         return (OrderPO) orderPO.clone();
     }
 
@@ -103,9 +121,18 @@ public class Order_DataServiceImpl implements Order_DataService {
      * @throws ClassNotFoundException
      */
     public List<OrderPO> findOrderByCustomerID(String customerID) throws IOException, ClassNotFoundException {
+        customerID = EncryptionUtil.encode(key, customerID);
+
         List<OrderPO> orderPOList = orderDataHelper.findOrderByCustomerID(customerID);
+
         if (null == orderPOList || orderPOList.isEmpty()) {
-            return orderPOList;
+            return new ArrayList<OrderPO>();
+        } else {
+            for (OrderPO order : orderPOList) {
+                order.setCustomerName(EncryptionUtil.decode(key, order.getCustomerName()));
+                order.setCustomerID(EncryptionUtil.decode(key, order.getCustomerID()));
+                order.setPhone(EncryptionUtil.decode(key, order.getPhone()));
+            }
         }
 
         List<OrderPO> copiedList = CopyUtil.deepCopy(orderPOList);
@@ -123,10 +150,16 @@ public class Order_DataServiceImpl implements Order_DataService {
      */
     public List<OrderPO> findOrderByHotelID(String hotelID) throws IOException, ClassNotFoundException {
         List<OrderPO> orderPOList = orderDataHelper.findOrderByHotelID(hotelID);
-        if (null == orderPOList || orderPOList.isEmpty()) {
-            return orderPOList;
-        }
 
+        if (null == orderPOList || orderPOList.isEmpty()) {
+            return new ArrayList<OrderPO>();
+        } else {
+            for (OrderPO order : orderPOList) {
+                order.setCustomerName(EncryptionUtil.decode(key, order.getCustomerName()));
+                order.setCustomerID(EncryptionUtil.decode(key, order.getCustomerID()));
+                order.setPhone(EncryptionUtil.decode(key, order.getPhone()));
+            }
+        }
         List<OrderPO> copiedList = CopyUtil.deepCopy(orderPOList);
 
         return copiedList;
@@ -142,9 +175,17 @@ public class Order_DataServiceImpl implements Order_DataService {
      */
     public List<OrderPO> findOrderByOrderStatus(OrderStatus orderStatus) throws IOException, ClassNotFoundException {
         List<OrderPO> orderPOList = orderDataHelper.findOrderByOrderStatus(orderStatus);
+
         if (null == orderPOList || orderPOList.isEmpty()) {
-            return orderPOList;
+            return new ArrayList<OrderPO>();
+        } else {
+            for (OrderPO order : orderPOList) {
+                order.setCustomerName(EncryptionUtil.decode(key, order.getCustomerName()));
+                order.setCustomerID(EncryptionUtil.decode(key, order.getCustomerID()));
+                order.setPhone(EncryptionUtil.decode(key, order.getPhone()));
+            }
         }
+
 
         List<OrderPO> copiedList = CopyUtil.deepCopy(orderPOList);
 
@@ -158,6 +199,10 @@ public class Order_DataServiceImpl implements Order_DataService {
      * @throws RemoteException
      */
     public boolean updateOrder(OrderPO orderPO) throws RemoteException {
+        orderPO.setCustomerID(EncryptionUtil.encode(key, orderPO.getCustomerID()));
+        orderPO.setCustomerName(EncryptionUtil.encode(key, orderPO.getCustomerName()));
+        orderPO.setPhone(EncryptionUtil.encode(key, orderPO.getPhone()));
+
         return orderDataHelper.updateOrder(orderPO);
     }
 
@@ -168,6 +213,10 @@ public class Order_DataServiceImpl implements Order_DataService {
      * @throws RemoteException
      */
     public boolean deleteOrder(OrderPO orderPO) throws RemoteException {
+        orderPO.setCustomerID(EncryptionUtil.encode(key, orderPO.getCustomerID()));
+        orderPO.setCustomerName(EncryptionUtil.encode(key, orderPO.getCustomerName()));
+        orderPO.setPhone(EncryptionUtil.encode(key, orderPO.getPhone()));
+
         return orderDataHelper.deleteOrder(orderPO);
     }
 

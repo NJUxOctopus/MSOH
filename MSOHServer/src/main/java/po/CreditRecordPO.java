@@ -1,5 +1,7 @@
 package po;
 
+import util.CreditChangeReason;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -39,12 +41,16 @@ public class CreditRecordPO implements Serializable, Cloneable {
     // 营销人员姓名
     @Column(name = "marketerName")
     private String marketerName;
+    // 改变原因
+    @Column(name = "creditChangeReason")
+    @Enumerated(EnumType.STRING)
+    private CreditChangeReason reason;
 
     public CreditRecordPO() {
     }
 
     public CreditRecordPO(int variation, Timestamp changeTime, String customerName, String customerID, int afterChangeCredit, String orderID,
-                          String marketerName) {
+                          String marketerName, CreditChangeReason reason) {
         this.variation = variation;
         this.changeTime = changeTime;
         this.customerName = customerName;
@@ -52,6 +58,7 @@ public class CreditRecordPO implements Serializable, Cloneable {
         this.afterChangeCredit = afterChangeCredit;
         this.orderID = orderID;
         this.marketerName = marketerName;
+        this.reason = reason;
     }
 
     public int getVariation() {
@@ -108,6 +115,14 @@ public class CreditRecordPO implements Serializable, Cloneable {
 
     public void setMarketerName(String marketerName) {
         this.marketerName = marketerName;
+    }
+
+    public CreditChangeReason getReason() {
+        return reason;
+    }
+
+    public void setReason(CreditChangeReason reason) {
+        this.reason = reason;
     }
 
     @Override

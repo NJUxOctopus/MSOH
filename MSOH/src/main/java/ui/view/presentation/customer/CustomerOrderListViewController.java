@@ -101,7 +101,7 @@ public class CustomerOrderListViewController implements ControlledStage {
     }
 
     /**
-     * 显示
+     * 查看未执行订单
      */
     @FXML
     private void showUnexecutedOrder(){
@@ -115,6 +115,9 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     }
 
+    /**
+     * 查看异常订单
+     */
     @FXML
     private void showAbnormalOrder(){
         orderButtonShade.setY(100);
@@ -126,6 +129,9 @@ public class CustomerOrderListViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 查看已撤销订单
+     */
     @FXML
     private void showCanceledOrder(){
         orderButtonShade.setY(300);
@@ -137,6 +143,9 @@ public class CustomerOrderListViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 查看未评价订单
+     */
     @FXML
     private void showEvaluateOrder(){
         orderButtonShade.setY(400);
@@ -148,6 +157,9 @@ public class CustomerOrderListViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 查看已完成订单
+     */
     @FXML
     private void showFinishedOrder(){
         orderButtonShade.setY(500);
@@ -159,6 +171,10 @@ public class CustomerOrderListViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 初始化订单列表面板
+     * @param orderList
+     */
     public void addOrderPane(List<OrderVO> orderList){
         orderListScrollPane.getChildren().clear();
         emptyOrderLabel.setOpacity(0);
@@ -181,10 +197,22 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     }
 
+    /**
+     * 订单列表界面初始化方法
+     * @param customerID
+     */
     public void init(String customerID){
         this.customerID = customerID;
         showAllOrder();
         processOrder = new ProcessOrderController();
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
 

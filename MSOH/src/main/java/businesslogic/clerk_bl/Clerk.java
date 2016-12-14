@@ -1,5 +1,7 @@
 package businesslogic.clerk_bl;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.clerk_blservice.Clerk_BLService;
@@ -19,7 +21,8 @@ import java.rmi.RemoteException;
  */
 public class Clerk implements Clerk_BLService {
     private Clerk_DataService clerk_dataService = RemoteHelper.getInstance().getClerkDataService();
-
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private Hotel hotel = abstract_blFactory.createHotel();
     /**
      * 添加工作人员
      *
@@ -28,7 +31,6 @@ public class Clerk implements Clerk_BLService {
      * @throws RemoteException
      */
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException {
-        Hotel hotel = new Hotel();
         if (clerkVO.name.equals("") || clerkVO.phone.equals("") || clerkVO.ID.equals("") ||
                 clerkVO.password.equals("") || clerkVO.hotelID.equals("") || clerkVO.hotelName.equals("")) {
             //若工作人员的名字或电话或ID或密码或所在酒店ID，名称为空

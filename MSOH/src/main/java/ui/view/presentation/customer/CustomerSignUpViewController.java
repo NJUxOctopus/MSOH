@@ -83,6 +83,9 @@ public class CustomerSignUpViewController implements ControlledStage{
 
     }
 
+    /**
+     * 注册方法
+     */
     @FXML
     private void signUp(){
         String name = nameTextField.getText();
@@ -125,6 +128,14 @@ public class CustomerSignUpViewController implements ControlledStage{
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
 }

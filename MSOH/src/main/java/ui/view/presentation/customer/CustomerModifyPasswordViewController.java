@@ -53,11 +53,16 @@ public class CustomerModifyPasswordViewController implements ControlledStage {
         stageController.closeStage(resource);
     }
 
+    /**
+     * 确认修改密码
+     */
     @FXML
     private void confirmModifyPassword(){
+        //获得输入信息
         String originalPassword = originalPasswordTextField.getText();
         String firstNewPassword = firstNewPasswordTextField.getText();
         String secondNewPassword = secondNewPasswordTextField.getText();
+        //调用修改密码方法
         CustomerInfoChange customerInfoChange = new CustomerInfoChangeController();
         try {
             ResultMessage resultMessage = customerInfoChange.changePassword(customerID, originalPassword, firstNewPassword, secondNewPassword);
@@ -85,13 +90,28 @@ public class CustomerModifyPasswordViewController implements ControlledStage {
         }
     }
 
+    /**
+     * 清空输入区域
+     */
     private void clearField(){
         originalPasswordTextField.setText("");
         firstNewPasswordTextField.setText("");
         secondNewPasswordTextField.setText("");
     }
 
+    /**
+     * 修改密码界面初始化方法
+     * @param customerID
+     */
     public void init(String customerID){
         this.customerID = customerID;
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 }
