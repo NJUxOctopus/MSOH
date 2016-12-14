@@ -5,8 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.MarketerPO;
-import util.EncryptionUtil;
-import util.HibernateUtil;
+import util.DataUtil.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.List;

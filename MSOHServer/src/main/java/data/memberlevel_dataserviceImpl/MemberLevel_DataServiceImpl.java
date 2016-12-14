@@ -5,7 +5,7 @@ import DataHelper.memberLevelDataHelper.MemberLevelDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import po.MemberLevelPO;
-import util.EncryptionUtil;
+import util.DataUtil.EncryptionUtil;
 
 import java.rmi.RemoteException;
 

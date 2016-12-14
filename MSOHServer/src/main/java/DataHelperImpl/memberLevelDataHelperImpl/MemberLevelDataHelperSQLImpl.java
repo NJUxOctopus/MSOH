@@ -4,8 +4,7 @@ import DataHelper.memberLevelDataHelper.MemberLevelDataHelper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import po.MemberLevelPO;
-import util.EncryptionUtil;
-import util.HibernateUtil;
+import util.DataUtil.HibernateUtil;
 
 import java.util.List;
 

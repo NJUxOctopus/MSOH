@@ -2,8 +2,8 @@ package po;
 
 import org.hibernate.Session;
 import org.junit.Test;
-import util.HibernateUtil;
-import util.WorkerPosition;
+import util.DataUtil.HibernateUtil;
+import util.POUtil.WorkerPosition;
 
 /**
  * Created by zqh on 2016/12/7.

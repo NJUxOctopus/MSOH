@@ -1,7 +1,6 @@
 package po;
 
-import org.hibernate.annotations.Type;
-import util.OrderStatus;
+import util.POUtil.OrderStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;

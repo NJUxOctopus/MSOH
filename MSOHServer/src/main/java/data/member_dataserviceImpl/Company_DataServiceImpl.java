@@ -5,7 +5,7 @@ import DataHelper.DataFactory;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.member_dataservice.Company_DataService;
 import po.Company;
-import util.CopyUtil;
+import util.DataUtil.CopyUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;

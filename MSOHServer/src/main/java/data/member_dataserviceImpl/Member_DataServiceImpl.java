@@ -5,8 +5,8 @@ import DataHelper.memberDataHelper.MemberDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.member_dataservice.Member_DataService;
 import po.MemberPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

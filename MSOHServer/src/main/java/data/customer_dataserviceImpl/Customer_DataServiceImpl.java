@@ -11,8 +11,8 @@ import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
 import po.OrderPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

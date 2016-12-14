@@ -4,7 +4,7 @@ import DataHelper.hotelDataHelper.CityDataHelper;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.CityArea;
-import util.HibernateUtil;
+import util.DataUtil.HibernateUtil;
 
 import java.util.List;
 

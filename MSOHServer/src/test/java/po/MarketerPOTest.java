@@ -3,7 +3,7 @@ package po;
 import data.marketer_dataserviceImpl.Marketer_DataServiceImpl;
 import dataservice.marketer_dataservice.Marketer_DataService;
 import org.junit.Test;
-import util.WorkerPosition;
+import util.POUtil.WorkerPosition;
 
 import java.rmi.RemoteException;
 

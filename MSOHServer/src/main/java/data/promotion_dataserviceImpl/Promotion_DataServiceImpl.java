@@ -5,9 +5,9 @@ import DataHelper.promotionDataHelper.PromotionDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
-import util.PromotionType;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
+import util.POUtil.PromotionType;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

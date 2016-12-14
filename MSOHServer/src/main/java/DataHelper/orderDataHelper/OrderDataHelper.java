@@ -1,7 +1,7 @@
 package DataHelper.orderDataHelper;
 
 import po.OrderPO;
-import util.OrderStatus;
+import util.POUtil.OrderStatus;
 
 import java.util.List;
 

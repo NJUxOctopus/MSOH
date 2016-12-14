@@ -1,6 +1,6 @@
 package po;
 
-import util.MemberType;
+import util.POUtil.MemberType;
 
 import javax.persistence.*;
 import java.io.Serializable;

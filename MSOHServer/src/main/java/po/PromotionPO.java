@@ -1,12 +1,11 @@
 package po;
 
-import util.MemberType;
-import util.PromotionType;
+import util.POUtil.MemberType;
+import util.POUtil.PromotionType;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @author zqh

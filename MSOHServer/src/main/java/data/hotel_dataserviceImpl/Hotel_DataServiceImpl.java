@@ -10,8 +10,8 @@ import po.CommentPO;
 import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

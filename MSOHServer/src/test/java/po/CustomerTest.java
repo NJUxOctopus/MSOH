@@ -3,7 +3,7 @@ package po;
 import DataHelper.customerDataHelper.CustomerDataHelper;
 import DataHelperImpl.customerDataHelperImpl.CustomerDataHelperSQLImpl;
 import org.junit.Test;
-import util.MemberType;
+import util.POUtil.MemberType;
 
 import java.util.List;
 
