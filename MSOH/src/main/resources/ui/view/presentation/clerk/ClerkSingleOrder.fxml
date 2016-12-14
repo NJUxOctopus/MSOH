@@ -8,54 +8,39 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
+<Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="688.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
    <children>
       <ImageView fitHeight="170.0" fitWidth="688.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../customer/image_customer/customer_singleorder.png" />
+            <Image url="@../image/SingleOrder.png" />
          </image>
       </ImageView>
-      <Label fx:id="orderIDLabel" layoutX="110.0" layoutY="18.0" text="111111111" textFill="WHITE">
+      <Label fx:id="orderIDLabel" layoutX="106.0" layoutY="20.0" text="111111111" textFill="WHITE">
          <font>
-            <Font name="Microsoft YaHei" size="14.0" />
+            <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="numOfPeopleLabel" layoutX="110.0" layoutY="72.0" text="2" textFill="WHITE">
+      <Label fx:id="numOfPeopleLabel" layoutX="106.0" layoutY="91.0" text="2" textFill="WHITE">
          <font>
-            <Font name="Microsoft YaHei" size="14.0" />
+            <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="estimatedCheckInTimeLabel" layoutX="147.0" layoutY="100.0" text="2016／09／18" textFill="WHITE">
+      <Label fx:id="priceLabel" layoutX="381.0" layoutY="91.0" text="666.66" textFill="WHITE">
          <font>
-            <Font name="Microsoft YaHei" size="14.0" />
+            <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="estimatedCheckOutTimeLabel" layoutX="412.0" layoutY="100.0" text="2016／09／19" textFill="WHITE">
+      <Label fx:id="roomTypeLabel" layoutX="106.0" layoutY="54.0" prefHeight="24.0" prefWidth="188.0" text="双人房" textFill="WHITE">
          <font>
-            <Font name="Microsoft YaHei" size="14.0" />
+            <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="priceLabel" layoutX="377.0" layoutY="72.0" text="666.66" textFill="WHITE">
+      <Label fx:id="orderStatusLabel" layoutX="381.0" layoutY="19.0" text="未执行订单" textFill="WHITE">
          <font>
-            <Font name="Microsoft YaHei" size="14.0" />
+            <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="roomTypeLabel" layoutX="377.0" layoutY="45.0" prefHeight="19.0" prefWidth="234.0" text="双人房" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="orderStatusLabel" layoutX="377.0" layoutY="18.0" text="未执行订单" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="hotelNameLabel" layoutX="111.0" layoutY="45.0" text="MSOH连锁酒店" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="checkButton" layoutX="616.0" layoutY="9.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="入住" textFill="WHITE" wrapText="true">
+      <Button fx:id="checkButton" layoutX="624.0" layoutY="12.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="入住" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -63,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="616.0" layoutY="73.0" mnemonicParsing="false" onAction="#showOrderDetails" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="详情" textFill="WHITE" wrapText="true">
+      <Button layoutX="624.0" layoutY="74.0" mnemonicParsing="false" onAction="#showOrderDetails" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="详情" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -71,5 +56,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="haveChildLabel" layoutX="381.0" layoutY="54.0" text="无" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
