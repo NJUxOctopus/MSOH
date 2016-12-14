@@ -3,8 +3,6 @@ package po;
 import data.promotion_dataserviceImpl.Promotion_DataServiceImpl;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import org.junit.Test;
-import util.MemberType;
-import util.PromotionType;
 
 import java.io.IOException;
 import java.sql.Timestamp;

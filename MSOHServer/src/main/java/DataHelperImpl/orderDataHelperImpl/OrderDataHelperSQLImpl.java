@@ -5,9 +5,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.OrderPO;
-import util.EncryptionUtil;
-import util.HibernateUtil;
-import util.OrderStatus;
+import util.DataUtil.HibernateUtil;
+import util.POUtil.OrderStatus;
 
 import java.util.ArrayList;
 import java.util.List;

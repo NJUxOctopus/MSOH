@@ -1,0 +1,23 @@
+.scroll-pane > .viewport  {
+     -fx-background-color: transparent;
+ }
+
+ .text-area *.content {
+     -fx-background-color: #ffffff00;
+ }
+
+.choice-box .label {
+     -fx-text-fill: white;
+}
+
+.choice-box .context-menu {
+   -fx-background-color: #93939380;
+}
+
+.choice-box .menu-item:focused {
+   -fx-background-color: #d0d0d0;
+}
+
+.choice-box {
+  -fx-mark-color: white ;
+}

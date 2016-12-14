@@ -1,4 +1,4 @@
-package util;
+package util.DataUtil;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

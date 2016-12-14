@@ -11,29 +11,17 @@ import java.rmi.RemoteException;
 /**
  * Created by zqh on 2016/11/10.
  */
-public class MarketerInfoChangeController implements MarketerInfoChange {
-
+public class MarketerInfoChangeController implements MarketerInfoChange{
     private Marketer_BLService marketer_blService;
 
     public MarketerInfoChangeController() {
         marketer_blService = new Marketer();
     }
-
-    public ResultMessage changeInfo(MarketerVO marketerVO) {
-        return null;
+    public ResultMessage changeInfo(MarketerVO marketerVO)throws RemoteException {
+        return marketer_blService.changeInfo(marketerVO);
     }
 
-    /**
-     * 修改密码
-     *
-     * @param ID
-     * @param oldPassword
-     * @param newPassword1
-     * @param newPassword2
-     * @return
-     * @throws RemoteException
-     */
-    public ResultMessage changePassword(String ID, String oldPassword, String newPassword1, String newPassword2) throws RemoteException {
-        return marketer_blService.changePassword(ID, oldPassword, newPassword1, newPassword2);
+    public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2)throws RemoteException {
+        return null;
     }
 }

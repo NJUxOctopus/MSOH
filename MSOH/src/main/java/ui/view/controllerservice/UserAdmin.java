@@ -32,17 +32,15 @@ public interface UserAdmin {
 
     public CustomerVO findCustomerByID(String ID) throws RemoteException;
 
-    public ResultMessage addClerk(ClerkVO vo);
+    public ManagerVO findManagerByID(String ID) throws RemoteException ;
 
-    public ResultMessage addMarketer(MarketerVO vo);
+    public ResultMessage addClerk(ClerkVO vo)throws RemoteException;
+
+    public ResultMessage addMarketer(MarketerVO vo)throws RemoteException;
 
     public ResultMessage deleteClerk(ClerkVO vo);
 
     public ResultMessage deleteMarketer(MarketerVO vo);
-
-    public ResultMessage updateCustomerInfo(CustomerVO vo);
-
-    public ResultMessage updateMarketerInfo(MarketerVO vo);
 
     public MemberVO findMemberByID(String ID) throws RemoteException;
 }

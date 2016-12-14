@@ -1,4 +1,4 @@
-package init;
+package init.DailyUpdater;
 
 import DataHelper.hotelDataHelper.RoomDataHelper;
 import DataHelperImpl.hotelDataHelperImpl.RoomDataHelperSQLImpl;

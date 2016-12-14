@@ -2,7 +2,7 @@ package po;
 
 import org.hibernate.Session;
 import org.junit.Test;
-import util.HibernateUtil;
+import util.DataUtil.HibernateUtil;
 
 /**
  * Created by zqh on 2016/12/11.

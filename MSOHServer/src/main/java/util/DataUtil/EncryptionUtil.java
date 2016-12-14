@@ -1,4 +1,4 @@
-package util;
+package util.DataUtil;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
@@ -14,9 +14,7 @@ import java.security.spec.AlgorithmParameterSpec;
  * Created by zqh on 2016/12/12.
  */
 public class EncryptionUtil {
-    // TODO 给DAOImpl加数据加密方法
     public static final String ALGORITHM_DES = "DES/CBC/PKCS5Padding";
-
 
     /**
      * DES算法，加密

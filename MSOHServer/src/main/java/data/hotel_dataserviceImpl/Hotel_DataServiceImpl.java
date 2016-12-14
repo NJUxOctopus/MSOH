@@ -10,8 +10,8 @@ import po.CommentPO;
 import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -63,6 +63,16 @@ public class Hotel_DataServiceImpl implements Hotel_DataService {
      * @throws RemoteException
      */
     public boolean addHotel(HotelPO po) throws IOException, ClassNotFoundException {
+        // 判断该酒店是否已经存在
+        String toAddHotelLiscense=po.getLicense();
+        List<HotelPO> existedHotelList=getHotels();
+
+        for(HotelPO hotel:existedHotelList){
+            if(hotel.getLicense().equals(toAddHotelLiscense)){
+                return false;
+            }
+        }
+
         // 自动生成酒店ID
         String hotelID = generateHotelID();
         // 设置酒店ID

@@ -1,7 +1,7 @@
 package dataservice.promotion_dataservice;
 
 import po.PromotionPO;
-import util.PromotionType;
+import util.POUtil.PromotionType;
 
 import java.io.IOException;
 import java.rmi.Remote;

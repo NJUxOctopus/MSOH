@@ -3,7 +3,7 @@ package po;
 import data.clerk_dataserviceImpl.Clerk_DataServiceImpl;
 import dataservice.clerk_dataservice.Clerk_DataService;
 import org.junit.Test;
-import util.WorkerPosition;
+import util.POUtil.WorkerPosition;
 
 import java.rmi.RemoteException;
 

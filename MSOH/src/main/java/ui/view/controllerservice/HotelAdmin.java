@@ -17,13 +17,13 @@ public interface HotelAdmin {
 
     HotelVO findByID(String ID) throws RemoteException;
 
-    HotelVO findByName(String name);
+    public List<HotelVO> findByName(String name) throws RemoteException ;
 
-    HotelVO findByAddress(String address);
+    public List<HotelVO> findByArea(String area) throws RemoteException ;
 
     HotelVO findByClerkID(String clerkID) throws RemoteException;
 
-    ResultMessage addHotel(HotelVO hotelVO);
+    ResultMessage addHotel(HotelVO hotelVO) throws RemoteException;
 
     ResultMessage deleteHotel(HotelVO hotelVO);
 

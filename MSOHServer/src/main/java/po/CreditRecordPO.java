@@ -1,6 +1,6 @@
 package po;
 
-import util.CreditChangeReason;
+import util.POUtil.CreditChangeReason;
 
 import javax.persistence.*;
 import java.io.Serializable;

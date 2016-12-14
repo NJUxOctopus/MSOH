@@ -5,9 +5,9 @@ import DataHelper.orderDataHelper.OrderDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.order_dataservice.Order_DataService;
 import po.OrderPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
-import util.OrderStatus;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
+import util.POUtil.OrderStatus;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

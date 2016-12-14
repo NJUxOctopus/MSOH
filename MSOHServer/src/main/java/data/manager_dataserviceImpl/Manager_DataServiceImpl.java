@@ -5,8 +5,8 @@ import DataHelper.managerDataHelper.ManagerDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.manager_dataservice.Manager_DataService;
 import po.ManagerPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

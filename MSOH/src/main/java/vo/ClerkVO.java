@@ -28,4 +28,8 @@ public class ClerkVO extends UserVO implements Serializable {
     public ClerkVO(String name, String phone, String ID) {
         super(name, phone, ID);
     }
+
+    public ClerkVO(String name,String phone,String password,String ID){
+        super(name,phone,ID,password);
+    }
 }

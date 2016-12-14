@@ -5,8 +5,8 @@ import DataHelper.marketerDataHelper.MarketerDataHelper;
 import DataHelperImpl.DataFactoryImpl;
 import dataservice.marketer_dataservice.Marketer_DataService;
 import po.MarketerPO;
-import util.CopyUtil;
-import util.EncryptionUtil;
+import util.DataUtil.CopyUtil;
+import util.DataUtil.EncryptionUtil;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

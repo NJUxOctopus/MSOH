@@ -3,11 +3,14 @@ package ui.controller;
 import businesslogic.clerk_bl.Clerk;
 import businesslogic.clerk_bl.ClerkUtil;
 import businesslogic.customer_bl.CustomerUtil;
+import businesslogic.manager_bl.ManagerUtil;
+import businesslogic.marketer_bl.Marketer;
 import businesslogic.marketer_bl.MarketerUtil;
 import businesslogic.member_bl.MemberUtil;
 import businesslogicservice.clerk_blservice.ClerkUtil_BLService;
 import businesslogicservice.clerk_blservice.Clerk_BLService;
 import businesslogicservice.customer_blservice.CustomerUtil_BLService;
+import businesslogicservice.manager_blservice.ManagerUtil_BLService;
 import businesslogicservice.marketer_blservice.MarketerUtil_BLService;
 import businesslogicservice.marketer_blservice.Marketer_BLService;
 import businesslogicservice.member_blservice.MemberUtil_BLService;
@@ -33,12 +36,17 @@ public class UserAdminController implements UserAdmin {
 
     private MarketerUtil_BLService marketerUtil_blService;
 
-    public UserAdminController() {
-        clerk_blService = new Clerk();
-        clerkUtil_blService = new ClerkUtil();
+    private Marketer_BLService marketer_blService;
+
+    private ManagerUtil_BLService managerUtil_blService;
+
+    public UserAdminController(){
         customerUtil_blService = new CustomerUtil();
         memberUtil_blService = new MemberUtil();
         marketerUtil_blService = new MarketerUtil();
+        marketer_blService = new Marketer();
+        clerk_blService = new Clerk();
+        managerUtil_blService = new ManagerUtil();
     }
 
     public UserVO findAllByID(String ID) {
@@ -58,6 +66,7 @@ public class UserAdminController implements UserAdmin {
     }
 
     public ClerkVO findClerkByID(String ID) throws RemoteException {
+        clerkUtil_blService = new ClerkUtil();
         return clerkUtil_blService.getSingle(ID);
     }
 
@@ -69,13 +78,6 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    /**
-     * 根据营销人员ID得到营销人员
-     *
-     * @param ID
-     * @return
-     * @throws RemoteException
-     */
     public MarketerVO findMarketerByID(String ID) throws RemoteException {
         return marketerUtil_blService.getSingle(ID);
     }
@@ -92,12 +94,16 @@ public class UserAdminController implements UserAdmin {
         return customerUtil_blService.getSingle(ID);
     }
 
-    public ResultMessage addClerk(ClerkVO vo) {
-        return null;
+    public ManagerVO findManagerByID(String ID) throws RemoteException {
+        return managerUtil_blService.getByID(ID);
     }
 
-    public ResultMessage addMarketer(MarketerVO vo) {
-        return null;
+    public ResultMessage addClerk(ClerkVO vo)throws RemoteException {
+        return clerk_blService.addClerk(vo);
+    }
+
+    public ResultMessage addMarketer(MarketerVO vo)throws RemoteException {
+        return marketer_blService.addMarketer(vo);
     }
 
     public ResultMessage deleteClerk(ClerkVO vo) {
@@ -108,15 +114,8 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    public ResultMessage updateCustomerInfo(CustomerVO vo) {
-        return null;
-    }
 
-    public ResultMessage updateMarketerInfo(MarketerVO vo) {
-        return null;
-    }
-
-    public MemberVO findMemberByID(String ID) throws RemoteException {
+    public MemberVO findMemberByID(String ID) throws RemoteException{
         return memberUtil_blService.getSingle(ID);
     }
 

@@ -1,9 +1,6 @@
 package po;
 
-import data.order_dataserviceImpl.Order_DataServiceImpl;
-import dataservice.order_dataservice.Order_DataService;
 import org.junit.Test;
-import util.OrderStatus;
 
 import java.io.IOException;
 import java.sql.Timestamp;
