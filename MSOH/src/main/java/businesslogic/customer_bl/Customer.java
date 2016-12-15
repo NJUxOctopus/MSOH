@@ -9,6 +9,7 @@ import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
 import rmi.RemoteHelper;
+import util.CreditChangeReason;
 import util.DataFormat;
 import util.MemberType;
 import util.ResultMessage;
@@ -119,7 +120,7 @@ public class Customer implements Customer_BLService {
         if (listPO == null || listPO.isEmpty())
             //如果列表为空
             return new ArrayList<HotelVO>();
-        for(HotelPO hotelPO:listPO){
+        for (HotelPO hotelPO : listPO) {
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] infra = hotelPO.getInfra().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
@@ -141,10 +142,10 @@ public class Customer implements Customer_BLService {
         if (creditRecordPOList == null || creditRecordPOList.isEmpty())
             return new ArrayList<CreditRecordVO>();
         List<CreditRecordVO> creditRecordVOList = new ArrayList<CreditRecordVO>();
-        for (CreditRecordPO creditRecordPO:creditRecordPOList){
+        for (CreditRecordPO creditRecordPO : creditRecordPOList) {
             creditRecordVOList.add(new CreditRecordVO(creditRecordPO.getVariation(), creditRecordPO.getChangeTime(),
                     creditRecordPO.getCustomerName(), creditRecordPO.getCustomerID(), creditRecordPO.getAfterChangeCredit()
-                    , creditRecordPO.getOrderID(), creditRecordPO.getMarketerName()));
+                    , creditRecordPO.getOrderID(), creditRecordPO.getMarketerName(), creditRecordPO.getReason()));
         }
         return creditRecordVOList;
     }
@@ -152,8 +153,9 @@ public class Customer implements Customer_BLService {
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException {
         if (customer_dataService.findCustomerByID(ID) == null)
             return ResultMessage.Customer_CustomerNotExist;
-        CreditRecordPO creditRecordPO = new CreditRecordPO(creditRecordVO.variation, creditRecordVO.changeTime, creditRecordVO.customerName,
-                creditRecordVO.customerID, creditRecordVO.afterChangeCredit, creditRecordVO.orderID, creditRecordVO.marketerName);
+        CreditRecordPO creditRecordPO = new CreditRecordPO(creditRecordVO.variation, creditRecordVO.changeTime,
+                creditRecordVO.customerName, creditRecordVO.customerID, creditRecordVO.afterChangeCredit,
+                creditRecordVO.orderID, creditRecordVO.marketerName, creditRecordVO.reason);
         if (customer_dataService.addCreditRecord(creditRecordPO))
             return ResultMessage.Customer_AddCreditRecordSuccess;
         else
@@ -198,47 +200,24 @@ public class Customer implements Customer_BLService {
             return ResultMessage.DataFormatWrong;
     }
 
-    /**
-     * 信用充值
-     *
-     * @param ID
-     * @param credit
-     * @return
-     * @throws RemoteException
-     */
-    public ResultMessage creditCharge(String ID, int credit) throws RemoteException {
-        if (customer_dataService.findCustomerByID(ID) == null)
-            //若无该用户
-            return ResultMessage.Customer_CustomerNotExist;
-        if (credit < 0)
-            //若信用值小于0
-            return ResultMessage.DataFormatWrong;
-        CustomerPO customerPO = customer_dataService.findCustomerByID(ID);
-        customerPO.setCredit(customerPO.getCredit() + credit);
-
-        if (customer_dataService.modifyCustomer(customerPO))
-            return ResultMessage.Marketer_CreditChargeSuccess;
-        else
-            return ResultMessage.Fail;
-    }
-
-    /**
-     * 更该信用值
-     * @param ID
-     * @param change
-     * @return
-     * @throws RemoteException
-     */
-    public ResultMessage changeCredit(String ID, int change) throws RemoteException {
-        if (customer_dataService.findCustomerByID(ID) == null)
-            //若无该用户
-            return ResultMessage.Customer_CustomerNotExist;
-        CustomerPO customerPO = customer_dataService.findCustomerByID(ID);
-        customerPO.setCredit(customerPO.getCredit() + change);
-
-        if (customer_dataService.modifyCustomer(customerPO))
-            return ResultMessage.Marketer_CreditChargeSuccess;
-        else
-            return ResultMessage.Fail;
-    }
+//    /**
+//     * 更该信用值
+//     *
+//     * @param ID
+//     * @param change
+//     * @return
+//     * @throws RemoteException
+//     */
+//    public ResultMessage changeCredit(String ID, int change, CreditChangeReason reason) throws RemoteException {
+//        if (customer_dataService.findCustomerByID(ID) == null)
+//            //若无该用户
+//            return ResultMessage.Customer_CustomerNotExist;
+//        CustomerPO customerPO = customer_dataService.findCustomerByID(ID);
+//        customerPO.setCredit(customerPO.getCredit() + change);
+//
+//        if (customer_dataService.modifyCustomer(customerPO))
+//            return ResultMessage.Marketer_CreditChargeSuccess;
+//        else
+//            return ResultMessage.Fail;
+//    }
 }

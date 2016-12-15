@@ -77,17 +77,29 @@ public class Promotion implements Promotion_BLService {
      * @throws ClassNotFoundException
      */
     public ResultMessage addHotelPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException {
-        if (promotionVO.endTime == null || promotionVO.promotionName.equals("") || promotionVO.startTime == null ||
+        if (promotionVO.promotionName.equals("") ||
                 promotionVO.targetUser == null) {//若结束时间，策略名称，开始时间，目标用户为空
             return ResultMessage.Blank;
         } else {
             String targetArea = hotelUtil.getByID(promotionVO.targetHotel[0]).area;
-            if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
-                    promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
-                    promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
-                    promotionVO.minRoom, promotionVO.companyName, promotionVO.promotionType)))
-                return ResultMessage.Promotion_AddPromotionSuccess;
-            else
+            if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Birthday) || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Holiday)
+                    || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other)) {
+                if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
+                        promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
+                        promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
+                        promotionVO.minRoom, null, promotionVO.promotionType)))
+                    return ResultMessage.Promotion_AddPromotionSuccess;
+                else
+                    return ResultMessage.Fail;
+            } else if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Company)) {
+                if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
+                        promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
+                        promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
+                        promotionVO.minRoom, promotionVO.companyName, promotionVO.promotionType)))
+                    return ResultMessage.Promotion_AddPromotionSuccess;
+                else
+                    return ResultMessage.Fail;
+            }else
                 return ResultMessage.Fail;
         }
     }
@@ -159,6 +171,8 @@ public class Promotion implements Promotion_BLService {
             promotionPO.setPromotionName(promotionVO.promotionName);
             promotionPO.setStartTime(promotionVO.startTime);
             promotionPO.setTargetUser(promotionVO.targetUser);
+            if(promotionVO.promotionType.equals(PromotionType.HotelPromotion_Company))
+                promotionPO.setCompanyName(promotionVO.companyName);
             if (promotion_dataService.modifyPromotion(promotionPO))
                 return ResultMessage.Promotion_ModifyPromotionSuccess;
             else

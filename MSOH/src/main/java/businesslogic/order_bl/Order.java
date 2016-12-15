@@ -2,6 +2,7 @@ package businesslogic.order_bl;
 
 import businesslogic.bl_Factory.Abstract_BLFactory;
 import businesslogic.bl_Factory.Default_BLFactory;
+import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogic.promotion_bl.Promotion;
 import businesslogicservice.order_blservice.Order_BLService;
@@ -31,6 +32,8 @@ public class Order implements Order_BLService {
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
     private Promotion promotion = abstract_blFactory.createPromotion();
     private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
+    private Hotel hotel = abstract_blFactory.createHotel();
+
     /**
      * 在订单的所有促销策略中返回价格最低的策略
      *
@@ -70,6 +73,7 @@ public class Order implements Order_BLService {
 
     /**
      * 获得订单原始总价
+     *
      * @param orderVO
      * @return
      * @throws RemoteException
@@ -103,12 +107,14 @@ public class Order implements Order_BLService {
                 else
                     rooms += orderVO.rooms[i];
             }
+            long sixHour = 1000 * 60 * 60 * 6;
+            orderVO.latestExecutedTime = new Timestamp(orderVO.estimatedCheckinTime.getTime()+sixHour);
             orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, orderVO.hotelID, orderVO.hotelName,
-                    orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime, null,
+                    orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime, orderVO.latestExecutedTime,
                     rooms, orderVO.numOfCustomers, orderVO.haveChildren, orderVO.remarks, orderVO.promotionName, orderVO.initialPrice, orderVO.finalPrice, OrderStatus.UNEXECUTED);
-            if (order_dataService_stub.addOrder(orderPO))
+            if (order_dataService_stub.addOrder(orderPO)) {
                 return ResultMessage.Order_CreateOrderSuccess;
-            else
+            } else
                 return ResultMessage.Fail;
         }
     }
