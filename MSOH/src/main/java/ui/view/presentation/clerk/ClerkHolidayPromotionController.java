@@ -24,6 +24,7 @@ import vo.PromotionVO;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -53,6 +54,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
     private UserAdmin userAdmin;
     private HotelAdmin hotelAdmin;
     private EditPromotion editPromotion;
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     private String resource = "clerk/ClerkHolidayPromotion.fxml";
 
@@ -79,6 +81,8 @@ public class ClerkHolidayPromotionController implements ControlledStage {
      * 重载initial方法，用于修改策略时初始化界面
      */
     public void initial(PromotionVO promotionVO) throws RemoteException {
+        userAdmin = new UserAdminController();
+        this.initial(userAdmin.findClerkByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         discountLabel.setText(String.valueOf(promotionVO.discount));
         startTimeButton.setText(String.valueOf(promotionVO.startTime));
@@ -92,7 +96,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
     private void addDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 9.9) {
-            discountLabel.setText(String.valueOf((discount + 0.1)));
+            discountLabel.setText(df.format(discount + 0.1));
         }
     }
 
@@ -103,7 +107,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
     private void minusDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 0.1) {
-            discountLabel.setText(String.valueOf((discount - 0.1)));
+            discountLabel.setText(df.format(discount - 0.1));
         }
     }
 
@@ -151,7 +155,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
         Timestamp endTime = Timestamp.valueOf(endTimeButton.getText() + " 00:00:00");
         double discount = Double.parseDouble(discountLabel.getText());
 
-        if(confirmButton.getText().equals("制定")){
+        if (confirmButton.getText().equals("制定")) {
             ResultMessage resultMessage = editPromotion.addHotelPromotion(new PromotionVO(clerkName, time, name + "节日特惠", MemberType.NONMEMBER
                     , targetHotel, startTime, endTime, discount, 0, PromotionType.HotelPromotion_Holiday));
             if (resultMessage.equals(ResultMessage.Blank)) {
@@ -162,7 +166,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
             } else {
                 this.returnMessage("未知错误！");
             }
-        }else if(confirmButton.getText().equals("修改")){
+        } else if (confirmButton.getText().equals("修改")) {
             ResultMessage resultMessage = editPromotion.modifyHotelPromotion(new PromotionVO(clerkName, time, name + "节日特惠", MemberType.NONMEMBER
                     , targetHotel, startTime, endTime, discount, 0, PromotionType.HotelPromotion_Holiday));
             if (resultMessage.equals(ResultMessage.Blank)) {
@@ -193,17 +197,19 @@ public class ClerkHolidayPromotionController implements ControlledStage {
 
     /**
      * 回显选择的开始时间
+     *
      * @param time
      */
-    public void setStartTime(String time){
+    public void setStartTime(String time) {
         startTimeButton.setText(time);
     }
 
     /**
      * 回显选择的结束时间
+     *
      * @param time
      */
-    public void setEndTime(String time){
+    public void setEndTime(String time) {
         endTimeButton.setText(time);
     }
 

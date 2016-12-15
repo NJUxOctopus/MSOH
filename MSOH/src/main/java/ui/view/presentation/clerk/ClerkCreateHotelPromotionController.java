@@ -46,7 +46,8 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showBirthdayPromotion() throws RemoteException {
-        promotionSelectShade.setY(156);
+        promotionSelectShade.setHeight(70);
+        promotionSelectShade.setY(0);
         promotionPane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();
@@ -60,7 +61,8 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showHolidayPromotion() throws RemoteException {
-        promotionSelectShade.setY(226);
+        promotionSelectShade.setHeight(70);
+        promotionSelectShade.setY(70);
         promotionPane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();
@@ -74,7 +76,8 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showReservePromotion() throws RemoteException {
-        promotionSelectShade.setY(294);
+        promotionSelectShade.setHeight(68);
+        promotionSelectShade.setY(140);
         promotionPane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();
@@ -88,7 +91,8 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showEnterprisePromotion() throws RemoteException {
-        promotionSelectShade.setY(362);
+        promotionSelectShade.setHeight(67);
+        promotionSelectShade.setY(208);
         promotionPane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();
@@ -102,7 +106,8 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showOtherPromotion() throws RemoteException {
-        promotionSelectShade.setY(429);
+        promotionSelectShade.setHeight(67);
+        promotionSelectShade.setY(275);
         promotionPane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();

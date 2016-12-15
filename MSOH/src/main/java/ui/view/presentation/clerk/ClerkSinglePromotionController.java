@@ -2,6 +2,8 @@ package ui.view.presentation.clerk;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import ui.controller.UserAdminController;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import util.PromotionType;
