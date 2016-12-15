@@ -173,7 +173,8 @@ public class Hotel implements Hotel_BLService {
      * @throws RemoteException
      */
     public ResultMessage addHotel(HotelVO hotelVO) throws RemoteException {
-        if (hotelVO.area.equals("") || hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals(""))
+        if (hotelVO.area.equals("") || hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals("")
+                || hotelVO.intro.equals("") || hotelVO.city.equals("") || hotelVO.star == -1)
             return ResultMessage.Blank;
         String infra = "";
         for (int i = 0; i < hotelVO.infra.length; i++) {
@@ -215,7 +216,8 @@ public class Hotel implements Hotel_BLService {
         HotelPO hotelPO = hotel_dataService.findHotelByID(hotelVO.hotelID);
         if (hotelPO == null)
             return ResultMessage.Hotel_HotelNotExist;
-        if (hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals("") || hotelVO.area.equals(""))
+        if (hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals("") || hotelVO.area.equals("")
+                || hotelVO.intro.equals("") || hotelVO.city.equals("") || hotelVO.star == -1)
             return ResultMessage.Blank;
         if (hotelVO.star < 0)
             return ResultMessage.DataFormatWrong;
