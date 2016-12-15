@@ -22,7 +22,7 @@
             <Image url="@../image/ClerkCreateHotelPromotionFrame.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="orderSelectShade" arcHeight="5.0" arcWidth="5.0" height="70.0" layoutX="75.0" layoutY="156.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="180.0" />
+      <Rectangle fx:id="promotionSelectShade" arcHeight="5.0" arcWidth="5.0" height="70.0" layoutX="75.0" layoutY="156.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="180.0" />
       <Button layoutX="90.0" layoutY="62.0" mnemonicParsing="false" onAction="#showConfirmExit" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
          <graphic>
             <ImageView fx:id="backButton" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
