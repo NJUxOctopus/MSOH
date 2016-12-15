@@ -56,6 +56,11 @@ public class ClerkHolidayPromotionController implements ControlledStage {
     private EditPromotion editPromotion;
     private DecimalFormat df = new DecimalFormat("0.00");
 
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
+
     private String resource = "clerk/ClerkHolidayPromotion.fxml";
 
     @Override
@@ -75,6 +80,8 @@ public class ClerkHolidayPromotionController implements ControlledStage {
         this.clerkName = clerkVO.name;
         this.hotelVO = hotelAdmin.findByClerkID(clerkID);
         this.hotelID = hotelVO.hotelID;
+        startTimeButton.setText(initialTime);
+        endTimeButton.setText(initialTime);
     }
 
     /**

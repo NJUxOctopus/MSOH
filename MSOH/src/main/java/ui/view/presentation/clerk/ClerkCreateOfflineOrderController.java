@@ -22,6 +22,8 @@ import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,6 +60,11 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     private double price;
     private ProcessOrder processOrder;
 
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -73,6 +80,8 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
         this.rooms = rooms;
         this.price = price;
         priceLabel.setText(String.valueOf(price));
+        checkInTimeButton.setText(initialTime);
+        estimatedCheckOutTimeButton.setText(initialTime);
     }
 
     /**

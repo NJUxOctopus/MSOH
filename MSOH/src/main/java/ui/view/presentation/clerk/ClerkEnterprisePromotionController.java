@@ -62,10 +62,10 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
     private EditPromotion editPromotion;
     private DecimalFormat df = new DecimalFormat("0.00");
 
-    //获取当前时间
-    private Date date = new Date();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
 
     @Override
     public void setStageController(StageController stageController) {
@@ -84,6 +84,8 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
         this.clerkName = clerkVO.name;
         this.hotelVO = hotelAdmin.findByClerkID(clerkID);
         this.hotelID = hotelVO.hotelID;
+        startTimeButton.setText(initialTime);
+        endTimeButton.setText(initialTime);
 
         //加载合作企业列表
         List<String> enterprise = editPromotion.getCompany();
@@ -158,6 +160,10 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
      */
     @FXML
     private void confirmCreate() throws IOException, ClassNotFoundException {
+        //获取当前时间
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
         editPromotion = new EditPromotionController();
 

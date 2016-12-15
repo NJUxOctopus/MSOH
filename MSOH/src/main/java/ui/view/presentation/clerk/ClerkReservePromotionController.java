@@ -64,6 +64,11 @@ public class ClerkReservePromotionController implements ControlledStage {
     private EditPromotion editPromotion;
     private DecimalFormat df = new DecimalFormat("0.00");
 
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -81,6 +86,8 @@ public class ClerkReservePromotionController implements ControlledStage {
         this.clerkName = clerkVO.name;
         this.hotelVO = hotelAdmin.findByClerkID(clerkID);
         this.hotelID = hotelVO.hotelID;
+        startTimeButton.setText(initialTime);
+        endTimeButton.setText(initialTime);
 
         targetMemberChoiceBox.setItems(FXCollections.observableArrayList("所有客户", "普通会员"));
     }
