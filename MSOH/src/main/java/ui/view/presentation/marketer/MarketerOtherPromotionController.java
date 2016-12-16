@@ -63,6 +63,11 @@ public class MarketerOtherPromotionController implements ControlledStage {
     private MemberRegister memberRegister;
     private EditPromotion editPromotion;
 
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -77,6 +82,8 @@ public class MarketerOtherPromotionController implements ControlledStage {
         marketerID = ID;
         marketerName = marketerVO.name;
         marketerVO = userAdmin.findMarketerByID(marketerID);
+        startTimeButton.setText(initialTime);
+        endTimeButton.setText(initialTime);
 
         memberRegister = new MemberRegisterController();
         List<String> area = memberRegister.getCompany();
@@ -93,8 +100,9 @@ public class MarketerOtherPromotionController implements ControlledStage {
     /**
      * 重载initial方法，用于修改策略时初始化界面
      */
-    public void initial(PromotionVO promotionVO, String ID) throws RemoteException {
-        this.initial(ID);
+    public void initial(PromotionVO promotionVO) throws RemoteException {
+        userAdmin = new UserAdminController();
+        this.initial(userAdmin.findMarketerByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         discountLabel.setText(String.valueOf(promotionVO.discount));
         startTimeButton.setText(String.valueOf(promotionVO.startTime));

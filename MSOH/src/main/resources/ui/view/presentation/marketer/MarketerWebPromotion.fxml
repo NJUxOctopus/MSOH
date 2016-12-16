@@ -6,13 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="474.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerWebPromotionController">
    <children>
+      <Rectangle fx:id="promotionSelectShade" arcHeight="5.0" arcWidth="5.0" height="49.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="215.0" />
       <HBox prefHeight="49.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;">
          <children>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="344.5" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="节日特惠" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#showHolidayPromotion" prefHeight="49.0" prefWidth="344.5" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="节日特惠" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
@@ -20,7 +22,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="367.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="VIP特惠" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#showVIPPromotion" prefHeight="49.0" prefWidth="367.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="VIP特惠" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
@@ -28,7 +30,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="367.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="其他" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#showOtherPromotion" prefHeight="49.0" prefWidth="367.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="其他" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
@@ -40,7 +42,7 @@
       </HBox>
       <ScrollPane layoutY="49.0" prefHeight="366.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" stylesheets="@Marketer.css">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+          <AnchorPane fx:id="promotionListPane" minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="669.0" />
         </content>
       </ScrollPane>
       <Button layoutX="561.0" layoutY="422.0" mnemonicParsing="false" onAction="#showCreatePromotion" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="制定" textFill="WHITE" wrapText="true">

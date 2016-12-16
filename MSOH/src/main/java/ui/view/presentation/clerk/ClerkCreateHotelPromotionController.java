@@ -53,6 +53,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         promotionPane.getChildren().clear();
 
         paneAdder.addPane(promotionPane, "clerk/ClerkBirthdayPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkBirthdayPromotion.fxml");
         ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) paneAdder.getController();
         clerkBirthdayPromotionController.initial(clerkID);
     }

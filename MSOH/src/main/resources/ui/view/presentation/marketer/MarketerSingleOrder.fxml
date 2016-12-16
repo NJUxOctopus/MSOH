@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="688.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
+<Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="670.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSingleOrderController">
    <children>
-      <ImageView fitHeight="170.0" fitWidth="688.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="170.0" fitWidth="670.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/SingleOrder.png" />
          </image>
@@ -20,17 +20,17 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="numOfPeopleLabel" layoutX="106.0" layoutY="91.0" text="2" textFill="WHITE">
+      <Label fx:id="numOfPeopleLabel" layoutX="106.0" layoutY="88.0" text="2" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="priceLabel" layoutX="381.0" layoutY="91.0" text="666.66" textFill="WHITE">
+      <Label fx:id="priceLabel" layoutX="381.0" layoutY="88.0" text="666.66" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="roomTypeLabel" layoutX="106.0" layoutY="54.0" prefHeight="24.0" prefWidth="188.0" text="双人房" textFill="WHITE">
+      <Label fx:id="roomTypeLabel" layoutX="106.0" layoutY="54.0" prefHeight="24.0" prefWidth="179.0" text="双人房" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
@@ -40,7 +40,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="checkButton" layoutX="624.0" layoutY="12.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="撤销" textFill="WHITE" wrapText="true">
+      <Button fx:id="checkButton" layoutX="607.0" layoutY="12.0" mnemonicParsing="false" onAction="#confirmRevoke" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="撤销" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -48,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="624.0" layoutY="74.0" mnemonicParsing="false" onAction="#showOrderDetails" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="详情" textFill="WHITE" wrapText="true">
+      <Button layoutX="607.0" layoutY="74.0" mnemonicParsing="false" onAction="#showOrderDetails" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="详情" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>

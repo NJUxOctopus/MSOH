@@ -101,8 +101,8 @@ public class ClerkReservePromotionController implements ControlledStage {
         confirmButton.setText("修改");
         promotionNameTextField.setText(promotionVO.promotionName);
         discountLabel.setText(String.valueOf(promotionVO.discount));
-        startTimeButton.setText(String.valueOf(promotionVO.startTime));
-        endTimeButton.setText(String.valueOf(promotionVO.endTime));
+        startTimeButton.setText(String.valueOf(promotionVO.startTime).substring(0, 10));
+        endTimeButton.setText(String.valueOf(promotionVO.endTime).substring(0, 10));
         roomNumLabel.setText(String.valueOf(promotionVO.minRoom));
         targetMemberChoiceBox.getSelectionModel().select(promotionVO.targetUser.equals(MemberType.NORMAL) ? "所有客户" : "普通会员");
     }
@@ -205,6 +205,8 @@ public class ClerkReservePromotionController implements ControlledStage {
         } else {
             memberType = null;
         }
+
+        stageController = new StageController();
 
         if (confirmButton.getText().equals("制定")) {
             ResultMessage resultMessage = editPromotion.addHotelPromotion(new PromotionVO(clerkName, time, promotionName, memberType

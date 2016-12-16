@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="522.0" prefWidth="936.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkReservePromotionController">
+<Pane prefHeight="522.0" prefWidth="936.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerVIPPromotionController">
    <children>
       <Label layoutX="138.0" layoutY="107.0" text="优惠名称" textFill="WHITE">
          <font>
@@ -63,7 +63,7 @@
       </Button>
       <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="599.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/reserve.png" />
+            <Image url="@../image/memberIcon.png" />
          </image>
       </ImageView>
       <TextField fx:id="promotionNameTextField" layoutX="256.0" layoutY="109.0" prefHeight="32.0" prefWidth="343.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
@@ -74,12 +74,12 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Label layoutX="138.0" layoutY="298.0" text="预订数量" textFill="WHITE">
+      <Label layoutX="138.0" layoutY="298.0" text="针对商圈" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="393.0" layoutY="294.0" mnemonicParsing="false" onAction="#addRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+      <Button layoutX="555.0" layoutY="231.0" mnemonicParsing="false" onAction="#addMemberLevel" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -94,7 +94,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="256.0" layoutY="294.0" mnemonicParsing="false" onAction="#minusRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+      <Button layoutX="418.0" layoutY="231.0" mnemonicParsing="false" onAction="#minusMemberLevel" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -109,12 +109,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="438.0" layoutY="297.0" text="间及以上 （3间起）" textFill="WHITE">
+      <Label layoutX="610.0" layoutY="235.0" text="级" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="targetMemberChoiceBox" layoutX="256.0" layoutY="235.0" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
+      <ChoiceBox fx:id="targetAreaChoiceBox" layoutX="256.0" layoutY="300.0" prefHeight="31.0" prefWidth="343.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -159,7 +159,12 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="roomNumLabel" layoutX="324.0" layoutY="298.0" text="3" textFill="WHITE">
+      <Label fx:id="memberLevelLabel" layoutX="486.0" layoutY="235.0" text="1" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="256.0" layoutY="233.0" text="特定会员" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>

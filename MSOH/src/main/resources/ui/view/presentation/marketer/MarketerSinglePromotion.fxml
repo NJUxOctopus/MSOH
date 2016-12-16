@@ -6,58 +6,98 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="orderPanel" prefHeight="212.5" prefWidth="698.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSinglePromotionController">
+<Pane fx:id="orderPanel" prefHeight="212.5" prefWidth="669.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSinglePromotionController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="212.5" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: #ffffff00;" width="698.0" />
-      <Label fx:id="orderIDLabel" layoutX="165.0" layoutY="38.0" text="优惠名称：" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="212.5" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: #ffffff00;" width="669.0" />
+      <Label fx:id="orderIDLabel" layoutX="62.0" layoutY="44.0" text="优惠名称：" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderIDLabel1" layoutX="165.0" layoutY="71.0" text="优惠时间：" textFill="WHITE">
+      <Label fx:id="orderIDLabel1" layoutX="62.0" layoutY="77.0" text="优惠时间：" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderIDLabel11" layoutX="165.0" layoutY="105.0" text="针对人群：" textFill="WHITE">
+      <Label fx:id="orderIDLabel11" layoutX="401.0" layoutY="44.0" text="针对人群：" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderIDLabel111" layoutX="165.0" layoutY="137.0" text="优惠折扣：" textFill="WHITE">
+      <Label fx:id="orderIDLabel111" layoutX="62.0" layoutY="143.0" text="优惠折扣：" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderIDLabel2" layoutX="269.0" layoutY="38.0" text="双十一大促" textFill="WHITE">
+      <Label fx:id="promotionNameLabel" layoutX="166.0" layoutY="44.0" text="双十一大促" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderIDLabel21" layoutX="269.0" layoutY="71.0" text="2016/11/10~2016/11/15" textFill="WHITE">
+      <Label fx:id="startTimeLabel" layoutX="166.0" layoutY="77.0" text="2016-11-10" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderIDLabel22" layoutX="269.0" layoutY="105.0" text="所有客户" textFill="WHITE">
+      <Label fx:id="targetMemberLabel" layoutX="505.0" layoutY="44.0" text="所有客户" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="orderIDLabel221" layoutX="269.0" layoutY="137.0" text="5折" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="18.0" />
-         </font>
-      </Label>
-      <Button layoutX="503.0" layoutY="165.0" mnemonicParsing="false" onAction="#showModifyPromotion" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改" textFill="WHITE">
+      <Button layoutX="479.0" layoutY="167.0" mnemonicParsing="false" onAction="#showModifyPromotion" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="575.0" layoutY="165.0" mnemonicParsing="false" onAction="#deletePromotion" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="删除" textFill="WHITE">
+      <Button layoutX="551.0" layoutY="167.0" mnemonicParsing="false" onAction="#deletePromotion" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="删除" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
       </Button>
+      <Label fx:id="orderIDLabel1111" layoutX="62.0" layoutY="110.0" text="针对商圈：" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="targetAreaLabel" layoutX="166.0" layoutY="110.0" text="无" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="orderIDLabel1112" layoutX="401.0" layoutY="110.0" text="针对等级：" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="memberLevelLabel" layoutX="505.0" layoutY="110.0" text="3" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="orderIDLabel22121" layoutX="536.0" layoutY="110.0" text="级" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="endTimeLabel" layoutX="329.0" layoutY="77.0" text="2016-11-10" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="orderIDLabel22122" layoutX="288.0" layoutY="77.0" text="~" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="discountLabel" layoutX="166.0" layoutY="143.0" text="6" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="207.0" layoutY="143.0" text="折" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

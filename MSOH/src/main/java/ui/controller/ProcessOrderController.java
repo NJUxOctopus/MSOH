@@ -62,10 +62,6 @@ public class ProcessOrderController implements ProcessOrder {
         return null;
     }
 
-    public ResultMessage renewOrder(OrderVO orderVO) {
-        return null;
-    }
-
     /**
      * 执行订单
      *
@@ -86,6 +82,17 @@ public class ProcessOrderController implements ProcessOrder {
      */
     public ResultMessage endOrder(OrderVO orderVO) throws RemoteException {
         return order_blService.endOrder(orderVO);
+    }
+
+    /**
+     * 恢复异常订单
+     *
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException {
+        return order_blService.renewOrder(orderVO);
     }
 
     /**

@@ -68,25 +68,30 @@ public class ClerkSingleRoomController implements ControlledStage {
 
     /**
      * get方法，返回房间类型
+     *
      * @return
      */
-    public String getRoomType(){
+    public String getRoomType() {
         return roomTypeLabel.getText();
     }
 
     /**
      * get方法，返回房间价格
+     *
      * @return
      */
-    public double getPrice(){
+    public double getPrice() {
+//        System.out.println(Double.parseDouble(roomPriceLabel.getText()));
+//        System.out.println(Integer.parseInt(roomNumLabel.getText()));
         return Double.parseDouble(roomPriceLabel.getText());
     }
 
     /**
      * get方法，返回房间数量
+     *
      * @return
      */
-    public int getRoomNum(){
+    public int getRoomNum() {
         return Integer.parseInt(roomNumLabel.getText());
     }
 }

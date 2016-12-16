@@ -52,6 +52,11 @@ public class MarketerHolidayPromotionController implements ControlledStage {
     private UserAdmin userAdmin;
     private EditPromotion editPromotion;
 
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
+
     private String resource = "marketer/MarketerHolidayPromotion.fxml";
 
 
@@ -69,13 +74,16 @@ public class MarketerHolidayPromotionController implements ControlledStage {
         this.marketerID = marketerID;
         this.marketerVO = userAdmin.findMarketerByID(marketerID);
         this.marketerName = marketerVO.name;
+        startTimeButton.setText(initialTime);
+        endTimeButton.setText(initialTime);
     }
 
     /**
      * 重载initial方法，用于修改策略时初始化界面
      */
-    public void initial(PromotionVO promotionVO, String ID) throws RemoteException {
-        this.initial(ID);
+    public void initial(PromotionVO promotionVO) throws RemoteException {
+        userAdmin = new UserAdminController();
+        this.initial(userAdmin.findMarketerByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         discountLabel.setText(String.valueOf(promotionVO.discount));
         startTimeButton.setText(String.valueOf(promotionVO.startTime));

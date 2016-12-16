@@ -97,8 +97,8 @@ public class ClerkChooseRoomController implements ControlledStage {
         stageController.loadStage("clerk/ClerkCreateOfflineOrder.fxml", 1);
         ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController();
         String[] roomlist = new String[rooms.size()];
-        for(int i=0;i<rooms.size();i++){
-            roomlist[i]=rooms.get(i);
+        for (int i = 0; i < rooms.size(); i++) {
+            roomlist[i] = rooms.get(i);
         }
         clerkCreateOfflineOrderController.initial(clerkID, roomlist, totalPrice);
         stageController.closeStage(resource);

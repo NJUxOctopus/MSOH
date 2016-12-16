@@ -3,10 +3,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1037.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleHotelCommentController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6c6d6f47" height="100.0" stroke="WHITE" strokeWidth="3.0" width="1037.0" />
       <Label layoutX="82.0" layoutY="14.0" text="客户姓名" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />

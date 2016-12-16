@@ -16,7 +16,7 @@ public interface UserAdmin {
 
     public List<ClerkVO> findAllClerk();
 
-    public List<ClerkVO> findClerkByName(String name);
+    public List<ClerkVO> findClerkByName(String name) throws RemoteException;
 
     public ClerkVO findClerkByID(String ID) throws RemoteException;
 
@@ -26,7 +26,7 @@ public interface UserAdmin {
 
     public MarketerVO findMarketerByID(String ID) throws RemoteException;
 
-    public List<CustomerVO> findAllCustomer();
+    public List<CustomerVO> findAllCustomer() throws RemoteException;
 
     public List<CustomerVO> findCustomerByName(String name) throws RemoteException;
 

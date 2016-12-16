@@ -119,7 +119,7 @@ public class SelectTimeViewController implements ControlledStage {
         }
         //工作人员 生日特惠界面
         if (toBeSet.equals("clerk/ClerkBirthdayPromotion.fxml")) {
-            ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) stageController.getController();
+            ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) stageController.getController("clerk/ClerkBirthdayPromotion.fxml");
             if (type.equals("start"))
                 clerkBirthdayPromotionController.setStartTime(time);
             if (type.equals("end"))

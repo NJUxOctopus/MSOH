@@ -57,7 +57,7 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="455.0" layoutY="215.0" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" />
+      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="455.0" layoutY="215.0" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css" />
       <TextField fx:id="roomPriceTextField" layoutX="455.0" layoutY="337.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
