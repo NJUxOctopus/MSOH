@@ -1,6 +1,7 @@
 package ui.view.controllerservice;
 
 import vo.HotelVO;
+import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
@@ -24,4 +25,5 @@ public interface HotelInfo {
 
     public List<String> getAreaByCity(String city) throws RemoteException;
 
+    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException;
 }

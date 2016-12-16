@@ -87,6 +87,10 @@ public class StageController {
         stages.remove(resource);
     }
 
+    public void putIntoLoaders(String resource, FXMLLoader loader){
+        loaders.put(resource, loader);
+    }
+
 }
 
 

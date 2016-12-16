@@ -95,7 +95,7 @@ public class CustomerMyMemberViewController implements ControlledStage{
             //信用值信息
             int credit = userAdmin.findCustomerByID(customerID).credit;
             creditLabel.setText(credit + "");
-            double locate = 957 / 10000 * credit;
+            double locate = 200 + credit / 10;
             creditPane.setLayoutX(locate);
             CustomerVO customerVO = userAdmin.findCustomerByID(customerID);
             if(customerVO.memberType == MemberType.ENTREPRISE) {
@@ -115,7 +115,7 @@ public class CustomerMyMemberViewController implements ControlledStage{
             }
             else{
                 gradeOfMemberLabel.setText("无");
-                gradeOfMemberLabel.setText("非会员无法享受");
+                discountOfMemberLabel.setText("非会员无法享受");
             }
 
         }catch (RemoteException e) {
@@ -133,11 +133,11 @@ public class CustomerMyMemberViewController implements ControlledStage{
             int grade = memberLevelVO.num;
             int[] bounds = memberLevelVO.creditBoundaries;
             memberLevlScrollPane.setPrefWidth(60 * grade);
-            PaneAdder paneAdder = new PaneAdder();
             for(int i = 0; i < grade; i++ ){
-                paneAdder.addPane(memberLevlScrollPane, "customer/CustomerSingleHotelView.fxml",  60 * i, 0);
+                PaneAdder paneAdder = new PaneAdder();
+                paneAdder.addPane(memberLevlScrollPane, "customer/CustomerSingleLevel.fxml",  60 * i, 10);
                 CustomerSingleLevelController customerSingleLevelController = (CustomerSingleLevelController) paneAdder.getController();
-                customerSingleLevelController.init(i, bounds[i]);
+                customerSingleLevelController.init(i + 1, bounds[i]);
             }
         }catch (RemoteException e){
             e.printStackTrace();

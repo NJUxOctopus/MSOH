@@ -10,10 +10,7 @@ import po.PromotionPO;
 import rmi.RemoteHelper;
 import util.PromotionType;
 import util.ResultMessage;
-import util.strategy.BirthdayPromotion;
-import util.strategy.CompanyPromotion;
-import util.strategy.NormalPromotion;
-import util.strategy.Strategy;
+import util.strategy.*;
 import vo.HotelVO;
 import vo.OrderVO;
 import vo.PromotionVO;
@@ -50,13 +47,17 @@ public class Promotion implements Promotion_BLService {
                 promotionVO.targetUser == null) {//若结束时间，策略名称，开始时间，目标用户为空
             return ResultMessage.Blank;
         } else {
-            List<HotelVO> hotelVOList = hotelUtil.getByArea(promotionVO.targetArea);
             String targetHotel = "";
-            for (int i = 0; i < hotelVOList.size(); i++) {
-                if (i != hotelVOList.size() - 1)
-                    targetHotel += hotelVOList.get(i).hotelID + ";";
-                else
-                    targetHotel += hotelVOList.get(i).hotelID;
+            if(promotionVO.targetArea.equals("所有商圈")){
+                targetHotel += "所有酒店";
+            }else{
+                List<HotelVO> hotelVOList = hotelUtil.getByArea(promotionVO.targetArea);
+                for (int i = 0; i < hotelVOList.size(); i++) {
+                    if (i != hotelVOList.size() - 1)
+                        targetHotel += hotelVOList.get(i).hotelID + ";";
+                    else
+                        targetHotel += hotelVOList.get(i).hotelID;
+                }
             }
             if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, promotionVO.targetArea,
@@ -226,6 +227,10 @@ public class Promotion implements Promotion_BLService {
                 Strategy normalPromotion = new NormalPromotion(customerUtil.getSingle(orderVO.customerID).memberType, orderVO.rooms.length);
                 if (normalPromotion.usePromotion(orderVO))
                     promotionVOList.add(new PromotionVO(promotionVO.discount, promotionVO.promotionName));
+            }else if(promotionVO.promotionType.equals(PromotionType.WebPromotion_VIP)){
+                Strategy VIPPromotion = new VIPPromotion(promotionVO.memberLevel);
+                if(VIPPromotion.usePromotion(orderVO))
+                    promotionVOList.add(new PromotionVO(promotionVO.discount,promotionVO.promotionName));
             }
         }
         Date date = new Date();

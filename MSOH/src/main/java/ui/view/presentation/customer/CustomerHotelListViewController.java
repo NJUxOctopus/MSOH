@@ -10,9 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import ui.controller.HotelAdminController;
 import ui.controller.HotelInfoController;
 import ui.controller.ReservedHotelController;
 import ui.controller.UserAdminController;
+import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.HotelInfo;
 import ui.view.controllerservice.ReservedHotel;
 import ui.view.controllerservice.UserAdmin;
@@ -26,6 +28,7 @@ import vo.HotelVO;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +42,8 @@ public class CustomerHotelListViewController implements ControlledStage {
     private String resource = "customer/CustomerHotelListView.fxml";
 
     private String customerID;
+
+    private List<HotelVO> hotelList = new ArrayList<HotelVO>();
 
     @FXML
     private ImageView background;
@@ -216,7 +221,7 @@ public class CustomerHotelListViewController implements ControlledStage {
             int num = hotelList.size();
             hotelListScrollPane.setPrefWidth(270 * num);
             PaneAdder paneAdder = new PaneAdder();
-            for (int i = 0; i < num; i++) {
+            for (int i = 0; i < 1; i++) {
                 paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml",  270 * i + 5, 10);
                 customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
                 customerSingleHotelViewController.init(customerID, hotelList.get(i).hotelID);
@@ -294,8 +299,30 @@ public class CustomerHotelListViewController implements ControlledStage {
 
 
         sortChoiceBox.setItems(FXCollections.observableArrayList(
-                "星级↑","星级↓","评分↑","评分↓"));
+                "星级", "评分"));
+        sortChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener(){
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                String sort = (String) sortChoiceBox.getSelectionModel().getSelectedItem();
 
+                try {
+                    if(!hotelList.isEmpty()){
+                        if(sort.equals("星级")){
+                            HotelAdmin hotelAdmin = new HotelAdminController();
+                            hotelList = hotelAdmin.sortByStar(hotelList);
+                            addHotelPane(hotelList);
+                        }
+                        if(sort.equals("评分")){
+                            HotelAdmin hotelAdmin = new HotelAdminController();
+                            hotelList = hotelAdmin.sortByScore(hotelList);
+                            addHotelPane(hotelList);
+                        }
+                    }
+                }catch(RemoteException e){
+                    e.printStackTrace();
+                }
+            }
+        });
 
         cityChoiceBox.setValue(hotelVO.city);
         areaChoiceBox.setValue(hotelVO.area);
@@ -317,7 +344,7 @@ public class CustomerHotelListViewController implements ControlledStage {
     private void getAllHotel(HotelVO hotelVO){
         HotelInfo hotelInfo = new HotelInfoController();
         try {
-            List<HotelVO> hotelList = hotelInfo.searchHotel(hotelVO);
+            hotelList = hotelInfo.searchHotel(hotelVO);
 
             addHotelPane(hotelList);
         } catch (RemoteException e) {

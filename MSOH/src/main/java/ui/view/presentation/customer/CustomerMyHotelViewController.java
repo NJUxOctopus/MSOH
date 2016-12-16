@@ -3,6 +3,7 @@ package ui.view.presentation.customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -40,6 +41,9 @@ public class CustomerMyHotelViewController implements ControlledStage {
     @FXML
     private AnchorPane hotelListScrollPane;
 
+    @FXML
+    private Label emptyLabel;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -58,12 +62,16 @@ public class CustomerMyHotelViewController implements ControlledStage {
         try {
             List<HotelVO> hotelVOList = reservedHotel.getHistoryHotel(customerID);
             int num = hotelVOList.size();
-            hotelListScrollPane.setPrefWidth(260*num - 5);
-            PaneAdder paneAdder = new PaneAdder();
-            for(int i =0; i < num; i++) {
-                paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
-                customerSingleHotelViewController = (CustomerSingleHotelViewController) stageController.getController();
-                customerSingleHotelViewController.init(customerID, hotelID);
+            if(num != 0) {
+                hotelListScrollPane.setPrefWidth(260 * num - 5);
+                PaneAdder paneAdder = new PaneAdder();
+                for (int i = 0; i < num; i++) {
+                    paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
+                    customerSingleHotelViewController = (CustomerSingleHotelViewController) stageController.getController();
+                    customerSingleHotelViewController.init(customerID, hotelID);
+                }
+            }else{
+                emptyLabel.setOpacity(1);
             }
         }catch (RemoteException e){
             e.printStackTrace();

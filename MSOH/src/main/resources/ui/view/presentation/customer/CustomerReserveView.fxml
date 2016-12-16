@@ -155,12 +155,12 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <ChoiceBox fx:id="hasChildChoiceBox" layoutX="790.0" layoutY="420.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="hasChildChoiceBox" layoutX="790.0" layoutY="420.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <ChoiceBox fx:id="promotionChoiceBox" layoutX="790.0" layoutY="470.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;">
+            <ChoiceBox fx:id="promotionChoiceBox" layoutX="790.0" layoutY="470.0" prefHeight="23.0" prefWidth="220.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@customer.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

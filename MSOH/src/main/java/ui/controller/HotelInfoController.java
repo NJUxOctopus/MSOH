@@ -4,6 +4,7 @@ import businesslogic.hotel_bl.HotelUtil;
 import businesslogicservice.hotel_blservice.HotelUtil_BLService;
 import ui.view.controllerservice.HotelInfo;
 import vo.HotelVO;
+import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
@@ -60,5 +61,9 @@ public class HotelInfoController implements HotelInfo {
 
     public List<String> getAreaByCity(String city) throws RemoteException{
         return hotelUtil_blService.getAreaByCity(city);
+    }
+
+    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
+        return hotelUtil_blService.getBewteenDate(hotelID, roomName, timestamp1, timestamp2);
     }
 }
