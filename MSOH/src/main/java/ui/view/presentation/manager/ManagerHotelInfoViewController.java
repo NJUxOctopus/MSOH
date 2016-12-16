@@ -154,7 +154,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         HotelAdmin hotelAdmin = new HotelAdminController();
         try{
             ResultMessage resultMessage = hotelAdmin.addHotel(new HotelVO(
-                    hotelName, address, area, "", newFac, star, license));
+                    "", hotelName, address, area, "", newFac, star, license));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
@@ -176,7 +176,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         HotelAdmin hotelAdmin = new HotelAdminController();
         try {
             ResultMessage resultMessage = hotelAdmin.updateHotelInfo(new HotelVO(
-                    hotelName, address, area, "", newFac, star, license));
+                    hotelID, hotelName, address, area, "", newFac, star, license));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
@@ -224,7 +224,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
      */
     private void init(){
         starChoiceBox.setItems(FXCollections.observableArrayList(
-                "任意星级", "★", "★★", "★★★", "★★★★", "★★★★★"));
+                 "★", "★★", "★★★", "★★★★", "★★★★★"));
         try {
             HotelInfo hotelInfo = new HotelInfoController();
             List<String> city = hotelInfo.getAllCities();
@@ -232,6 +232,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
             for (int i = 0; i < city.size(); i++)
                 citys.add(city.get(i));
             cityChoiceBox.setItems(citys);
+
 
             cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
                 @Override
@@ -250,6 +251,8 @@ public class ManagerHotelInfoViewController implements ControlledStage {
                     }
                 }
             });
+
+
         }catch (RemoteException e){
             e.printStackTrace();
         }
@@ -270,11 +273,11 @@ public class ManagerHotelInfoViewController implements ControlledStage {
             for(int i = 0; i < hotelVO.star; i++)
                 starStr += "★";
             star = starStr.length();
+            starChoiceBox.setValue(starStr);
             nameTextField.setText(hotelName);
             addressTextField.setText(address);
             cityChoiceBox.setValue(city);
             areaChoiceBox.setValue(area);
-            starChoiceBox.setValue(star);
             String[] infra = hotelVO.infra;
             for(int i = 0; i < infra.length; i++){
                 facility = facility + infra[i] + ";";
@@ -307,7 +310,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         address = addressTextField.getText();
         area = (String)areaChoiceBox.getSelectionModel().getSelectedItem();
         city = (String)cityChoiceBox.getSelectionModel().getSelectedItem();
-        star = starChoiceBox.getSelectionModel().getSelectedIndex() + 1;
+        star = starChoiceBox.getSelectionModel().getSelectedIndex();
         List<String> newInfra = new ArrayList<String>();
         if(depotCheckBox.isSelected()){
             newInfra.add("停车场");
@@ -327,7 +330,22 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         }
         newFac = newInfra.toArray(new String[newInfra.size()]);
         license = licenseTextField.getText();
-        if(hotelID != "") {
+        if(!hotelID.equals("")) {
+            System.out.println(hotelName);
+            System.out.println(hotelVO.hotelName);
+            System.out.println(address);
+            System.out.println(hotelVO.hotelAddress);
+            System.out.println(area);
+            System.out.println(hotelVO.area);
+            System.out.println(city);
+            System.out.println(hotelVO.city);
+            System.out.println(star);
+            System.out.println(hotelVO.star);
+            System.out.println(facility);
+            System.out.println(newFacility);
+            System.out.println(license);
+            System.out.println(hotelVO.license);
+
             if (hotelName.equals(hotelVO.hotelName) && address.equals(hotelVO.hotelAddress)
                     && area.equals(hotelVO.area) && city.equals(hotelVO.city)
                     && star == hotelVO.star && facility.equals(newFacility)

@@ -2,6 +2,7 @@ package ui.view.presentation.manager;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -60,6 +61,9 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
 
     @FXML
     private PasswordField passwordTextField;
+
+    @FXML
+    private Label passwordLabel;
 
     private String name = "";
 
@@ -150,7 +154,7 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
     private void modfiyMarketer(){
         MarketerInfoChange marketerInfoChange = new MarketerInfoChangeController();
         try{
-            ResultMessage resultMessage = marketerInfoChange.changeInfo(new MarketerVO(name, phone, password, ID, ""));
+            ResultMessage resultMessage = marketerInfoChange.changeInfo(new MarketerVO(name, phone, "", ID, ""));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
@@ -177,6 +181,8 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
         addMarketerPane.setOpacity(0);
         modifyMarketerPane.setOpacity(1);
         passwordTextField.setEditable(false);
+        passwordLabel.setOpacity(0);
+        passwordTextField.setOpacity(0);
         setMarkterInfo();
     }
 
@@ -206,7 +212,7 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
             password = marketerVO.password;
             marketerNameTextField.setText(name);
             phoneTextField.setText(phone);
-            marketerIDTextField.setText("11111111");
+            marketerIDTextField.setText(marketerVO.ID);
 
         }catch (RemoteException e){
             e.printStackTrace();
@@ -222,9 +228,9 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
         phone = phoneTextField.getText();
         ID = marketerIDTextField.getText();
         password = passwordTextField.getText();
-        if(marketerID != "") {
+        if(!marketerID.equals("")) {
             if (name.equals(marketerVO.name) && phone.equals(marketerVO.phone)
-                    && ID.equals(marketerVO.ID) && password.equals(marketerVO.password)) {
+                    && ID.equals(marketerVO.ID) ) {
                 return false;
             } else {
                 return true;

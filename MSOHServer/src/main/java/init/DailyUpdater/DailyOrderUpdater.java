@@ -6,7 +6,7 @@ import DataHelperImpl.customerDataHelperImpl.CustomerDataHelperSQLImpl;
 import DataHelperImpl.orderDataHelperImpl.OrderDataHelperSQLImpl;
 import po.CustomerPO;
 import po.OrderPO;
-import util.POUtil.OrderStatus;
+import util.OrderStatus;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -38,14 +38,15 @@ public class DailyOrderUpdater {
      * @return 若有订单需要更新，返回true；若无，返回false
      */
     public boolean setAbnomral_auto(Timestamp now) {
+        boolean status=false;
         // 获得所有订单
         List<OrderPO> orderList = orderDataHelper.getAllOrders();
 
         if (orderList == null || orderList.isEmpty()) {
-            return false;
+            return status;
         }
 
-        // 将订单状态为 未入住的 、最晚订单执行时间在 当前时间之后的 ，订单状态设为 异常
+        // 将订单状态为 未入住的 、最晚订单执行时间在 当前时间之前的 ，订单状态设为 异常
         for (OrderPO order : orderList) {
             if (order.getOrderStatus().equals(OrderStatus.UNEXECUTED)) {
                 if (order.getLatestExecutedTime().before(now)) {
@@ -56,11 +57,12 @@ public class DailyOrderUpdater {
                     decreaseCustomerCredit_auto(order.getCustomerID(), order.getFinalPrice());
                     // 更新数据库
                     orderDataHelper.updateOrder(order);
+                    status=true;
                 }
             }
         }
 
-        return true;
+        return status;
     }
 
     /**
@@ -69,6 +71,8 @@ public class DailyOrderUpdater {
      * @param customerID
      * @param price
      */
+
+    //TODO 添加信用记录
     private void decreaseCustomerCredit_auto(String customerID, double price) {
         CustomerPO customer = customerDataHelper.findCustomerByID(customerID);
 

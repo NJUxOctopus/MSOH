@@ -1,8 +1,10 @@
 package businesslogic.marketer_bl;
 
 import businesslogicservice.marketer_blservice.MarketerUtil_BLService;
+import dataservice.marketer_dataservice.Marketer_DataService;
 import dataservice.marketer_dataservice.Marketer_DataService_Stub;
 import po.MarketerPO;
+import rmi.RemoteHelper;
 import vo.MarketerVO;
 
 import java.rmi.RemoteException;
@@ -14,7 +16,7 @@ import java.util.List;
  * Created by Pxr on 16/11/23.
  */
 public class MarketerUtil implements MarketerUtil_BLService {
-    private Marketer_DataService_Stub marketer_dataService_stub = new Marketer_DataService_Stub();
+    private Marketer_DataService marketer_dataService_stub = RemoteHelper.getInstance().getMarketerDataService();
 
     /**
      * 根据营销人员ID得到营销人员
@@ -30,6 +32,7 @@ public class MarketerUtil implements MarketerUtil_BLService {
             //若无该营销人员
             return null;
         MarketerPO marketerPO = marketer_dataService_stub.findMarketerByID(marketerID);
+
         return new MarketerVO(marketerPO.getName(), marketerPO.getPhone(), marketerPO.getPassword(), marketerPO.getID(), marketerPO.getPicUrl());
     }
 
@@ -44,6 +47,7 @@ public class MarketerUtil implements MarketerUtil_BLService {
             //若名字为空
             return null;
         List<MarketerPO> marketerPOList = marketer_dataService_stub.findMarketerByName(name);
+        marketerPOList.get(0).getID();
         if(marketerPOList==null||marketerPOList.isEmpty())
             //若列表为空
             return new ArrayList<MarketerVO>();

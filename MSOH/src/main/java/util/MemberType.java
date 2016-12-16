@@ -2,5 +2,5 @@ package util;
 
 
 public enum MemberType {
-	NONMEMBER ,NORMAL, ENTREPRISE;
+	NONMEMBER ,NORMAL, ENTREPRISE
 }

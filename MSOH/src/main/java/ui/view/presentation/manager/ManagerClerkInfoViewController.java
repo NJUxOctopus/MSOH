@@ -29,7 +29,7 @@ public class ManagerClerkInfoViewController implements ControlledStage {
 
     private ClerkVO clerkVO;
 
-    private String hotelID;
+    private String hotelID = "";
 
     @FXML
     private Button addButton;
@@ -63,6 +63,9 @@ public class ManagerClerkInfoViewController implements ControlledStage {
 
     @FXML
     private PasswordField passwordTextField;
+
+    @FXML
+    private Label passwordLabel;
 
     private String name = "";
 
@@ -125,7 +128,12 @@ public class ManagerClerkInfoViewController implements ControlledStage {
     private void addClerk(){
         UserAdmin userAdmin = new UserAdminController();
         try{
-            ResultMessage resultMessage = userAdmin.addClerk(new ClerkVO(name, phone, password, ID));
+            name = cleckNameTextField.getText();
+            phone = phoneTextField.getText();
+            password = passwordTextField.getText();
+            ID = cleckIDTextField.getText();
+            hotelID = hotelIDTextField.getText();
+            ResultMessage resultMessage = userAdmin.addClerk(new ClerkVO(name, phone, password, ID, hotelID));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
@@ -137,6 +145,9 @@ public class ManagerClerkInfoViewController implements ControlledStage {
             }
             if(resultMessage == ResultMessage.DataFormatWrong){
                 errorBoxController.setLabel("信息格式错误！");
+            }
+            if(resultMessage == ResultMessage.Hotel_HasClerk){
+                errorBoxController.setLabel("该酒店已存在工作人员！");
             }
             if(resultMessage == ResultMessage.Clerk_AddClerkSuccess){
                 errorBoxController.setLabel("成功添加酒店工作人员！");
@@ -183,6 +194,12 @@ public class ManagerClerkInfoViewController implements ControlledStage {
         }catch (RemoteException e){
 
         }
+        cleckNameTextField.setText(clerkVO.name);
+        phoneTextField.setText(clerkVO.phone);
+        cleckIDTextField.setText(clerkVO.ID);
+        hotelIDTextField.setText(clerkVO.hotelID);
+        passwordLabel.setOpacity(0);
+        passwordTextField.setOpacity(0);
         addButton.setText("修改");
         addCleckPane.setOpacity(0);
         modifyCleckPane.setOpacity(1);
@@ -204,6 +221,11 @@ public class ManagerClerkInfoViewController implements ControlledStage {
         }else{
             hotelIDTextField.setEditable(false);
         }
+
+        cleckNameTextField.setText("");
+        phoneTextField.setText("");
+        cleckIDTextField.setText("");
+        hotelIDTextField.setText("");
     }
 
     /**
@@ -214,16 +236,16 @@ public class ManagerClerkInfoViewController implements ControlledStage {
         name = cleckNameTextField.getText();
         phone = phoneTextField.getText();
         ID = cleckIDTextField.getText();
-        if(clerkID != "") {
+        if(!clerkID.equals("")) {
             if (name.equals(clerkVO.name) && phone.equals(clerkVO.phone)
-                    && ID.equals(clerkVO.ID)  && password.equals(clerkVO.password)) {
+                    && ID.equals(clerkVO.ID) ) {
                 return false;
             } else {
                 return true;
             }
         }else{
             if (!name.equals("") || !phone.equals("")
-                    || !ID.equals("") || !password.equals("")) {
+                    || !ID.equals("") ) {
                 return true;
             } else {
                 return false;

@@ -1,6 +1,6 @@
 package po;
 
-import util.POUtil.OrderStatus;
+import util.OrderStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;

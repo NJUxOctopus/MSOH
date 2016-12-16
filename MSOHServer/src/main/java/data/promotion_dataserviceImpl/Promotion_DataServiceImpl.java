@@ -7,7 +7,7 @@ import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
 import util.DataUtil.CopyUtil;
 import util.DataUtil.EncryptionUtil;
-import util.POUtil.PromotionType;
+import util.PromotionType;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -91,7 +91,7 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         List<PromotionPO> webPromotionList = new ArrayList<PromotionPO>();
 
         for (PromotionPO promotionPO : promotionList) {
-            if (promotionPO.getPromotionType().equals(PromotionType.WebPromotion_Holiday) || promotionPO.getPromotionType().equals(PromotionType.WebPromotion_VIP)) {
+            if (promotionPO.getPromotionType().equals(PromotionType.WebPromotion_Holiday) || promotionPO.getPromotionType().equals(PromotionType.WebPromotion_VIP)||promotionPO.getPromotionType().equals(PromotionType.WebPromotion_Other)) {
                 webPromotionList.add(promotionPO);
             }
         }
@@ -112,10 +112,12 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
      * @throws ClassNotFoundException
      */
     public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException, ClassNotFoundException {
+        //System.out.print("******************************");
+
         List<PromotionPO> promotionList = getAllPromotions();
 
         if (promotionList == null || promotionList.isEmpty()) {
-            return promotionList;
+            return new ArrayList<PromotionPO>();
         }
 
         List<PromotionPO> hotelPromotionList = new ArrayList<PromotionPO>();
@@ -125,10 +127,6 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
             if (promotion.getTargetHotel().equals("All") || promotion.getTargetHotel().contains(hotelID)) {
                 hotelPromotionList.add(promotion);
             }
-        }
-
-        if (hotelPromotionList == null || hotelPromotionList.isEmpty()) {
-            return hotelPromotionList;
         }
 
         return hotelPromotionList;
@@ -156,29 +154,6 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
         promotionPO.setFramerName(EncryptionUtil.encode(key, promotionPO.getFramerName()));
 
         return promotionDataHelper.modifyPromotion(promotionPO);
-    }
-
-    /**
-     * 获得所有促销策略
-     * 私有方法
-     *
-     * @return 所有促销策略组成的列表
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    private List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException {
-        List<PromotionPO> list = promotionDataHelper.getAllPromotions();
-
-        if (list == null || list.isEmpty()) {
-            return new ArrayList<PromotionPO>();
-        } else {
-            for (PromotionPO promotion : list) {
-                promotion.setFramerName(EncryptionUtil.decode(key, promotion.getFramerName()));
-            }
-        }
-        List<PromotionPO> returnPromotionList = CopyUtil.deepCopy(list);
-
-        return returnPromotionList;
     }
 
     /**
@@ -210,4 +185,29 @@ public class Promotion_DataServiceImpl implements Promotion_DataService {
             return CopyUtil.deepCopy(certainTypePromotionList);
         }
     }
+
+    /**
+     * 获得所有促销策略
+     * 私有方法
+     *
+     * @return 所有促销策略组成的列表
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private List<PromotionPO> getAllPromotions() throws IOException, ClassNotFoundException {
+        List<PromotionPO> list = promotionDataHelper.getAllPromotions();
+
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<PromotionPO>();
+        } else {
+            for (PromotionPO promotion : list) {
+                promotion.setFramerName(EncryptionUtil.decode(key, promotion.getFramerName()));
+            }
+        }
+        List<PromotionPO> returnPromotionList = CopyUtil.deepCopy(list);
+
+        return returnPromotionList;
+    }
+
+
 }

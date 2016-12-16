@@ -32,7 +32,7 @@ public class Clerk implements Clerk_BLService {
      */
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException {
         if (clerkVO.name.equals("") || clerkVO.phone.equals("") || clerkVO.ID.equals("") ||
-                clerkVO.password.equals("") || clerkVO.hotelID.equals("") || clerkVO.hotelName.equals("")) {
+                clerkVO.password.equals("") || clerkVO.hotelID.equals("")) {
             //若工作人员的名字或电话或ID或密码或所在酒店ID，名称为空
             return ResultMessage.Blank;
         } else if (clerk_dataService.findClerkByID(clerkVO.ID) != null) {

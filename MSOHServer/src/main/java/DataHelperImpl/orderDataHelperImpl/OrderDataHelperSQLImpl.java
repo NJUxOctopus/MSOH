@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import po.OrderPO;
 import util.DataUtil.HibernateUtil;
-import util.POUtil.OrderStatus;
+import util.OrderStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,9 +115,14 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
             session = HibernateUtil.getSession();
             session.beginTransaction();
 
-            OrderPO orderPO = (OrderPO) session.get(OrderPO.class, orderID);
+//            OrderPO orderPO = (OrderPO) session.get(OrderPO.class, orderID);
+            String hql = "from OrderPO as order where order.orderID=:n";
+            Query query = session.createQuery(hql);
+            query.setString("n", orderID);
 
-            return orderPO;
+            List<OrderPO> orderList = query.list();
+
+            return orderList.get(0);
         } catch (HibernateException e) {
             e.printStackTrace();
             return null;

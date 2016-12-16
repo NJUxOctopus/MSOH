@@ -1,7 +1,7 @@
 package po;
 
-import util.POUtil.MemberType;
-import util.POUtil.PromotionType;
+import util.MemberType;
+import util.PromotionType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "promotion", schema = "msoh_database")
 public class PromotionPO implements Serializable, Cloneable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     // 策略制定者名称
     @Column(name = "framerName")
     private String framerName;
@@ -192,6 +192,7 @@ public class PromotionPO implements Serializable, Cloneable {
     public void setTargetMemberLevel(int targetMemberLevel) {
         this.targetMemberLevel = targetMemberLevel;
     }
+
 
     @Override
     public Object clone() {

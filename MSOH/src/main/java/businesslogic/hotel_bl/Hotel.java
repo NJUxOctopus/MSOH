@@ -214,10 +214,11 @@ public class Hotel implements Hotel_BLService {
      */
     public ResultMessage modifyHotel(HotelVO hotelVO) throws RemoteException {
         HotelPO hotelPO = hotel_dataService.findHotelByID(hotelVO.hotelID);
+
         if (hotelPO == null)
             return ResultMessage.Hotel_HotelNotExist;
         if (hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals("") || hotelVO.area.equals("")
-                || hotelVO.intro.equals("") || hotelVO.city.equals("") || hotelVO.star == -1)
+                || hotelVO.intro.equals(""))
             return ResultMessage.Blank;
         if (hotelVO.star < 0)
             return ResultMessage.DataFormatWrong;

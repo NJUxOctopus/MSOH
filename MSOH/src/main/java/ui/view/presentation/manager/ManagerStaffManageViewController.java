@@ -108,15 +108,18 @@ public class ManagerStaffManageViewController implements ControlledStage {
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
             errorBoxController.setLabel("请先选择搜索条件！");
-        }
-        if (staffType.equals("客户")) {
-            findCustomer();
-        }
-        if (staffType.equals("酒店工作人员")) {
-            findClerk();
-        }
-        if (staffType.equals("网站营销人员")) {
-            findMarketer();
+        }else {
+            if (!input.equals("")) {
+                if (staffType.equals("客户")) {
+                    findCustomer();
+                }
+                if (staffType.equals("酒店工作人员")) {
+                    findClerk();
+                }
+                if (staffType.equals("网站营销人员")) {
+                    findMarketer();
+                }
+            }
         }
     }
 
@@ -128,16 +131,21 @@ public class ManagerStaffManageViewController implements ControlledStage {
         CustomerVO customerVO;
         try {
             if (inputType.equals("ID")){
+                clerkVOList.clear();
                 customerVO = userAdmin.findCustomerByID(input);
-                customerVOList.add(customerVO);
+                if(customerVO != null) {
+                    customerVOList.add(customerVO);
+                }
+                    addPersonPane("客户");
             }
             if (inputType.equals("姓名")){
                 customerVOList = userAdmin.findCustomerByName(input);
+                addPersonPane("客户");
             }
         }catch (RemoteException e){
             e.printStackTrace();
         }
-        addPersonPane("客户");
+
     }
 
     /**
@@ -148,8 +156,11 @@ public class ManagerStaffManageViewController implements ControlledStage {
         MarketerVO marketerVO;
         try {
             if (inputType.equals("ID")){
+                marketerVOList.clear();
                 marketerVO = userAdmin.findMarketerByID(input);
-                marketerVOList.add(marketerVO);
+                if(marketerVO != null){
+                    marketerVOList.add(marketerVO);
+                }
             }
             if (inputType.equals("姓名")){
                 marketerVOList = userAdmin.findMarketerByName(input);
@@ -168,8 +179,10 @@ public class ManagerStaffManageViewController implements ControlledStage {
         ClerkVO clerkVO;
         try {
             if (inputType.equals("ID")){
+                clerkVOList.clear();
                 clerkVO = userAdmin.findClerkByID(input);
-                clerkVOList.add(clerkVO);
+                if(clerkVO != null)
+                    clerkVOList.add(clerkVO);
             }
             if (inputType.equals("姓名")){
                 clerkVOList = userAdmin.findClerkByName(input);
@@ -185,8 +198,11 @@ public class ManagerStaffManageViewController implements ControlledStage {
      * @param type
      */
     private void addPersonPane(String type){
+        boolean b = false;
         staffListScrollPane.getChildren().clear();
-        if(type.equals("客户") && !customerVOList.isEmpty()) {
+        if(type.equals("客户") && customerVOList != null) {
+            b = true;
+            emptyLabel.setOpacity(0);
             staffListScrollPane.setPrefHeight(150 * customerVOList.size());
             for(int i = 0; i < customerVOList.size(); i++) {
                 PaneAdder paneAdder = new PaneAdder();
@@ -194,11 +210,10 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 ManagerSinglePersonViewController managerSinglePersonViewController = (ManagerSinglePersonViewController) paneAdder.getController();
                 managerSinglePersonViewController.init("客户", customerVOList.get(i).ID);
             }
-        }else{
-            emptyLabel.setOpacity(1);
         }
-
-        if(type.equals("网站营销人员") && !marketerVOList.isEmpty()) {
+        if(type.equals("网站营销人员") && marketerVOList != null) {
+            b = true;
+            emptyLabel.setOpacity(0);
             staffListScrollPane.setPrefHeight(150 * marketerVOList.size());
             for(int i = 0; i < marketerVOList.size(); i++) {
                 PaneAdder paneAdder = new PaneAdder();
@@ -206,11 +221,10 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 ManagerSinglePersonViewController managerSinglePersonViewController = (ManagerSinglePersonViewController) paneAdder.getController();
                 managerSinglePersonViewController.init("网站营销人员", marketerVOList.get(i).ID);
             }
-        }else{
-            emptyLabel.setOpacity(1);
         }
-
-        if(type.equals("酒店工作人员") && !clerkVOList.isEmpty()) {
+        if(type.equals("酒店工作人员") && clerkVOList != null) {
+            b = true;
+            emptyLabel.setOpacity(0);
             staffListScrollPane.setPrefHeight(150 * clerkVOList.size());
             for(int i = 0; i < clerkVOList.size(); i++) {
                 PaneAdder paneAdder = new PaneAdder();
@@ -218,10 +232,12 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 ManagerSinglePersonViewController managerSinglePersonViewController = (ManagerSinglePersonViewController) paneAdder.getController();
                 managerSinglePersonViewController.init("酒店工作人员", clerkVOList.get(i).ID);
             }
-        }else{
-            emptyLabel.setOpacity(1);
         }
 
+        if(!b)
+            emptyLabel.setOpacity(1);
+        else
+            emptyLabel.setOpacity(0);
     }
 
     /**

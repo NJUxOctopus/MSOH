@@ -59,21 +59,27 @@ public class ManagerHotelManageViewController implements ControlledStage {
             HotelAdmin hotelAdmin = new HotelAdminController();
             if (type == null){
                 stageController = new StageController();
-                stageController.loadStage("util/ErrorBox.fxml", 0.75);
+                stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
                 ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
                 errorBoxController.setLabel("请先选择搜索条件！");
             }
-            if (type.equals("酒店ID")) {
-                hotelVO = hotelAdmin.findByID(input);
-                hotelVOList.add(hotelVO);
+            else {
+                if (!input.equals("")){
+                    if (type.equals("酒店ID")) {
+                        hotelVO = hotelAdmin.findByID(input);
+                        if(hotelVO != null)
+                            hotelVOList.add(hotelVO);
+                    }
+                    else if (type.equals("酒店名称")) {
+                        hotelVOList = hotelAdmin.findByName(input);
+                    }
+                    else if (type.equals("所属商圈")) {
+                        hotelVOList = hotelAdmin.findByArea(input);
+                    }
+                    addHotelPane(hotelVOList);
+                }
+
             }
-            if (type.equals("酒店名称")) {
-                hotelVOList = hotelAdmin.findByName(input);
-            }
-            if (type.equals("所属商圈")) {
-                hotelVOList = hotelAdmin.findByArea(input);
-            }
-            addHotelPane(hotelVOList);
         }catch (RemoteException e){
             e.printStackTrace();
         }
@@ -84,12 +90,10 @@ public class ManagerHotelManageViewController implements ControlledStage {
      */
     @FXML
     private void addHotel(){
-
             stageController = new StageController();
             stageController.loadStage("manager/ManagerHotelInfoView.fxml", 1);
             ManagerHotelInfoViewController managerHotelInfoViewController = (ManagerHotelInfoViewController) stageController.getController();
             managerHotelInfoViewController.setAddVer();
-
     }
 
     /**
@@ -98,7 +102,8 @@ public class ManagerHotelManageViewController implements ControlledStage {
      */
     public void addHotelPane(List<HotelVO> hotelVOs){
         hotelListScrollPane.getChildren().clear();
-        if(!hotelVOs.isEmpty()) {
+
+        if(hotelVOs != null) {
             int num = hotelVOs.size();
             hotelListScrollPane.setPrefWidth(250 * num);
             for(int i = 0; i < num; i++) {
@@ -107,6 +112,8 @@ public class ManagerHotelManageViewController implements ControlledStage {
                 ManagerSingleHotelViewController managerSingleHotelViewController = (ManagerSingleHotelViewController) paneAdder.getController();
                 managerSingleHotelViewController.init(hotelVOs.get(i).hotelID);
             }
+        }else{
+            //todo emptylabel
         }
     }
 

@@ -104,27 +104,32 @@ public class ManagerModifyInfoViewController implements ControlledStage {
     @FXML
     private void saveInfo(){
         getNewInfo();
-        name = newName;
-        phone = newPhone;
-        ManagerInfoChange managerInfoChange = new ManagerInfoChangeController();
-        try {
-            ResultMessage resultMessage = managerInfoChange.changeInfo(new ManagerVO(name, phone, "", managerID, ""));
+        if(!newPhone.equals(phone) || !newName.equals(name)){
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
-            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            if(resultMessage == ResultMessage.Blank){
-                errorBoxController.setLabel("请填写完整信息！");
-            }
-            else if(resultMessage == ResultMessage.phoneFormatWrong){
-                errorBoxController.setLabel("手机格式错误！");
-            }
-            else if(resultMessage == ResultMessage.ChangeInfoSuccess){
-                errorBoxController.setLabel("成功修改信息！");
+            ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
+            errorBoxController.setLabel("未修改信息！");
+        }else {
+            name = newName;
+            phone = newPhone;
+            ManagerInfoChange managerInfoChange = new ManagerInfoChangeController();
+            try {
+                ResultMessage resultMessage = managerInfoChange.changeInfo(new ManagerVO(name, phone, "", managerID, ""));
                 stageController = new StageController();
-                stageController.closeStage(resource);
+                stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
+                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+                if (resultMessage == ResultMessage.Blank) {
+                    errorBoxController.setLabel("请填写完整信息！");
+                } else if (resultMessage == ResultMessage.DataFormatWrong) {
+                    errorBoxController.setLabel("手机格式错误！");
+                } else if (resultMessage == ResultMessage.Manager_ChangeManagerInfoSuccess) {
+                    errorBoxController.setLabel("成功修改信息！");
+                    stageController = new StageController();
+                    stageController.closeStage(resource);
+                }
+            } catch (RemoteException e) {
+                e.printStackTrace();
             }
-        }catch (RemoteException e){
-            e.printStackTrace();
         }
     }
 

@@ -1,4 +1,4 @@
-package util.POUtil;
+package util;
 
 /**
  * Created by zqh on 2016/12/13.

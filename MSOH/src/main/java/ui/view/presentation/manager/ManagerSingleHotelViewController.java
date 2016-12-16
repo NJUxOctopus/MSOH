@@ -93,7 +93,8 @@ public class ManagerSingleHotelViewController implements ControlledStage {
         HotelAdmin hotelAdmin = new HotelAdminController();
         try {
             hotelVO = hotelAdmin.findByID(hotelID);
-            hotelIDLabel.setText(hotelVO.clerkID);
+            hotelNameLabel.setText(hotelVO.hotelName);
+            hotelIDLabel.setText(hotelVO.hotelID);
             cityLabel.setText(hotelVO.city);
             areaLabel.setText(hotelVO.area);
             addressLabel.setText(hotelVO.hotelAddress);

@@ -74,8 +74,8 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    public List<MarketerVO> findMarketerByName(String name) {
-        return null;
+    public List<MarketerVO> findMarketerByName(String name)throws RemoteException  {
+        return marketerUtil_blService.getByName(name);
     }
 
     public MarketerVO findMarketerByID(String ID) throws RemoteException {

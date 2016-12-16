@@ -22,7 +22,7 @@ public interface UserAdmin {
 
     public List<MarketerVO> findAllMarketer();
 
-    public List<MarketerVO> findMarketerByName(String name);
+    public List<MarketerVO> findMarketerByName(String name) throws RemoteException ;
 
     public MarketerVO findMarketerByID(String ID) throws RemoteException;
 

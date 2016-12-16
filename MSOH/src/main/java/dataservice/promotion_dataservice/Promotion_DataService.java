@@ -13,7 +13,7 @@ import java.util.List;
  * @author zqh
  *
  */
-public interface Promotion_DataService extends Remote{
+public interface Promotion_DataService extends Remote {
 	// 新增促销策略
 	public boolean addPromotion(PromotionPO po) throws RemoteException;
 
@@ -24,7 +24,7 @@ public interface Promotion_DataService extends Remote{
 	public List<PromotionPO> getAllWebPromotions() throws IOException, ClassNotFoundException;
 
 	// 获得适用于某酒店的营销策略
-	public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException,ClassNotFoundException;
+	public List<PromotionPO> getPromotionByHotelID(String hotelID) throws IOException, ClassNotFoundException;
 
 	// 删除促销策略
 	public boolean deletePromotion(PromotionPO promotionPO) throws RemoteException;
@@ -34,4 +34,5 @@ public interface Promotion_DataService extends Remote{
 
 	// 根据促销策略类型获得促销策略
 	public List<PromotionPO> getPromotionByPromotionType(PromotionType promotionType) throws IOException,ClassNotFoundException;
+
 }

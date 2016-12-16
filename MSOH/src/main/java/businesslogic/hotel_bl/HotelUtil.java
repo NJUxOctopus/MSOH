@@ -68,9 +68,11 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] infra = hotelPO.getInfra().split(";");
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
-            hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
+            HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
-                    hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID())));
+                    hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
+            hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+            hotelVOList.add(hotelVO);
         }
         return hotelVOList;
     }
@@ -138,9 +140,11 @@ public class HotelUtil implements HotelUtil_BLService {
         String[] infra = hotelPO.getInfra().split(";");
         String[] picUrl = hotelPO.getPicUrls().split(";");
         String[] roomType = hotelPO.getHotelRoomType().split(";");
-        return new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
+        HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                 infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                 hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
+        hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+        return hotelVO;
     }
 
     /**
@@ -161,9 +165,11 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] infra = hotelPO.getInfra().split(";");
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
-            hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
+            HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
-                    hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID())));
+                    hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
+            hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+            hotelVOList.add(hotelVO);
         }
         return hotelVOList;
     }
@@ -184,9 +190,11 @@ public class HotelUtil implements HotelUtil_BLService {
             String[] infra = hotelPO.getInfra().split(";");
             String[] picUrl = hotelPO.getPicUrls().split(";");
             String[] roomType = hotelPO.getHotelRoomType().split(";");
-            hotelVOList.add(new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
+            HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
-                    hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID())));
+                    hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
+            hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+            hotelVOList.add(hotelVO);
         }
         return hotelVOList;
     }

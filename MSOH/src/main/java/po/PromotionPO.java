@@ -5,13 +5,12 @@ import util.PromotionType;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @author zqh
  */
-public class PromotionPO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class PromotionPO implements Serializable{
+    private static final long serialVersionUID = 2L;
     // 策略制定者名称
     private String framerName;
     // 策略制定日期
@@ -22,7 +21,7 @@ public class PromotionPO implements Serializable {
     private MemberType targetUser;
     // 目标商圈
     private String targetArea;
-    // 目标酒店ID，用分号进行分割
+    // 目标酒店ID
     private String targetHotel;
     // 策略生效时间
     private Timestamp startTime;
@@ -34,7 +33,7 @@ public class PromotionPO implements Serializable {
     private int minRoom;
     // 策略ID（编号）
     private int promotionID;
-    // companyName
+    // 企业名称
     private String companyName;
     // 策略类型
     private PromotionType promotionType;
@@ -171,4 +170,5 @@ public class PromotionPO implements Serializable {
     public void setTargetMemberLevel(int targetMemberLevel) {
         this.targetMemberLevel = targetMemberLevel;
     }
+
 }

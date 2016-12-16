@@ -85,12 +85,12 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="463.0" layoutY="405.0" text="密码" textFill="WHITE">
+            <Label fx:id="passwordLabel" layoutX="463.0" layoutY="405.0" text="密码" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordTextField" layoutX="564.0" layoutY="400.0" prefHeight="37.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" />
+            <PasswordField fx:id="passwordTextField" layoutX="564.0" layoutY="400.0" prefHeight="37.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" />
          </children>
       </Pane>
       <Pane layoutX="137.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0">

@@ -14,6 +14,7 @@ import ui.view.presentation.StageController;
 import vo.ManagerVO;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 /**
  * Created by island on 2016/11/30.
@@ -126,7 +127,13 @@ public class ManagerMainViewController implements ControlledStage {
      */
     public void init(String managerID){
         this.managerID = managerID;
-
+        UserAdmin userAdmin = new UserAdminController();
+        try {
+            ManagerVO managerVO = userAdmin.findManagerByID(managerID);
+            managerNameLabel.setText(managerVO.name);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 
 }

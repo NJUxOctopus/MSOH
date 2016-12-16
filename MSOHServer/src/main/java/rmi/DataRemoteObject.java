@@ -23,8 +23,8 @@ import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import dataservice.order_dataservice.Order_DataService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.*;
-import util.POUtil.OrderStatus;
-import util.POUtil.PromotionType;
+import util.OrderStatus;
+import util.PromotionType;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

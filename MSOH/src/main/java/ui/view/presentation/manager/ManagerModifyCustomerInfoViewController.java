@@ -13,6 +13,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import util.MemberType;
 import util.ResultMessage;
 import vo.CustomerVO;
 
@@ -130,6 +131,18 @@ public class ManagerModifyCustomerInfoViewController implements ControlledStage 
         UserAdmin userAdmin = new UserAdminController();
         try{
             customerVO = userAdmin.findCustomerByID(customerID);
+            nameTextField.setText(customerVO.name);
+            phoneTextField.setText(customerVO.phone);
+            emailTextField.setText(customerVO.email);
+            creditTextField.setText(customerVO.credit + "");
+            idTextField.setText(customerVO.ID);
+            if(customerVO.memberType == MemberType.ENTREPRISE) {
+                memberTextField.setText("企业会员");
+            }else if(customerVO.memberType == MemberType.NORMAL){
+                memberTextField.setText("普通会员");
+            }else if(customerVO.memberType == MemberType.NONMEMBER){
+                memberTextField.setText("非会员");
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }

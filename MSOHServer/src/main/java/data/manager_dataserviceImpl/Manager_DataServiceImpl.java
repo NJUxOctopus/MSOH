@@ -58,7 +58,7 @@ public class Manager_DataServiceImpl implements Manager_DataService {
         // 网站管理人员姓名、密码、联系方式、ID加密
         String name = EncryptionUtil.encode(key, managerPO.getName());
         String pw = EncryptionUtil.encode(key, managerPO.getPassword());
-        String phone = EncryptionUtil.encode(key, managerPO.getID());
+        String phone = EncryptionUtil.encode(key, managerPO.getPhone());
         String manangerID = EncryptionUtil.encode(key, managerPO.getID());
         managerPO.setName(name);
         managerPO.setPassword(pw);

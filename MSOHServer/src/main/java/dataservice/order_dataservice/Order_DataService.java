@@ -1,7 +1,7 @@
 package dataservice.order_dataservice;
 
 import po.OrderPO;
-import util.POUtil.OrderStatus;
+import util.OrderStatus;
 
 import java.io.IOException;
 import java.rmi.Remote;

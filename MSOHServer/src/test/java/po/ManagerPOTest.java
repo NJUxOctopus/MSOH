@@ -3,7 +3,7 @@ package po;
 import org.hibernate.Session;
 import org.junit.Test;
 import util.DataUtil.HibernateUtil;
-import util.POUtil.WorkerPosition;
+import util.WorkerPosition;
 
 /**
  * Created by zqh on 2016/12/7.

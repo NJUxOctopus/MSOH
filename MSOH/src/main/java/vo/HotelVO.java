@@ -113,8 +113,9 @@ public class HotelVO implements Serializable {
         this.hotelID = hotelID;
     }
 
-    public HotelVO(String hotelName, String hotelAddress, String area, String intro, String[] infra, int star,
+    public HotelVO(String ID, String hotelName, String hotelAddress, String area, String intro, String[] infra, int star,
                    String license) {
+        this.hotelID = ID;
         this.hotelName = hotelName;
         this.hotelAddress = hotelAddress;
         this.area = area;

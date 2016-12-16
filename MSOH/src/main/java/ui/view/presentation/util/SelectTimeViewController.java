@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.clerk.*;
 import ui.view.presentation.customer.CustomerHotelDetailsViewController;
@@ -25,6 +26,8 @@ import java.util.Date;
  */
 public class SelectTimeViewController implements ControlledStage {
     StageController stageController;
+
+    PaneAdder paneAdder;
 
     private String resources = "util/SelectTimeView.fxml";
 
@@ -116,7 +119,7 @@ public class SelectTimeViewController implements ControlledStage {
         }
         //工作人员 生日特惠界面
         if (toBeSet.equals("clerk/ClerkBirthdayPromotion.fxml")) {
-            ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) stageController.getController(toBeSet);
+            ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) paneAdder.getController(toBeSet);
             if (type.equals("start"))
                 clerkBirthdayPromotionController.setStartTime(time);
             if (type.equals("end"))
