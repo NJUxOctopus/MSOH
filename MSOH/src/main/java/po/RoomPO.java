@@ -1,6 +1,7 @@
 package po;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * 
@@ -9,6 +10,8 @@ import java.io.Serializable;
  */
 public class RoomPO implements Serializable {
 	private static final long serialVersionUID=1L;
+	// 房间ID
+	private int roomID;
 	// 酒店ID
 	private String hotelID;
 	// 房间类型
@@ -21,17 +24,20 @@ public class RoomPO implements Serializable {
 	private int leftRooms;
 	// 价格
 	private double price;
+	// 日期
+	private Timestamp date;
 
 	public RoomPO() {
 	}
 
-	public RoomPO(String hotelID, String roomType, int occupiedRooms, int reservedRooms, int leftRooms, double price) {
+	public RoomPO(String hotelID, String roomType, int occupiedRooms, int reservedRooms, int leftRooms, double price, Timestamp date) {
 		this.hotelID = hotelID;
 		this.roomType = roomType;
 		this.occupiedRooms = occupiedRooms;
 		this.reservedRooms = reservedRooms;
 		this.leftRooms = leftRooms;
 		this.price = price;
+		this.date=date;
 	}
 
 	public String getHotelID() {
@@ -82,4 +88,11 @@ public class RoomPO implements Serializable {
 		this.price = price;
 	}
 
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
 }
