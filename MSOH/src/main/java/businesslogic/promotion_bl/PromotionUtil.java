@@ -163,16 +163,17 @@ public class PromotionUtil implements PromotionUtil_BLService {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public List<PromotionVO> getPromotionByType(PromotionType promotionType) throws IOException, ClassNotFoundException {
+    public List<PromotionVO> getPromotionByType(PromotionType promotionType, Timestamp timestamp) throws IOException, ClassNotFoundException {
         List<PromotionPO> promotionPOList = promotion_dataService.getPromotionByPromotionType(promotionType);
         if (promotionPOList == null || promotionPOList.isEmpty())
             return new ArrayList<PromotionVO>();
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         for (PromotionPO promotionPO : promotionPOList) {
-            promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
-                    promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                    getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
-                    "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
+            if (timestamp.before(promotionPO.getEndTime()) && timestamp.after(promotionPO.getStartTime()))
+                promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
+                        promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                        "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
     }
