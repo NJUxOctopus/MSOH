@@ -5,7 +5,7 @@ public enum ResultMessage {
     Customer_SignupSuccess, WrongPhoneFormat, WrongIDFormat, WrongEmailFormat, Customer_SignupExist,
     ChangeInfoSuccess, Customer_CustomerNotExist,Hotel_changeAvailableRoomSuccess,Hotel_changeReservedRoomSuccess,Hotel_changeOccupiedRoomSuccess,
     ChangePasswordWrongOldPw, ChangePassword2DifferentNew, ChangePasswordSuccess,
-    Member_NormalSignupSuccess, Member_EnterpriseSignupSuccess, Member_SignupCreditNotEnough,
+    Member_NormalSignupSuccess, Member_EnterpriseSignupSuccess, Member_SignupCreditNotEnough,RoomNotEnough,
     Order_CreateOrderSuccess,Order_SetAbnormalSuccess,Order_RenewOrderSuccess,
     Hotel_AddRoomSuccess, Hotel_HotelNotExist,Hotel_deleteHotelSuccess,Hotel_ModifyDailyRoomInfoSuccess,Hotel_modifyHotelInfoSuccess,
     Manager_ManagerNotExist,Customer_isNotMember,levelNotChange,levelChangeSuccess,emailFormatWrong,phoneFormatWrong,
