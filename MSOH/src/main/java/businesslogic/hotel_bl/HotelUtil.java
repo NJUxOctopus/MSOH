@@ -88,13 +88,12 @@ public class HotelUtil implements HotelUtil_BLService {
      */
     public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException {
         DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(hotelID, timestamp);
-        System.out.print(hotelID);
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+        System.out.print(hotelID+" "+timestamp);
         if (roomPOList == null || roomPOList.isEmpty())
-            return new DailyRoomInfoVO(dailyRoomInfoPO.getHotelID(), dailyRoomInfoPO.getDate(), new ArrayList<RoomVO>());
+            return null;
         List<RoomVO> roomVOList = new ArrayList<RoomVO>();
-        for (int i = 0; i < roomPOList.size(); i++) {
-            RoomPO roomPO = roomPOList.get(i);
+        for (RoomPO roomPO:roomPOList){
             roomVOList.add(new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
                     roomPO.getLeftRooms(), roomPO.getPrice()));
         }

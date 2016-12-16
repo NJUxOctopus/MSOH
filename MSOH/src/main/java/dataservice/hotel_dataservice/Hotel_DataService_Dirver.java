@@ -19,13 +19,4 @@ public class Hotel_DataService_Dirver {
 	CommentPO commentPO;
 	CustomerPO customerPO;
 	
-	public void dirve(Hotel_DataService hotel_DataService){
-		HotelPO hotelPO=new HotelPO();
-		RoomPO roomPO=new RoomPO("123456", "���", 5, 4, 4, 280);
-
-		
-		
-
-	}
-	
 }

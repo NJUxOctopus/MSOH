@@ -273,7 +273,7 @@ public class Hotel implements Hotel_BLService {
         List<RoomPO> roomPOList = new ArrayList<RoomPO>();
         for (RoomVO roomVO : roomVOList) {
             roomPOList.add(new RoomPO(roomVO.hotelID, roomVO.roomType, 0, 0, roomVO.leftRooms
-                    , roomVO.price));
+                    , roomVO.price,dailyRoomInfoVO.date));
         }
         dailyRoomInfoPO.setRoom(roomPOList);
 
