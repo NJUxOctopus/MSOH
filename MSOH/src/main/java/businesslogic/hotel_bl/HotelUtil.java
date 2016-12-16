@@ -88,6 +88,7 @@ public class HotelUtil implements HotelUtil_BLService {
      */
     public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException {
         DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(hotelID, timestamp);
+        System.out.print(hotelID);
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
         if (roomPOList == null || roomPOList.isEmpty())
             return new DailyRoomInfoVO(dailyRoomInfoPO.getHotelID(), dailyRoomInfoPO.getDate(), new ArrayList<RoomVO>());
@@ -216,8 +217,7 @@ public class HotelUtil implements HotelUtil_BLService {
         if (dailyRoomInfoPO == null)
             return null;
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
-        for (int i = 0; i < roomPOList.size(); i++) {
-            RoomPO roomPO = roomPOList.get(i);
+        for (RoomPO roomPO:roomPOList){
             if (roomName.equals(roomPO.getRoomType()))
                 return new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
                         roomPO.getLeftRooms(), roomPO.getPrice());
@@ -238,7 +238,7 @@ public class HotelUtil implements HotelUtil_BLService {
         long oneDay = 1000 * 60 * 60 * 24;
         long days = (timestamp2.getTime() - timestamp1.getTime()) / oneDay;//算共住多少天
         List<Timestamp> list = new ArrayList<Timestamp>();
-        for (int i = 0; i < days - 1; i++) {//除了最后一天，获得所有的房间信息
+        for (int i = 0; i < days; i++) {//除了最后一天，获得所有的房间信息
             list.add(new Timestamp(timestamp1.getTime() + i * oneDay));
         }
         List<RoomVO> roomVOList = new ArrayList<RoomVO>();

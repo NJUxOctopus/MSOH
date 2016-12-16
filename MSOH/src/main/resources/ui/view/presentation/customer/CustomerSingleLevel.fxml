@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="60.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="60.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleLevelController">
    <children>
       <Label fx:id="levelLabel" alignment="CENTER" layoutY="38.0" prefHeight="14.0" prefWidth="59.0" text="1" textFill="WHITE" />
       <Label fx:id="creditLabel" alignment="CENTER" layoutY="128.0" prefHeight="14.0" prefWidth="59.0" text="1" textFill="WHITE" />

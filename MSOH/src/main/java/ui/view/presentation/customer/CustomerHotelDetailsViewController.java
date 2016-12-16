@@ -17,6 +17,7 @@ import ui.view.controllerservice.EditPromotion;
 import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.HotelInfo;
 import ui.view.controllerservice.ProcessOrder;
+import ui.view.presentation.PaneAdder;
 import ui.view.presentation.clerk.ClerkChooseRoomController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
@@ -92,9 +93,6 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
     private Label hotelNameLabel;
 
     @FXML
-    private Label cityLabel;
-
-    @FXML
     private Label areaLabel;
 
     @FXML
@@ -151,7 +149,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
     }
 
     public void setCheckInTime(String checkInTime){
-        checkOutTimeTextField.setText(checkInTime);
+        checkInTimeTextField.setText(checkInTime);
     }
 
     /**
@@ -211,7 +209,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         setInfo();
         checkInTimeTextField.setText(hotelVO.checkInTime);
         checkOutTimeTextField.setText(hotelVO.checkOutTime);
-        if(!checkInTimeTextField.getText().equals("") && !checkOutTimeTextField.getText().equals("")) {
+        if(checkInTimeTextField.getText() != null && checkOutTimeTextField != null) {
             addRoomTypePane();
         }
         addPromotionPane();
@@ -224,7 +222,6 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
      */
     private void setInfo(){
         hotelNameLabel.setText(hotelVO.hotelName);
-        cityLabel.setText(hotelVO.city);
         areaLabel.setText(hotelVO.area);
         addressLabel.setText(hotelVO.hotelAddress);
         String star = "";
@@ -285,38 +282,26 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
     /**
      * 初始化酒店房间信息面板
      */
-    private void addRoomTypePane(){
+    private void addRoomTypePane() {
         Timestamp checkInTime = Timestamp.valueOf(checkInTimeTextField.getText() + " 00:00:00");
         Timestamp checkOutTime = Timestamp.valueOf(checkOutTimeTextField.getText() + " 00:00:00");
-        //hotelVO.dailyRoomInfo.room
+
         //// TODO: 2016/12/10  获得选择区间内房间类型的数量和价格
-        String[] roomType = hotelVO.roomType;
-
-        int singleBed = 0;
-        int twoBed = 0;
-        int kingBed = 0;
-        int[] roomNum = {0, 0, 0};
-        String[] room = {"单人房", "标间", "大床房"};
-        if(roomType.length == 0){
-            emptyRoomLabel.setOpacity(1);
-        }else {
-            for(int i = 0; i < roomType.length; i++) {
-                if(roomType[i].equals(room[0])){
-                    roomNum[0]++;
-                }else if(roomType[i].equals(room[1])){
-                    roomNum[1]++;
-                }else if(roomType[i].equals(room[2])){
-                    roomNum[2]++;
-                }
-            }
+        try {
+            HotelAdmin hotelAdmin = new HotelAdminController();
+            hotelVO = hotelAdmin.findByID(hotelID);
+            List<RoomVO> roomVOs = hotelAdmin.getDailyRoomInfo(hotelID, checkInTime).room;
+            int roomTypes = roomVOs.size();
             int count = 0;
-            for(int j = 0; j < 3; j++){
-                if(roomNum[j] != 0){
-                    addPane("CustomerSingleRoomTypeView.fxml", 45 , 75 + 35 * count, roomInfoScrollPane, 3, null, null, new RoomVO(), null);
-                    count++;
-                }
-            }
 
+            HotelInfo hotelInfo = new HotelInfoController();
+            for (int i = 0; i < roomTypes; i++) {
+                RoomVO roomVO = hotelInfo.getBewteenDate(hotelID, roomVOs.get(i).roomType, checkInTime, checkOutTime);
+                addPane("CustomerSingleRoomTypeView.fxml", 45, 75 + 35 * count, roomInfoScrollPane, 3, null, null, roomVO, null);
+                count++;
+            }
+        }catch (RemoteException e){
+            e.printStackTrace();
         }
     }
 

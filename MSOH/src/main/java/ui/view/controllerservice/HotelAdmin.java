@@ -45,4 +45,9 @@ public interface HotelAdmin {
     ResultMessage changeReservedRoom(OrderVO orderVO, int change) throws RemoteException;
 
     ResultMessage changeOccupiedRoom(OrderVO orderVO, int change) throws RemoteException;
+
+    List<HotelVO> sortByStar(List<HotelVO> list) throws RemoteException ;
+
+    List<HotelVO> sortByScore(List<HotelVO> list) throws RemoteException ;
+
 }

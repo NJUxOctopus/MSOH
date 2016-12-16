@@ -149,4 +149,12 @@ public class HotelAdminController implements HotelAdmin {
     public ResultMessage changeOccupiedRoom(OrderVO orderVO, int change) throws RemoteException {
         return hotel_blService.changeOccupiedRoom(orderVO,change);
     }
+
+    public List<HotelVO> sortByStar(List<HotelVO> list) throws RemoteException {
+        return hotelUtil_blService.sortByStar(list);
+    }
+
+    public List<HotelVO> sortByScore(List<HotelVO> list) throws RemoteException {
+        return hotelUtil_blService.sortByScore(list);
+    }
 }

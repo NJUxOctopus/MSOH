@@ -35,8 +35,6 @@ public class CustomerOrderListViewController implements ControlledStage {
 
     private String customerID = "";
 
-    private ProcessOrder processOrder;
-
     @FXML
     private AnchorPane orderListScrollPane;
 
@@ -93,8 +91,15 @@ public class CustomerOrderListViewController implements ControlledStage {
     private void showAllOrder(){
         orderButtonShade.setY(0);
         try {
+            ProcessOrder processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByCustomerID(customerID);
-            addOrderPane(orderVOList);
+            if(orderVOList.size() == 0)
+                emptyOrderLabel.setOpacity(1);
+            else {
+                addOrderPane(orderVOList);
+                emptyOrderLabel.setOpacity(0);
+
+            }
         }catch (RemoteException e){
 
         }
@@ -107,6 +112,7 @@ public class CustomerOrderListViewController implements ControlledStage {
     private void showUnexecutedOrder(){
         orderButtonShade.setY(200);
         try {
+            ProcessOrder processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.UNEXECUTED);
             addOrderPane(orderVOList);
         } catch (RemoteException e) {
@@ -122,6 +128,7 @@ public class CustomerOrderListViewController implements ControlledStage {
     private void showAbnormalOrder(){
         orderButtonShade.setY(100);
         try {
+            ProcessOrder processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.ABNORMAL);
             addOrderPane(orderVOList);
         } catch (RemoteException e) {
@@ -136,6 +143,7 @@ public class CustomerOrderListViewController implements ControlledStage {
     private void showCanceledOrder(){
         orderButtonShade.setY(300);
         try {
+            ProcessOrder processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.REVOKED);
             addOrderPane(orderVOList);
         } catch (RemoteException e) {
@@ -150,6 +158,7 @@ public class CustomerOrderListViewController implements ControlledStage {
     private void showEvaluateOrder(){
         orderButtonShade.setY(400);
         try {
+            ProcessOrder processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.FINISHED_UNEVALUATED);
             addOrderPane(orderVOList);
         } catch (RemoteException e) {
@@ -164,6 +173,7 @@ public class CustomerOrderListViewController implements ControlledStage {
     private void showFinishedOrder(){
         orderButtonShade.setY(500);
         try {
+            ProcessOrder processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByIDAndStatus(customerID, OrderStatus.FINISHED_EVALUATED);
             addOrderPane(orderVOList);
         } catch (RemoteException e) {
@@ -177,10 +187,10 @@ public class CustomerOrderListViewController implements ControlledStage {
      */
     public void addOrderPane(List<OrderVO> orderList){
         orderListScrollPane.getChildren().clear();
-        emptyOrderLabel.setOpacity(0);
+        emptyOrderLabel.setOpacity(1);
 
         int num = 1;
-        if (!(orderList.isEmpty())) {
+        if (orderList != null) {
             num = orderList.size();
             for (int i = 0; i < num; i++) {
                 String orderID = orderList.get(i).orderID;
@@ -190,10 +200,9 @@ public class CustomerOrderListViewController implements ControlledStage {
                 customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
                 customerSingleOrderPaneViewController.init(customerID, orderID);
             }
+            emptyOrderLabel.setOpacity(0);
         }
-        else{
-            emptyOrderLabel.setOpacity(1);
-        }
+
 
     }
 
@@ -204,7 +213,6 @@ public class CustomerOrderListViewController implements ControlledStage {
     public void init(String customerID){
         this.customerID = customerID;
         showAllOrder();
-        processOrder = new ProcessOrderController();
     }
 
     /**

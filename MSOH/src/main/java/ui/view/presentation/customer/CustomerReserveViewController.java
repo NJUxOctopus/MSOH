@@ -219,7 +219,7 @@ public class CustomerReserveViewController implements ControlledStage{
         stageController = new StageController();
         stageController.loadStage("customer/CustomerChooseRoom.fxml", 1);
         CustomerChooseRoomController customerChooseRoomController = (CustomerChooseRoomController) stageController.getController();
-        customerChooseRoomController.initial(hotelIDTextField.getText());
+        customerChooseRoomController.initial(hotelVO.hotelID);
     }
 
     public void setRoomAndPrice(String[] rooms,double totalPrice){
@@ -362,5 +362,13 @@ public class CustomerReserveViewController implements ControlledStage{
     @FXML
     private void exit() {
         System.exit(0);
+    }
+
+    private boolean hasEmpty(){
+       if(!checkInTimeTextField.equals("") && !checkOutTimeTextField.equals("")
+               && !roomTypeTextField.equals("") && !promotionChoiceBox.equals(""))
+           return false;
+        else
+            return true;
     }
 }

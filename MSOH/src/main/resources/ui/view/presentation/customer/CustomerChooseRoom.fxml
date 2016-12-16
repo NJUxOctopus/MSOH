@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerChooseRoomController">
+<Pane fx:id="chooseRoomPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerChooseRoomController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="350.0" stroke="#575eda" strokeType="INSIDE" strokeWidth="3.0" width="450.0" />
       <Button layoutX="97.0" layoutY="295.0" mnemonicParsing="false" onAction="#confirmSelect" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="确认" textFill="#458ee0">
