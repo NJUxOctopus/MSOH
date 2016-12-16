@@ -33,6 +33,9 @@ public class ClerkSingleOrderController implements ControlledStage {
     @FXML
     private Button checkButton;
 
+    private OrderVO orderVO;
+    private String clerkID;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -41,7 +44,9 @@ public class ClerkSingleOrderController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(OrderVO orderVO) throws RemoteException {
+    public void initial(OrderVO orderVO, String clerkID) throws RemoteException {
+        this.clerkID = clerkID;
+        this.orderVO = orderVO;
         orderIDLabel.setText(orderVO.orderID);
         orderStatusLabel.setText(orderVO.orderType.toString());
         String roomTypes = "";
@@ -74,7 +79,7 @@ public class ClerkSingleOrderController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkOrderDetails.fxml", 1);
         ClerkOrderDetailsController clerkOrderDetailsController = (ClerkOrderDetailsController) stageController.getController();
-        clerkOrderDetailsController.initial(orderIDLabel.getText());
+        clerkOrderDetailsController.initial(orderIDLabel.getText(), clerkID);
     }
 
     /**
@@ -85,13 +90,7 @@ public class ClerkSingleOrderController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkConfirmCheck.fxml", 0.8);
         ClerkConfirmCheckController clerkConfirmCheckController = (ClerkConfirmCheckController) stageController.getController();
-        if (checkButton.getText().equals("入住")) {
-            clerkConfirmCheckController.initial("checkIn");
-        } else if (checkButton.getText().equals("退房")) {
-            clerkConfirmCheckController.initial("checkOut");
-        } else if (checkButton.getText().equals("延迟")) {
-            clerkConfirmCheckController.initial("delay");
-        }
+        clerkConfirmCheckController.initial(orderVO, clerkID);
     }
 
 

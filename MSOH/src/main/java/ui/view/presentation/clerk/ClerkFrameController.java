@@ -23,7 +23,7 @@ public class ClerkFrameController implements ControlledStage {
 
     private StageController stageController;
 
-    private String resource = "cleck/CleckFrame.fxml";
+    private String resource = "clerk/ClerkFrame.fxml";
 
     @FXML
     private Label hotelName;

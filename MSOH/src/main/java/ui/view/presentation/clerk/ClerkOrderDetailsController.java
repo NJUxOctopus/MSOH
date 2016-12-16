@@ -65,7 +65,7 @@ public class ClerkOrderDetailsController implements ControlledStage {
     private Pane orderDetailsPane;
 
 
-    //    private String clerkID;
+    private String clerkID;
     private String orderID;
     private OrderVO orderVO;
     private ProcessOrder processOrder;
@@ -78,8 +78,8 @@ public class ClerkOrderDetailsController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String orderID) throws RemoteException {
-//        this.clerkID = clerkID;
+    public void initial(String orderID, String clerkID) throws RemoteException {
+        this.clerkID = clerkID;
         //根据订单号得到订单
         this.orderID = orderID;
         processOrder = new ProcessOrderController();
@@ -112,6 +112,8 @@ public class ClerkOrderDetailsController implements ControlledStage {
             checkButton.setText("入住");
         } else if (orderVO.orderType.equals(OrderStatus.EXECUTED)) {
             checkButton.setText("退房");
+        } else if (orderVO.orderType.equals(OrderStatus.ABNORMAL)) {
+            checkButton.setText("延迟");
         } else {
             orderDetailsPane.getChildren().remove(checkButton);
         }
@@ -135,11 +137,7 @@ public class ClerkOrderDetailsController implements ControlledStage {
         stageController.loadStage("clerk/ClerkConfirmCheck.fxml", 1);
         ClerkConfirmCheckController clerkConfirmCheckController = (ClerkConfirmCheckController) stageController.getController();
         String status = checkButton.getText();
-        if (status.equals("入住")) {
-            clerkConfirmCheckController.initial("checkIn");
-        } else if (status.equals("退房")) {
-            clerkConfirmCheckController.initial("checkOut");
-        }
+        clerkConfirmCheckController.initial(orderVO, clerkID, true);
 
     }
 

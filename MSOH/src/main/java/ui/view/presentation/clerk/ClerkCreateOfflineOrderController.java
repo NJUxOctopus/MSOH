@@ -5,8 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import ui.controller.HotelAdminController;
 import ui.controller.ProcessOrderController;
 import ui.controller.UserAdminController;
+import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.ProcessOrder;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.util.ConfirmExitController;
@@ -22,6 +24,8 @@ import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,10 +57,16 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     private String clerkID;
     private ClerkVO clerkVO;
     private UserAdmin userAdmin;
+    private HotelAdmin hotelAdmin;
     private OrderVO orderVO;
     private String[] rooms;
     private double price;
     private ProcessOrder processOrder;
+
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
 
     @Override
     public void setStageController(StageController stageController) {
@@ -73,6 +83,8 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
         this.rooms = rooms;
         this.price = price;
         priceLabel.setText(String.valueOf(price));
+        checkInTimeButton.setText(initialTime);
+        estimatedCheckOutTimeButton.setText(initialTime);
     }
 
     /**
@@ -175,8 +187,12 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
 
             if (resultMessage.equals(ResultMessage.Order_CreateOrderSuccess)) {
                 //创建订单成功
-                stageController = this.returnMessage("创建订单成功！");
-                stageController.closeStage(resource);
+                hotelAdmin = new HotelAdminController();
+                if(hotelAdmin.changeAvailableRoom(orderVO,-1).equals(ResultMessage.Hotel_changeAvailableRoomSuccess)
+                &&hotelAdmin.changeReservedRoom(orderVO,1).equals(ResultMessage.Hotel_changeReservedRoomSuccess)) {
+                    stageController = this.returnMessage("创建订单成功！");
+                    stageController.closeStage(resource);
+                }
             } else if (resultMessage.equals(ResultMessage.DataFormatWrong)) {
                 this.returnMessage("ID格式错误！");
             } else if (resultMessage.equals(ResultMessage.phoneFormatWrong)) {

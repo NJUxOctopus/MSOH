@@ -26,6 +26,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
 
     private String resource = "clerk/ClerkCreateHotelPromotion.fxml";
     private String clerkID;
+    private PaneAdder paneAdder;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -36,6 +37,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      * initial方法，初始化界面
      */
     public void initial(String clerkID) throws RemoteException {
+        paneAdder = new PaneAdder();
         this.clerkID = clerkID;
         //默认显示生日特惠
         this.showBirthdayPromotion();
@@ -46,10 +48,10 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showBirthdayPromotion() throws RemoteException {
-        promotionSelectShade.setY(156);
+        promotionSelectShade.setHeight(70);
+        promotionSelectShade.setY(0);
         promotionPane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(promotionPane, "clerk/ClerkBirthdayPromotion.fxml", 0, 0);
         ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) paneAdder.getController();
         clerkBirthdayPromotionController.initial(clerkID);
@@ -60,10 +62,10 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showHolidayPromotion() throws RemoteException {
-        promotionSelectShade.setY(226);
+        promotionSelectShade.setHeight(70);
+        promotionSelectShade.setY(70);
         promotionPane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(promotionPane, "clerk/ClerkHolidayPromotion.fxml", 0, 0);
         ClerkHolidayPromotionController clerkHolidayPromotionController = (ClerkHolidayPromotionController) paneAdder.getController();
         clerkHolidayPromotionController.initial(clerkID);
@@ -74,10 +76,10 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showReservePromotion() throws RemoteException {
-        promotionSelectShade.setY(294);
+        promotionSelectShade.setHeight(68);
+        promotionSelectShade.setY(140);
         promotionPane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(promotionPane, "clerk/ClerkReservePromotion.fxml", 0, 0);
         ClerkReservePromotionController clerkReservePromotionController = (ClerkReservePromotionController) paneAdder.getController();
         clerkReservePromotionController.initial(clerkID);
@@ -88,10 +90,10 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showEnterprisePromotion() throws RemoteException {
-        promotionSelectShade.setY(362);
+        promotionSelectShade.setHeight(67);
+        promotionSelectShade.setY(208);
         promotionPane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(promotionPane, "clerk/ClerkEnterprisePromotion.fxml", 0, 0);
         ClerkEnterprisePromotionController clerkEnterprisePromotionController = (ClerkEnterprisePromotionController) paneAdder.getController();
         clerkEnterprisePromotionController.initial(clerkID);
@@ -102,10 +104,10 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showOtherPromotion() throws RemoteException {
-        promotionSelectShade.setY(429);
+        promotionSelectShade.setHeight(67);
+        promotionSelectShade.setY(275);
         promotionPane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(promotionPane, "clerk/ClerkOtherPromotion.fxml", 0, 0);
         ClerkOtherPromotionController clerkOtherPromotionController = (ClerkOtherPromotionController) paneAdder.getController();
         clerkOtherPromotionController.initial(clerkID);

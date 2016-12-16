@@ -26,6 +26,7 @@ import vo.PromotionVO;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -61,6 +62,12 @@ public class ClerkOtherPromotionController implements ControlledStage {
     private UserAdmin userAdmin;
     private HotelAdmin hotelAdmin;
     private EditPromotion editPromotion;
+    private DecimalFormat df = new DecimalFormat("0.00");
+
+    //获取当前日期
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String initialTime = sdf.format(date);
 
     @Override
     public void setStageController(StageController stageController) {
@@ -78,6 +85,8 @@ public class ClerkOtherPromotionController implements ControlledStage {
         this.clerkName = clerkVO.name;
         this.hotelVO = hotelAdmin.findByClerkID(clerkID);
         this.hotelID = hotelVO.hotelID;
+        startTimeButton.setText(initialTime);
+        endTimeButton.setText(initialTime);
 
         targetMemberChoiceBox.setItems(FXCollections.observableArrayList("所有客户", "普通会员"));
     }
@@ -86,6 +95,8 @@ public class ClerkOtherPromotionController implements ControlledStage {
      * 重载initial方法，用于修改策略时初始化界面
      */
     public void initial(PromotionVO promotionVO) throws RemoteException {
+        userAdmin = new UserAdminController();
+        this.initial(userAdmin.findClerkByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         promotionNameTextField.setText(promotionVO.promotionName);
         discountLabel.setText(String.valueOf(promotionVO.discount));
@@ -102,7 +113,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
     private void addRoomNum() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 20) {
-            discountLabel.setText(String.valueOf((discount + 1)));
+            discountLabel.setText(df.format(discount + 0.1));
         }
     }
 
@@ -113,7 +124,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
     private void minusRoomNum() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 0) {
-            discountLabel.setText(String.valueOf((discount - 1)));
+            discountLabel.setText(df.format(discount - 0.1));
         }
     }
 
@@ -194,7 +205,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
             memberType = null;
         }
 
-        if(confirmButton.getText().equals("制定")){
+        if (confirmButton.getText().equals("制定")) {
             ResultMessage resultMessage = editPromotion.addHotelPromotion(new PromotionVO(clerkName, time, promotionName + "其他优惠", memberType
                     , targetHotel, startTime, endTime, discount, minRoom, PromotionType.HotelPromotion_Other));
             if (resultMessage.equals(ResultMessage.Blank)) {
@@ -205,7 +216,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
             } else {
                 this.returnMessage("未知错误！");
             }
-        }else  if(confirmButton.getText().equals("修改")){
+        } else if (confirmButton.getText().equals("修改")) {
             ResultMessage resultMessage = editPromotion.addHotelPromotion(new PromotionVO(clerkName, time, promotionName + "其他优惠", memberType
                     , targetHotel, startTime, endTime, discount, minRoom, PromotionType.HotelPromotion_Other));
             if (resultMessage.equals(ResultMessage.Blank)) {
@@ -236,17 +247,19 @@ public class ClerkOtherPromotionController implements ControlledStage {
 
     /**
      * 回显选择的开始时间
+     *
      * @param time
      */
-    public void setStartTime(String time){
+    public void setStartTime(String time) {
         startTimeButton.setText(time);
     }
 
     /**
      * 回显选择的结束时间
+     *
      * @param time
      */
-    public void setEndTime(String time){
+    public void setEndTime(String time) {
         endTimeButton.setText(time);
     }
 }

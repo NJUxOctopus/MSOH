@@ -50,7 +50,7 @@ public class ClerkHotelInfoController implements ControlledStage {
 
     //获取当前时间
     private Date date = new Date();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
     private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
     //当前酒店房间信息
