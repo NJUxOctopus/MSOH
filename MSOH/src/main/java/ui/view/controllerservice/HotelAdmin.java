@@ -3,6 +3,7 @@ package ui.view.controllerservice;
 import util.ResultMessage;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
+import vo.OrderVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
@@ -39,4 +40,9 @@ public interface HotelAdmin {
 
     List<String> getAreaByCity(String city) throws RemoteException;
 
+    ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException;
+
+    ResultMessage changeReservedRoom(OrderVO orderVO, int change) throws RemoteException;
+
+    ResultMessage changeOccupiedRoom(OrderVO orderVO, int change) throws RemoteException;
 }

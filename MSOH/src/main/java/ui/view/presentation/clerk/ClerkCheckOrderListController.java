@@ -71,7 +71,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
     private void showCreateOfflineOrder() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkChooseRoom.fxml", 1);
-        ClerkChooseRoomController clerkChooseRoomController = (ClerkChooseRoomController)stageController.getController();
+        ClerkChooseRoomController clerkChooseRoomController = (ClerkChooseRoomController) stageController.getController();
         clerkChooseRoomController.initial(hotelID);
     }
 
@@ -95,7 +95,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
             orderVO = processOrder.getSingle(searchTextField.getText());
             PaneAdder paneAdder = new PaneAdder();
             ClerkSingleOrderController clerkSingleOrderController = (ClerkSingleOrderController) paneAdder.getController();
-            clerkSingleOrderController.initial(orderVO);
+            clerkSingleOrderController.initial(orderVO, clerkID);
             paneAdder.addPane(orderListPane, "clerk/ClerkSingleOrder.fxml", 0, 0);
         } else {
             //输入的信息格式错误
@@ -112,6 +112,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
      * @param orderVOList
      */
     private void addOrder(List<OrderVO> orderVOList) throws RemoteException {
+        orderListPane.getChildren().clear();
         PaneAdder paneAdder = new PaneAdder();
         int numOfOrder = orderVOList.size();
         orderListPane.setPrefHeight(numOfOrder * 160);
@@ -120,7 +121,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
             orderVO = orderVOList.get(i);
             paneAdder.addPane(orderListPane, "clerk/ClerkSingleOrder.fxml", 0, i * 160);
             ClerkSingleOrderController clerkSingleOrderController = (ClerkSingleOrderController) paneAdder.getController();
-            clerkSingleOrderController.initial(orderVO);
+            clerkSingleOrderController.initial(orderVO, clerkID);
         }
     }
 

@@ -137,6 +137,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
      */
     private void addPane(List<PromotionVO> promotionVOs) throws RemoteException {
         PromotionVO promotionVO;
+        promotionListPane.getChildren().clear();
         PaneAdder paneAdder = new PaneAdder();
         int numOfPromotions = promotionVOs.size();
         promotionListPane.setPrefHeight(215 * numOfPromotions);

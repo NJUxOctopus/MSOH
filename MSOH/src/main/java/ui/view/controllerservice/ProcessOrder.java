@@ -24,6 +24,8 @@ public interface ProcessOrder {
 
     public ResultMessage executeOrder(OrderVO orderVO) throws RemoteException;
 
+    public ResultMessage endOrder(OrderVO orderVO) throws RemoteException;
+
     public List<OrderVO> getOrderByStatus(OrderStatus status);
 
     public List<OrderVO> getOrderByCustomerID (String customerID) throws RemoteException;
