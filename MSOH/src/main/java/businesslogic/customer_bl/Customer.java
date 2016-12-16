@@ -9,7 +9,6 @@ import po.CreditRecordPO;
 import po.CustomerPO;
 import po.HotelPO;
 import rmi.RemoteHelper;
-import util.CreditChangeReason;
 import util.DataFormat;
 import util.MemberType;
 import util.ResultMessage;
@@ -20,7 +19,6 @@ import vo.HotelVO;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**

@@ -1,16 +1,16 @@
 package businesslogic.hotel_bl;
 
-import dataservice.hotel_dataservice.Hotel_DataService;
-import util.filter.*;
-import util.sort.sortHotelByScore;
-import util.sort.sortHotelByStar;
 import businesslogicservice.hotel_blservice.HotelUtil_BLService;
 import dataservice.hotel_dataservice.City_DataService;
+import dataservice.hotel_dataservice.Hotel_DataService;
 import po.CommentPO;
 import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
 import rmi.RemoteHelper;
+import util.filter.*;
+import util.sort.sortHotelByScore;
+import util.sort.sortHotelByStar;
 import util.sort.sortRoomByNum;
 import vo.CommentVO;
 import vo.DailyRoomInfoVO;
@@ -18,9 +18,11 @@ import vo.HotelVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by apple on 16/11/10.
@@ -71,7 +73,7 @@ public class HotelUtil implements HotelUtil_BLService {
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                     hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
-            hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+            hotelVO.city = hotelVO.hotelAddress.split(" ")[0];
             hotelVOList.add(hotelVO);
         }
         return hotelVOList;
@@ -143,7 +145,7 @@ public class HotelUtil implements HotelUtil_BLService {
         HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                 infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                 hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
-        hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+        hotelVO.city = hotelVO.hotelAddress.split(" ")[0];
         return hotelVO;
     }
 
@@ -168,7 +170,7 @@ public class HotelUtil implements HotelUtil_BLService {
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                     hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
-            hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+            hotelVO.city = hotelVO.hotelAddress.split(" ")[0];
             hotelVOList.add(hotelVO);
         }
         return hotelVOList;
@@ -193,7 +195,7 @@ public class HotelUtil implements HotelUtil_BLService {
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(), hotelPO.getIntro(),
                     infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl, hotelPO.getClerkID(),
                     hotelPO.getHotelID(), null, getComment(hotelPO.getHotelID()));
-            hotelVO.city=hotelVO.hotelAddress.split(" ")[0];
+            hotelVO.city = hotelVO.hotelAddress.split(" ")[0];
             hotelVOList.add(hotelVO);
         }
         return hotelVOList;
@@ -232,7 +234,7 @@ public class HotelUtil implements HotelUtil_BLService {
      * @param timestamp2
      * @return
      */
-    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2)throws RemoteException {
+    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
         long oneDay = 1000 * 60 * 60 * 24;
         long days = (timestamp2.getTime() - timestamp1.getTime()) / oneDay;//算共住多少天
         List<Timestamp> list = new ArrayList<Timestamp>();
@@ -244,7 +246,7 @@ public class HotelUtil implements HotelUtil_BLService {
             roomVOList.add(getRoomByName(hotelID, roomName, temp));
         }
         Comparator<RoomVO> comparator = new sortRoomByNum();
-        Collections.sort(roomVOList,comparator);
+        Collections.sort(roomVOList, comparator);
         //将房间剩余数量从小到大排序，最后返回第一个房间
         return roomVOList.get(0);
     }

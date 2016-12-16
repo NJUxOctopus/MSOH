@@ -1,11 +1,9 @@
 package businesslogicservice.marketer_blservice;
 
-import java.rmi.RemoteException;
-import java.util.List;
-
 import util.ResultMessage;
-import vo.CustomerVO;
 import vo.MarketerVO;
+
+import java.rmi.RemoteException;
 
 public interface Marketer_BLService {
 

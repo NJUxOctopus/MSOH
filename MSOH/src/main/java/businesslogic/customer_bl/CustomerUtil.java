@@ -2,14 +2,12 @@ package businesslogic.customer_bl;
 
 import businesslogicservice.customer_blservice.CustomerUtil_BLService;
 import dataservice.customer_dataservice.Customer_DataService;
-import dataservice.customer_dataservice.Customer_DataService_Stub;
 import po.CustomerPO;
 import rmi.RemoteHelper;
 import vo.CustomerVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**

@@ -1,14 +1,12 @@
 package businesslogicservice.promotion_blservice;
 
-import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.Date;
-import java.util.List;
-
-import util.MemberType;
 import util.ResultMessage;
 import vo.OrderVO;
 import vo.PromotionVO;
+
+import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.List;
 
 public interface Promotion_BLService {
     public ResultMessage addWebPromotion(PromotionVO promotionVO) throws IOException, ClassNotFoundException;
@@ -21,6 +19,5 @@ public interface Promotion_BLService {
 
     public ResultMessage deletePromotion(String promotionID) throws RemoteException;
 
-    public List<PromotionVO> promotionRequirements(OrderVO orderVO)
-            throws IOException, ClassNotFoundException;
+    public List<PromotionVO> promotionRequirements(OrderVO orderVO) throws IOException, ClassNotFoundException;
 }

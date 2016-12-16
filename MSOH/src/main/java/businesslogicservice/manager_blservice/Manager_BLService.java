@@ -1,11 +1,7 @@
 package businesslogicservice.manager_blservice;
 
 import util.ResultMessage;
-import vo.ClerkVO;
-import vo.CustomerVO;
-import vo.HotelVO;
 import vo.ManagerVO;
-import vo.MarketerVO;
 
 import java.rmi.RemoteException;
 

@@ -1,17 +1,19 @@
 package businesslogic.order_bl;
 
-import dataservice.order_dataservice.Order_DataService;
-import po.HotelPO;
-import rmi.RemoteHelper;
-import util.sort.sortOrderByDate;
 import businesslogicservice.order_blservice.OrderUtil_BLService;
-import util.OrderStatus;
-import vo.OrderVO;
+import dataservice.order_dataservice.Order_DataService;
 import po.OrderPO;
+import rmi.RemoteHelper;
+import util.OrderStatus;
+import util.sort.sortOrderByDate;
+import vo.OrderVO;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by apple on 16/11/10.
@@ -31,10 +33,11 @@ public class OrderUtil implements OrderUtil_BLService {
             //若ID为空
             return null;
         OrderPO orderPO = order_dataService.getOrderByOrderID(orderID);
-        if (orderPO == null){
+        if (orderPO == null) {
             //若不存在该订单
             System.out.println("null");
-            return null;}
+            return null;
+        }
         return new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),
                 orderPO.getHotelName(), orderPO.getOrderID(), orderPO.getEstimatedCheckInTime(),
                 orderPO.getActualCheckInTime(), orderPO.getEstimatedCheckOutTime(), orderPO.getActualCheckOutTime(),
@@ -81,7 +84,7 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByIDAndStatus(String customerID, OrderStatus orderStatus) throws RemoteException {
         List<OrderVO> orderVOList = getOrdersByCustomerID(customerID);
-        if(orderVOList==null||orderVOList.isEmpty())
+        if (orderVOList == null || orderVOList.isEmpty())
             return new ArrayList<OrderVO>();
         List<OrderVO> list = new ArrayList<OrderVO>();
         for (OrderVO orderVO : orderVOList) {
@@ -230,7 +233,7 @@ public class OrderUtil implements OrderUtil_BLService {
     public List<OrderVO> getOrderByStatusAndDate(Timestamp timestamp, OrderStatus orderStatus) throws RemoteException {
         List<OrderVO> list = new ArrayList<OrderVO>();
         List<OrderVO> orderVOList = getOrderByStatus(orderStatus);
-        if(orderVOList==null||orderVOList.isEmpty())
+        if (orderVOList == null || orderVOList.isEmpty())
             return new ArrayList<OrderVO>();
         for (OrderVO orderVO : orderVOList) {
             if (orderVO.estimatedCheckinTime.getDay() == timestamp.getDay())

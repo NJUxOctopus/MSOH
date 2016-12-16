@@ -8,20 +8,22 @@ import businesslogic.promotion_bl.Promotion;
 import businesslogicservice.order_blservice.Order_BLService;
 import dataservice.order_dataservice.Order_DataService;
 import po.OrderPO;
-import po.PromotionPO;
 import rmi.RemoteHelper;
 import util.DataFormat;
 import util.OrderStatus;
 import util.ResultMessage;
 import util.sort.sortPromotionByPrice;
-import vo.*;
+import vo.OrderPriceVO;
+import vo.OrderVO;
+import vo.PromotionVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by apple on 16/11/10.
@@ -108,7 +110,7 @@ public class Order implements Order_BLService {
                     rooms += orderVO.rooms[i];
             }
             long sixHour = 1000 * 60 * 60 * 6;
-            orderVO.latestExecutedTime = new Timestamp(orderVO.estimatedCheckinTime.getTime()+sixHour);
+            orderVO.latestExecutedTime = new Timestamp(orderVO.estimatedCheckinTime.getTime() + sixHour);
             orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, orderVO.hotelID, orderVO.hotelName,
                     orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime, orderVO.latestExecutedTime,
                     rooms, orderVO.numOfCustomers, orderVO.haveChildren, orderVO.remarks, orderVO.promotionName, orderVO.initialPrice, orderVO.finalPrice, OrderStatus.UNEXECUTED);

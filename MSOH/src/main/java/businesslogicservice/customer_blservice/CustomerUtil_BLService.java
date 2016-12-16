@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface CustomerUtil_BLService {
 
-    public List<CustomerVO> getAll()throws RemoteException;
+    public List<CustomerVO> getAll() throws RemoteException;
 
     public CustomerVO getSingle(String ID) throws RemoteException;
 

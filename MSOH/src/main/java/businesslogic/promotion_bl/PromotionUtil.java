@@ -49,7 +49,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
      * @return
      * @throws RemoteException
      */
-    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws  ClassNotFoundException, IOException {
+    public List<PromotionVO> getPromotionByHotelID(String hotelID, Timestamp timestamp) throws ClassNotFoundException, IOException {
         List<PromotionPO> promotionPOList = promotion_dataService.getPromotionByHotelID(hotelID);
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         if (promotionPOList == null || promotionPOList.isEmpty())

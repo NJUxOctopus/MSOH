@@ -4,7 +4,6 @@ import businesslogic.bl_Factory.Abstract_BLFactory;
 import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogic.customer_bl.CustomerUtil;
 import businesslogicservice.member_blservice.Member_BLService;
-import dataservice.customer_dataservice.Customer_DataService;
 import dataservice.member_dataservice.Member_DataService;
 import po.MemberPO;
 import rmi.RemoteHelper;
@@ -31,7 +30,7 @@ public class Member implements Member_BLService {
      * @throws RemoteException
      */
     public ResultMessage signUp(MemberVO memberVO) throws RemoteException {
-        String customerID  = memberVO.ID;
+        String customerID = memberVO.ID;
         if (customerUtil.getSingle(customerID).memberType.equals(MemberType.NONMEMBER)) {//首先用户必须是非会员
             if (memberVO.memberType.equals(MemberType.ENTREPRISE)) {//若注册为企业会员
                 if (memberVO.companyName.equals(""))//企业名输入不能为空

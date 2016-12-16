@@ -2,22 +2,15 @@ package init;/**
  * Created by ST on 2016/11/15.
  */
 
-import businesslogic.bl_Factory.Abstract_BLFactory;
-import businesslogic.bl_Factory.Default_BLFactory;
-import businesslogicservice.promotion_blservice.Promotion_BLService;
-import dataservice.promotion_dataservice.Promotion_DataService;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import po.PromotionPO;
 import rmi.RemoteHelper;
 import ui.view.presentation.StageController;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.List;
 
 public class LoginView extends Application {
     private RemoteHelper remoteHelper;

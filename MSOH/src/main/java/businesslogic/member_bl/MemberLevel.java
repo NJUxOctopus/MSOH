@@ -45,7 +45,7 @@ public class MemberLevel implements MemberLevel_BLService {
                 if (i != memberLevelVO.creditBoundaries.length - 1)
                     discountList += memberLevelVO.discountList.get(i) + ";";
                 else
-                    discountList+= memberLevelVO.discountList.get(i);
+                    discountList += memberLevelVO.discountList.get(i);
             }
             MemberLevelPO memberLevelPO = memberLevel_dataService.getMemberLevel();
             memberLevelPO.setCreditBoundaries(creditBoundaries);
@@ -74,10 +74,10 @@ public class MemberLevel implements MemberLevel_BLService {
         }
         List<String> discountList = new ArrayList<String>();
         String[] str = memberLevelPO.getDiscountList().split(";");
-        for(int i=0;i<str.length;i++){
-            discountList.add((Double.parseDouble(str[i])*10+""));
+        for (int i = 0; i < str.length; i++) {
+            discountList.add((Double.parseDouble(str[i]) * 10 + ""));
         }
         return new MemberLevelVO(memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
-                boundaries,discountList);
+                boundaries, discountList);
     }
 }

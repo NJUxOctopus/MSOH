@@ -1,7 +1,7 @@
 package businesslogic.login_bl;
 
 /**
- * Created by 名 on 2016/11/13.
+ * Created by pxr on 2016/11/13.
  */
 public class MockLogin extends Login{
     String ID;

@@ -1,13 +1,12 @@
 package businesslogicservice.order_blservice;
 
+import util.ResultMessage;
+import vo.OrderPriceVO;
+import vo.OrderVO;
+
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.sql.Timestamp;
 import java.util.List;
-
-import util.OrderStatus;
-import util.ResultMessage;
-import vo.*;
 
 public interface Order_BLService {
     public ResultMessage createOrder(OrderVO orderVO) throws RemoteException;

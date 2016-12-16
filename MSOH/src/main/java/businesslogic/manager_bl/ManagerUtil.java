@@ -16,6 +16,7 @@ public class ManagerUtil implements ManagerUtil_BLService {
 
     /**
      * 根据ID获得管理人员
+     *
      * @param managerID
      * @return
      * @throws RemoteException

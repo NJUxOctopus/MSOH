@@ -99,7 +99,7 @@ public class Promotion implements Promotion_BLService {
                     return ResultMessage.Promotion_AddPromotionSuccess;
                 else
                     return ResultMessage.Fail;
-            }else
+            } else
                 return ResultMessage.Fail;
         }
     }
@@ -171,7 +171,7 @@ public class Promotion implements Promotion_BLService {
             promotionPO.setPromotionName(promotionVO.promotionName);
             promotionPO.setStartTime(promotionVO.startTime);
             promotionPO.setTargetUser(promotionVO.targetUser);
-            if(promotionVO.promotionType.equals(PromotionType.HotelPromotion_Company))
+            if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Company))
                 promotionPO.setCompanyName(promotionVO.companyName);
             if (promotion_dataService.modifyPromotion(promotionPO))
                 return ResultMessage.Promotion_ModifyPromotionSuccess;

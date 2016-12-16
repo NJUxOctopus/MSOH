@@ -1,11 +1,9 @@
 package businesslogicservice.hotel_blservice;
 
-import java.rmi.RemoteException;
-import java.util.Date;
-import java.util.List;
-
 import util.ResultMessage;
 import vo.*;
+
+import java.rmi.RemoteException;
 
 public interface Hotel_BLService {
 
@@ -28,7 +26,6 @@ public interface Hotel_BLService {
     public ResultMessage deleteHotel(String hotelID) throws RemoteException;
 
     public ResultMessage modifyDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
-
 
 
 }

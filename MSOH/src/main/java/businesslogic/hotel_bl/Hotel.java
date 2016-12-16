@@ -2,7 +2,10 @@ package businesslogic.hotel_bl;
 
 import businesslogicservice.hotel_blservice.Hotel_BLService;
 import dataservice.hotel_dataservice.Hotel_DataService;
-import po.*;
+import po.CommentPO;
+import po.DailyRoomInfoPO;
+import po.HotelPO;
+import po.RoomPO;
 import rmi.RemoteHelper;
 import util.ResultMessage;
 import vo.*;

@@ -1,6 +1,5 @@
 package businesslogicservice.manager_blservice;
 
-import businesslogic.manager_bl.Manager;
 import vo.ManagerVO;
 
 import java.rmi.RemoteException;

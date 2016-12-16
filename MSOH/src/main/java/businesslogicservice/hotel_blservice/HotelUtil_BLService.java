@@ -1,16 +1,12 @@
 package businesslogicservice.hotel_blservice;
 
-import businesslogic.hotel_bl.Hotel;
-import util.OrderStatus;
 import vo.CommentVO;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
 import vo.RoomVO;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -1,15 +1,12 @@
 package businesslogic.marketer_bl;
 
-import businesslogic.customer_bl.CustomerUtil;
 import businesslogicservice.marketer_blservice.Marketer_BLService;
 import dataservice.marketer_dataservice.Marketer_DataService;
-import po.CustomerPO;
 import po.MarketerPO;
 import rmi.RemoteHelper;
 import util.DataFormat;
 import util.ResultMessage;
 import util.WorkerPosition;
-import vo.CustomerVO;
 import vo.MarketerVO;
 
 import java.rmi.RemoteException;
@@ -51,7 +48,7 @@ public class Marketer implements Marketer_BLService {
         if (marketer_dataService.findMarketerByID(marketerVO.ID) != null)
             //若ID已存在
             return ResultMessage.Marketer_MarketerAlreadyExist;
-        if (marketerVO.password.matches(DataFormat.Password_Format)&&marketerVO.phone.matches(DataFormat.Phone_Format)&&
+        if (marketerVO.password.matches(DataFormat.Password_Format) && marketerVO.phone.matches(DataFormat.Phone_Format) &&
                 marketerVO.ID.matches(DataFormat.ID_Format)) {
             //若密码格式正确
             if (marketer_dataService.addMarketer(new MarketerPO(marketerVO.name, marketerVO.ID, marketerVO.phone,
@@ -77,7 +74,7 @@ public class Marketer implements Marketer_BLService {
         else if (marketerVO.phone.equals("") || marketerVO.name.equals(""))
             //电话或名称为空
             return ResultMessage.Blank;
-        if(!marketerVO.phone.matches(DataFormat.Phone_Format))
+        if (!marketerVO.phone.matches(DataFormat.Phone_Format))
             return ResultMessage.DataFormatWrong;
         MarketerPO marketerPO = marketer_dataService.findMarketerByID(marketerVO.ID);
         marketerPO.setPhone(marketerVO.phone);

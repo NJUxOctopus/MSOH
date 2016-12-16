@@ -1,6 +1,5 @@
 package businesslogicservice.promotion_blservice;
 
-import po.PromotionPO;
 import util.PromotionType;
 import vo.PromotionVO;
 
