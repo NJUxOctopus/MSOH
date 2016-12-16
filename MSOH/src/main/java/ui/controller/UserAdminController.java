@@ -86,8 +86,8 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    public List<CustomerVO> findCustomerByName(String name) {
-        return null;
+    public List<CustomerVO> findCustomerByName(String name) throws RemoteException {
+        return customerUtil_blService.getByName(name);
     }
 
     public CustomerVO findCustomerByID(String ID) throws RemoteException {

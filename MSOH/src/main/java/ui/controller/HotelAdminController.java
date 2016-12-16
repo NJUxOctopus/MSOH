@@ -8,6 +8,7 @@ import ui.view.controllerservice.HotelAdmin;
 import util.ResultMessage;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
+import vo.OrderVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
@@ -132,5 +133,20 @@ public class HotelAdminController implements HotelAdmin {
      */
     public List<String> getAreaByCity(String city) throws RemoteException {
         return hotelUtil_blService.getAreaByCity(city);
+    }
+
+    @Override
+    public ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException {
+        return hotel_blService.changeAvailableRoom(orderVO,change);
+    }
+
+    @Override
+    public ResultMessage changeReservedRoom(OrderVO orderVO, int change) throws RemoteException {
+        return hotel_blService.changeReservedRoom(orderVO,change);
+    }
+
+    @Override
+    public ResultMessage changeOccupiedRoom(OrderVO orderVO, int change) throws RemoteException {
+        return hotel_blService.changeOccupiedRoom(orderVO,change);
     }
 }

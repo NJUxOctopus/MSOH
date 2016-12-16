@@ -15,6 +15,10 @@ public class ClerkInfoChangeController implements ClerkInfoChange {
 
     private Clerk_BLService clerk_blService;
 
+    public ClerkInfoChangeController(){
+        clerk_blService = new Clerk();
+    }
+
     /**
      * 工作人员更改个人信息
      *
@@ -23,9 +27,7 @@ public class ClerkInfoChangeController implements ClerkInfoChange {
      * @throws RemoteException
      */
     public ResultMessage changeInfo(ClerkVO clerkVO) throws RemoteException {
-        clerk_blService = new Clerk();
-        ResultMessage resultMessage = clerk_blService.changeInfo(clerkVO);
-        return resultMessage;
+        return clerk_blService.changeInfo(clerkVO);
     }
 
     /**
@@ -39,8 +41,6 @@ public class ClerkInfoChangeController implements ClerkInfoChange {
      * @throws RemoteException
      */
     public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2) throws RemoteException {
-        clerk_blService = new Clerk();
-        ResultMessage resultMessage = clerk_blService.changePassword(ID, oldPw, newPw1, newPw2);
-        return resultMessage;
+        return clerk_blService.changePassword(ID, oldPw, newPw1, newPw2);
     }
 }

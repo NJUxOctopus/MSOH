@@ -10,6 +10,7 @@ import util.ResultMessage;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -31,12 +32,13 @@ public class ProcessOrderController implements ProcessOrder {
      * @return
      * @throws RemoteException
      */
-    public ResultMessage createOrder(OrderVO orderVO) throws RemoteException{
+    public ResultMessage createOrder(OrderVO orderVO) throws RemoteException {
         return order_blService.createOrder(orderVO);
     }
 
     /**
      * 线下创建订单
+     *
      * @param orderVO
      * @return
      * @throws RemoteException
@@ -48,10 +50,11 @@ public class ProcessOrderController implements ProcessOrder {
 
     /**
      * 撤销订单
+     *
      * @param orderVO
      * @return
      */
-    public ResultMessage cancelOrder(OrderVO orderVO) throws RemoteException{
+    public ResultMessage cancelOrder(OrderVO orderVO) throws RemoteException {
         return order_blService.cancelOrder(orderVO);
     }
 
@@ -74,8 +77,26 @@ public class ProcessOrderController implements ProcessOrder {
         return order_blService.executeOrder(orderVO);
     }
 
-    public List<OrderVO> getOrderByStatus(OrderStatus status) {
-        return null;
+    /**
+     * 结束订单
+     *
+     * @param orderVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage endOrder(OrderVO orderVO) throws RemoteException {
+        return order_blService.endOrder(orderVO);
+    }
+
+    /**
+     * 根据订单状态得到订单
+     *
+     * @param status
+     * @return
+     * @throws RemoteException
+     */
+    public List<OrderVO> getOrderByStatus(OrderStatus status) throws RemoteException {
+        return orderUtil_blService.getOrderByStatus(status);
     }
 
     public List<OrderVO> getOrderByCustomerID(String customerID) throws RemoteException {
@@ -126,25 +147,39 @@ public class ProcessOrderController implements ProcessOrder {
 
     /**
      * 获得该用户在酒店对应状态的订单
+     *
      * @param ID
      * @param hotelID
      * @param orderStatus
      * @return
      * @throws RemoteException
      */
-    public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID,String hotelID,OrderStatus orderStatus)throws RemoteException{
+    public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID, String hotelID, OrderStatus orderStatus) throws RemoteException {
         return orderUtil_blService.getOrderByIDAndHotelIDAndStatus(ID, hotelID, orderStatus);
     }
 
     /**
      * 获得用户在该酒店的订单
+     *
      * @param ID
      * @param hotelID
      * @return
      * @throws RemoteException
      */
-    public List<OrderVO> getOrderByIDAndHotelID(String ID,String hotelID)throws RemoteException{
+    public List<OrderVO> getOrderByIDAndHotelID(String ID, String hotelID) throws RemoteException {
         return orderUtil_blService.getOrderByIDAndHotelID(ID, hotelID);
+    }
+
+    /**
+     * 获得某一天某一种状态的订单
+     *
+     * @param timestamp
+     * @param orderStatus
+     * @return
+     * @throws RemoteException
+     */
+    public List<OrderVO> getOrderByStatusAndDate(Timestamp timestamp, OrderStatus orderStatus) throws RemoteException {
+        return orderUtil_blService.getOrderByStatusAndDate(timestamp, orderStatus);
     }
 
 }

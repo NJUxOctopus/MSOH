@@ -5,6 +5,7 @@ import util.ResultMessage;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public interface ProcessOrder {
 
     public ResultMessage endOrder(OrderVO orderVO) throws RemoteException;
 
-    public List<OrderVO> getOrderByStatus(OrderStatus status);
+    public List<OrderVO> getOrderByStatus(OrderStatus status) throws RemoteException;
 
     public List<OrderVO> getOrderByCustomerID (String customerID) throws RemoteException;
 
@@ -43,5 +44,7 @@ public interface ProcessOrder {
     public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID,String hotelID,OrderStatus orderStatus)throws RemoteException;
 
     public List<OrderVO> getOrderByIDAndHotelID(String ID,String hotelID)throws RemoteException;
+
+    public List<OrderVO> getOrderByStatusAndDate(Timestamp timestamp, OrderStatus orderStatus) throws RemoteException;
 
 }
