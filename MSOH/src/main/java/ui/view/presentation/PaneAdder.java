@@ -19,12 +19,10 @@ import java.util.HashMap;
 public class PaneAdder {
     private FXMLLoader loader;
 
-    private static HashMap<String, FXMLLoader> loaders = new HashMap<String, FXMLLoader>();
 
     public void addPane(Pane sourcePane, String resource, int x, int y ){
         try {
             loader = new FXMLLoader(getClass().getResource(resource));
-            loaders.put(resource, loader);
             Pane singlePane = (Pane) loader.load();
             sourcePane.getChildren().add(singlePane);
             singlePane.setLayoutX(x);
@@ -39,7 +37,6 @@ public class PaneAdder {
     public void addPane(AnchorPane sourcePane, String resource, int x, int y ){
         try {
             loader = new FXMLLoader(getClass().getResource(resource));
-            loaders.put(resource, loader);
             Pane singlePane = (Pane) loader.load();
             sourcePane.getChildren().add(singlePane);
             singlePane.setLayoutX(x);
@@ -56,7 +53,11 @@ public class PaneAdder {
         return loader.getController();
     }
 
-    public ControlledStage getController(String resource){
-        return loaders.get(resource).getController();
+    public void putIntoLoaders(String resource){
+        StageController stageController = new StageController();
+        stageController.putIntoLoaders(resource, loader);
+
     }
+
+
 }
