@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
     private String hotelID;
     private EditPromotion editPromotion;
     private HotelAdmin hotelAdmin;
-    private List<PromotionVO> promotionVOs;
+    private List<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
 
     //获取当前时间
     private Date date = new Date();
@@ -82,7 +83,8 @@ public class ClerkHotelPromotionController implements ControlledStage {
         promotionSelectShade.setWidth(166);
         promotionSelectShade.setX(0);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Birthday, hotelID, time);
-        this.addPane(promotionVOs);
+        if (!promotionVOs.isEmpty())
+            this.addPane(promotionVOs);
     }
 
     /**
@@ -93,7 +95,8 @@ public class ClerkHotelPromotionController implements ControlledStage {
         promotionSelectShade.setWidth(148);
         promotionSelectShade.setX(166);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Holiday, hotelID, time);
-        this.addPane(promotionVOs);
+        if (!promotionVOs.isEmpty())
+            this.addPane(promotionVOs);
 
     }
 
@@ -105,7 +108,8 @@ public class ClerkHotelPromotionController implements ControlledStage {
         promotionSelectShade.setWidth(132);
         promotionSelectShade.setX(314);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Reserve, hotelID, time);
-        this.addPane(promotionVOs);
+        if (!promotionVOs.isEmpty())
+            this.addPane(promotionVOs);
     }
 
     /**
@@ -116,7 +120,8 @@ public class ClerkHotelPromotionController implements ControlledStage {
         promotionSelectShade.setWidth(166);
         promotionSelectShade.setX(446);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Company, hotelID, time);
-        this.addPane(promotionVOs);
+        if (!promotionVOs.isEmpty())
+            this.addPane(promotionVOs);
     }
 
     /**
@@ -127,7 +132,8 @@ public class ClerkHotelPromotionController implements ControlledStage {
         promotionSelectShade.setWidth(76);
         promotionSelectShade.setX(612);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Other, hotelID, time);
-        this.addPane(promotionVOs);
+        if (!promotionVOs.isEmpty())
+            this.addPane(promotionVOs);
     }
 
     /**

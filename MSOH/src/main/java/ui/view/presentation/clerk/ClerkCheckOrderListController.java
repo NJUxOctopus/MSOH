@@ -51,6 +51,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
     public void initial(String ID) throws RemoteException {
         this.clerkID = ID;
         hotelAdmin = new HotelAdminController();
+        processOrder = new ProcessOrderController();
         hotelVO = hotelAdmin.findByClerkID(clerkID);
         hotelID = hotelVO.hotelID;
 
@@ -131,10 +132,9 @@ public class ClerkCheckOrderListController implements ControlledStage {
     @FXML
     private void showUnexecutedOrders() throws RemoteException {
         orderSelectShade.setX(0);
-        processOrder = new ProcessOrderController();
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.UNEXECUTED);
-        orderVOList = processOrder.sortByTime(orderVOList);
         if (!orderVOList.isEmpty()) {
+            orderVOList = processOrder.sortByTime(orderVOList);
             this.addOrder(orderVOList);
         }
     }
@@ -145,10 +145,9 @@ public class ClerkCheckOrderListController implements ControlledStage {
     @FXML
     private void showExecutedOrders() throws RemoteException {
         orderSelectShade.setX(137);
-        processOrder = new ProcessOrderController();
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.EXECUTED);
-        orderVOList = processOrder.sortByTime(orderVOList);
         if (!orderVOList.isEmpty()) {
+            orderVOList = processOrder.sortByTime(orderVOList);
             this.addOrder(orderVOList);
         }
     }
@@ -159,11 +158,10 @@ public class ClerkCheckOrderListController implements ControlledStage {
     @FXML
     private void showFinishedOrders() throws RemoteException {
         orderSelectShade.setX(274);
-        processOrder = new ProcessOrderController();
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.FINISHED_EVALUATED);//已结束且已评价的所有订单
         orderVOList.addAll(processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.FINISHED_UNEVALUATED));//已结束且未评价的所有订单
-        orderVOList = processOrder.sortByTime(orderVOList);
         if (!orderVOList.isEmpty()) {
+            orderVOList = processOrder.sortByTime(orderVOList);
             this.addOrder(orderVOList);
         }
     }
@@ -174,10 +172,9 @@ public class ClerkCheckOrderListController implements ControlledStage {
     @FXML
     private void showRevokedOrders() throws RemoteException {
         orderSelectShade.setX(412);
-        processOrder = new ProcessOrderController();
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.REVOKED);
-        orderVOList = processOrder.sortByTime(orderVOList);
         if (!orderVOList.isEmpty()) {
+            orderVOList = processOrder.sortByTime(orderVOList);
             this.addOrder(orderVOList);
         }
     }
@@ -188,10 +185,9 @@ public class ClerkCheckOrderListController implements ControlledStage {
     @FXML
     private void showAbnormalOrders() throws RemoteException {
         orderSelectShade.setX(550);
-        processOrder = new ProcessOrderController();
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.ABNORMAL);
-        orderVOList = processOrder.sortByTime(orderVOList);
         if (!orderVOList.isEmpty()) {
+            orderVOList = processOrder.sortByTime(orderVOList);
             this.addOrder(orderVOList);
         }
     }
