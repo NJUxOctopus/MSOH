@@ -3,6 +3,8 @@ package po;
 import util.WorkerPosition;
 
 import javax.persistence.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**

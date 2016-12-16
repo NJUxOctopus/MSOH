@@ -23,9 +23,12 @@ import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import dataservice.order_dataservice.Order_DataService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.*;
+import util.ImageHelper;
+import util.ImageHelperImpl;
 import util.OrderStatus;
 import util.PromotionType;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -37,7 +40,7 @@ import java.util.List;
  * <p>
  * Created by zqh on 2016/11/13.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService, City_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService, Company_DataService {
+public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService, City_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService, Company_DataService , ImageHelper{
 
 
     private Customer_DataService customer_dataService;
@@ -51,6 +54,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     private MemberLevel_DataService memberLevel_dataService;
     private City_DataService city_dataService;
     private Company_DataService company_dataService;
+    private ImageHelper imageHelper;
 
     protected DataRemoteObject() throws RemoteException {
         clerk_dataService = Clerk_DataServiceImpl.getInstance();
@@ -65,6 +69,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         city_dataService = City_DataServiceImpl.getInstance();
         promotion_dataService = Promotion_DataServiceImpl.getInstance();
         company_dataService = Company_DataServiceImpl.getInstance();
+        imageHelper= ImageHelperImpl.getInstance();
     }
 
     /**
@@ -358,5 +363,16 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
      */
     public List<String> getAllCompanies() throws IOException, ClassNotFoundException {
         return company_dataService.getAllCompanies();
+    }
+
+    /**
+     * ImageHelper的DataRemoteObject
+     */
+    public BufferedImage getImage(String imgPath) throws RemoteException {
+        return imageHelper.getImage(imgPath);
+    }
+
+    public String saveImage(BufferedImage image) throws RemoteException {
+        return imageHelper.saveImage(image);
     }
 }

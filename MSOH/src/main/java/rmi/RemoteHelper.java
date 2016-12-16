@@ -11,6 +11,7 @@ import dataservice.member_dataservice.Member_DataService;
 import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import dataservice.order_dataservice.Order_DataService;
 import dataservice.promotion_dataservice.Promotion_DataService;
+import util.ImageHelper;
 
 import java.rmi.Remote;
 
@@ -72,7 +73,11 @@ public class RemoteHelper {
         return (City_DataService) remote;
     }
 
-    public Company_DataService getCompanyDataService(){
-        return (Company_DataService)remote;
+    public Company_DataService getCompanyDataService() {
+        return (Company_DataService) remote;
+    }
+
+    public ImageHelper getImageHelper() {
+        return (ImageHelper) remote;
     }
 }

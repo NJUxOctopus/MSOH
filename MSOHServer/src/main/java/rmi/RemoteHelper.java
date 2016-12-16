@@ -19,12 +19,12 @@ public class RemoteHelper {
 
     public void initServer() {
         //ipconfig/all
-        System.setProperty("java.rmi.server.hostname","172.25.180.107");
+        System.setProperty("java.rmi.server.hostname","172.28.179.228");
         DataRemoteObject dataRemoteObject;
         try {
             dataRemoteObject = new DataRemoteObject();
             LocateRegistry.createRegistry(1099);
-            Naming.bind("rmi://172.25.180.107:1099/DataRemoteObject", dataRemoteObject);
+            Naming.bind("rmi://172.28.179.228:1099/DataRemoteObject", dataRemoteObject);
 //            Naming.bind("rmi://localhost:1099/DataRemoteObject",dataRemoteObject);
             System.out.println("Octopus: 连接客户端成功");
         } catch (RemoteException e) {
