@@ -154,6 +154,28 @@ public class PromotionUtil implements PromotionUtil_BLService {
         }
         return promotionVOList;
     }
+
+    /**
+     * 根据策略种类得到策略列表
+     *
+     * @param promotionType
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public List<PromotionVO> getPromotionByType(PromotionType promotionType) throws IOException, ClassNotFoundException {
+        List<PromotionPO> promotionPOList = promotion_dataService.getPromotionByPromotionType(promotionType);
+        if (promotionPOList == null || promotionPOList.isEmpty())
+            return new ArrayList<PromotionVO>();
+        List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
+        for (PromotionPO promotionPO : promotionPOList) {
+            promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
+                    promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
+                    getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                    "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
+        }
+        return promotionVOList;
+    }
 }
 
 

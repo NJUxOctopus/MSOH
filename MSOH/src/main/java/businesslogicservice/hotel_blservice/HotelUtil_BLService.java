@@ -41,6 +41,8 @@ public interface HotelUtil_BLService {
 
     public List<String> getAreaByCity(String city) throws RemoteException;
 
+    public Boolean roomEnough(String hotelID,Timestamp timestamp1,Timestamp timestamp2,int BigBedRoom,int SingleRoom,int StandardRoom)throws RemoteException;
+
     public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2)throws RemoteException;
 }
 

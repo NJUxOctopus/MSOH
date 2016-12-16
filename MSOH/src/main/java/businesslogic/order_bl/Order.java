@@ -34,7 +34,6 @@ public class Order implements Order_BLService {
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
     private Promotion promotion = abstract_blFactory.createPromotion();
     private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
-    private Hotel hotel = abstract_blFactory.createHotel();
 
     /**
      * 在订单的所有促销策略中返回价格最低的策略
@@ -102,6 +101,20 @@ public class Order implements Order_BLService {
             //若未填写房间，预计离开时间和预计到达时间
             return ResultMessage.Blank;
         else {
+            int BigBedRoom = 0;
+            int SingleRoom = 0;
+            int StandardRoom = 0;
+            for (String str : orderVO.rooms) {
+                if (str.equals("大床房"))
+                    BigBedRoom++;
+                if (str.equals("标间"))
+                    StandardRoom++;
+                if (str.equals("单人间"))
+                    SingleRoom++;
+            }
+            if (!hotelUtil.roomEnough(orderVO.hotelID, orderVO.estimatedCheckinTime, orderVO.estimatedCheckoutTime, BigBedRoom,
+                    SingleRoom, StandardRoom))
+                return ResultMessage.RoomNotEnough;
             String rooms = "";
             for (int i = 0; i < orderVO.rooms.length; i++) {
                 if (i != orderVO.rooms.length - 1)
@@ -110,6 +123,7 @@ public class Order implements Order_BLService {
                     rooms += orderVO.rooms[i];
             }
             long sixHour = 1000 * 60 * 60 * 6;
+
             orderVO.latestExecutedTime = new Timestamp(orderVO.estimatedCheckinTime.getTime() + sixHour);
             orderPO = new OrderPO(orderVO.customerName, orderVO.phone, orderVO.customerID, orderVO.hotelID, orderVO.hotelName,
                     orderVO.estimatedCheckinTime, orderVO.actualCheckinTime, orderVO.estimatedCheckoutTime, orderVO.actualCheckoutTime, orderVO.latestExecutedTime,
@@ -162,15 +176,11 @@ public class Order implements Order_BLService {
         //根据orderVO的订单号得到该订单的po,然后在获取订单状态
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
         //如果订单状态为未执行，更改为已撤销，并返回撤销订单成功
-        if (orderPO.getOrderStatus().equals(OrderStatus.UNEXECUTED)) {
-            orderPO.setOrderStatus(OrderStatus.REVOKED);
-            if (order_dataService_stub.updateOrder(orderPO)) {
-                return ResultMessage.Order_CancelOrderSuccess;
-            } else
-                return ResultMessage.Fail;
+        orderPO.setOrderStatus(OrderStatus.REVOKED);
+        if (order_dataService_stub.updateOrder(orderPO)) {
+            return ResultMessage.Order_CancelOrderSuccess;
         } else
             return ResultMessage.Fail;
-
     }
 
     /**
@@ -182,21 +192,16 @@ public class Order implements Order_BLService {
      */
     public ResultMessage executeOrder(OrderVO orderVO) throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (orderVO.orderType.equals(OrderStatus.UNEXECUTED)) {
-            //若订单状态为未执行
-            if (orderVO.actualCheckinTime == null || orderVO.estimatedCheckoutTime == null)
-                //若实际到达时间为空
-                return ResultMessage.Blank;
-            orderPO.setOrderStatus(OrderStatus.EXECUTED);
-            orderPO.setEstimatedCheckOutTime(orderVO.estimatedCheckoutTime);
-            orderPO.setActualCheckInTime(orderVO.actualCheckinTime);
-            if (order_dataService_stub.updateOrder(orderPO)) {
-                return ResultMessage.Order_ExecuteOrderSuccess;
-            } else
-                return ResultMessage.Fail;
-        } else {
+        if (orderVO.actualCheckinTime == null || orderVO.estimatedCheckoutTime == null)
+            //若实际到达时间为空
+            return ResultMessage.Blank;
+        orderPO.setOrderStatus(OrderStatus.EXECUTED);
+        orderPO.setEstimatedCheckOutTime(orderVO.estimatedCheckoutTime);
+        orderPO.setActualCheckInTime(orderVO.actualCheckinTime);
+        if (order_dataService_stub.updateOrder(orderPO)) {
+            return ResultMessage.Order_ExecuteOrderSuccess;
+        } else
             return ResultMessage.Fail;
-        }
     }
 
     /**
@@ -208,21 +213,16 @@ public class Order implements Order_BLService {
      */
     public ResultMessage endOrder(OrderVO orderVO) throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (orderVO.orderType.equals(OrderStatus.EXECUTED)) {
-            //若订单状态为已执行
-            if (orderVO.actualCheckoutTime == null)
-                //若实际离开时间为空
-                return ResultMessage.Blank;
-            orderPO.setOrderStatus(OrderStatus.FINISHED_UNEVALUATED);
-            orderPO.setActualCheckOutTime(orderVO.actualCheckoutTime);
-            if (order_dataService_stub.updateOrder(orderPO)) {
-                orderVO.orderType = OrderStatus.FINISHED_UNEVALUATED;
-                return ResultMessage.Order_EndOrderSuccess;
-            } else
-                return ResultMessage.Fail;
-        } else {
+        if (orderVO.actualCheckoutTime == null)
+            //若实际离开时间为空
+            return ResultMessage.Blank;
+        orderPO.setOrderStatus(OrderStatus.FINISHED_UNEVALUATED);
+        orderPO.setActualCheckOutTime(orderVO.actualCheckoutTime);
+        if (order_dataService_stub.updateOrder(orderPO)) {
+            orderVO.orderType = OrderStatus.FINISHED_UNEVALUATED;
+            return ResultMessage.Order_EndOrderSuccess;
+        } else
             return ResultMessage.Fail;
-        }
     }
 
 //    /**
@@ -273,16 +273,11 @@ public class Order implements Order_BLService {
      */
     public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
-        if (orderVO.orderType.equals(OrderStatus.ABNORMAL)) {
-            //若订单状态为异常
-            orderPO.setOrderStatus(OrderStatus.REVOKED);
-            if (order_dataService_stub.updateOrder(orderPO)) {
-                return ResultMessage.Order_RenewOrderSuccess;
-            } else
-                return ResultMessage.Fail;
-        } else {
+        orderPO.setOrderStatus(OrderStatus.REVOKED);
+        if (order_dataService_stub.updateOrder(orderPO)) {
+            return ResultMessage.Order_RenewOrderSuccess;
+        } else
             return ResultMessage.Fail;
-        }
     }
 
 }
