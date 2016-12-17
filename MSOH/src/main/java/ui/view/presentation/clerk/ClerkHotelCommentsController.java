@@ -80,4 +80,12 @@ public class ClerkHotelCommentsController implements ControlledStage {
         stageController = new StageController();
         stageController.closeStage(resource);
     }
+
+    /**
+     * 退出按钮结果，退出程序
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

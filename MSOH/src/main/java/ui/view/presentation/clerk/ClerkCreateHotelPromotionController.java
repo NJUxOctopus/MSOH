@@ -125,4 +125,12 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         controller.setToBeClosed("clerk/ClerkCreateHotelPromotion.fxml");
     }
 
+    /**
+     * 退出按钮结果，退出程序
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
+
 }

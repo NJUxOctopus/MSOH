@@ -11,7 +11,7 @@
 
 <Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="669.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6c6d6f47" height="140.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="669.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b6c6e47" height="140.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="669.0" />
       <ImageView fitHeight="170.0" fitWidth="669.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/SingleOrder.png" />

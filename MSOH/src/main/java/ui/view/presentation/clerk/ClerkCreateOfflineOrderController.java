@@ -226,4 +226,12 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
         return stageController;
     }
 
+    /**
+     * 退出按钮结果，退出程序
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
+
 }
