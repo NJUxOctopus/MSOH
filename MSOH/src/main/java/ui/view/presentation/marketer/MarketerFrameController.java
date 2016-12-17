@@ -22,6 +22,8 @@ public class MarketerFrameController implements ControlledStage {
 
     private StageController stageController;
 
+    private String resource = "marketer/MarketerFrame.fxml";
+
     @FXML
     private Pane marketerFramePane;
     @FXML
@@ -58,7 +60,7 @@ public class MarketerFrameController implements ControlledStage {
 
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerCheckOrderList.fxml", 0, 0);
-        MarketerCheckOrderListController marketerCheckOrderListController = (MarketerCheckOrderListController)paneAdder.getController();
+        MarketerCheckOrderListController marketerCheckOrderListController = (MarketerCheckOrderListController) paneAdder.getController();
         marketerCheckOrderListController.initial(marketerID);
     }
 
@@ -71,7 +73,7 @@ public class MarketerFrameController implements ControlledStage {
         marketerFramePane.getChildren().clear();
 
         paneAdder.addPane(marketerFramePane, "marketer/MarketerWebPromotion.fxml", 0, 0);
-        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController)paneAdder.getController();
+        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) paneAdder.getController();
         marketerWebPromotionController.initial(marketerID);
     }
 
@@ -95,7 +97,7 @@ public class MarketerFrameController implements ControlledStage {
         marketerFramePane.getChildren().clear();
 
         paneAdder.addPane(marketerFramePane, "marketer/MarketerChargeCredit.fxml", 0, 0);
-        MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController)paneAdder.getController();
+        MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController) paneAdder.getController();
         marketerChargeCreditController.initial(marketerID);
     }
 
@@ -108,6 +110,24 @@ public class MarketerFrameController implements ControlledStage {
         stageController.loadStage("marketer/MarketerModifyPersonalInfo.fxml", 1);
         MarketerModifyPersonalInfoController marketerModifyPersonalInfoController = (MarketerModifyPersonalInfoController) stageController.getController();
         marketerModifyPersonalInfoController.initial(marketerID);
+    }
+
+    /**
+     * 切换账号
+     */
+    @FXML
+    private void switchAccount() {
+        stageController = new StageController();
+        stageController.closeStage(resource);
+        stageController.loadStage("login/LoginView.fxml", 1);
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
 
