@@ -96,4 +96,12 @@ public class MarketerModifyPersonalInfoController implements ControlledStage {
             return true;
         }
     }
+
+    /**
+     * 退出按钮结果，退出程序
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

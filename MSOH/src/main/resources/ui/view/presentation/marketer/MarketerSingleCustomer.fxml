@@ -6,10 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSingleCustomerController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b6c6e66" height="111.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="689.0" />
       <ImageView fitHeight="151.0" fitWidth="689.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/MarketerSingleCustomer.png" />

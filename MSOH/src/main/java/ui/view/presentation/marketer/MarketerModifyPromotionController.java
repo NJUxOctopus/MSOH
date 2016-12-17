@@ -71,4 +71,12 @@ public class MarketerModifyPromotionController implements ControlledStage {
         ConfirmExitController controller = (ConfirmExitController) stageController.getController();
         controller.setToBeClosed("marketer/MarketerModifyPromotion.fxml");
     }
+
+    /**
+     * 退出按钮结果，退出程序
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }
