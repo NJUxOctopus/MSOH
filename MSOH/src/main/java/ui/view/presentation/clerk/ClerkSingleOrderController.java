@@ -86,7 +86,7 @@ public class ClerkSingleOrderController implements ControlledStage {
      * 入住或退房按钮结果，把订单转换成已入住或已结束订单
      */
     @FXML
-    private void confirmCheck() {
+    private void confirmCheck() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkConfirmCheck.fxml", 0.8);
         ClerkConfirmCheckController clerkConfirmCheckController = (ClerkConfirmCheckController) stageController.getController();

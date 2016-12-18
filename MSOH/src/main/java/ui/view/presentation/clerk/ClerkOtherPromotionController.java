@@ -62,7 +62,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
     private UserAdmin userAdmin;
     private HotelAdmin hotelAdmin;
     private EditPromotion editPromotion;
-    private DecimalFormat df = new DecimalFormat("0.00");
+    private DecimalFormat df = new DecimalFormat("0.0");
 
     //获取当前日期
     Date date = new Date();
@@ -111,9 +111,9 @@ public class ClerkOtherPromotionController implements ControlledStage {
      */
     @FXML
     private void addRoomNum() {
-        double discount = Double.parseDouble(discountLabel.getText());
-        if (discount != 20) {
-            discountLabel.setText(df.format(discount + 0.1));
+        int roomNum = Integer.parseInt(roomNumLabel.getText());
+        if (roomNum != 20) {
+            roomNumLabel.setText(String.valueOf(roomNum + 1));
         }
     }
 
@@ -122,9 +122,9 @@ public class ClerkOtherPromotionController implements ControlledStage {
      */
     @FXML
     private void minusRoomNum() {
-        double discount = Double.parseDouble(discountLabel.getText());
-        if (discount != 0) {
-            discountLabel.setText(df.format(discount - 0.1));
+        int roomNum = Integer.parseInt(roomNumLabel.getText());
+        if (roomNum != 20) {
+            roomNumLabel.setText(String.valueOf(roomNum - 1));
         }
     }
 
@@ -135,7 +135,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
     private void addDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 9.9) {
-            discountLabel.setText(String.valueOf((discount + 0.1)));
+            discountLabel.setText(df.format((discount + 0.1)));
         }
     }
 
@@ -146,7 +146,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
     private void minusDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 0.1) {
-            discountLabel.setText(String.valueOf((discount - 0.1)));
+            discountLabel.setText(df.format((discount - 0.1)));
         }
     }
 
@@ -212,7 +212,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
-                stageController.closeStage(resource);
+                stageController.closeStage("clerk/ClerkCreateHotelPromotion.fxml");
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -223,7 +223,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
-                stageController.closeStage(resource);
+                stageController.closeStage("clerk/ClerkModifyPromotion.fxml");
             } else {
                 this.returnMessage("未知错误！");
             }

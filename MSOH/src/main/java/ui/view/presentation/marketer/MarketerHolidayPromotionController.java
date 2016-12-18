@@ -25,6 +25,7 @@ import vo.PromotionVO;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -51,6 +52,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
     private MarketerVO marketerVO;
     private UserAdmin userAdmin;
     private EditPromotion editPromotion;
+    private DecimalFormat df = new DecimalFormat("0.0");
 
     //获取当前日期
     Date date = new Date();
@@ -86,8 +88,8 @@ public class MarketerHolidayPromotionController implements ControlledStage {
         this.initial(userAdmin.findMarketerByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         discountLabel.setText(String.valueOf(promotionVO.discount));
-        startTimeButton.setText(String.valueOf(promotionVO.startTime));
-        endTimeButton.setText(String.valueOf(promotionVO.endTime));
+        startTimeButton.setText(String.valueOf(promotionVO.startTime).substring(0, 10));
+        endTimeButton.setText(String.valueOf(promotionVO.endTime).substring(0, 10));
     }
 
     /**
@@ -97,7 +99,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
     private void addDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 9.9) {
-            discountLabel.setText(String.valueOf((discount + 0.1)));
+            discountLabel.setText(df.format((discount + 0.1)));
         }
     }
 
@@ -108,7 +110,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
     private void minusDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 0.1) {
-            discountLabel.setText(String.valueOf((discount - 0.1)));
+            discountLabel.setText(df.format((discount - 0.1)));
         }
     }
 
@@ -141,6 +143,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
      */
     @FXML
     private void confirmCreate() throws IOException, ClassNotFoundException {
+        stageController = new StageController();
 
         //获取当前时间
         Date date = new Date();
@@ -156,7 +159,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
 
         if (confirmButton.getText().equals("制定")) {
             ResultMessage resultMessage = editPromotion.addWebPromotion(new PromotionVO(marketerName, time, name, MemberType.NONMEMBER
-                    , "all", startTime, endTime, discount, 0, PromotionType.WebPromotion_Holiday));
+                    , "所有商圈", startTime, endTime, discount, 0, PromotionType.WebPromotion_Holiday));
             if (resultMessage.equals(ResultMessage.Blank)) {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
@@ -167,7 +170,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
             }
         } else if (confirmButton.getText().equals("修改")) {
             ResultMessage resultMessage = editPromotion.modifyWebPromotion(new PromotionVO(marketerName, time, name, MemberType.NONMEMBER
-                    , "all", startTime, endTime, discount, 0, PromotionType.WebPromotion_Holiday));
+                    , "所有商圈", startTime, endTime, discount, 0, PromotionType.WebPromotion_Holiday));
             if (resultMessage.equals(ResultMessage.Blank)) {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {

@@ -84,7 +84,7 @@ public class MarketerChargeCreditController implements ControlledStage {
             CustomerVO customerVO = customerVOList.get(i);
             paneAdder.addPane(customerPane, "marketer/MarketerSingleCustomer.fxml", 0, i * 115);
             MarketerSingleCustomerController marketerSingleCustomerController = (MarketerSingleCustomerController) paneAdder.getController();
-            marketerSingleCustomerController.initial(customerVO);
+            marketerSingleCustomerController.initial(customerVO, marketerID);
         }
     }
 }

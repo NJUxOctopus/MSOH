@@ -289,7 +289,7 @@ public class Hotel implements Hotel_BLService {
                     roomPO.setLeftRooms(roomPO.getLeftRooms() + change);
                 }
             }
-            hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
+            hotel_dataService.updateDailyRoomInfo(temp);
         }
         return ResultMessage.Hotel_ModifyDailyRoomInfoSuccess;
     }

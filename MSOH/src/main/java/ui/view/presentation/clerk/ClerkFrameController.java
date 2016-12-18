@@ -97,6 +97,7 @@ public class ClerkFrameController implements ControlledStage {
         clerkFramePane.getChildren().clear();
 
         PaneAdder paneAdder = new PaneAdder();
+        paneAdder.putIntoLoaders("clerk/ClerkCheckOrderList.fxml");
         paneAdder.addPane(clerkFramePane, "clerk/ClerkCheckOrderList.fxml", 0, 0);
 
         //初始化界面

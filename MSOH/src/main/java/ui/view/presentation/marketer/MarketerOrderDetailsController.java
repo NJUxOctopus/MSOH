@@ -128,7 +128,7 @@ public class MarketerOrderDetailsController implements ControlledStage {
      * 撤销按钮结果，显示确认撤销弹窗
      */
     @FXML
-    private void revokeOrder() {
+    private void revokeOrder() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("marketer/MarketerConfirmRevoke.fxml", 0.8);
         MarketerConfirmRevokeController marketerConfirmRevokeController = (MarketerConfirmRevokeController) stageController.getController();

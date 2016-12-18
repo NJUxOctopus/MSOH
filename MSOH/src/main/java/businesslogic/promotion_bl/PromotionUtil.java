@@ -81,7 +81,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (timestamp.after(promotionPO.getStartTime()) && timestamp.before(promotionPO.getEndTime()))
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                                getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
@@ -96,11 +96,14 @@ public class PromotionUtil implements PromotionUtil_BLService {
      * @throws RemoteException
      */
     public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType, String hotelID, Timestamp timestamp) throws IOException, ClassNotFoundException {
-        List<PromotionVO> promotionVOList = getPromotionByHotelID(hotelID, timestamp);
+        List<PromotionPO> promotionPOs = promotion_dataService.getPromotionByHotelID(hotelID);
         List<PromotionVO> list = new ArrayList<PromotionVO>();
-        for (PromotionVO promotionVO : promotionVOList) {
-            if (promotionVO.promotionType.equals(promotionType))
-                list.add(promotionVO);
+        for (PromotionPO promotionPO:promotionPOs) {
+            if (promotionPO.getPromotionType().equals(promotionType)&&promotionPO.getEndTime().after(timestamp))
+                list.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
+                        promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                        "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return list;
     }

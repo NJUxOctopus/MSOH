@@ -46,11 +46,12 @@ public class RoomVO implements Serializable {
      * @param leftRooms
      * @param price
      */
-    public RoomVO(String hotelID, String roomType, int leftRooms, double price) {
+    public RoomVO(String hotelID, String roomType, int leftRooms, double price, String roomID) {
         this.hotelID = hotelID;
         this.roomType = roomType;
         this.leftRooms = leftRooms;
         this.price = price;
+        this.roomID = roomID;
     }
 
 }

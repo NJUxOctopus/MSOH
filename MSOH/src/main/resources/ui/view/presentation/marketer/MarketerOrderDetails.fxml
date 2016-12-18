@@ -128,7 +128,7 @@
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-            <Button layoutX="961.0" layoutY="481.0" mnemonicParsing="false" onAction="#revokeOrder" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="撤 销" textFill="WHITE">
+            <Button fx:id="checkButton" layoutX="961.0" layoutY="481.0" mnemonicParsing="false" onAction="#revokeOrder" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="撤 销" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="16.0" />
                </font>

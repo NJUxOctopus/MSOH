@@ -28,6 +28,7 @@ import vo.PromotionVO;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -63,6 +64,7 @@ public class MarketerVIPPromotionController implements ControlledStage {
     private ProcessMember processMember;
     private MemberRegister memberRegister;
     private EditPromotion editPromotion;
+    private DecimalFormat df = new DecimalFormat("0.0");
     private int maxLevel = 0;
 
     //获取当前日期
@@ -84,8 +86,8 @@ public class MarketerVIPPromotionController implements ControlledStage {
         confirmButton.setText("制定");
         userAdmin = new UserAdminController();
         marketerID = ID;
-        marketerName = marketerVO.name;
         marketerVO = userAdmin.findMarketerByID(marketerID);
+        marketerName = marketerVO.name;
         startTimeButton.setText(initialTime);
         endTimeButton.setText(initialTime);
 
@@ -107,8 +109,8 @@ public class MarketerVIPPromotionController implements ControlledStage {
         this.initial(userAdmin.findMarketerByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         discountLabel.setText(String.valueOf(promotionVO.discount));
-        startTimeButton.setText(String.valueOf(promotionVO.startTime));
-        endTimeButton.setText(String.valueOf(promotionVO.endTime));
+        startTimeButton.setText(String.valueOf(promotionVO.startTime).substring(0, 10));
+        endTimeButton.setText(String.valueOf(promotionVO.endTime).substring(0, 10));
         memberLevelLabel.setText(String.valueOf(promotionVO.memberLevel));
 
         targetAreaChoiceBox.getSelectionModel().select(promotionVO.targetArea);
@@ -121,7 +123,7 @@ public class MarketerVIPPromotionController implements ControlledStage {
     private void addDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 9.9) {
-            discountLabel.setText(String.valueOf((discount + 0.1)));
+            discountLabel.setText(df.format((discount + 0.1)));
         }
     }
 
@@ -132,7 +134,7 @@ public class MarketerVIPPromotionController implements ControlledStage {
     private void minusDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 0.1) {
-            discountLabel.setText(String.valueOf((discount - 0.1)));
+            discountLabel.setText(df.format((discount - 0.1)));
         }
     }
 

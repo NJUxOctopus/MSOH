@@ -90,7 +90,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
             processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByCustomerID(searchTextField.getText());
             this.addOrder(orderVOList);
-        } else if (searchInfo.length() == 9) {
+        } else if (searchInfo.length() == 12) {
             //输入的是订单号
             processOrder = new ProcessOrderController();
             orderVO = processOrder.getSingle(searchTextField.getText());

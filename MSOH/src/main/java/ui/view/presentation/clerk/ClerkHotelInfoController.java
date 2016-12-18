@@ -106,9 +106,12 @@ public class ClerkHotelInfoController implements ControlledStage {
      * 录入客房按钮结果，显示录入可用客房界面
      */
     @FXML
-    private void showModifyAvailableRooms() {
+    private void showModifyAvailableRooms() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkModifyAvailableRooms.fxml", 1);
+
+        ClerkModifyAvailableRoomsController clerkModifyAvailableRoomsController = (ClerkModifyAvailableRoomsController)stageController.getController();
+        clerkModifyAvailableRoomsController.initial(hotelVO.hotelID);
     }
 
     /**

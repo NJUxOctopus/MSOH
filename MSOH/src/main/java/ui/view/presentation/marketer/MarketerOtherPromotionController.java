@@ -28,6 +28,7 @@ import vo.PromotionVO;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -62,6 +63,7 @@ public class MarketerOtherPromotionController implements ControlledStage {
     private UserAdmin userAdmin;
     private MemberRegister memberRegister;
     private EditPromotion editPromotion;
+    private DecimalFormat df = new DecimalFormat("0.0");
 
     //获取当前日期
     Date date = new Date();
@@ -105,8 +107,8 @@ public class MarketerOtherPromotionController implements ControlledStage {
         this.initial(userAdmin.findMarketerByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         discountLabel.setText(String.valueOf(promotionVO.discount));
-        startTimeButton.setText(String.valueOf(promotionVO.startTime));
-        endTimeButton.setText(String.valueOf(promotionVO.endTime));
+        startTimeButton.setText(String.valueOf(promotionVO.startTime).substring(0, 10));
+        endTimeButton.setText(String.valueOf(promotionVO.endTime).substring(0, 10));
 
         targetMemberChoiceBox.getSelectionModel().select(promotionVO.targetUser.equals(MemberType.NORMAL) ? "所有客户" : "普通会员");
     }
@@ -118,7 +120,7 @@ public class MarketerOtherPromotionController implements ControlledStage {
     private void addDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 9.9) {
-            discountLabel.setText(String.valueOf((discount + 0.1)));
+            discountLabel.setText(df.format((discount + 0.1)));
         }
     }
 
@@ -129,7 +131,7 @@ public class MarketerOtherPromotionController implements ControlledStage {
     private void minusDiscount() {
         double discount = Double.parseDouble(discountLabel.getText());
         if (discount != 0.1) {
-            discountLabel.setText(String.valueOf((discount - 0.1)));
+            discountLabel.setText(df.format((discount - 0.1)));
         }
     }
 
@@ -191,7 +193,7 @@ public class MarketerOtherPromotionController implements ControlledStage {
         String name = promotionNameTextField.getText();
         String targetArea = (String) targetAreaChoiceBox.getSelectionModel().getSelectedItem();
         MemberType targetMember = ((MemberType) targetMemberChoiceBox.getSelectionModel()
-                .getSelectedItem()).equals("所有客户")?MemberType.NONMEMBER:MemberType.NORMAL;
+                .getSelectedItem()).equals("所有客户") ? MemberType.NONMEMBER : MemberType.NORMAL;
         Timestamp startTime = Timestamp.valueOf(startTimeButton.getText() + " 00:00:00");
         Timestamp endTime = Timestamp.valueOf(endTimeButton.getText() + " 00:00:00");
         double discount = Double.parseDouble(discountLabel.getText());

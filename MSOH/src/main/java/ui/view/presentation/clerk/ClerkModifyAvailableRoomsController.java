@@ -43,8 +43,8 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
     private ChoiceBox roomTypeChoiceBox;
 
     private String hotelID;
-    private ObservableList<String> roomType = FXCollections.observableArrayList("单人房", "标间", "大床房");
     private HotelAdmin hotelAdmin;
+    private String roomID;
 
     //获取当前时间
     private Date date = new Date();
@@ -60,6 +60,7 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
      * initial方法，初始化界面
      */
     public void initial(final String hotelID) throws RemoteException {
+        ObservableList<String> roomType = FXCollections.observableArrayList("单人房", "标间", "大床房");
         this.hotelID = hotelID;
         hotelAdmin = new HotelAdminController();
         roomTypeChoiceBox.setItems(roomType);
@@ -74,6 +75,7 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
                     if (hotelAdmin.getRoomInfo(hotelID, selectedType, time) != null) {
                         leftRoomNum = hotelAdmin.getRoomInfo(hotelID, selectedType, time).leftRooms;
                         roomPrice = hotelAdmin.getRoomInfo(hotelID, selectedType, time).price;
+                        roomID = hotelAdmin.getRoomInfo(hotelID, selectedType, time).roomID;
                     }
                     roomNumTextField.setText(String.valueOf(leftRoomNum));
                     roomPriceTextField.setText(String.valueOf(roomPrice));
@@ -133,7 +135,7 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
             int roomNum = Integer.parseInt(roomNumTextField.getText());
             double roomPrice = Double.parseDouble(roomPriceTextField.getText());
             List<RoomVO> roomVO = new ArrayList<RoomVO>();
-            roomVO.add(new RoomVO(hotelID, selectedType, roomNum, roomPrice));
+            roomVO.add(new RoomVO(hotelID, selectedType, roomNum, roomPrice, roomID));
             DailyRoomInfoVO dailyRoomInfoVO = new DailyRoomInfoVO(hotelID, time, roomVO);
 
             hotelAdmin = new HotelAdminController();

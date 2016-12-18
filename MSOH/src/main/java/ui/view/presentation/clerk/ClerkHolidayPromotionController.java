@@ -170,7 +170,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
-                stageController.closeStage(resource);
+                stageController.closeStage("clerk/ClerkCreateHotelPromotion.fxml");
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -181,7 +181,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
-                stageController.closeStage(resource);
+                stageController.closeStage("clerk/ClerkModifyPromotion.fxml");
             } else {
                 this.returnMessage("未知错误！");
             }

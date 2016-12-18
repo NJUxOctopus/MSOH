@@ -151,11 +151,17 @@ public class Customer implements Customer_BLService {
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException {
         if (customer_dataService.findCustomerByID(ID) == null)
             return ResultMessage.Customer_CustomerNotExist;
+        CustomerPO customerPO = customer_dataService.findCustomerByID(ID);
         CreditRecordPO creditRecordPO = new CreditRecordPO(creditRecordVO.variation, creditRecordVO.changeTime,
                 creditRecordVO.customerName, creditRecordVO.customerID, creditRecordVO.afterChangeCredit,
                 creditRecordVO.orderID, creditRecordVO.marketerName, creditRecordVO.reason);
-        if (customer_dataService.addCreditRecord(creditRecordPO))
-            return ResultMessage.Customer_AddCreditRecordSuccess;
+        if (customer_dataService.addCreditRecord(creditRecordPO)) {
+            customerPO.setCredit(creditRecordVO.afterChangeCredit);
+            if(customer_dataService.modifyCustomer(customerPO))
+                return ResultMessage.Customer_AddCreditRecordSuccess;
+            else
+                return ResultMessage.Fail;
+        }
         else
             return ResultMessage.Fail;
     }

@@ -68,6 +68,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         promotionPane.getChildren().clear();
 
         paneAdder.addPane(promotionPane, "clerk/ClerkHolidayPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkHolidayPromotion.fxml");
         ClerkHolidayPromotionController clerkHolidayPromotionController = (ClerkHolidayPromotionController) paneAdder.getController();
         clerkHolidayPromotionController.initial(clerkID);
     }
@@ -82,6 +83,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         promotionPane.getChildren().clear();
 
         paneAdder.addPane(promotionPane, "clerk/ClerkReservePromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkReservePromotion.fxml");
         ClerkReservePromotionController clerkReservePromotionController = (ClerkReservePromotionController) paneAdder.getController();
         clerkReservePromotionController.initial(clerkID);
     }
@@ -96,6 +98,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         promotionPane.getChildren().clear();
 
         paneAdder.addPane(promotionPane, "clerk/ClerkEnterprisePromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkEnterprisePromotion.fxml");
         ClerkEnterprisePromotionController clerkEnterprisePromotionController = (ClerkEnterprisePromotionController) paneAdder.getController();
         clerkEnterprisePromotionController.initial(clerkID);
     }
@@ -110,6 +113,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         promotionPane.getChildren().clear();
 
         paneAdder.addPane(promotionPane, "clerk/ClerkOtherPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkOtherPromotion.fxml");
         ClerkOtherPromotionController clerkOtherPromotionController = (ClerkOtherPromotionController) paneAdder.getController();
         clerkOtherPromotionController.initial(clerkID);
     }

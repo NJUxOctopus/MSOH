@@ -181,6 +181,8 @@ public class ClerkReservePromotionController implements ControlledStage {
     @FXML
     private void confirmCreate() throws IOException, ClassNotFoundException {
 
+        stageController = new StageController();
+
         //获取当前时间
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -215,7 +217,7 @@ public class ClerkReservePromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
-                stageController.closeStage(resource);
+                stageController.closeStage("clerk/ClerkCreateHotelPromotion.fxml");
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -226,7 +228,7 @@ public class ClerkReservePromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
-                stageController.closeStage(resource);
+                stageController.closeStage("clerk/ClerkModifyPromotion.fxml");
             } else {
                 this.returnMessage("未知错误！");
             }

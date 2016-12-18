@@ -68,6 +68,7 @@ public class MarketerCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void showUnexecutedOrder() throws RemoteException {
+        orderListPane.getChildren().clear();
         orderSelectShade.setX(0);
         orderSelectShade.setWidth(334);
         orderVOs = processOrder.getOrderByStatusAndDate(time, OrderStatus.UNEXECUTED);
@@ -82,6 +83,7 @@ public class MarketerCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void showAbnormalOrder() throws RemoteException {
+        orderListPane.getChildren().clear();
         orderSelectShade.setX(334);
         orderSelectShade.setWidth(356);
         orderVOs = processOrder.getOrderByStatus(OrderStatus.ABNORMAL);
@@ -97,7 +99,7 @@ public class MarketerCheckOrderListController implements ControlledStage {
      * @param orderVOList
      */
     private void addOrder(List<OrderVO> orderVOList) throws RemoteException {
-        orderListPane.getChildren().clear();
+
         int numOfOrder = orderVOList.size();
         orderListPane.setPrefHeight(numOfOrder * 160);
 
@@ -121,7 +123,7 @@ public class MarketerCheckOrderListController implements ControlledStage {
             processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByCustomerID(searchTextField.getText());
             this.addOrder(orderVOList);
-        } else if (searchInfo.length() == 9) {
+        } else if (searchInfo.length() == 12) {
             //输入的是订单号
             processOrder = new ProcessOrderController();
             orderVO = processOrder.getSingle(searchTextField.getText());

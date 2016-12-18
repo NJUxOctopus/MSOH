@@ -8,12 +8,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="474.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerMemberLevelController">
+<Pane prefHeight="474.0" prefWidth="689.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerMemberLevelController">
    <children>
-      <TableView layoutX="57.0" layoutY="31.0" prefHeight="382.0" prefWidth="570.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+      <TableView fx:id="memberLevelTableView" layoutX="57.0" layoutY="31.0" prefHeight="382.0" prefWidth="570.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
         <columns>
-          <TableColumn prefWidth="178.0" text="Lv." />
-          <TableColumn prefWidth="390.0" style="fx-background-color: #ffffff00;" text="需达到信用值" />
+          <TableColumn fx:id="levelColumn" prefWidth="109.0" text="Lv." />
+          <TableColumn fx:id="boundaryColumn" prefWidth="274.0" style="fx-background-color: #ffffff00;" text="需达到信用值" />
+            <TableColumn fx:id="discountColumn" prefWidth="185.0" text="折扣" />
         </columns>
       </TableView>
       <Button layoutX="322.0" layoutY="413.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;">

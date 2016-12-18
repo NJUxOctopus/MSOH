@@ -133,7 +133,7 @@ public class ClerkOrderDetailsController implements ControlledStage {
      * 入住按钮结果，显示确认入住弹窗
      */
     @FXML
-    private void confirmCheck() {
+    private void confirmCheck() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("clerk/ClerkConfirmCheck.fxml", 1);
         ClerkConfirmCheckController clerkConfirmCheckController = (ClerkConfirmCheckController) stageController.getController();

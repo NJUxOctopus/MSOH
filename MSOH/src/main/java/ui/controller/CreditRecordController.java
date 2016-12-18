@@ -13,22 +13,22 @@ import java.util.List;
 /**
  * Created by zqh on 2016/11/10.
  */
-public class CreditRecordController implements CreditRecord{
+public class CreditRecordController implements CreditRecord {
 
     private Customer_BLService customer_blService;
 
-    public CreditRecordController(){
+    public CreditRecordController() {
         customer_blService = new Customer();
     }
 
     @Override
     public List<CreditRecordVO> getCreditRecord(String customerID) throws RemoteException {
-        return    customer_blService.getCreditRecord(customerID);
+        return customer_blService.getCreditRecord(customerID);
 
     }
 
     @Override
-    public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) {
-        return null;
+    public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException {
+        return customer_blService.addCreditRecord(ID, creditRecordVO);
     }
 }

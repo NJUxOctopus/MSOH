@@ -82,7 +82,7 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
         clerkVO = userAdmin.findClerkByID(clerkID);
         this.rooms = rooms;
         this.price = price;
-        priceLabel.setText(String.valueOf(price));
+        priceLabel.setText("￥" + String.valueOf(price));
         checkInTimeButton.setText(initialTime);
         estimatedCheckOutTimeButton.setText(initialTime);
     }
@@ -159,6 +159,15 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
      */
     public void setExpectedCheckOutTime(String time) {
         estimatedCheckOutTimeButton.setText(time);
+        Timestamp estimatedLeaveTime = Timestamp.valueOf(time + " 00:00:00");
+        Timestamp checkInTime = Timestamp.valueOf(checkInTimeButton.getText() + " 00:00:00");
+        long oneDay = 1000 * 60 * 60 * 24;
+        long days = (estimatedLeaveTime.getTime() - checkInTime.getTime()) / oneDay;
+        if (days < 0) {
+            priceLabel.setText("请选择正确日期！");
+        } else {
+            priceLabel.setText("￥" + String.valueOf(price * days));
+        }
     }
 
     /**
@@ -179,6 +188,7 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
             String phone = customerPhoneTextField.getText();
             int numOfCustomers = Integer.parseInt(peopleNumTextField.getText());
             boolean haveChildren = childCheckBox.isSelected();
+            double actualPrice = Double.parseDouble(priceLabel.getText().substring(1));
             Timestamp checkInTime = Timestamp.valueOf(checkInTimeButton.getText() + " 00:00:00");
 
             //System.out.print(checkInTime);
@@ -187,14 +197,14 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
 
             OrderVO newOrder = new OrderVO(customerName, phone, customerID, hotelID, hotelName,
                     checkInTime, checkInTime, estimatedCheckOutTime, rooms, numOfCustomers,
-                    haveChildren, price, price, OrderStatus.EXECUTED);
+                    haveChildren, actualPrice, actualPrice, OrderStatus.EXECUTED);
             ResultMessage resultMessage = processOrder.createOrderOffline(newOrder);
 
             if (resultMessage.equals(ResultMessage.Order_CreateOrderSuccess)) {
                 //创建订单成功
                 hotelAdmin = new HotelAdminController();
                 if (hotelAdmin.changeAvailableRoom(newOrder, -1).equals(ResultMessage.Hotel_changeAvailableRoomSuccess)
-                        && hotelAdmin.changeReservedRoom(newOrder, 1).equals(ResultMessage.Hotel_changeReservedRoomSuccess)) {
+                        && hotelAdmin.changeOccupiedRoom(newOrder, 1).equals(ResultMessage.Hotel_changeOccupiedRoomSuccess)) {
                     stageController = this.returnMessage("创建订单成功！");
                     stageController.closeStage(resource);
                 }

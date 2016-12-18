@@ -35,7 +35,7 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
      * initial方法，初始化界面
      */
     public void initial(String marketerID) throws RemoteException {
-        paneAdder = new PaneAdder();
+
         this.marketerID = marketerID;
         //默认显示节日特惠
         this.showHolidayPromotion();
@@ -57,6 +57,7 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
      */
     @FXML
     private void showHolidayPromotion() throws RemoteException {
+        paneAdder = new PaneAdder();
         promotionSelectShade.setHeight(70);
         promotionSelectShade.setY(0);
         promotionPane.getChildren().clear();
@@ -71,6 +72,7 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
      */
     @FXML
     private void showVIPPromotion() throws RemoteException {
+        paneAdder = new PaneAdder();
         promotionSelectShade.setHeight(74);
         promotionSelectShade.setY(70);
         promotionPane.getChildren().clear();
@@ -85,6 +87,7 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
      */
     @FXML
     private void showOtherPromotion() throws RemoteException {
+        paneAdder = new PaneAdder();
         promotionSelectShade.setHeight(67);
         promotionSelectShade.setY(144);
         promotionPane.getChildren().clear();

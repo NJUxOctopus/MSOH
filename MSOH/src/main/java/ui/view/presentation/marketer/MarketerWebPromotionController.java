@@ -61,9 +61,12 @@ public class MarketerWebPromotionController implements ControlledStage {
      * 制定按钮结果，显示制定网站促销策略界面
      */
     @FXML
-    private void showCreatePromotion() {
+    private void showCreatePromotion() throws RemoteException {
         stageController = new StageController();
         stageController.loadStage("marketer/MarketerCreateWebPromotion.fxml", 1);
+
+        MarketerCreateWebPromotionController marketerCreateWebPromotionController = (MarketerCreateWebPromotionController)stageController.getController();
+        marketerCreateWebPromotionController.initial(marketerID);
     }
 
     /**
@@ -71,6 +74,7 @@ public class MarketerWebPromotionController implements ControlledStage {
      */
     @FXML
     private void showHolidayPromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(215);
         promotionSelectShade.setX(0);
         promotionVOs = editPromotion.getPromotionByType(PromotionType.WebPromotion_Holiday, time);
@@ -82,6 +86,7 @@ public class MarketerWebPromotionController implements ControlledStage {
      */
     @FXML
     private void showVIPPromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(237);
         promotionSelectShade.setX(215);
         promotionVOs = editPromotion.getPromotionByType(PromotionType.WebPromotion_VIP, time);
@@ -93,6 +98,7 @@ public class MarketerWebPromotionController implements ControlledStage {
      */
     @FXML
     private void showOtherPromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(237);
         promotionSelectShade.setX(452);
         promotionVOs = editPromotion.getPromotionByType(PromotionType.WebPromotion_Other, time);

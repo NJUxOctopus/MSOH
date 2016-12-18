@@ -160,15 +160,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Label layoutX="927.0" layoutY="524.0" text="￥" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei" size="30.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </Label>
-      <Label fx:id="priceLabel" layoutX="952.0" layoutY="524.0" text="100" textFill="WHITE">
+      <Label fx:id="priceLabel" alignment="CENTER" layoutX="797.0" layoutY="524.0" prefHeight="41.0" prefWidth="338.0" text="￥100" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="30.0" />
          </font>

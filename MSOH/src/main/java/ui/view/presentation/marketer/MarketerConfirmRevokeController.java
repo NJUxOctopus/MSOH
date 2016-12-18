@@ -3,12 +3,19 @@ package ui.view.presentation.marketer;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import ui.controller.CreditRecordController;
 import ui.controller.ProcessOrderController;
+import ui.controller.UserAdminController;
+import ui.view.controllerservice.CreditRecord;
 import ui.view.controllerservice.ProcessOrder;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import util.CreditChangeReason;
 import util.ResultMessage;
+import vo.CreditRecordVO;
+import vo.CustomerVO;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
@@ -29,6 +36,10 @@ public class MarketerConfirmRevokeController implements ControlledStage {
     private OrderVO orderVO;
     private String marketerID;
     private ProcessOrder processOrder;
+    private CreditRecord creditRecord;
+    private CustomerVO customerVO;
+    private UserAdmin userAdmin;
+    private String marketerName;
     private boolean isOrderDetails;
 
     private String resource = "marketer/MarketerConfirmRevoke.fxml";
@@ -43,12 +54,16 @@ public class MarketerConfirmRevokeController implements ControlledStage {
      *
      * @param orderVO
      */
-    public void initial(OrderVO orderVO, String marketerID) {
+    public void initial(OrderVO orderVO, String marketerID) throws RemoteException {
+        userAdmin = new UserAdminController();
         this.isOrderDetails = false;
         stageController = new StageController();
-        processOrder = new ProcessOrderController();
+
         this.orderVO = orderVO;
         this.marketerID = marketerID;
+        this.customerVO = userAdmin.findCustomerByID(orderVO.customerID);
+        this.marketerName = userAdmin.findMarketerByID(marketerID).name;
+
         revokeCreditChoiceBox.setItems(FXCollections.observableArrayList("全部信用值", "一半信用值"));
         revokeCreditChoiceBox.getSelectionModel().select("全部信用值");
     }
@@ -58,7 +73,7 @@ public class MarketerConfirmRevokeController implements ControlledStage {
      *
      * @param orderVO
      */
-    public void initial(OrderVO orderVO, String marketerID, boolean isOrderDetails) {
+    public void initial(OrderVO orderVO, String marketerID, boolean isOrderDetails) throws RemoteException {
         this.initial(orderVO, marketerID);
         this.isOrderDetails = isOrderDetails;
     }
@@ -68,17 +83,30 @@ public class MarketerConfirmRevokeController implements ControlledStage {
      */
     @FXML
     private void confirmRevoke() throws RemoteException {
+        processOrder = new ProcessOrderController();
+        creditRecord = new CreditRecordController();
         //获取当前时间
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
         String toBeRevoked = (String) revokeCreditChoiceBox.getSelectionModel().getSelectedItem();
+        int credit = 0;
+        if (toBeRevoked.equals("全部信用值")) {
+            credit = (int) orderVO.finalPrice;
+        } else if (toBeRevoked.equals("一半信用值")) {
+            credit = (int) orderVO.finalPrice / 2;
+        }
+        CreditRecordVO creditRecordVO = new CreditRecordVO(credit, time, orderVO.customerName, orderVO.customerID,
+                customerVO.credit + credit, orderVO.orderID, marketerName, CreditChangeReason.Order_Revoked);
 
-        ResultMessage resultMessage = processOrder.renewOrder(orderVO);
-        if (resultMessage.equals(ResultMessage.Order_RenewOrderSuccess)) {
-            stageController = this.returnMessage("撤销成功！");
-            renew();
+        if (processOrder.renewOrder(orderVO).equals(ResultMessage.Order_RenewOrderSuccess)) {
+            if (creditRecord.addCreditRecord(orderVO.customerID, creditRecordVO).equals(ResultMessage.Customer_AddCreditRecordSuccess)) {
+                stageController = this.returnMessage("撤销成功！");
+                renew();
+            } else {
+                this.returnMessage("更改信用值失败！");
+            }
         } else {
             returnMessage("未知错误！");
         }

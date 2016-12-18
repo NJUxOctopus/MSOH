@@ -13,5 +13,5 @@ import java.util.List;
 public interface CreditRecord {
     public List<CreditRecordVO> getCreditRecord(String customerID) throws RemoteException;
 
-    public ResultMessage addCreditRecord(String ID,CreditRecordVO creditRecordVO);
+    public ResultMessage addCreditRecord(String ID,CreditRecordVO creditRecordVO) throws RemoteException;
 }

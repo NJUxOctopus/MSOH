@@ -39,30 +39,35 @@ public class ClerkModifyPromotionController implements ControlledStage {
             case HotelPromotion_Birthday:
                 promotionPane.getChildren().clear();
                 paneAdder.addPane(promotionPane, "clerk/ClerkBirthdayPromotion.fxml", 0, 0);
+                paneAdder.putIntoLoaders("clerk/ClerkBirthdayPromotion.fxml");
                 ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController)paneAdder.getController();
                 clerkBirthdayPromotionController.initial(promotionVO);
                 break;
             case HotelPromotion_Holiday:
                 promotionPane.getChildren().clear();
                 paneAdder.addPane(promotionPane, "clerk/ClerkHolidayPromotion.fxml", 0, 0);
+                paneAdder.putIntoLoaders("clerk/ClerkHolidayPromotion.fxml");
                 ClerkHolidayPromotionController clerkHolidayPromotionController = (ClerkHolidayPromotionController)paneAdder.getController();
                 clerkHolidayPromotionController.initial(promotionVO);
                 break;
             case HotelPromotion_Reserve:
                 promotionPane.getChildren().clear();
                 paneAdder.addPane(promotionPane, "clerk/ClerkReservePromotion.fxml", 0, 0);
+                paneAdder.putIntoLoaders("clerk/ClerkReservePromotion.fxml");
                 ClerkReservePromotionController clerkReservePromotionController = (ClerkReservePromotionController)paneAdder.getController();
                 clerkReservePromotionController.initial(promotionVO);
                 break;
             case HotelPromotion_Company:
                 promotionPane.getChildren().clear();
                 paneAdder.addPane(promotionPane, "clerk/ClerkEnterprisePromotion.fxml", 0, 0);
+                paneAdder.putIntoLoaders("clerk/ClerkEnterprisePromotion.fxml");
                 ClerkEnterprisePromotionController clerkEnterprisePromotionController = (ClerkEnterprisePromotionController)paneAdder.getController();
                 clerkEnterprisePromotionController.initial(promotionVO);
                 break;
             case HotelPromotion_Other:
                 promotionPane.getChildren().clear();
                 paneAdder.addPane(promotionPane, "clerk/ClerkOtherPromotion.fxml", 0, 0);
+                paneAdder.putIntoLoaders("clerk/ClerkOtherPromotion.fxml");
                 ClerkOtherPromotionController clerkOtherPromotionController = (ClerkOtherPromotionController)paneAdder.getController();
                 clerkOtherPromotionController.initial(promotionVO);
                 break;
