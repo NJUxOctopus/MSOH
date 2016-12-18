@@ -5,10 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import ui.controller.HotelAdminController;
@@ -56,6 +53,8 @@ public class ManagerHotelInfoViewController implements ControlledStage {
 
     private String license = "";
 
+    private String intro = "";
+
     @FXML
     private Button addPictureButton;
 
@@ -100,6 +99,9 @@ public class ManagerHotelInfoViewController implements ControlledStage {
 
     @FXML
     private Pane addHotelPane;
+
+    @FXML
+    private TextArea briefInfoTextArea;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -252,7 +254,6 @@ public class ManagerHotelInfoViewController implements ControlledStage {
                 }
             });
 
-
         }catch (RemoteException e){
             e.printStackTrace();
         }
@@ -296,6 +297,8 @@ public class ManagerHotelInfoViewController implements ControlledStage {
             }
             license = hotelVO.license;
             licenseTextField.setText(license);
+            intro = hotelVO.intro;
+            briefInfoTextArea.setText(intro);
         }catch (RemoteException e){
             e.printStackTrace();
         }
@@ -311,6 +314,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         area = (String)areaChoiceBox.getSelectionModel().getSelectedItem();
         city = (String)cityChoiceBox.getSelectionModel().getSelectedItem();
         star = starChoiceBox.getSelectionModel().getSelectedIndex();
+        intro = briefInfoTextArea.getText();
         List<String> newInfra = new ArrayList<String>();
         if(depotCheckBox.isSelected()){
             newInfra.add("停车场");
@@ -331,25 +335,10 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         newFac = newInfra.toArray(new String[newInfra.size()]);
         license = licenseTextField.getText();
         if(!hotelID.equals("")) {
-            System.out.println(hotelName);
-            System.out.println(hotelVO.hotelName);
-            System.out.println(address);
-            System.out.println(hotelVO.hotelAddress);
-            System.out.println(area);
-            System.out.println(hotelVO.area);
-            System.out.println(city);
-            System.out.println(hotelVO.city);
-            System.out.println(star);
-            System.out.println(hotelVO.star);
-            System.out.println(facility);
-            System.out.println(newFacility);
-            System.out.println(license);
-            System.out.println(hotelVO.license);
-
             if (hotelName.equals(hotelVO.hotelName) && address.equals(hotelVO.hotelAddress)
                     && area.equals(hotelVO.area) && city.equals(hotelVO.city)
                     && star == hotelVO.star && facility.equals(newFacility)
-                    && license.equals(hotelVO.license)) {
+                    && license.equals(hotelVO.license) && intro.equals(hotelVO.intro)) {
                 return false;
             } else {
                 return true;
@@ -358,7 +347,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
             if (!hotelName.equals("") || !address.equals("")
                     || area != null || city != null
                     || star != 0 || !newFacility.equals("")
-                    || !license.equals("")) {
+                    || !license.equals("") || !intro.equals("")) {
                 return true;
             } else {
                 return false;

@@ -6,10 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="346.0" prefWidth="192.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.manager.ManagerSingleHotelViewController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6c6d6f47" height="325.0" layoutX="6.0" layoutY="4.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="179.0" />
       <ImageView fitHeight="346.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image_manager/manager_singlehotelframe.png" />
@@ -18,7 +20,7 @@
       <Label fx:id="hotelIDLabel" layoutX="90.0" layoutY="180.0" text="111111" textFill="WHITE" />
       <Label fx:id="hotelNameLabel" alignment="CENTER" layoutX="9.0" layoutY="146.0" prefHeight="24.0" prefWidth="178.0" text="如家" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="15.0" />
          </font>
       </Label>
       <Label layoutX="40.0" layoutY="180.0" text="酒店ID:" textFill="WHITE" />
@@ -27,12 +29,15 @@
       <Label layoutX="35.0" layoutY="255.0" text="详细地址:" textFill="WHITE" />
       <Label fx:id="areaLabel" layoutX="90.0" layoutY="205.0" text="？" textFill="WHITE" />
       <Label fx:id="cityLabel" layoutX="90.0" layoutY="230.0" text="？" textFill="WHITE" />
-      <Label fx:id="addressLabel" layoutX="91.0" layoutY="255.0" prefHeight="39.0" prefWidth="95.0" text="？？？？？？？？？？？" textFill="WHITE" wrapText="true" />
-      <Button fx:id="hotelInfoButton" layoutX="20.0" layoutY="295.0" mnemonicParsing="false" onAction="#showHotelInfoView" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="酒店信息" textFill="WHITE">
+      <Label fx:id="addressLabel" alignment="TOP_LEFT" layoutX="91.0" layoutY="255.0" prefHeight="39.0" prefWidth="95.0" text="？？？？？？？？？？？" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font></Label>
+      <Button fx:id="hotelInfoButton" layoutX="17.0" layoutY="294.0" mnemonicParsing="false" onAction="#showHotelInfoView" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="酒店信息" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="cleckButton" layoutX="103.0" layoutY="295.0" mnemonicParsing="false" onAction="#showClerkInfoView" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="人员信息" textFill="WHITE">
+      <Button fx:id="cleckButton" layoutX="100.0" layoutY="294.0" mnemonicParsing="false" onAction="#showClerkInfoView" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="人员信息" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

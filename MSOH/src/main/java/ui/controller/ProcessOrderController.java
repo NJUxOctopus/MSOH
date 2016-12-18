@@ -7,8 +7,10 @@ import businesslogicservice.order_blservice.Order_BLService;
 import ui.view.controllerservice.ProcessOrder;
 import util.OrderStatus;
 import util.ResultMessage;
+import vo.OrderPriceVO;
 import vo.OrderVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -189,4 +191,25 @@ public class ProcessOrderController implements ProcessOrder {
         return orderUtil_blService.getOrderByStatusAndDate(timestamp, orderStatus);
     }
 
+
+    /**
+     * 适用促销策略
+     * @param orderVO
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public List<OrderPriceVO> usePromotion(OrderVO orderVO) throws IOException, ClassNotFoundException {
+        return  order_blService.usePromotion(orderVO);
+    }
+
+    /**
+     * 获得订单最低价格
+     * @param orderPriceVOs
+     * @return
+     * @throws RemoteException
+     */
+    public OrderPriceVO getLowestPrice(List<OrderPriceVO> orderPriceVOs) throws RemoteException {
+        return order_blService.getLowestPrice(orderPriceVOs);
+    }
 }

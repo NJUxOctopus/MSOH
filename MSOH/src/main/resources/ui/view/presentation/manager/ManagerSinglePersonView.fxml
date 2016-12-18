@@ -6,16 +6,18 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="120.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.manager.ManagerSinglePersonViewController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6c6d6f47" height="113.0" layoutX="8.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="616.0" />
       <ImageView fitHeight="129.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image_manager/manager_singlepersonframe.png" />
          </image>
       </ImageView>
-      <Button fx:id="modifyButton" layoutX="586.0" layoutY="20.0" mnemonicParsing="false" onAction="#showModifyView" prefHeight="91.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="修改信息" textFill="WHITE" wrapText="true">
+      <Button fx:id="modifyButton" layoutX="586.0" layoutY="8.0" mnemonicParsing="false" onAction="#showModifyView" prefHeight="105.0" prefWidth="32.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="修改信息" textFill="WHITE" wrapText="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

@@ -9,6 +9,8 @@ import businesslogicservice.promotion_blservice.Promotion_BLService;
 import ui.view.controllerservice.EditPromotion;
 import util.PromotionType;
 import util.ResultMessage;
+import vo.OrderPriceVO;
+import vo.OrderVO;
 import vo.PromotionVO;
 
 import java.io.IOException;
@@ -148,4 +150,6 @@ public class EditPromotionController implements EditPromotion {
     public List<PromotionVO> getPromotionByType(PromotionType promotionType, Timestamp timestamp) throws IOException, ClassNotFoundException {
         return promotionUtil_blService.getPromotionByType(promotionType, timestamp);
     }
+
+
 }

@@ -128,4 +128,20 @@ public class OrderVO implements Serializable{
 		this.finalPrice = finalPrice;
 	}
 
+	/**
+	 * 获得订单价格的构造方法
+	 * @param hotelID
+	 * @param estimatedCheckinTime
+	 * @param estimatedCheckoutTime
+	 * @param rooms
+	 */
+	public OrderVO(String hotelID, Timestamp estimatedCheckinTime, Timestamp estimatedCheckoutTime, String[] rooms) {
+
+		this.hotelID=hotelID;
+		this.estimatedCheckinTime = estimatedCheckinTime;
+		this.estimatedCheckoutTime = estimatedCheckoutTime;
+		this.rooms = rooms;
+
+	}
+
 }
