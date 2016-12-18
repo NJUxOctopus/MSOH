@@ -19,16 +19,19 @@ public class RoomVO implements Serializable {
 
     public double price;
 
+    public String roomID;
+
     public RoomVO() {
     }
 
-    public RoomVO(String hotelID, String roomType, int occupiedRooms, int reservedRooms, int leftRooms, double price) {
+    public RoomVO(String hotelID, String roomType, int occupiedRooms, int reservedRooms, int leftRooms, double price, String roomID) {
         this.hotelID = hotelID;
         this.roomType = roomType;
         this.occupiedRooms = occupiedRooms;
         this.reservedRooms = reservedRooms;
         this.leftRooms = leftRooms;
         this.price = price;
+        this.roomID = roomID;
     }
 
 //    public double getPrice() {
@@ -37,6 +40,7 @@ public class RoomVO implements Serializable {
 
     /**
      * 录入可用客房时使用的构造方法
+     *
      * @param hotelID
      * @param roomType
      * @param leftRooms

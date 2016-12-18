@@ -97,7 +97,7 @@ public class HotelUtil implements HotelUtil_BLService {
         List<RoomVO> roomVOList = new ArrayList<RoomVO>();
         for (RoomPO roomPO:roomPOList){
             roomVOList.add(new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
-                    roomPO.getLeftRooms(), roomPO.getPrice()));
+                    roomPO.getLeftRooms(), roomPO.getPrice(),roomPO.getRoomID()+""));
         }
         return new DailyRoomInfoVO(dailyRoomInfoPO.getHotelID(), dailyRoomInfoPO.getDate(), roomVOList);
     }
@@ -221,7 +221,7 @@ public class HotelUtil implements HotelUtil_BLService {
         for (RoomPO roomPO:roomPOList){
             if (roomName.equals(roomPO.getRoomType()))
                 return new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
-                        roomPO.getLeftRooms(), roomPO.getPrice());
+                        roomPO.getLeftRooms(), roomPO.getPrice(),roomPO.getRoomID()+"");
         }
         return null;
     }
