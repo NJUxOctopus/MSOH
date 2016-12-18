@@ -270,16 +270,28 @@ public class Hotel implements Hotel_BLService {
     public ResultMessage modifyDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
         DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(dailyRoomInfoVO.hotelID, dailyRoomInfoVO.date);
         List<RoomVO> roomVOList = dailyRoomInfoVO.room;
-        List<RoomPO> roomPOList = new ArrayList<RoomPO>();
-        for (RoomVO roomVO : roomVOList) {
-            roomPOList.add(new RoomPO(roomVO.hotelID, roomVO.roomType, 0, 0, roomVO.leftRooms
-                    , roomVO.price, dailyRoomInfoVO.date));
+        List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+        int change = 0;
+        for (RoomPO roomPO : roomPOList) {
+            if (roomPO.getRoomType().equals(roomVOList.get(0).roomType)) {
+                change = roomVOList.get(0).leftRooms - roomPO.getLeftRooms();
+                roomPO.setLeftRooms(roomVOList.get(0).leftRooms);
+            }
         }
-        dailyRoomInfoPO.setRoom(roomPOList);
-        if (hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO))
-            return ResultMessage.Hotel_ModifyDailyRoomInfoSuccess;
-        else
-            return ResultMessage.Fail;
+        hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
+        long oneDay = 1000 * 60 * 60 * 24;
+        for (int i = 1; i < 30; i++) {
+            Timestamp timestamp = new Timestamp(dailyRoomInfoVO.date.getTime() + i * oneDay);
+            DailyRoomInfoPO temp = hotel_dataService.getDailyRoomInfo(dailyRoomInfoVO.hotelID, timestamp);
+            List<RoomPO> list = temp.getRoom();
+            for (RoomPO roomPO : list) {
+                if (roomPO.getRoomType().equals(roomVOList.get(0).roomType)) {
+                    roomPO.setLeftRooms(roomPO.getLeftRooms() + change);
+                }
+            }
+            hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
+        }
+        return ResultMessage.Hotel_ModifyDailyRoomInfoSuccess;
     }
 
 
