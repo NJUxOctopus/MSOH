@@ -80,6 +80,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showBirthdayPromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(166);
         promotionSelectShade.setX(0);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Birthday, hotelID, time);
@@ -92,6 +93,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showHolidayPromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(148);
         promotionSelectShade.setX(166);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Holiday, hotelID, time);
@@ -105,6 +107,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showReservePromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(132);
         promotionSelectShade.setX(314);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Reserve, hotelID, time);
@@ -117,6 +120,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showEnterprisePromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(166);
         promotionSelectShade.setX(446);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Company, hotelID, time);
@@ -129,6 +133,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
      */
     @FXML
     private void showOtherPromotion() throws IOException, ClassNotFoundException {
+        promotionListPane.getChildren().clear();
         promotionSelectShade.setWidth(76);
         promotionSelectShade.setX(612);
         promotionVOs = editPromotion.getPromotionByTypeAndHotelID(PromotionType.HotelPromotion_Other, hotelID, time);
@@ -143,7 +148,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
      */
     private void addPane(List<PromotionVO> promotionVOs) throws RemoteException {
         PromotionVO promotionVO;
-        promotionListPane.getChildren().clear();
+
         PaneAdder paneAdder = new PaneAdder();
         int numOfPromotions = promotionVOs.size();
         promotionListPane.setPrefHeight(215 * numOfPromotions);

@@ -93,7 +93,7 @@
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="261.0" layoutY="276.0" text="无" textFill="WHITE">
+            <Label fx:id="remarksLabel" layoutX="261.0" layoutY="276.0" text="无" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
@@ -108,7 +108,7 @@
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="numOfCustomersLabel" layoutX="573.0" layoutY="427.0" text="1" textFill="WHITE">
+            <Label fx:id="numOfCustomersLabel" alignment="CENTER" layoutX="527.0" layoutY="427.0" prefHeight="27.0" prefWidth="106.0" text="1" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
@@ -118,17 +118,12 @@
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="promotionLabel" layoutX="792.0" layoutY="427.0" text="无" textFill="WHITE">
+            <Label fx:id="initialPriceLabel" alignment="CENTER" layoutX="872.0" layoutY="427.0" prefHeight="27.0" prefWidth="100.0" text="200" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="initialPriceLabel" layoutX="905.0" layoutY="427.0" text="200" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft YaHei" size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="finalPriceLabel" layoutX="1003.0" layoutY="427.0" text="200" textFill="WHITE">
+            <Label fx:id="finalPriceLabel" alignment="CENTER" layoutX="973.0" layoutY="427.0" prefHeight="27.0" prefWidth="94.0" text="200" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
@@ -141,6 +136,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <TextArea fx:id="promotionTextArea" layoutX="738.0" layoutY="411.0" prefHeight="60.0" prefWidth="132.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@clerk.css" wrapText="true">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font>
+            </TextArea>
             <TextArea fx:id="roomTypeTextArea" layoutX="426.0" layoutY="414.0" prefHeight="54.0" prefWidth="100.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@clerk.css" wrapText="true">
                <font>
                   <Font name="Microsoft YaHei" size="15.0" />
@@ -148,5 +148,20 @@
             </TextArea>
          </children>
       </Pane>
+      <Button layoutX="1179.0" layoutY="38.0" mnemonicParsing="false" onAction="#exit" prefHeight="16.0" prefWidth="15.0" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/exit1.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>

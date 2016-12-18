@@ -6,31 +6,33 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
+<Pane fx:id="singleOrderPane" prefHeight="140.0" prefWidth="669.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkSingleOrderController">
    <children>
-      <ImageView fitHeight="170.0" fitWidth="688.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b6c6e47" height="140.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="669.0" />
+      <ImageView fitHeight="170.0" fitWidth="669.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/SingleOrder.png" />
          </image>
       </ImageView>
-      <Label fx:id="orderIDLabel" layoutX="106.0" layoutY="20.0" text="111111111" textFill="WHITE">
+      <Label fx:id="orderIDLabel" layoutX="106.0" layoutY="19.0" text="111111111" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="numOfPeopleLabel" layoutX="106.0" layoutY="91.0" text="2" textFill="WHITE">
+      <Label fx:id="numOfPeopleLabel" layoutX="106.0" layoutY="87.0" text="2" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="priceLabel" layoutX="381.0" layoutY="91.0" text="666.66" textFill="WHITE">
+      <Label fx:id="priceLabel" layoutX="381.0" layoutY="87.0" text="666.66" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="roomTypeLabel" layoutX="106.0" layoutY="54.0" prefHeight="24.0" prefWidth="188.0" text="双人房" textFill="WHITE">
+      <Label fx:id="roomTypeLabel" layoutX="106.0" layoutY="52.0" prefHeight="24.0" prefWidth="188.0" text="双人房" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
@@ -40,7 +42,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="checkButton" layoutX="624.0" layoutY="12.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="入住" textFill="WHITE" wrapText="true">
+      <Button fx:id="checkButton" layoutX="604.0" layoutY="12.0" mnemonicParsing="false" onAction="#confirmCheck" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="入住" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -48,7 +50,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="624.0" layoutY="74.0" mnemonicParsing="false" onAction="#showOrderDetails" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="详情" textFill="WHITE" wrapText="true">
+      <Button layoutX="604.0" layoutY="74.0" mnemonicParsing="false" onAction="#showOrderDetails" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="详情" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -56,7 +58,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="haveChildLabel" layoutX="381.0" layoutY="54.0" text="无" textFill="WHITE">
+      <Label fx:id="haveChildLabel" layoutX="381.0" layoutY="52.0" text="无" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>

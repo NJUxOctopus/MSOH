@@ -136,4 +136,16 @@ public class EditPromotionController implements EditPromotion {
     public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType, String hotelID, Timestamp timestamp) throws IOException, ClassNotFoundException {
         return promotionUtil_blService.getPromotionByTypeAndHotelID(promotionType, hotelID, timestamp);
     }
+
+    /**
+     * 根据策略种类得到策略列表
+     *
+     * @param promotionType
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public List<PromotionVO> getPromotionByType(PromotionType promotionType, Timestamp timestamp) throws IOException, ClassNotFoundException {
+        return promotionUtil_blService.getPromotionByType(promotionType, timestamp);
+    }
 }

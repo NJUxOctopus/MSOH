@@ -22,6 +22,7 @@ public class ClerkModifyPromotionController implements ControlledStage {
     private Pane promotionPane;
 
     private PromotionVO promotionVO;
+    private String resource = "clerk/ClerkModifyPromotion.fxml";
 
     @Override
     public void setStageController(StageController stageController) {
@@ -76,6 +77,14 @@ public class ClerkModifyPromotionController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("util/ConfirmExit.fxml", 0.8);
         ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed("clerk/ClerkModifyHotelPromotion.fxml");
+        controller.setToBeClosed(resource);
+    }
+
+    /**
+     * 退出按钮结果，退出程序
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 }

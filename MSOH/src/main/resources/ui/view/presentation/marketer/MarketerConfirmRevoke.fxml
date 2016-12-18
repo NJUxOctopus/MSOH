@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerConfirmRevokeController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="202.0" stroke="#575eda" strokeType="INSIDE" strokeWidth="3.0" width="266.0" />
+      <Button layoutX="46.0" layoutY="148.0" mnemonicParsing="false" onAction="#confirmRevoke" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="确认" textFill="#458ee0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="147.0" layoutY="148.0" mnemonicParsing="false" onAction="#cancelRevoke" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="取消" textFill="#458ee0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER" layoutY="42.0" prefHeight="32.0" prefWidth="266.0" text="请选择恢复：" textFill="#458ee0">
+         <font>
+            <Font name="Microsoft YaHei" size="20.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="revokeCreditChoiceBox" layoutX="32.0" layoutY="86.0" prefHeight="29.0" prefWidth="203.0" style="-fx-border-color: #575eda; -fx-background-color: #ffffff00;" stylesheets="@MarketerChooseBox.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ChoiceBox>
+   </children>
+</Pane>

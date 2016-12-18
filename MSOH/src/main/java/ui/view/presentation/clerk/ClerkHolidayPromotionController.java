@@ -91,9 +91,10 @@ public class ClerkHolidayPromotionController implements ControlledStage {
         userAdmin = new UserAdminController();
         this.initial(userAdmin.findClerkByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
+        promotionNameTextField.setText(promotionVO.promotionName);
         discountLabel.setText(String.valueOf(promotionVO.discount));
-        startTimeButton.setText(String.valueOf(promotionVO.startTime));
-        endTimeButton.setText(String.valueOf(promotionVO.endTime));
+        startTimeButton.setText(String.valueOf(promotionVO.startTime).substring(0, 10));
+        endTimeButton.setText(String.valueOf(promotionVO.endTime).substring(0, 10));
     }
 
     /**

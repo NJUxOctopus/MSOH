@@ -25,7 +25,7 @@ public class ClerkConfirmCheckController implements ControlledStage {
 
     private StageController stageController;
 
-    private static String resource = "clerk/ClerkConfirmCheckIn.fxml";
+    private static String resource = "clerk/ClerkConfirmCheck.fxml";
 
     @FXML
     private Label cueLabel;
@@ -54,6 +54,7 @@ public class ClerkConfirmCheckController implements ControlledStage {
      * @param orderVO
      */
     public void initial(OrderVO orderVO, String clerkID) {
+        this.isOrderDetails = false;
         this.clerkID = clerkID;
         this.orderVO = orderVO;
         orderStatus = orderVO.orderType;
@@ -72,8 +73,8 @@ public class ClerkConfirmCheckController implements ControlledStage {
      * @param orderVO
      */
     public void initial(OrderVO orderVO, String clerkID, boolean isOrderDetails) {
-        this.isOrderDetails = isOrderDetails;
         this.initial(orderVO, clerkID);
+        this.isOrderDetails = isOrderDetails;
     }
 
     /**

@@ -6,10 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="689.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSingleCustomerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="111.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSingleCustomerController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b6c6e66" height="111.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="689.0" />
       <ImageView fitHeight="151.0" fitWidth="689.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/MarketerSingleCustomer.png" />
@@ -20,7 +22,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="209.0" layoutY="14.0" text="钱柯宇" textFill="WHITE">
+      <Label fx:id="customerNameLabel" layoutX="209.0" layoutY="14.0" text="钱柯宇" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
@@ -30,7 +32,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="227.0" layoutY="44.0" text="320581190001010229" textFill="WHITE">
+      <Label fx:id="customerIDLabel" layoutX="227.0" layoutY="44.0" text="320581190001010229" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
@@ -40,12 +42,12 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="209.0" layoutY="73.0" text="-50" textFill="WHITE">
+      <Label fx:id="customerCreditLabel" layoutX="209.0" layoutY="73.0" text="-50" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="clerkInfo" layoutX="603.0" layoutY="20.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="72.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="充值" textFill="WHITE">
+      <Button layoutX="603.0" layoutY="20.0" mnemonicParsing="false" onAction="#chargeCredit" prefHeight="72.0" prefWidth="72.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="充值" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>

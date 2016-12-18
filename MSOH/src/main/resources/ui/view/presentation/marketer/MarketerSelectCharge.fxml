@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="333.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerSelectChargeController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="219.0" stroke="#575eda" strokeType="INSIDE" strokeWidth="3.0" width="333.0" />
+      <Button layoutX="65.0" layoutY="156.0" mnemonicParsing="false" onAction="#confirmCharge" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="确认" textFill="#458ee0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="cueLabel" alignment="CENTER" layoutX="31.0" layoutY="78.0" prefHeight="32.0" prefWidth="106.0" text="充值额度：" textFill="#458ee0">
+         <font>
+            <Font name="Microsoft YaHei" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="192.0" layoutY="156.0" mnemonicParsing="false" onAction="#cancelCharge" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="取消" textFill="#458ee0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="chargeLimitTextField" layoutX="152.0" layoutY="78.0" prefHeight="32.0" prefWidth="154.0" promptText="请填写阿拉伯数字" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda; -fx-text-fill: #458ee0;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font name="Microsoft YaHei" size="15.0" />
+         </font>
+      </TextField>
+      <Label fx:id="cueLabel1" alignment="CENTER" layoutX="129.0" layoutY="78.0" prefHeight="32.0" prefWidth="20.0" text="￥" textFill="#458ee0">
+         <font>
+            <Font name="Microsoft YaHei" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

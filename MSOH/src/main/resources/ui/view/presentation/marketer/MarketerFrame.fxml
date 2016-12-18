@@ -134,7 +134,7 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="1064.0" layoutY="360.0" mnemonicParsing="false" onAction="#showModifyMarketerInfo" style="-fx-background-color: #ffffff00;" text="个人信息" textFill="WHITE">
+      <Button layoutX="1039.0" layoutY="362.0" mnemonicParsing="false" onAction="#showModifyMarketerInfo" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="个 人 信 息" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -142,7 +142,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="settings" layoutX="1084.0" layoutY="417.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="设置" textFill="WHITE">
+      <Button layoutX="1039.0" layoutY="420.0" mnemonicParsing="false" onAction="#switchAccount" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="切 换 账 号" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -150,7 +150,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="feedBack" layoutX="1084.0" layoutY="469.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="反馈" textFill="WHITE">
+      <Button layoutX="1039.0" layoutY="471.0" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="退 出 系 统" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
@@ -158,7 +158,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="aboutUs" layoutX="1064.0" layoutY="521.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="关于我们" textFill="WHITE">
+      <Button layoutX="1038.0" layoutY="521.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="关 于 我 们" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>

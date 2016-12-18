@@ -88,8 +88,10 @@ public class HotelUtil implements HotelUtil_BLService {
      */
     public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException {
         DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(hotelID, timestamp);
+        if(dailyRoomInfoPO==null)
+            return null;
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
-        System.out.print(hotelID+" "+timestamp);
+        //System.out.print(hotelID+" "+timestamp);
         if (roomPOList == null || roomPOList.isEmpty())
             return null;
         List<RoomVO> roomVOList = new ArrayList<RoomVO>();
@@ -345,7 +347,7 @@ public class HotelUtil implements HotelUtil_BLService {
      */
     public Boolean roomEnough(String hotelID, Timestamp timestamp1, Timestamp timestamp2, int BigBedRoom, int SingleRoom, int StandardRoom) throws RemoteException {
         long oneDay = 1000 * 60 * 60 * 24;
-        long days = (timestamp1.getTime() - timestamp2.getTime()) / oneDay;//算共住多少天
+        long days = (timestamp2.getTime() - timestamp1.getTime()) / oneDay;//算共住多少天
         List<Timestamp> list = new ArrayList<Timestamp>();
         for (int i = 0; i < days; i++) {
             list.add(new Timestamp(timestamp1.getTime() + i * oneDay));

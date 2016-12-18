@@ -78,7 +78,7 @@
                </font></TextField>
             <ScrollPane layoutY="96.0" prefHeight="323.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css">
               <content>
-                <AnchorPane fx:id="orderListPane" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="686.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css" />
+                <AnchorPane fx:id="orderListPane" minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="669.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css" />
               </content>
             </ScrollPane>
             <Button layoutX="623.0" layoutY="49.0" mnemonicParsing="false" onAction="#searchOrder" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: #ffffff00;" textFill="WHITE">

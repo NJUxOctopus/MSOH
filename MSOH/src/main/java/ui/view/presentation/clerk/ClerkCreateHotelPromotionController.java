@@ -53,6 +53,7 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         promotionPane.getChildren().clear();
 
         paneAdder.addPane(promotionPane, "clerk/ClerkBirthdayPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkBirthdayPromotion.fxml");
         ClerkBirthdayPromotionController clerkBirthdayPromotionController = (ClerkBirthdayPromotionController) paneAdder.getController();
         clerkBirthdayPromotionController.initial(clerkID);
     }
@@ -122,6 +123,14 @@ public class ClerkCreateHotelPromotionController implements ControlledStage {
         stageController.loadStage("util/ConfirmExit.fxml", 0.8);
         ConfirmExitController controller = (ConfirmExitController) stageController.getController();
         controller.setToBeClosed("clerk/ClerkCreateHotelPromotion.fxml");
+    }
+
+    /**
+     * 退出按钮结果，退出程序
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
 }

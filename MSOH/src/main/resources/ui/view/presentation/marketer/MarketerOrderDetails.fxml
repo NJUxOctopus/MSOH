@@ -3,12 +3,13 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerOrderDetailsController">
     <children>
         <ImageView fitHeight="797.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -20,7 +21,7 @@
                 <Image url="@../image/ClerkModifyAvailableRoomsFrame.png" />
             </image>
         </ImageView>
-        <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
+        <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" onAction="#showOrderList" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">
             <graphic>
                 <ImageView fx:id="backButton" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -40,104 +41,94 @@
                 <Font name="Microsoft YaHei" size="57.0" />
             </font>
         </Label>
-        <Pane layoutX="74.0" layoutY="160.0" prefHeight="522.0" prefWidth="1129.0">
+        <Pane fx:id="orderDetailsPane" layoutX="74.0" layoutY="160.0" prefHeight="522.0" prefWidth="1129.0">
             <children>
                 <ImageView fitHeight="473.0" fitWidth="1020.0" layoutX="55.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../image/ClerkSingleOrderFrame.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="293.0" layoutY="31.0" text="钱柯宇" textFill="WHITE">
+                <Label fx:id="customerNameLabel" layoutX="293.0" layoutY="31.0" text="钱柯宇" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="678.0" layoutY="31.0" text="13801571111" textFill="WHITE">
+                <Label fx:id="customerPhoneLabel" layoutX="678.0" layoutY="31.0" text="13801571111" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="293.0" layoutY="65.0" text="320581190001010229" textFill="WHITE">
+                <Label fx:id="customerIDLabel" layoutX="293.0" layoutY="65.0" text="320581190001010229" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="312.0" layoutY="196.0" text="123456789" textFill="WHITE">
+                <Label fx:id="orderIDLabel" layoutX="312.0" layoutY="196.0" text="123456789" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="701.0" layoutY="196.0" text="未执行订单" textFill="WHITE">
+                <Label fx:id="orderStatusLabel" layoutX="701.0" layoutY="196.0" text="未执行订单" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="346.0" layoutY="225.0" text="2016/12/1" textFill="WHITE">
+                <Label fx:id="estimatedCheckinTimeLabel" layoutX="346.0" layoutY="225.0" text="2016-12-1" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="743.0" layoutY="225.0" text="2016/12/2" textFill="WHITE">
+                <Label fx:id="actualCheckinTimeLabel" layoutX="743.0" layoutY="225.0" text="2016-12-2" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="346.0" layoutY="257.0" text="2016/12/5" textFill="WHITE">
+                <Label fx:id="estimatedCheckoutTimeLabel" layoutX="346.0" layoutY="257.0" text="2016-12-5" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="743.0" layoutY="257.0" text="2016/12/5" textFill="WHITE">
+                <Label fx:id="actualCheckoutTimeLabel" layoutX="743.0" layoutY="257.0" text="2016-12-5" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="266.0" layoutY="282.0" text="无" textFill="WHITE">
+                <Label fx:id="remarksLabel" layoutX="266.0" layoutY="282.0" text="无" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="279.0" layoutY="417.0" text="MSOH连锁酒店" textFill="WHITE">
+                <Label fx:id="hotelNameLabel" layoutX="279.0" layoutY="417.0" text="MSOH连锁酒店" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="256.0" layoutY="446.0" text="123456" textFill="WHITE">
+                <Label fx:id="hotelIDLabel" layoutX="256.0" layoutY="446.0" text="123456" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="453.0" layoutY="433.0" text="单人房" textFill="WHITE">
+                <Label fx:id="numOfCustomersLabel" alignment="CENTER" layoutX="537.0" layoutY="433.0" prefHeight="27.0" prefWidth="99.0" text="1" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="578.0" layoutY="433.0" text="1" textFill="WHITE">
+                <Label fx:id="haveChildrenLabel" alignment="CENTER" layoutX="638.0" layoutY="433.0" prefHeight="27.0" prefWidth="100.0" text="无" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="678.0" layoutY="433.0" text="无" textFill="WHITE">
+                <Label fx:id="initialPriceLabel" alignment="CENTER" layoutX="876.0" layoutY="433.0" prefHeight="27.0" prefWidth="99.0" text="200" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="797.0" layoutY="433.0" text="无" textFill="WHITE">
+                <Label fx:id="finalPriceLabel" alignment="CENTER" layoutX="976.0" layoutY="433.0" prefHeight="27.0" prefWidth="94.0" text="200" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="910.0" layoutY="433.0" text="200" textFill="WHITE">
-                    <font>
-                        <Font name="Microsoft YaHei" size="20.0" />
-                    </font>
-                </Label>
-                <Label layoutX="1008.0" layoutY="433.0" text="200" textFill="WHITE">
-                    <font>
-                        <Font name="Microsoft YaHei" size="20.0" />
-                    </font>
-                </Label>
-            <Button fx:id="clerkInfo" layoutX="961.0" layoutY="481.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="撤 销" textFill="WHITE">
+            <Button layoutX="961.0" layoutY="481.0" mnemonicParsing="false" onAction="#revokeOrder" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="撤 销" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="16.0" />
                </font>
@@ -145,7 +136,32 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <TextArea fx:id="roomTypeTextArea" layoutX="428.0" layoutY="420.0" prefHeight="54.0" prefWidth="106.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@../clerk/clerk.css" wrapText="true">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="promotionTextArea" layoutX="740.0" layoutY="417.0" prefHeight="60.0" prefWidth="136.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@../clerk/clerk.css" wrapText="true">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font>
+            </TextArea>
             </children>
         </Pane>
+      <Button layoutX="1179.0" layoutY="38.0" mnemonicParsing="false" onAction="#exit" prefHeight="16.0" prefWidth="15.0" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/exit1.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </Pane>

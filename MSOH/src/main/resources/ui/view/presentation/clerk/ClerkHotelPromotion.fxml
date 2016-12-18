@@ -56,9 +56,9 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane layoutY="48.0" prefHeight="376.0" prefWidth="688.0" style="-fx-background-color: #ffffff;" stylesheets="@clerk.css">
+      <ScrollPane layoutY="48.0" prefHeight="376.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css">
          <content>
-            <AnchorPane fx:id="promotionListPane" minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="669.0" />
+            <AnchorPane fx:id="promotionListPane" minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="669.0" style="-fx-background-color: #ffffff00;" />
          </content>
       </ScrollPane>
       <Button layoutX="571.0" layoutY="430.0" mnemonicParsing="false" onAction="#showCreatePromotion" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="制定" textFill="WHITE" wrapText="true">

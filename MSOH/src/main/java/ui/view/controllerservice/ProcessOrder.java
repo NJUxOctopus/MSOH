@@ -21,7 +21,7 @@ public interface ProcessOrder {
 
     public ResultMessage setAbnormal(OrderVO orderVO);
 
-    public ResultMessage renewOrder(OrderVO orderVO);
+    public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException;
 
     public ResultMessage executeOrder(OrderVO orderVO) throws RemoteException;
 

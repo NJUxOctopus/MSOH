@@ -62,8 +62,8 @@ public class ClerkSinglePromotionController implements ControlledStage {
         }
         targetMemberLabel.setText(target);
 
-        startTimeLabel.setText(String.valueOf(promotionVO.startTime));
-        endTimeLabel.setText(String.valueOf(promotionVO.endTime));
+        startTimeLabel.setText(String.valueOf(promotionVO.startTime).substring(0, 10));
+        endTimeLabel.setText(String.valueOf(promotionVO.endTime).substring(0, 10));
         enterpriseNameLabel.setText(promotionVO.companyName == null ? "无" : promotionVO.companyName);
         roomNumLabel.setText(String.valueOf(promotionVO.minRoom));
         discountLabel.setText(String.valueOf(promotionVO.discount));

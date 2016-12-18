@@ -39,6 +39,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
     private HotelVO hotelVO;
     private OrderVO orderVO;
     private ProcessOrder processOrder;
+    private PaneAdder paneAdder;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -51,6 +52,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
     public void initial(String ID) throws RemoteException {
         this.clerkID = ID;
         hotelAdmin = new HotelAdminController();
+        paneAdder = new PaneAdder();
         processOrder = new ProcessOrderController();
         hotelVO = hotelAdmin.findByClerkID(clerkID);
         hotelID = hotelVO.hotelID;
@@ -81,23 +83,21 @@ public class ClerkCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void searchOrder() throws RemoteException {
-        orderListPane.getChildren().remove(orderSelectShade);
         String searchInfo = searchTextField.getText();
+        orderListPane.getChildren().clear();
         if (searchInfo.length() == 18) {
             //输入的是顾客ID
-            orderListPane.getChildren().clear();
             processOrder = new ProcessOrderController();
             List<OrderVO> orderVOList = processOrder.getOrderByCustomerID(searchTextField.getText());
             this.addOrder(orderVOList);
         } else if (searchInfo.length() == 9) {
             //输入的是订单号
-            orderListPane.getChildren().clear();
             processOrder = new ProcessOrderController();
             orderVO = processOrder.getSingle(searchTextField.getText());
             PaneAdder paneAdder = new PaneAdder();
+            paneAdder.addPane(orderListPane, "clerk/ClerkSingleOrder.fxml", 0, 0);
             ClerkSingleOrderController clerkSingleOrderController = (ClerkSingleOrderController) paneAdder.getController();
             clerkSingleOrderController.initial(orderVO, clerkID);
-            paneAdder.addPane(orderListPane, "clerk/ClerkSingleOrder.fxml", 0, 0);
         } else {
             //输入的信息格式错误
             stageController = new StageController();
@@ -113,8 +113,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
      * @param orderVOList
      */
     private void addOrder(List<OrderVO> orderVOList) throws RemoteException {
-        orderListPane.getChildren().clear();
-        PaneAdder paneAdder = new PaneAdder();
+
         int numOfOrder = orderVOList.size();
         orderListPane.setPrefHeight(numOfOrder * 160);
 
@@ -131,6 +130,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void showUnexecutedOrders() throws RemoteException {
+        orderListPane.getChildren().clear();
         orderSelectShade.setX(0);
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.UNEXECUTED);
         if (!orderVOList.isEmpty()) {
@@ -144,6 +144,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void showExecutedOrders() throws RemoteException {
+        orderListPane.getChildren().clear();
         orderSelectShade.setX(137);
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.EXECUTED);
         if (!orderVOList.isEmpty()) {
@@ -157,6 +158,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void showFinishedOrders() throws RemoteException {
+        orderListPane.getChildren().clear();
         orderSelectShade.setX(274);
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.FINISHED_EVALUATED);//已结束且已评价的所有订单
         orderVOList.addAll(processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.FINISHED_UNEVALUATED));//已结束且未评价的所有订单
@@ -171,6 +173,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void showRevokedOrders() throws RemoteException {
+        orderListPane.getChildren().clear();
         orderSelectShade.setX(412);
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.REVOKED);
         if (!orderVOList.isEmpty()) {
@@ -184,6 +187,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
      */
     @FXML
     private void showAbnormalOrders() throws RemoteException {
+        orderListPane.getChildren().clear();
         orderSelectShade.setX(550);
         List<OrderVO> orderVOList = processOrder.getOrderByHotelAndStatus(hotelID, OrderStatus.ABNORMAL);
         if (!orderVOList.isEmpty()) {

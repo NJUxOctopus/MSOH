@@ -22,11 +22,14 @@ public class MarketerFrameController implements ControlledStage {
 
     private StageController stageController;
 
+    private String resource = "marketer/MarketerFrame.fxml";
+
     @FXML
     private Pane marketerFramePane;
     @FXML
     private Label marketerName;
 
+    private PaneAdder paneAdder;
     private String marketerID;
     private MarketerVO marketerVO;
     private UserAdmin userAdmin;
@@ -41,6 +44,7 @@ public class MarketerFrameController implements ControlledStage {
      */
     public void initial(String ID) throws RemoteException {
         userAdmin = new UserAdminController();
+        paneAdder = new PaneAdder();
         marketerID = ID;
         marketerVO = userAdmin.findMarketerByID(marketerID);
         marketerName.setText(marketerVO.name);
@@ -56,18 +60,21 @@ public class MarketerFrameController implements ControlledStage {
 
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerCheckOrderList.fxml", 0, 0);
+        MarketerCheckOrderListController marketerCheckOrderListController = (MarketerCheckOrderListController) paneAdder.getController();
+        marketerCheckOrderListController.initial(marketerID);
     }
 
     /**
      * 促销策略按钮结果，显示网站促销策略列表
      */
     @FXML
-    private void showWebPromotion() throws IOException {
+    private void showWebPromotion() throws IOException, ClassNotFoundException {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerWebPromotion.fxml", 0, 0);
+        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) paneAdder.getController();
+        marketerWebPromotionController.initial(marketerID);
     }
 
     /**
@@ -78,7 +85,6 @@ public class MarketerFrameController implements ControlledStage {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerMemberLevel.fxml", 0, 0);
     }
 
@@ -90,8 +96,9 @@ public class MarketerFrameController implements ControlledStage {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
-        PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerChargeCredit.fxml", 0, 0);
+        MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController) paneAdder.getController();
+        marketerChargeCreditController.initial(marketerID);
     }
 
     /**
@@ -103,6 +110,24 @@ public class MarketerFrameController implements ControlledStage {
         stageController.loadStage("marketer/MarketerModifyPersonalInfo.fxml", 1);
         MarketerModifyPersonalInfoController marketerModifyPersonalInfoController = (MarketerModifyPersonalInfoController) stageController.getController();
         marketerModifyPersonalInfoController.initial(marketerID);
+    }
+
+    /**
+     * 切换账号
+     */
+    @FXML
+    private void switchAccount() {
+        stageController = new StageController();
+        stageController.closeStage(resource);
+        stageController.loadStage("login/LoginView.fxml", 1);
+    }
+
+    /**
+     * 退出系统
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
     }
 
 

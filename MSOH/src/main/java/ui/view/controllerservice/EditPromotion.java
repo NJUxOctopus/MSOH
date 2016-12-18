@@ -31,5 +31,8 @@ public interface EditPromotion {
 
     public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType, String hotelID, Timestamp timestamp) throws IOException, ClassNotFoundException;
 
+    public List<PromotionVO> getPromotionByType(PromotionType promotionType, Timestamp timestamp) throws IOException, ClassNotFoundException;
 
-}
+
+
+    }

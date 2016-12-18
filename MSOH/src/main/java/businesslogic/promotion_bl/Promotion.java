@@ -49,7 +49,7 @@ public class Promotion implements Promotion_BLService {
         } else {
             String targetHotel = "";
             if(promotionVO.targetArea.equals("所有商圈")){
-                targetHotel += "所有酒店";
+                targetHotel += "All";
             }else{
                 List<HotelVO> hotelVOList = hotelUtil.getByArea(promotionVO.targetArea);
                 for (int i = 0; i < hotelVOList.size(); i++) {
@@ -84,7 +84,7 @@ public class Promotion implements Promotion_BLService {
         } else {
             String targetArea = hotelUtil.getByID(promotionVO.targetHotel[0]).area;
             if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Birthday) || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Holiday)
-                    || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other)) {
+                    || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other)||promotionVO.promotionType.equals(PromotionType.HotelPromotion_Reserve)) {
                 if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                         promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
                         promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,

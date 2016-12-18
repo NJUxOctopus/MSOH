@@ -91,8 +91,8 @@ public class ClerkBirthdayPromotionController implements ControlledStage {
         this.initial(userAdmin.findClerkByName(promotionVO.framerName).get(0).ID);
         confirmButton.setText("修改");
         discountLabel.setText(String.valueOf(promotionVO.discount));
-        startTimeButton.setText(String.valueOf(promotionVO.startTime));
-        endTimeButton.setText(String.valueOf(promotionVO.endTime));
+        startTimeButton.setText(String.valueOf(promotionVO.startTime).substring(0, 10));
+        endTimeButton.setText(String.valueOf(promotionVO.endTime).substring(0, 10));
     }
 
     /**
@@ -151,6 +151,7 @@ public class ClerkBirthdayPromotionController implements ControlledStage {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+        stageController = new StageController();
 
         editPromotion = new EditPromotionController();
 

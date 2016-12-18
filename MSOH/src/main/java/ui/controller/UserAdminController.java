@@ -46,6 +46,7 @@ public class UserAdminController implements UserAdmin {
         marketerUtil_blService = new MarketerUtil();
         marketer_blService = new Marketer();
         clerk_blService = new Clerk();
+        clerkUtil_blService = new ClerkUtil();
         managerUtil_blService = new ManagerUtil();
     }
 
@@ -61,8 +62,8 @@ public class UserAdminController implements UserAdmin {
         return null;
     }
 
-    public List<ClerkVO> findClerkByName(String name) {
-        return null;
+    public List<ClerkVO> findClerkByName(String name) throws RemoteException {
+        return clerkUtil_blService.getByName(name);
     }
 
     public ClerkVO findClerkByID(String ID) throws RemoteException {
@@ -82,8 +83,8 @@ public class UserAdminController implements UserAdmin {
         return marketerUtil_blService.getSingle(ID);
     }
 
-    public List<CustomerVO> findAllCustomer() {
-        return null;
+    public List<CustomerVO> findAllCustomer() throws RemoteException {
+        return customerUtil_blService.getAll();
     }
 
     public List<CustomerVO> findCustomerByName(String name) throws RemoteException {
