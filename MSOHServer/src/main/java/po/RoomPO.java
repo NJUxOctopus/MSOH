@@ -52,6 +52,10 @@ public class RoomPO implements Serializable, Cloneable {
         this.date = date;
     }
 
+    public int getRoomID() {
+        return roomID;
+    }
+
     public String getHotelID() {
         return hotelID;
     }

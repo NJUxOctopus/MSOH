@@ -40,6 +40,10 @@ public class RoomPO implements Serializable {
 		this.date=date;
 	}
 
+	public int getRoomID() {
+		return roomID;
+	}
+
 	public String getHotelID() {
 		return hotelID;
 	}

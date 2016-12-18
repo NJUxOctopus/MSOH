@@ -17,7 +17,7 @@ public class RoomTest {
     public void testAddRoom() throws RemoteException{
         Hotel_DataService hotelDataService= Hotel_DataServiceImpl.getInstance();
 
-        Timestamp ts=Timestamp.valueOf("2017-01-08 00:00:00");
+        Timestamp ts=Timestamp.valueOf("2017-01-16 00:00:00");
 
         RoomPO room1=new RoomPO("10000006","大床房",0,0,350,898,ts);
         RoomPO room2=new RoomPO("10000006","单人房",0,0,90,699,ts);
