@@ -4,10 +4,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="creditRecordPanel1" prefHeight="150.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleCreditRecordViewController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6c6d6f47" height="143.0" layoutX="7.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="841.0" />
       <ImageView fitHeight="200.0" fitWidth="855.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image_customer/customer_singlecreditrecord.png" />

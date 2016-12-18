@@ -2,6 +2,8 @@ package ui.view.controllerservice;
 
 import util.PromotionType;
 import util.ResultMessage;
+import vo.OrderPriceVO;
+import vo.OrderVO;
 import vo.PromotionVO;
 
 import java.io.IOException;
@@ -33,6 +35,4 @@ public interface EditPromotion {
 
     public List<PromotionVO> getPromotionByType(PromotionType promotionType, Timestamp timestamp) throws IOException, ClassNotFoundException;
 
-
-
-    }
+}

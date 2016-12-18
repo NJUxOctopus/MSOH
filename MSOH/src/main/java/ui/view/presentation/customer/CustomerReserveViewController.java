@@ -22,10 +22,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ErrorBoxController;
 import ui.view.presentation.util.SelectTimeViewController;
 import util.ResultMessage;
-import vo.CustomerVO;
-import vo.HotelVO;
-import vo.OrderVO;
-import vo.PromotionVO;
+import vo.*;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -47,6 +44,8 @@ public class CustomerReserveViewController implements ControlledStage{
     private HotelVO hotelVO;
 
     private String[] rooms;
+
+    private List<OrderPriceVO> orderPriceVOList;
 
     @FXML
     private TextField customerNameTextField;
@@ -193,8 +192,9 @@ public class CustomerReserveViewController implements ControlledStage{
         selectTimeViewController.init();
     }
 
-    public void setCheckInTime(String checkInTime){
-        checkInTimeTextField.setText(checkInTime);
+    public void setCheckInTime(String scheckInTime){
+        checkInTimeTextField.setText(scheckInTime);
+        roomTypeTextField.setText("");
     }
 
     /**
@@ -209,20 +209,31 @@ public class CustomerReserveViewController implements ControlledStage{
         selectTimeViewController.init();
     }
 
-    public void setCheckOutTime(String checkOutTime){
-        checkOutTimeTextField.setText(checkOutTime);
+    public void setCheckOutTime(String scheckOutTime){
+        checkOutTimeTextField.setText(scheckOutTime);
+        roomTypeTextField.setText("");
     }
 
 
+    /**
+     * 跳出房间选择框
+     */
     @FXML
     private void selectRoom(){
-        stageController = new StageController();
-        stageController.loadStage("customer/CustomerChooseRoom.fxml", 1);
-        CustomerChooseRoomController customerChooseRoomController = (CustomerChooseRoomController) stageController.getController();
-        customerChooseRoomController.initial(hotelVO.hotelID);
+        if(checkInTimeTextField.getText().equals("") || checkOutTimeTextField.getText().equals("")){
+            stageController = new StageController();
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
+            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+            errorBoxController.setLabel("请先选择入住日期与退房日期！");
+        }else {
+            stageController = new StageController();
+            stageController.loadStage("customer/CustomerChooseRoom.fxml", 1);
+            CustomerChooseRoomController customerChooseRoomController = (CustomerChooseRoomController) stageController.getController();
+            customerChooseRoomController.initial(hotelVO.hotelID);
+        }
     }
 
-    public void setRoomAndPrice(String[] rooms,double totalPrice){
+    public void setRoomAndPrice(String[] rooms){
         this.rooms = rooms;
         String[] room = {"单人房", "标间", "大床房"};
         int[] roomNum = {0, 0, 0};
@@ -242,9 +253,57 @@ public class CustomerReserveViewController implements ControlledStage{
             }
         }
         roomTypeTextField.setText(roomType);
-        prePriceTextField.setText(totalPrice + "");
+
+        setPriceAndPromotion();
     }
 
+    /**
+     * 设置价格和促销策略
+     */
+    private void setPriceAndPromotion(){
+        Timestamp checkInTime = Timestamp.valueOf(checkInTimeTextField.getText() + " 00:00:00");
+        Timestamp checkOutTime = Timestamp.valueOf(checkOutTimeTextField.getText() + " 00:00:00");
+        OrderVO orderVO = new OrderVO(hotelIDTextField.getText(), checkInTime, checkOutTime, rooms);
+
+        ProcessOrder processOrder = new ProcessOrderController();
+        try {
+            //初始化促销策略选择下拉框
+            orderPriceVOList = processOrder.usePromotion(orderVO);
+            final ObservableList<String> promotion = FXCollections.observableArrayList();
+            for(int i = 0; i < orderPriceVOList.size(); i++){
+                if(orderPriceVOList.get(i).promotionName != null) {
+                    promotion.add(orderPriceVOList.get(i).promotionName);
+                }else{
+                    promotion.add("无");
+                }
+            }
+            promotionChoiceBox.setItems(promotion);
+
+            //获得最低价格
+            OrderPriceVO lowestOrderPrice = processOrder.getLowestPrice(orderPriceVOList);
+            if(lowestOrderPrice.promotionName != null) {
+                promotionChoiceBox.setValue(lowestOrderPrice.promotionName);
+            }else{
+                promotionChoiceBox.setValue("无");
+            }
+            afterPriceTextField.setText(lowestOrderPrice.finalPrice + "");
+
+            promotionChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    int select = promotionChoiceBox.getSelectionModel().getSelectedIndex();
+                    afterPriceTextField.setText(orderPriceVOList.get(select).finalPrice + "");
+                }
+            });
+
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 加号按钮结果，房间数量+1
@@ -265,7 +324,8 @@ public class CustomerReserveViewController implements ControlledStage{
             roomNumTextField.setText(String.valueOf((peopleNum - 1)));
         }
     }
-    public void init(String customerID, HotelVO hotelVO){
+
+    public void init(String customerID, HotelVO hotelVO) {
         this.customerID = customerID;
         this.hotelVO = hotelVO;
         setCustomerInfo();
@@ -273,28 +333,6 @@ public class CustomerReserveViewController implements ControlledStage{
         hasChildChoiceBox.setItems(FXCollections.observableArrayList(
                 "有", "无"));
         setPromotionInfo();
-    }
-
-    private void setRoomInfo(){
-        String[] room = {"单人房", "标间", "大床房"};
-        int[] roomNum = {0, 0, 0};
-        for(int i = 0; i < rooms.length; i++) {
-            if(rooms[i].equals(room[0])){
-                roomNum[0]++;
-            }else if(rooms[i].equals(room[1])){
-                roomNum[1]++;
-            }else if(rooms[i].equals(room[2])){
-                roomNum[2]++;
-            }
-        }
-        String roomType = "";
-        for(int i = 0; i < 3; i++){
-            if(roomNum[i] != 0){
-                roomType += room[i] + "*" + roomNum[i] + '\n';
-            }
-        }
-        roomTypeTextField.setText(roomType);
-
     }
 
     /**

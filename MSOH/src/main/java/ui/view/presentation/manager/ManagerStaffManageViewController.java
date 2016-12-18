@@ -67,6 +67,9 @@ public class ManagerStaffManageViewController implements ControlledStage {
 
     private List<MarketerVO> marketerVOList = new ArrayList<MarketerVO>();
 
+    private List<UserVO>  userVOList = new ArrayList<UserVO>();
+
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -119,6 +122,7 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 if (staffType.equals("网站营销人员")) {
                     findMarketer();
                 }
+
             }
         }
     }
@@ -131,7 +135,7 @@ public class ManagerStaffManageViewController implements ControlledStage {
         CustomerVO customerVO;
         try {
             if (inputType.equals("ID")){
-                clerkVOList.clear();
+                customerVOList.clear();
                 customerVO = userAdmin.findCustomerByID(input);
                 if(customerVO != null) {
                     customerVOList.add(customerVO);
@@ -139,6 +143,7 @@ public class ManagerStaffManageViewController implements ControlledStage {
                     addPersonPane("客户");
             }
             if (inputType.equals("姓名")){
+                customerVOList.clear();
                 customerVOList = userAdmin.findCustomerByName(input);
                 addPersonPane("客户");
             }
@@ -163,6 +168,7 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 }
             }
             if (inputType.equals("姓名")){
+                marketerVOList.clear();
                 marketerVOList = userAdmin.findMarketerByName(input);
             }
         }catch (RemoteException e){
@@ -185,6 +191,7 @@ public class ManagerStaffManageViewController implements ControlledStage {
                     clerkVOList.add(clerkVO);
             }
             if (inputType.equals("姓名")){
+                clerkVOList.clear();
                 clerkVOList = userAdmin.findClerkByName(input);
             }
         }catch (RemoteException e){
@@ -192,6 +199,8 @@ public class ManagerStaffManageViewController implements ControlledStage {
         }
         addPersonPane("酒店工作人员");
     }
+
+
 
     /**
      * 根据人员类型添加单个人员信息面板
@@ -251,6 +260,7 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 "ID", "姓名"));
 
         typeChoiceBox.setValue("ID");
+
     }
 
 }

@@ -24,7 +24,7 @@
       </ImageView>
       <Button fx:id="hotelButton" layoutX="-6.0" layoutY="198.0" mnemonicParsing="false" onAction="#viewHotelDetails" prefHeight="39.0" prefWidth="270.0" style="-fx-background-color: #ffffff00;" text="南大仙林招待所" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font size="21.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

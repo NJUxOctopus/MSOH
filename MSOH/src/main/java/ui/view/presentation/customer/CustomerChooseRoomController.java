@@ -89,7 +89,7 @@ public class CustomerChooseRoomController implements ControlledStage {
 
         stageController.closeStage(resource);
         CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController("customer/CustomerReserveView.fxml");
-        customerReserveViewController.setRoomAndPrice(rooms.toArray(new String[rooms.size()]), totalPrice);
+        customerReserveViewController.setRoomAndPrice(rooms.toArray(new String[rooms.size()]));
     }
 
     /**
