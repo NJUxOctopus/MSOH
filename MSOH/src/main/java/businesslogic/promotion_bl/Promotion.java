@@ -49,7 +49,7 @@ public class Promotion implements Promotion_BLService {
         } else {
             String targetHotel = "";
             if(promotionVO.targetArea.equals("所有商圈")){
-                targetHotel += "所有酒店";
+                targetHotel += "All";
             }else{
                 List<HotelVO> hotelVOList = hotelUtil.getByArea(promotionVO.targetArea);
                 for (int i = 0; i < hotelVOList.size(); i++) {

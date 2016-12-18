@@ -35,7 +35,6 @@ public class OrderUtil implements OrderUtil_BLService {
         OrderPO orderPO = order_dataService.getOrderByOrderID(orderID);
         if (orderPO == null) {
             //若不存在该订单
-            System.out.println("null");
             return null;
         }
         return new OrderVO(orderPO.getCustomerName(), orderPO.getPhone(), orderPO.getCustomerID(), orderPO.getHotelID(),

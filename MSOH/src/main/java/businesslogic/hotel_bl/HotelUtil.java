@@ -91,7 +91,7 @@ public class HotelUtil implements HotelUtil_BLService {
         if(dailyRoomInfoPO==null)
             return null;
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
-        System.out.print(hotelID+" "+timestamp);
+        //System.out.print(hotelID+" "+timestamp);
         if (roomPOList == null || roomPOList.isEmpty())
             return null;
         List<RoomVO> roomVOList = new ArrayList<RoomVO>();
