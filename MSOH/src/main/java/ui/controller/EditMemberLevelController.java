@@ -18,8 +18,15 @@ public class EditMemberLevelController implements EditMemberLevel {
         memberLevel_blService = new MemberLevel();
     }
 
-    public ResultMessage addMemberLevel(MemberLevelVO memberLevelVO) {
-        return null;
+    /**
+     * 修改会员等级制度
+     *
+     * @param memberLevelVO
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage modifyMemberLevel(MemberLevelVO memberLevelVO) throws RemoteException {
+        return memberLevel_blService.modifyMemberLevel(memberLevelVO);
     }
 
     public MemberLevelVO getMemberLevel() throws RemoteException{

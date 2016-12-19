@@ -4,6 +4,8 @@ import businesslogic.bl_Factory.Abstract_BLFactory;
 import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogic.customer_bl.CustomerUtil;
 import businesslogic.hotel_bl.HotelUtil;
+import businesslogic.member_bl.MemberLevel;
+import businesslogic.member_bl.MemberUtil;
 import businesslogicservice.promotion_blservice.Promotion_BLService;
 import dataservice.promotion_dataservice.Promotion_DataService;
 import po.PromotionPO;
@@ -11,9 +13,7 @@ import rmi.RemoteHelper;
 import util.PromotionType;
 import util.ResultMessage;
 import util.strategy.*;
-import vo.HotelVO;
-import vo.OrderVO;
-import vo.PromotionVO;
+import vo.*;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -33,6 +33,8 @@ public class Promotion implements Promotion_BLService {
     private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
     private PromotionUtil promotionUtil = abstract_blFactory.createPromotionUtil();
     private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
+    private MemberLevel memberLevel = abstract_blFactory.createMemberLevel();
+    private MemberUtil memberUtil = abstract_blFactory.createMemberUtil();
 
     /**
      * 增加网站营销策略，只需要填写目标商圈，自动获得商圈内所有酒店，用分号隔开
@@ -48,9 +50,9 @@ public class Promotion implements Promotion_BLService {
             return ResultMessage.Blank;
         } else {
             String targetHotel = "";
-            if(promotionVO.targetArea.equals("所有商圈")){
+            if (promotionVO.targetArea.equals("所有商圈")) {
                 targetHotel += "All";
-            }else{
+            } else {
                 List<HotelVO> hotelVOList = hotelUtil.getByArea(promotionVO.targetArea);
                 for (int i = 0; i < hotelVOList.size(); i++) {
                     if (i != hotelVOList.size() - 1)
@@ -84,7 +86,7 @@ public class Promotion implements Promotion_BLService {
         } else {
             String targetArea = hotelUtil.getByID(promotionVO.targetHotel[0]).area;
             if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Birthday) || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Holiday)
-                    || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other)||promotionVO.promotionType.equals(PromotionType.HotelPromotion_Reserve)) {
+                    || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other) || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Reserve)) {
                 if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                         promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
                         promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
@@ -227,10 +229,10 @@ public class Promotion implements Promotion_BLService {
                 Strategy normalPromotion = new NormalPromotion(customerUtil.getSingle(orderVO.customerID).memberType, orderVO.rooms.length);
                 if (normalPromotion.usePromotion(orderVO))
                     promotionVOList.add(new PromotionVO(promotionVO.discount, promotionVO.promotionName));
-            }else if(promotionVO.promotionType.equals(PromotionType.WebPromotion_VIP)){
+            } else if (promotionVO.promotionType.equals(PromotionType.WebPromotion_VIP)) {
                 Strategy VIPPromotion = new VIPPromotion(promotionVO.memberLevel);
-                if(VIPPromotion.usePromotion(orderVO))
-                    promotionVOList.add(new PromotionVO(promotionVO.discount,promotionVO.promotionName));
+                if (VIPPromotion.usePromotion(orderVO))
+                    promotionVOList.add(new PromotionVO(promotionVO.discount, promotionVO.promotionName));
             }
         }
         Date date = new Date();
@@ -241,6 +243,11 @@ public class Promotion implements Promotion_BLService {
         for (PromotionVO promotionVO : webPromotion) {
             if (promotionVO.promotionType.equals(PromotionType.WebPromotion_Holiday))
                 promotionVOList.add(promotionVO);
+        }
+        MemberLevelVO memberLevelVO = memberLevel.getMemberLevel();
+        Strategy memberLevel = new MemberLevelPromotion();
+        if (memberLevel.usePromotion(orderVO)) {
+            promotionVOList.add(new PromotionVO(Double.parseDouble(memberLevelVO.discountList.get(memberUtil.getSingle(orderVO.customerID).level - 1)), "会员等级优惠"));
         }
         return promotionVOList;
     }

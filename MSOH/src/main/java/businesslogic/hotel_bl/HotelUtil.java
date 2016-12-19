@@ -1,5 +1,8 @@
 package businesslogic.hotel_bl;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
+import businesslogic.customer_bl.Customer;
 import businesslogicservice.hotel_blservice.HotelUtil_BLService;
 import dataservice.hotel_dataservice.City_DataService;
 import dataservice.hotel_dataservice.Hotel_DataService;
@@ -12,10 +15,7 @@ import util.filter.*;
 import util.sort.sortHotelByScore;
 import util.sort.sortHotelByStar;
 import util.sort.sortRoomByNum;
-import vo.CommentVO;
-import vo.DailyRoomInfoVO;
-import vo.HotelVO;
-import vo.RoomVO;
+import vo.*;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
@@ -30,6 +30,8 @@ import java.util.List;
 public class HotelUtil implements HotelUtil_BLService {
     City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
     Hotel_DataService hotel_dataService = RemoteHelper.getInstance().getHotelDataService();
+    Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    Customer customer = abstract_blFactory.createCustomer();
 
     /**
      * 该方法主要是把酒店的评论的po改成vo
@@ -88,16 +90,16 @@ public class HotelUtil implements HotelUtil_BLService {
      */
     public DailyRoomInfoVO getDailyRoomInfo(String hotelID, Timestamp timestamp) throws RemoteException {
         DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(hotelID, timestamp);
-        if(dailyRoomInfoPO==null)
+        if (dailyRoomInfoPO == null)
             return null;
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
         //System.out.print(hotelID+" "+timestamp);
         if (roomPOList == null || roomPOList.isEmpty())
             return null;
         List<RoomVO> roomVOList = new ArrayList<RoomVO>();
-        for (RoomPO roomPO:roomPOList){
+        for (RoomPO roomPO : roomPOList) {
             roomVOList.add(new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
-                    roomPO.getLeftRooms(), roomPO.getPrice(),roomPO.getRoomID()+""));
+                    roomPO.getLeftRooms(), roomPO.getPrice(), roomPO.getRoomID() + ""));
         }
         return new DailyRoomInfoVO(dailyRoomInfoPO.getHotelID(), dailyRoomInfoPO.getDate(), roomVOList);
     }
@@ -218,10 +220,10 @@ public class HotelUtil implements HotelUtil_BLService {
         if (dailyRoomInfoPO == null)
             return null;
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
-        for (RoomPO roomPO:roomPOList){
+        for (RoomPO roomPO : roomPOList) {
             if (roomName.equals(roomPO.getRoomType()))
                 return new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
-                        roomPO.getLeftRooms(), roomPO.getPrice(),roomPO.getRoomID()+"");
+                        roomPO.getLeftRooms(), roomPO.getPrice(), roomPO.getRoomID() + "");
         }
         return null;
     }
@@ -356,18 +358,37 @@ public class HotelUtil implements HotelUtil_BLService {
             DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(hotelID, timestamp);
             List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
             for (RoomPO roomPO : roomPOList) {
-                if(roomPO.getRoomType().equals("大床房")){
-                    if(BigBedRoom>roomPO.getLeftRooms())
+                if (roomPO.getRoomType().equals("大床房")) {
+                    if (BigBedRoom > roomPO.getLeftRooms())
                         return false;
-                }else if(roomPO.getRoomType().equals("单人房")){
-                    if(SingleRoom>roomPO.getLeftRooms())
+                } else if (roomPO.getRoomType().equals("单人房")) {
+                    if (SingleRoom > roomPO.getLeftRooms())
                         return false;
-                }else{
-                    if(StandardRoom>roomPO.getLeftRooms())
+                } else {
+                    if (StandardRoom > roomPO.getLeftRooms())
                         return false;
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * 判断一个酒店是否被预定过
+     *
+     * @param customerID
+     * @param hotelID
+     * @return
+     * @throws RemoteException
+     */
+    public boolean hotelIsReserverd(String customerID, String hotelID) throws RemoteException {
+        List<HotelVO> hotelVOList = customer.getHistoryHotel(customerID);
+        if (hotelVOList == null || hotelVOList.isEmpty())
+            return false;
+        for (HotelVO hotelVO : hotelVOList) {
+            if (hotelVO.hotelID.equals(hotelID))
+                return true;
+        }
+        return false;
     }
 }

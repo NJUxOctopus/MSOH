@@ -1,5 +1,8 @@
 package vo;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -9,6 +12,8 @@ import java.util.List;
  * @author pxr
  */
 public class MemberLevelVO implements Serializable {
+
+    public String memberLevelID;
 
     public String framerName;
 
@@ -20,16 +25,17 @@ public class MemberLevelVO implements Serializable {
 
     public List<String> discountList;
 
-    public int specificLevel;
+    public SimpleIntegerProperty specificLevel;
 
-    public int specificBoundary;
+    public SimpleIntegerProperty specificBoundary;
 
-    public double specificDiscount;
+    public SimpleDoubleProperty specificDiscount;
 
     public MemberLevelVO() {
     }
 
-    public MemberLevelVO(String framerName, Timestamp frameDate, int num, int[] creditBoundaries, List<String> discountList) {
+    public MemberLevelVO(String memberLevelID, String framerName, Timestamp frameDate, int num, int[] creditBoundaries, List<String> discountList) {
+        this.memberLevelID = memberLevelID;
         this.framerName = framerName;
         this.frameDate = frameDate;
         this.num = num;
@@ -37,22 +43,35 @@ public class MemberLevelVO implements Serializable {
         this.discountList = discountList;
     }
 
-    /**
-     * 制定会员等级制度时使用的构造方法
-     *
-     * @param num
-     * @param creditBoundaries
-     * @param discountList
-     */
+
     public MemberLevelVO(int num, int[] creditBoundaries, List<String> discountList) {
         this.num = num;
         this.creditBoundaries = creditBoundaries;
         this.discountList = discountList;
     }
 
+    /**
+     * 显示会员等级制度时使用的构造方法
+     *
+     * @param specificLevel
+     * @param specificBoundary
+     * @param specificDiscount
+     */
     public MemberLevelVO(int specificLevel, int specificBoundary, double specificDiscount) {
-        this.specificLevel = specificLevel;
-        this.specificBoundary = specificBoundary;
-        this.specificDiscount = specificDiscount;
+        this.specificLevel = new SimpleIntegerProperty(specificLevel);
+        this.specificBoundary = new SimpleIntegerProperty(specificBoundary);
+        this.specificDiscount = new SimpleDoubleProperty(specificDiscount);
+    }
+
+    public int getSpecificLevel() {
+        return specificLevel.get();
+    }
+
+    public int getSpecificBoundary() {
+        return specificBoundary.get();
+    }
+
+    public double getSpecificDiscount() {
+        return specificDiscount.get();
     }
 }

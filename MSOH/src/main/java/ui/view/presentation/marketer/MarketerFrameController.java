@@ -4,13 +4,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import ui.controller.EditMemberLevelController;
 import ui.controller.UserAdminController;
+import ui.view.controllerservice.EditMemberLevel;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import vo.MarketerVO;
+import vo.MemberLevelVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -33,6 +36,8 @@ public class MarketerFrameController implements ControlledStage {
     private String marketerID;
     private MarketerVO marketerVO;
     private UserAdmin userAdmin;
+    private EditMemberLevel editMemberLevel;
+    private MemberLevelVO memberLevelVO;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -48,6 +53,8 @@ public class MarketerFrameController implements ControlledStage {
         marketerID = ID;
         marketerVO = userAdmin.findMarketerByID(marketerID);
         marketerName.setText(marketerVO.name);
+
+        editMemberLevel = new EditMemberLevelController();
     }
 
     /**
@@ -85,7 +92,10 @@ public class MarketerFrameController implements ControlledStage {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
+        memberLevelVO = editMemberLevel.getMemberLevel();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerMemberLevel.fxml", 0, 0);
+        MarketerMemberLevelController marketerMemberLevelController = (MarketerMemberLevelController)paneAdder.getController();
+        marketerMemberLevelController.initial(memberLevelVO);
     }
 
     /**

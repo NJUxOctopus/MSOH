@@ -12,6 +12,7 @@ import rmi.RemoteHelper;
 import util.DataFormat;
 import util.MemberType;
 import util.ResultMessage;
+import util.sort.sortCreditRecordByTime;
 import vo.CreditRecordVO;
 import vo.CustomerVO;
 import vo.HotelVO;
@@ -19,6 +20,8 @@ import vo.HotelVO;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -131,6 +134,12 @@ public class Customer implements Customer_BLService {
         return listVO;
     }
 
+    /**
+     * 得到用户信用记录，并按照时间排序
+     * @param customerID
+     * @return
+     * @throws RemoteException
+     */
     public List<CreditRecordVO> getCreditRecord(String customerID) throws RemoteException {
         if (customerID.equals(""))
             return null;
@@ -145,6 +154,8 @@ public class Customer implements Customer_BLService {
                     creditRecordPO.getCustomerName(), creditRecordPO.getCustomerID(), creditRecordPO.getAfterChangeCredit()
                     , creditRecordPO.getOrderID(), creditRecordPO.getMarketerName(), creditRecordPO.getReason()));
         }
+        Comparator<CreditRecordVO> comparator = new sortCreditRecordByTime();
+        Collections.sort(creditRecordVOList, comparator);
         return creditRecordVOList;
     }
 
@@ -157,12 +168,11 @@ public class Customer implements Customer_BLService {
                 creditRecordVO.orderID, creditRecordVO.marketerName, creditRecordVO.reason);
         if (customer_dataService.addCreditRecord(creditRecordPO)) {
             customerPO.setCredit(creditRecordVO.afterChangeCredit);
-            if(customer_dataService.modifyCustomer(customerPO))
+            if (customer_dataService.modifyCustomer(customerPO))
                 return ResultMessage.Customer_AddCreditRecordSuccess;
             else
                 return ResultMessage.Fail;
-        }
-        else
+        } else
             return ResultMessage.Fail;
     }
 

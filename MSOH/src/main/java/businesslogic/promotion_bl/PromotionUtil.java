@@ -38,7 +38,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
         String[] targetHotel = promotionPO.getTargetHotel().split(";");
         return new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                 promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
-                getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
                 "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName());
     }
 
@@ -59,7 +59,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (timestamp.after(promotionPO.getStartTime()) && timestamp.before(promotionPO.getEndTime()))
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
@@ -81,7 +81,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (timestamp.after(promotionPO.getStartTime()) && timestamp.before(promotionPO.getEndTime()))
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                                getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
@@ -98,11 +98,11 @@ public class PromotionUtil implements PromotionUtil_BLService {
     public List<PromotionVO> getPromotionByTypeAndHotelID(PromotionType promotionType, String hotelID, Timestamp timestamp) throws IOException, ClassNotFoundException {
         List<PromotionPO> promotionPOs = promotion_dataService.getPromotionByHotelID(hotelID);
         List<PromotionVO> list = new ArrayList<PromotionVO>();
-        for (PromotionPO promotionPO:promotionPOs) {
-            if (promotionPO.getPromotionType().equals(promotionType)&&promotionPO.getEndTime().after(timestamp))
+        for (PromotionPO promotionPO : promotionPOs) {
+            if (promotionPO.getPromotionType().equals(promotionType) && promotionPO.getEndTime().after(timestamp))
                 list.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return list;
@@ -175,7 +175,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (timestamp.before(promotionPO.getEndTime()) && timestamp.after(promotionPO.getStartTime()))
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
