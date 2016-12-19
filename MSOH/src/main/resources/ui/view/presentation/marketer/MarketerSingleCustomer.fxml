@@ -46,7 +46,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="603.0" layoutY="20.0" mnemonicParsing="false" onAction="#chargeCredit" prefHeight="72.0" prefWidth="72.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="充值" textFill="WHITE">
+      <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#chargeCredit" prefHeight="72.0" prefWidth="72.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="充值" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
