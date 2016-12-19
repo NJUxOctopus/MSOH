@@ -1,14 +1,22 @@
 package init.DailyUpdater;
 
+import DataHelper.customerDataHelper.CreditRecordDataHelper;
 import DataHelper.customerDataHelper.CustomerDataHelper;
+import DataHelper.hotelDataHelper.RoomDataHelper;
 import DataHelper.orderDataHelper.OrderDataHelper;
+import DataHelperImpl.customerDataHelperImpl.CreditRecordDataHelperSQLImpl;
 import DataHelperImpl.customerDataHelperImpl.CustomerDataHelperSQLImpl;
+import DataHelperImpl.hotelDataHelperImpl.RoomDataHelperSQLImpl;
 import DataHelperImpl.orderDataHelperImpl.OrderDataHelperSQLImpl;
+import po.CreditRecordPO;
 import po.CustomerPO;
 import po.OrderPO;
+import po.RoomPO;
+import util.CreditChangeReason;
 import util.OrderStatus;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,12 +28,16 @@ public class DailyOrderUpdater {
 
     private CustomerDataHelper customerDataHelper = new CustomerDataHelperSQLImpl();
 
-    public DailyOrderUpdater(){
-        boolean status=setAbnomral_auto(new Timestamp(System.currentTimeMillis()));
+    private CreditRecordDataHelper creditRecordDataHelper = new CreditRecordDataHelperSQLImpl();
 
-        if(status){
+    private RoomDataHelper roomDataHelper = new RoomDataHelperSQLImpl();
+
+    public DailyOrderUpdater() {
+        boolean status = setAbnomral_auto(new Timestamp(System.currentTimeMillis()));
+
+        if (status) {
             System.out.println("Octopus: 订单已设为异常");
-        }else{
+        } else {
             System.out.println("Octopus: 无订单需更新状态");
         }
     }
@@ -38,7 +50,7 @@ public class DailyOrderUpdater {
      * @return 若有订单需要更新，返回true；若无，返回false
      */
     public boolean setAbnomral_auto(Timestamp now) {
-        boolean status=false;
+        boolean status = false;
         // 获得所有订单
         List<OrderPO> orderList = orderDataHelper.getAllOrders();
 
@@ -54,10 +66,11 @@ public class DailyOrderUpdater {
                     order.setOrderStatus(OrderStatus.ABNORMAL);
                     // 扣除对应客户的信用值
                     // 扣除额度等于订单价值（取整）
-                    decreaseCustomerCredit_auto(order.getCustomerID(), order.getFinalPrice());
+                    decreaseCustomerCredit_auto(order.getCustomerID(), order.getFinalPrice(), order.getOrderID());
+                    updateRoomInfo_auto(order.getHotelID(), order.getEstimatedCheckInTime(), order.getEstimatedCheckOutTime(), order.getRooms());
                     // 更新数据库
                     orderDataHelper.updateOrder(order);
-                    status=true;
+                    status = true;
                 }
             }
         }
@@ -66,19 +79,44 @@ public class DailyOrderUpdater {
     }
 
     /**
-     * 置为异常的同时扣除用户等于订单的总价值的信用值
+     * 置为异常的同时扣除用户等于订单的总价值的信用值，并增加信用记录
      *
      * @param customerID
      * @param price
      */
 
-    //TODO 添加信用记录
-    private void decreaseCustomerCredit_auto(String customerID, double price) {
+    private void decreaseCustomerCredit_auto(String customerID, double price, String orderID) {
         CustomerPO customer = customerDataHelper.findCustomerByID(customerID);
 
+        // 改变后的信用值
         int adjustedCredit = customer.getCredit() - (int) price;
+
+        // 新增信用记录
+        CreditRecordPO creditRecordPO = new CreditRecordPO((int) price, new Timestamp(System.currentTimeMillis()), customer.getUserName(), customerID, (adjustedCredit <= 0) ? 0 : adjustedCredit, orderID, "", CreditChangeReason.Order_Abnormal);
+
         customer.setCredit((adjustedCredit <= 0) ? 0 : adjustedCredit);
 
         customerDataHelper.modifyCustomer(customer);
+        creditRecordDataHelper.addCreditRecord(creditRecordPO);
+    }
+
+    public void updateRoomInfo_auto(String hotelID, Timestamp estimatedCheckInTime, Timestamp estimatedCheckOutTime, String rooms) {
+        String[] orderRoomArray = rooms.split(";");
+
+        List<RoomPO> hotelRoomList = roomDataHelper.getRoomsByHotel(hotelID);
+        for (RoomPO room : hotelRoomList) {
+            // 得到在预定范围的房间
+            if (room.getDate().equals(estimatedCheckInTime) || (room.getDate().after(estimatedCheckInTime) && room.getDate().before(estimatedCheckOutTime))) {
+                // 判断该房间是否是被客户预定的
+                for (int i = 0; i < orderRoomArray.length; i++) {
+                    if (room.getRoomType().equals(orderRoomArray[i])) {
+                        room.setReservedRooms(room.getReservedRooms() - 1);
+                        room.setLeftRooms(room.getLeftRooms() + 1);
+                        // 更改数据库中的房间信息
+                        roomDataHelper.modifyRoom(room);
+                    }
+                }
+            }
+        }
     }
 }

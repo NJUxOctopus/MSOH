@@ -10,6 +10,8 @@ import java.sql.Timestamp;
  */
 public class MemberLevelPO implements Serializable{
 	private static final long serialVersionUID=1L;
+	// 数据库中会员等级制度的序号，自动生成
+	private int memberlevelID;
 	// 制定人员姓名
 	private String framerName;
 	// 制定日期
@@ -66,6 +68,10 @@ public class MemberLevelPO implements Serializable{
 
 	public String getDiscountList() {
 		return discountList;
+	}
+
+	public int getMemberlevelID() {
+		return memberlevelID;
 	}
 
 	public void setDiscountList(String discountList) {

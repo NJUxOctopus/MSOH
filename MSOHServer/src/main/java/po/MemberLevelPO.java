@@ -87,6 +87,10 @@ public class MemberLevelPO implements Serializable,Cloneable {
         this.discountList = discountList;
     }
 
+    public int getMemberlevelID() {
+        return memberlevelID;
+    }
+
     @Override
     public Object clone(){
         MemberLevelPO memberLevelPO=null;
