@@ -122,6 +122,10 @@ public class OrderDataHelperSQLImpl implements OrderDataHelper {
 
             List<OrderPO> orderList = query.list();
 
+            if(orderList.isEmpty()){
+                return null;
+            }
+
             return orderList.get(0);
         } catch (HibernateException e) {
             e.printStackTrace();
