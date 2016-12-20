@@ -12,4 +12,6 @@ public interface MemberUtil_BLService {
     public MemberVO getSingle(String customerID) throws RemoteException;
 
     public List<String> getCompany() throws RemoteException;
+
+    public List<MemberVO> getAllMembers() throws RemoteException;
 }

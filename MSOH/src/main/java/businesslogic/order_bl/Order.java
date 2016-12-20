@@ -280,6 +280,24 @@ public class Order implements Order_BLService {
             return ResultMessage.Fail;
     }
 
+    /**
+     * 更改订单状态
+     *
+     * @param orderID
+     * @param orderStatus
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage changeOrderStatus(String orderID, OrderStatus orderStatus) throws RemoteException {
+        OrderPO orderPO = order_dataService_stub.getOrderByOrderID(orderID);
+        if (orderPO == null)
+            return ResultMessage.Order_notExist;
+        orderPO.setOrderStatus(orderStatus);
+        if (order_dataService_stub.updateOrder(orderPO))
+            return ResultMessage.Order_ChangeOrderStatusSuccess;
+        else
+            return ResultMessage.Fail;
+    }
 }
 
 //class MyTask extends TimerTask {

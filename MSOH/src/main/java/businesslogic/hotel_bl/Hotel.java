@@ -1,5 +1,8 @@
 package businesslogic.hotel_bl;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
+import businesslogic.order_bl.Order;
 import businesslogicservice.hotel_blservice.Hotel_BLService;
 import dataservice.hotel_dataservice.Hotel_DataService;
 import po.CommentPO;
@@ -7,6 +10,7 @@ import po.DailyRoomInfoPO;
 import po.HotelPO;
 import po.RoomPO;
 import rmi.RemoteHelper;
+import util.OrderStatus;
 import util.ResultMessage;
 import vo.*;
 
@@ -25,6 +29,8 @@ public class Hotel implements Hotel_BLService {
     Date date = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
     Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date));
+    Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    Order order = abstract_blFactory.createOrder();
 
     /**
      * 录入房间
@@ -162,7 +168,10 @@ public class Hotel implements Hotel_BLService {
         double score = (commentNum * hotel_dataService.findHotelByID(orderVO.hotelID).getScore() + commentVO.score) / (commentNum + 1);
         if (hotel_dataService.addComment(new CommentPO(score, commentVO.comment, orderVO.customerName, orderVO.customerID
                 , orderVO.hotelName, orderVO.hotelID, orderVO.orderID, commentVO.commentTime)))
-            return ResultMessage.Hotel_addCommentSuccess;
+            if (order.changeOrderStatus(orderVO.orderID, OrderStatus.FINISHED_EVALUATED).equals(ResultMessage.Order_ChangeOrderStatusSuccess))
+                return ResultMessage.Hotel_addCommentSuccess;
+            else
+                return ResultMessage.Fail;
         else
             return ResultMessage.Fail;
 

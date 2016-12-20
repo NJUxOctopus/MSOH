@@ -1,11 +1,15 @@
 package businesslogic.member_bl;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogicservice.member_blservice.MemberLevel_BLService;
 import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import po.MemberLevelPO;
+import po.MemberPO;
 import rmi.RemoteHelper;
 import util.ResultMessage;
 import vo.MemberLevelVO;
+import vo.MemberVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -16,6 +20,9 @@ import java.util.List;
  */
 public class MemberLevel implements MemberLevel_BLService {
     private MemberLevel_DataService memberLevel_dataService = RemoteHelper.getInstance().getMemberLevelDataService();
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private Member member = abstract_blFactory.createMember();
+    private MemberUtil memberUtil = abstract_blFactory.createMemberUtil();
 
 
     /**
@@ -52,9 +59,13 @@ public class MemberLevel implements MemberLevel_BLService {
             memberLevelPO.setFrameDate(memberLevelVO.frameDate);
             memberLevelPO.setNum(memberLevelVO.num);
             memberLevelPO.setDiscountList(discountList);
-            if (memberLevel_dataService.updateMemberLevel(memberLevelPO))
+            if (memberLevel_dataService.updateMemberLevel(memberLevelPO)) {
+                List<MemberVO> memberVOList = memberUtil.getAllMembers();
+                for (MemberVO memberVO : memberVOList) {
+                    member.changeGrade(memberVO.ID);
+                }
                 return ResultMessage.MemberLevel_ModifyMemberLevelSuccess;
-            else
+            } else
                 return ResultMessage.Fail;
         }
     }
@@ -75,9 +86,9 @@ public class MemberLevel implements MemberLevel_BLService {
         List<String> discountList = new ArrayList<String>();
         String[] str = memberLevelPO.getDiscountList().split(";");
         for (int i = 0; i < str.length; i++) {
-            discountList.add((Double.parseDouble(str[i]) * 10 + ""));
+            discountList.add((Double.parseDouble(str[i]) + ""));
         }
-        return new MemberLevelVO(memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
+        return new MemberLevelVO(memberLevelPO.getMemberlevelID() + "", memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
                 boundaries, discountList);
     }
 }

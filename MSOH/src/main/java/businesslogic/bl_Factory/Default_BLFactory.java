@@ -1,12 +1,16 @@
 package businesslogic.bl_Factory;
 
 import businesslogic.clerk_bl.ClerkUtil;
+import businesslogic.customer_bl.Customer;
 import businesslogic.customer_bl.CustomerUtil;
 import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogic.manager_bl.ManagerUtil;
 import businesslogic.marketer_bl.MarketerUtil;
+import businesslogic.member_bl.Member;
+import businesslogic.member_bl.MemberLevel;
 import businesslogic.member_bl.MemberUtil;
+import businesslogic.order_bl.Order;
 import businesslogic.promotion_bl.Promotion;
 import businesslogic.promotion_bl.PromotionUtil;
 
@@ -35,6 +39,11 @@ public class Default_BLFactory extends Abstract_BLFactory {
     }
 
     @Override
+    public Order createOrder() {
+        return new Order();
+    }
+
+    @Override
     public ManagerUtil createManagerUtil() {
         return new ManagerUtil();
     }
@@ -57,5 +66,20 @@ public class Default_BLFactory extends Abstract_BLFactory {
     @Override
     public MemberUtil createMemberUtil() {
         return new MemberUtil();
+    }
+
+    @Override
+    public Member createMember() {
+        return new Member();
+    }
+
+    @Override
+    public Customer createCustomer() {
+        return new Customer();
+    }
+
+    @Override
+    public MemberLevel createMemberLevel() {
+        return new MemberLevel();
     }
 }

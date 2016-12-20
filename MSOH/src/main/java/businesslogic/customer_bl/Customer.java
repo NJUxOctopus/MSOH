@@ -12,14 +12,15 @@ import rmi.RemoteHelper;
 import util.DataFormat;
 import util.MemberType;
 import util.ResultMessage;
+import util.sort.sortCreditRecordByTime;
 import vo.CreditRecordVO;
 import vo.CustomerVO;
 import vo.HotelVO;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Pxr on 16/11/16.
@@ -27,7 +28,10 @@ import java.util.List;
 public class Customer implements Customer_BLService {
     private Customer_DataService customer_dataService = RemoteHelper.getInstance().getCustomerDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
+    //private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+    Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date));
 
     /**
      * 根据用户id得到用户的信用
@@ -125,12 +129,18 @@ public class Customer implements Customer_BLService {
             HotelVO hotelVO = new HotelVO(hotelPO.getHotelName(), hotelPO.getHotelAddress(), hotelPO.getArea(),
                     hotelPO.getIntro(), infra, roomType, hotelPO.getStar(), hotelPO.getScore(), hotelPO.getLicense(), picUrl,
                     hotelPO.getClerkID(), hotelPO.getHotelID(),
-                    hotelUtil.getDailyRoomInfo(hotelPO.getHotelID(), new Timestamp(System.currentTimeMillis())), hotelUtil.getComment(hotelPO.getHotelID()));
+                    null, null);
             listVO.add(hotelVO);
         }
         return listVO;
     }
 
+    /**
+     * 得到用户信用记录，并按照时间排序
+     * @param customerID
+     * @return
+     * @throws RemoteException
+     */
     public List<CreditRecordVO> getCreditRecord(String customerID) throws RemoteException {
         if (customerID.equals(""))
             return null;
@@ -145,6 +155,8 @@ public class Customer implements Customer_BLService {
                     creditRecordPO.getCustomerName(), creditRecordPO.getCustomerID(), creditRecordPO.getAfterChangeCredit()
                     , creditRecordPO.getOrderID(), creditRecordPO.getMarketerName(), creditRecordPO.getReason()));
         }
+        Comparator<CreditRecordVO> comparator = new sortCreditRecordByTime();
+        Collections.sort(creditRecordVOList, comparator);
         return creditRecordVOList;
     }
 
@@ -157,12 +169,11 @@ public class Customer implements Customer_BLService {
                 creditRecordVO.orderID, creditRecordVO.marketerName, creditRecordVO.reason);
         if (customer_dataService.addCreditRecord(creditRecordPO)) {
             customerPO.setCredit(creditRecordVO.afterChangeCredit);
-            if(customer_dataService.modifyCustomer(customerPO))
+            if (customer_dataService.modifyCustomer(customerPO))
                 return ResultMessage.Customer_AddCreditRecordSuccess;
             else
                 return ResultMessage.Fail;
-        }
-        else
+        } else
             return ResultMessage.Fail;
     }
 

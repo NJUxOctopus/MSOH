@@ -70,7 +70,6 @@ public class Member implements Member_BLService {
         MemberPO memberPO = member_dataService.findMemberByID(customerID);
         MemberLevel memberLevel = new MemberLevel();
         MemberLevelVO memberLevelVO = memberLevel.getMemberLevel();//获取会员等级制度
-        CustomerUtil customerUtil = new CustomerUtil();
         int credit = customerUtil.getSingle(customerID).credit;//该信用值为用户当前信用值
         int[] boundraies = memberLevelVO.creditBoundaries;//会员等级界限
         int initLevel = memberPO.getLevel();//会员当前等级
@@ -84,7 +83,7 @@ public class Member implements Member_BLService {
                     if (i != boundraies.length - 1) {
                         if (credit > boundraies[i] && credit < boundraies[i + 1])//若信用值在两者之间
                             memberPO.setLevel(i + 1);
-                    } else if (credit >= i)
+                    } else if (credit >= boundraies[i])
                         memberPO.setLevel(i + 1);//若信用值大于最高界限
                 }
             }
