@@ -3,9 +3,11 @@ package businesslogic.member_bl;
 import businesslogicservice.member_blservice.MemberLevel_BLService;
 import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import po.MemberLevelPO;
+import po.MemberPO;
 import rmi.RemoteHelper;
 import util.ResultMessage;
 import vo.MemberLevelVO;
+import vo.MemberVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ import java.util.List;
  */
 public class MemberLevel implements MemberLevel_BLService {
     private MemberLevel_DataService memberLevel_dataService = RemoteHelper.getInstance().getMemberLevelDataService();
+    private Member member = new Member();
+    private MemberUtil memberUtil = new MemberUtil();
 
 
     /**
@@ -52,9 +56,13 @@ public class MemberLevel implements MemberLevel_BLService {
             memberLevelPO.setFrameDate(memberLevelVO.frameDate);
             memberLevelPO.setNum(memberLevelVO.num);
             memberLevelPO.setDiscountList(discountList);
-            if (memberLevel_dataService.updateMemberLevel(memberLevelPO))
+            if (memberLevel_dataService.updateMemberLevel(memberLevelPO)) {
+                List<MemberVO> memberVOList = memberUtil.getAllMembers();
+                for (MemberVO memberVO : memberVOList) {
+                    member.changeGrade(memberVO.ID);
+                }
                 return ResultMessage.MemberLevel_ModifyMemberLevelSuccess;
-            else
+            } else
                 return ResultMessage.Fail;
         }
     }
@@ -77,7 +85,7 @@ public class MemberLevel implements MemberLevel_BLService {
         for (int i = 0; i < str.length; i++) {
             discountList.add((Double.parseDouble(str[i]) + ""));
         }
-        return new MemberLevelVO(memberLevelPO.getMemberlevelID()+"",memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
+        return new MemberLevelVO(memberLevelPO.getMemberlevelID() + "", memberLevelPO.getFramerName(), memberLevelPO.getFrameDate(), memberLevelPO.getNum(),
                 boundaries, discountList);
     }
 }

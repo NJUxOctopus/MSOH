@@ -84,7 +84,7 @@ public class Member implements Member_BLService {
                     if (i != boundraies.length - 1) {
                         if (credit > boundraies[i] && credit < boundraies[i + 1])//若信用值在两者之间
                             memberPO.setLevel(i + 1);
-                    } else if (credit >= i)
+                    } else if (credit >= boundraies[i])
                         memberPO.setLevel(i + 1);//若信用值大于最高界限
                 }
             }

@@ -8,6 +8,7 @@ import rmi.RemoteHelper;
 import vo.MemberVO;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,5 +44,18 @@ public class MemberUtil implements MemberUtil_BLService {
      */
     public List<String> getCompany() throws RemoteException {
         return company_dataService.getAllCompanies();
+    }
+
+    @Override
+    public List<MemberVO> getAllMembers() throws RemoteException {
+        List<MemberPO> memberPOList = member_dataService.findAllMemebers();
+        if (memberPOList == null || memberPOList.isEmpty())
+            return new ArrayList<MemberVO>();
+        List<MemberVO> memberVOList = new ArrayList<MemberVO>();
+        for (MemberPO memberPO : memberPOList) {
+            memberVOList.add(new MemberVO(memberPO.getID(), memberPO.getMemberType(), memberPO.getLevel(), memberPO.getBirthday(),
+                    memberPO.getCompanyName()));
+        }
+        return memberVOList;
     }
 }
