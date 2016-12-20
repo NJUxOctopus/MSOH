@@ -20,10 +20,8 @@ import vo.PromotionVO;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by apple on 16/11/10.
@@ -177,8 +175,15 @@ public class Order implements Order_BLService {
         orderPO = order_dataService_stub.getOrderByOrderID(orderVO.orderID);
         //如果订单状态为未执行，更改为已撤销，并返回撤销订单成功
         orderPO.setOrderStatus(OrderStatus.REVOKED);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+        Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date));
+        long sixHour = 1000 * 60 * 60 * 6;
         if (order_dataService_stub.updateOrder(orderPO)) {
-            return ResultMessage.Order_CancelOrderSuccess;
+            if (orderPO.getLatestExecutedTime().getTime() - timestamp1.getTime() <= sixHour)
+                return ResultMessage.Order_CancelOrderBetweenSixHour;
+            else
+                return ResultMessage.Order_CancelOrderSuccess;
         } else
             return ResultMessage.Fail;
     }

@@ -168,7 +168,7 @@ public class Promotion implements Promotion_BLService {
             PromotionPO promotionPO = promotion_dataService.getPromotion(Integer.parseInt(promotionVO.promotionID));
             if (promotionPO == null)
                 return ResultMessage.PromotionNotExist;
-            promotionPO.setDiscount(promotionVO.discount);
+            promotionPO.setDiscount(promotionVO.discount/10);
             promotionPO.setEndTime(promotionVO.endTime);
             promotionPO.setMinRoom(promotionVO.minRoom);
             promotionPO.setPromotionName(promotionVO.promotionName);
