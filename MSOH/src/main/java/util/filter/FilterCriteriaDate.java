@@ -18,12 +18,12 @@ import java.util.List;
 public class FilterCriteriaDate implements FilterCriteria {
     Timestamp firstDate;
     Timestamp secondDate;
-    private Abstract_BLFactory abstract_blFactory= new Default_BLFactory();
-    private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
+    private HotelUtil hotelUtil;
 
-    public FilterCriteriaDate(Timestamp timestamp1, Timestamp timestamp2) {
+    public FilterCriteriaDate(Timestamp timestamp1, Timestamp timestamp2,HotelUtil hotelUtil) {
         this.firstDate = timestamp1;
         this.secondDate = timestamp2;
+        this.hotelUtil = hotelUtil;
     }
 
     @Override

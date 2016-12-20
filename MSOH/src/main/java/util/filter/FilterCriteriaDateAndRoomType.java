@@ -22,14 +22,14 @@ public class FilterCriteriaDateAndRoomType implements FilterCriteria {
     Timestamp secondDate;
     String roomType;
     int roomNum;
-    private Abstract_BLFactory abstract_blFactory= new Default_BLFactory();
-    private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
+    private HotelUtil hotelUtil;
 
-    public FilterCriteriaDateAndRoomType(Timestamp firstDate, Timestamp secondDate, String roomType, int roomNum) {
+    public FilterCriteriaDateAndRoomType(Timestamp firstDate, Timestamp secondDate, String roomType, int roomNum, HotelUtil hotelUtil) {
         this.firstDate = firstDate;
         this.secondDate = secondDate;
         this.roomType = roomType;
         this.roomNum = roomNum;
+        this.hotelUtil = hotelUtil;
     }
 
     @Override
