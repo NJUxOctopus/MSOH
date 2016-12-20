@@ -70,7 +70,6 @@ public class Member implements Member_BLService {
         MemberPO memberPO = member_dataService.findMemberByID(customerID);
         MemberLevel memberLevel = new MemberLevel();
         MemberLevelVO memberLevelVO = memberLevel.getMemberLevel();//获取会员等级制度
-        CustomerUtil customerUtil = new CustomerUtil();
         int credit = customerUtil.getSingle(customerID).credit;//该信用值为用户当前信用值
         int[] boundraies = memberLevelVO.creditBoundaries;//会员等级界限
         int initLevel = memberPO.getLevel();//会员当前等级

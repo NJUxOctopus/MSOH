@@ -33,7 +33,7 @@ public class LoginView extends Application {
     private void linkServer() {
         try {
             remoteHelper = RemoteHelper.getInstance();
-            remoteHelper.setRemote(Naming.lookup("rmi://172.26.201.133:1099/DataRemoteObject"));
+            remoteHelper.setRemote(Naming.lookup("rmi://114.212.42.35:1099/DataRemoteObject"));
             System.out.println("Octopus: 连接服务器成功");
         } catch (MalformedURLException e) {
             e.printStackTrace();

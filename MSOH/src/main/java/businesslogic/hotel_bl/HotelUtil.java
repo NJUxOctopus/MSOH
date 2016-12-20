@@ -28,10 +28,10 @@ import java.util.List;
  * Created by apple on 16/11/10.
  */
 public class HotelUtil implements HotelUtil_BLService {
-    City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
-    Hotel_DataService hotel_dataService = RemoteHelper.getInstance().getHotelDataService();
-    Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    Customer customer = abstract_blFactory.createCustomer();
+    private City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
+    private Hotel_DataService hotel_dataService = RemoteHelper.getInstance().getHotelDataService();
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private Customer customer = abstract_blFactory.createCustomer();
 
     /**
      * 该方法主要是把酒店的评论的po改成vo

@@ -1,5 +1,7 @@
 package businesslogic.member_bl;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogicservice.member_blservice.MemberLevel_BLService;
 import dataservice.memberlevel_dataservice.MemberLevel_DataService;
 import po.MemberLevelPO;
@@ -18,8 +20,9 @@ import java.util.List;
  */
 public class MemberLevel implements MemberLevel_BLService {
     private MemberLevel_DataService memberLevel_dataService = RemoteHelper.getInstance().getMemberLevelDataService();
-    private Member member = new Member();
-    private MemberUtil memberUtil = new MemberUtil();
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private Member member = abstract_blFactory.createMember();
+    private MemberUtil memberUtil = abstract_blFactory.createMemberUtil();
 
 
     /**
