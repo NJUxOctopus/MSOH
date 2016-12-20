@@ -64,9 +64,9 @@ public class ClerkHotelCommentsController implements ControlledStage {
             commentPane.setPrefWidth(numOfComments * 120);
             for (int i = 0; i < numOfComments; i++) {
                 commentVO = commentVOs.get(i);
+                paneAdder.addPane(commentPane, "clerk/ClerkSingleHotelComment.fxml", 0, i * 120);
                 ClerkSingleHotelCommentController clerkSingleHotelCommentController = (ClerkSingleHotelCommentController) paneAdder.getController();
                 clerkSingleHotelCommentController.initial(commentVO);
-                paneAdder.addPane(commentPane, "clerk/ClerkSingleHotelComment.fxml", 0, i * 120);
             }
         }
 

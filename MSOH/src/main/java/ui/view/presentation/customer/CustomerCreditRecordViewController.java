@@ -64,9 +64,9 @@ public class CustomerCreditRecordViewController implements ControlledStage {
             int num = creditRecordVOList.size();
             creditListScrollPane.setPrefHeight(180 * num);
             for (int i = 0; i < num; i++) {
-                paneAdder.addPane(creditListScrollPane, "customer/CustomerSingleCreditRecordView.fxml", 3, 180 * num - 170);
+                paneAdder.addPane(creditListScrollPane, "customer/CustomerSingleCreditRecordView.fxml", 3, 180 * i + 10);
                 customerSingleCreditRecordViewController = (CustomerSingleCreditRecordViewController) paneAdder.getController();
-                customerSingleCreditRecordViewController.init(creditRecordVOList.get(num));
+                customerSingleCreditRecordViewController.init(creditRecordVOList.get(i));
             }
         }
         else{

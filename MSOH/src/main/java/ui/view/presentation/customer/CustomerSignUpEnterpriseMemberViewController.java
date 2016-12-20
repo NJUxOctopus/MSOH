@@ -49,15 +49,8 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
     @FXML
     private void closeStage() {
         stageController = new StageController();
+        stageController.closeStage(resource);
 
-        if(companyChoiceBox.getSelectionModel().getSelectedItem().equals("")) {
-            stageController.loadStage("util/ConfirmExit.fxml", 0.75);
-            ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-            controller.setToBeClosed(resource);
-        }
-        else{
-            stageController.closeStage(resource);
-        }
     }
 
     /**

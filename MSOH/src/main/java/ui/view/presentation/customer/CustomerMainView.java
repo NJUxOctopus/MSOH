@@ -5,6 +5,7 @@ package ui.view.presentation.customer;/**
 import javafx.application.Application;
 import javafx.stage.Stage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.SelectTimeViewController;
 
 public class CustomerMainView extends Application {
     private static String resource = "customer/CustomerMainView.fxml";
@@ -18,9 +19,10 @@ public class CustomerMainView extends Application {
     @Override
     public void start(Stage primaryStage) {
         stageController = new StageController();
-        stageController.loadStage(resource, 1);
-        CustomerMainViewController customerMainViewController = (CustomerMainViewController) stageController.getController();
-        customerMainViewController.init2("111");
+        stageController.loadStage("util/SelectTimeView.fxml", 1);
+        SelectTimeViewController selectTimeViewController = (SelectTimeViewController)stageController.getController();
+        selectTimeViewController.init();
+
     }
 }
 

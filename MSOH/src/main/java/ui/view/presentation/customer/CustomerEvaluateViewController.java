@@ -8,8 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import ui.controller.CommentHotelController;
+import ui.controller.HotelAdminController;
 import ui.controller.ProcessOrderController;
 import ui.view.controllerservice.CommentHotel;
+import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
@@ -17,6 +19,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ErrorBoxController;
 import util.ResultMessage;
 import vo.CommentVO;
+import vo.HotelVO;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
@@ -77,7 +80,6 @@ public class CustomerEvaluateViewController implements ControlledStage {
     @FXML
     private void closeStage() {
         stageController = new StageController();
-        System.out.print(textArea.getText());
         if (textArea.getText().equals("")){
             stageController.closeStage(resource);
         }
@@ -94,7 +96,7 @@ public class CustomerEvaluateViewController implements ControlledStage {
     @FXML
     private void submitEvaluation(){
         String comment = textArea.getText();
-        double score = scoreChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+        double score = scoreChoiceBox.getSelectionModel().getSelectedIndex() + 1;
         Date date=new Date();
         DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time=format.format(date);
@@ -108,9 +110,13 @@ public class CustomerEvaluateViewController implements ControlledStage {
                 stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
                 ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
                 errorBoxController.setLabel("评价已提交！");
-                CustomerOrderDetailViewController customerOrderDetailViewController = (CustomerOrderDetailViewController) stageController.getController("cutsomer/CustomerEvaluateView.fxml");
-                customerOrderDetailViewController.hideButton();
                 stageController.closeStage(resource);
+                if(stageController.stages.containsKey("customer/CustomerOrderDetailView.fxml")){
+                    CustomerOrderDetailViewController customerOrderDetailViewController = (CustomerOrderDetailViewController) stageController.getController("customer/CustomerOrderDetailView.fxml");
+                    customerOrderDetailViewController.hideButton();
+                }
+                CustomerOrderListViewController customerOrderListViewController = (CustomerOrderListViewController) stageController.getController("customer/CustomerOrderListView.fxml");
+                customerOrderListViewController.init(customerID);
             }
         }catch (RemoteException e){
             e.printStackTrace();
@@ -127,7 +133,7 @@ public class CustomerEvaluateViewController implements ControlledStage {
         this.orderID = orderID;
         scoreChoiceBox.setItems(FXCollections.observableArrayList(
                 "1","2", "3", "4", "5"));
-        //setHotelInfo();
+        setHotelInfo();
 
     }
 
@@ -137,10 +143,13 @@ public class CustomerEvaluateViewController implements ControlledStage {
     private void setHotelInfo(){
         try {
             ProcessOrder processOrder = new ProcessOrderController();
-            orderVO = processOrder.getSingle(customerID);
-            hotelName = orderVO.hotelName;
-            hotelID = orderVO.hotelID;
+            orderVO = processOrder.getSingle(orderID);
             customerName = orderVO.customerName;
+
+            HotelAdmin hotelAdmin = new HotelAdminController();
+            HotelVO hotelVO = hotelAdmin.findByID(orderVO.hotelID);
+            hotelName = hotelVO.hotelName;
+            hotelID = hotelVO.hotelID;
             hotelIDLabel.setText(hotelID);
             hotelNameLabel.setText(hotelName);
         }catch (RemoteException e){

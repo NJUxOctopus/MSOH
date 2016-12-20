@@ -43,7 +43,7 @@ public class CustomerSingleCreditRecordViewController implements ControlledStage
     }
 
     public void setCreditRecordInfo(CreditRecordVO creditRecordVO){
-        timeLabel.setText(creditRecordVO.changeTime + "");
+        timeLabel.setText(creditRecordVO.changeTime.toString().substring(0,19) + "");
         changeNumberLabel.setText(creditRecordVO.variation + "");
         creditResultLabel.setText(creditRecordVO.afterChangeCredit + "");
         if(creditRecordVO.orderID.equals("")){

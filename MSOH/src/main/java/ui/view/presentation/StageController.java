@@ -20,7 +20,7 @@ public class StageController {
     private Stage stage;
     private FXMLLoader loader;
 
-    private static HashMap<String, Stage> stages = new HashMap<String, Stage>();
+    public static HashMap<String, Stage> stages = new HashMap<String, Stage>();
 
     private static HashMap<String, FXMLLoader> loaders = new HashMap<String, FXMLLoader>();
 

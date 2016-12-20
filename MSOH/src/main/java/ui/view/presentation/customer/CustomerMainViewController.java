@@ -244,8 +244,8 @@ public class CustomerMainViewController implements ControlledStage {
     private void search() {
         String city = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
         String area = (String) areaChoiceBox.getSelectionModel().getSelectedItem();
-        int star = starChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
-        int score = scoreChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+        int star = starChoiceBox.getSelectionModel().getSelectedIndex();
+        int score = scoreChoiceBox.getSelectionModel().getSelectedIndex();
         String checkInTime = checkInTimeLabel.getText();
         String checkOutTime = checkOutTimeLabel.getText();
 

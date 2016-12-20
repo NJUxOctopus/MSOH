@@ -55,9 +55,7 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
     @FXML
     private void closeStage() {
         stageController = new StageController();
-        stageController.loadStage("util/ConfirmExit.fxml", 0.75);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed(resource);
+        stageController.closeStage(resource);
     }
 
     @FXML
@@ -72,7 +70,7 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
             ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
             errorBoxController.setLabel("未填写完整信息！");
         }else {
-            MemberVO memberVO = new MemberVO(customerID, MemberType.ENTREPRISE, 0, birthday);
+            MemberVO memberVO = new MemberVO(customerID, MemberType.NORMAL, 0, birthday);
             try {
                 MemberRegister memberRegister = new MemberRegisterController();
                 ResultMessage resultMessage = memberRegister.signUp(memberVO);

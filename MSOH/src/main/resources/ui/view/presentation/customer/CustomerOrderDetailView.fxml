@@ -27,7 +27,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="customerIDLebel" layoutX="337.0" layoutY="183.0" text="32052220000101010101" textFill="WHITE">
+            <Label fx:id="customerIDLabel" layoutX="337.0" layoutY="183.0" text="32052220000101010101" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -112,7 +112,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="cancelOrderButton" layoutX="992.0" layoutY="604.0" mnemonicParsing="false" onAction="#processOrder" opacity="0.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="撤销订单" textFill="WHITE">
+            <Button fx:id="processOrderButton" layoutX="992.0" layoutY="604.0" mnemonicParsing="false" onAction="#processOrder" opacity="0.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="撤销订单" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

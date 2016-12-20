@@ -52,7 +52,9 @@ public class CustomerSingleHotelOrderViewController implements ControlledStage {
     @FXML
     private void viewDetails(){
         stageController = new StageController();
-        stageController.loadStage("customer/CustomerSingleHotelOrderView.fxml", 1);
+        stageController.loadStage("customer/CustomerOrderDetailView.fxml", 1);
+        CustomerOrderDetailViewController customerOrderDetailViewController = (CustomerOrderDetailViewController) stageController.getController();
+        customerOrderDetailViewController.init(customerID, orderIDLabel.getText());
     }
 
     public void init(String customerID, String orderID){

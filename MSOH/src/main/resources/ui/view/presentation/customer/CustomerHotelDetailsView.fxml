@@ -87,79 +87,84 @@
                   <Line endX="1000.0" layoutX="60.0" layoutY="365.0" stroke="WHITE" />
                   <ScrollPane layoutX="60.0" layoutY="380.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;">
                     <content>
-                      <AnchorPane fx:id="roomInfoScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="139.0" prefWidth="979.0">
+                      <AnchorPane fx:id="roomScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="142.0" prefWidth="981.0">
                            <children>
-                              <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="房间信息" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="126.0" layoutY="10.0" text="入住日期" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="327.0" layoutY="11.0" text="退房日期" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="confirmButton" layoutX="550.0" layoutY="8.0" mnemonicParsing="false" onAction="#resetRoomInfo" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="确认" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Label layoutX="65.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="房间类型" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="365.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="剩余数量" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="665.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="预订价格" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="reserveButton" layoutX="836.0" layoutY="8.0" mnemonicParsing="false" onAction="#reserve" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="预 订" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <TextField fx:id="checkInTimeTextField" editable="false" layoutX="199.0" layoutY="7.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="2016/09/18">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <Button fx:id="checkInTimeButton" layoutX="284.0" layoutY="9.0" mnemonicParsing="false" onAction="#showCheckInTimeSelectView" style="-fx-background-color: #ffffff00;" text="&gt;" textFill="WHITE">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <TextField fx:id="checkOutTimeTextField" editable="false" layoutX="400.0" layoutY="7.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="2016/09/18">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <Button fx:id="checkOutTimeButton" layoutX="485.0" layoutY="9.0" mnemonicParsing="false" onAction="#showCheckOutTimeSelectView" style="-fx-background-color: #ffffff00;" text="&gt;" textFill="WHITE">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Label fx:id="emptyRoomLabel" layoutX="300.0" layoutY="83.0" opacity="0.0" text="无 房 间 信 息" textFill="WHITE">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                              </Label>
+                              <AnchorPane fx:id="roomInfoScrollPane" prefHeight="140.0" prefWidth="979.0" />
+                              <AnchorPane fx:id="roomInfoScrollPane1" minHeight="0.0" minWidth="0.0" prefHeight="76.0" prefWidth="968.0">
+                                 <children>
+                                    <Label alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="5.0" prefHeight="32.0" prefWidth="110.0" text="房间信息" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="126.0" layoutY="10.0" text="入住日期" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="327.0" layoutY="11.0" text="退房日期" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="confirmButton1" layoutX="550.0" layoutY="8.0" mnemonicParsing="false" onAction="#resetRoomInfo" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="确认" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Label layoutX="65.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="房间类型" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="365.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="剩余数量" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="665.0" layoutY="40.0" style="-fx-border-color: #ffffffff;" text="预订价格" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="reserveButton" layoutX="836.0" layoutY="8.0" mnemonicParsing="false" onAction="#reserve" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="预 订" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <TextField fx:id="checkInTimeTextField" editable="false" layoutX="199.0" layoutY="7.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="2016/09/18">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="checkInTimeButton" layoutX="284.0" layoutY="9.0" mnemonicParsing="false" onAction="#showCheckInTimeSelectView" style="-fx-background-color: #ffffff00;" text="&gt;" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <TextField fx:id="checkOutTimeTextField" editable="false" layoutX="400.0" layoutY="7.0" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="2016/09/18">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="checkOutTimeButton" layoutX="485.0" layoutY="9.0" mnemonicParsing="false" onAction="#showCheckOutTimeSelectView" style="-fx-background-color: #ffffff00;" text="&gt;" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Label fx:id="emptyRoomLabel1" layoutX="300.0" layoutY="83.0" opacity="0.0" text="无 房 间 信 息" textFill="WHITE">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
@@ -255,7 +260,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="briefInfoTextArea" editable="false" layoutX="536.0" layoutY="230.0" prefHeight="120.0" prefWidth="461.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff;" stylesheets="@../manager/manager.css" wrapText="true" />
+                  <TextArea fx:id="briefInfoTextArea" editable="false" layoutX="536.0" layoutY="230.0" prefHeight="120.0" prefWidth="461.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@../manager/manager.css" wrapText="true" />
                </children>
             </AnchorPane>
          </content>

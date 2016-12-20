@@ -166,6 +166,7 @@ public class CustomerOrderDetailViewController implements ControlledStage {
     public void init(String customerID, String orderID){
         this.customerID = customerID;
         this.orderID = orderID;
+        System.out.print(customerID);
         setCustomerInfo();
         setOrderInfo();
     }
@@ -180,7 +181,7 @@ public class CustomerOrderDetailViewController implements ControlledStage {
 
             customerNameLabel.setText(customerVO.name);
             phoneNumberLabel.setText(customerVO.phone);
-            customerIDLabel.setText(customerVO.ID);
+            customerIDLabel.setText(customerID);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -197,15 +198,15 @@ public class CustomerOrderDetailViewController implements ControlledStage {
             hotelID = orderVO.orderID;
             orderIDLabel.setText(orderVO.orderID);
             //时间
-            estimatedCheckInTimeLabel.setText(orderVO.estimatedCheckinTime.toString());
-            estimatedCheckOutTimeLabel.setText(orderVO.estimatedCheckoutTime.toString());
+            estimatedCheckInTimeLabel.setText(orderVO.estimatedCheckinTime.toString().substring(0,19));
+            estimatedCheckOutTimeLabel.setText(orderVO.estimatedCheckoutTime.toString().substring(0,19));
             if(orderVO.actualCheckinTime != null) {
-                actualCheckInTimeLabel.setText(orderVO.actualCheckinTime.toString());
+                actualCheckInTimeLabel.setText(orderVO.actualCheckinTime.toString().substring(0,19));
             }else{
                 actualCheckInTimeLabel.setText("暂 无");
             }
             if(orderVO.actualCheckinTime != null) {
-                actualCheckOutTimeLabel.setText(orderVO.actualCheckinTime.toString());
+                actualCheckOutTimeLabel.setText(orderVO.actualCheckinTime.toString().substring(0,19));
             }else{
                 actualCheckOutTimeLabel.setText("暂 无");
             }
@@ -213,13 +214,13 @@ public class CustomerOrderDetailViewController implements ControlledStage {
             OrderStatus orderStatus = orderVO.orderType;
             if(orderStatus == OrderStatus.FINISHED_UNEVALUATED) {
                 orderStatusLabel.setText("未评价订单");
-                processOrderButton.setText("评价酒店");
                 processOrderButton.setOpacity(1);
+                processOrderButton.setText("评价酒店");
             }
             if(orderStatus == OrderStatus.UNEXECUTED){
                 orderStatusLabel.setText("未执行订单");
-                processOrderButton.setText("撤销订单");
                 processOrderButton.setOpacity(1);
+                processOrderButton.setText("撤销订单");
             }
             if(orderStatus == OrderStatus.REVOKED){
                 orderStatusLabel.setText("已撤销订单");

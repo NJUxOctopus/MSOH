@@ -108,45 +108,58 @@ public class CustomerReserveViewController implements ControlledStage{
         String customerName = customerNameTextField.getText();
         String phone = phoneTextField.getText();
         int numOfCustomers = Integer.parseInt(roomNumTextField.getText());
-        boolean haveChildren = false;
-        if( ((String)hasChildChoiceBox.getSelectionModel().getSelectedItem()) .equals("有"))
-            haveChildren = true;
-        double price = Double.parseDouble(afterPriceTextField.getText());
 
         boolean rightTime = false;
         String checkInTime = checkInTimeTextField.getText();
         String checkOutTime = checkOutTimeTextField.getText();
-        Timestamp checkIn = Timestamp.valueOf("0000-00-00 00:00:00");
-        Timestamp checkOut= Timestamp.valueOf("0000-00-00 00:00:00");
 
-        if(checkInTime.equals("") && checkInTime.equals("")){
-            checkIn = null;
-            checkOut = null;
-        }
-        if(!checkInTime.equals("") && !checkInTime.equals("")){
-            checkIn = Timestamp.valueOf(checkInTime + " 00:00:00");
-            checkOut = Timestamp.valueOf(checkOutTime + " 00:00:00");
+        OrderVO orderVO = new OrderVO();
+        if(checkInTime != null && checkInTime != null){
+            Timestamp checkIn = Timestamp.valueOf(checkInTime + " 00:00:00.0");
+            Timestamp checkOut = Timestamp.valueOf(checkOutTime + " 00:00:00.0");
             if(checkIn.after(checkOut)){
                 stageController = new StageController();
                 stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
                 ErrorBoxController controller = (ErrorBoxController) stageController.getController();
                 controller.setLabel("退房日期必须在入住日期之后！");
             }else{
-                rightTime = true;
+                if(!roomTypeTextField.getText().equals("")) {
+                    boolean haveChildren = false;
+                    if ((hasChildChoiceBox.getSelectionModel().getSelectedItem()) != null) {
+                        if (hasChildChoiceBox.getSelectionModel().getSelectedItem().equals("有"))
+                            haveChildren = true;
+                        double initPrice = Double.parseDouble(prePriceTextField.getText());
+                        double finalPrice = Double.parseDouble(afterPriceTextField.getText());
+                        String promotion = (String) promotionChoiceBox.getSelectionModel().getSelectedItem();
+                        orderVO = new OrderVO(customerName, phone, customerID,
+                                hotelVO.hotelID, hotelVO.hotelName,
+                                checkIn, checkOut,
+                                rooms, numOfCustomers, haveChildren, initPrice, finalPrice, promotion);
+                        rightTime = true;
+                    } else {
+                        stageController = new StageController();
+                        stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+                        ErrorBoxController controller = (ErrorBoxController) stageController.getController();
+                        controller.setLabel("请先选择是否有儿童！");
+                    }
+                }else{
+                    stageController = new StageController();
+                    stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+                    ErrorBoxController controller = (ErrorBoxController) stageController.getController();
+                    controller.setLabel("请先选择房间类型！");
+                }
+
             }
         }
-        if((checkInTime != null && checkInTime == null) || (checkInTime == null && checkInTime != null)){
+        else{
+
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
             controller.setLabel("请选择完整的日期信息！");
         }
-
         if(rightTime) {
-            OrderVO orderVO = new OrderVO(customerName, phone, customerID,
-                    hotelVO.hotelID, hotelVO.hotelName,
-                    checkIn, checkOut,
-                    rooms, numOfCustomers, haveChildren, price);
+
             ProcessOrder processOrder = new ProcessOrderController();
             try {
                 ResultMessage resultMessage = processOrder.createOrder(orderVO);
@@ -220,7 +233,7 @@ public class CustomerReserveViewController implements ControlledStage{
      */
     @FXML
     private void selectRoom(){
-        if(checkInTimeTextField.getText().equals("") || checkOutTimeTextField.getText().equals("")){
+        if(checkInTimeTextField.getText() == null || checkOutTimeTextField.getText() == null){
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
@@ -263,8 +276,7 @@ public class CustomerReserveViewController implements ControlledStage{
     private void setPriceAndPromotion(){
         Timestamp checkInTime = Timestamp.valueOf(checkInTimeTextField.getText() + " 00:00:00");
         Timestamp checkOutTime = Timestamp.valueOf(checkOutTimeTextField.getText() + " 00:00:00");
-        OrderVO orderVO = new OrderVO(hotelIDTextField.getText(), checkInTime, checkOutTime, rooms);
-
+        OrderVO orderVO = new OrderVO(customerID, hotelIDTextField.getText(), checkInTime, checkOutTime, rooms);
         ProcessOrder processOrder = new ProcessOrderController();
         try {
             //初始化促销策略选择下拉框
@@ -287,14 +299,7 @@ public class CustomerReserveViewController implements ControlledStage{
                 promotionChoiceBox.setValue("无");
             }
             afterPriceTextField.setText(lowestOrderPrice.finalPrice + "");
-
-            promotionChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-                @Override
-                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                    int select = promotionChoiceBox.getSelectionModel().getSelectedIndex();
-                    afterPriceTextField.setText(orderPriceVOList.get(select).finalPrice + "");
-                }
-            });
+            prePriceTextField.setText(lowestOrderPrice.initPrice + "");
 
         }catch (RemoteException e){
             e.printStackTrace();
@@ -303,8 +308,18 @@ public class CustomerReserveViewController implements ControlledStage{
         }catch (IOException e){
             e.printStackTrace();
         }
+        modifyPromotion();
     }
 
+    private void modifyPromotion(){
+        promotionChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                int select = promotionChoiceBox.getSelectionModel().getSelectedIndex();
+                afterPriceTextField.setText(orderPriceVOList.get(select).finalPrice + "");
+            }
+        });
+    }
     /**
      * 加号按钮结果，房间数量+1
      */
@@ -332,7 +347,6 @@ public class CustomerReserveViewController implements ControlledStage{
         setHotelInfo();
         hasChildChoiceBox.setItems(FXCollections.observableArrayList(
                 "有", "无"));
-        setPromotionInfo();
     }
 
     /**
@@ -362,39 +376,6 @@ public class CustomerReserveViewController implements ControlledStage{
 
 
     /**
-     * 设置促销相关信息
-     */
-    private void setPromotionInfo(){
-        EditPromotion editPromotion = new EditPromotionController();
-
-        //获取当前时间
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Timestamp time = Timestamp.valueOf(dateFormat.format(date));
-        try {
-            final List<PromotionVO> promotionVOList = editPromotion.getPromotionByHotelID(hotelVO.hotelID, time);
-            ObservableList<String> promotions = FXCollections.observableArrayList();
-            for (int i = 0; i < promotionVOList.size(); i++)
-                promotions.add(promotionVOList.get(i).promotionName);
-            promotionChoiceBox.setItems(promotions);
-
-            promotionChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-                @Override
-                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                    int selected = promotionChoiceBox.getSelectionModel().getSelectedIndex();
-                    afterPriceTextField.setText(Double.parseDouble(prePriceTextField.getText()) * promotionVOList.get(selected).discount + "");
-                }
-            });
-        }catch (RemoteException e){
-            e.printStackTrace();
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * 退出系统
      */
     @FXML
@@ -402,11 +383,5 @@ public class CustomerReserveViewController implements ControlledStage{
         System.exit(0);
     }
 
-    private boolean hasEmpty(){
-       if(!checkInTimeTextField.equals("") && !checkOutTimeTextField.equals("")
-               && !roomTypeTextField.equals("") && !promotionChoiceBox.equals(""))
-           return false;
-        else
-            return true;
-    }
+
 }

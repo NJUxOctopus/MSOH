@@ -67,7 +67,7 @@ public class CustomerMyHotelViewController implements ControlledStage {
                 PaneAdder paneAdder = new PaneAdder();
                 for (int i = 0; i < num; i++) {
                     paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml", 5 + 270 * i, 10);
-                    customerSingleHotelViewController = (CustomerSingleHotelViewController) stageController.getController();
+                    customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
                     customerSingleHotelViewController.init(customerID, hotelID);
                 }
             }else{

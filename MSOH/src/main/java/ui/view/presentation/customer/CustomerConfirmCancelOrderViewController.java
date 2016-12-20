@@ -49,7 +49,7 @@ public class CustomerConfirmCancelOrderViewController implements ControlledStage
             if(resultMessage == ResultMessage.Order_CancelOrderSuccess){
                 stageController = new StageController();
                 stageController.closeStage(resource);
-                CustomerOrderListViewController customerOrderListViewController = (CustomerOrderListViewController) stageController.getController("customer/CustomerOrderListViewController.fxml");
+                CustomerOrderListViewController customerOrderListViewController = (CustomerOrderListViewController) stageController.getController("customer/CustomerOrderListView.fxml");
                 customerOrderListViewController.init(orderVO.customerID);
             }else{
                 stageController.loadStage("util/ErrorBox.fxml", 0.8);

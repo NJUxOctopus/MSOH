@@ -40,7 +40,7 @@ public class ClerkSingleHotelCommentController implements ControlledStage {
         this.commentVO = commentVO;
         customerNameLabel.setText(commentVO.customerName);
         scoreLabel.setText(String.valueOf(commentVO.score));
-        commentTimeLabel.setText(commentVO.commentTime.toString());
+        commentTimeLabel.setText(commentVO.commentTime.toString().substring(0,19));
         commentTextArea.setText(commentVO.comment);
     }
 }
