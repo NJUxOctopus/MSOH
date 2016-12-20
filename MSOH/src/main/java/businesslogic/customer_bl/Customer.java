@@ -29,9 +29,6 @@ public class Customer implements Customer_BLService {
     private Customer_DataService customer_dataService = RemoteHelper.getInstance().getCustomerDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
     //private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
-    Date date = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
-    Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date));
 
     /**
      * 根据用户id得到用户的信用
@@ -137,6 +134,7 @@ public class Customer implements Customer_BLService {
 
     /**
      * 得到用户信用记录，并按照时间排序
+     *
      * @param customerID
      * @return
      * @throws RemoteException
@@ -215,7 +213,14 @@ public class Customer implements Customer_BLService {
             return ResultMessage.DataFormatWrong;
     }
 
-//    /**
+    @Override
+    public void changeCustomerMemberType(String customerID, MemberType memberType) throws RemoteException {
+        CustomerPO customerPO = customer_dataService.findCustomerByID(customerID);
+        customerPO.setMemberType(memberType);
+        customer_dataService.modifyCustomer(customerPO);
+    }
+
+    //    /**
 //     * 更该信用值
 //     *
 //     * @param ID

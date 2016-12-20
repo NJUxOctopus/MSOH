@@ -1,5 +1,6 @@
 package businesslogicservice.customer_blservice;
 
+import util.MemberType;
 import util.ResultMessage;
 import vo.CreditRecordVO;
 import vo.CustomerVO;
@@ -26,6 +27,8 @@ public interface Customer_BLService {
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException;
 
     public ResultMessage changePassword(String ID, String oldPw, String newPw1, String newPw2) throws RemoteException;
+
+    public void changeCustomerMemberType(String customerID, MemberType memberType)throws RemoteException;
 
     //public ResultMessage changeCredit(String ID, int change, CreditChangeReason reason)throws RemoteException;
 }

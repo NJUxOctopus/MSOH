@@ -166,13 +166,16 @@ public class Hotel implements Hotel_BLService {
             return ResultMessage.DataFormatWrong;
         int commentNum = hotel_dataService.getCommentByHotel(orderVO.hotelID).size();
         double score = (commentNum * hotel_dataService.findHotelByID(orderVO.hotelID).getScore() + commentVO.score) / (commentNum + 1);
-        if (hotel_dataService.addComment(new CommentPO(score, commentVO.comment, orderVO.customerName, orderVO.customerID
-                , orderVO.hotelName, orderVO.hotelID, orderVO.orderID, commentVO.commentTime)))
+        if (hotel_dataService.addComment(new CommentPO(commentVO.score, commentVO.comment, orderVO.customerName, orderVO.customerID
+                , orderVO.hotelName, orderVO.hotelID, orderVO.orderID, commentVO.commentTime))) {
+            HotelPO hotelPO = hotel_dataService.findHotelByID(orderVO.hotelID);
+            hotelPO.setScore(score);
+            hotel_dataService.modifyHotel(hotelPO);
             if (order.changeOrderStatus(orderVO.orderID, OrderStatus.FINISHED_EVALUATED).equals(ResultMessage.Order_ChangeOrderStatusSuccess))
                 return ResultMessage.Hotel_addCommentSuccess;
             else
                 return ResultMessage.Fail;
-        else
+        } else
             return ResultMessage.Fail;
 
     }
