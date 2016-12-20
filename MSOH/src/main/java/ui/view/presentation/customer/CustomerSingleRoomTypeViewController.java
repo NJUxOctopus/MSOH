@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import vo.RoomVO;
 
 /**
  * Created by island on 2016/11/30.
@@ -36,10 +37,10 @@ public class CustomerSingleRoomTypeViewController implements ControlledStage {
         this.stageController = stageController;
     }
 
-    public void init(){
-        roomType = "111";
-        roomNum = "2";
-        roomPrice = "1111";
+    public void init(RoomVO roomVO){
+        roomType = roomVO.roomType;
+        roomNum = roomVO.leftRooms + "";
+        roomPrice = roomVO.price + "";
         roomTypeLabel.setText(roomType);
         roomNumLabel.setText(roomNum);
         roomPriceLabel.setText(roomPrice);

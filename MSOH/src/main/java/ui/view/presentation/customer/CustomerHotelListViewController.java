@@ -122,14 +122,15 @@ public class CustomerHotelListViewController implements ControlledStage {
         //日期信息
         String checkInTime = checkInTimeTextField.getText();
         String checkOutTime = checkOutTimeTextField.getText();
-        Timestamp checkIn = Timestamp.valueOf("0000-00-00 00:00:00");
-        Timestamp checkOut= Timestamp.valueOf("0000-00-00 00:00:00");
         boolean rightTime = false;
-
-        if(checkInTime == null && checkOutTime == null){
-            checkIn = null;
-            checkOut = null;
+        if((checkInTime != null && checkInTime == null) || (checkInTime == null && checkInTime != null)){
+            stageController = new StageController();
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController controller = (ErrorBoxController) stageController.getController();
+            controller.setLabel("请选择完整的日期信息！");
         }
+        Timestamp checkIn;
+        Timestamp checkOut;
         if(!checkInTime.equals("") && !checkInTime.equals("")){
             checkIn = Timestamp.valueOf(checkInTime + " 00:00:00");
             checkOut = Timestamp.valueOf(checkOutTime + " 00:00:00");
@@ -141,12 +142,9 @@ public class CustomerHotelListViewController implements ControlledStage {
             }else{
                 rightTime = true;
             }
-        }
-        if((checkInTime != null && checkInTime == null) || (checkInTime == null && checkInTime != null)){
-            stageController = new StageController();
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController controller = (ErrorBoxController) stageController.getController();
-            controller.setLabel("请选择完整的日期信息！");
+        }else{
+            checkIn = null;
+            checkOut = null;
         }
         if(roomType != null){
             rightRoom = true;

@@ -47,7 +47,6 @@ public class HotelInfoController implements HotelInfo {
             checkOut = null;
         }
         String score = hotelVO.score+"";
-        System.out.print(score.equals("-1.0"));
         return hotelUtil_blService.searchHotel(hotelVO.area, checkIn, checkOut, hotelVO.star + "", hotelVO.score + "", 5 + "");
     }
 

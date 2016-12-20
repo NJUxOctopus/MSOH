@@ -191,14 +191,20 @@ public class CustomerOrderListViewController implements ControlledStage {
 
         int num = 1;
         if (orderList != null) {
-            num = orderList.size();
-            for (int i = 0; i < num; i++) {
-                String orderID = orderList.get(i).orderID;
-                orderListScrollPane.setPrefHeight(160 * num);
-                PaneAdder paneAdder = new PaneAdder();
-                paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 160 * i - 155);
-                customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
-                customerSingleOrderPaneViewController.init(customerID, orderID);
+            ProcessOrder processOrder = new ProcessOrderController();
+            try{
+                orderList = processOrder.sortByTime(orderList);
+                num = orderList.size();
+                orderListScrollPane.setPrefHeight(160 * num - 120);
+                for (int i = 0; i < num; i++) {
+                    String orderID = orderList.get(i).orderID;
+                    PaneAdder paneAdder = new PaneAdder();
+                    paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 160 * i - 155);
+                    customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
+                    customerSingleOrderPaneViewController.init(customerID, orderID);
+                }
+            }catch (RemoteException e){
+                e.printStackTrace();
             }
             emptyOrderLabel.setOpacity(0);
         }

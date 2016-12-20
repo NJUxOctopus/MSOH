@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="30.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleRoomTypeViewController">
+<Pane prefHeight="30.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSingleRoomTypeViewController">
    <children>
       <Label fx:id="roomTypeLabel" layoutX="30.0" text="房间类型" textFill="WHITE">
          <font>

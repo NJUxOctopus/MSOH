@@ -109,12 +109,14 @@ public class OrderVO implements Serializable{
 	 * @param rooms
 	 * @param numOfCustomers
 	 * @param haveChildren
+	 * @param initialPrice
 	 * @param finalPrice
+	 * @param promotionName
 	 */
 	public OrderVO(String customerName, String phone, String customerID, String hotelID, String hotelName,
 				   Timestamp estimatedCheckinTime, Timestamp estimatedCheckoutTime,
 				   String[] rooms, int numOfCustomers, boolean haveChildren,
-				   double finalPrice) {
+				   double initialPrice, double finalPrice, String promotionName) {
 		this.customerName = customerName;
 		this.phone = phone;
 		this.customerID = customerID;
@@ -125,7 +127,9 @@ public class OrderVO implements Serializable{
 		this.rooms = rooms;
 		this.numOfCustomers = numOfCustomers;
 		this.haveChildren = haveChildren;
+		this.initialPrice = initialPrice;
 		this.finalPrice = finalPrice;
+		this.promotionName = promotionName;
 	}
 
 	/**
@@ -135,8 +139,8 @@ public class OrderVO implements Serializable{
 	 * @param estimatedCheckoutTime
 	 * @param rooms
 	 */
-	public OrderVO(String hotelID, Timestamp estimatedCheckinTime, Timestamp estimatedCheckoutTime, String[] rooms) {
-
+	public OrderVO(String customerID, String hotelID, Timestamp estimatedCheckinTime, Timestamp estimatedCheckoutTime, String[] rooms) {
+		this.customerID = customerID;
 		this.hotelID=hotelID;
 		this.estimatedCheckinTime = estimatedCheckinTime;
 		this.estimatedCheckoutTime = estimatedCheckoutTime;

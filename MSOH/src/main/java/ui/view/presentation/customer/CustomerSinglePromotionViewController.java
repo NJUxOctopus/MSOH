@@ -6,6 +6,7 @@ import ui.controller.EditPromotionController;
 import ui.view.controllerservice.EditPromotion;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import util.MemberType;
 import vo.PromotionVO;
 
 import java.rmi.RemoteException;
@@ -40,8 +41,17 @@ public class CustomerSinglePromotionViewController implements ControlledStage {
             PromotionVO promotionVO = editPromotion.getSingle(promotionID);
             promotionNameLabel.setText(promotionVO.promotionName);
             discountLabel.setText(promotionVO.discount + "");
-            staffLabel.setText(promotionVO.targetUser + "");
-            timeLabel.setText(promotionVO.startTime + "~" + promotionVO.endTime);
+            if(promotionVO.targetUser == MemberType.ENTREPRISE) {
+                staffLabel.setText("企业会员");
+            }
+            if(promotionVO.targetUser == MemberType.NONMEMBER) {
+                staffLabel.setText("非会员");
+            }
+            if(promotionVO.targetUser == MemberType.NORMAL) {
+                staffLabel.setText("普通会员");
+            }
+
+            timeLabel.setText(promotionVO.startTime.toString().substring(0,10) + "~" + promotionVO.endTime.toString().substring(0, 10));
         }catch (RemoteException e){
             e.printStackTrace();
         }

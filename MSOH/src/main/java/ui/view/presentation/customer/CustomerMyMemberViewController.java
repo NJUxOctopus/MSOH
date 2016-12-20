@@ -14,6 +14,7 @@ import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import ui.view.presentation.util.ErrorBoxController;
 import util.MemberType;
 import vo.CustomerVO;
 import vo.MemberLevelVO;
@@ -30,6 +31,8 @@ public class CustomerMyMemberViewController implements ControlledStage{
     private String resource = "customer/CustomerMyMemberView.fxml";
 
     private String customerID;
+
+    private MemberVO memberVO;
 
     @FXML
     private ImageView background;
@@ -70,10 +73,17 @@ public class CustomerMyMemberViewController implements ControlledStage{
 
     @FXML
     private void showSignUpSelectView(){
-        stageController = new StageController();
-        stageController.loadStage("customer/CustomerSignUpSelectView.fxml", 0.5);
-        CustomerSignUpSelectViewController customerSignUpSelectViewController = (CustomerSignUpSelectViewController) stageController.getController();
-        customerSignUpSelectViewController.init(customerID);
+        if(memberVO == null) {
+            stageController = new StageController();
+            stageController.loadStage("customer/CustomerSignUpSelectView.fxml", 0.5);
+            CustomerSignUpSelectViewController customerSignUpSelectViewController = (CustomerSignUpSelectViewController) stageController.getController();
+            customerSignUpSelectViewController.init(customerID);
+        }else{
+            stageController = new StageController();
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+            errorBoxController.setLabel("您已成为会员！" + '\n' + "无法再次注册！");
+        }
     }
 
     /**
@@ -97,26 +107,29 @@ public class CustomerMyMemberViewController implements ControlledStage{
             creditLabel.setText(credit + "");
             double locate = 200 + credit / 10;
             creditPane.setLayoutX(locate);
-            CustomerVO customerVO = userAdmin.findCustomerByID(customerID);
-            if(customerVO.memberType == MemberType.ENTREPRISE) {
-                typeOfMemberLabel.setText("企业会员");
-            }else if(customerVO.memberType == MemberType.NORMAL){
-                typeOfMemberLabel.setText("普通会员");
-            }else if(customerVO.memberType == MemberType.NONMEMBER){
-                typeOfMemberLabel.setText("非会员");
+            memberVO = userAdmin.findMemberByID(customerID);
+            if(memberVO != null){
+                if(memberVO.memberType == MemberType.ENTREPRISE) {
+                    typeOfMemberLabel.setText("企业会员");
+                }else if(memberVO.memberType == MemberType.NORMAL){
+                    typeOfMemberLabel.setText("普通会员");
+                }else if(memberVO.memberType == MemberType.NONMEMBER){
+                    typeOfMemberLabel.setText("非会员");
+                }
+                //会员信息
+                if(memberVO.memberType != MemberType.NONMEMBER) {
+                    gradeOfMemberLabel.setText(memberVO.level + "");
+                    EditMemberLevel editMemberLevel = new EditMemberLevelController();
+                    String discount = editMemberLevel.getMemberLevel().discountList.get(memberVO.level);
+                    discountOfMemberLabel.setText("部分酒店"  + discount + "折");
+                }
+                else{
+                    gradeOfMemberLabel.setText("无");
+                    discountOfMemberLabel.setText("非会员无法享受");
+                }
             }
-            //会员信息
-            if(customerVO.memberType != MemberType.NONMEMBER) {
-                MemberVO memberVO = userAdmin.findMemberByID(customerID);
-                gradeOfMemberLabel.setText(memberVO.level + "");
-                EditMemberLevel editMemberLevel = new EditMemberLevelController();
-                String discount = editMemberLevel.getMemberLevel().discountList.get(memberVO.level);
-                discountOfMemberLabel.setText("部分酒店"  + discount + "折");
-            }
-            else{
-                gradeOfMemberLabel.setText("无");
-                discountOfMemberLabel.setText("非会员无法享受");
-            }
+
+
 
         }catch (RemoteException e) {
             e.printStackTrace();
