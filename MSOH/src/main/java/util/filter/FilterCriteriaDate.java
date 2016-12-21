@@ -20,7 +20,7 @@ public class FilterCriteriaDate implements FilterCriteria {
     private Timestamp secondDate;
     private HotelUtil hotelUtil;
 
-    public FilterCriteriaDate(Timestamp timestamp1, Timestamp timestamp2,HotelUtil hotelUtil) {
+    public FilterCriteriaDate(Timestamp timestamp1, Timestamp timestamp2, HotelUtil hotelUtil) {
         this.firstDate = timestamp1;
         this.secondDate = timestamp2;
         this.hotelUtil = hotelUtil;
@@ -40,17 +40,16 @@ public class FilterCriteriaDate implements FilterCriteria {
         for (int i = 0; i < days; i++) {
             timestamps.add(new Timestamp(firstDate.getTime() + i * oneDay));
         }
-        boolean hasRoom = false;
         for (HotelVO hotelVO : list) {
+            boolean hasRoom = true;
             for (Timestamp timestamp : timestamps) {
                 List<RoomVO> roomVOList = hotelUtil.getDailyRoomInfo(hotelVO.hotelID, timestamp).room;
                 for (RoomVO roomVO : roomVOList) {
-                    if (roomVO.leftRooms >= 0)
-                        hasRoom = true;
+                    if (roomVO.leftRooms <= 0)
+                        hasRoom = false;
                 }
             }
             if (hasRoom) {
-                hasRoom = false;
                 hotelVOList.add(hotelVO);
             }
         }

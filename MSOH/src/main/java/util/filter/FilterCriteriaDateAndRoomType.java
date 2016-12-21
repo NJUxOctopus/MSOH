@@ -45,14 +45,20 @@ public class FilterCriteriaDateAndRoomType implements FilterCriteria {
         for (int i = 0; i < days; i++) {
             timestamps.add(new Timestamp(firstDate.getTime() + i * oneDay));
         }
+
         for (HotelVO hotelVO : list) {
+            boolean hasRoom = true;
             for (Timestamp timestamp : timestamps) {
                 List<RoomVO> roomVOList = hotelUtil.getDailyRoomInfo(hotelVO.hotelID, timestamp).room;
                 for (RoomVO roomVO : roomVOList) {
-                    if (roomVO.roomType.equals(roomType) && roomVO.leftRooms >= roomNum)
-                        hotelVOList.add(hotelVO);
+                    if (roomVO.roomType.equals(roomType)) {
+                        if (roomVO.leftRooms < roomNum)
+                            hasRoom = false;
+                    }
                 }
             }
+            if (hasRoom)
+                hotelVOList.add(hotelVO);
         }
         return hotelVOList;
     }

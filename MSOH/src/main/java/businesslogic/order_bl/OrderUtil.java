@@ -211,7 +211,7 @@ public class OrderUtil implements OrderUtil_BLService {
      */
     public List<OrderVO> getOrderByIDAndHotelIDAndStatus(String ID, String hotelID, OrderStatus orderStatus) throws RemoteException {
         List<OrderVO> orderVOList = getOrderByHotelAndStatus(hotelID, orderStatus);
-        if (orderVOList == null && orderVOList.isEmpty())
+        if (orderVOList == null || orderVOList.isEmpty())
             return new ArrayList<OrderVO>();
         List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
         for (OrderVO orderVO : orderVOList) {
