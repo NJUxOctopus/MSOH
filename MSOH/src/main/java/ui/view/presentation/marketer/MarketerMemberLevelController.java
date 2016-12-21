@@ -99,7 +99,7 @@ public class MarketerMemberLevelController implements ControlledStage {
                         getCurrentTime(), memberLevelVO.num, newBoundaries, memberLevelVO.discountList);
                 try {
                     if (editMemberLevel.modifyMemberLevel(newMemberLevelVO).equals(ResultMessage.MemberLevel_ModifyMemberLevelSuccess)) {
-                        //增加等级制度成功，刷新表单
+                        //修改等级制度成功，刷新表单
                         initial(newMemberLevelVO);
                     } else {
                         returnMessage("修改等级失败！");
@@ -128,7 +128,7 @@ public class MarketerMemberLevelController implements ControlledStage {
                         getCurrentTime(), memberLevelVO.num, memberLevelVO.creditBoundaries, newDiscountList);
                 try {
                     if (editMemberLevel.modifyMemberLevel(newMemberLevelVO).equals(ResultMessage.MemberLevel_ModifyMemberLevelSuccess)) {
-                        //增加等级制度成功，刷新表单
+                        //修改等级制度成功，刷新表单
                         initial(newMemberLevelVO);
                     } else {
                         returnMessage("修改等级失败！");
@@ -173,14 +173,6 @@ public class MarketerMemberLevelController implements ControlledStage {
                 this.returnMessage("修改等级失败！");
             }
         }
-    }
-
-    /**
-     * 修改按钮结果，修改会员制度
-     */
-    @FXML
-    private void modifyMemberLevel() {
-
     }
 
     /**

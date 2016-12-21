@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import ui.controller.HotelAdminController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.HotelAdmin;
@@ -28,23 +29,11 @@ public class ClerkFrameController implements ControlledStage {
     @FXML
     private Label hotelName;
     @FXML
-    private Button hotelInfo;
-    @FXML
-    private Button hotelOrder;
-    @FXML
-    private Button hotelPromotion;
-    @FXML
     private Label clerkName;
     @FXML
-    private Button clerkInfo;
-    @FXML
-    private Button aboutUs;
-    @FXML
-    private Button settings;
-    @FXML
-    private Button feedBack;
-    @FXML
     private Pane clerkFramePane;
+    @FXML
+    private Rectangle selectShade;
 
     private String clerkID;
 
@@ -80,6 +69,9 @@ public class ClerkFrameController implements ControlledStage {
         // Close the previous panel
         clerkFramePane.getChildren().clear();
 
+        selectShade.setY(0);
+        selectShade.setHeight(165);
+
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(clerkFramePane, "clerk/ClerkHotelInfo.fxml", 0, 0);
 
@@ -96,9 +88,12 @@ public class ClerkFrameController implements ControlledStage {
         // Close the previous panel
         clerkFramePane.getChildren().clear();
 
+        selectShade.setY(165);
+        selectShade.setHeight(156);
+
         PaneAdder paneAdder = new PaneAdder();
-        paneAdder.putIntoLoaders("clerk/ClerkCheckOrderList.fxml");
         paneAdder.addPane(clerkFramePane, "clerk/ClerkCheckOrderList.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkCheckOrderList.fxml");
 
         //初始化界面
         ClerkCheckOrderListController clerkCheckOrderListController = (ClerkCheckOrderListController) paneAdder.getController();
@@ -112,6 +107,9 @@ public class ClerkFrameController implements ControlledStage {
     private void showHotelPromotionList() throws IOException, ClassNotFoundException {
         // Close the previous panel
         clerkFramePane.getChildren().clear();
+
+        selectShade.setY(321);
+        selectShade.setHeight(155);
 
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(clerkFramePane, "clerk/ClerkHotelPromotion.fxml", 0, 0);

@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class AndSearchCriteria implements FilterCriteria {
 
-    public FilterCriteria filterCriteria;
-    public FilterCriteria otherCriteria;
-    public FilterCriteria thirdCriteria;
+    private FilterCriteria filterCriteria;
+    private FilterCriteria otherCriteria;
+    private FilterCriteria thirdCriteria;
 
     public AndSearchCriteria(FilterCriteria filterCriteria, FilterCriteria otherCriteria, FilterCriteria thirdCriteria) {
         this.filterCriteria = filterCriteria;

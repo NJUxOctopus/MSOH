@@ -3,8 +3,10 @@ package ui.view.presentation.marketer;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import ui.controller.CreditRecordController;
+import ui.controller.EditMemberLevelController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.CreditRecord;
+import ui.view.controllerservice.EditMemberLevel;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
@@ -34,6 +36,7 @@ public class MarketerSelectChargeController implements ControlledStage {
     private CreditRecord creditRecord;
     private String marketerID;
     private String marketerName;
+    private EditMemberLevel editMemberLevel;
 
     private String resource = "marketer/MarketerSelectCharge.fxml";
 
@@ -68,8 +71,13 @@ public class MarketerSelectChargeController implements ControlledStage {
                 customerVO.credit + credit, "", marketerName, CreditChangeReason.Charge);
         creditRecord = new CreditRecordController();
         if (creditRecord.addCreditRecord(customerVO.ID, creditRecordVO).equals(ResultMessage.Customer_AddCreditRecordSuccess)) {
+            editMemberLevel = new EditMemberLevelController();
+            editMemberLevel.changeGrade(customerVO.ID);
             stageController = this.returnMessage("充值成功！");
             stageController.closeStage(resource);
+
+            MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController) stageController.getController();
+            marketerChargeCreditController.initial(marketerID);
         } else {
             this.returnMessage("充值失败！");
         }

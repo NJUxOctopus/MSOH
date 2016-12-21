@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.login.LoginViewController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.login.LoginViewController">
    <children>
       <ImageView fitHeight="489.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,7 +40,7 @@
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font></TextField>
-      <PasswordField fx:id="passwordField" layoutX="228.0" layoutY="339.0" onAction="#autoPW" prefHeight="29.0" prefWidth="275.0" style="-fx-text-fill: black;">
+      <PasswordField fx:id="passwordField" layoutX="228.0" layoutY="339.0" onMouseClicked="#autoPW" prefHeight="29.0" prefWidth="275.0" style="-fx-text-fill: black;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

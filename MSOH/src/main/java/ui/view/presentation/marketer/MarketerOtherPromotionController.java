@@ -82,8 +82,8 @@ public class MarketerOtherPromotionController implements ControlledStage {
         confirmButton.setText("制定");
         userAdmin = new UserAdminController();
         marketerID = ID;
-        marketerName = marketerVO.name;
         marketerVO = userAdmin.findMarketerByID(marketerID);
+        marketerName = marketerVO.name;
         startTimeButton.setText(initialTime);
         endTimeButton.setText(initialTime);
 
@@ -189,10 +189,11 @@ public class MarketerOtherPromotionController implements ControlledStage {
         Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
         editPromotion = new EditPromotionController();
+        stageController = new StageController();
 
         String name = promotionNameTextField.getText();
         String targetArea = (String) targetAreaChoiceBox.getSelectionModel().getSelectedItem();
-        MemberType targetMember = ((MemberType) targetMemberChoiceBox.getSelectionModel()
+        MemberType targetMember = (targetMemberChoiceBox.getSelectionModel()
                 .getSelectedItem()).equals("所有客户") ? MemberType.NONMEMBER : MemberType.NORMAL;
         Timestamp startTime = Timestamp.valueOf(startTimeButton.getText() + " 00:00:00");
         Timestamp endTime = Timestamp.valueOf(endTimeButton.getText() + " 00:00:00");
@@ -205,7 +206,7 @@ public class MarketerOtherPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
-                stageController.closeStage(resource);
+                renew();
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -216,7 +217,7 @@ public class MarketerOtherPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
-                stageController.closeStage(resource);
+                renew();
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -236,6 +237,16 @@ public class MarketerOtherPromotionController implements ControlledStage {
         ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
         errorBoxController.setLabel(error);
         return stageController;
+    }
+
+    /**
+     * 创建或修改促销策略后，刷新列表
+     */
+    private void renew() throws IOException, ClassNotFoundException {
+        stageController = new StageController();
+        stageController.closeStage(resource);
+        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) stageController.getController();
+        marketerWebPromotionController.initial(marketerID);
     }
 
 

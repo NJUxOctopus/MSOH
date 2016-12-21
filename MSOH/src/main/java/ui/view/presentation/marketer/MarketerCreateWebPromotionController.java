@@ -62,6 +62,7 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
         promotionSelectShade.setY(0);
         promotionPane.getChildren().clear();
         paneAdder.addPane(promotionPane, "marketer/MarketerHolidayPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("marketer/MarketerHolidayPromotion.fxml");
 
         MarketerHolidayPromotionController marketerHolidayPromotionController = (MarketerHolidayPromotionController) paneAdder.getController();
         marketerHolidayPromotionController.initial(marketerID);
@@ -73,10 +74,11 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
     @FXML
     private void showVIPPromotion() throws RemoteException {
         paneAdder = new PaneAdder();
-        promotionSelectShade.setHeight(74);
+        promotionSelectShade.setHeight(70);
         promotionSelectShade.setY(70);
         promotionPane.getChildren().clear();
         paneAdder.addPane(promotionPane, "marketer/MarketerVIPPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("marketer/MarketerVIPPromotion.fxml");
 
         MarketerVIPPromotionController marketerVIPPromotionController = (MarketerVIPPromotionController) paneAdder.getController();
         marketerVIPPromotionController.initial(marketerID);
@@ -89,9 +91,10 @@ public class MarketerCreateWebPromotionController implements ControlledStage {
     private void showOtherPromotion() throws RemoteException {
         paneAdder = new PaneAdder();
         promotionSelectShade.setHeight(67);
-        promotionSelectShade.setY(144);
+        promotionSelectShade.setY(140);
         promotionPane.getChildren().clear();
         paneAdder.addPane(promotionPane, "marketer/MarketerOtherPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("marketer/MarketerOtherPromotion.fxml");
 
         MarketerOtherPromotionController marketerOtherPromotionController = (MarketerOtherPromotionController) paneAdder.getController();
         marketerOtherPromotionController.initial(marketerID);

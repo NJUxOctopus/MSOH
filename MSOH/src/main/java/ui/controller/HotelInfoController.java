@@ -63,6 +63,6 @@ public class HotelInfoController implements HotelInfo {
     }
 
     public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
-        return hotelUtil_blService.getBewteenDate(hotelID, roomName, timestamp1, timestamp2);
+        return hotelUtil_blService.getBetweenDate(hotelID, roomName, timestamp1, timestamp2);
     }
 }

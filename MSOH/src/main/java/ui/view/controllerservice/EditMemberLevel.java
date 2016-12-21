@@ -12,4 +12,6 @@ public interface EditMemberLevel {
     public ResultMessage modifyMemberLevel(MemberLevelVO memberLevelVO) throws RemoteException;
 
     public MemberLevelVO getMemberLevel() throws RemoteException;
+
+    public ResultMessage changeGrade(String customerID) throws RemoteException;
 }
