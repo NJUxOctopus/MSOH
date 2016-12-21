@@ -198,26 +198,20 @@ public class Hotel implements Hotel_BLService {
             else
                 infra += hotelVO.infra[i];
         }
-        //// TODO: 2016/12/20 添加房间类型和图片
-
         String roomType = "";
-        /*
         for (int i = 0; i < hotelVO.roomType.length; i++) {
             if (i != hotelVO.roomType.length - 1)
                 roomType += hotelVO.roomType[i] + ";";
             else
                 roomType += hotelVO.roomType[i];
         }
-        */
         String picUrl = "";
-        /*
         for (int i = 0; i < hotelVO.picUrls.length; i++) {
             if (i != hotelVO.picUrls.length - 1)
                 picUrl += hotelVO.picUrls[i] + ";";
             else
                 picUrl += hotelVO.picUrls[i];
         }
-        */
         if (hotel_dataService.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, roomType,
                 hotelVO.star, 0, hotelVO.license, picUrl, null))) {
             addDailyRoomInfo(new DailyRoomInfoVO(hotelVO.hotelID, timestamp1, null));
@@ -324,7 +318,7 @@ public class Hotel implements Hotel_BLService {
         HotelPO hotelPO = hotel_dataService.findHotelByID(clerkVO.hotelID);
         if (hotelPO == null)
             return ResultMessage.Hotel_HotelNotExist;
-        if (hotelPO.getClerkID() != null)
+        if (!hotelPO.getClerkID().equals(""))
             return ResultMessage.Hotel_HasClerk;
         hotelPO.setClerkID(clerkVO.ID);
         return ResultMessage.Clerk_AddClerkSuccess;

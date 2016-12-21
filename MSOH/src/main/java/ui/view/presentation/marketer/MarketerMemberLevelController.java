@@ -2,6 +2,7 @@ package ui.view.presentation.marketer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -20,6 +21,7 @@ import vo.MemberLevelVO;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,11 +35,11 @@ public class MarketerMemberLevelController implements ControlledStage {
     @FXML
     private TableView<MemberLevelVO> memberLevelTableView;
     @FXML
-    private TableColumn<MemberLevelVO, Integer> levelColumn;
+    private TableColumn<MemberLevelVO, String> levelColumn;
     @FXML
-    private TableColumn<MemberLevelVO, Integer> boundaryColumn;
+    private TableColumn<MemberLevelVO, String> boundaryColumn;
     @FXML
-    private TableColumn<MemberLevelVO, Double> discountColumn;
+    private TableColumn<MemberLevelVO, String> discountColumn;
     @FXML
     private Label levelLabel;
     @FXML
@@ -61,7 +63,8 @@ public class MarketerMemberLevelController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(MemberLevelVO memberLevelVO) throws RemoteException {
+    public void initial(final MemberLevelVO memberLevelVO) throws RemoteException {
+        editMemberLevel = new EditMemberLevelController();
         this.memberLevelVO = memberLevelVO;
         this.marketerName = memberLevelVO.framerName;
         int[] boundaries = memberLevelVO.creditBoundaries;
@@ -72,22 +75,69 @@ public class MarketerMemberLevelController implements ControlledStage {
 
         ObservableList<MemberLevelVO> memberLevelVOObservableList = FXCollections.observableArrayList();
         for (int i = 1; i <= memberLevelVO.num; i++) {
-            memberLevelVOObservableList.add(new MemberLevelVO(i, boundaries[i - 1], Double.parseDouble(discount.get(i - 1))));
+            memberLevelVOObservableList.add(new MemberLevelVO(String.valueOf(i), String.valueOf(boundaries[i - 1]), discount.get(i - 1)));
         }
 
         memberLevelTableView.setItems(memberLevelVOObservableList);
 
-        levelColumn.setCellValueFactory(new PropertyValueFactory<MemberLevelVO, Integer>("specificLevel"));
-        boundaryColumn.setCellValueFactory(new PropertyValueFactory<MemberLevelVO, Integer>("specificBoundary"));
-        discountColumn.setCellValueFactory(new PropertyValueFactory<MemberLevelVO, Double>("specificDiscount"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<MemberLevelVO, String>("specificLevel"));
+        boundaryColumn.setCellValueFactory(new PropertyValueFactory<MemberLevelVO, String>("specificBoundary"));
+        discountColumn.setCellValueFactory(new PropertyValueFactory<MemberLevelVO, String>("specificDiscount"));
 
         levelLabel.setText(String.valueOf(memberLevelVO.num + 1));
         boundaryTextField.setText("");
         discountTextField.setText("");
+        memberLevelTableView.setEditable(true);
 
-//        memberLevelTableView.setEditable(true);
+        boundaryColumn.setCellFactory(TextFieldTableCell.<MemberLevelVO>forTableColumn());
+        boundaryColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<MemberLevelVO, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<MemberLevelVO, String> event) {
+                int[] newBoundaries = memberLevelVO.creditBoundaries;
+                newBoundaries[event.getTablePosition().getRow()] = Integer.parseInt(event.getNewValue());
+                MemberLevelVO newMemberLevelVO = new MemberLevelVO(memberLevelVO.memberLevelID, marketerName,
+                        getCurrentTime(), memberLevelVO.num, newBoundaries, memberLevelVO.discountList);
+                try {
+                    if (editMemberLevel.modifyMemberLevel(newMemberLevelVO).equals(ResultMessage.MemberLevel_ModifyMemberLevelSuccess)) {
+                        //增加等级制度成功，刷新表单
+                        initial(newMemberLevelVO);
+                    } else {
+                        returnMessage("修改等级失败！");
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-//        levelColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        discountColumn.setCellFactory(TextFieldTableCell.<MemberLevelVO>forTableColumn());
+        discountColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<MemberLevelVO, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<MemberLevelVO, String> event) {
+                String[] newDiscount = new String[memberLevelVO.discountList.size()];
+                List<String> newDiscountList = new ArrayList<String>();
+                for (int i = 0; i < newDiscount.length; i++) {
+                    newDiscount[i] = memberLevelVO.discountList.get(i);
+                }
+                newDiscount[event.getTablePosition().getRow()] = event.getNewValue();
+                for (int i = 0; i < newDiscount.length; i++) {
+                    newDiscountList.add(newDiscount[i]);
+                }
+                MemberLevelVO newMemberLevelVO = new MemberLevelVO(memberLevelVO.memberLevelID, marketerName,
+                        getCurrentTime(), memberLevelVO.num, memberLevelVO.creditBoundaries, newDiscountList);
+                try {
+                    if (editMemberLevel.modifyMemberLevel(newMemberLevelVO).equals(ResultMessage.MemberLevel_ModifyMemberLevelSuccess)) {
+                        //增加等级制度成功，刷新表单
+                        initial(newMemberLevelVO);
+                    } else {
+                        returnMessage("修改等级失败！");
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
@@ -98,13 +148,12 @@ public class MarketerMemberLevelController implements ControlledStage {
     private void addMemberLevel() throws RemoteException {
         editMemberLevel = new EditMemberLevelController();
 
-        //获取当前时间
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
         if (boundaryTextField.getText().equals("") || discountTextField.getText().equals("")) {
             this.returnMessage("请填写完整！");
+        } else if (Integer.parseInt(boundaryTextField.getText())
+                <= memberLevelVO.creditBoundaries[memberLevelVO.creditBoundaries.length - 1]) {
+            this.returnMessage("信用值必须大于" + memberLevelVO.creditBoundaries[memberLevelVO.creditBoundaries.length - 1] + "!");
         } else {
             int[] newBoundaries = new int[memberLevelVO.num + 1];
             for (int i = 0; i < memberLevelVO.num; i++) {
@@ -114,7 +163,7 @@ public class MarketerMemberLevelController implements ControlledStage {
             List<String> newDiscountList = memberLevelVO.discountList;
             newDiscountList.add(discountTextField.getText());
 
-            MemberLevelVO newMemberLevelVO = new MemberLevelVO(memberLevelVO.memberLevelID, marketerName, time,
+            MemberLevelVO newMemberLevelVO = new MemberLevelVO(memberLevelVO.memberLevelID, marketerName, getCurrentTime(),
                     memberLevelVO.num + 1, newBoundaries, newDiscountList);
 
             if (editMemberLevel.modifyMemberLevel(newMemberLevelVO).equals(ResultMessage.MemberLevel_ModifyMemberLevelSuccess)) {
@@ -131,6 +180,7 @@ public class MarketerMemberLevelController implements ControlledStage {
      */
     @FXML
     private void modifyMemberLevel() {
+
     }
 
     /**
@@ -145,6 +195,18 @@ public class MarketerMemberLevelController implements ControlledStage {
         ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
         errorBoxController.setLabel(error);
         return stageController;
+    }
+
+    /**
+     * 获取当前时间
+     *
+     * @return
+     */
+    private Timestamp getCurrentTime() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+        return time;
     }
 
 

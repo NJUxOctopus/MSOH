@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="474.0" prefWidth="689.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerMemberLevelController">
+<Pane prefHeight="474.0" prefWidth="689.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.marketer.MarketerMemberLevelController">
    <children>
-      <TableView fx:id="memberLevelTableView" layoutX="57.0" layoutY="31.0" prefHeight="338.0" prefWidth="570.0">
+      <TableView fx:id="memberLevelTableView" layoutX="57.0" layoutY="31.0" prefHeight="364.0" prefWidth="570.0" stylesheets="@MarketerTableView.css">
         <columns>
           <TableColumn fx:id="levelColumn" prefWidth="109.0" text="Lv." />
           <TableColumn fx:id="boundaryColumn" prefWidth="274.0" text="需达到信用值" />
             <TableColumn fx:id="discountColumn" prefWidth="185.0" text="折扣" />
         </columns>
       </TableView>
-      <Button layoutX="583.0" layoutY="370.0" mnemonicParsing="false" onAction="#addMemberLevel" style="-fx-background-color: #ffffff00;">
+      <Button layoutX="582.0" layoutY="404.0" mnemonicParsing="false" onAction="#addMemberLevel" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -32,22 +32,22 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="57.0" layoutY="373.0" text="Lv.：" textFill="WHITE">
+      <Label layoutX="57.0" layoutY="407.0" text="Lv.：" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="levelLabel" layoutX="108.0" layoutY="374.0" text="0" textFill="WHITE">
+      <Label fx:id="levelLabel" layoutX="108.0" layoutY="408.0" text="0" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="157.0" layoutY="373.0" text="需达到信用值：" textFill="WHITE">
+      <Label layoutX="157.0" layoutY="407.0" text="需达到信用值：" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="boundaryTextField" layoutX="283.0" layoutY="371.0" prefHeight="32.0" prefWidth="97.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+      <TextField fx:id="boundaryTextField" layoutX="283.0" layoutY="405.0" prefHeight="32.0" prefWidth="97.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -55,12 +55,12 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Label layoutX="415.0" layoutY="373.0" text="折扣：" textFill="WHITE">
+      <Label layoutX="415.0" layoutY="407.0" text="折扣：" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="discountTextField" layoutX="469.0" layoutY="371.0" prefHeight="32.0" prefWidth="97.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+      <TextField fx:id="discountTextField" layoutX="469.0" layoutY="405.0" prefHeight="32.0" prefWidth="97.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -68,13 +68,5 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Button layoutX="566.0" layoutY="424.0" mnemonicParsing="false" onAction="#modifyMemberLevel" prefHeight="36.0" prefWidth="62.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Microsoft YaHei" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
    </children>
 </Pane>

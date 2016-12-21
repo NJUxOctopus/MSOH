@@ -269,7 +269,7 @@ public class HotelUtil implements HotelUtil_BLService {
     public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2,
                                 String roomType, int roomNum, String area) throws RemoteException {
         List<HotelVO> hotelVOList = getByArea(area);
-        FilterCriteria filterCriteriaDate = new FilterCriteriaDateAndRoomType(timestamp1, timestamp2, roomType, roomNum);
+        FilterCriteria filterCriteriaDate = new FilterCriteriaDateAndRoomType(timestamp1, timestamp2, roomType, roomNum, this);
         FilterCriteria filterCriteriaStar = new FilterCriteriaStar(star);
         FilterCriteria filterCriteriaScore = new FilterCriteriaScore(low, high);
         return new AndSearchCriteria(filterCriteriaDate, filterCriteriaStar, filterCriteriaScore).meetCriteria(hotelVOList);
@@ -288,7 +288,7 @@ public class HotelUtil implements HotelUtil_BLService {
     public List<HotelVO> searchHotel(String area, Timestamp timestamp1, Timestamp timestamp2,
                                      String star, String low, String high) throws RemoteException {
         List<HotelVO> hotelVOList = getByArea(area);
-        FilterCriteria filterCriteriaDate = new FilterCriteriaDate(timestamp1, timestamp2);
+        FilterCriteria filterCriteriaDate = new FilterCriteriaDate(timestamp1, timestamp2, this);
         FilterCriteria filterCriteriaStar = new FilterCriteriaStar(star);
         FilterCriteria filterCriteriaScore = new FilterCriteriaScore(low, high);
         return new AndSearchCriteria(filterCriteriaDate, filterCriteriaStar, filterCriteriaScore).meetCriteria(hotelVOList);
