@@ -26,4 +26,6 @@ public interface PromotionUtil_BLService {
     public List<PromotionVO> mergePromotionList(List<PromotionVO> list1,List<PromotionVO> list2)throws RemoteException;
 
     public List<PromotionVO> getPromotionByType(PromotionType promotionType,Timestamp timestamp)throws IOException, ClassNotFoundException;
+
+    public List<PromotionVO> getHotelPromotion(String hotelID, Timestamp timestamp) throws ClassNotFoundException, IOException;
 }
