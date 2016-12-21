@@ -20,10 +20,7 @@ import java.util.List;
  */
 public class Login implements Login_BLService {
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    private ClerkUtil clerkUtil = abstract_blFactory.createClerkUtil();
-    private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
-    private ManagerUtil managerUtil = abstract_blFactory.createManagerUtil();
-    private MarketerUtil marketerUtil = abstract_blFactory.createMarketerUtil();
+
     /**
      * 登录
      *
@@ -33,7 +30,10 @@ public class Login implements Login_BLService {
      * @throws RemoteException
      */
     public ResultMessage login(String ID, String password) throws RemoteException {
-
+        ClerkUtil clerkUtil = abstract_blFactory.createClerkUtil();
+        CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
+        ManagerUtil managerUtil = abstract_blFactory.createManagerUtil();
+        MarketerUtil marketerUtil = abstract_blFactory.createMarketerUtil();
         if (ID.equals("") || password.equals("")) {
             return ResultMessage.Blank;//若账号密码为空
         } else if (clerkUtil.getSingle(ID) == null &&
@@ -70,7 +70,7 @@ public class Login implements Login_BLService {
         File file = new File("password.txt");
 
         try {
-            if(!file.exists())
+            if (!file.exists())
                 file.createNewFile();
             //记住密码时先判断是否已经记住该密码
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
@@ -83,7 +83,7 @@ public class Login implements Login_BLService {
                 }
             }
             //若账号未被记住
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true)));
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
             String idCode = DataFormat.code(ID);//加密的ID
             String passwordCode = DataFormat.code(password);//加密的密码
             bufferedWriter.write(idCode + " ");//存入文件用空格分开账号密码
@@ -113,8 +113,8 @@ public class Login implements Login_BLService {
                 if (!DataFormat.reCode(line.split(" ")[0]).equals(ID))
                     list.add(line);
             }
-            FileOutputStream fileOutputStream = new FileOutputStream(file,false);
-            for(String s:list){
+            FileOutputStream fileOutputStream = new FileOutputStream(file, false);
+            for (String s : list) {
                 fileOutputStream.write(s.getBytes());
             }
             return ResultMessage.Password_CancelRememberSuccess;
@@ -126,6 +126,7 @@ public class Login implements Login_BLService {
 
     /**
      * 若账号已被记住，选择账号后直接显示密码，若未被记住返回空
+     *
      * @param ID
      * @return
      * @throws RemoteException
