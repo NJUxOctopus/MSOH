@@ -316,4 +316,20 @@ public class Hotel implements Hotel_BLService {
         hotelPO.setClerkID(clerkVO.ID);
         return ResultMessage.Clerk_AddClerkSuccess;
     }
+
+    /**
+     * 删除酒店的工作人员
+     *
+     * @param hotelID
+     * @return
+     * @throws RemoteException
+     */
+    public ResultMessage deleteClerk(String hotelID) throws RemoteException {
+        HotelPO hotelPO = hotel_dataService.findHotelByID(hotelID);
+        hotelPO.setClerkID("");
+        if (hotel_dataService.modifyHotel(hotelPO))
+            return ResultMessage.Hotel_deleteClerkSuccess;
+        else
+            return ResultMessage.Fail;
+    }
 }

@@ -89,8 +89,8 @@ public class Clerk implements Clerk_BLService {
         if (clerk_dataService.findClerkByID(clerkVO.ID) == null)
             //若该工作人员不存在
             return ResultMessage.Clerk_DeleteClerkNotExist;
-
-        if (clerk_dataService.deleteClerk(clerk_dataService.findClerkByID(clerkVO.ID)))
+        if (clerk_dataService.deleteClerk(clerk_dataService.findClerkByID(clerkVO.ID)) &&
+                hotel.deleteClerk(clerkVO.hotelID).equals(ResultMessage.Hotel_deleteClerkSuccess))
             return ResultMessage.Clerk_DeleteClerkSuccess;
         else
             return ResultMessage.Fail;

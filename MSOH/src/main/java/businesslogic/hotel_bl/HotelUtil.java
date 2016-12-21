@@ -240,7 +240,7 @@ public class HotelUtil implements HotelUtil_BLService {
      * @param timestamp2
      * @return
      */
-    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
+    public RoomVO getBetweenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
         long oneDay = 1000 * 60 * 60 * 24;
         long days = (timestamp2.getTime() - timestamp1.getTime()) / oneDay;//算共住多少天
         List<Timestamp> list = new ArrayList<Timestamp>();
