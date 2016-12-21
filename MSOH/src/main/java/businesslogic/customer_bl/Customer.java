@@ -27,8 +27,6 @@ import java.util.*;
  */
 public class Customer implements Customer_BLService {
     private Customer_DataService customer_dataService = RemoteHelper.getInstance().getCustomerDataService();
-    //private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    //private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
 
     /**
      * 根据用户id得到用户的信用

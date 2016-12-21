@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  * Created by Pxr on 16/12/13.
  */
 public class ManagerUtil implements ManagerUtil_BLService {
-    Manager_DataService manager_dataService = RemoteHelper.getInstance().getManagerDataService();
+    private Manager_DataService manager_dataService = RemoteHelper.getInstance().getManagerDataService();
 
     /**
      * 根据ID获得管理人员

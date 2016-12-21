@@ -10,6 +10,6 @@ import java.util.Comparator;
 public class sortOrderByDate implements Comparator<OrderVO> {
 
     public int compare(OrderVO o1, OrderVO o2) {
-        return o1.estimatedCheckinTime.compareTo(o2.estimatedCheckinTime);
+        return o2.estimatedCheckinTime.compareTo(o1.estimatedCheckinTime);
     }
 }

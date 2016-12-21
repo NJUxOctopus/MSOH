@@ -16,8 +16,8 @@ import java.util.List;
  * Created by Pxr on 16/12/9.
  */
 public class FilterCriteriaDate implements FilterCriteria {
-    Timestamp firstDate;
-    Timestamp secondDate;
+    private Timestamp firstDate;
+    private Timestamp secondDate;
     private HotelUtil hotelUtil;
 
     public FilterCriteriaDate(Timestamp timestamp1, Timestamp timestamp2,HotelUtil hotelUtil) {

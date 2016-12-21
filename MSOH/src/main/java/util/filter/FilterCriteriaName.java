@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Pxr on 16/12/7.
  */
 public class FilterCriteriaName implements FilterCriteria {
-    String name;
+    private String name;
 
     public FilterCriteriaName(String name) {
         this.name = name;

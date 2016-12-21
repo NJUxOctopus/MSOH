@@ -30,8 +30,8 @@ public class Order implements Order_BLService {
     private OrderPO orderPO;
     private Order_DataService order_dataService_stub = RemoteHelper.getInstance().getOrderDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    private Promotion promotion = abstract_blFactory.createPromotion();
-    private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
+
+    HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
 
     /**
      * 在订单的所有促销策略中返回价格最低的策略
@@ -55,6 +55,7 @@ public class Order implements Order_BLService {
      */
     public List<OrderPriceVO> usePromotion(OrderVO orderVO) throws IOException, ClassNotFoundException {
         List<OrderPriceVO> orderPriceVOList = new ArrayList<OrderPriceVO>();
+        Promotion promotion = abstract_blFactory.createPromotion();
         List<PromotionVO> promotionVOList = promotion.promotionRequirements(orderVO);//先调促销策略的方法判断订单信息是否符合该酒店的所有策略
 
         double initPrice = getTotal(orderVO);//初始价格
