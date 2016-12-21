@@ -5,8 +5,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import ui.controller.ClerkInfoChangeController;
+import ui.controller.HotelAdminController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.ClerkInfoChange;
+import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
@@ -216,16 +218,17 @@ public class ManagerClerkInfoViewController implements ControlledStage {
         addCleckPane.setOpacity(1);
         modifyCleckPane.setOpacity(0);
         this.hotelID = hotelID;
-        if(hotelID == ""){
+
+        if (hotelID.equals("")) {
             hotelIDTextField.setEditable(true);
-        }else{
+        } else {
             hotelIDTextField.setEditable(false);
         }
 
         cleckNameTextField.setText("");
         phoneTextField.setText("");
         cleckIDTextField.setText("");
-        hotelIDTextField.setText("");
+        hotelIDTextField.setText(hotelID);
     }
 
     /**

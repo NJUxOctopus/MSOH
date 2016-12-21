@@ -64,7 +64,8 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
         String month = monthChoiceBox.getSelectionModel().getSelectedItem() + "";
         String day = dayChoiceBox.getSelectionModel().getSelectedItem() + "";
         Timestamp birthday = Timestamp.valueOf(year + "-" + month + "-" + day + " 00:00:00");
-        if(year == "" || month == "" || day == ""){
+        //// TODO: 2016/12/20 日期判断
+        if(year == null || month == null || day == null){
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();

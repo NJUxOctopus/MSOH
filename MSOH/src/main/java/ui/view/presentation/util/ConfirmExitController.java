@@ -2,6 +2,7 @@ package ui.view.presentation.util;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 
@@ -17,8 +18,12 @@ public class ConfirmExitController implements ControlledStage {
 
     @FXML
     private Button exitButton;
+
     @FXML
     private Button cancelButton;
+
+    @FXML
+    private Label label;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -47,5 +52,9 @@ public class ConfirmExitController implements ControlledStage {
     public void cancelExit(){
         stageController = new StageController();
         stageController.closeStage(resource);
+    }
+
+    public void setLabel(String s){
+        label.setText(s);
     }
 }

@@ -152,7 +152,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextArea fx:id="briefInfoTextArea" layoutX="119.0" layoutY="413.0" prefHeight="200.0" prefWidth="200.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff;" stylesheets="@manager.css" wrapText="true" />
+            <TextArea fx:id="briefInfoTextArea" layoutX="119.0" layoutY="413.0" prefHeight="200.0" prefWidth="200.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@manager.css" wrapText="true" />
          </children>
       </Pane>
       <Button fx:id="backButton" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">

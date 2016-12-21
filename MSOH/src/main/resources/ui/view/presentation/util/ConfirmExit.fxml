@@ -20,7 +20,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="48.0" layoutY="28.0" text="您还未保存修改" textFill="#458ee0">
+      <Label fx:id="label" alignment="CENTER" layoutX="7.0" layoutY="28.0" prefHeight="26.0" prefWidth="223.0" text="您还未保存修改" textFill="#458ee0">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>

@@ -191,6 +191,7 @@ public class CustomerReserveViewController implements ControlledStage{
         stageController.loadStage("util/ConfirmExit.fxml", 0.75);
         ConfirmExitController controller = (ConfirmExitController) stageController.getController();
         controller.setToBeClosed(resource);
+        controller.setLabel("您还未确认订单");
     }
 
     /**
