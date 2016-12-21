@@ -2,6 +2,7 @@ package vo;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -25,11 +26,11 @@ public class MemberLevelVO implements Serializable {
 
     public List<String> discountList;
 
-    public SimpleIntegerProperty specificLevel;
+    public SimpleStringProperty specificLevel;
 
-    public SimpleIntegerProperty specificBoundary;
+    public SimpleStringProperty specificBoundary;
 
-    public SimpleDoubleProperty specificDiscount;
+    public SimpleStringProperty specificDiscount;
 
     public MemberLevelVO() {
     }
@@ -57,21 +58,21 @@ public class MemberLevelVO implements Serializable {
      * @param specificBoundary
      * @param specificDiscount
      */
-    public MemberLevelVO(int specificLevel, int specificBoundary, double specificDiscount) {
-        this.specificLevel = new SimpleIntegerProperty(specificLevel);
-        this.specificBoundary = new SimpleIntegerProperty(specificBoundary);
-        this.specificDiscount = new SimpleDoubleProperty(specificDiscount);
+    public MemberLevelVO(String specificLevel, String specificBoundary, String specificDiscount) {
+        this.specificLevel = new SimpleStringProperty(specificLevel);
+        this.specificBoundary = new SimpleStringProperty(specificBoundary);
+        this.specificDiscount = new SimpleStringProperty(specificDiscount);
     }
 
-    public int getSpecificLevel() {
+    public String  getSpecificLevel() {
         return specificLevel.get();
     }
 
-    public int getSpecificBoundary() {
+    public String getSpecificBoundary() {
         return specificBoundary.get();
     }
 
-    public double getSpecificDiscount() {
+    public String getSpecificDiscount() {
         return specificDiscount.get();
     }
 }

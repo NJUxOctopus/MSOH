@@ -113,11 +113,23 @@ public class HotelVO implements Serializable {
         this.hotelID = hotelID;
     }
 
-    public HotelVO(String ID, String hotelName, String hotelAddress, String area, String intro, String[] infra, int star,
+    /**
+     * 添加修改酒店使用的构造方法
+     * @param ID
+     * @param hotelName
+     * @param hotelAddress
+     * @param area
+     * @param intro
+     * @param infra
+     * @param star
+     * @param license
+     */
+    public HotelVO(String ID, String hotelName, String hotelAddress, String city, String area, String intro, String[] infra, int star,
                    String license) {
         this.hotelID = ID;
         this.hotelName = hotelName;
         this.hotelAddress = hotelAddress;
+        this.city = city;
         this.area = area;
         this.intro = intro;
         this.infra = infra;

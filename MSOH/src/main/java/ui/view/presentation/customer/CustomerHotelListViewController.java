@@ -113,6 +113,7 @@ public class CustomerHotelListViewController implements ControlledStage {
         String hotelName = nameTextField.getText();
         int star = starChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
         int score = scoreChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+        System.out.println(star);
 
         //房间信息
         int roomNum = Integer.parseInt(roomNumTextField.getText());
@@ -122,14 +123,15 @@ public class CustomerHotelListViewController implements ControlledStage {
         //日期信息
         String checkInTime = checkInTimeTextField.getText();
         String checkOutTime = checkOutTimeTextField.getText();
-        Timestamp checkIn = Timestamp.valueOf("0000-00-00 00:00:00");
-        Timestamp checkOut= Timestamp.valueOf("0000-00-00 00:00:00");
         boolean rightTime = false;
-
-        if(checkInTime == null && checkOutTime == null){
-            checkIn = null;
-            checkOut = null;
+        if((checkInTime != null && checkInTime == null) || (checkInTime == null && checkInTime != null)){
+            stageController = new StageController();
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController controller = (ErrorBoxController) stageController.getController();
+            controller.setLabel("请选择完整的日期信息！");
         }
+        Timestamp checkIn;
+        Timestamp checkOut;
         if(!checkInTime.equals("") && !checkInTime.equals("")){
             checkIn = Timestamp.valueOf(checkInTime + " 00:00:00");
             checkOut = Timestamp.valueOf(checkOutTime + " 00:00:00");
@@ -141,12 +143,9 @@ public class CustomerHotelListViewController implements ControlledStage {
             }else{
                 rightTime = true;
             }
-        }
-        if((checkInTime != null && checkInTime == null) || (checkInTime == null && checkInTime != null)){
-            stageController = new StageController();
-            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
-            ErrorBoxController controller = (ErrorBoxController) stageController.getController();
-            controller.setLabel("请选择完整的日期信息！");
+        }else{
+            checkIn = null;
+            checkOut = null;
         }
         if(roomType != null){
             rightRoom = true;
@@ -157,14 +156,27 @@ public class CustomerHotelListViewController implements ControlledStage {
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
             controller.setLabel("请先选择房间类型再选择房间数量！");
         }
-        if(rightRoom && rightTime){
-            HotelInfo hotelInfo = new HotelInfoController();
-            try {
+        HotelInfo hotelInfo = new HotelInfoController();
+        try {
+            if (rightRoom && !rightTime) {
+                List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", null, null, roomType, roomNum, area);
+                addHotelPane(hotelVOList);
+                System.out.print("。");
+
+            }
+            if (!rightRoom && rightTime) {
                 List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
                 addHotelPane(hotelVOList);
-            }catch (RemoteException e){
-                e.printStackTrace();
+                System.out.print("？");
+
             }
+            if (rightRoom && rightTime) {
+                List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
+                addHotelPane(hotelVOList);
+                System.out.print("!");
+            }
+        }catch (RemoteException e){
+            e.printStackTrace();
         }
     }
 
@@ -190,7 +202,7 @@ public class CustomerHotelListViewController implements ControlledStage {
     }
 
     public void setCheckInTime(String checkInTime){
-        checkOutTimeTextField.setText(checkInTime);
+        checkInTimeTextField.setText(checkInTime);
     }
 
     /**
@@ -332,7 +344,8 @@ public class CustomerHotelListViewController implements ControlledStage {
             scoreChoiceBox.setValue(score[(int)hotelVO.score]);
         checkInTimeTextField.setText(hotelVO.checkInTime);
         checkOutTimeTextField.setText(hotelVO.checkOutTime);
-
+        typeOfRoomChoiceBox.setItems(FXCollections.observableArrayList(
+                "单人房", "大床房", "标间"));
         getAllHotel(hotelVO);
     }
 

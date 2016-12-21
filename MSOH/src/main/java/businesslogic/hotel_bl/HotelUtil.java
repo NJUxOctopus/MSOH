@@ -12,6 +12,7 @@ import po.HotelPO;
 import po.RoomPO;
 import rmi.RemoteHelper;
 import util.filter.*;
+import util.sort.sortCommentByDate;
 import util.sort.sortHotelByScore;
 import util.sort.sortHotelByStar;
 import util.sort.sortRoomByNum;
@@ -28,10 +29,10 @@ import java.util.List;
  * Created by apple on 16/11/10.
  */
 public class HotelUtil implements HotelUtil_BLService {
-    City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
-    Hotel_DataService hotel_dataService = RemoteHelper.getInstance().getHotelDataService();
-    Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    Customer customer = abstract_blFactory.createCustomer();
+    private City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
+    private Hotel_DataService hotel_dataService = RemoteHelper.getInstance().getHotelDataService();
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    private Customer customer = abstract_blFactory.createCustomer();
 
     /**
      * 该方法主要是把酒店的评论的po改成vo
@@ -54,6 +55,8 @@ public class HotelUtil implements HotelUtil_BLService {
             commentVOList.add(new CommentVO(commentPO.getScore(), commentPO.getComment(), commentPO.getCustomerName(),
                     commentPO.getCustomerID(), commentPO.getHotelName(), commentPO.getHotelID(), commentPO.getOrderID(), commentPO.getCommentTime()));
         }
+        Comparator<CommentVO> comparator = new sortCommentByDate();
+        Collections.sort(commentVOList, comparator);
         return commentVOList;
     }
 
@@ -269,7 +272,11 @@ public class HotelUtil implements HotelUtil_BLService {
     public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2,
                                 String roomType, int roomNum, String area) throws RemoteException {
         List<HotelVO> hotelVOList = getByArea(area);
-        FilterCriteria filterCriteriaDate = new FilterCriteriaDateAndRoomType(timestamp1, timestamp2, roomType, roomNum);
+        FilterCriteria filterCriteriaDate;
+        if (roomType.equals(""))
+            filterCriteriaDate = new FilterCriteriaDate(timestamp1, timestamp2, this);
+        else
+            filterCriteriaDate = new FilterCriteriaDateAndRoomType(timestamp1, timestamp2, roomType, roomNum, this);
         FilterCriteria filterCriteriaStar = new FilterCriteriaStar(star);
         FilterCriteria filterCriteriaScore = new FilterCriteriaScore(low, high);
         return new AndSearchCriteria(filterCriteriaDate, filterCriteriaStar, filterCriteriaScore).meetCriteria(hotelVOList);
@@ -288,7 +295,7 @@ public class HotelUtil implements HotelUtil_BLService {
     public List<HotelVO> searchHotel(String area, Timestamp timestamp1, Timestamp timestamp2,
                                      String star, String low, String high) throws RemoteException {
         List<HotelVO> hotelVOList = getByArea(area);
-        FilterCriteria filterCriteriaDate = new FilterCriteriaDate(timestamp1, timestamp2);
+        FilterCriteria filterCriteriaDate = new FilterCriteriaDate(timestamp1, timestamp2, this);
         FilterCriteria filterCriteriaStar = new FilterCriteriaStar(star);
         FilterCriteria filterCriteriaScore = new FilterCriteriaScore(low, high);
         return new AndSearchCriteria(filterCriteriaDate, filterCriteriaStar, filterCriteriaScore).meetCriteria(hotelVOList);

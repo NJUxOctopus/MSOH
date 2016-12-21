@@ -19,6 +19,6 @@ public enum ResultMessage {
     Order_AddOrderSuccess, Order_ChangeOrderStatusSuccess, Order_SetActualCheckinTimeSuccess, Order_SetActualCheckoutTimeSuccess,
     Order_ChangeOrderStatusFailure, Order_SetActualCheckinTimeFailure, Order_SetActualCheckoutTimeFailure,
     Hotel_ModifyRoomSuccess, Hotel_DeleteRoomSuccess, Hotel_setDailyRoomInfoSuccess, Hotel_addCommentSuccess, Hotel_addToListOfHotelReservedByCustomerSuccess, Manager_AddMarketerAlreadyExist, Manager_ChangeManagerInfoSuccess,
-    Clerk_AddClerkSuccess,Clerk_AddClerkExist,Clerk_DeleteClerkNotExist,Clerk_DeleteClerkSuccess,Order_notExist,
+    Clerk_AddClerkSuccess,Clerk_AddClerkExist,Clerk_DeleteClerkNotExist,Clerk_DeleteClerkSuccess,Order_notExist,Order_CancelOrderBetweenSixHour,
     Promotion_ModifyPromotionSuccess,Marketer_DeleteMarketerSuccess,Marketer_AddMarketerSuccess;
 }

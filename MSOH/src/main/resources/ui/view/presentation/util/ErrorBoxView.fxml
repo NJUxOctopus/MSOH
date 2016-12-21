@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.util.ErrorBoxController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="154.0" layoutX="-1.0" layoutY="-1.0" stroke="#575eda" strokeType="INSIDE" strokeWidth="3.0" width="240.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="153.0" layoutX="-1.0" layoutY="-1.0" stroke="#575eda" strokeType="INSIDE" strokeWidth="3.0" width="239.0" />
       <Button fx:id="cancelButton" layoutX="75.0" layoutY="96.0" mnemonicParsing="false" onAction="#cancel" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #ffffff00; -fx-border-color: #575eda;" text="确定" textFill="#458ee0">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -18,7 +18,7 @@
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
       </Button>
-      <Label fx:id="errorTypeLabel" alignment="CENTER" layoutY="12.0" prefHeight="71.0" prefWidth="236.0" text="错误类型" textFill="#458ee0">
+      <Label fx:id="errorTypeLabel" alignment="CENTER" layoutX="8.0" layoutY="12.0" prefHeight="70.0" prefWidth="224.0" text="!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" textAlignment="CENTER" textFill="#458ee0" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>

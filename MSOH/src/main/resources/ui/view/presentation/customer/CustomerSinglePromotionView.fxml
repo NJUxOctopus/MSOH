@@ -7,12 +7,12 @@
 
 <Pane fx:id="singleOrderPane" prefHeight="30.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerSinglePromotionViewController">
    <children>
-      <Label fx:id="promotionNameLabel" layoutX="25.0" text="策略名称" textFill="WHITE">
+      <Label fx:id="promotionNameLabel" layoutX="25.0" prefHeight="18.0" prefWidth="243.0" text="策略名称" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="discountLabel" layoutX="225.0" text="折扣" textFill="WHITE">
+      <Label fx:id="discountLabel" layoutX="265.0" text="折扣" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

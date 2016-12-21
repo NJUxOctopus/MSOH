@@ -1,5 +1,7 @@
 package util.filter;
 
+import businesslogic.bl_Factory.Abstract_BLFactory;
+import businesslogic.bl_Factory.Default_BLFactory;
 import businesslogic.hotel_bl.HotelUtil;
 import util.CalculateDays;
 import vo.HotelVO;
@@ -16,10 +18,12 @@ import java.util.List;
 public class FilterCriteriaDate implements FilterCriteria {
     Timestamp firstDate;
     Timestamp secondDate;
+    private HotelUtil hotelUtil;
 
-    public FilterCriteriaDate(Timestamp timestamp1, Timestamp timestamp2) {
+    public FilterCriteriaDate(Timestamp timestamp1, Timestamp timestamp2,HotelUtil hotelUtil) {
         this.firstDate = timestamp1;
         this.secondDate = timestamp2;
+        this.hotelUtil = hotelUtil;
     }
 
     @Override
@@ -29,7 +33,6 @@ public class FilterCriteriaDate implements FilterCriteria {
         if (list == null || list.isEmpty())
             return new ArrayList<HotelVO>();
         List<HotelVO> hotelVOList = new ArrayList<HotelVO>();
-        HotelUtil hotelUtil = new HotelUtil();
         long oneDay = 1000 * 60 * 60 * 24;
         long days = (secondDate.getTime() - firstDate.getTime()) / oneDay;//算共住多少天
         //System.out.print(days);

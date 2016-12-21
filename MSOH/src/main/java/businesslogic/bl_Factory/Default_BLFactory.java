@@ -7,6 +7,7 @@ import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogic.manager_bl.ManagerUtil;
 import businesslogic.marketer_bl.MarketerUtil;
+import businesslogic.member_bl.Member;
 import businesslogic.member_bl.MemberLevel;
 import businesslogic.member_bl.MemberUtil;
 import businesslogic.order_bl.Order;
@@ -65,6 +66,11 @@ public class Default_BLFactory extends Abstract_BLFactory {
     @Override
     public MemberUtil createMemberUtil() {
         return new MemberUtil();
+    }
+
+    @Override
+    public Member createMember() {
+        return new Member();
     }
 
     @Override

@@ -112,7 +112,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="showCheckOutTimeSelectView" layoutX="217.0" layoutY="521.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" text="&gt;" textFill="WHITE">
+            <Button fx:id="checkOutTimeButton" layoutX="217.0" layoutY="521.0" mnemonicParsing="false" onAction="#showCheckOutTimeSelectView" style="-fx-background-color: #ffffff00;" text="&gt;" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

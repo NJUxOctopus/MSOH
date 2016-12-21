@@ -7,6 +7,7 @@ import businesslogic.hotel_bl.Hotel;
 import businesslogic.hotel_bl.HotelUtil;
 import businesslogic.manager_bl.ManagerUtil;
 import businesslogic.marketer_bl.MarketerUtil;
+import businesslogic.member_bl.Member;
 import businesslogic.member_bl.MemberLevel;
 import businesslogic.member_bl.MemberUtil;
 import businesslogic.order_bl.Order;
@@ -40,4 +41,7 @@ public abstract class Abstract_BLFactory {
     public abstract Order createOrder();
 
     public abstract MemberLevel createMemberLevel();
+
+    public abstract Member createMember();
+
 }

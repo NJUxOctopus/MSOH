@@ -2,6 +2,7 @@ package businesslogic.member_bl;
 
 import businesslogic.bl_Factory.Abstract_BLFactory;
 import businesslogic.bl_Factory.Default_BLFactory;
+import businesslogic.customer_bl.Customer;
 import businesslogic.customer_bl.CustomerUtil;
 import businesslogicservice.member_blservice.Member_BLService;
 import dataservice.member_dataservice.Member_DataService;
@@ -21,6 +22,7 @@ public class Member implements Member_BLService {
     private Member_DataService member_dataService = RemoteHelper.getInstance().getMemberDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
     private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
+    private Customer customer = abstract_blFactory.createCustomer();
 
     /**
      * 会员注册
@@ -33,25 +35,22 @@ public class Member implements Member_BLService {
         String customerID = memberVO.ID;
         if (customerUtil.getSingle(customerID).memberType.equals(MemberType.NONMEMBER)) {//首先用户必须是非会员
             if (memberVO.memberType.equals(MemberType.ENTREPRISE)) {//若注册为企业会员
-                if (memberVO.companyName.equals(""))//企业名输入不能为空
-                    return ResultMessage.Blank;
-                else {
-                    if (member_dataService.addMember(new MemberPO(customerID, memberVO.memberType,
-                            memberVO.level, memberVO.birthday, memberVO.companyName)))
-                        return ResultMessage.Member_EnterpriseSignupSuccess;
-                    else
-                        return ResultMessage.Fail;
-                }
+                if (member_dataService.addMember(new MemberPO(customerID, memberVO.memberType,
+                        memberVO.level, memberVO.birthday, memberVO.companyName))) {
+                    changeGrade(memberVO.ID);
+                    customer.changeCustomerMemberType(memberVO.ID, MemberType.ENTREPRISE);
+                    return ResultMessage.Member_EnterpriseSignupSuccess;
+                } else
+                    return ResultMessage.Fail;
             } else {//若注册为普通会员
-                if (memberVO.birthday == null)//会员生日不能为空
-                    return ResultMessage.Blank;
-                else {
-                    if (member_dataService.addMember(new MemberPO(customerID, memberVO.memberType,
-                            memberVO.level, memberVO.birthday, memberVO.companyName)))
-                        return ResultMessage.Member_NormalSignupSuccess;
-                    else
-                        return ResultMessage.Fail;
-                }
+
+                if (member_dataService.addMember(new MemberPO(customerID, memberVO.memberType,
+                        memberVO.level, memberVO.birthday, memberVO.companyName))) {
+                    changeGrade(memberVO.ID);
+                    customer.changeCustomerMemberType(memberVO.ID, MemberType.NORMAL);
+                    return ResultMessage.Member_NormalSignupSuccess;
+                } else
+                    return ResultMessage.Fail;
             }
         } else
             return ResultMessage.Member_AddMemberAlreadyExist;
@@ -70,7 +69,6 @@ public class Member implements Member_BLService {
         MemberPO memberPO = member_dataService.findMemberByID(customerID);
         MemberLevel memberLevel = new MemberLevel();
         MemberLevelVO memberLevelVO = memberLevel.getMemberLevel();//获取会员等级制度
-        CustomerUtil customerUtil = new CustomerUtil();
         int credit = customerUtil.getSingle(customerID).credit;//该信用值为用户当前信用值
         int[] boundraies = memberLevelVO.creditBoundaries;//会员等级界限
         int initLevel = memberPO.getLevel();//会员当前等级

@@ -71,6 +71,9 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     private Button detailButton;
 
     @FXML
+    private Label reservedLabel;
+
+    @FXML
     private void viewHotelDetails(){
         stageController = new StageController();
         stageController.loadStage("customer/CustomerHotelDetailsView.fxml", 1);
@@ -105,8 +108,8 @@ public class CustomerSingleHotelViewController implements ControlledStage {
         this.customerID = customerID;
         this.hotelID = hotelID;
 
-        setHotelInfo(hotelID);
         setOrderInfo(customerID, hotelID);
+        setHotelInfo(hotelID);
     }
 
     /**
@@ -119,8 +122,18 @@ public class CustomerSingleHotelViewController implements ControlledStage {
             HotelVO hotelVO = hotelAdmin.findByID(hotelID);
             hotelButton.setText(hotelVO.hotelName);
             Date date = new Date();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Timestamp time = Timestamp.valueOf(dateFormat.format(date));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Timestamp time = Timestamp.valueOf(dateFormat.format(date) + " 00:00:00");
+            //评价信息
+            numOfCommentLabel.setText(hotelVO.comment.size() + "");
+            scoreLabel.setText(hotelVO.score + "");
+
+            //星级信息
+            String star = "";
+            for(int i = 0; i < hotelVO.star; i++){
+                star += "★";
+            }
+            starLabel.setText(star);
 
             //房间信息
             List<RoomVO> roomVOList = hotelAdmin.getDailyRoomInfo(hotelID, time).room;
@@ -136,16 +149,6 @@ public class CustomerSingleHotelViewController implements ControlledStage {
                 priceLabel.setText("0");
             }
 
-            //评价信息
-            numOfCommentLabel.setText(hotelVO.comment.size() + "");
-            scoreLabel.setText(hotelVO.score + "");
-
-            //星级信息
-            String star = "";
-            for(int i = 0; i < hotelVO.star; i++){
-                star += "★";
-            }
-            starLabel.setText(star);
         } catch (RemoteException e){
             e.printStackTrace();
         }

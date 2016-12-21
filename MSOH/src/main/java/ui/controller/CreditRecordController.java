@@ -31,4 +31,6 @@ public class CreditRecordController implements CreditRecord {
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException {
         return customer_blService.addCreditRecord(ID, creditRecordVO);
     }
+
+
 }

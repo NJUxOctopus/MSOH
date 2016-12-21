@@ -10,6 +10,6 @@ import java.util.Comparator;
 public class sortCreditRecordByTime implements Comparator<CreditRecordVO> {
     @Override
     public int compare(CreditRecordVO o1, CreditRecordVO o2) {
-        return o1.changeTime.compareTo(o2.changeTime);
+        return o2.changeTime.compareTo(o1.changeTime);
     }
 }

@@ -6,18 +6,13 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import ui.controller.EditPromotionController;
-import ui.controller.HotelAdminController;
-import ui.controller.HotelInfoController;
-import ui.controller.ProcessOrderController;
-import ui.view.controllerservice.EditPromotion;
-import ui.view.controllerservice.HotelAdmin;
-import ui.view.controllerservice.HotelInfo;
-import ui.view.controllerservice.ProcessOrder;
+import ui.controller.*;
+import ui.view.controllerservice.*;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.clerk.ClerkChooseRoomController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ErrorBoxController;
 import ui.view.presentation.util.SelectTimeViewController;
 import vo.*;
 
@@ -85,6 +80,9 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
 
     @FXML
     private AnchorPane roomInfoScrollPane;
+
+    @FXML
+    private AnchorPane roomScrollPane;
 
     @FXML
     private Label hotelNameLabel;
@@ -181,11 +179,25 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
      */
     @FXML
     private void reserve(){
-        HotelVO newHotelVO = new HotelVO(hotelID, hotelVO.hotelName, checkInTimeTextField.getText(), checkOutTimeTextField.getText());
-        stageController = new StageController();
-        stageController.loadStage("customer/CustomerReserveView.fxml", 1);
-        CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
-        customerReserveViewController.init(customerID, newHotelVO);
+        UserAdmin userAdmin = new UserAdminController();
+        try {
+            CustomerVO customerVO = userAdmin.findCustomerByID(customerID);
+            if(customerVO.credit > 0){
+                HotelVO newHotelVO = new HotelVO(hotelID, hotelVO.hotelName, checkInTimeTextField.getText(), checkOutTimeTextField.getText());
+                stageController = new StageController();
+                stageController.loadStage("customer/CustomerReserveView.fxml", 1);
+                CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
+                customerReserveViewController.init(customerID, newHotelVO);
+            }else{
+                stageController = new StageController();
+                stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
+                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+                errorBoxController.setLabel("信用值低于0无法预订！");
+            }
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -263,6 +275,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             if(promotionVOList.isEmpty()){
                 emptyPromotionLabel.setOpacity(1);
             }else {
+                promotionScrollPane.setPrefHeight(70 + 35*promotionVOList.size());
                 for(int i = 0; i < promotionVOList.size(); i++) {
                     addPane("CustomerSinglePromotionView.fxml", 45 , 70 + 35 * i, promotionScrollPane, 2, null, promotionVOList.get(i).promotionID, null, null);
                 }
@@ -289,13 +302,12 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             hotelVO = hotelAdmin.findByID(hotelID);
             List<RoomVO> roomVOs = hotelAdmin.getDailyRoomInfo(hotelID, checkInTime).room;
             int roomTypes = roomVOs.size();
-            int count = 0;
-
             HotelInfo hotelInfo = new HotelInfoController();
+            roomInfoScrollPane.setPrefHeight(75 + 35 * roomTypes);
+            roomScrollPane.setPrefHeight(75 + 35 * roomTypes);
             for (int i = 0; i < roomTypes; i++) {
                 RoomVO roomVO = hotelInfo.getBewteenDate(hotelID, roomVOs.get(i).roomType, checkInTime, checkOutTime);
-                addPane("CustomerSingleRoomTypeView.fxml", 45, 75 + 35 * count, roomInfoScrollPane, 3, null, null, roomVO, null);
-                count++;
+                addPane("CustomerSingleRoomTypeView.fxml", 45, 75 + 35 * i, roomInfoScrollPane, 3, null, null, roomVO, null);
             }
         }catch (RemoteException e){
             e.printStackTrace();
@@ -312,6 +324,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             if(orderVOList.isEmpty()){
                 emptyOrderLabel.setOpacity(1);
             }else {
+                historyOrderScrollPane.setPrefHeight(40 + 125*orderVOList.size());
                 for(int i = 0; i < orderVOList.size(); i++) {
                     addPane("CustomerSingleHotelOrderView.fxml", 45 , 40 + 125 * i, historyOrderScrollPane, 4, null, null, null, orderVOList.get(i).orderID);
                 }
@@ -351,7 +364,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             }
             if(type == 3){
                 customerSingleRoomTypeViewController = loader.getController();
-                customerSingleRoomTypeViewController.init();
+                customerSingleRoomTypeViewController.init(roomVO);
             }
             if(type == 4){
                 customerSingleHotelOrderViewController = loader.getController();
