@@ -28,7 +28,9 @@ import util.ImageHelperImpl;
 import util.OrderStatus;
 import util.PromotionType;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageConsumer;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -372,11 +374,11 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
     /**
      * ImageHelper的DataRemoteObject
      */
-    public BufferedImage getImage(String imgPath) throws RemoteException {
+    public ImageIcon getImage(String imgPath) throws RemoteException {
         return imageHelper.getImage(imgPath);
     }
 
-    public String saveImage(BufferedImage image) throws RemoteException {
+    public String saveImage(ImageIcon image) throws RemoteException {
         return imageHelper.saveImage(image);
     }
 }
