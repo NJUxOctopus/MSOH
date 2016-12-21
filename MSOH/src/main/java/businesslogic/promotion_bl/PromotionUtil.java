@@ -38,7 +38,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
         String[] targetHotel = promotionPO.getTargetHotel().split(";");
         return new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                 promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
-                getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
+                getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                 "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName());
     }
 
@@ -59,7 +59,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (timestamp.compareTo(promotionPO.getEndTime()) <= 0 && timestamp.compareTo(promotionPO.getStartTime()) >= 0)
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
@@ -81,7 +81,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (timestamp.after(promotionPO.getStartTime()) && timestamp.before(promotionPO.getEndTime()))
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;
@@ -102,7 +102,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (promotionPO.getPromotionType().equals(promotionType) && promotionPO.getEndTime().compareTo(timestamp) >= 0)
                 list.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return list;
@@ -175,7 +175,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             if (timestamp.compareTo(promotionPO.getEndTime()) <= 0)
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
-                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount(), promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }
         return promotionVOList;

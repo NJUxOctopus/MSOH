@@ -64,7 +64,7 @@ public class Order implements Order_BLService {
         }
 
         for (PromotionVO promotionVO : promotionVOList) {
-            double finalPrice = initPrice * promotionVO.discount;//折后价格
+            double finalPrice = initPrice * promotionVO.discount / 10;//折后价格
             orderPriceVOList.add(new OrderPriceVO(promotionVO.promotionName, initPrice, finalPrice));
         }
         return orderPriceVOList;
