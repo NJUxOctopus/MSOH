@@ -147,7 +147,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
 
         //获取当前时间
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
         editPromotion = new EditPromotionController();
@@ -164,6 +164,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
+                stageController.closeStage("marketer/MarketerCreateWebPromotion.fxml");
                 renew();
             } else {
                 this.returnMessage("未知错误！");
@@ -175,6 +176,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
+                stageController.closeStage("marketer/MarketerModifyPromotion.fxml");
                 renew();
             } else {
                 this.returnMessage("未知错误！");
@@ -220,8 +222,7 @@ public class MarketerHolidayPromotionController implements ControlledStage {
      */
     private void renew() throws IOException, ClassNotFoundException {
         stageController = new StageController();
-        stageController.closeStage(resource);
-        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) stageController.getController();
+        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) stageController.getController("marketer/MarketerWebPromotion.fxml");
         marketerWebPromotionController.initial(marketerID);
     }
 

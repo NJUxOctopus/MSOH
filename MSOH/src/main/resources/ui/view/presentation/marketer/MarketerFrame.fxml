@@ -106,7 +106,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane prefHeight="110.0" prefWidth="267.0">
+            <Pane prefHeight="116.0" prefWidth="267.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#showCreditCharge" prefHeight="110.0" prefWidth="265.0" style="-fx-background-color: #ffffff00;" text="信 用 充 值" textFill="WHITE">
                      <font>
@@ -160,7 +160,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="1038.0" layoutY="521.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="关 于 我 们" textFill="WHITE">
+      <Button layoutX="1038.0" layoutY="521.0" mnemonicParsing="false" onAction="#showAboutUs" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #ffffff00;" text="关 于 我 们" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>

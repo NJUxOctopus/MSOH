@@ -115,7 +115,7 @@ public class ClerkFrameController implements ControlledStage {
         paneAdder.addPane(clerkFramePane, "clerk/ClerkHotelPromotion.fxml", 0, 0);
 
         //初始化界面
-        ClerkHotelPromotionController clerkHotelPromotionController = (ClerkHotelPromotionController)paneAdder.getController();
+        ClerkHotelPromotionController clerkHotelPromotionController = (ClerkHotelPromotionController) paneAdder.getController();
         clerkHotelPromotionController.initial(clerkID);
     }
 
@@ -140,6 +140,15 @@ public class ClerkFrameController implements ControlledStage {
         stageController = new StageController();
         stageController.closeStage(resource);
         stageController.loadStage("login/LoginView.fxml", 1);
+    }
+
+    /**
+     * 关于我们按钮结果，显示关于我们界面
+     */
+    @FXML
+    private void showAboutUs() {
+        stageController = new StageController();
+        stageController.loadStage("util/AboutUs.fxml", 1);
     }
 
     /**

@@ -16,6 +16,7 @@ import util.ResultMessage;
 import vo.CreditRecordVO;
 import vo.CustomerVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -59,7 +60,7 @@ public class MarketerSelectChargeController implements ControlledStage {
      * 确认按钮结果，充值信用
      */
     @FXML
-    private void confirmCharge() throws RemoteException {
+    private void confirmCharge() throws IOException, ClassNotFoundException {
         //获取当前时间
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -74,10 +75,7 @@ public class MarketerSelectChargeController implements ControlledStage {
             editMemberLevel = new EditMemberLevelController();
             editMemberLevel.changeGrade(customerVO.ID);
             stageController = this.returnMessage("充值成功！");
-            stageController.closeStage(resource);
-
-            MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController) stageController.getController();
-            marketerChargeCreditController.initial(marketerID);
+            renew();
         } else {
             this.returnMessage("充值失败！");
         }
@@ -105,6 +103,16 @@ public class MarketerSelectChargeController implements ControlledStage {
         ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
         errorBoxController.setLabel(error);
         return stageController;
+    }
+
+    /**
+     * 充值信用后，刷新列表
+     */
+    private void renew() throws IOException, ClassNotFoundException {
+        stageController = new StageController();
+        stageController.closeStage(resource);
+        MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController) stageController.getController("marketer/MarketerChargeCredit.fxml");
+        marketerChargeCreditController.initial(marketerID);
     }
 
 }

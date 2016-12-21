@@ -21,6 +21,6 @@ public interface Member_DataService extends Remote{
 	// 根据ID获取会员信息
 	public MemberPO findMemberByID(String ID) throws RemoteException;
 	// 得到所有会员
-	public List<MemberPO> findAllMemebers() throws RemoteException;
+	public List<MemberPO> findAllMembers() throws RemoteException;
 
 }

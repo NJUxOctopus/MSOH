@@ -48,7 +48,7 @@ public class MemberUtil implements MemberUtil_BLService {
 
     @Override
     public List<MemberVO> getAllMembers() throws RemoteException {
-        List<MemberPO> memberPOList = member_dataService.findAllMemebers();
+        List<MemberPO> memberPOList = member_dataService.findAllMembers();
         if (memberPOList == null || memberPOList.isEmpty())
             return new ArrayList<MemberVO>();
         List<MemberVO> memberVOList = new ArrayList<MemberVO>();

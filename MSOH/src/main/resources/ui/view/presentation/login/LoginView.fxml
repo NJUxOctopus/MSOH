@@ -47,7 +47,7 @@
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font></PasswordField>
-      <Button fx:id="loginButton" layoutX="228.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="登录">
+      <Button fx:id="loginButton" layoutX="228.0" layoutY="388.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #84C1FF;" text="登录" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
@@ -55,7 +55,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="registerButton" layoutX="382.0" layoutY="388.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #F0F8FF;" text="注册">
+      <Button fx:id="registerButton" layoutX="382.0" layoutY="388.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #84C1FF;" text="注册" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
