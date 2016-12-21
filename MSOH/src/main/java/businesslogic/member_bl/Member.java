@@ -10,6 +10,7 @@ import po.MemberPO;
 import rmi.RemoteHelper;
 import util.MemberType;
 import util.ResultMessage;
+import vo.CustomerVO;
 import vo.MemberLevelVO;
 import vo.MemberVO;
 
@@ -64,7 +65,8 @@ public class Member implements Member_BLService {
      * @throws RemoteException
      */
     public ResultMessage changeGrade(String customerID) throws RemoteException {
-        if (member_dataService.findMemberByID(customerID) == null)//若该用户不是会员
+        CustomerVO customerVO = customerUtil.getSingle(customerID);
+        if (customerVO.memberType.equals(MemberType.NONMEMBER))//若该用户不是会员
             return ResultMessage.Customer_isNotMember;
         MemberPO memberPO = member_dataService.findMemberByID(customerID);
         MemberLevel memberLevel = new MemberLevel();

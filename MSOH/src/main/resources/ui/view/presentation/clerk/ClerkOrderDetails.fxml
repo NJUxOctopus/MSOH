@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="797.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/clerkBG.jpg" />
+            <Image url="@../image/clerkBG.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="793.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
@@ -136,12 +136,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextArea fx:id="promotionTextArea" layoutX="738.0" layoutY="411.0" prefHeight="60.0" prefWidth="132.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@clerk.css" wrapText="true">
+            <TextArea fx:id="promotionTextArea" editable="false" layoutX="738.0" layoutY="411.0" prefHeight="60.0" prefWidth="132.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@clerk.css" wrapText="true">
                <font>
                   <Font name="Microsoft YaHei" size="15.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="roomTypeTextArea" layoutX="426.0" layoutY="414.0" prefHeight="54.0" prefWidth="100.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@clerk.css" wrapText="true">
+            <TextArea fx:id="roomTypeTextArea" editable="false" layoutX="426.0" layoutY="414.0" prefHeight="54.0" prefWidth="100.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@clerk.css" wrapText="true">
                <font>
                   <Font name="Microsoft YaHei" size="15.0" />
                </font>
