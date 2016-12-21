@@ -11,14 +11,15 @@ import java.rmi.RemoteException;
 /**
  * Created by zqh on 2016/11/10.
  */
-public class CustomerSignUpController implements CustomerSignUp{
+public class CustomerSignUpController implements CustomerSignUp {
 
     private Customer_BLService customer_blService;
 
-    public CustomerSignUpController(){
-        customer_blService =new Customer();
+    public CustomerSignUpController() {
+        customer_blService = new Customer();
     }
-    public ResultMessage signUp(CustomerVO customerVO) throws RemoteException{
+
+    public ResultMessage signUp(CustomerVO customerVO) throws RemoteException {
         return customer_blService.signUp(customerVO);
     }
 

@@ -27,5 +27,5 @@ public interface PromotionUtil_BLService {
 
     public List<PromotionVO> getPromotionByType(PromotionType promotionType,Timestamp timestamp)throws IOException, ClassNotFoundException;
 
-    public List<PromotionVO> getHotelPromotion(String hotelID, Timestamp timestamp) throws ClassNotFoundException, IOException;
+    //public List<PromotionVO> getHotelPromotion(String hotelID, Timestamp timestamp) throws ClassNotFoundException, IOException;
 }

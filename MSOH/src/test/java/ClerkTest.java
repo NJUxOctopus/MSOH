@@ -16,22 +16,22 @@ import java.rmi.RemoteException;
 public class ClerkTest extends TestCase {
 
     public void testAddClerk() throws RemoteException {
-//        Clerk clerk = new Clerk();
-//        ResultMessage resultMessage1 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000000", "2",
-//                "RUJIA", "123"));
-//        ResultMessage resultMessage2 = clerk.addClerk(new ClerkVO("", "13333333333", "151250117", "320200000000000000", "",
-//                "RUJIA", "123"));
-//        ResultMessage resultMessage3 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000001", "",
-//                "RUJIA", "123"));
-//        ResultMessage resultMessage4 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "@123456", "320200000000000001", "",
-//                "RUJIA", "123"));
-//        ResultMessage resultMessage5 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "123", "320200000000000001", "",
-//                "RUJIA", "123"));
-//        assertEquals(resultMessage1,ResultMessage.Clerk_AddClerkExist);
-//        assertEquals(resultMessage2,ResultMessage.Blank);
-//        assertEquals(resultMessage3,ResultMessage.Clerk_AddClerkSuccess);
-//        assertEquals(resultMessage4,ResultMessage.DataFormatWrong);
-//        assertEquals(resultMessage5,ResultMessage.DataFormatWrong);
+        Clerk clerk = new Clerk();
+        ResultMessage resultMessage1 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000000", "2",
+                "RUJIA", "123"));
+        ResultMessage resultMessage2 = clerk.addClerk(new ClerkVO("", "13333333333", "151250117", "320200000000000000", "",
+                "RUJIA", "123"));
+        ResultMessage resultMessage3 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "151250117", "320200000000000001", "",
+                "RUJIA", "123"));
+        ResultMessage resultMessage4 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "@123456", "320200000000000001", "",
+                "RUJIA", "123"));
+        ResultMessage resultMessage5 = clerk.addClerk(new ClerkVO("pxr", "13333333333", "123", "320200000000000001", "",
+                "RUJIA", "123"));
+        assertEquals(resultMessage1,ResultMessage.Clerk_AddClerkExist);
+        assertEquals(resultMessage2,ResultMessage.Blank);
+        assertEquals(resultMessage3,ResultMessage.Clerk_AddClerkSuccess);
+        assertEquals(resultMessage4,ResultMessage.DataFormatWrong);
+        assertEquals(resultMessage5,ResultMessage.DataFormatWrong);
     }
 //
 //    public void testChangeInfo()throws RemoteException{
