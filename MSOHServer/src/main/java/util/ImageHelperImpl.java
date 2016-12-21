@@ -1,6 +1,7 @@
 package util;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -33,14 +34,10 @@ public class ImageHelperImpl implements ImageHelper {
      * @return 所在路径的图片
      * @throws RemoteException
      */
-    public BufferedImage getImage(String imgPath) throws RemoteException {
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(new FileInputStream(imgPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
+    public ImageIcon getImage(String imgPath) throws RemoteException {
+        ImageIcon imageIcon=null;
+        imageIcon=new ImageIcon(imgPath);
+        return imageIcon;
     }
 
     /**
@@ -50,9 +47,11 @@ public class ImageHelperImpl implements ImageHelper {
      * @return 图片路径
      * @throws RemoteException
      */
-    public String saveImage(BufferedImage img) throws RemoteException {
-        int w = img.getWidth();
-        int h = img.getHeight();
+    public String saveImage(ImageIcon img) throws RemoteException {
+        Image image=img.getImage();
+
+        int w = image.getWidth(null);
+        int h = image.getHeight(null);
 
         String savePath = "F:/MSOHPics/";
         String imgName = generateImgPath(w, h);
@@ -63,7 +62,7 @@ public class ImageHelperImpl implements ImageHelper {
         // 用来画出来要保持的图片，及上面传递过来的Image变量
         Graphics g = toSave.getGraphics();
         try {
-            g.drawImage(img, 0, 0, null);
+            g.drawImage(image, 0, 0, null);
             // 将BufferedImage变量写入文件中
             ImageIO.write(toSave, "png", new File(savePath + imgName + postfix));
         } catch (IOException e) {

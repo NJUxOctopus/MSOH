@@ -123,14 +123,6 @@ public class CommentPO implements Serializable, Cloneable {
         this.commentTime = commentTime;
     }
 
-    public int getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(int commentId) {
-        this.commentId = commentId;
-    }
-
     @Override
     public Object clone() {
         CommentPO commentPO = null;

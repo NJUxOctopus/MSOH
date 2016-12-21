@@ -16,7 +16,6 @@ public class MemberLevelPromotion implements Strategy {
 
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
     private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
-    private MemberUtil memberUtil = abstract_blFactory.createMemberUtil();
 
     @Override
     public Boolean usePromotion(OrderVO orderVO) throws RemoteException {

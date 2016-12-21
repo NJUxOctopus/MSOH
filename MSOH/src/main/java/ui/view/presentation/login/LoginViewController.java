@@ -31,21 +31,11 @@ public class LoginViewController implements ControlledStage {
     private static String resource = "login/LoginView.fxml";
 
     @FXML
-    private Pane pane;
-    @FXML
-    private Button loginButton;
-    @FXML
     private CheckBox rememberPW;
-    @FXML
-    private Button registerButton;
-    @FXML
-    private Button skipButton;
     @FXML
     private PasswordField passwordField;
     @FXML
     private TextField userNameField;
-    @FXML
-    private Button exitButton;
 
     private LogIn logIn;
 
@@ -81,6 +71,7 @@ public class LoginViewController implements ControlledStage {
     private void autoPW() throws RemoteException {
         logIn = new LogInController();
         String pw = logIn.ifRememberPW(userNameField.getText());
+//        System.out.println("Login: " + pw);
         passwordField.setText(pw);
         if (!pw.equals("")) {
             //如果记住密码，勾选记住密码选项
@@ -129,7 +120,7 @@ public class LoginViewController implements ControlledStage {
             rememberPW(rememberPWSelected, userID, password);
             stageController.loadStage("marketer/MarketerFrame.fxml", 1);
             stageController.closeStage(resource);
-            MarketerFrameController marketerFrameController = (MarketerFrameController)stageController.getController();
+            MarketerFrameController marketerFrameController = (MarketerFrameController) stageController.getController();
             marketerFrameController.initial(userID);
         } else if (loginResult.equals(ResultMessage.Login_CustomerSuccess)) {
 //        } else if (userID.equals("Admin") && password.equals("123456")) {
@@ -194,7 +185,7 @@ public class LoginViewController implements ControlledStage {
      * 退出系统方法
      */
     @FXML
-    private void exit(){
+    private void exit() {
         System.exit(0);
     }
 }

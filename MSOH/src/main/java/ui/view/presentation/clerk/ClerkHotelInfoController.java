@@ -18,6 +18,7 @@ import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,6 +48,7 @@ public class ClerkHotelInfoController implements ControlledStage {
     private String clerkID;
     private HotelAdmin hotelAdmin;
     private HotelVO hotelVO;
+    private DecimalFormat df = new DecimalFormat("0.0");
 
     //获取当前时间
     private Date date = new Date();
@@ -72,7 +74,7 @@ public class ClerkHotelInfoController implements ControlledStage {
         hotelVO = hotelAdmin.findByClerkID(clerkID);
         hotelName.setText(hotelVO.hotelName);
         //显示酒店评分
-        hotelScore.setText(String.valueOf(hotelVO.score) + "分");
+        hotelScore.setText(df.format(hotelVO.score) + "分");
         //加载酒店房间类型列表
         for (RoomVO room : hotelAdmin.getDailyRoomInfo(hotelVO.hotelID, time).room) {
             roomType.add(room.roomType);

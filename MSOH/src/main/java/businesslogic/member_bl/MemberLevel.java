@@ -21,8 +21,6 @@ import java.util.List;
 public class MemberLevel implements MemberLevel_BLService {
     private MemberLevel_DataService memberLevel_dataService = RemoteHelper.getInstance().getMemberLevelDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    private Member member = abstract_blFactory.createMember();
-    private MemberUtil memberUtil = abstract_blFactory.createMemberUtil();
 
 
     /**
@@ -59,6 +57,8 @@ public class MemberLevel implements MemberLevel_BLService {
             memberLevelPO.setFrameDate(memberLevelVO.frameDate);
             memberLevelPO.setNum(memberLevelVO.num);
             memberLevelPO.setDiscountList(discountList);
+            Member member = abstract_blFactory.createMember();
+            MemberUtil memberUtil = abstract_blFactory.createMemberUtil();
             if (memberLevel_dataService.updateMemberLevel(memberLevelPO)) {
                 List<MemberVO> memberVOList = memberUtil.getAllMembers();
                 for (MemberVO memberVO : memberVOList) {

@@ -55,7 +55,7 @@ public class ClerkBirthdayPromotionController implements ControlledStage {
     private UserAdmin userAdmin;
     private HotelAdmin hotelAdmin;
     private EditPromotion editPromotion;
-    private DecimalFormat df = new DecimalFormat("0.00");
+    private DecimalFormat df = new DecimalFormat("0.0");
 
     //获取当前日期
     Date date = new Date();

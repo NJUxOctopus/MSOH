@@ -44,7 +44,7 @@
             <Font name="Microsoft YaHei" size="18.0" />
          </font>
       </Label>
-      <TextArea fx:id="commentTextArea" layoutX="156.0" layoutY="34.0" prefHeight="55.0" prefWidth="857.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffff;" stylesheets="@clerk.css" text="“服务很好。”" wrapText="true">
+      <TextArea fx:id="commentTextArea" editable="false" layoutX="156.0" layoutY="34.0" prefHeight="55.0" prefWidth="857.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffff;" stylesheets="@clerk.css" text="“服务很好。”" wrapText="true">
          <font>
             <Font name="Microsoft YaHei" size="18.0" />
          </font>

@@ -18,12 +18,12 @@
    <children>
       <ImageView fitHeight="736.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/clerkBG.jpg" />
+            <Image url="@../image/clerkBG.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="720.0" fitWidth="1306.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/ClerkModifyHotelInfoFrame.png" />
+            <Image url="@../image/ClerkModifyAvailableRoomsFrame.png" />
          </image>
       </ImageView>
       <Button fx:id="backButton" layoutX="90.0" layoutY="62.0" mnemonicParsing="false" onAction="#showConfirmExit" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #ffffff00;">

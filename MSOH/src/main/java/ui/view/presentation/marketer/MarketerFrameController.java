@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import ui.controller.EditMemberLevelController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.EditMemberLevel;
@@ -31,6 +32,8 @@ public class MarketerFrameController implements ControlledStage {
     private Pane marketerFramePane;
     @FXML
     private Label marketerName;
+    @FXML
+    private Rectangle selectShade;
 
     private PaneAdder paneAdder;
     private String marketerID;
@@ -65,8 +68,12 @@ public class MarketerFrameController implements ControlledStage {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
+        selectShade.setHeight(127);
+        selectShade.setY(0);
+
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerCheckOrderList.fxml", 0, 0);
+        paneAdder.putIntoLoaders("marketer/MarketerCheckOrderList.fxml");
         MarketerCheckOrderListController marketerCheckOrderListController = (MarketerCheckOrderListController) paneAdder.getController();
         marketerCheckOrderListController.initial(marketerID);
     }
@@ -79,7 +86,11 @@ public class MarketerFrameController implements ControlledStage {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
+        selectShade.setHeight(121);
+        selectShade.setY(127);
+
         paneAdder.addPane(marketerFramePane, "marketer/MarketerWebPromotion.fxml", 0, 0);
+        paneAdder.putIntoLoaders("marketer/MarketerWebPromotion.fxml");
         MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) paneAdder.getController();
         marketerWebPromotionController.initial(marketerID);
     }
@@ -92,9 +103,12 @@ public class MarketerFrameController implements ControlledStage {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
+        selectShade.setHeight(110);
+        selectShade.setY(248);
+
         memberLevelVO = editMemberLevel.getMemberLevel();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerMemberLevel.fxml", 0, 0);
-        MarketerMemberLevelController marketerMemberLevelController = (MarketerMemberLevelController)paneAdder.getController();
+        MarketerMemberLevelController marketerMemberLevelController = (MarketerMemberLevelController) paneAdder.getController();
         marketerMemberLevelController.initial(memberLevelVO);
     }
 
@@ -106,7 +120,11 @@ public class MarketerFrameController implements ControlledStage {
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
+        selectShade.setHeight(116);
+        selectShade.setY(358);
+
         paneAdder.addPane(marketerFramePane, "marketer/MarketerChargeCredit.fxml", 0, 0);
+        paneAdder.putIntoLoaders("marketer/MarketerChargeCredit.fxml");
         MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController) paneAdder.getController();
         marketerChargeCreditController.initial(marketerID);
     }

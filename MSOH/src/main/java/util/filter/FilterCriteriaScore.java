@@ -9,8 +9,8 @@ import java.util.List;
  * Created by Pxr on 16/12/7.
  */
 public class FilterCriteriaScore implements FilterCriteria {
-    String low;
-    String high;
+    private String low;
+    private String high;
 
     public FilterCriteriaScore(String low, String high) {
         this.low = low;

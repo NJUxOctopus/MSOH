@@ -10,6 +10,7 @@ import po.MemberPO;
 import rmi.RemoteHelper;
 import util.MemberType;
 import util.ResultMessage;
+import vo.CustomerVO;
 import vo.MemberLevelVO;
 import vo.MemberVO;
 
@@ -21,8 +22,6 @@ import java.rmi.RemoteException;
 public class Member implements Member_BLService {
     private Member_DataService member_dataService = RemoteHelper.getInstance().getMemberDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
-    private Customer customer = abstract_blFactory.createCustomer();
 
     /**
      * 会员注册
@@ -33,6 +32,8 @@ public class Member implements Member_BLService {
      */
     public ResultMessage signUp(MemberVO memberVO) throws RemoteException {
         String customerID = memberVO.ID;
+        CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
+        Customer customer = abstract_blFactory.createCustomer();
         if (customerUtil.getSingle(customerID).memberType.equals(MemberType.NONMEMBER)) {//首先用户必须是非会员
             if (memberVO.memberType.equals(MemberType.ENTREPRISE)) {//若注册为企业会员
                 if (member_dataService.addMember(new MemberPO(customerID, memberVO.memberType,
@@ -64,7 +65,9 @@ public class Member implements Member_BLService {
      * @throws RemoteException
      */
     public ResultMessage changeGrade(String customerID) throws RemoteException {
-        if (member_dataService.findMemberByID(customerID) == null)//若该用户不是会员
+        CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
+        CustomerVO customerVO = customerUtil.getSingle(customerID);
+        if (customerVO.memberType.equals(MemberType.NONMEMBER))//若该用户不是会员
             return ResultMessage.Customer_isNotMember;
         MemberPO memberPO = member_dataService.findMemberByID(customerID);
         MemberLevel memberLevel = new MemberLevel();

@@ -136,12 +136,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextArea fx:id="roomTypeTextArea" layoutX="428.0" layoutY="420.0" prefHeight="54.0" prefWidth="106.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@../clerk/clerk.css" wrapText="true">
+            <TextArea fx:id="roomTypeTextArea" editable="false" layoutX="428.0" layoutY="420.0" prefHeight="54.0" prefWidth="106.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@../clerk/clerk.css" wrapText="true">
                <font>
                   <Font name="Microsoft YaHei" size="15.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="promotionTextArea" layoutX="740.0" layoutY="417.0" prefHeight="60.0" prefWidth="136.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@../clerk/clerk.css" wrapText="true">
+            <TextArea fx:id="promotionTextArea" editable="false" layoutX="740.0" layoutY="417.0" prefHeight="60.0" prefWidth="136.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" stylesheets="@../clerk/clerk.css" wrapText="true">
                <font>
                   <Font name="Microsoft YaHei" size="15.0" />
                </font>
