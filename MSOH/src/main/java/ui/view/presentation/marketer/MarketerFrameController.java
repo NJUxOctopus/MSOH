@@ -89,6 +89,7 @@ public class MarketerFrameController implements ControlledStage {
         selectShade.setHeight(121);
         selectShade.setY(127);
 
+        paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerWebPromotion.fxml", 0, 0);
         paneAdder.putIntoLoaders("marketer/MarketerWebPromotion.fxml");
         MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) paneAdder.getController();
@@ -107,6 +108,7 @@ public class MarketerFrameController implements ControlledStage {
         selectShade.setY(248);
 
         memberLevelVO = editMemberLevel.getMemberLevel();
+        paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerMemberLevel.fxml", 0, 0);
         MarketerMemberLevelController marketerMemberLevelController = (MarketerMemberLevelController) paneAdder.getController();
         marketerMemberLevelController.initial(memberLevelVO);
@@ -117,12 +119,14 @@ public class MarketerFrameController implements ControlledStage {
      */
     @FXML
     private void showCreditCharge() throws IOException {
+
         // Close the previous panel
         marketerFramePane.getChildren().clear();
 
         selectShade.setHeight(116);
         selectShade.setY(358);
 
+        paneAdder = new PaneAdder();
         paneAdder.addPane(marketerFramePane, "marketer/MarketerChargeCredit.fxml", 0, 0);
         paneAdder.putIntoLoaders("marketer/MarketerChargeCredit.fxml");
         MarketerChargeCreditController marketerChargeCreditController = (MarketerChargeCreditController) paneAdder.getController();
@@ -148,6 +152,15 @@ public class MarketerFrameController implements ControlledStage {
         stageController = new StageController();
         stageController.closeStage(resource);
         stageController.loadStage("login/LoginView.fxml", 1);
+    }
+
+    /**
+     * 关于我们按钮结果，显示关于我们界面
+     */
+    @FXML
+    private void showAboutUs() {
+        stageController = new StageController();
+        stageController.loadStage("util/AboutUs.fxml", 1);
     }
 
     /**

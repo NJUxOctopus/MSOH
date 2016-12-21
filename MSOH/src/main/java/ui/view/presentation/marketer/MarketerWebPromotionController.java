@@ -65,7 +65,7 @@ public class MarketerWebPromotionController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("marketer/MarketerCreateWebPromotion.fxml", 1);
 
-        MarketerCreateWebPromotionController marketerCreateWebPromotionController = (MarketerCreateWebPromotionController) stageController.getController();
+        MarketerCreateWebPromotionController marketerCreateWebPromotionController = (MarketerCreateWebPromotionController)stageController.getController();
         marketerCreateWebPromotionController.initial(marketerID);
     }
 
@@ -102,7 +102,6 @@ public class MarketerWebPromotionController implements ControlledStage {
         promotionSelectShade.setWidth(237);
         promotionSelectShade.setX(452);
         promotionVOs = editPromotion.getPromotionByType(PromotionType.WebPromotion_Other, time);
-//        System.out.print("其他优惠：" + promotionVOs.size());
         this.addPane(promotionVOs);
     }
 

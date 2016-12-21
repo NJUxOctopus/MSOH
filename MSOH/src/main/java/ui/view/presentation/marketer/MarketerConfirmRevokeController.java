@@ -143,7 +143,7 @@ public class MarketerConfirmRevokeController implements ControlledStage {
             //如果从订单详情页面操作，成功后要关闭订单详情页面
             stageController.closeStage("marketer/MarketerOrderDetails.fxml");
         stageController.closeStage(resource);
-        MarketerCheckOrderListController marketerCheckOrderListController = (MarketerCheckOrderListController) stageController.getController();
+        MarketerCheckOrderListController marketerCheckOrderListController = (MarketerCheckOrderListController) stageController.getController("marketer/MarketerCheckOrderList.fxml");
         marketerCheckOrderListController.initial(marketerID);
     }
 

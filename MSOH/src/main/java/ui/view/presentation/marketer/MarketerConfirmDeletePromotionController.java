@@ -2,13 +2,16 @@ package ui.view.presentation.marketer;
 
 import javafx.fxml.FXML;
 import ui.controller.EditPromotionController;
+import ui.controller.UserAdminController;
 import ui.view.controllerservice.EditPromotion;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
 import util.ResultMessage;
 import vo.PromotionVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 /**
@@ -22,6 +25,8 @@ public class MarketerConfirmDeletePromotionController implements ControlledStage
 
     private PromotionVO promotionVO;
     private EditPromotion editPromotion;
+    private UserAdmin userAdmin;
+    private String marketerID;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -32,19 +37,22 @@ public class MarketerConfirmDeletePromotionController implements ControlledStage
      * initial方法，初始化界面
      */
     public void initial(PromotionVO promotionVO) throws RemoteException {
+        userAdmin = new UserAdminController();
         this.promotionVO = promotionVO;
+        this.marketerID = userAdmin.findMarketerByName(promotionVO.framerName).get(0).ID;
     }
 
     /**
      * 确认按钮结果，删除该促销策略
      */
     @FXML
-    private void confirmDelete() throws RemoteException {
+    private void confirmDelete() throws IOException, ClassNotFoundException {
         editPromotion = new EditPromotionController();
         ResultMessage resultMessage = editPromotion.deletePromotion(promotionVO.promotionID);
         if (resultMessage.equals(ResultMessage.Promotion_DeletePromotionSuccess)) {
             stageController = this.returnMessage("删除成功！");
             stageController.closeStage(resource);
+            renew();
         } else {
             this.returnMessage("未知错误！");
         }
@@ -71,5 +79,14 @@ public class MarketerConfirmDeletePromotionController implements ControlledStage
         ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
         errorBoxController.setLabel(error);
         return stageController;
+    }
+
+    /**
+     * 删除促销策略后，刷新列表
+     */
+    private void renew() throws IOException, ClassNotFoundException {
+        stageController = new StageController();
+        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) stageController.getController("marketer/MarketerWebPromotion.fxml");
+        marketerWebPromotionController.initial(marketerID);
     }
 }

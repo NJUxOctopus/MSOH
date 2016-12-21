@@ -34,7 +34,7 @@ public class Member_DataService_Stub implements Member_DataService {
             return null;
     }
 
-    public List<MemberPO> findAllMemebers() throws RemoteException {
+    public List<MemberPO> findAllMembers() throws RemoteException {
         return null;
     }
 }

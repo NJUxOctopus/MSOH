@@ -229,6 +229,7 @@ public class MarketerVIPPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
+                stageController.closeStage("marketer/MarketerCreateWebPromotion.fxml");
                 renew();
             } else {
                 this.returnMessage("未知错误！");
@@ -240,6 +241,7 @@ public class MarketerVIPPromotionController implements ControlledStage {
                 this.returnMessage("信息未填写完整！");
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
+                stageController.closeStage("marketer/MarketerModifyPromotion.fxml");
                 renew();
             } else {
                 this.returnMessage("未知错误！");
@@ -267,8 +269,7 @@ public class MarketerVIPPromotionController implements ControlledStage {
      */
     private void renew() throws IOException, ClassNotFoundException {
         stageController = new StageController();
-        stageController.closeStage(resource);
-        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) stageController.getController();
+        MarketerWebPromotionController marketerWebPromotionController = (MarketerWebPromotionController) stageController.getController("marketer/MarketerWebPromotion.fxml");
         marketerWebPromotionController.initial(marketerID);
     }
 

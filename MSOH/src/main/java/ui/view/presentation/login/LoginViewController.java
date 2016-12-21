@@ -1,10 +1,13 @@
 package ui.view.presentation.login;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import ui.controller.LogInController;
 import ui.view.controllerservice.LogIn;
@@ -36,6 +39,8 @@ public class LoginViewController implements ControlledStage {
     private PasswordField passwordField;
     @FXML
     private TextField userNameField;
+    @FXML
+    private Button loginButton;
 
     private LogIn logIn;
 
@@ -63,6 +68,24 @@ public class LoginViewController implements ControlledStage {
 //        this.loginView = loginView;
 //
 //    }
+
+    /**
+     * 初始化登录界面，监听键盘响应事件
+     */
+    public void initial(){
+        passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.ENTER)){
+                    try {
+                        handleLogin();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
 
     /**
      * 密码文字框监听，判断对应账号是否记住密码，如果记住则直接显示
