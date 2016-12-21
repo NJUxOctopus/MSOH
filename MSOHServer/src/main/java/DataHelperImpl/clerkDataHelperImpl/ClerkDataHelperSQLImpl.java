@@ -161,4 +161,24 @@ public class ClerkDataHelperSQLImpl implements ClerkDataHelper {
 
         return list;
     }
+
+    //TODO 根据酒店ID搜索工作人员
+    public ClerkPO getClerkByHotelID(String hotelID){
+        Session session=HibernateUtil.getSession();
+        session.beginTransaction();
+
+        String hql="from ClerkPO as clerk where clerk.hotelID=:n";
+        Query query=session.createQuery(hql);
+        query.setString("n",hotelID);
+
+        List<ClerkPO> clerkPOList=query.list();
+        session.getTransaction().commit();
+        HibernateUtil.closeSession(session);
+
+        if(clerkPOList==null||clerkPOList.isEmpty()){
+            return null;
+        }else{
+            return clerkPOList.get(0);
+        }
+    }
 }

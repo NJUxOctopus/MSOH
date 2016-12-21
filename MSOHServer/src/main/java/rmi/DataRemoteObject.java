@@ -99,6 +99,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataS
         return clerk_dataService.deleteClerk(clerkPO);
     }
 
+    public ClerkPO findClerkByHotelID(String hotelID) throws RemoteException {
+        return clerk_dataService.findClerkByHotelID(hotelID);
+    }
+
     /**
      * CustomerDataService的DataRemoteObject
      */
