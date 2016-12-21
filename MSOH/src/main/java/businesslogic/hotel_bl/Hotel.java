@@ -198,13 +198,6 @@ public class Hotel implements Hotel_BLService {
             else
                 infra += hotelVO.infra[i];
         }
-        String roomType = "";
-        for (int i = 0; i < hotelVO.roomType.length; i++) {
-            if (i != hotelVO.roomType.length - 1)
-                roomType += hotelVO.roomType[i] + ";";
-            else
-                roomType += hotelVO.roomType[i];
-        }
         String picUrl = "";
         for (int i = 0; i < hotelVO.picUrls.length; i++) {
             if (i != hotelVO.picUrls.length - 1)
@@ -212,7 +205,7 @@ public class Hotel implements Hotel_BLService {
             else
                 picUrl += hotelVO.picUrls[i];
         }
-        if (hotel_dataService.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, roomType,
+        if (hotel_dataService.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, "",
                 hotelVO.star, 0, hotelVO.license, picUrl, ""))) {
             addDailyRoomInfo(new DailyRoomInfoVO(hotelVO.hotelID, timestamp1, null));
             return ResultMessage.Hotel_addHotelSuccess;

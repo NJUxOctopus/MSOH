@@ -56,7 +56,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             return new ArrayList<PromotionVO>();
         for (PromotionPO promotionPO : promotionPOList) {
             String[] targetHotel = promotionPO.getTargetHotel().split(";");
-            if (timestamp.after(promotionPO.getStartTime()) && timestamp.before(promotionPO.getEndTime()))
+            if (timestamp.compareTo(promotionPO.getEndTime()) <= 0)
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                         getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
@@ -99,7 +99,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
         List<PromotionPO> promotionPOs = promotion_dataService.getPromotionByHotelID(hotelID);
         List<PromotionVO> list = new ArrayList<PromotionVO>();
         for (PromotionPO promotionPO : promotionPOs) {
-            if (promotionPO.getPromotionType().equals(promotionType) && promotionPO.getEndTime().after(timestamp))
+            if (promotionPO.getPromotionType().equals(promotionType) && promotionPO.getEndTime().compareTo(timestamp) >= 0)
                 list.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
                         getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
@@ -119,7 +119,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
      * @throws ClassNotFoundException
      */
     public List<PromotionVO> getHotelPromotionBetweenTwoDate(String hotelID, Timestamp timestamp1, Timestamp timestamp2) throws IOException, ClassNotFoundException {
-        List<PromotionVO> promotionVOList = getPromotionByHotelID(hotelID, timestamp1);
+        List<PromotionVO> promotionVOList = getHotelPromotion(hotelID, timestamp1);
         long oneDay = 1000 * 60 * 60 * 24;
         long days = (timestamp2.getTime() - timestamp1.getTime()) / oneDay;//算共住多少天
         List<Timestamp> list = new ArrayList<Timestamp>();
@@ -127,7 +127,7 @@ public class PromotionUtil implements PromotionUtil_BLService {
             list.add(new Timestamp(timestamp1.getTime() + i * oneDay));
         }
         for (Timestamp temp : list) {
-            List<PromotionVO> tempList = getPromotionByHotelID(hotelID, temp);
+            List<PromotionVO> tempList = getHotelPromotion(hotelID, temp);
             promotionVOList = mergePromotionList(promotionVOList, tempList);
         }
         return promotionVOList;
@@ -172,9 +172,34 @@ public class PromotionUtil implements PromotionUtil_BLService {
             return new ArrayList<PromotionVO>();
         List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
         for (PromotionPO promotionPO : promotionPOList) {
-            if (timestamp.before(promotionPO.getEndTime()) && timestamp.after(promotionPO.getStartTime()))
+            if (timestamp.compareTo(promotionPO.getEndTime()) <= 0)
                 promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
                         promotionPO.getTargetUser(), promotionPO.getTargetArea(), promotionPO.getTargetHotel().split(";"), promotionPO.
+                        getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
+                        "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
+        }
+        return promotionVOList;
+    }
+
+    /**
+     * 这是我自己需要的方法，得到传入时间适用的所有酒店策略
+     *
+     * @param hotelID
+     * @param timestamp
+     * @return
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
+    public List<PromotionVO> getHotelPromotion(String hotelID, Timestamp timestamp) throws ClassNotFoundException, IOException {
+        List<PromotionPO> promotionPOList = promotion_dataService.getPromotionByHotelID(hotelID);
+        List<PromotionVO> promotionVOList = new ArrayList<PromotionVO>();
+        if (promotionPOList == null || promotionPOList.isEmpty())
+            return new ArrayList<PromotionVO>();
+        for (PromotionPO promotionPO : promotionPOList) {
+            String[] targetHotel = promotionPO.getTargetHotel().split(";");
+            if (timestamp.compareTo(promotionPO.getEndTime()) <= 0 && timestamp.compareTo(promotionPO.getStartTime()) >= 0)
+                promotionVOList.add(new PromotionVO(promotionPO.getFramerName(), promotionPO.getFrameDate(), promotionPO.getPromotionName(),
+                        promotionPO.getTargetUser(), promotionPO.getTargetArea(), targetHotel, promotionPO.
                         getStartTime(), promotionPO.getEndTime(), promotionPO.getDiscount() * 10, promotionPO.getMinRoom(),
                         "" + promotionPO.getPromotionID(), promotionPO.getPromotionType(), promotionPO.getCompanyName()));
         }

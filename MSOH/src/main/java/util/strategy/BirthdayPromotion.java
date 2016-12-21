@@ -19,8 +19,10 @@ public class BirthdayPromotion implements Strategy {
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
     private CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
     private MemberUtil memberUtil = abstract_blFactory.createMemberUtil();
+
     /**
      * 判断生日特惠能否使用
+     *
      * @param orderVO
      * @return
      * @throws RemoteException
@@ -31,8 +33,8 @@ public class BirthdayPromotion implements Strategy {
             return false;
         Timestamp startTime = orderVO.estimatedCheckinTime;
         Timestamp endTime = orderVO.estimatedCheckoutTime;
-        if (memberUtil.getSingle(orderVO.customerID).birthday.after(startTime) &&
-                memberUtil.getSingle(orderVO.customerID).birthday.before(endTime))
+        if (memberUtil.getSingle(orderVO.customerID).birthday.compareTo(startTime) >= 0 &&
+                memberUtil.getSingle(orderVO.customerID).birthday.compareTo(endTime) <= 0)
             return true;
         return false;
     }
