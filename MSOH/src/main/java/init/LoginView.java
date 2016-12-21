@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 import rmi.RemoteHelper;
 import ui.view.presentation.StageController;
 
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -37,7 +39,10 @@ public class LoginView extends Application {
     private void linkServer() {
         try {
             remoteHelper = RemoteHelper.getInstance();
-            remoteHelper.setRemote(Naming.lookup("rmi://172.28.179.228:1099/DataRemoteObject"));
+            InetAddress ipv4Address = InetAddress.getByName("HiPC");
+            String ipAddress=ipv4Address.getHostAddress();
+//            remoteHelper.setRemote(Naming.lookup("rmi://172.28.179.228:1099/DataRemoteObject"));
+            remoteHelper.setRemote(Naming.lookup("rmi://"+ipAddress+":1099/DataRemoteObject"));
             System.out.println("Octopus: 连接服务器成功");
             HotelUtil hotelUtil = new HotelUtil();
             Date date = new Date();
@@ -49,6 +54,8 @@ public class LoginView extends Application {
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (NotBoundException e) {
+            e.printStackTrace();
+        }catch (UnknownHostException e){
             e.printStackTrace();
         }
     }
