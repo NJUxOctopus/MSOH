@@ -210,7 +210,7 @@ public class Hotel implements Hotel_BLService {
                 picUrl += hotelVO.picUrls[i];
         }
         if (hotel_dataService.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, roomType,
-                hotelVO.star, 0, hotelVO.license, picUrl, null))) {
+                hotelVO.star, 0, hotelVO.license, picUrl, ""))) {
             addDailyRoomInfo(new DailyRoomInfoVO(hotelVO.hotelID, timestamp1, null));
             return ResultMessage.Hotel_addHotelSuccess;
         } else
@@ -315,7 +315,7 @@ public class Hotel implements Hotel_BLService {
         HotelPO hotelPO = hotel_dataService.findHotelByID(clerkVO.hotelID);
         if (hotelPO == null)
             return ResultMessage.Hotel_HotelNotExist;
-        if (hotelPO.getClerkID()!=null)
+        if (!hotelPO.getClerkID().equals(""))
             return ResultMessage.Hotel_HasClerk;
         hotelPO.setClerkID(clerkVO.ID);
         hotel_dataService.modifyHotel(hotelPO);

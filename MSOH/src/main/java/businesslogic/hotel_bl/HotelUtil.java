@@ -12,6 +12,7 @@ import po.HotelPO;
 import po.RoomPO;
 import rmi.RemoteHelper;
 import util.filter.*;
+import util.sort.sortCommentByDate;
 import util.sort.sortHotelByScore;
 import util.sort.sortHotelByStar;
 import util.sort.sortRoomByNum;
@@ -54,6 +55,8 @@ public class HotelUtil implements HotelUtil_BLService {
             commentVOList.add(new CommentVO(commentPO.getScore(), commentPO.getComment(), commentPO.getCustomerName(),
                     commentPO.getCustomerID(), commentPO.getHotelName(), commentPO.getHotelID(), commentPO.getOrderID(), commentPO.getCommentTime()));
         }
+        Comparator<CommentVO> comparator = new sortCommentByDate();
+        Collections.sort(commentVOList, comparator);
         return commentVOList;
     }
 
@@ -269,7 +272,11 @@ public class HotelUtil implements HotelUtil_BLService {
     public List<HotelVO> filter(String star, String name, String low, String high, Timestamp timestamp1, Timestamp timestamp2,
                                 String roomType, int roomNum, String area) throws RemoteException {
         List<HotelVO> hotelVOList = getByArea(area);
-        FilterCriteria filterCriteriaDate = new FilterCriteriaDateAndRoomType(timestamp1, timestamp2, roomType, roomNum, this);
+        FilterCriteria filterCriteriaDate;
+        if (roomType.equals(""))
+            filterCriteriaDate = new FilterCriteriaDate(timestamp1, timestamp2, this);
+        else
+            filterCriteriaDate = new FilterCriteriaDateAndRoomType(timestamp1, timestamp2, roomType, roomNum, this);
         FilterCriteria filterCriteriaStar = new FilterCriteriaStar(star);
         FilterCriteria filterCriteriaScore = new FilterCriteriaScore(low, high);
         return new AndSearchCriteria(filterCriteriaDate, filterCriteriaStar, filterCriteriaScore).meetCriteria(hotelVOList);
