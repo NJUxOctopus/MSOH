@@ -63,7 +63,7 @@ public class Promotion implements Promotion_BLService {
             }
             if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                     promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, promotionVO.targetArea,
-                    targetHotel, promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
+                    targetHotel, promotionVO.startTime, promotionVO.endTime, promotionVO.discount,
                     promotionVO.minRoom, null, promotionVO.promotionType)))
                 return ResultMessage.Promotion_AddPromotionSuccess;
             else
@@ -89,7 +89,7 @@ public class Promotion implements Promotion_BLService {
                     || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other) || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Reserve)) {
                 if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                         promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
-                        promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
+                        promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount,
                         promotionVO.minRoom, null, promotionVO.promotionType)))
                     return ResultMessage.Promotion_AddPromotionSuccess;
                 else
@@ -97,7 +97,7 @@ public class Promotion implements Promotion_BLService {
             } else if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Company)) {
                 if (promotion_dataService.addPromotion(new PromotionPO(promotionVO.framerName,
                         promotionVO.frameDate, promotionVO.promotionName, promotionVO.targetUser, targetArea,
-                        promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount / 10,
+                        promotionVO.targetHotel[0], promotionVO.startTime, promotionVO.endTime, promotionVO.discount,
                         promotionVO.minRoom, promotionVO.companyName, promotionVO.promotionType)))
                     return ResultMessage.Promotion_AddPromotionSuccess;
                 else
@@ -135,7 +135,7 @@ public class Promotion implements Promotion_BLService {
                 }
                 promotionPO.setTargetHotel(targetHotel);
             }
-            promotionPO.setDiscount(promotionVO.discount / 10);
+            promotionPO.setDiscount(promotionVO.discount);
             promotionPO.setEndTime(promotionVO.endTime);
             promotionPO.setMinRoom(promotionVO.minRoom);
             promotionPO.setPromotionName(promotionVO.promotionName);
