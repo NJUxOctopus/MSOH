@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ui.controller.*;
@@ -13,6 +14,7 @@ import ui.view.presentation.clerk.ClerkChooseRoomController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import ui.view.presentation.util.SelectTimeViewController;
 import vo.*;
 
@@ -116,6 +118,9 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
 
     @FXML
     private Label emptyOrderLabel;
+
+    @FXML
+    private ImageView hotelImage;
 
 
     @Override
@@ -246,6 +251,10 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         briefInfoTextArea.setText(hotelVO.intro);
         scoreLabel.setText(hotelVO.score + "");
 
+        //酒店图片
+        ImageController imageController = new ImageController();
+        WritableImage wr = imageController.loadImage(hotelVO.picUrls[0], 411, 337);
+        hotelImage.setImage(wr);
         }
 
     /**
@@ -306,7 +315,7 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
             roomInfoScrollPane.setPrefHeight(75 + 35 * roomTypes);
             roomScrollPane.setPrefHeight(75 + 35 * roomTypes);
             for (int i = 0; i < roomTypes; i++) {
-                RoomVO roomVO = hotelInfo.getBewteenDate(hotelID, roomVOs.get(i).roomType, checkInTime, checkOutTime);
+                RoomVO roomVO = hotelInfo.getBetweenDate(hotelID, roomVOs.get(i).roomType, checkInTime, checkOutTime);
                 addPane("CustomerSingleRoomTypeView.fxml", 45, 75 + 35 * i, roomInfoScrollPane, 3, null, null, roomVO, null);
             }
         }catch (RemoteException e){

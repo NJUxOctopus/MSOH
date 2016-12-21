@@ -25,5 +25,5 @@ public interface HotelInfo {
 
     public List<String> getAreaByCity(String city) throws RemoteException;
 
-    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException;
+    public RoomVO getBetweenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException;
 }

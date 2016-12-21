@@ -22,6 +22,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Line endX="860.0" layoutX="20.0" layoutY="29.0" stroke="WHITE" />
+      <Line endX="840.0" layoutX="20.0" layoutY="29.0" stroke="WHITE" />
    </children>
 </Pane>

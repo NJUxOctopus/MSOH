@@ -50,4 +50,7 @@ public interface HotelAdmin {
 
     List<HotelVO> sortByScore(List<HotelVO> list) throws RemoteException ;
 
+    boolean hotelIsReserverd(String customerID, String hotelID) throws RemoteException ;
+
+
 }

@@ -4,12 +4,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
+import rmi.RemoteHelper;
 import ui.controller.HotelAdminController;
 import ui.view.controllerservice.HotelAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import util.ImageHelper;
 import vo.HotelVO;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.rmi.RemoteException;
 
 /**
@@ -98,6 +104,7 @@ public class ManagerSingleHotelViewController implements ControlledStage {
             cityLabel.setText(hotelVO.city);
             areaLabel.setText(hotelVO.area);
             addressLabel.setText(hotelVO.hotelAddress);
+
         }catch (RemoteException e){
             e.printStackTrace();
         }

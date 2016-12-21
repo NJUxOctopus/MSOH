@@ -117,7 +117,7 @@ public class ProcessOrderController implements ProcessOrder {
     }
 
     public List<OrderVO> getOrderByIDAndStatus(String customerID, OrderStatus orderStatus) throws RemoteException {
-        return null;
+        return orderUtil_blService.getOrderByIDAndStatus(customerID, orderStatus);
     }
 
     /**

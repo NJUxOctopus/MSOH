@@ -35,7 +35,7 @@ public class CustomerSingleCommentViewController implements ControlledStage {
         customerNameLabel.setText(commentVO.customerName);
         scoreLabel.setText(commentVO.score + "");
         commentLabel.setText("\"" + commentVO.comment + "\"");
-        timeLabel.setText(commentVO.commentTime.toString());
+        timeLabel.setText(commentVO.commentTime.toString().substring(0,19));
 
     }
 
