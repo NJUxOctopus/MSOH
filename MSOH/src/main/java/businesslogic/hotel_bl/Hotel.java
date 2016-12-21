@@ -26,11 +26,8 @@ import java.util.List;
  */
 public class Hotel implements Hotel_BLService {
     private Hotel_DataService hotel_dataService = RemoteHelper.getInstance().getHotelDataService();
-    Date date = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
-    Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date));
-    Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    Order order = abstract_blFactory.createOrder();
+    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+
 
     /**
      * 录入房间
@@ -171,6 +168,7 @@ public class Hotel implements Hotel_BLService {
             HotelPO hotelPO = hotel_dataService.findHotelByID(orderVO.hotelID);
             hotelPO.setScore(score);
             hotel_dataService.modifyHotel(hotelPO);
+            Order order = abstract_blFactory.createOrder();
             if (order.changeOrderStatus(orderVO.orderID, OrderStatus.FINISHED_EVALUATED).equals(ResultMessage.Order_ChangeOrderStatusSuccess))
                 return ResultMessage.Hotel_addCommentSuccess;
             else
@@ -207,6 +205,9 @@ public class Hotel implements Hotel_BLService {
         }
         if (hotel_dataService.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, "",
                 hotelVO.star, 0, hotelVO.license, picUrl, ""))) {
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+            Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date));
             addDailyRoomInfo(new DailyRoomInfoVO(hotelVO.hotelID, timestamp1, null));
             return ResultMessage.Hotel_addHotelSuccess;
         } else

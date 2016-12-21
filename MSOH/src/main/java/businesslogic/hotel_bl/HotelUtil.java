@@ -32,7 +32,6 @@ public class HotelUtil implements HotelUtil_BLService {
     private City_DataService city_dataService = RemoteHelper.getInstance().getCityDataService();
     private Hotel_DataService hotel_dataService = RemoteHelper.getInstance().getHotelDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    private Customer customer = abstract_blFactory.createCustomer();
 
     /**
      * 该方法主要是把酒店的评论的po改成vo
@@ -389,6 +388,7 @@ public class HotelUtil implements HotelUtil_BLService {
      * @throws RemoteException
      */
     public boolean hotelIsReserverd(String customerID, String hotelID) throws RemoteException {
+        Customer customer = abstract_blFactory.createCustomer();
         List<HotelVO> hotelVOList = customer.getHistoryHotel(customerID);
         if (hotelVOList == null || hotelVOList.isEmpty())
             return false;

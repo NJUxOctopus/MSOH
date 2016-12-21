@@ -20,7 +20,6 @@ import java.rmi.RemoteException;
 public class Clerk implements Clerk_BLService {
     private Clerk_DataService clerk_dataService = RemoteHelper.getInstance().getClerkDataService();
     private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
-    private Hotel hotel = abstract_blFactory.createHotel();
 
     /**
      * 添加工作人员
@@ -30,6 +29,7 @@ public class Clerk implements Clerk_BLService {
      * @throws RemoteException
      */
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException {
+        Hotel hotel = abstract_blFactory.createHotel();
         if (clerkVO.name.equals("") || clerkVO.phone.equals("") || clerkVO.ID.equals("") ||
                 clerkVO.password.equals("") || clerkVO.hotelID.equals("")) {
             //若工作人员的名字或电话或ID或密码或所在酒店ID，名称为空
@@ -89,6 +89,7 @@ public class Clerk implements Clerk_BLService {
         if (clerk_dataService.findClerkByID(clerkVO.ID) == null)
             //若该工作人员不存在
             return ResultMessage.Clerk_DeleteClerkNotExist;
+        Hotel hotel = abstract_blFactory.createHotel();
         if (clerk_dataService.deleteClerk(clerk_dataService.findClerkByID(clerkVO.ID)) &&
                 hotel.deleteClerk(clerkVO.hotelID).equals(ResultMessage.Hotel_deleteClerkSuccess))
             return ResultMessage.Clerk_DeleteClerkSuccess;
