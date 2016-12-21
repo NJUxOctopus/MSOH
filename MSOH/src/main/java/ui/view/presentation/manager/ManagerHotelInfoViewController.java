@@ -156,7 +156,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         HotelAdmin hotelAdmin = new HotelAdminController();
         try{
             ResultMessage resultMessage = hotelAdmin.addHotel(new HotelVO(
-                    "", hotelName, address, area, "", newFac, star, license));
+                    "", hotelName, address, city, area, intro, newFac, star, license));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
@@ -178,7 +178,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         HotelAdmin hotelAdmin = new HotelAdminController();
         try {
             ResultMessage resultMessage = hotelAdmin.updateHotelInfo(new HotelVO(
-                    hotelID, hotelName, address, area, "", newFac, star, license));
+                    hotelID, hotelName, address, city, area, intro, newFac, star, license));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
@@ -313,7 +313,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         address = addressTextField.getText();
         area = (String)areaChoiceBox.getSelectionModel().getSelectedItem();
         city = (String)cityChoiceBox.getSelectionModel().getSelectedItem();
-        star = starChoiceBox.getSelectionModel().getSelectedIndex();
+        star = starChoiceBox.getSelectionModel().getSelectedIndex() + 1;
         intro = briefInfoTextArea.getText();
         List<String> newInfra = new ArrayList<String>();
         if(depotCheckBox.isSelected()){

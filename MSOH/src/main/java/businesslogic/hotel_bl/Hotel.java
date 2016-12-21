@@ -39,7 +39,9 @@ public class Hotel implements Hotel_BLService {
      * @return
      * @throws RemoteException
      */
-    public void addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
+    public ResultMessage addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
+        if (hotel_dataService.findHotelByID(dailyRoomInfoVO.hotelID) == null)
+            return ResultMessage.Hotel_HotelNotExist;
         long oneDay = 1000 * 60 * 60 * 24;
         List<Timestamp> timestampList = new ArrayList<Timestamp>();
         timestampList.add(dailyRoomInfoVO.date);
@@ -47,8 +49,11 @@ public class Hotel implements Hotel_BLService {
             timestampList.add(new Timestamp(dailyRoomInfoVO.date.getTime() + i * oneDay));
         }
         for (Timestamp timestamp : timestampList) {
-            hotel_dataService.addDailyRoomInfo(new DailyRoomInfoPO(dailyRoomInfoVO.hotelID, timestamp, null));
+            if (hotel_dataService.addDailyRoomInfo(new DailyRoomInfoPO(dailyRoomInfoVO.hotelID, timestamp, null))) ;
+            else
+                return ResultMessage.Fail;
         }
+        return ResultMessage.Hotel_AddRoomSuccess;
     }
 
 
@@ -159,9 +164,7 @@ public class Hotel implements Hotel_BLService {
     public ResultMessage addComment(CommentVO commentVO, OrderVO orderVO) throws RemoteException {
         if (commentVO.score < 0)
             return ResultMessage.DataFormatWrong;
-        //先得到之前评价次数
         int commentNum = hotel_dataService.getCommentByHotel(orderVO.hotelID).size();
-        //评分为之前的分数*次数+这次的分数／次数+1；
         double score = (commentNum * hotel_dataService.findHotelByID(orderVO.hotelID).getScore() + commentVO.score) / (commentNum + 1);
         if (hotel_dataService.addComment(new CommentPO(commentVO.score, commentVO.comment, orderVO.customerName, orderVO.customerID
                 , orderVO.hotelName, orderVO.hotelID, orderVO.orderID, commentVO.commentTime))) {
@@ -318,7 +321,6 @@ public class Hotel implements Hotel_BLService {
         if (!hotelPO.getClerkID().equals(""))
             return ResultMessage.Hotel_HasClerk;
         hotelPO.setClerkID(clerkVO.ID);
-        hotel_dataService.modifyHotel(hotelPO);
         return ResultMessage.Clerk_AddClerkSuccess;
     }
 }
