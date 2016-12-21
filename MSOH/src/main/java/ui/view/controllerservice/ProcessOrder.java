@@ -21,8 +21,6 @@ public interface ProcessOrder {
 
     public ResultMessage cancelOrder(OrderVO orderVO) throws RemoteException;
 
-    public ResultMessage setAbnormal(OrderVO orderVO);
-
     public ResultMessage renewOrder(OrderVO orderVO) throws RemoteException;
 
     public ResultMessage executeOrder(OrderVO orderVO) throws RemoteException;
@@ -32,8 +30,6 @@ public interface ProcessOrder {
     public List<OrderVO> getOrderByStatus(OrderStatus status) throws RemoteException;
 
     public List<OrderVO> getOrderByCustomerID(String customerID) throws RemoteException;
-
-    public List<OrderVO> getOrderByHotelName(String hotelID);
 
     public List<OrderVO> getOrderByIDAndStatus(String customerID, OrderStatus orderStatus) throws RemoteException;
 

@@ -43,7 +43,7 @@ public interface HotelUtil_BLService {
 
     public Boolean roomEnough(String hotelID, Timestamp timestamp1, Timestamp timestamp2, int BigBedRoom, int SingleRoom, int StandardRoom) throws RemoteException;
 
-    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException;
+    public RoomVO getBetweenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException;
 
     public boolean hotelIsReserverd(String customerID, String hotelID) throws RemoteException;
 }

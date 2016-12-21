@@ -27,7 +27,7 @@ import java.util.*;
  */
 public class Customer implements Customer_BLService {
     private Customer_DataService customer_dataService = RemoteHelper.getInstance().getCustomerDataService();
-    private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
+    //private Abstract_BLFactory abstract_blFactory = new Default_BLFactory();
     //private HotelUtil hotelUtil = abstract_blFactory.createHotelUtil();
 
     /**
@@ -153,11 +153,20 @@ public class Customer implements Customer_BLService {
                     creditRecordPO.getCustomerName(), creditRecordPO.getCustomerID(), creditRecordPO.getAfterChangeCredit()
                     , creditRecordPO.getOrderID(), creditRecordPO.getMarketerName(), creditRecordPO.getReason()));
         }
+        //
         Comparator<CreditRecordVO> comparator = new sortCreditRecordByTime();
         Collections.sort(creditRecordVOList, comparator);
         return creditRecordVOList;
     }
 
+    /**
+     * 增加信用记录
+     *
+     * @param ID
+     * @param creditRecordVO
+     * @return
+     * @throws RemoteException
+     */
     public ResultMessage addCreditRecord(String ID, CreditRecordVO creditRecordVO) throws RemoteException {
         if (customer_dataService.findCustomerByID(ID) == null)
             return ResultMessage.Customer_CustomerNotExist;
@@ -213,31 +222,16 @@ public class Customer implements Customer_BLService {
             return ResultMessage.DataFormatWrong;
     }
 
-    @Override
+    /**
+     * 修改用户会员类型
+     * @param customerID
+     * @param memberType
+     * @throws RemoteException
+     */
     public void changeCustomerMemberType(String customerID, MemberType memberType) throws RemoteException {
         CustomerPO customerPO = customer_dataService.findCustomerByID(customerID);
         customerPO.setMemberType(memberType);
         customer_dataService.modifyCustomer(customerPO);
     }
 
-    //    /**
-//     * 更该信用值
-//     *
-//     * @param ID
-//     * @param change
-//     * @return
-//     * @throws RemoteException
-//     */
-//    public ResultMessage changeCredit(String ID, int change, CreditChangeReason reason) throws RemoteException {
-//        if (customer_dataService.findCustomerByID(ID) == null)
-//            //若无该用户
-//            return ResultMessage.Customer_CustomerNotExist;
-//        CustomerPO customerPO = customer_dataService.findCustomerByID(ID);
-//        customerPO.setCredit(customerPO.getCredit() + change);
-//
-//        if (customer_dataService.modifyCustomer(customerPO))
-//            return ResultMessage.Marketer_CreditChargeSuccess;
-//        else
-//            return ResultMessage.Fail;
-//    }
 }
