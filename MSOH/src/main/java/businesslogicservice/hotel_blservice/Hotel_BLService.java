@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 
 public interface Hotel_BLService {
 
-    public void addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
+    public ResultMessage addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException;
 
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException;
 
