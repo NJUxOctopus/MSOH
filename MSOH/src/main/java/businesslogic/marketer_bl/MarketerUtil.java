@@ -47,7 +47,6 @@ public class MarketerUtil implements MarketerUtil_BLService {
             //若名字为空
             return null;
         List<MarketerPO> marketerPOList = marketer_dataService_stub.findMarketerByName(name);
-        marketerPOList.get(0).getID();
         if (marketerPOList == null || marketerPOList.isEmpty())
             //若列表为空
             return new ArrayList<MarketerVO>();

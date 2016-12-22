@@ -248,7 +248,9 @@ public class HotelUtil implements HotelUtil_BLService {
         }
         List<RoomVO> roomVOList = new ArrayList<RoomVO>();
         for (Timestamp temp : list) {
-            roomVOList.add(getRoomByName(hotelID, roomName, temp));
+            RoomVO roomVO = getRoomByName(hotelID, roomName, temp);
+            if (roomVO != null)
+                roomVOList.add(roomVO);
         }
         Comparator<RoomVO> comparator = new sortRoomByNum();
         Collections.sort(roomVOList, comparator);
