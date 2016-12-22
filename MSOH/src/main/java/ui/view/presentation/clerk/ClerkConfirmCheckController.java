@@ -96,7 +96,7 @@ public class ClerkConfirmCheckController implements ControlledStage {
     private void confirmCheck() throws RemoteException {
         //获取当前时间
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp time = Timestamp.valueOf(dateFormat.format(date));
         processOrder = new ProcessOrderController();
         hotelAdmin = new HotelAdminController();
