@@ -32,8 +32,8 @@ public class ServerDriver extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        initServer();
         initGUI();
+        initServer();
     }
 
     private void initServer() {

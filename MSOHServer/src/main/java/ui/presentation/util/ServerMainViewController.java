@@ -28,7 +28,7 @@ public class ServerMainViewController {
 
     private FXMLLoader loader;
 
-    private String s = "";
+    private String str = "";
 
     @FXML
     private TextField ipTextField;
@@ -54,6 +54,8 @@ public class ServerMainViewController {
         try {
             final LoopedStreams ls = new LoopedStreams();
             PrintStream ps = new PrintStream(ls.getOutputStream());
+            System.setOut(ps);
+            System.setErr(ps);
             InputStream inStream = ls.getInputStream();
 
 
@@ -65,10 +67,9 @@ public class ServerMainViewController {
                     try {
                         String s;
                         while ((s = br.readLine()) != null) {
-                            boolean caretAtEnd = false;
-                            sb.setLength(0);
-                            s += sb.append(s).append('\n').toString();
-                            textArea.setText(s);
+                            str += '\n';
+                            str += s;
+                            textArea.setText(str);
                         }
                     } catch (IOException e) {
                         System.exit(1);
