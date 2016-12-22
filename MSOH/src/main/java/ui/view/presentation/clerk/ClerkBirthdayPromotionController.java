@@ -1,10 +1,8 @@
 package ui.view.presentation.clerk;
 
-import businesslogic.promotion_bl.Promotion;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.shape.Rectangle;
 import ui.controller.EditPromotionController;
 import ui.controller.HotelAdminController;
 import ui.controller.UserAdminController;
@@ -77,7 +75,7 @@ public class ClerkBirthdayPromotionController implements ControlledStage {
         this.clerkID = clerkID;
         this.clerkVO = userAdmin.findClerkByID(clerkID);
         this.clerkName = clerkVO.name;
-        this.hotelVO = hotelAdmin.findByClerkID(clerkID);
+        this.hotelVO = hotelAdmin.findHotelByClerkID(clerkID);
         this.hotelID = hotelVO.hotelID;
         startTimeButton.setText(initialTime);
         endTimeButton.setText(initialTime);

@@ -23,7 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Observable;
 
 /**
  * Created by ST on 2016/11/28.
@@ -71,7 +70,7 @@ public class ClerkHotelInfoController implements ControlledStage {
         clerkID = ID;
         //显示酒店名称
         hotelAdmin = new HotelAdminController();
-        hotelVO = hotelAdmin.findByClerkID(clerkID);
+        hotelVO = hotelAdmin.findHotelByClerkID(clerkID);
         hotelName.setText(hotelVO.hotelName);
         //显示酒店评分
         hotelScore.setText(df.format(hotelVO.score) + "分");

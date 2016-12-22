@@ -78,7 +78,7 @@ public class ClerkHolidayPromotionController implements ControlledStage {
         this.clerkID = clerkID;
         this.clerkVO = userAdmin.findClerkByID(clerkID);
         this.clerkName = clerkVO.name;
-        this.hotelVO = hotelAdmin.findByClerkID(clerkID);
+        this.hotelVO = hotelAdmin.findHotelByClerkID(clerkID);
         this.hotelID = hotelVO.hotelID;
         startTimeButton.setText(initialTime);
         endTimeButton.setText(initialTime);

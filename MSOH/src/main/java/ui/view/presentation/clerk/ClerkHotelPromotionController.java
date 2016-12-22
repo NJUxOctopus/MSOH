@@ -58,7 +58,7 @@ public class ClerkHotelPromotionController implements ControlledStage {
         editPromotion = new EditPromotionController();
         hotelAdmin = new HotelAdminController();
         this.clerkID = clerkID;
-        this.hotelID = hotelAdmin.findByClerkID(clerkID).hotelID;
+        this.hotelID = hotelAdmin.findHotelByClerkID(clerkID).hotelID;
 
         //默认显示所有生日特惠
         this.showBirthdayPromotion();
