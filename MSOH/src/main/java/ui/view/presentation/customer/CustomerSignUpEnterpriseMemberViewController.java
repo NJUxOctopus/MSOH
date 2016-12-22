@@ -74,6 +74,9 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
                 errorBoxController.setLabel("成功注册成为企业会员！");
                 stageController = new StageController();
                 stageController.closeStage(resource);
+                stageController.closeStage("customer/CustomerMyMemberView.fxml");
+                stageController = new StageController();
+                stageController.loadStage("customer/CustomerMyMemberView.fxml", 1);
             }
         }catch(RemoteException e){
             e.printStackTrace();

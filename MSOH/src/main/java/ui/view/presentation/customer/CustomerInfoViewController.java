@@ -144,6 +144,8 @@ public class CustomerInfoViewController implements ControlledStage{
                 errorBoxController.setLabel("成功修改信息！");
                 stageController = new StageController();
                 stageController.closeStage(resource);
+                CustomerMainViewController customerMainViewController = (CustomerMainViewController) stageController.getController("customer/CustomerMainView.fxml");
+                customerMainViewController.setNameLabel(name);
             }
         }catch (RemoteException e){
             e.printStackTrace();

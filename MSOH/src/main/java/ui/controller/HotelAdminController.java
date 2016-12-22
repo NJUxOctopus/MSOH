@@ -157,4 +157,8 @@ public class HotelAdminController implements HotelAdmin {
     public List<HotelVO> sortByScore(List<HotelVO> list) throws RemoteException {
         return hotelUtil_blService.sortByScore(list);
     }
+
+    public boolean hotelIsReserverd(String customerID, String hotelID) throws RemoteException {
+        return hotelUtil_blService.hotelIsReserverd(customerID, hotelID);
+    }
 }

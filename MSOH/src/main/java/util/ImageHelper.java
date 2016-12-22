@@ -1,5 +1,6 @@
 package util;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -11,8 +12,8 @@ import java.rmi.RemoteException;
  */
 public interface ImageHelper extends Remote {
     // 根据图片地址得到图片
-    public BufferedImage getImage(String imgPath) throws RemoteException;
+    public ImageIcon getImage(String imgPath) throws RemoteException;
 
     // 保存图片
-    public String saveImage(BufferedImage image) throws RemoteException;
+    public String saveImage(ImageIcon img) throws RemoteException;
 }

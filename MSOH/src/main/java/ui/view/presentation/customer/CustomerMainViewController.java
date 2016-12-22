@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import ui.controller.HotelInfoController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.HotelInfo;
@@ -22,7 +23,9 @@ import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import ui.view.presentation.util.SelectTimeViewController;
+import vo.CustomerVO;
 import vo.HotelVO;
 
 import java.rmi.RemoteException;
@@ -44,7 +47,7 @@ public class CustomerMainViewController implements ControlledStage {
     private String customerID;
 
     @FXML
-    private ImageView background;
+    private ImageView icon;
 
     @FXML
     private ChoiceBox cityChoiceBox;
@@ -276,8 +279,12 @@ public class CustomerMainViewController implements ControlledStage {
         String customerName = "";
         try {
             UserAdmin userAdmin = new UserAdminController();
-            customerName = userAdmin.findCustomerByID(customerID).name;
+            CustomerVO customerVO = userAdmin.findCustomerByID(customerID);
+            customerName = customerVO.name;
             nameLabel.setText(customerName);
+            ImageController imageController = new ImageController();
+            WritableImage wr = imageController.loadImage(customerVO.picUrl, 145, 145);
+            icon.setImage(wr);
 
             HotelInfo hotelInfo = new HotelInfoController();
             List<String> city = hotelInfo.getAllCities();
@@ -317,8 +324,7 @@ public class CustomerMainViewController implements ControlledStage {
         checkOutTimeLabel.setText("");
     }
 
-    public void init2(String customerID) {
-        starChoiceBox.setItems(FXCollections.observableArrayList(
-                "任意星级", "★", "★★", "★★★", "★★★★", "★★★★★"));
+    public void setNameLabel(String name) {
+        nameLabel.setText(name);
     }
 }

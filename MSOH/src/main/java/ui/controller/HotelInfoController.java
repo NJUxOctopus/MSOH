@@ -46,7 +46,6 @@ public class HotelInfoController implements HotelInfo {
         }else{
             checkOut = null;
         }
-        String score = hotelVO.score+"";
         return hotelUtil_blService.searchHotel(hotelVO.area, checkIn, checkOut, hotelVO.star + "", hotelVO.score + "", 5 + "");
     }
 
@@ -62,7 +61,7 @@ public class HotelInfoController implements HotelInfo {
         return hotelUtil_blService.getAreaByCity(city);
     }
 
-    public RoomVO getBewteenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
+    public RoomVO getBetweenDate(String hotelID, String roomName, Timestamp timestamp1, Timestamp timestamp2) throws RemoteException {
         return hotelUtil_blService.getBetweenDate(hotelID, roomName, timestamp1, timestamp2);
     }
 }

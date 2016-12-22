@@ -104,29 +104,27 @@ public class CustomerMyMemberViewController implements ControlledStage{
         try {
             //信用值信息
             int credit = userAdmin.findCustomerByID(customerID).credit;
+            MemberType memberType = userAdmin.findCustomerByID(customerID).memberType;
             creditLabel.setText(credit + "");
-            double locate = 200 + credit / 10;
+            double locate = 200 + credit / 20;
             creditPane.setLayoutX(locate);
-            memberVO = userAdmin.findMemberByID(customerID);
-            if(memberVO != null){
+            if(memberType != MemberType.NONMEMBER){
+                memberVO = userAdmin.findMemberByID(customerID);
                 if(memberVO.memberType == MemberType.ENTREPRISE) {
                     typeOfMemberLabel.setText("企业会员");
                 }else if(memberVO.memberType == MemberType.NORMAL){
                     typeOfMemberLabel.setText("普通会员");
-                }else if(memberVO.memberType == MemberType.NONMEMBER){
-                    typeOfMemberLabel.setText("非会员");
                 }
                 //会员信息
-                if(memberVO.memberType != MemberType.NONMEMBER) {
-                    gradeOfMemberLabel.setText(memberVO.level + "");
-                    EditMemberLevel editMemberLevel = new EditMemberLevelController();
-                    String discount = editMemberLevel.getMemberLevel().discountList.get(memberVO.level);
-                    discountOfMemberLabel.setText("部分酒店"  + discount + "折");
-                }
-                else{
-                    gradeOfMemberLabel.setText("无");
-                    discountOfMemberLabel.setText("非会员无法享受");
-                }
+                gradeOfMemberLabel.setText(memberVO.level + "");
+                EditMemberLevel editMemberLevel = new EditMemberLevelController();
+                String discount = editMemberLevel.getMemberLevel().discountList.get(memberVO.level);
+                discountOfMemberLabel.setText("部分酒店"  + discount + "折");
+
+            }else{
+                typeOfMemberLabel.setText("非会员");
+                gradeOfMemberLabel.setText("无");
+                discountOfMemberLabel.setText("非会员无法享受");
             }
 
 

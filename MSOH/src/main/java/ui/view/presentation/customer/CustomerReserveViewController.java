@@ -177,6 +177,7 @@ public class CustomerReserveViewController implements ControlledStage{
                     controller.setLabel("预定成功！");
                     stageController = new StageController();
                     stageController.closeStage(resource);
+
                 }
 
             } catch (RemoteException e) {

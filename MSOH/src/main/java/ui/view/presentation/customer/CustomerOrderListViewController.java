@@ -192,24 +192,28 @@ public class CustomerOrderListViewController implements ControlledStage {
         int num = 1;
         if (orderList != null) {
             ProcessOrder processOrder = new ProcessOrderController();
-            try{
-                orderList = processOrder.sortByTime(orderList);
-                num = orderList.size();
-                orderListScrollPane.setPrefHeight(160 * num - 120);
-                for (int i = 0; i < num; i++) {
-                    String orderID = orderList.get(i).orderID;
-                    PaneAdder paneAdder = new PaneAdder();
-                    paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 160 * i - 155);
-                    customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
-                    customerSingleOrderPaneViewController.init(customerID, orderID);
+            if (orderList.isEmpty()) {
+                emptyOrderLabel.setOpacity(1);
+            } else {
+                try {
+                    orderList = processOrder.sortByTime(orderList);
+                    num = orderList.size();
+                    orderListScrollPane.setPrefHeight(160 * num);
+                    for (int i = 0; i < num; i++) {
+                        String orderID = orderList.get(i).orderID;
+                        PaneAdder paneAdder = new PaneAdder();
+                        paneAdder.addPane(orderListScrollPane, "customer/CustomerSingleOrderPaneView.fxml", 5, 160 * i);
+                        customerSingleOrderPaneViewController = (CustomerSingleOrderPaneViewController) paneAdder.getController();
+                        customerSingleOrderPaneViewController.init(customerID, orderID);
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
                 }
-            }catch (RemoteException e){
-                e.printStackTrace();
+                emptyOrderLabel.setOpacity(0);
+
             }
-            emptyOrderLabel.setOpacity(0);
+
         }
-
-
     }
 
     /**

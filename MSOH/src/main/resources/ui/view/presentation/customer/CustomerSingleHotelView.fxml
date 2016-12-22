@@ -17,11 +17,7 @@
             <Image url="@image_customer/customer_singlehotelpanel.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="hotelPicture" fitHeight="170.0" fitWidth="170.0" layoutX="42.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image_customer/hotelpicture.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="hotelImage" fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="hotelButton" layoutX="-6.0" layoutY="198.0" mnemonicParsing="false" onAction="#viewHotelDetails" prefHeight="39.0" prefWidth="270.0" style="-fx-background-color: #ffffff00;" text="南大仙林招待所" textFill="WHITE">
          <font>
             <Font size="21.0" />

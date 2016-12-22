@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
+import rmi.RemoteHelper;
 import ui.controller.EditPromotionController;
 import ui.controller.HotelAdminController;
 import ui.controller.ProcessOrderController;
@@ -13,12 +16,17 @@ import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ImageController;
+import util.ImageHelper;
 import util.OrderStatus;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
 import vo.PromotionVO;
 import vo.RoomVO;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
@@ -72,6 +80,9 @@ public class CustomerSingleHotelViewController implements ControlledStage {
 
     @FXML
     private Label reservedLabel;
+
+    @FXML
+    private ImageView hotelImage;
 
     @FXML
     private void viewHotelDetails(){
@@ -149,9 +160,20 @@ public class CustomerSingleHotelViewController implements ControlledStage {
                 priceLabel.setText("0");
             }
 
+            //预订过的标签
+            boolean isReserved = hotelAdmin.hotelIsReserverd(customerID, hotelID);
+            if(isReserved){
+                reservedLabel.setOpacity(1);
+            }
+
+            //酒店图片
+            ImageController imageController = new ImageController();
+            WritableImage wr = imageController.loadImage(hotelVO.picUrls[0], 200, 150);
+            hotelImage.setImage(wr);
         } catch (RemoteException e){
             e.printStackTrace();
         }
+
     }
 
 

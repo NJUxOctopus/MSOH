@@ -96,6 +96,9 @@ public class CustomerHotelListViewController implements ControlledStage {
     @FXML
     private TextField roomNumTextField;
 
+    @FXML
+    private Button reservedButton;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -261,6 +264,35 @@ public class CustomerHotelListViewController implements ControlledStage {
         int peopleNum = Integer.parseInt(roomNumTextField.getText());
         if (peopleNum != 0) {
             roomNumTextField.setText(String.valueOf((peopleNum - 1)));
+        }
+    }
+
+    /**
+     * 只显示预订过的酒店
+     */
+    @FXML
+    private void showReservedHotel(){
+
+        if(reservedButton.getText().equals("□")){
+            reservedButton.setText("■");
+            List<HotelVO> reservedHotelList = new ArrayList<HotelVO>();
+            HotelAdmin hotelAdmin = new HotelAdminController();
+            try {
+                if (!hotelList.isEmpty()) {
+                    for (int i = 0; i < hotelList.size(); i++) {
+                        if (hotelAdmin.hotelIsReserverd(customerID, hotelList.get(i).hotelID)) {
+                            reservedHotelList.add(hotelList.get(i));
+                        }
+                    }
+                    addHotelPane(reservedHotelList);
+                }
+            }catch (RemoteException e){
+                e.printStackTrace();
+            }
+        }
+        if(reservedButton.getText().equals("■")){
+            reservedButton.setText("□");
+            addHotelPane(hotelList);
         }
     }
 

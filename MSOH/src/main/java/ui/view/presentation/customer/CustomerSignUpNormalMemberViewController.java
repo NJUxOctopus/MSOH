@@ -64,7 +64,6 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
         String month = monthChoiceBox.getSelectionModel().getSelectedItem() + "";
         String day = dayChoiceBox.getSelectionModel().getSelectedItem() + "";
         Timestamp birthday = Timestamp.valueOf(year + "-" + month + "-" + day + " 00:00:00");
-        //// TODO: 2016/12/20 日期判断
         if(year == null || month == null || day == null){
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
@@ -86,6 +85,9 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
                     errorBoxController.setLabel("成功注册成为普通会员！");
                     stageController = new StageController();
                     stageController.closeStage(resource);
+                    stageController.closeStage("customer/CustomerMyMemberView.fxml");
+                    stageController = new StageController();
+                    stageController.loadStage("customer/CustomerMyMemberView.fxml", 1);
                 }
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -103,7 +105,7 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
 
         //设置年份数值
         ObservableList<String> year = FXCollections.observableArrayList();
-        for(int i = 1900; i < Integer.parseInt(string_date[0]); i++){
+        for(int i = 1950; i < Integer.parseInt(string_date[0]); i++){
             year.add(i + "");
         }
         yearChoiceBox.setItems(year);
@@ -111,7 +113,11 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
         //设置月份数值
         ObservableList<String> monthList = FXCollections.observableArrayList();
         for(int i = 1; i <= 12; i++){
-            monthList.add(i + "");
+            if(i < 10)
+                monthList.add("0" + i );
+            else
+                monthList.add("" + i );
+
         }
         monthChoiceBox.setItems(monthList);
 
@@ -135,7 +141,10 @@ public class CustomerSignUpNormalMemberViewController implements ControlledStage
                 }
                 ObservableList<String> dayList = FXCollections.observableArrayList();
                 for(int i = 1; i <= day; i++){
-                    dayList.add(i + "");
+                    if(i < 10)
+                        dayList.add("0" + i);
+                    else
+                        dayList.add("" + i);
                 }
                 dayChoiceBox.setItems(dayList);
             }

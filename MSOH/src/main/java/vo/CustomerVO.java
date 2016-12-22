@@ -36,6 +36,7 @@ public class CustomerVO extends UserVO implements Serializable  {
 		this.email = email;
 		this.credit = credit;
 		this.memberType=memberType;
+		this.picUrl = picUrl;
 	}
 
 	public CustomerVO(String ID, String name, String phone, String email){
