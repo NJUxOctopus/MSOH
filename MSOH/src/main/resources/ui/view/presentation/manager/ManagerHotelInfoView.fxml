@@ -139,7 +139,7 @@
                         <Image url="@image_manager/addhotelpicture.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="pictureImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pictureImage" fitHeight="150.0" fitWidth="200.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="addPictureButton" mnemonicParsing="false" onAction="#addPicture" prefHeight="197.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;">
                      <cursor>
                         <Cursor fx:constant="HAND" />

@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import ui.controller.CustomerInfoChangeController;
 import ui.controller.UserAdminController;
@@ -13,6 +15,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import util.MemberType;
 import util.ResultMessage;
 import vo.CustomerVO;
@@ -58,6 +61,9 @@ public class ManagerModifyCustomerInfoViewController implements ControlledStage 
     @FXML
     private TextField idTextField;
 
+    @FXML
+    private ImageView iconImage;
+
     private String name = "";
 
     private String email = "";
@@ -65,6 +71,7 @@ public class ManagerModifyCustomerInfoViewController implements ControlledStage 
     private String phone = "";
 
     private String ID = "";
+
 
     @Override
     public void setStageController(StageController stageController) {
@@ -142,6 +149,11 @@ public class ManagerModifyCustomerInfoViewController implements ControlledStage 
                 memberTextField.setText("普通会员");
             }else if(customerVO.memberType == MemberType.NONMEMBER){
                 memberTextField.setText("非会员");
+            }
+            if(!customerVO.picUrl.equals("")) {
+                ImageController imageController = new ImageController();
+                WritableImage wr = imageController.loadImage(customerVO.picUrl, 200, 200);
+                iconImage.setImage(wr);
             }
         }catch (RemoteException e){
             e.printStackTrace();

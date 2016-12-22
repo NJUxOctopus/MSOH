@@ -5,12 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ImageController;
 import vo.ManagerVO;
 
 import java.io.IOException;
@@ -131,9 +133,15 @@ public class ManagerMainViewController implements ControlledStage {
         try {
             ManagerVO managerVO = userAdmin.findManagerByID(managerID);
             managerNameLabel.setText(managerVO.name);
+            if(!managerVO.picUrl.equals("")) {
+                ImageController imageController = new ImageController();
+                WritableImage wr = imageController.loadImage(managerVO.picUrl, 145, 145);
+                iconImage.setImage(wr);
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }
+
     }
 
 }

@@ -41,21 +41,19 @@ public class LoginView extends Application {
 
     private void linkServer() {
         try {
-            initProperties();
+           // initProperties();
 
             remoteHelper = RemoteHelper.getInstance();
-            InetAddress ipv4Address = InetAddress.getByName(hostname);
-            String ipAddress = ipv4Address.getHostAddress();
-//            remoteHelper.setRemote(Naming.lookup("rmi://172.28.179.228:1099/DataRemoteObject"));
-            remoteHelper.setRemote(Naming.lookup("rmi://" + ipAddress + ":1099/DataRemoteObject"));
+            //InetAddress ipv4Address = InetAddress.getByName(hostname);
+           // String ipAddress = ipv4Address.getHostAddress();
+            remoteHelper.setRemote(Naming.lookup("rmi://114.212.42.35:1099/DataRemoteObject"));
+            //remoteHelper.setRemote(Naming.lookup("rmi://" + ipAddress + ":1099/DataRemoteObject"));
             System.out.println("Octopus: 连接服务器成功");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (NotBoundException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }

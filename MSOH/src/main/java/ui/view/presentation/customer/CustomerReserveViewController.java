@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import ui.controller.EditPromotionController;
+import ui.controller.HotelAdminController;
 import ui.controller.ProcessOrderController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.EditPromotion;
@@ -179,6 +180,9 @@ public class CustomerReserveViewController implements ControlledStage{
                     stageController = new StageController();
                     stageController.closeStage(resource);
 
+                    HotelAdmin hotelAdmin = new HotelAdminController();
+                    hotelAdmin.changeAvailableRoom(orderVO, -1);
+                    hotelAdmin.changeReservedRoom(orderVO, 1);
                 }
 
             } catch (RemoteException e) {

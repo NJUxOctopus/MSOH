@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import ui.controller.ManagerInfoChangeController;
 import ui.controller.MarketerInfoChangeController;
@@ -18,6 +19,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import util.ResultMessage;
 import vo.MarketerVO;
 
@@ -39,9 +41,6 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
     private Button addButton;
 
     @FXML
-    private Button modifyIconButton;
-
-    @FXML
     private Button backButton;
 
     @FXML
@@ -61,6 +60,9 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
 
     @FXML
     private PasswordField passwordTextField;
+
+    @FXML
+    private ImageView iconLabel;
 
     @FXML
     private Label passwordLabel;
@@ -92,11 +94,6 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
         }else{
             stageController.closeStage(resource);
         }
-    }
-
-    @FXML
-    private void modifyIcon(){
-
     }
 
     /**
@@ -213,7 +210,11 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
             marketerNameTextField.setText(name);
             phoneTextField.setText(phone);
             marketerIDTextField.setText(marketerVO.ID);
-
+            if(!marketerVO.picUrl.equals("")) {
+                ImageController imageController = new ImageController();
+                WritableImage wr = imageController.loadImage(marketerVO.picUrl, 200, 200);
+                iconLabel.setImage(wr);
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }

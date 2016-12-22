@@ -118,7 +118,7 @@ public class CustomerMyMemberViewController implements ControlledStage{
                 //会员信息
                 gradeOfMemberLabel.setText(memberVO.level + "");
                 EditMemberLevel editMemberLevel = new EditMemberLevelController();
-                String discount = editMemberLevel.getMemberLevel().discountList.get(memberVO.level);
+                String discount = editMemberLevel.getMemberLevel().discountList.get(memberVO.level - 1);
                 discountOfMemberLabel.setText("部分酒店"  + discount + "折");
 
             }else{

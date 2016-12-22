@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import ui.controller.CustomerInfoChangeController;
 import ui.controller.ManagerInfoChangeController;
 import ui.controller.UserAdminController;
@@ -14,6 +16,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import util.ResultMessage;
 import vo.CustomerVO;
 import vo.ManagerVO;
@@ -52,15 +55,22 @@ public class ManagerModifyInfoViewController implements ControlledStage {
     @FXML
     private TextField idTextField;
 
+    @FXML
+    private ImageView iconLabel;
+
     private String name = "";
 
     private String phone = "";
 
     private String id = "";
 
+    private String icon = "";
+
     private String newName = "";
 
     private String newPhone = "";
+
+    private String newIcon = "";
 
     @Override
     public void setStageController(StageController stageController) {
@@ -145,9 +155,15 @@ public class ManagerModifyInfoViewController implements ControlledStage {
             name = managerVO.name;
             phone = managerVO.phone;
             id = managerVO.ID;
+            icon = managerVO.picUrl;
             nameTextField.setText(name);
             phoneTextField.setText(phone);
             idTextField.setText(id);
+            if(!managerVO.picUrl.equals("")) {
+                ImageController imageController = new ImageController();
+                WritableImage wr = imageController.loadImage(managerVO.picUrl, 200, 200);
+                iconLabel.setImage(wr);
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }

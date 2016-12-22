@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import ui.controller.HotelAdminController;
 import ui.controller.HotelInfoController;
@@ -16,6 +17,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import util.ResultMessage;
 import vo.HotelVO;
 
@@ -299,6 +301,11 @@ public class ManagerHotelInfoViewController implements ControlledStage {
             licenseTextField.setText(license);
             intro = hotelVO.intro;
             briefInfoTextArea.setText(intro);
+            if(!hotelVO.picUrls[0].equals("")) {
+                ImageController imageController = new ImageController();
+                WritableImage wr = imageController.loadImage(hotelVO.picUrls[0], 145, 145);
+                pictureImage.setImage(wr);
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }

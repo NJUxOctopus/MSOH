@@ -3,6 +3,7 @@ package ui.view.presentation.manager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import ui.controller.ClerkInfoChangeController;
 import ui.controller.HotelAdminController;
@@ -14,6 +15,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import util.ResultMessage;
 import vo.ClerkVO;
 
@@ -55,7 +57,7 @@ public class ManagerClerkInfoViewController implements ControlledStage {
     private TextField hotelIDTextField;
 
     @FXML
-    private ImageView iconImage;
+    private ImageView iconLabel;
 
     @FXML
     private Pane addCleckPane;
@@ -77,7 +79,6 @@ public class ManagerClerkInfoViewController implements ControlledStage {
 
     private String password = "";
 
-
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -96,11 +97,6 @@ public class ManagerClerkInfoViewController implements ControlledStage {
         }else{
             stageController.closeStage(resource);
         }
-    }
-
-    @FXML
-    private void modifyIcon(){
-
     }
 
     /**
@@ -200,6 +196,11 @@ public class ManagerClerkInfoViewController implements ControlledStage {
         phoneTextField.setText(clerkVO.phone);
         cleckIDTextField.setText(clerkVO.ID);
         hotelIDTextField.setText(clerkVO.hotelID);
+        if(!clerkVO.picUrl.equals("")) {
+            ImageController imageController = new ImageController();
+            WritableImage wr = imageController.loadImage(clerkVO.picUrl, 145, 145);
+            iconLabel.setImage(wr);
+        }
         passwordLabel.setOpacity(0);
         passwordTextField.setOpacity(0);
         addButton.setText("修改");

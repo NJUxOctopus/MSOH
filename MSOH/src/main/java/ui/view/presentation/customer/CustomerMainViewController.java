@@ -280,12 +280,17 @@ public class CustomerMainViewController implements ControlledStage {
         try {
             UserAdmin userAdmin = new UserAdminController();
             CustomerVO customerVO = userAdmin.findCustomerByID(customerID);
+            //设置名字标签
             customerName = customerVO.name;
             nameLabel.setText(customerName);
-            ImageController imageController = new ImageController();
-            WritableImage wr = imageController.loadImage(customerVO.picUrl, 145, 145);
-            icon.setImage(wr);
+            //设置头像图片
+            if(!customerVO.picUrl.equals("")) {
+                ImageController imageController = new ImageController();
+                WritableImage wr = imageController.loadImage(customerVO.picUrl, 145, 145);
+                icon.setImage(wr);
+            }
 
+            //搜索酒店选择区域初始化
             HotelInfo hotelInfo = new HotelInfoController();
             List<String> city = hotelInfo.getAllCities();
             ObservableList<String> citys = FXCollections.observableArrayList();
@@ -324,6 +329,10 @@ public class CustomerMainViewController implements ControlledStage {
         checkOutTimeLabel.setText("");
     }
 
+    /**
+     * 更改名字标签方法
+     * @param name
+     */
     public void setNameLabel(String name) {
         nameLabel.setText(name);
     }

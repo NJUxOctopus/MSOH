@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import ui.controller.CustomerInfoChangeController;
 import ui.controller.UserAdminController;
@@ -13,6 +14,7 @@ import ui.view.presentation.StageController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.util.ErrorBoxController;
+import ui.view.presentation.util.ImageController;
 import util.MemberType;
 import util.ResultMessage;
 import vo.CustomerVO;
@@ -69,6 +71,11 @@ public class CustomerInfoViewController implements ControlledStage{
     private String ID;
 
     @FXML
+    private ImageView iconLabel;
+
+    private String icon;
+
+    @FXML
     private Button modifyIconButton;
 
     @FXML
@@ -77,6 +84,7 @@ public class CustomerInfoViewController implements ControlledStage{
     private String newName;
     private String newEmail;
     private String newPhone;
+    private String newIcon;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -90,7 +98,7 @@ public class CustomerInfoViewController implements ControlledStage{
     private void closeStage() {
         getNewInfo();
         stageController = new StageController();
-        if(newName.equals(name) && newEmail.equals(email) && newPhone.equals(phone)){
+        if(newName.equals(name) && newEmail.equals(email) && newPhone.equals(phone) && newIcon.equals(icon)){
             stageController.closeStage(resource);
         }
         else {
@@ -125,30 +133,35 @@ public class CustomerInfoViewController implements ControlledStage{
         name = newName;
         email = newEmail;
         phone = newPhone;
-        CustomerInfoChange customerInfoChange = new CustomerInfoChangeController();
-        try {
-            ResultMessage resultMessage = customerInfoChange.changeInfo(new CustomerVO(customerID, newName, newPhone, newEmail));
+        if(newName.equals(name) && newEmail.equals(email) && newPhone.equals(phone) && newIcon.equals(icon)) {
+
+            CustomerInfoChange customerInfoChange = new CustomerInfoChangeController();
+            try {
+                ResultMessage resultMessage = customerInfoChange.changeInfo(new CustomerVO(customerID, newName, newPhone, newEmail));
+                stageController = new StageController();
+                stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
+                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+                if (resultMessage == ResultMessage.Blank) {
+                    errorBoxController.setLabel("请填写完整信息！");
+                } else if (resultMessage == ResultMessage.phoneFormatWrong) {
+                    errorBoxController.setLabel("手机格式错误！");
+                } else if (resultMessage == ResultMessage.emailFormatWrong) {
+                    errorBoxController.setLabel("邮件格式错误！");
+                } else if (resultMessage == ResultMessage.ChangeInfoSuccess) {
+                    errorBoxController.setLabel("成功修改信息！");
+                    stageController = new StageController();
+                    stageController.closeStage(resource);
+                    CustomerMainViewController customerMainViewController = (CustomerMainViewController) stageController.getController("customer/CustomerMainView.fxml");
+                    customerMainViewController.setNameLabel(name);
+                }
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }else{
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
-            if(resultMessage == ResultMessage.Blank){
-                errorBoxController.setLabel("请填写完整信息！");
-            }
-            else if(resultMessage == ResultMessage.phoneFormatWrong){
-                errorBoxController.setLabel("手机格式错误！");
-            }
-            else if(resultMessage == ResultMessage.emailFormatWrong){
-                errorBoxController.setLabel("邮件格式错误！");
-            }
-            else if(resultMessage == ResultMessage.ChangeInfoSuccess){
-                errorBoxController.setLabel("成功修改信息！");
-                stageController = new StageController();
-                stageController.closeStage(resource);
-                CustomerMainViewController customerMainViewController = (CustomerMainViewController) stageController.getController("customer/CustomerMainView.fxml");
-                customerMainViewController.setNameLabel(name);
-            }
-        }catch (RemoteException e){
-            e.printStackTrace();
+            errorBoxController.setLabel("未修改信息！");
         }
 
     }
@@ -172,7 +185,13 @@ public class CustomerInfoViewController implements ControlledStage{
             name = customerVO.name;
             email = customerVO.email;
             phone = customerVO.phone;
-
+            icon = customerVO.picUrl;
+            newIcon = icon;
+            if(!customerVO.picUrl.equals("")) {
+                ImageController imageController = new ImageController();
+                WritableImage wr = imageController.loadImage(customerVO.picUrl, 145, 145);
+                iconLabel.setImage(wr);
+            }
             credit = customerVO.credit + "";
             if(customerVO.memberType == MemberType.ENTREPRISE) {
                 member = "企业会员";

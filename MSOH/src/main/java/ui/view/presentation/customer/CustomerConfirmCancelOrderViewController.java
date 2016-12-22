@@ -3,7 +3,9 @@ package ui.view.presentation.customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import ui.controller.HotelAdminController;
 import ui.controller.ProcessOrderController;
+import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.ProcessOrder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
@@ -51,8 +53,9 @@ public class CustomerConfirmCancelOrderViewController implements ControlledStage
                 stageController.closeStage(resource);
                 CustomerOrderListViewController customerOrderListViewController = (CustomerOrderListViewController) stageController.getController("customer/CustomerOrderListView.fxml");
                 customerOrderListViewController.init(orderVO.customerID);
-
-                //// TODO: 2016/12/20 变更信用
+                HotelAdmin hotelAdmin = new HotelAdminController();
+                hotelAdmin.changeAvailableRoom(orderVO, 1);
+                hotelAdmin.changeReservedRoom(orderVO, -1);
             }else{
                 stageController.loadStage("util/ErrorBox.fxml", 0.8);
                 ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController("util/ErrorBox.fxml");
