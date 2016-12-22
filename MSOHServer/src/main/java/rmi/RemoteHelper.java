@@ -14,13 +14,13 @@ import java.rmi.registry.LocateRegistry;
  * Created by zqh on 2016/11/13.
  */
 public class RemoteHelper {
+    String ipAddress;
 
     public RemoteHelper() {
         initServer();
     }
 
     public void initServer() {
-        String ipAddress;
         DataRemoteObject dataRemoteObject;
         try {
             ipAddress=InetAddress.getLocalHost().getHostAddress().toString();
@@ -39,5 +39,9 @@ public class RemoteHelper {
         }catch (UnknownHostException e){
             e.printStackTrace();
         }
+    }
+
+    public String getIP(){
+        return ipAddress;
     }
 }
