@@ -74,14 +74,16 @@ public class Hotel implements Hotel_BLService {
         }
         for (Timestamp timestamp : list) {
             DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(orderVO.hotelID, timestamp);
-            List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
-            for (String room : rooms) {//将订单中的房间类型每一个与酒店的房间类型对比
-                for (RoomPO roomPO : roomPOList) {
-                    if (room.equals(roomPO.getRoomType()))
-                        roomPO.setLeftRooms(roomPO.getLeftRooms() + change);
+            if (dailyRoomInfoPO != null) {
+                List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+                for (String room : rooms) {//将订单中的房间类型每一个与酒店的房间类型对比
+                    for (RoomPO roomPO : roomPOList) {
+                        if (room.equals(roomPO.getRoomType()))
+                            roomPO.setLeftRooms(roomPO.getLeftRooms() + change);
+                    }
                 }
+                hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
             }
-            hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
         }
         return ResultMessage.Hotel_changeAvailableRoomSuccess;
     }
@@ -106,14 +108,16 @@ public class Hotel implements Hotel_BLService {
         }
         for (Timestamp timestamp : list) {
             DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(orderVO.hotelID, timestamp);
-            List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
-            for (String room : rooms) {//将订单中的房间类型每一个与酒店的房间类型对比
-                for (RoomPO roomPO : roomPOList) {
-                    if (room.equals(roomPO.getRoomType()))
-                        roomPO.setReservedRooms(roomPO.getReservedRooms() + change);
+            if (dailyRoomInfoPO != null) {
+                List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+                for (String room : rooms) {//将订单中的房间类型每一个与酒店的房间类型对比
+                    for (RoomPO roomPO : roomPOList) {
+                        if (room.equals(roomPO.getRoomType()))
+                            roomPO.setReservedRooms(roomPO.getReservedRooms() + change);
+                    }
                 }
+                hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
             }
-            hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
         }
         return ResultMessage.Hotel_changeReservedRoomSuccess;
     }
@@ -138,14 +142,16 @@ public class Hotel implements Hotel_BLService {
         }
         for (Timestamp timestamp : list) {
             DailyRoomInfoPO dailyRoomInfoPO = hotel_dataService.getDailyRoomInfo(orderVO.hotelID, timestamp);
-            List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
-            for (String room : rooms) {//将订单中的房间类型每一个与酒店的房间类型对比
-                for (RoomPO roomPO : roomPOList) {
-                    if (room.equals(roomPO.getRoomType()))
-                        roomPO.setOccupiedRooms(roomPO.getOccupiedRooms() + change);
+            if (dailyRoomInfoPO != null) {
+                List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
+                for (String room : rooms) {//将订单中的房间类型每一个与酒店的房间类型对比
+                    for (RoomPO roomPO : roomPOList) {
+                        if (room.equals(roomPO.getRoomType()))
+                            roomPO.setOccupiedRooms(roomPO.getOccupiedRooms() + change);
+                    }
                 }
+                hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
             }
-            hotel_dataService.updateDailyRoomInfo(dailyRoomInfoPO);
         }
         return ResultMessage.Hotel_changeOccupiedRoomSuccess;
     }
