@@ -44,7 +44,6 @@ import java.util.List;
  */
 public class DataRemoteObject extends UnicastRemoteObject implements Clerk_DataService, Customer_DataService, City_DataService, Hotel_DataService, Manager_DataService, Marketer_DataService, MemberLevel_DataService, Member_DataService, Order_DataService, Promotion_DataService, Company_DataService , ImageHelper{
 
-
     private Customer_DataService customer_dataService;
     private Hotel_DataService hotel_dataService;
     private Manager_DataService manager_dataService;
