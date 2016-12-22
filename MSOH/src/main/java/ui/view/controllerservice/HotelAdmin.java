@@ -22,7 +22,7 @@ public interface HotelAdmin {
 
     public List<HotelVO> findByArea(String area) throws RemoteException ;
 
-    HotelVO findByClerkID(String clerkID) throws RemoteException;
+    HotelVO findHotelByClerkID(String clerkID) throws RemoteException;
 
     ResultMessage addHotel(HotelVO hotelVO) throws RemoteException;
 

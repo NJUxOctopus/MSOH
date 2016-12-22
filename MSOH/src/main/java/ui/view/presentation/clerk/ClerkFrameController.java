@@ -1,8 +1,6 @@
 package ui.view.presentation.clerk;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -54,7 +52,7 @@ public class ClerkFrameController implements ControlledStage {
         clerkID = ID;
 
         hotelAdmin = new HotelAdminController();
-        hotelName.setText(hotelAdmin.findByClerkID(clerkID).hotelName);
+        hotelName.setText(hotelAdmin.findHotelByClerkID(clerkID).hotelName);
 
         userAdmin = new UserAdminController();
         clerkName.setText(userAdmin.findClerkByID(clerkID).name);

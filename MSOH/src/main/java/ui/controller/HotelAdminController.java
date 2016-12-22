@@ -86,7 +86,7 @@ public class HotelAdminController implements HotelAdmin {
      * @return
      * @throws RemoteException
      */
-    public HotelVO findByClerkID(String clerkID) throws RemoteException {
+    public HotelVO findHotelByClerkID(String clerkID) throws RemoteException {
         return hotelUtil_blService.getHotelByClerkID(clerkID);
     }
 

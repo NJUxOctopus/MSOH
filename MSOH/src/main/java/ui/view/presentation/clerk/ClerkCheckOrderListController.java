@@ -54,7 +54,7 @@ public class ClerkCheckOrderListController implements ControlledStage {
         hotelAdmin = new HotelAdminController();
         paneAdder = new PaneAdder();
         processOrder = new ProcessOrderController();
-        hotelVO = hotelAdmin.findByClerkID(clerkID);
+        hotelVO = hotelAdmin.findHotelByClerkID(clerkID);
         hotelID = hotelVO.hotelID;
 
         //默认显示所有未执行订单
