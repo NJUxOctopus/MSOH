@@ -17,6 +17,7 @@ import vo.CustomerVO;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 
 /**
  * Created by island on 2016/11/24.
@@ -262,8 +263,9 @@ public class CustomerOrderDetailViewController implements ControlledStage {
                 childLabel.setText("无");
             }
             promotionLabel.setText(orderVO.promotionName);
-            originalPriceLabel.setText(orderVO.initialPrice + "");
-            discountedPriceLabel.setText(orderVO.finalPrice + "");
+            DecimalFormat df = new DecimalFormat("0.0");
+            originalPriceLabel.setText(df.format(orderVO.initialPrice) + "");
+            discountedPriceLabel.setText(df.format(orderVO.finalPrice) + "");
 
         } catch (RemoteException e) {
             e.printStackTrace();

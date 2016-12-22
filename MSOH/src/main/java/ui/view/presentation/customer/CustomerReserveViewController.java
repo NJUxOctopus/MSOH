@@ -27,6 +27,7 @@ import vo.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -300,8 +301,9 @@ public class CustomerReserveViewController implements ControlledStage{
             }else{
                 promotionChoiceBox.setValue("无");
             }
-            afterPriceTextField.setText(lowestOrderPrice.finalPrice + "");
-            prePriceTextField.setText(lowestOrderPrice.initPrice + "");
+            DecimalFormat df = new DecimalFormat("0.0");
+            afterPriceTextField.setText(df.format(lowestOrderPrice.finalPrice) + "");
+            prePriceTextField.setText(df.format(lowestOrderPrice.initPrice) + "");
 
         }catch (RemoteException e){
             e.printStackTrace();

@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -79,7 +80,7 @@ public class CustomerSingleHotelViewController implements ControlledStage {
     private Button detailButton;
 
     @FXML
-    private Label reservedLabel;
+    private ImageView reservedImage;
 
     @FXML
     private ImageView hotelImage;
@@ -137,7 +138,8 @@ public class CustomerSingleHotelViewController implements ControlledStage {
             Timestamp time = Timestamp.valueOf(dateFormat.format(date) + " 00:00:00");
             //评价信息
             numOfCommentLabel.setText(hotelVO.comment.size() + "");
-            scoreLabel.setText(hotelVO.score + "");
+            DecimalFormat df = new DecimalFormat("0.0");
+            scoreLabel.setText(df.format(hotelVO.score) + "");
 
             //星级信息
             String star = "";
@@ -163,7 +165,9 @@ public class CustomerSingleHotelViewController implements ControlledStage {
             //预订过的标签
             boolean isReserved = hotelAdmin.hotelIsReserverd(customerID, hotelID);
             if(isReserved){
-                reservedLabel.setOpacity(1);
+                reservedImage.setOpacity(1);
+            }else{
+                reservedImage.setOpacity(0);
             }
 
             //酒店图片

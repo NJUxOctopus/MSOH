@@ -74,6 +74,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label fx:id="reservedLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="5.0" opacity="0.0" prefHeight="52.0" prefWidth="19.0" style="-fx-background-color: #75757550;" text="预订过" textFill="#fffffff2" wrapText="true" />
+      <ImageView fx:id="reservedImage" fitHeight="48.0" fitWidth="41.0" layoutX="208.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image_customer/订.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

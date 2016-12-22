@@ -21,6 +21,7 @@ import vo.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -249,7 +250,8 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         }
         facilityLabel.setText(facility);
         briefInfoTextArea.setText(hotelVO.intro);
-        scoreLabel.setText(hotelVO.score + "");
+        DecimalFormat df = new DecimalFormat("0.0");
+        scoreLabel.setText(df.format(hotelVO.score) + "");
 
         //酒店图片
         ImageController imageController = new ImageController();
@@ -305,7 +307,6 @@ public class CustomerHotelDetailsViewController implements ControlledStage {
         Timestamp checkInTime = Timestamp.valueOf(checkInTimeTextField.getText() + " 00:00:00");
         Timestamp checkOutTime = Timestamp.valueOf(checkOutTimeTextField.getText() + " 00:00:00");
 
-        //// TODO: 2016/12/10  获得选择区间内房间类型的数量和价格
         try {
             HotelAdmin hotelAdmin = new HotelAdminController();
             hotelVO = hotelAdmin.findByID(hotelID);

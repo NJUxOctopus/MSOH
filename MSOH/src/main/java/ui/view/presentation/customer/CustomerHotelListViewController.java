@@ -99,6 +99,8 @@ public class CustomerHotelListViewController implements ControlledStage {
     @FXML
     private Button reservedButton;
 
+    private boolean showReserved = false;
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -116,7 +118,6 @@ public class CustomerHotelListViewController implements ControlledStage {
         String hotelName = nameTextField.getText();
         int star = starChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
         int score = scoreChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
-        System.out.println(star);
 
         //房间信息
         int roomNum = Integer.parseInt(roomNumTextField.getText());
@@ -164,19 +165,16 @@ public class CustomerHotelListViewController implements ControlledStage {
             if (rightRoom && !rightTime) {
                 List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", null, null, roomType, roomNum, area);
                 addHotelPane(hotelVOList);
-                System.out.print("。");
 
             }
             if (!rightRoom && rightTime) {
-                List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
+                List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, "", 0, area);
                 addHotelPane(hotelVOList);
-                System.out.print("？");
 
             }
             if (rightRoom && rightTime) {
                 List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
                 addHotelPane(hotelVOList);
-                System.out.print("!");
             }
         }catch (RemoteException e){
             e.printStackTrace();
@@ -236,7 +234,7 @@ public class CustomerHotelListViewController implements ControlledStage {
             int num = hotelList.size();
             hotelListScrollPane.setPrefWidth(270 * num);
             PaneAdder paneAdder = new PaneAdder();
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < num; i++) {
                 paneAdder.addPane(hotelListScrollPane, "customer/CustomerSingleHotelView.fxml",  270 * i + 5, 10);
                 customerSingleHotelViewController = (CustomerSingleHotelViewController) paneAdder.getController();
                 customerSingleHotelViewController.init(customerID, hotelList.get(i).hotelID);
@@ -272,8 +270,8 @@ public class CustomerHotelListViewController implements ControlledStage {
      */
     @FXML
     private void showReservedHotel(){
-
-        if(reservedButton.getText().equals("□")){
+        if(!showReserved){
+            showReserved = true;
             reservedButton.setText("■");
             List<HotelVO> reservedHotelList = new ArrayList<HotelVO>();
             HotelAdmin hotelAdmin = new HotelAdminController();
@@ -289,11 +287,12 @@ public class CustomerHotelListViewController implements ControlledStage {
             }catch (RemoteException e){
                 e.printStackTrace();
             }
-        }
-        if(reservedButton.getText().equals("■")){
+        }else{
+            showReserved = false;
             reservedButton.setText("□");
             addHotelPane(hotelList);
         }
+
     }
 
     /**

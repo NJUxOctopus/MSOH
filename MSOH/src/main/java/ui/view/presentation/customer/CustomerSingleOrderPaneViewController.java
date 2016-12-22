@@ -14,6 +14,7 @@ import util.OrderStatus;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 
 /**
  * Created by island on 2016/11/26.
@@ -113,12 +114,13 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
         this.orderID = orderID;
         ProcessOrder processOrder = new ProcessOrderController();
         try{
-             OrderVO orderVO = processOrder.getSingle(orderID);
+            OrderVO orderVO = processOrder.getSingle(orderID);
             orderIDLabel.setText(orderID);
             peopleLabel.setText(orderVO.numOfCustomers + "");
             checkInTimeLabel.setText(orderVO.estimatedCheckinTime.toString().substring(0,10));
             checkOutTimeLabel.setText(orderVO.estimatedCheckoutTime.toString().substring(0,10));
-            priceLabel.setText(orderVO.finalPrice + "");
+            DecimalFormat df = new DecimalFormat("0.0");
+            priceLabel.setText(df.format(orderVO.finalPrice) + "");
 
             String[] room = {"单人房", "标间", "大床房"};
             int[] roomNum = {0, 0, 0};
@@ -134,7 +136,7 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
             String roomType = "";
             for(int i = 0; i < 3; i++){
                 if(roomNum[i] != 0){
-                    roomType += room[i] + "*" + roomNum[i] + '\n';
+                    roomType += room[i] + "*" + roomNum[i];
                 }
             }
             roomTypeLabel.setText(roomType);

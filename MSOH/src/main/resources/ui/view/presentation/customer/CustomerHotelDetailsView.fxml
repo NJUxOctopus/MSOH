@@ -34,9 +34,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="80.0" layoutY="115.0" prefHeight="547.0" prefWidth="1122.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+      <ScrollPane layoutX="80.0" layoutY="115.0" prefHeight="565.0" prefWidth="1120.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1135.0" prefWidth="1083.0" style="-fx-background-color: #ffffff00;">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1454.0" prefWidth="1083.0" style="-fx-background-color: #ffffff00;">
                <children>
                   <ImageView fx:id="hotelImage" fitHeight="337.0" fitWidth="411.0" layoutX="60.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-border_color: #ffffffff;" />
                   <Label fx:id="hotelNameLabel" alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="10.0" prefHeight="355.0" prefWidth="65.0" text="哈哈哈哈哈哈哈哈" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
@@ -85,7 +85,7 @@
                   </Label>
                   <Line endX="420.0" layoutX="581.0" layoutY="220.0" startX="-100.0" stroke="WHITE" />
                   <Line endX="1000.0" layoutX="60.0" layoutY="365.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="380.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;">
+                  <ScrollPane layoutX="60.0" layoutY="380.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;">
                     <content>
                       <AnchorPane fx:id="roomScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="143.0" prefWidth="948.0">
                            <children>
@@ -168,8 +168,8 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <Line endX="1000.0" layoutX="60.0" layoutY="545.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="560.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
+                  <Line endX="1000.0" layoutX="60.0" layoutY="590.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="600.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
                      <content>
                         <AnchorPane fx:id="promotionScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="975.0" style="-fx-background-color: #ffffff00;">
                            <children>
@@ -207,8 +207,8 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Line endX="1000.0" layoutX="60.0" layoutY="725.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="740.0" prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" stylesheets="@customer.css">
+                  <Line endX="1000.0" layoutX="60.0" layoutY="810.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="820.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
                      <content>
                         <AnchorPane fx:id="commentScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="977.0" style="-fx-background-color: #ffffff00;">
                            <children>
@@ -231,8 +231,8 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Line endX="1000.0" layoutX="60.0" layoutY="905.0" stroke="WHITE" />
-                  <ScrollPane layoutX="60.0" layoutY="920.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
+                  <Line endX="1000.0" layoutX="60.0" layoutY="1030.0" stroke="WHITE" />
+                  <ScrollPane layoutX="60.0" layoutY="1040.0" prefHeight="400.0" prefWidth="1000.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
                      <content>
                         <AnchorPane fx:id="historyOrderScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="977.0" style="-fx-background-color: #ffffff00;">
                            <children>
@@ -260,7 +260,10 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="briefInfoTextArea" editable="false" layoutX="536.0" layoutY="230.0" prefHeight="120.0" prefWidth="461.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@../manager/manager.css" wrapText="true" />
+                  <TextArea fx:id="briefInfoTextArea" editable="false" layoutX="536.0" layoutY="230.0" prefHeight="120.0" prefWidth="461.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@../manager/manager.css" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font></TextArea>
                </children>
             </AnchorPane>
          </content>

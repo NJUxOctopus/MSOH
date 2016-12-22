@@ -97,7 +97,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="promotionLabel" alignment="CENTER" layoutX="774.0" layoutY="540.0" prefHeight="23.0" prefWidth="125.0" text="无" textFill="WHITE">
+            <Label fx:id="promotionLabel" alignment="CENTER" layoutX="774.0" layoutY="519.0" prefHeight="62.0" prefWidth="125.0" text="无" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
