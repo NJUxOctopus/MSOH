@@ -50,18 +50,6 @@ public class UserAdminController implements UserAdmin {
         managerUtil_blService = new ManagerUtil();
     }
 
-    public UserVO findAllByID(String ID) {
-        return null;
-    }
-
-    public UserVO findAllByName(String name) {
-        return null;
-    }
-
-    public List<ClerkVO> findAllClerk() {
-        return null;
-    }
-
     public List<ClerkVO> findClerkByName(String name) throws RemoteException {
         return clerkUtil_blService.getByName(name);
     }
@@ -69,10 +57,6 @@ public class UserAdminController implements UserAdmin {
     public ClerkVO findClerkByID(String ID) throws RemoteException {
         clerkUtil_blService = new ClerkUtil();
         return clerkUtil_blService.getSingle(ID);
-    }
-
-    public List<MarketerVO> findAllMarketer() {
-        return null;
     }
 
     public List<MarketerVO> findMarketerByName(String name)throws RemoteException  {
@@ -105,14 +89,6 @@ public class UserAdminController implements UserAdmin {
 
     public ResultMessage addMarketer(MarketerVO vo)throws RemoteException {
         return marketer_blService.addMarketer(vo);
-    }
-
-    public ResultMessage deleteClerk(ClerkVO vo) {
-        return null;
-    }
-
-    public ResultMessage deleteMarketer(MarketerVO vo) {
-        return null;
     }
 
 

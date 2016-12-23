@@ -60,9 +60,6 @@ public class ProcessOrderController implements ProcessOrder {
         return order_blService.cancelOrder(orderVO);
     }
 
-    public ResultMessage setAbnormal(OrderVO orderVO) {
-        return null;
-    }
 
     /**
      * 执行订单
@@ -112,9 +109,6 @@ public class ProcessOrderController implements ProcessOrder {
         return orderUtil_blService.getOrdersByCustomerID(customerID);
     }
 
-    public List<OrderVO> getOrderByHotelName(String hotelID) {
-        return null;
-    }
 
     public List<OrderVO> getOrderByIDAndStatus(String customerID, OrderStatus orderStatus) throws RemoteException {
         return orderUtil_blService.getOrderByIDAndStatus(customerID, orderStatus);

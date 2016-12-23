@@ -20,18 +20,6 @@ public class HotelInfoController implements HotelInfo {
         hotelUtil_blService = new HotelUtil();
     }
 
-    public List<HotelVO> sortByPrice(List<HotelVO> list) {
-        return null;
-    }
-
-    public List<HotelVO> sortByStar(List<HotelVO> list) {
-        return null;
-    }
-
-    public List<HotelVO> sortByScore(List<HotelVO> list) {
-        return null;
-    }
-
     public List<HotelVO> searchHotel(HotelVO hotelVO) throws RemoteException {
         Timestamp checkIn;
         if(!hotelVO.checkInTime .equals( "")){

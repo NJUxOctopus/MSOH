@@ -36,10 +36,6 @@ public interface HotelAdmin {
 
     RoomVO getRoomInfo(String hotelID, String roomType, Timestamp timestamp) throws RemoteException;
 
-    List<String> getAllCities() throws RemoteException;
-
-    List<String> getAreaByCity(String city) throws RemoteException;
-
     ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException;
 
     ResultMessage changeReservedRoom(OrderVO orderVO, int change) throws RemoteException;
