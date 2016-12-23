@@ -282,7 +282,8 @@ public class ManagerHotelInfoViewController implements ControlledStage {
             starChoiceBox.setValue(starStr);
             nameTextField.setText(hotelName);
             addressTextField.setText(address);
-            cityChoiceBox.setValue(city);
+            String[] add = address.split(" ");
+            cityChoiceBox.setValue(add[0]);
             areaChoiceBox.setValue(area);
             String[] infra = hotelVO.infra;
             for(int i = 0; i < infra.length; i++){
