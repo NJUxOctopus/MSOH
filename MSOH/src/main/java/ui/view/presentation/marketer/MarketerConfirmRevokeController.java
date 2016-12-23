@@ -4,9 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import ui.controller.CreditRecordController;
+import ui.controller.EditMemberLevelController;
 import ui.controller.ProcessOrderController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.CreditRecord;
+import ui.view.controllerservice.EditMemberLevel;
 import ui.view.controllerservice.ProcessOrder;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.StageController;
@@ -41,6 +43,7 @@ public class MarketerConfirmRevokeController implements ControlledStage {
     private UserAdmin userAdmin;
     private String marketerName;
     private boolean isOrderDetails;
+    private EditMemberLevel editMemberLevel;
 
     private String resource = "marketer/MarketerConfirmRevoke.fxml";
 
@@ -85,6 +88,7 @@ public class MarketerConfirmRevokeController implements ControlledStage {
     private void confirmRevoke() throws RemoteException {
         processOrder = new ProcessOrderController();
         creditRecord = new CreditRecordController();
+        editMemberLevel = new EditMemberLevelController();
         //获取当前时间
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -103,6 +107,7 @@ public class MarketerConfirmRevokeController implements ControlledStage {
         if (processOrder.renewOrder(orderVO).equals(ResultMessage.Order_RenewOrderSuccess)) {
             if (creditRecord.addCreditRecord(orderVO.customerID, creditRecordVO).equals(ResultMessage.Customer_AddCreditRecordSuccess)) {
                 stageController = this.returnMessage("撤销成功！");
+                editMemberLevel.changeGrade(orderVO.customerID);
                 renew();
             } else {
                 this.returnMessage("更改信用值失败！");

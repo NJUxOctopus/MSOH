@@ -167,6 +167,7 @@ public class ClerkBirthdayPromotionController implements ControlledStage {
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
                 stageController.closeStage("clerk/ClerkCreateHotelPromotion.fxml");
+                renew();
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -180,6 +181,7 @@ public class ClerkBirthdayPromotionController implements ControlledStage {
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
                 stageController.closeStage("clerk/ClerkModifyPromotion.fxml");
+                renew();
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -216,5 +218,14 @@ public class ClerkBirthdayPromotionController implements ControlledStage {
      */
     public void setEndTime(String time) {
         endTimeButton.setText(time);
+    }
+
+    /**
+     * 制定或修改营销策略后，刷新列表
+     */
+    private void renew() throws IOException, ClassNotFoundException {
+        stageController = new StageController();
+        ClerkHotelPromotionController clerkHotelPromotionController = (ClerkHotelPromotionController) stageController.getController();
+        clerkHotelPromotionController.initial(clerkID);
     }
 }

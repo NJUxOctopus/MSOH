@@ -124,7 +124,7 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
     }
 
     /**
-     * 确认添加按钮结果，添加房间
+     * 确认修改按钮结果，添加房间
      */
     @FXML
     private void confirmAddRoom() throws RemoteException {

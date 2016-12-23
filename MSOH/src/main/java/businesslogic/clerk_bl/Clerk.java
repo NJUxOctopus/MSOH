@@ -44,6 +44,7 @@ public class Clerk implements Clerk_BLService {
                 clerkVO.phone.matches(DataFormat.Phone_Format)
                 && clerkVO.ID.matches(DataFormat.ID_Format)) {
             //若数据格式正确，添加工作人员
+
             clerk_dataService.addClerk(new ClerkPO(clerkVO.name, clerkVO.phone,
                     clerkVO.password, clerkVO.ID, clerkVO.hotelName, clerkVO.hotelID, WorkerPosition.Clerk, clerkVO.picUrl));
             return ResultMessage.Clerk_AddClerkSuccess;

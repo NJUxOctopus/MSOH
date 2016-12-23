@@ -2,14 +2,8 @@ package ui.view.presentation.clerk;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import ui.controller.CreditRecordController;
-import ui.controller.HotelAdminController;
-import ui.controller.ProcessOrderController;
-import ui.controller.UserAdminController;
-import ui.view.controllerservice.CreditRecord;
-import ui.view.controllerservice.HotelAdmin;
-import ui.view.controllerservice.ProcessOrder;
-import ui.view.controllerservice.UserAdmin;
+import ui.controller.*;
+import ui.view.controllerservice.*;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ErrorBoxController;
@@ -51,6 +45,7 @@ public class ClerkConfirmCheckController implements ControlledStage {
     private UserAdmin userAdmin;
     private CreditRecord creditRecord;
     private boolean isOrderDetails;
+    private EditMemberLevel editMemberLevel;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -101,6 +96,7 @@ public class ClerkConfirmCheckController implements ControlledStage {
         processOrder = new ProcessOrderController();
         hotelAdmin = new HotelAdminController();
         creditRecord = new CreditRecordController();
+        editMemberLevel = new EditMemberLevelController();
 
         if (orderStatus.equals(OrderStatus.UNEXECUTED)) {
             orderVO.actualCheckinTime = time;
@@ -115,6 +111,7 @@ public class ClerkConfirmCheckController implements ControlledStage {
                             (int) (customerVO.credit + orderVO.finalPrice), orderVO.orderID, "", CreditChangeReason.Order_Executed);
                     if (creditRecord.addCreditRecord(customerVO.ID, creditRecordVO).equals(ResultMessage.Customer_AddCreditRecordSuccess)) {
                         stageController = this.returnMessage("办理入住成功！");
+                        editMemberLevel.changeGrade(orderVO.customerID);
                         renew();
                     } else {
                         this.returnMessage("更改信用值错误！");
@@ -140,21 +137,25 @@ public class ClerkConfirmCheckController implements ControlledStage {
                     this.returnMessage("房间数量错误！");
                 }
             } else {
-                this.returnMessage("房间数量错误！");
+                this.returnMessage("未知错误！");
             }
         } else if (orderStatus.equals(OrderStatus.ABNORMAL)) {
-            orderVO.actualCheckinTime = time;
+
             orderVO.orderType = OrderStatus.EXECUTED;
+            orderVO.actualCheckinTime = time;
+
             //延迟入住
             ResultMessage resultMessage = processOrder.executeOrder(orderVO);
             if (resultMessage.equals(ResultMessage.Order_ExecuteOrderSuccess)) {
                 if (hotelAdmin.changeOccupiedRoom(orderVO, 1).equals(ResultMessage.Hotel_changeOccupiedRoomSuccess) &&
                         hotelAdmin.changeAvailableRoom(orderVO, -1).equals(ResultMessage.Hotel_changeAvailableRoomSuccess) &&
                         hotelAdmin.changeReservedRoom(orderVO, 1).equals(ResultMessage.Hotel_changeReservedRoomSuccess)) {
+
                     CreditRecordVO creditRecordVO = new CreditRecordVO((int) orderVO.finalPrice, time, orderVO.customerName, orderVO.customerID,
                             (int) (customerVO.credit + orderVO.finalPrice), orderVO.orderID, "", CreditChangeReason.Order_Delay);
                     if (creditRecord.addCreditRecord(customerVO.ID, creditRecordVO).equals(ResultMessage.Customer_AddCreditRecordSuccess)) {
-                        stageController = this.returnMessage("办理入住成功！");
+                        stageController = this.returnMessage("延迟入住成功！");
+                        editMemberLevel.changeGrade(orderVO.customerID);
                         renew();
                     } else {
                         this.returnMessage("更改信用值错误！");

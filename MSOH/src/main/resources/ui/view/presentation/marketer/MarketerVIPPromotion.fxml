@@ -114,7 +114,7 @@
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="targetAreaChoiceBox" layoutX="256.0" layoutY="300.0" prefHeight="31.0" prefWidth="343.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;">
+      <ChoiceBox fx:id="targetAreaChoiceBox" layoutX="256.0" layoutY="300.0" prefHeight="31.0" prefWidth="343.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@Marketer.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

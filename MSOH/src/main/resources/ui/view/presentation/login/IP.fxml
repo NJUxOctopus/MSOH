@@ -35,5 +35,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="exitButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#exit" prefHeight="36.0" prefWidth="29.0" style="-fx-background-color: #ffffff00;">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/exit2.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>

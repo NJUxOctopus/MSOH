@@ -60,7 +60,7 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
     private UserAdmin userAdmin;
     private HotelAdmin hotelAdmin;
     private EditPromotion editPromotion;
-    private DecimalFormat df = new DecimalFormat("0.00");
+    private DecimalFormat df = new DecimalFormat("0.0");
 
     //获取当前日期
     Date date = new Date();
@@ -184,6 +184,7 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
             } else if (resultMessage.equals(ResultMessage.Promotion_AddPromotionSuccess)) {
                 stageController = this.returnMessage("创建成功！");
                 stageController.closeStage("clerk/ClerkCreateHotelPromotion.fxml");
+                renew();
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -196,6 +197,7 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
             } else if (resultMessage.equals(ResultMessage.Promotion_ModifyPromotionSuccess)) {
                 stageController = this.returnMessage("修改成功！");
                 stageController.closeStage("clerk/ClerkModifyPromotion.fxml");
+                renew();
             } else {
                 this.returnMessage("未知错误！");
             }
@@ -232,5 +234,14 @@ public class ClerkEnterprisePromotionController implements ControlledStage {
      */
     public void setEndTime(String time) {
         endTimeButton.setText(time);
+    }
+
+    /**
+     * 制定或修改营销策略后，刷新列表
+     */
+    private void renew() throws IOException, ClassNotFoundException {
+        stageController = new StageController();
+        ClerkHotelPromotionController clerkHotelPromotionController = (ClerkHotelPromotionController) stageController.getController();
+        clerkHotelPromotionController.initial(clerkID);
     }
 }
