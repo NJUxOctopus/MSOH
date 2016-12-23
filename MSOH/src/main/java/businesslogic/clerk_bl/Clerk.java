@@ -37,16 +37,18 @@ public class Clerk implements Clerk_BLService {
         } else if (clerk_dataService.findClerkByID(clerkVO.ID) != null) {
             //若已存在该工作人员
             return ResultMessage.Clerk_AddClerkExist;
-        } else if (hotel.addClerk(clerkVO).equals(ResultMessage.Hotel_HasClerk)) {
-            return ResultMessage.Clerk_AddClerkExist;
-        } else if (hotel.addClerk(clerkVO).equals(ResultMessage.Clerk_AddClerkSuccess) &&
-                clerkVO.password.matches(DataFormat.Password_Format) &&
+        } else if (clerkVO.password.matches(DataFormat.Password_Format) &&
                 clerkVO.phone.matches(DataFormat.Phone_Format)
                 && clerkVO.ID.matches(DataFormat.ID_Format)) {
             //若数据格式正确，添加工作人员
-            clerk_dataService.addClerk(new ClerkPO(clerkVO.name, clerkVO.phone,
-                    clerkVO.password, clerkVO.ID, clerkVO.hotelName, clerkVO.hotelID, WorkerPosition.Clerk, clerkVO.picUrl));
-            return ResultMessage.Clerk_AddClerkSuccess;
+            //System.out.print(clerkVO.name+" "+clerkVO.phone+" "+
+            //clerkVO.password+" "+clerkVO.ID+" "+clerkVO.hotelName+" "+clerkVO.hotelID+" "+clerkVO.picUrl);
+            if (hotel.addClerk(clerkVO).equals(ResultMessage.Clerk_AddClerkSuccess)) {
+                clerk_dataService.addClerk(new ClerkPO(clerkVO.name, clerkVO.phone,
+                        clerkVO.password, clerkVO.ID, clerkVO.hotelName, clerkVO.hotelID, WorkerPosition.Clerk, ""));
+                return ResultMessage.Clerk_AddClerkSuccess;
+            } else
+                return ResultMessage.Fail;
         } else
             //否则，返回数据格式错误
             return ResultMessage.DataFormatWrong;

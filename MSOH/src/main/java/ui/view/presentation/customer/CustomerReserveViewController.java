@@ -41,6 +41,8 @@ public class CustomerReserveViewController implements ControlledStage{
 
     private String resource = "customer/CustomerReserveView.fxml";
 
+    private ObservableList<String> promotion;
+
     private String customerID;
 
     private HotelVO hotelVO;
@@ -288,7 +290,7 @@ public class CustomerReserveViewController implements ControlledStage{
         try {
             //初始化促销策略选择下拉框
             orderPriceVOList = processOrder.usePromotion(orderVO);
-            final ObservableList<String> promotion = FXCollections.observableArrayList();
+            promotion = FXCollections.observableArrayList();
             for(int i = 0; i < orderPriceVOList.size(); i++){
                 if(orderPriceVOList.get(i).promotionName != null) {
                     promotion.add(orderPriceVOList.get(i).promotionName);
@@ -308,7 +310,16 @@ public class CustomerReserveViewController implements ControlledStage{
             DecimalFormat df = new DecimalFormat("0.0");
             afterPriceTextField.setText(df.format(lowestOrderPrice.finalPrice) + "");
             prePriceTextField.setText(df.format(lowestOrderPrice.initPrice) + "");
-
+            promotionChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    int select = promotionChoiceBox.getSelectionModel().getSelectedIndex();
+                    if(select == -1)
+                        afterPriceTextField.setText(orderPriceVOList.get(0).finalPrice + "");
+                    else
+                        afterPriceTextField.setText(orderPriceVOList.get(select).finalPrice + "");
+                }
+            });
         }catch (RemoteException e){
             e.printStackTrace();
         }catch (ClassNotFoundException e){
@@ -316,18 +327,11 @@ public class CustomerReserveViewController implements ControlledStage{
         }catch (IOException e){
             e.printStackTrace();
         }
-        modifyPromotion();
+
+
     }
 
-    private void modifyPromotion(){
-        promotionChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                int select = promotionChoiceBox.getSelectionModel().getSelectedIndex();
-                afterPriceTextField.setText(orderPriceVOList.get(select).finalPrice + "");
-            }
-        });
-    }
+
     /**
      * 加号按钮结果，房间数量+1
      */

@@ -20,6 +20,7 @@ import ui.controller.HotelInfoController;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.HotelInfo;
 import ui.view.controllerservice.UserAdmin;
+import ui.view.presentation.login.LoginViewController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ErrorBoxController;
@@ -212,6 +213,12 @@ public class CustomerMainViewController implements ControlledStage {
         stageController = new StageController();
         stageController.closeStage(resource);
         stageController.loadStage("login/LoginView.fxml", 1);
+        LoginViewController loginViewController = (LoginViewController) stageController.getController();
+        try {
+            loginViewController.initial();
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -224,7 +231,8 @@ public class CustomerMainViewController implements ControlledStage {
 
     @FXML
     private void showAboutUsView() {
-
+        stageController = new StageController();
+        stageController.loadStage("util/AboutUs.fxml", 1);
     }
 
     @FXML

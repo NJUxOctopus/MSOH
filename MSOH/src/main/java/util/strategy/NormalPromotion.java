@@ -38,8 +38,10 @@ public class NormalPromotion implements Strategy {
             memberTypeMeetReq = true;
         }
 
-        if (roomNum >= orderVO.rooms.length && memberTypeMeetReq)
+        if (roomNum <= orderVO.rooms.length && memberTypeMeetReq) {
+            System.out.print(roomNum);
             return true;
+        }
         else
             return false;
     }

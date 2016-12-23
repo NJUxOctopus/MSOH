@@ -41,4 +41,13 @@ public class IPController implements ControlledStage {
         LoginViewController loginViewController = (LoginViewController) stageController.getController();
         loginViewController.initial();
     }
+
+
+    /**
+     * 退出系统方法
+     */
+    @FXML
+    private void exit() {
+        System.exit(0);
+    }
 }

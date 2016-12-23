@@ -226,7 +226,7 @@ public class Promotion implements Promotion_BLService {
                 promotionVOList.add(promotionVO);
             } else if (promotionVO.promotionType.equals(PromotionType.HotelPromotion_Reserve) || promotionVO.promotionType.equals(PromotionType.HotelPromotion_Other)) {
                 CustomerUtil customerUtil = abstract_blFactory.createCustomerUtil();
-                Strategy normalPromotion = new NormalPromotion(customerUtil.getSingle(orderVO.customerID).memberType, orderVO.rooms.length);
+                Strategy normalPromotion = new NormalPromotion(customerUtil.getSingle(orderVO.customerID).memberType, promotionVO.minRoom);
                 if (normalPromotion.usePromotion(orderVO))
                     promotionVOList.add(new PromotionVO(promotionVO.discount, promotionVO.promotionName));
             } else if (promotionVO.promotionType.equals(PromotionType.WebPromotion_VIP)) {

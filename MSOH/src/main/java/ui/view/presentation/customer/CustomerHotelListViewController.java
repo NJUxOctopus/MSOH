@@ -122,12 +122,12 @@ public class CustomerHotelListViewController implements ControlledStage {
         //房间信息
         int roomNum = Integer.parseInt(roomNumTextField.getText());
         String roomType = (String) typeOfRoomChoiceBox.getSelectionModel().getSelectedItem();
-        boolean rightRoom = false;
+        boolean rightRoom = true;
 
         //日期信息
         String checkInTime = checkInTimeTextField.getText();
         String checkOutTime = checkOutTimeTextField.getText();
-        boolean rightTime = false;
+        boolean rightTime = true;
         if((checkInTime != null && checkInTime == null) || (checkInTime == null && checkInTime != null)){
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
@@ -144,15 +144,15 @@ public class CustomerHotelListViewController implements ControlledStage {
                 stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
                 ErrorBoxController controller = (ErrorBoxController) stageController.getController();
                 controller.setLabel("退房日期必须在入住日期之后！");
-            }else{
-                rightTime = true;
+                rightTime = false;
             }
         }else{
             checkIn = null;
             checkOut = null;
+            rightTime = false;
         }
-        if(roomType != null){
-            rightRoom = true;
+        if(roomType == null){
+            rightRoom = false;
         }
         if(roomType == null && roomNum > 0){
             stageController = new StageController();
@@ -176,6 +176,7 @@ public class CustomerHotelListViewController implements ControlledStage {
                 List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
                 addHotelPane(hotelVOList);
             }
+
         }catch (RemoteException e){
             e.printStackTrace();
         }

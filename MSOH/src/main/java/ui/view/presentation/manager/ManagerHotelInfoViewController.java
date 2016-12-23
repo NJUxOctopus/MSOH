@@ -105,6 +105,9 @@ public class ManagerHotelInfoViewController implements ControlledStage {
     @FXML
     private TextArea briefInfoTextArea;
 
+    private String[] s = {""};
+
+
     @Override
     public void setStageController(StageController stageController) {
         this.stageController = stageController;
@@ -158,7 +161,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         HotelAdmin hotelAdmin = new HotelAdminController();
         try{
             ResultMessage resultMessage = hotelAdmin.addHotel(new HotelVO(
-                    "", hotelName, address, city, area, intro, newFac, star, license));
+                    "", hotelName, address, city, area, intro, newFac, star, license, s));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
@@ -180,7 +183,7 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         HotelAdmin hotelAdmin = new HotelAdminController();
         try {
             ResultMessage resultMessage = hotelAdmin.updateHotelInfo(new HotelVO(
-                    hotelID, hotelName, address, city, area, intro, newFac, star, license));
+                    hotelID, hotelName, address, city, area, intro, newFac, star, license, s));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();

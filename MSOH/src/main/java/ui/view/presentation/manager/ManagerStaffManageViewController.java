@@ -207,10 +207,10 @@ public class ManagerStaffManageViewController implements ControlledStage {
      * @param type
      */
     private void addPersonPane(String type){
-        boolean b = false;
+        boolean hasResult = false;
         staffListScrollPane.getChildren().clear();
-        if(type.equals("客户") && customerVOList != null) {
-            b = true;
+        if(type.equals("客户") && !customerVOList.isEmpty()) {
+            hasResult = true;
             emptyLabel.setOpacity(0);
             staffListScrollPane.setPrefHeight(150 * customerVOList.size());
             for(int i = 0; i < customerVOList.size(); i++) {
@@ -220,8 +220,8 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 managerSinglePersonViewController.init("客户", customerVOList.get(i).ID);
             }
         }
-        if(type.equals("网站营销人员") && marketerVOList != null) {
-            b = true;
+        if(type.equals("网站营销人员") && !marketerVOList.isEmpty()) {
+            hasResult = true;
             emptyLabel.setOpacity(0);
             staffListScrollPane.setPrefHeight(150 * marketerVOList.size());
             for(int i = 0; i < marketerVOList.size(); i++) {
@@ -231,8 +231,8 @@ public class ManagerStaffManageViewController implements ControlledStage {
                 managerSinglePersonViewController.init("网站营销人员", marketerVOList.get(i).ID);
             }
         }
-        if(type.equals("酒店工作人员") && clerkVOList != null) {
-            b = true;
+        if(type.equals("酒店工作人员") && !clerkVOList.isEmpty()) {
+            hasResult = true;
             emptyLabel.setOpacity(0);
             staffListScrollPane.setPrefHeight(150 * clerkVOList.size());
             for(int i = 0; i < clerkVOList.size(); i++) {
@@ -243,10 +243,10 @@ public class ManagerStaffManageViewController implements ControlledStage {
             }
         }
 
-        if(!b)
-            emptyLabel.setOpacity(1);
-        else
+        if(hasResult)
             emptyLabel.setOpacity(0);
+        else
+            emptyLabel.setOpacity(1);
     }
 
     /**

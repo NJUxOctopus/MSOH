@@ -20,7 +20,7 @@ public class MemberLevelPromotion implements Strategy {
     @Override
     public Boolean usePromotion(OrderVO orderVO) throws RemoteException {
         if (customerUtil.getSingle(orderVO.customerID).memberType.equals(MemberType.NORMAL))
-            return false;
-        return true;
+            return true;
+        return false;
     }
 }

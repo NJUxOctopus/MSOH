@@ -2,6 +2,7 @@ package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import ui.controller.CustomerSignUpController;
@@ -49,10 +50,10 @@ public class CustomerSignUpViewController implements ControlledStage{
     private TextField idTextField;
 
     @FXML
-    private TextField fisrtPasswordTextField;
+    private PasswordField fisrtPasswordTextField;
 
     @FXML
-    private TextField secondPasswordTextField;
+    private PasswordField secondPasswordTextField;
 
     @FXML
     private ImageView iconImage;
@@ -107,10 +108,10 @@ public class CustomerSignUpViewController implements ControlledStage{
                 ResultMessage resultMessage = customerSignUp.signUp(new CustomerVO(name, firstPassword, phone, email, 500,  picUrl,  ID, MemberType.NONMEMBER));
                 stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
                 ErrorBoxController controller = (ErrorBoxController) stageController.getController();
-                if(resultMessage == ResultMessage.WrongEmailFormat){
+                if(resultMessage == ResultMessage.emailFormatWrong){
                     controller.setLabel("邮件格式错误！");
                 }
-                else if (resultMessage == ResultMessage.WrongPhoneFormat){
+                else if (resultMessage == ResultMessage.phoneFormatWrong){
                     controller.setLabel("手机格式错误！");
                 }
                 else if (resultMessage == ResultMessage.Blank){

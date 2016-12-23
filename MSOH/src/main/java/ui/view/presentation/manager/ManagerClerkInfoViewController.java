@@ -18,6 +18,7 @@ import ui.view.presentation.util.ErrorBoxController;
 import ui.view.presentation.util.ImageController;
 import util.ResultMessage;
 import vo.ClerkVO;
+import vo.HotelVO;
 
 import java.rmi.RemoteException;
 
@@ -131,7 +132,10 @@ public class ManagerClerkInfoViewController implements ControlledStage {
             password = passwordTextField.getText();
             ID = cleckIDTextField.getText();
             hotelID = hotelIDTextField.getText();
-            ResultMessage resultMessage = userAdmin.addClerk(new ClerkVO(name, phone, password, ID, hotelID));
+            HotelAdmin hotelAdmin = new HotelAdminController();
+            HotelVO hotelVO = hotelAdmin.findByID(hotelID);
+
+            ResultMessage resultMessage = userAdmin.addClerk(new ClerkVO(name, phone, password, ID, hotelID, hotelVO.hotelName));
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
             ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();

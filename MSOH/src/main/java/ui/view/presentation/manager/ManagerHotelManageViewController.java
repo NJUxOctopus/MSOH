@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import ui.controller.HotelAdminController;
@@ -39,6 +40,9 @@ public class ManagerHotelManageViewController implements ControlledStage {
 
     @FXML
     private AnchorPane hotelListScrollPane;
+
+    @FXML
+    private Label emptyLabel;
 
 
     @Override
@@ -103,7 +107,8 @@ public class ManagerHotelManageViewController implements ControlledStage {
     public void addHotelPane(List<HotelVO> hotelVOs){
         hotelListScrollPane.getChildren().clear();
 
-        if(hotelVOs != null) {
+        if(!hotelVOs.isEmpty()) {
+            emptyLabel.setOpacity(0);
             int num = hotelVOs.size();
             hotelListScrollPane.setPrefWidth(250 * num);
             for(int i = 0; i < num; i++) {
@@ -113,7 +118,7 @@ public class ManagerHotelManageViewController implements ControlledStage {
                 managerSingleHotelViewController.init(hotelVOs.get(i).hotelID);
             }
         }else{
-            //todo emptylabel
+            emptyLabel.setOpacity(1);
         }
     }
 

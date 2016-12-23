@@ -125,7 +125,7 @@ public class HotelVO implements Serializable {
      * @param license
      */
     public HotelVO(String ID, String hotelName, String hotelAddress, String city, String area, String intro, String[] infra, int star,
-                   String license) {
+                   String license, String picUrls[]) {
         this.hotelID = ID;
         this.hotelName = hotelName;
         this.hotelAddress = hotelAddress;
@@ -135,7 +135,7 @@ public class HotelVO implements Serializable {
         this.infra = infra;
         this.star = star;
         this.license = license;
-
+        this.picUrls = picUrls;
     }
 
 

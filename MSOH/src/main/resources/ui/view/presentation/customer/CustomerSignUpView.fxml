@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -66,22 +67,8 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField fx:id="fisrtPasswordTextField" layoutX="570.0" layoutY="400.0" prefHeight="32.0" prefWidth="549.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff;">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
-            <TextField fx:id="secondPasswordTextField" layoutX="570.0" layoutY="475.0" prefHeight="32.0" prefWidth="549.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff;">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
+            <PasswordField fx:id="fisrtPasswordTextField" layoutX="569.0" layoutY="402.0" prefHeight="32.0" prefWidth="551.0" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFFFF;" />
+            <PasswordField fx:id="secondPasswordTextField" layoutX="569.0" layoutY="477.0" prefHeight="32.0" prefWidth="551.0" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFFFF;" />
          </children>
       </Pane>
       <Pane fx:id="iconPanel" layoutX="137.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0">

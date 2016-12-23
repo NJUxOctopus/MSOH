@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import ui.controller.UserAdminController;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
+import ui.view.presentation.login.LoginViewController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ImageController;
@@ -108,6 +109,12 @@ public class ManagerMainViewController implements ControlledStage {
         stageController = new StageController();
         stageController.closeStage(resource);
         stageController.loadStage("login/LoginView.fxml", 1);
+        LoginViewController loginViewController = (LoginViewController) stageController.getController();
+        try {
+            loginViewController.initial();
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -120,7 +127,8 @@ public class ManagerMainViewController implements ControlledStage {
 
     @FXML
     private void showAboutUsView() {
-
+        stageController = new StageController();
+        stageController.loadStage("util/AboutUs.fxml", 1);
     }
 
     /**

@@ -11,18 +11,18 @@ import rmi.RemoteHelper;
 import ui.controller.EditPromotionController;
 import ui.controller.HotelAdminController;
 import ui.controller.ProcessOrderController;
+import ui.controller.UserAdminController;
 import ui.view.controllerservice.EditPromotion;
 import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.ProcessOrder;
+import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
+import ui.view.presentation.util.ErrorBoxController;
 import ui.view.presentation.util.ImageController;
 import util.ImageHelper;
 import util.OrderStatus;
-import vo.DailyRoomInfoVO;
-import vo.HotelVO;
-import vo.PromotionVO;
-import vo.RoomVO;
+import vo.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -95,15 +95,25 @@ public class CustomerSingleHotelViewController implements ControlledStage {
 
     @FXML
     private void reserve(){
-        stageController = new StageController();
-        stageController.loadStage("customer/CustomerReserveView.fxml", 1);
-        CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
-        HotelAdmin hotelAdmin = new HotelAdminController();
+        UserAdmin userAdmin = new UserAdminController();
         try {
-            customerReserveViewController.init(customerID, hotelAdmin.findByID(hotelID));
+            CustomerVO customerVO = userAdmin.findCustomerByID(customerID);
+            if (customerVO.credit > 0) {
+                stageController = new StageController();
+                stageController.loadStage("customer/CustomerReserveView.fxml", 1);
+                CustomerReserveViewController customerReserveViewController = (CustomerReserveViewController) stageController.getController();
+                HotelAdmin hotelAdmin = new HotelAdminController();
+                customerReserveViewController.init(customerID, hotelAdmin.findByID(hotelID));
+            }else{
+                stageController = new StageController();
+                stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
+                ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+                errorBoxController.setLabel("信用值低于0无法预订！");
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }
+
     }
 
     @Override

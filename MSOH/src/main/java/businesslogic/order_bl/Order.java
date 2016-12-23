@@ -65,6 +65,8 @@ public class Order implements Order_BLService {
             double finalPrice = initPrice * promotionVO.discount / 10;//折后价格
             orderPriceVOList.add(new OrderPriceVO(promotionVO.promotionName, initPrice, finalPrice));
         }
+        Comparator<OrderPriceVO> comparator = new sortPromotionByPrice();
+        Collections.sort(orderPriceVOList, comparator);
         return orderPriceVOList;
     }
 

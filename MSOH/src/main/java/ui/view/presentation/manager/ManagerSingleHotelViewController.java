@@ -81,7 +81,7 @@ public class ManagerSingleHotelViewController implements ControlledStage {
         stageController = new StageController();
         stageController.loadStage("manager/ManagerClerkInfoView.fxml", 1);
         ManagerClerkInfoViewController managerClerkInfoViewController = (ManagerClerkInfoViewController) stageController.getController();
-        if(hotelVO.clerkID != null) {
+        if(!hotelVO.clerkID.equals("")) {
             managerClerkInfoViewController.setModifyVer(hotelVO.clerkID);
         }
         else{

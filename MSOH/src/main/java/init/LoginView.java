@@ -40,7 +40,7 @@ public class LoginView extends Application {
 
     public void linkServer() {
         try {
-            initProperties();
+            //initProperties();
 
             remoteHelper = RemoteHelper.getInstance();
 //            InetAddress ipv4Address = InetAddress.getByName(hostname);
