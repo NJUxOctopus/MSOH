@@ -114,26 +114,6 @@ public class HotelAdminController implements HotelAdmin {
         return hotelUtil_blService.getRoomByName(hotelID, roomType, timestamp);
     }
 
-    /**
-     * 得到所有的城市信息
-     *
-     * @return
-     * @throws RemoteException
-     */
-    public List<String> getAllCities() throws RemoteException {
-        return hotelUtil_blService.getAllCities();
-    }
-
-    /**
-     * 得到该城市的所有商圈
-     *
-     * @param city
-     * @return
-     * @throws RemoteException
-     */
-    public List<String> getAreaByCity(String city) throws RemoteException {
-        return hotelUtil_blService.getAreaByCity(city);
-    }
 
     @Override
     public ResultMessage changeAvailableRoom(OrderVO orderVO, int change) throws RemoteException {

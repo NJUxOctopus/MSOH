@@ -10,17 +10,10 @@ import java.util.List;
  * Created by zqh on 2016/11/12.
  */
 public interface UserAdmin {
-    public UserVO findAllByID(String ID);
-
-    public UserVO findAllByName(String name);
-
-    public List<ClerkVO> findAllClerk();
 
     public List<ClerkVO> findClerkByName(String name) throws RemoteException;
 
     public ClerkVO findClerkByID(String ID) throws RemoteException;
-
-    public List<MarketerVO> findAllMarketer();
 
     public List<MarketerVO> findMarketerByName(String name) throws RemoteException ;
 
@@ -37,10 +30,6 @@ public interface UserAdmin {
     public ResultMessage addClerk(ClerkVO vo)throws RemoteException;
 
     public ResultMessage addMarketer(MarketerVO vo)throws RemoteException;
-
-    public ResultMessage deleteClerk(ClerkVO vo);
-
-    public ResultMessage deleteMarketer(MarketerVO vo);
 
     public MemberVO findMemberByID(String ID) throws RemoteException;
 }

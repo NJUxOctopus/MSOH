@@ -19,14 +19,6 @@ public class ProcessMemberController implements ProcessMember {
         memberLevel_blService = new MemberLevel();
     }
 
-    public void upGrade(MemberVO memberVO, CustomerVO customerVO) {
-
-    }
-
-    public void deGrade(MemberVO memberVO, CustomerVO customerVO) {
-
-    }
-
     /**
      * 获取会员等级制度
      *

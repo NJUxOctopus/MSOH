@@ -60,6 +60,8 @@ public class Customer implements Customer_BLService {
         } else if (customerVO.password.matches(DataFormat.Password_Format) && customerVO.email.matches(DataFormat.Email_Format) &&
                 customerVO.phone.matches(DataFormat.Phone_Format) && customerVO.ID.matches(DataFormat.ID_Format)) {
             //若用户已输入ID并且不存在该ID的用户，则添加该用户，并返回注册成功
+            if (customerVO.picUrl.equals(""))
+                customerVO.picUrl = "F:/MSOHPics/customer.png";
             if (customer_dataService.addCustomer(new CustomerPO(customerVO.name, customerVO.password,
                     customerVO.phone, customerVO.email, 1000, customerVO.picUrl, customerVO.ID, MemberType.NONMEMBER)))
                 return ResultMessage.Customer_SignupSuccess;
@@ -222,6 +224,7 @@ public class Customer implements Customer_BLService {
 
     /**
      * 修改用户会员类型
+     *
      * @param customerID
      * @param memberType
      * @throws RemoteException

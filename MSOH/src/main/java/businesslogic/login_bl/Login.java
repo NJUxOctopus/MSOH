@@ -43,15 +43,19 @@ public class Login implements Login_BLService {
             return ResultMessage.Login_NoUser;//若未找到该ID的用户，返回无该用户
         } else if (clerkUtil.getSingle(ID) != null &&
                 clerkUtil.getSingle(ID).password.equals(password)) {
+            rememberID(ID);
             return ResultMessage.Login_ClerkSuccess;//返回工作人员登录成功
         } else if (managerUtil.getByID(ID) != null &&
                 managerUtil.getByID(ID).password.equals(password)) {
+            rememberID(ID);
             return ResultMessage.Login_ManagerSuccess;//返回管理人员登录成功
         } else if (marketerUtil.getSingle(ID) != null &&
                 marketerUtil.getSingle(ID).password.equals(password)) {
+            rememberID(ID);
             return ResultMessage.Login_MarketerSuccess;//返回营销人员登录成功
         } else if (customerUtil.getSingle(ID) != null &&
                 customerUtil.getSingle(ID).password.equals(password)) {
+            rememberID(ID);
             return ResultMessage.Login_CustomerSuccess;//返回用户登录成功
         } else {
             return ResultMessage.Login_WrongPassword;//否则返回密码错误
@@ -148,5 +152,65 @@ public class Login implements Login_BLService {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 登录成功后自动记住账号
+     *
+     * @param ID
+     * @throws RemoteException
+     */
+    private void rememberID(String ID) throws RemoteException {
+        File file = new File("ID.txt");
+
+        try {
+            if (!file.exists())
+                file.createNewFile();
+            //记住账号时先判断是否已经记住该账号
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String str = null;
+            while ((str = bufferedReader.readLine()) != null) {
+                String idFile = str.split(" ")[0];//文件中存储的账号
+                String idDecode = DataFormat.reCode(idFile); //文件中的账号解码后
+                if (idDecode.equals(ID)) {//若输入的账号等于解码后的账号
+                    return;
+                }
+            }
+            //若账号未被记住
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
+            String idCode = DataFormat.code(ID);//加密的ID
+            bufferedWriter.write(idCode + "\n");//存入文件用空格分开账号密码
+            bufferedWriter.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 得到所有被记住的账号
+     *
+     * @return
+     * @throws RemoteException
+     */
+    public List<String> getRememberedID() throws RemoteException {
+        File file = new File("ID.txt");
+        List<String> list = new ArrayList<String>();
+        try {
+            if (!file.exists())
+                file.createNewFile();
+            //记住账号时先判断是否已经记住该账号
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String str = null;
+            while ((str = bufferedReader.readLine()) != null) {
+                String idFile = str.split(" ")[0];//文件中存储的账号
+                String idDecode = DataFormat.reCode(idFile); //文件中的账号解码后
+                list.add(idDecode);
+            }
+            bufferedReader.close();
+            return list;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 }

@@ -215,7 +215,7 @@ public class OrderUtil implements OrderUtil_BLService {
             return new ArrayList<OrderVO>();
         List<OrderVO> orderVOList2 = new ArrayList<OrderVO>();
         for (OrderVO orderVO : orderVOList) {
-            if (orderVO.orderType.equals(orderStatus))
+            if (orderVO.customerID.equals(ID))
                 orderVOList2.add(orderVO);
         }
         return orderVOList2;
