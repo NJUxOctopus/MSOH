@@ -52,15 +52,15 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String ID) throws RemoteException {
+    public void initial(String clerkID) throws RemoteException {
         //初始化工作人员姓名、密码、身份证号、手机号信息
-        clerkID = ID;
+        this.clerkID = clerkID;
         userAdmin = new UserAdminController();
-        clerkVO = userAdmin.findClerkByID(clerkID);
+        clerkVO = userAdmin.findClerkByID(this.clerkID);
         clerkName.setText(clerkVO.name);
         nameTextField.setText(clerkVO.name);
         passwordTextField.setText(clerkVO.password);
-        idTextField.setText(clerkID);
+        idTextField.setText(this.clerkID);
         phoneTextField.setText(clerkVO.phone);
     }
 

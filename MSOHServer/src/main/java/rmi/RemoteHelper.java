@@ -29,7 +29,7 @@ public class RemoteHelper {
             dataRemoteObject = new DataRemoteObject();
             LocateRegistry.createRegistry(1099);
             Naming.bind("rmi://"+ipAddress+":1099/DataRemoteObject", dataRemoteObject);
-            System.out.println("Octopus: 连接客户端成功");
+
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {

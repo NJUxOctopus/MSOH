@@ -49,8 +49,8 @@ public class ClerkCheckOrderListController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String ID) throws RemoteException {
-        this.clerkID = ID;
+    public void initial(String clerkID) throws RemoteException {
+        this.clerkID = clerkID;
         hotelAdmin = new HotelAdminController();
         paneAdder = new PaneAdder();
         processOrder = new ProcessOrderController();

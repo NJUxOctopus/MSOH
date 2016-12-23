@@ -47,9 +47,9 @@ public class ClerkFrameController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String ID) throws RemoteException {
+    public void initial(String clerkID) throws RemoteException {
 
-        clerkID = ID;
+        this.clerkID = clerkID;
 
         hotelAdmin = new HotelAdminController();
         hotelName.setText(hotelAdmin.findHotelByClerkID(clerkID).hotelName);

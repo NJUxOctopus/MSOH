@@ -76,10 +76,10 @@ public class ClerkCreateOfflineOrderController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String ID, String[] rooms, double price) throws RemoteException {
+    public void initial(String clerkID, String[] rooms, double price) throws RemoteException {
         userAdmin = new UserAdminController();
-        this.clerkID = ID;
-        clerkVO = userAdmin.findClerkByID(clerkID);
+        this.clerkID = clerkID;
+        clerkVO = userAdmin.findClerkByID(this.clerkID);
         this.rooms = rooms;
         this.price = price;
         priceLabel.setText("￥" + String.valueOf(price));
