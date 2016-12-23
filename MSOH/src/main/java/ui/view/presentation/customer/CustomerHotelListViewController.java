@@ -151,10 +151,9 @@ public class CustomerHotelListViewController implements ControlledStage {
             checkOut = null;
             rightTime = false;
         }
-        if(roomType == null){
-            rightRoom = false;
-        }
+
         if(roomType == null && roomNum > 0){
+            rightRoom = false;
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
@@ -162,16 +161,7 @@ public class CustomerHotelListViewController implements ControlledStage {
         }
         HotelInfo hotelInfo = new HotelInfoController();
         try {
-            if (rightRoom && !rightTime) {
-                List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", null, null, roomType, roomNum, area);
-                addHotelPane(hotelVOList);
 
-            }
-            if (!rightRoom && rightTime) {
-                List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, "", 0, area);
-                addHotelPane(hotelVOList);
-
-            }
             if (rightRoom && rightTime) {
                 List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
                 addHotelPane(hotelVOList);
