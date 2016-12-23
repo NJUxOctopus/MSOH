@@ -226,5 +226,4 @@ public class MarketerHolidayPromotionController implements ControlledStage {
         marketerWebPromotionController.initial(marketerID);
     }
 
-
 }

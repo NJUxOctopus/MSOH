@@ -13,7 +13,7 @@
    <children>
       <Pane prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;">
          <children>
-            <Button layoutX="539.0" layoutY="423.0" mnemonicParsing="false" onAction="#showModifyHotelInfo" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="修改信息" textAlignment="CENTER" textFill="WHITE">
+            <Button layoutX="539.0" layoutY="423.0" mnemonicParsing="false" onAction="#showModifyHotelInfo" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="酒店信息" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei" size="16.0" />
                </font>
