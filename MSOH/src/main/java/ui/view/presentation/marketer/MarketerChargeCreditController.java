@@ -40,10 +40,10 @@ public class MarketerChargeCreditController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String ID) throws RemoteException {
+    public void initial(String marketerID) throws RemoteException {
         userAdmin = new UserAdminController();
         paneAdder = new PaneAdder();
-        this.marketerID = ID;
+        this.marketerID = marketerID;
         List<CustomerVO> customerVOList = userAdmin.findAllCustomer();
         if (!customerVOList.isEmpty())
             this.addCustomer(customerVOList);
