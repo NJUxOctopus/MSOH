@@ -41,10 +41,10 @@ public class ClerkModifyPasswordController implements ControlledStage {
     /**
      * 初始化方法，设置工作人员ID
      *
-     * @param ID
+     * @param clerkID
      */
-    public void initial(String ID) {
-        this.clerkID = ID;
+    public void initial(String clerkID) {
+        this.clerkID = clerkID;
     }
 
     /**

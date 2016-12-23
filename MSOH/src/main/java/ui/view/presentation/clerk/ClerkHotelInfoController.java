@@ -66,8 +66,8 @@ public class ClerkHotelInfoController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String ID) throws RemoteException {
-        clerkID = ID;
+    public void initial(String clerkID) throws RemoteException {
+        this.clerkID = clerkID;
         //显示酒店名称
         hotelAdmin = new HotelAdminController();
         hotelVO = hotelAdmin.findHotelByClerkID(clerkID);
