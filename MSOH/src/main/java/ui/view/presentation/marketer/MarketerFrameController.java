@@ -10,6 +10,7 @@ import ui.controller.UserAdminController;
 import ui.view.controllerservice.EditMemberLevel;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
+import ui.view.presentation.login.LoginViewController;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
@@ -50,11 +51,11 @@ public class MarketerFrameController implements ControlledStage {
     /**
      * initial方法，初始化界面
      */
-    public void initial(String ID) throws RemoteException {
+    public void initial(String marketerID) throws RemoteException {
         userAdmin = new UserAdminController();
         paneAdder = new PaneAdder();
-        marketerID = ID;
-        marketerVO = userAdmin.findMarketerByID(marketerID);
+        this.marketerID = marketerID;
+        marketerVO = userAdmin.findMarketerByID(this.marketerID);
         marketerName.setText(marketerVO.name);
 
         editMemberLevel = new EditMemberLevelController();
@@ -148,10 +149,12 @@ public class MarketerFrameController implements ControlledStage {
      * 切换账号
      */
     @FXML
-    private void switchAccount() {
+    private void switchAccount() throws RemoteException {
         stageController = new StageController();
         stageController.closeStage(resource);
         stageController.loadStage("login/LoginView.fxml", 1);
+        LoginViewController loginViewController = (LoginViewController)stageController.getController();
+        loginViewController.initial();
     }
 
     /**

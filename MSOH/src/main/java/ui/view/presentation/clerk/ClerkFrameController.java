@@ -10,6 +10,7 @@ import ui.view.controllerservice.HotelAdmin;
 import ui.view.controllerservice.UserAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
+import ui.view.presentation.login.LoginViewController;
 import ui.view.presentation.util.ControlledStage;
 
 import java.io.IOException;
@@ -134,10 +135,12 @@ public class ClerkFrameController implements ControlledStage {
      * 切换账号
      */
     @FXML
-    private void switchAccount() {
+    private void switchAccount() throws RemoteException {
         stageController = new StageController();
         stageController.closeStage(resource);
         stageController.loadStage("login/LoginView.fxml", 1);
+        LoginViewController loginViewController = (LoginViewController)stageController.getController();
+        loginViewController.initial();
     }
 
     /**

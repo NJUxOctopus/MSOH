@@ -12,9 +12,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
-import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -23,11 +21,11 @@ import java.util.Properties;
 public class LoginView extends Application {
     private RemoteHelper remoteHelper;
 
-    private static String resource = "login/LoginView.fxml";
-
     private StageController stageController;
 
     private String hostname;
+
+    private String IPAddress;
 
     public static void main(String[] args) {
         launch(args);
@@ -35,19 +33,20 @@ public class LoginView extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        linkServer();
         initGUI();
+//        linkServer();
+//        initLogin();
     }
 
-    private void linkServer() {
+    public void linkServer() {
         try {
-           // initProperties();
+            initProperties();
 
             remoteHelper = RemoteHelper.getInstance();
-            //InetAddress ipv4Address = InetAddress.getByName(hostname);
-           // String ipAddress = ipv4Address.getHostAddress();
-            remoteHelper.setRemote(Naming.lookup("rmi://114.212.42.35:1099/DataRemoteObject"));
-            //remoteHelper.setRemote(Naming.lookup("rmi://" + ipAddress + ":1099/DataRemoteObject"));
+//            InetAddress ipv4Address = InetAddress.getByName(hostname);
+//            String ipAddress = ipv4Address.getHostAddress();
+//            remoteHelper.setRemote(Naming.lookup("rmi://172.28.179.228:1099/DataRemoteObject"));
+            remoteHelper.setRemote(Naming.lookup("rmi://" + IPAddress + ":1099/DataRemoteObject"));
             System.out.println("Octopus: 连接服务器成功");
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -56,13 +55,14 @@ public class LoginView extends Application {
         } catch (NotBoundException e) {
             e.printStackTrace();
         }
+//        catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void initGUI() {
         stageController = new StageController();
-        stageController.loadStage(resource, 1);
-        LoginViewController loginViewController = (LoginViewController) stageController.getController();
-        loginViewController.initial();
+        stageController.loadStage("login/IP.fxml", 1);
     }
 
     private void initProperties() {
@@ -76,4 +76,9 @@ public class LoginView extends Application {
 
         hostname = pro.getProperty("hostname");
     }
+
+    public void setIPAddress(String address) {
+        this.IPAddress = address;
+    }
+
 }

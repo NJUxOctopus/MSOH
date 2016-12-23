@@ -1,11 +1,12 @@
 package ui.view.presentation.login;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -23,6 +24,7 @@ import ui.view.presentation.util.ErrorBoxController;
 import util.ResultMessage;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by ST on 2016/11/23.
@@ -41,6 +43,8 @@ public class LoginViewController implements ControlledStage {
     private TextField userNameField;
     @FXML
     private Button loginButton;
+    @FXML
+    private ChoiceBox accountChoiceBox;
 
     private LogIn logIn;
 
@@ -72,11 +76,33 @@ public class LoginViewController implements ControlledStage {
     /**
      * 初始化登录界面，监听键盘响应事件
      */
-    public void initial(){
+    public void initial() throws RemoteException {
+        logIn = new LogInController();
+        ObservableList<String> accounts = FXCollections.observableArrayList();
+        List<String> toAdd = logIn.getRememberedID();
+
+        for (int i = 0; i < toAdd.size(); i++) {
+            accounts.add(toAdd.get(i));
+        }
+
+        accountChoiceBox.setItems(accounts);
+
+        if (!accounts.isEmpty()) {
+            userNameField.setText(accounts.get(0));
+        }
+
+        accountChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                String selectedAccount = (String) accountChoiceBox.getSelectionModel().getSelectedItem();
+                userNameField.setText(selectedAccount);
+            }
+        });
+
         passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode().equals(KeyCode.ENTER)){
+                if (event.getCode().equals(KeyCode.ENTER)) {
                     try {
                         handleLogin();
                     } catch (RemoteException e) {

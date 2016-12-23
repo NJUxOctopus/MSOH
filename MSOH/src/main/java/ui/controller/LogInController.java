@@ -8,6 +8,7 @@ import util.ResultMessage;
 import businesslogicservice.login_blservice.Login_BLService;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by zqh on 2016/11/13.
@@ -70,5 +71,15 @@ public class LogInController implements LogIn {
      */
     public ResultMessage cancelRemPassword(String ID) throws RemoteException {
         return login_blService.cancelRemPassword(ID);
+    }
+
+    /**
+     * 得到所有被记住的账号
+     *
+     * @return
+     * @throws RemoteException
+     */
+    public List<String> getRememberedID() throws RemoteException {
+        return login_blService.getRememberedID();
     }
 }

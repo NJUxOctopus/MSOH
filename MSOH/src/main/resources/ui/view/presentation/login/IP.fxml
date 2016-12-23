@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.login.IPController">
+   <children>
+      <ImageView fitHeight="323.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/clerkBG.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="187.0" layoutY="54.0" text="IP" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ipTextField" layoutX="75.0" layoutY="103.0" prefHeight="39.0" prefWidth="250.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-border-width: 2; -fx-text-fill: #ffffffff;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button layoutX="160.0" layoutY="165.0" mnemonicParsing="false" onAction="#confirmAddress" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-border-width: 2;" text="确定" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</Pane>
