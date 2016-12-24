@@ -1,5 +1,3 @@
-package test.businesslogic;
-
 import rmi.RemoteHelper;
 
 import java.net.MalformedURLException;
