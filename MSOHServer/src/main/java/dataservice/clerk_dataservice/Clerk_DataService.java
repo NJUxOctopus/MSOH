@@ -31,8 +31,5 @@ public interface Clerk_DataService extends Remote {
     // 删除酒店工作人员
     public boolean deleteClerk(ClerkPO clerkPO) throws RemoteException;
 
-    // 根据酒店ID搜索酒店工作人员
-    public ClerkPO findClerkByHotelID(String hotelID) throws RemoteException;
-
 }
 

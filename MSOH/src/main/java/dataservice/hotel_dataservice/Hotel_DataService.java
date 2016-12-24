@@ -34,29 +34,11 @@ public interface Hotel_DataService extends Remote {
     // 根据酒店名字查找酒店
     public List<HotelPO> findHotelByName(String hotelName) throws RemoteException;
 
-//    // 新增酒店房间
-//    public boolean addRoom(RoomPO po) throws RemoteException;
-//
-//    // 更新酒店房间信息
-//    public boolean modifyRoom(RoomPO po) throws RemoteException;
-//
-//    // 删除酒店房间
-//    public boolean deleteRoom(RoomPO po) throws RemoteException;
-//
-//    // 获得房间信息
-//    public RoomPO getRoom(String hotelID, String roomName) throws RemoteException;
-//
-//    // 获取某酒店的所有房间
-//    public List<RoomPO> getHotelRooms(String hotelID) throws RemoteException;
-
     // 获得某酒店的每日房间信息
     public DailyRoomInfoPO getDailyRoomInfo(String hotelID, java.sql.Timestamp timestamp) throws RemoteException;
 
     // 新增某酒店的每日房间信息
     public boolean addDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException;
-
-    // 删除某酒店的每日房间信息
-    public boolean deleteDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException;
 
     // 更新某酒店的每日房间信息
     public boolean updateDailyRoomInfo(DailyRoomInfoPO dailyRoomInfoPO) throws RemoteException;
@@ -66,9 +48,6 @@ public interface Hotel_DataService extends Remote {
 
     // 根据酒店获得评价
     public List<CommentPO> getCommentByHotel(String hotelID) throws RemoteException;
-
-    // 根据订单获得评价
-    public CommentPO getCommentByOrder(String orderID) throws RemoteException;
 
     // 根据商圈获得酒店
     public List<HotelPO> getHotelByArea(String areaName) throws RemoteException;

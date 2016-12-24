@@ -20,5 +20,4 @@ public interface ClerkDataHelper {
 
     public List<ClerkPO> getAllClerks();
 
-    public ClerkPO getClerkByHotelID(String hotelID);
 }
