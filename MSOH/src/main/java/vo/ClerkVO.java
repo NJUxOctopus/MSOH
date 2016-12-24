@@ -18,7 +18,6 @@ public class ClerkVO extends UserVO implements Serializable {
         super(name, phone, password, ID, picUrl);
         this.hotelName = hotelName;
         this.hotelID = hotelID;
-        this.picUrl = picUrl;
     }
 
     public ClerkVO(String password) {

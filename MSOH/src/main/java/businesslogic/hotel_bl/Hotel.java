@@ -37,8 +37,6 @@ public class Hotel implements Hotel_BLService {
      * @throws RemoteException
      */
     public ResultMessage addDailyRoomInfo(DailyRoomInfoVO dailyRoomInfoVO) throws RemoteException {
-        if (hotel_dataService.findHotelByID(dailyRoomInfoVO.hotelID) == null)
-            return ResultMessage.Hotel_HotelNotExist;
         long oneDay = 1000 * 60 * 60 * 24;
         List<Timestamp> timestampList = new ArrayList<Timestamp>();
         timestampList.add(dailyRoomInfoVO.date);
@@ -50,7 +48,7 @@ public class Hotel implements Hotel_BLService {
             List<RoomPO> roomPOs = new ArrayList<RoomPO>();
             roomPOs.add(new RoomPO(dailyRoomInfoVO.hotelID, "大床房", 0, 0, 0, 0, timestamp));
             roomPOs.add(new RoomPO(dailyRoomInfoVO.hotelID, "标间", 0, 0, 0, 0, timestamp));
-            roomPOs.add(new RoomPO(dailyRoomInfoVO.hotelID, "单人间", 0, 0, 0, 0, timestamp));
+            roomPOs.add(new RoomPO(dailyRoomInfoVO.hotelID, "单人房", 0, 0, 0, 0, timestamp));
             if (hotel_dataService.addDailyRoomInfo(new DailyRoomInfoPO(dailyRoomInfoVO.hotelID, timestamp, roomPOs))) ;
             else
                 return ResultMessage.Fail;
@@ -198,7 +196,7 @@ public class Hotel implements Hotel_BLService {
      */
     public ResultMessage addHotel(HotelVO hotelVO) throws RemoteException {
         if (hotelVO.area.equals("") || hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals("")
-                || hotelVO.intro.equals("") || hotelVO.city.equals("") || hotelVO.star == -1)
+                || hotelVO.intro.equals("") || hotelVO.city.equals(""))
             return ResultMessage.Blank;
         String infra = "";
         for (int i = 0; i < hotelVO.infra.length; i++) {
@@ -207,18 +205,25 @@ public class Hotel implements Hotel_BLService {
             else
                 infra += hotelVO.infra[i];
         }
-        String picUrl = "";
-        for (int i = 0; i < hotelVO.picUrls.length; i++) {
-            if (i != hotelVO.picUrls.length - 1)
-                picUrl += hotelVO.picUrls[i] + ";";
-            else
-                picUrl += hotelVO.picUrls[i];
-        }
+//        String picUrl = "";
+//        for (int i = 0; i < hotelVO.picUrls.length; i++) {
+//            if (i != hotelVO.picUrls.length - 1)
+//                picUrl += hotelVO.picUrls[i] + ";";
+//            else
+//                picUrl += hotelVO.picUrls[i];
+//        }
         if (hotel_dataService.addHotel(new HotelPO(hotelVO.hotelName, hotelVO.hotelAddress, hotelVO.area, hotelVO.intro, infra, "单人房;大床房;标间",
-                hotelVO.star, 0, hotelVO.license, picUrl, ""))) {
+                hotelVO.star, 0, hotelVO.license, "", ""))) {
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
             Timestamp timestamp1 = Timestamp.valueOf(sdf.format(date));
+            List<HotelPO> hotelPOList = hotel_dataService.findHotelByName(hotelVO.hotelName);
+            for (HotelPO hotelPO : hotelPOList) {
+                if (hotelPO.getLicense().equals(hotelVO.license)) {
+                    hotelVO.hotelID += hotelPO.getHotelID();
+                    break;
+                }
+            }
             if (addDailyRoomInfo(new DailyRoomInfoVO(hotelVO.hotelID, timestamp1, null)).equals(ResultMessage.Hotel_AddRoomSuccess))
                 return ResultMessage.Hotel_addHotelSuccess;
             else
@@ -236,7 +241,6 @@ public class Hotel implements Hotel_BLService {
      */
     public ResultMessage modifyHotel(HotelVO hotelVO) throws RemoteException {
         HotelPO hotelPO = hotel_dataService.findHotelByID(hotelVO.hotelID);
-
         if (hotelPO == null)
             return ResultMessage.Hotel_HotelNotExist;
         if (hotelVO.hotelName.equals("") || hotelVO.hotelAddress.equals("") || hotelVO.area.equals("")
@@ -328,14 +332,12 @@ public class Hotel implements Hotel_BLService {
      */
     public ResultMessage addClerk(ClerkVO clerkVO) throws RemoteException {
         HotelPO hotelPO = hotel_dataService.findHotelByID(clerkVO.hotelID);
-        if (hotelPO == null)
-            return ResultMessage.Hotel_HotelNotExist;
         if (!hotelPO.getClerkID().equals(""))
             return ResultMessage.Hotel_HasClerk;
         hotelPO.setClerkID(clerkVO.ID);
-        if (hotel_dataService.modifyHotel(hotelPO))
+        if (hotel_dataService.modifyHotel(hotelPO)) {
             return ResultMessage.Clerk_AddClerkSuccess;
-        else
+        } else
             return ResultMessage.Fail;
     }
 

@@ -235,4 +235,10 @@ public class Customer implements Customer_BLService {
         customer_dataService.modifyCustomer(customerPO);
     }
 
+    public void deleteCustomer(String customerID) throws RemoteException {
+        CustomerPO customerPO = customer_dataService.findCustomerByID(customerID);
+        if (customerPO == null)
+            return;
+        customer_dataService.deleteCustomer(customerPO);
+    }
 }

@@ -2,11 +2,18 @@ package init;/**
  * Created by ST on 2016/11/15.
  */
 
+import businesslogic.clerk_bl.Clerk;
+import businesslogic.hotel_bl.Hotel;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import po.RoomPO;
 import rmi.RemoteHelper;
 import ui.view.presentation.StageController;
 import ui.view.presentation.login.LoginViewController;
+import vo.ClerkVO;
+import vo.DailyRoomInfoVO;
+import vo.HotelVO;
+import vo.RoomVO;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -16,6 +23,11 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 public class LoginView extends Application {

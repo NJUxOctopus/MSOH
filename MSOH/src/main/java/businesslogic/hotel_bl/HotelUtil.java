@@ -224,6 +224,7 @@ public class HotelUtil implements HotelUtil_BLService {
         List<RoomPO> roomPOList = dailyRoomInfoPO.getRoom();
         for (RoomPO roomPO : roomPOList) {
             if (roomName.equals(roomPO.getRoomType()))
+                //System.out.print(roomPO.getLeftRooms());
                 return new RoomVO(roomPO.getHotelID(), roomPO.getRoomType(), roomPO.getOccupiedRooms(), roomPO.getReservedRooms(),
                         roomPO.getLeftRooms(), roomPO.getPrice(), roomPO.getRoomID() + "");
         }

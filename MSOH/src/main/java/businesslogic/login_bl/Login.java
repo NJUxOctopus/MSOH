@@ -138,6 +138,8 @@ public class Login implements Login_BLService {
     public String autoLogin(String ID) throws RemoteException {
         File file = new File("password.txt");
         try {
+            if (!file.exists())
+                file.createNewFile();
             //记住密码时先判断是否已经记住该密码
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             String str = null;

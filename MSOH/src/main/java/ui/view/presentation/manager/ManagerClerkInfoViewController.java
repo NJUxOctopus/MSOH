@@ -148,9 +148,9 @@ public class ManagerClerkInfoViewController implements ControlledStage {
             if(resultMessage == ResultMessage.DataFormatWrong){
                 errorBoxController.setLabel("信息格式错误！");
             }
-            if(resultMessage == ResultMessage.Hotel_HasClerk){
-                errorBoxController.setLabel("该酒店已存在工作人员！");
-            }
+//            if(resultMessage == ResultMessage.Hotel_HasClerk){
+//                errorBoxController.setLabel("该酒店已存在工作人员！");
+//            }
             if(resultMessage == ResultMessage.Clerk_AddClerkSuccess){
                 errorBoxController.setLabel("成功添加酒店工作人员！");
                 stageController.closeStage(resource);
