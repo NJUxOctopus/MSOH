@@ -10,7 +10,5 @@ import java.util.List;
 public interface CreditRecordDataHelper {
     public boolean addCreditRecord(CreditRecordPO creditRecordPO);
 
-    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO);
-
     public List<CreditRecordPO> findCreditRecordByID(String ID);
 }
