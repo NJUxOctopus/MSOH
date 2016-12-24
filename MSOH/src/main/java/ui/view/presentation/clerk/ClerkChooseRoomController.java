@@ -8,6 +8,7 @@ import ui.view.controllerservice.HotelAdmin;
 import ui.view.presentation.PaneAdder;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import ui.view.presentation.util.ErrorBoxController;
 import vo.DailyRoomInfoVO;
 import vo.HotelVO;
 import vo.RoomVO;
@@ -94,6 +95,11 @@ public class ClerkChooseRoomController implements ControlledStage {
             }
         }
         stageController = new StageController();
+        if (totalPrice == 0) {
+            stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
+            ErrorBoxController errorBoxController = (ErrorBoxController) stageController.getController();
+            errorBoxController.setLabel("请选择房间数量！");
+        }
         stageController.loadStage("clerk/ClerkCreateOfflineOrder.fxml", 1);
         ClerkCreateOfflineOrderController clerkCreateOfflineOrderController = (ClerkCreateOfflineOrderController) stageController.getController();
         String[] roomList = new String[rooms.size()];

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerInfoViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerInfoViewController">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -29,12 +29,12 @@
          <children>
             <Label layoutX="460.0" layoutY="104.0" text="姓名" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
             <Button fx:id="saveInfoButton" layoutX="1021.0" layoutY="618.0" mnemonicParsing="false" onAction="#modifyInfo" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="保存信息" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -42,7 +42,7 @@
             </Button>
             <TextField fx:id="nameTextField" layoutX="565.0" layoutY="100.0" prefHeight="22.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="Octopus">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -50,7 +50,7 @@
             </TextField>
             <TextField fx:id="emailTextField" layoutX="565.0" layoutY="175.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="123456789@123.com">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -58,12 +58,12 @@
             </TextField>
             <TextField editable="false" layoutX="565.0" layoutY="250.0" prefHeight="15.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="********">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
             </TextField>
             <TextField fx:id="phoneTextField" layoutX="565.0" layoutY="325.0" prefHeight="26.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1383838438">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -71,17 +71,17 @@
             </TextField>
             <TextField fx:id="creditTextField" editable="false" layoutX="565.0" layoutY="400.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="1000">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
             </TextField>
             <TextField fx:id="memberTextField" editable="false" layoutX="565.0" layoutY="475.0" prefHeight="35.0" prefWidth="555.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="普通会员">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
             </TextField>
             <TextField fx:id="idTextField" editable="false" layoutX="565.0" layoutY="550.0" prefHeight="35.0" prefWidth="561.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff;" text="3200522111111111111">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -89,37 +89,37 @@
             </TextField>
             <Label layoutX="460.0" layoutY="179.0" text="邮箱" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
             <Label layoutX="460.0" layoutY="253.0" text="密码" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
             <Label layoutX="448.0" layoutY="329.0" text="手机号" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
             <Label layoutX="448.0" layoutY="404.0" text="信用值" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
             <Label layoutX="436.0" layoutY="479.0" text="会员类型" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
             <Label layoutX="436.0" layoutY="554.0" text="身份证号" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="22.0" />
                </font>
             </Label>
             <Button fx:id="modifyPasswordButton" layoutX="1053.0" layoutY="250.0" mnemonicParsing="false" onAction="#modifyPassword" style="-fx-background-color: #ffffff00;" text="修改&gt;" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerHotelDetailsViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerHotelDetailsViewController">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -41,46 +41,46 @@
                   <ImageView fx:id="hotelImage" fitHeight="337.0" fitWidth="411.0" layoutX="60.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-border_color: #ffffffff;" />
                   <Label fx:id="hotelNameLabel" alignment="TOP_LEFT" contentDisplay="TOP" ellipsisString=".." layoutX="5.0" layoutY="10.0" prefHeight="355.0" prefWidth="65.0" text="哈哈哈哈哈哈哈哈" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Microsoft YaHei" size="36.0" />
                      </font>
                   </Label>
                   <Line endX="420.0" layoutX="581.0" layoutY="20.0" startX="-100.0" stroke="WHITE" />
                   <Label layoutX="481.0" layoutY="35.0" text="商圈：" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="areaLabel" layoutX="536.0" layoutY="35.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Line endX="420.0" layoutX="581.0" layoutY="70.0" startX="-100.0" stroke="WHITE" />
                   <Label layoutX="481.0" layoutY="85.0" text="地址：" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="addressLabel" layoutX="536.0" layoutY="85.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Line endX="420.0" layoutX="581.0" layoutY="120.0" startX="-100.0" stroke="WHITE" />
                   <Label layoutX="481.0" layoutY="135.0" text="星级：" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="starLabel" layoutX="536.0" layoutY="135.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Line endX="420.0" layoutX="581.0" layoutY="170.0" startX="-100.0" stroke="WHITE" />
                   <Label layoutX="481.0" layoutY="230.0" text="简介：" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Line endX="420.0" layoutX="581.0" layoutY="220.0" startX="-100.0" stroke="WHITE" />
@@ -252,12 +252,12 @@
                   </ScrollPane>
                   <Label layoutX="480.0" layoutY="185.0" text="设施：" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="facilityLabel" layoutX="535.0" layoutY="185.0" prefHeight="21.0" prefWidth="461.0" style="-fx-border-color: #ffffffff;" text="哈哈" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Microsoft YaHei" size="18.0" />
                      </font>
                   </Label>
                   <TextArea fx:id="briefInfoTextArea" editable="false" layoutX="536.0" layoutY="230.0" prefHeight="120.0" prefWidth="461.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@../manager/manager.css" wrapText="true">

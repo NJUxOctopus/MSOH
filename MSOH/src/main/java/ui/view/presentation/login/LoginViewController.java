@@ -198,16 +198,6 @@ public class LoginViewController implements ControlledStage {
     }
 
     /**
-     * 跳过按钮结果，显示客户主界面
-     */
-    @FXML
-    private void handleSkip() {
-        stageController = new StageController();
-        stageController.loadStage("customer/CustomerMainView.fxml", 1);
-        stageController.closeStage(resource);
-    }
-
-    /**
      * 取消记住密码按钮结果，如果点击取消记住密码，执行取消记住密码操作
      */
     @FXML

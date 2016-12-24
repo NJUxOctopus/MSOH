@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerEvaluateViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.customer.CustomerEvaluateViewController">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,12 +30,12 @@
          <children>
             <Label fx:id="hotelNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="230.0" prefHeight="30.0" prefWidth="229.0" text="如家" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="20.0" />
                </font>
             </Label>
             <Label fx:id="hotelIDLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="397.0" prefHeight="30.0" prefWidth="229.0" text="111111" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="20.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="scoreChoiceBox" layoutX="520.0" layoutY="160.0" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css">
@@ -44,7 +44,7 @@
                </cursor></ChoiceBox>
             <TextArea fx:id="textArea" layoutX="520.0" layoutY="220.0" prefHeight="250.0" prefWidth="570.0" promptText="请输入评价" style="-fx-background-color: #ffffff00; -fx-text-fill: #ffffffff; -fx-border-color: #ffffffff; -fx-border-width: 2;" stylesheets="@customer.css" wrapText="true">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -52,7 +52,7 @@
             </TextArea>
             <Button fx:id="confirmButton" layoutX="960.0" layoutY="520.0" mnemonicParsing="false" onAction="#submitEvaluation" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffffff;" text="提交评价" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Microsoft YaHei" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
