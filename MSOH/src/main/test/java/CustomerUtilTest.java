@@ -40,5 +40,9 @@ public class CustomerUtilTest {
     }
 
 
-
+    @Test
+    public void testGetByName() throws Exception {
+        CustomerVO customerVO = customerUtil.getByName("钱柯宇").get(0);
+        assertEquals("320581199704044040", customerVO.ID);
+    }
 } 

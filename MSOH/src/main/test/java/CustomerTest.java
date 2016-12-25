@@ -34,6 +34,10 @@ public class CustomerTest {
 
     }
 
+    @Test
+    public void testGetCredit() throws Exception {
+        assertEquals(-1, customer.getCredit("123"));
+    }
 
     /**
      * Method: signUp(CustomerVO customerVO)
@@ -72,5 +76,15 @@ public class CustomerTest {
         ResultMessage resultMessage1 = customer.changePassword("320581199704044040", "123123", "123456", "123456");
         assertEquals(resultMessage1, ResultMessage.ChangePasswordSuccess);
         customer.changePassword("320581199704044040", "123456", "123123", "123123");
+    }
+
+    /**
+     * Method: changePassword(String ID, String oldPassword, String newPassword1, String newPassword2)
+     */
+    @Test
+    public void testChangeInfo() throws Exception {
+        ResultMessage resultMessage1 = customer.changeInfo(new CustomerVO("", "123456", "12345678910", "123@qq.com", 0, "",
+                "320200000000000000", MemberType.NONMEMBER));
+        assertEquals(ResultMessage.Blank, resultMessage1);
     }
 } 

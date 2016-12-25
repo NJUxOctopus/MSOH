@@ -1,17 +1,12 @@
-package test.businesslogic.clerk_bl;
+
 
 import businesslogic.clerk_bl.Clerk;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
-import rmi.RemoteHelper;
-import test.businesslogic.IP;
-import test.businesslogic.TestDriver;
 import util.ResultMessage;
 import vo.ClerkVO;
 
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.After;
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 import static junit.framework.TestCase.assertEquals;
 
 /**
@@ -23,13 +18,11 @@ import static junit.framework.TestCase.assertEquals;
  */
 public class ClerkTest {
     private Clerk clerk;
-
     @Before
     public void before() throws Exception {
         TestDriver testDriver = new TestDriver(IP.ip);
         testDriver.linkServer();
         clerk = new Clerk();
-
     }
 
     @After
