@@ -17,10 +17,4 @@ public interface Manager_DataService extends Remote {
     // 根据ID查找网站管理人员
     public ManagerPO findManagerByID(String ID) throws RemoteException;
 
-    // 获得所有网站管理人员
-    public List<ManagerPO> findAllManagers() throws IOException, ClassNotFoundException;
-
-    // 根据姓名查找网站管理人员
-    public List<ManagerPO> findManagerByName(String name) throws IOException, ClassNotFoundException;
-
 }

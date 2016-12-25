@@ -2,6 +2,7 @@ package ui.view.presentation.customer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import ui.controller.CustomerInfoChangeController;
@@ -34,13 +35,13 @@ public class CustomerModifyPasswordViewController implements ControlledStage {
     private Button confirmButton;
 
     @FXML
-    private TextField originalPasswordTextField;
+    private PasswordField originalPasswordTextField;
 
     @FXML
-    private TextField firstNewPasswordTextField;
+    private PasswordField firstNewPasswordTextField;
 
     @FXML
-    private TextField secondNewPasswordTextField;
+    private PasswordField secondNewPasswordTextField;
 
     @Override
     public void setStageController(StageController stageController) {

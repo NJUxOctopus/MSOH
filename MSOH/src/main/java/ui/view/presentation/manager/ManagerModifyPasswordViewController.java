@@ -2,6 +2,7 @@ package ui.view.presentation.manager;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import ui.controller.ManagerInfoChangeController;
@@ -34,13 +35,13 @@ public class ManagerModifyPasswordViewController implements ControlledStage {
     private Button confirmButton;
 
     @FXML
-    private TextField originalPasswordTextField;
+    private PasswordField originalPasswordTextField;
 
     @FXML
-    private TextField firstNewPasswordTextField;
+    private PasswordField firstNewPasswordTextField;
 
     @FXML
-    private TextField secondNewPasswordTextField;
+    private PasswordField secondNewPasswordTextField;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -50,9 +51,7 @@ public class ManagerModifyPasswordViewController implements ControlledStage {
     @FXML
     private void closeStage() {
         stageController = new StageController();
-        stageController.loadStage("util/ConfirmExit.fxml", 0.75);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed(resource);
+        stageController.closeStage(resource);
     }
 
     /**

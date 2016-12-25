@@ -11,6 +11,7 @@ import ui.controller.HotelAdminController;
 import ui.view.controllerservice.HotelAdmin;
 import ui.view.presentation.StageController;
 import ui.view.presentation.util.ControlledStage;
+import ui.view.presentation.util.ImageController;
 import util.ImageHelper;
 import vo.HotelVO;
 
@@ -104,7 +105,10 @@ public class ManagerSingleHotelViewController implements ControlledStage {
             cityLabel.setText(hotelVO.city);
             areaLabel.setText(hotelVO.area);
             addressLabel.setText(hotelVO.hotelAddress);
-
+            //酒店图片
+            ImageController imageController = new ImageController();
+            WritableImage wr = imageController.loadImage(hotelVO.picUrls[0], 200, 150);
+            hotelImage.setImage(wr);
         }catch (RemoteException e){
             e.printStackTrace();
         }

@@ -37,9 +37,6 @@ public interface Customer_DataService extends Remote {
     // 增加信用记录
     public boolean addCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException;
 
-    // 删除信用记录
-    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException;
-
     // 根据ID获取客户信用记录
     public List<CreditRecordPO> findCreditRecordByID(String ID) throws RemoteException;
 

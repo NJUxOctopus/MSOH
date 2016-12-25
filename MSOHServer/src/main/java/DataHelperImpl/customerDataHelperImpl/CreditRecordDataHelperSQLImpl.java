@@ -42,32 +42,6 @@ public class CreditRecordDataHelperSQLImpl implements CreditRecordDataHelper {
     }
 
     /**
-     * 删除信用记录
-     *
-     * @param creditRecordPO
-     * @return 是否成功
-     */
-    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSession();
-            session.beginTransaction();
-
-            session.delete(creditRecordPO);
-
-            return true;
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            if (session != null) {
-                session.getTransaction().commit();
-                HibernateUtil.closeSession(session);
-            }
-        }
-    }
-
-    /**
      * 根据客户ID查询信用记录
      *
      * @param ID

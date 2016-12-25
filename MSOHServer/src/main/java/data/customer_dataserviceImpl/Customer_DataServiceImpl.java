@@ -286,27 +286,6 @@ public class Customer_DataServiceImpl implements Customer_DataService {
     }
 
     /**
-     * 删除信用记录
-     *
-     * @param creditRecordPO
-     * @return 是否成功
-     * @throws RemoteException
-     */
-    public boolean deleteCreditRecord(CreditRecordPO creditRecordPO) throws RemoteException {
-        // 客户ID、姓名、营销人员姓名加密
-        String customerID = EncryptionUtil.encode(key, creditRecordPO.getCustomerID());
-        String customerName = EncryptionUtil.encode(key, creditRecordPO.getCustomerName());
-        creditRecordPO.setCustomerID(customerID);
-        creditRecordPO.setCustomerName(customerName);
-        if (creditRecordPO.getMarketerName() != null || creditRecordPO.getMarketerName() != "") {
-            String marketerName = EncryptionUtil.encode(key, creditRecordPO.getMarketerName());
-            creditRecordPO.setMarketerName(marketerName);
-        }
-
-        return creditRecordDataHelper.deleteCreditRecord(creditRecordPO);
-    }
-
-    /**
      * 根据客户ID查找信用记录
      *
      * @param ID

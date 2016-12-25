@@ -77,6 +77,8 @@ public class CustomerSignUpEnterpriseMemberViewController implements ControlledS
                 stageController.closeStage("customer/CustomerMyMemberView.fxml");
                 stageController = new StageController();
                 stageController.loadStage("customer/CustomerMyMemberView.fxml", 1);
+                CustomerMyMemberViewController customerMyMemberViewController = (CustomerMyMemberViewController) stageController.getController();
+                customerMyMemberViewController.init(customerID);
             }
         }catch(RemoteException e){
             e.printStackTrace();

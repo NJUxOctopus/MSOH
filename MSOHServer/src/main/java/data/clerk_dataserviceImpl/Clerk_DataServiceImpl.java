@@ -195,18 +195,4 @@ public class Clerk_DataServiceImpl implements Clerk_DataService {
         return clerkDataHelper.deleteClerk(clerkPO);
     }
 
-    public ClerkPO findClerkByHotelID(String hotelID) throws RemoteException {
-        ClerkPO clerk=clerkDataHelper.getClerkByHotelID(hotelID);
-
-        if(clerk==null){
-            return null;
-        }else{
-            clerk.setName(EncryptionUtil.decode(key, clerk.getName()));
-            clerk.setPassword(EncryptionUtil.decode(key, clerk.getPassword()));
-            clerk.setPhone(EncryptionUtil.decode(key, clerk.getPhone()));
-            clerk.setID(EncryptionUtil.decode(key, clerk.getID()));
-
-            return (ClerkPO)clerk.clone();
-        }
-    }
 }

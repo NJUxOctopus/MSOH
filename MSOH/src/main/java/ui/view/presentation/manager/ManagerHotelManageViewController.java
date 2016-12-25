@@ -104,7 +104,7 @@ public class ManagerHotelManageViewController implements ControlledStage {
      * 添加单个酒店面板
      * @param hotelVOs
      */
-    public void addHotelPane(List<HotelVO> hotelVOs){
+    private void addHotelPane(List<HotelVO> hotelVOs){
         hotelListScrollPane.getChildren().clear();
 
         if(!hotelVOs.isEmpty()) {

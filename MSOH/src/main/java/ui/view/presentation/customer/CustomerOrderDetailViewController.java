@@ -167,7 +167,6 @@ public class CustomerOrderDetailViewController implements ControlledStage {
     public void init(String customerID, String orderID){
         this.customerID = customerID;
         this.orderID = orderID;
-        System.out.print(customerID);
         setCustomerInfo();
         setOrderInfo();
     }

@@ -15,8 +15,6 @@ import java.util.List;
 public interface Order_DataService extends Remote {
 	// 新增订单
 	public boolean addOrder(OrderPO po) throws RemoteException;
-	// 获取所有订单
-	public List<OrderPO> getAllOrders() throws  RemoteException;
 	// 根据订单ID获取订单
 	public OrderPO getOrderByOrderID(String orderID) throws RemoteException;
 	// 根据客户ID查找订单
@@ -27,6 +25,4 @@ public interface Order_DataService extends Remote {
 	public List<OrderPO> findOrderByOrderStatus(OrderStatus orderStatus) throws RemoteException;
 	// 更新订单信息
 	public boolean updateOrder(OrderPO orderPO) throws RemoteException;
-	// 删除订单
-	public boolean deleteOrder(OrderPO orderPO) throws RemoteException;
 }
