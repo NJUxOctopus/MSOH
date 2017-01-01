@@ -221,37 +221,75 @@ public class SelectTimeViewController implements ControlledStage {
 
                 //判断是否跨年
                 if ((yearChoiceBox.getSelectionModel().getSelectedItem()).equals(int_date[0] + "")) {
+                    System.out.print(int_date[1]);
                     ObservableList<String> month = FXCollections.observableArrayList();
-                    if(int_date[1] < 10)
-                        month.add('0' + int_date[1] + "");
+                    if (int_date[1] < 10)
+                        month.add("0" + int_date[1]);
                     else
                         month.add(int_date[1] + "");
 
-                    if (int_date[1] != 12) {
-                        if(int_date[1] + 1 < 10)
-                            month.add('0' + int_date[1] + 1  + "");
-                        else
-                            month.add(int_date[1] + 1 + "");
+                    if(lengthOfMonth(int_date[0], int_date[1]) - 30 < 0) {
+                        if (int_date[1] != 12) {
+                            if (int_date[1] + 1 < 10)
+                                month.add("0" + (int_date[1] + 1));
+                            else
+                                month.add(int_date[1] + 1 + "");
+                        }
                     }
                     monthChoiceBox.setItems(month);
-
+/*
                     ObservableList<String> day = FXCollections.observableArrayList();
                     for (int i = int_date[2]; i <= lengthOfMonth(int_date[0], int_date[1]); i++) {
-                        if(i < 10)
+                        if (i < 10)
                             day.add("0" + i);
                         else
                             day.add("" + i);
                     }
                     dayChoiceBox.setItems(day);
+                    */
                 }
                 if ((yearChoiceBox.getSelectionModel().getSelectedItem()).equals(int_date[0] + 1 + "")) {
                     ObservableList<String> newMonth = FXCollections.observableArrayList();
                     newMonth.add("01");
                     monthChoiceBox.setItems(newMonth);
-
+/*
                     ObservableList<String> newDay = FXCollections.observableArrayList();
                     for (int i = 1; i <= 30 - (lengthOfMonth(int_date[0], int_date[1]) - int_date[2]); i++) {
-                        if(i < 10)
+                        if (i < 10)
+                            newDay.add("0" + i);
+                        else
+                            newDay.add("" + i);
+                    }
+                    dayChoiceBox.setItems(newDay);
+                    */
+                }
+            }
+        });
+        monthChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if(monthChoiceBox.getSelectionModel().getSelectedItem().equals("0" + int_date[1])){
+                    ObservableList<String> day = FXCollections.observableArrayList();
+                    if(lengthOfMonth(int_date[0], int_date[1]) - int_date[2] < 30) {
+                        for (int i = int_date[2]; i <= lengthOfMonth(int_date[0], int_date[1]); i++) {
+                            if (i < 10)
+                                day.add("0" + i);
+                            else
+                                day.add("" + i);
+                        }
+                    }else{
+                        for (int i = int_date[2]; i <= 30; i++) {
+                            if (i < 10)
+                                day.add("0" + i);
+                            else
+                                day.add("" + i);
+                        }
+                    }
+                    dayChoiceBox.setItems(day);
+                }else{
+                    ObservableList<String> newDay = FXCollections.observableArrayList();
+                    for (int i = 1; i <= 30 - (lengthOfMonth(int_date[0], int_date[1]) - int_date[2]); i++) {
+                        if (i < 10)
                             newDay.add("0" + i);
                         else
                             newDay.add("" + i);

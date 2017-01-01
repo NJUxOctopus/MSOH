@@ -26,18 +26,6 @@ public class CustomerSignUpViewController implements ControlledStage{
     private String resource = "customer/CustomerSignUpView.fxml";
 
     @FXML
-    private ImageView background;
-
-    @FXML
-    private Button backButton;
-
-    @FXML
-    private Button upload;
-
-    @FXML
-    private Button signUpButton;
-
-    @FXML
     private TextField nameTextField;
 
     @FXML
@@ -55,8 +43,6 @@ public class CustomerSignUpViewController implements ControlledStage{
     @FXML
     private PasswordField secondPasswordTextField;
 
-    @FXML
-    private ImageView iconImage;
 
     @Override
     public void setStageController(StageController stageController) {
@@ -79,10 +65,6 @@ public class CustomerSignUpViewController implements ControlledStage{
         }
     }
 
-    @FXML
-    private void uploadIcon(){
-
-    }
 
     /**
      * 注册方法

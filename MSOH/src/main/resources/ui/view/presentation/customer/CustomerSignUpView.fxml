@@ -75,14 +75,9 @@
          <children>
             <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image_customer/customer_uploadIcon.png" />
+                  <Image url="@image_customer/头像.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="iconImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="upload" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#uploadIcon" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;" text="上传头像">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
          </children>
       </Pane>
       <Button fx:id="backButton" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">

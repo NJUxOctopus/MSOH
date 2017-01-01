@@ -95,10 +95,6 @@ public class ManagerModifyInfoViewController implements ControlledStage {
         }
     }
 
-    @FXML
-    private void modifyIcon(){
-
-    }
 
     /**
      * 点击修改密码按钮，跳转至密码修改界面

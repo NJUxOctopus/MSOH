@@ -58,9 +58,6 @@ public class ManagerHotelInfoViewController implements ControlledStage {
     private String intro = "";
 
     @FXML
-    private Button addPictureButton;
-
-    @FXML
     private ChoiceBox cityChoiceBox;
 
     @FXML
@@ -94,9 +91,6 @@ public class ManagerHotelInfoViewController implements ControlledStage {
     private CheckBox wifiCheckBox;
 
     @FXML
-    private ImageView pictureImage;
-
-    @FXML
     private Pane modofyHotelPane;
 
     @FXML
@@ -126,11 +120,6 @@ public class ManagerHotelInfoViewController implements ControlledStage {
         }else{
             stageController.closeStage(resource);
         }
-    }
-
-    @FXML
-    private void addPicture(){
-
     }
 
     /**
@@ -305,11 +294,13 @@ public class ManagerHotelInfoViewController implements ControlledStage {
             licenseTextField.setText(license);
             intro = hotelVO.intro;
             briefInfoTextArea.setText(intro);
+            /*
             if(!hotelVO.picUrls[0].equals("")) {
                 ImageController imageController = new ImageController();
                 WritableImage wr = imageController.loadImage(hotelVO.picUrls[0], 145, 145);
                 pictureImage.setImage(wr);
             }
+            */
         }catch (RemoteException e){
             e.printStackTrace();
         }

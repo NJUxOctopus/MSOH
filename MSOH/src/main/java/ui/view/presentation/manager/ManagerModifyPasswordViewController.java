@@ -40,7 +40,7 @@ public class ManagerModifyPasswordViewController implements ControlledStage {
     @FXML
     private PasswordField firstNewPasswordTextField;
 
-    @FXML
+    @FXML       
     private PasswordField secondNewPasswordTextField;
 
     @Override
