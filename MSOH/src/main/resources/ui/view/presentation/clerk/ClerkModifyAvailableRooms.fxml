@@ -42,23 +42,23 @@
             <Font name="Microsoft YaHei" size="57.0" />
          </font>
       </Label>
-      <Label layoutX="330.0" layoutY="213.0" text="客房类型" textFill="WHITE">
+      <Label layoutX="327.0" layoutY="258.0" text="客房类型" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="330.0" layoutY="274.0" text="客房数量" textFill="WHITE">
+      <Label layoutX="327.0" layoutY="337.0" text="客房数量" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="330.0" layoutY="335.0" text="客房价格" textFill="WHITE">
+      <Label layoutX="327.0" layoutY="420.0" text="客房价格" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="25.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="455.0" layoutY="215.0" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css" />
-      <TextField fx:id="roomPriceTextField" layoutX="455.0" layoutY="337.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
+      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="452.0" layoutY="260.0" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css" />
+      <TextField fx:id="roomPriceTextField" layoutX="452.0" layoutY="422.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff; -fx-text-fill: #ffffff;">
          <font>
             <Font name="Microsoft YaHei" size="15.0" />
          </font>
@@ -66,28 +66,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Pane layoutX="330.0" layoutY="402.0" prefHeight="178.0" prefWidth="627.0" style="-fx-border-color: #ffffff;">
-         <children>
-            <Label layoutX="239.0" layoutY="76.0" text="上传图片" textFill="#c6c2c2">
-               <font>
-                  <Font name="Microsoft YaHei" size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="addButton" layoutX="319.0" layoutY="67.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #ffffff00;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/AddButton.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </Pane>
-      <Button fx:id="confirmButton" layoutX="843.0" layoutY="607.0" mnemonicParsing="false" onAction="#confirmAddRoom" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认修改" textFill="WHITE">
+      <Button fx:id="confirmButton" layoutX="996.0" layoutY="544.0" mnemonicParsing="false" onAction="#confirmAddRoom" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" text="确认修改" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="16.0" />
          </font>
@@ -95,7 +74,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="addButton1" layoutX="590.0" layoutY="270.0" mnemonicParsing="false" onAction="#addRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="addButton1" layoutX="587.0" layoutY="333.0" mnemonicParsing="false" onAction="#addRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -110,7 +89,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="minusButton" layoutX="453.0" layoutY="270.0" mnemonicParsing="false" onAction="#minusRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
+      <Button fx:id="minusButton" layoutX="450.0" layoutY="333.0" mnemonicParsing="false" onAction="#minusRoomNum" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ffffff00;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -125,12 +104,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField fx:id="roomNumTextField" layoutX="503.0" layoutY="272.0" prefHeight="41.0" prefWidth="66.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="0">
+      <TextField fx:id="roomNumTextField" layoutX="500.0" layoutY="335.0" prefHeight="41.0" prefWidth="66.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="0">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="658.0" layoutY="217.0" text="（每次只能修改一种房间！）" textFill="WHITE">
+      <Label layoutX="655.0" layoutY="262.0" text="（每次只能修改一种房间！）" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>

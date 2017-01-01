@@ -48,7 +48,7 @@
       </Label>
       <ScrollPane layoutX="77.0" layoutY="153.0" prefHeight="474.0" prefWidth="1125.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="1102.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="471.0" prefWidth="1123.0">
                <children>
                   <Label layoutX="123.0" layoutY="53.0" text="酒店名称" textFill="WHITE">
                      <font>
@@ -126,32 +126,6 @@
                         <Font name="Microsoft YaHei" size="20.0" />
                      </font>
                   </CheckBox>
-                  <Label layoutX="121.0" layoutY="417.0" text="酒店图片" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei" size="25.0" />
-                     </font>
-                  </Label>
-                  <Pane layoutX="238.0" layoutY="425.0" prefHeight="148.0" prefWidth="719.0" style="-fx-border-color: #ffffff;">
-                     <children>
-                        <Label layoutX="295.0" layoutY="61.0" text="上传图片" textFill="#c6c2c2">
-                           <font>
-                              <Font name="Microsoft YaHei" size="20.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="addButton" layoutX="375.0" layoutY="52.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #ffffff00;">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <graphic>
-                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../image/AddButton.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </Pane>
                   <Label layoutX="123.0" layoutY="152.0" text="详细地址" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="25.0" />
