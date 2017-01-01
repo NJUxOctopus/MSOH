@@ -53,6 +53,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
     private String resource = "clerk/ClerkModifyHotelInfoController.fxml";
 
     private String hotelID;
+    private String clerkID;
     private HotelVO hotelVO;
     private HotelAdmin hotelAdmin;
     private HotelInfo hotelInfo;
@@ -71,6 +72,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
         hotelInfo = new HotelInfoController();
         this.hotelID = hotelID;
         hotelVO = hotelAdmin.findByID(hotelID);
+        this.clerkID = hotelVO.clerkID;
         hotelNameTextField.setText(hotelVO.hotelName);
         hotelAddressTextField.setText(hotelVO.hotelAddress);
         hotelIntroductionTextArea.setText(hotelVO.intro);
@@ -148,6 +150,9 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
             } else if (resultMessage.equals(ResultMessage.Hotel_modifyHotelInfoSuccess)) {
                 stageController = this.returnMessage("修改成功！");
                 stageController.closeStage(resource);
+
+                ClerkHotelInfoController clerkHotelInfoController = (ClerkHotelInfoController) stageController.getController("clerk/ClerkHotelInfo.fxml");
+                clerkHotelInfoController.initial(clerkID);
             }
         }
     }
@@ -186,8 +191,8 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
 
         if (hotelNameTextField.getText().equals(hotelVO.hotelName)
                 && starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1 == hotelVO.star
-                && ((String)cityChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.city)
-                && ((String)areaChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.area)
+                && ((String) cityChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.city)
+                && ((String) areaChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.area)
                 && hotelAddressTextField.getText().equals(hotelVO.hotelAddress)
                 && infras.toArray().equals(hotelVO.infra)
                 && hotelIntroductionTextArea.getText().equals(hotelVO.intro)) {

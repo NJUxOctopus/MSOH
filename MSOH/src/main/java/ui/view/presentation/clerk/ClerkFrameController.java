@@ -73,6 +73,7 @@ public class ClerkFrameController implements ControlledStage {
 
         PaneAdder paneAdder = new PaneAdder();
         paneAdder.addPane(clerkFramePane, "clerk/ClerkHotelInfo.fxml", 0, 0);
+        paneAdder.putIntoLoaders("clerk/ClerkHotelInfo.fxml");
 
         //初始化界面
         ClerkHotelInfoController clerkHotelInfoController = (ClerkHotelInfoController) paneAdder.getController();
