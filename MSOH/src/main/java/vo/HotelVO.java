@@ -70,6 +70,7 @@ public class HotelVO implements Serializable {
 
     /**
      * 主界面搜索界面时构造方法
+     *
      * @param city
      * @param area
      * @param star
@@ -86,7 +87,7 @@ public class HotelVO implements Serializable {
         this.checkOutTime = checkOutTime;
     }
 
-    public HotelVO(String hotelID, String hotelName, String checkInTime, String checkOutTime){
+    public HotelVO(String hotelID, String hotelName, String checkInTime, String checkOutTime) {
         this.hotelID = hotelID;
         this.hotelName = hotelName;
         this.checkInTime = checkInTime;
@@ -103,9 +104,11 @@ public class HotelVO implements Serializable {
      * @param star
      * @param hotelID
      */
-    public HotelVO(String hotelName, String hotelAddress, String intro, String[] infra, int star,
+    public HotelVO(String hotelName, String city, String area, String hotelAddress, String intro, String[] infra, int star,
                    String hotelID) {
         this.hotelName = hotelName;
+        this.city = city;
+        this.area = area;
         this.hotelAddress = hotelAddress;
         this.intro = intro;
         this.infra = infra;
@@ -115,6 +118,7 @@ public class HotelVO implements Serializable {
 
     /**
      * 添加修改酒店使用的构造方法
+     *
      * @param ID
      * @param hotelName
      * @param hotelAddress

@@ -60,7 +60,7 @@
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="448.0" layoutY="103.0" text="商圈：" textFill="WHITE">
+                  <Label layoutX="593.0" layoutY="103.0" text="商圈：" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei" size="25.0" />
                      </font>
@@ -93,7 +93,7 @@
                         <Font name="Microsoft YaHei" size="15.0" />
                      </font>
                   </TextField>
-                  <ChoiceBox fx:id="starLevelChoiceBox" layoutX="663.0" layoutY="56.0" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
+                  <ChoiceBox fx:id="starLevelChoiceBox" layoutX="663.0" layoutY="56.0" prefHeight="31.0" prefWidth="287.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -139,16 +139,16 @@
                         <Font name="Microsoft YaHei" size="15.0" />
                      </font>
                   </TextField>
-                  <Label fx:id="cityLabel" layoutX="317.0" layoutY="103.0" text="市" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="areaLabel" layoutX="526.0" layoutY="103.0" text="商圈" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei" size="25.0" />
-                     </font>
-                  </Label>
+                  <ChoiceBox fx:id="cityChoiceBox" layoutX="316.0" layoutY="105.0" prefHeight="31.0" prefWidth="192.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+                  <ChoiceBox fx:id="areaChoiceBox" layoutX="663.0" layoutY="105.0" prefHeight="31.0" prefWidth="289.0" style="-fx-background-color: #ffffff00; -fx-border-color: #ffffff;" stylesheets="@clerk.css">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
                </children>
             </AnchorPane>
         </content>
