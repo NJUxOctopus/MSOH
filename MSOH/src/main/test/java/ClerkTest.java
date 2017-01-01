@@ -56,9 +56,9 @@ public class ClerkTest {
      */
     @Test
     public void testChangePassword() throws Exception {
-        ResultMessage resultMessage1 = clerk.changePassword("320581199701010006", "ljr2016", "123456", "123456");
+        ResultMessage resultMessage1 = clerk.changePassword("320581196912223590", "123456", "123123", "123123");
         assertEquals(resultMessage1, ResultMessage.ChangePasswordSuccess);
-        clerk.changePassword("320581199701010006", "123456", "ljr2016", "ljr2016");
+        clerk.changePassword("320581196912223590", "123123", "123456", "123456");
     }
 
 

@@ -21,7 +21,7 @@ public class CustomerMainView extends Application {
         stageController = new StageController();
         stageController.loadStage("util/SelectTimeView.fxml", 1);
         SelectTimeViewController selectTimeViewController = (SelectTimeViewController)stageController.getController();
-        selectTimeViewController.init();
+        //selectTimeViewController.init();
 
     }
 }

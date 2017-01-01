@@ -32,12 +32,6 @@ public class CustomerInfoViewController implements ControlledStage{
     private String customerID;
 
     @FXML
-    private ImageView background;
-
-    @FXML
-    private Button modifyPasswordButton;
-
-    @FXML
     private Button saveInfoButton;
 
     @FXML
@@ -76,9 +70,6 @@ public class CustomerInfoViewController implements ControlledStage{
     private String icon;
 
     @FXML
-    private Button modifyIconButton;
-
-    @FXML
     private Button backButton;
 
     private String newName;
@@ -107,12 +98,6 @@ public class CustomerInfoViewController implements ControlledStage{
             controller.setToBeClosed(resource);
         }
     }
-
-    @FXML
-    private void modifyIcon(){
-
-    }
-
     /**
      * 跳转至客户修改密码界面
      */

@@ -132,27 +132,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </CheckBox>
-            <Pane layoutX="119.0" layoutY="117.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="224.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image_manager/addhotelpicture.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="pictureImage" fitHeight="150.0" fitWidth="200.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="addPictureButton" mnemonicParsing="false" onAction="#addPicture" prefHeight="197.0" prefWidth="200.0" style="-fx-background-color: #ffffff00;">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </Pane>
-            <Label layoutX="195.0" layoutY="381.0" text="简介" textFill="WHITE">
+            <Label layoutX="195.0" layoutY="100.0" text="简介" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextArea fx:id="briefInfoTextArea" layoutX="119.0" layoutY="413.0" prefHeight="200.0" prefWidth="200.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@manager.css" wrapText="true" />
+            <TextArea fx:id="briefInfoTextArea" layoutX="119.0" layoutY="159.0" prefHeight="454.0" prefWidth="200.0" scrollTop="1000.0" style="-fx-background-color: #00000000; -fx-border-color: #ffffffff; -fx-text-fill: #ffffffff;" stylesheets="@manager.css" wrapText="true" />
          </children>
       </Pane>
       <Button fx:id="backButton" layoutX="60.0" layoutY="40.0" mnemonicParsing="false" onAction="#closeStage" style="-fx-background-color: #ffffff00;">

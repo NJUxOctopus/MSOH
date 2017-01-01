@@ -10,6 +10,8 @@ import vo.CreditRecordVO;
 import vo.CustomerVO;
 import vo.HotelVO;
 
+import java.util.List;
+
 import static junit.framework.TestCase.assertEquals;
 
 /**
@@ -55,8 +57,8 @@ public class CustomerTest {
      */
     @Test
     public void testGetHistoryHotel() throws Exception {
-        HotelVO hotelVO = customer.getHistoryHotel("320581199704044040").get(0);
-        assertEquals("10000006", hotelVO.hotelID);
+        List<HotelVO> hotelVO = customer.getHistoryHotel("320581199704044040");
+        assertEquals(0, hotelVO.size());
     }
 
     /**

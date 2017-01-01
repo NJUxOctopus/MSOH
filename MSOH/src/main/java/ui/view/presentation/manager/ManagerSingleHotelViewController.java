@@ -107,8 +107,10 @@ public class ManagerSingleHotelViewController implements ControlledStage {
             addressLabel.setText(hotelVO.hotelAddress);
             //酒店图片
             ImageController imageController = new ImageController();
-            WritableImage wr = imageController.loadImage(hotelVO.picUrls[0], 200, 150);
-            hotelImage.setImage(wr);
+            if(!hotelVO.picUrls[0].equals("")) {
+                WritableImage wr = imageController.loadImage(hotelVO.picUrls[0], 200, 150);
+                hotelImage.setImage(wr);
+            }
         }catch (RemoteException e){
             e.printStackTrace();
         }

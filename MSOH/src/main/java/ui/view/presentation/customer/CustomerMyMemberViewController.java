@@ -106,7 +106,7 @@ public class CustomerMyMemberViewController implements ControlledStage{
             int credit = userAdmin.findCustomerByID(customerID).credit;
             MemberType memberType = userAdmin.findCustomerByID(customerID).memberType;
             creditLabel.setText(credit + "");
-            double locate = 200 + credit / 20;
+            double locate = 200 + credit / 100;
             creditPane.setLayoutX(locate);
             if(memberType != MemberType.NONMEMBER){
                 memberVO = userAdmin.findMemberByID(customerID);
