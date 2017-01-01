@@ -35,7 +35,7 @@ public class LoginTest {
      */
     @Test
     public void testLogin() throws Exception {
-        ResultMessage resultMessage1 = login.login("320581199701010006", "ljr2016");
+        ResultMessage resultMessage1 = login.login("320581196912223590", "123456");
         assertEquals(ResultMessage.Login_ClerkSuccess, resultMessage1);
     }
 

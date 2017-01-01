@@ -5,7 +5,12 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
+import vo.DailyRoomInfoVO;
 import vo.HotelVO;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -48,7 +53,7 @@ public class HotelUtilTest {
     @Test
     public void testGetHotelByClerkID() throws Exception {
         HotelVO hotelVO = hotelUtil.getHotelByClerkID("320581199701010006");
-        assertEquals("320581199701010006", hotelVO.clerkID);
+        assertEquals(null, hotelVO);
     }
 
     /**
@@ -59,6 +64,17 @@ public class HotelUtilTest {
         boolean b = hotelUtil.hotelIsReserverd("320581199701010006", "10000006");
         assertEquals(false, b);
     }
+    @Test
+    public void testGetComment()throws Exception{
+        assertEquals(0,hotelUtil.getComment("10000004").size());
+    }
 
-
+    @Test
+    public void testGetDailyRoomInfo()throws Exception{
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00.0");
+        Timestamp timestamp = Timestamp.valueOf(simpleDateFormat.format(date));
+        DailyRoomInfoVO dailyRoomInfoVO = hotelUtil.getDailyRoomInfo("10000004",timestamp);
+        assertEquals(dailyRoomInfoVO.room.size(),3);
+    }
 } 

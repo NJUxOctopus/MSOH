@@ -1,5 +1,6 @@
 
 
+import businesslogic.marketer_bl.Marketer;
 import businesslogic.marketer_bl.MarketerUtil;
 import org.junit.Test;
 import org.junit.Before;
@@ -37,5 +38,11 @@ public class MarketerUtilTest {
     public void testGetSingle() throws Exception {
         MarketerVO marketerVO = marketerUtil.getSingle("320581201612102017");
         assertEquals("320581201612102017", marketerVO.ID);
+    }
+
+    @Test
+    public void testGetByName()throws Exception{
+        MarketerVO marketerVO = marketerUtil.getByName("孙销").get(0);
+        assertEquals("320581201612102017",marketerVO.ID);
     }
 } 

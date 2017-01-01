@@ -35,7 +35,7 @@ public class OrderUtilTest {
      */
     @Test
     public void testGetSingle() throws Exception {
-        assertEquals(null, orderUtil.getSingle(""));
+        assertEquals("南京古南都饭店", orderUtil.getSingle("201701010001").hotelName);
     }
 
     /**
@@ -43,7 +43,7 @@ public class OrderUtilTest {
      */
     @Test
     public void testGetOrdersByCustomerID() throws Exception {
-        assertEquals(null, orderUtil.getOrdersByCustomerID(""));
+        assertEquals(null, orderUtil.getOrdersByCustomerID("3202811997"));
     }
 
     /**
@@ -59,7 +59,7 @@ public class OrderUtilTest {
      */
     @Test
     public void testGetOrdersByHotelID() throws Exception {
-        assertEquals(null, orderUtil.getOrdersByHotelID(""));
+        assertEquals(0, orderUtil.getOrdersByHotelID("10000004").size());
     }
 
     /**
@@ -67,7 +67,7 @@ public class OrderUtilTest {
      */
     @Test
     public void testGetOrderByHotelAndStatus() throws Exception {
-        assertEquals(0, orderUtil.getOrderByHotelAndStatus("", OrderStatus.ABNORMAL).size());
+        assertEquals(0, orderUtil.getOrderByHotelAndStatus("10000004", OrderStatus.ABNORMAL).size());
     }
 
 } 
