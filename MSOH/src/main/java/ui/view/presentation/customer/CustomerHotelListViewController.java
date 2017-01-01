@@ -149,7 +149,6 @@ public class CustomerHotelListViewController implements ControlledStage {
         }else{
             checkIn = null;
             checkOut = null;
-            rightTime = false;
         }
 
         if(roomType == null && roomNum > 0){
@@ -158,13 +157,16 @@ public class CustomerHotelListViewController implements ControlledStage {
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
             controller.setLabel("请先选择房间类型再选择房间数量！");
+        }else{
+            rightRoom = true;
         }
         HotelInfo hotelInfo = new HotelInfoController();
         try {
-
+            if(roomType == null)
+                roomType = "";
             if (rightRoom && rightTime) {
-                List<HotelVO> hotelVOList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
-                addHotelPane(hotelVOList);
+                hotelList = hotelInfo.filter(star + "", hotelName, score + "", 5 + "", checkIn, checkOut, roomType, roomNum, area);
+                addHotelPane(hotelList);
             }
 
         }catch (RemoteException e){

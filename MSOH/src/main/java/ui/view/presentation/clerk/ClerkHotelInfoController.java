@@ -75,10 +75,7 @@ public class ClerkHotelInfoController implements ControlledStage {
         //显示酒店评分
         hotelScore.setText(df.format(hotelVO.score) + "分");
         //加载酒店房间类型列表
-        for (RoomVO room : hotelAdmin.getDailyRoomInfo(hotelVO.hotelID, time).room) {
-            roomType.add(room.roomType);
-            leftRooms.add(String.valueOf(room.leftRooms));
-        }
+        getRoomNum();
         roomTypeChoiceBox.setItems(roomType);
         //设置提示信息
         roomTypeChoiceBox.setTooltip(new Tooltip("选择房间类型"));
@@ -87,9 +84,25 @@ public class ClerkHotelInfoController implements ControlledStage {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 int index = roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+                try{
+                    getRoomNum();
+                }catch (RemoteException e){
+                    e.printStackTrace();
+                }
                 roomNum.setText(leftRooms.get(index));
             }
         });
+        roomTypeChoiceBox.setValue(roomType.get(0));
+
+    }
+
+    private void getRoomNum() throws RemoteException{
+        hotelAdmin = new HotelAdminController();
+        hotelVO = hotelAdmin.findHotelByClerkID(clerkID);
+        for (RoomVO room : hotelAdmin.getDailyRoomInfo(hotelVO.hotelID, time).room) {
+            roomType.add(room.roomType);
+            leftRooms.add(String.valueOf(room.leftRooms));
+        }
     }
 
     /**

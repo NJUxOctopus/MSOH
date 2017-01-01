@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkCheckOrderListController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkCheckOrderListController">
    <children>
       <Pane prefHeight="473.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;">
          <children>
@@ -78,7 +78,7 @@
                </font></TextField>
             <ScrollPane layoutY="96.0" prefHeight="323.0" prefWidth="688.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css">
               <content>
-                <AnchorPane fx:id="orderListPane" minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="669.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css" />
+                <AnchorPane fx:id="orderListPane" minHeight="0.0" minWidth="0.0" prefHeight="312.0" prefWidth="658.0" style="-fx-background-color: #ffffff00;" stylesheets="@clerk.css" />
               </content>
             </ScrollPane>
             <Button layoutX="623.0" layoutY="49.0" mnemonicParsing="false" onAction="#searchOrder" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: #ffffff00;" textFill="WHITE">

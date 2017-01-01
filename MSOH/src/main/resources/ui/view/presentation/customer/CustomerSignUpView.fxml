@@ -67,8 +67,8 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <PasswordField fx:id="fisrtPasswordTextField" layoutX="569.0" layoutY="402.0" prefHeight="32.0" prefWidth="551.0" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFFFF;" />
-            <PasswordField fx:id="secondPasswordTextField" layoutX="569.0" layoutY="477.0" prefHeight="32.0" prefWidth="551.0" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFFFF;" />
+            <PasswordField fx:id="fisrtPasswordTextField" layoutX="569.0" layoutY="402.0" prefHeight="32.0" prefWidth="551.0" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFFFF; -fx-text-fill: #ffffffff;" />
+            <PasswordField fx:id="secondPasswordTextField" layoutX="569.0" layoutY="477.0" prefHeight="32.0" prefWidth="551.0" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFFFF; -fx-text-fill: #ffffffff;" />
          </children>
       </Pane>
       <Pane fx:id="iconPanel" layoutX="137.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0">

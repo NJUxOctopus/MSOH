@@ -270,7 +270,7 @@ public class ClerkOtherPromotionController implements ControlledStage {
      */
     private void renew() throws IOException, ClassNotFoundException {
         stageController = new StageController();
-        ClerkHotelPromotionController clerkHotelPromotionController = (ClerkHotelPromotionController) stageController.getController();
+        ClerkHotelPromotionController clerkHotelPromotionController = (ClerkHotelPromotionController) stageController.getController("clerk/ClerkHotelPromotion.fxml");
         clerkHotelPromotionController.initial(clerkID);
     }
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkModifyAvailableRoomsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.view.presentation.clerk.ClerkModifyAvailableRoomsController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1302.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -104,14 +104,14 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField fx:id="roomNumTextField" layoutX="500.0" layoutY="335.0" prefHeight="41.0" prefWidth="66.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="0">
+      <TextField fx:id="roomNumTextField" alignment="CENTER" layoutX="488.0" layoutY="333.0" prefHeight="40.0" prefWidth="100.0" style="-fx-text-fill: #ffffff; -fx-background-color: #ffffff00;" text="0">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="655.0" layoutY="262.0" text="（每次只能修改一种房间！）" textFill="WHITE">
+      <Label layoutX="655.0" layoutY="270.0" text="（每次只能修改一种房间！）" textFill="#e1e0e0">
          <font>
-            <Font name="Microsoft YaHei" size="20.0" />
+            <Font size="16.0" />
          </font>
       </Label>
       <Button layoutX="1179.0" layoutY="38.0" mnemonicParsing="false" onAction="#exit" prefHeight="16.0" prefWidth="15.0" style="-fx-background-color: #ffffff00;">

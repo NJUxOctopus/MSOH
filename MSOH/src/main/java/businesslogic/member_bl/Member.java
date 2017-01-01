@@ -75,22 +75,26 @@ public class Member implements Member_BLService {
         int credit = customerUtil.getSingle(customerID).credit;//该信用值为用户当前信用值
         int[] boundraies = memberLevelVO.creditBoundaries;//会员等级界限
         int initLevel = memberPO.getLevel();//会员当前等级
-        if (credit < boundraies[initLevel] && credit > boundraies[initLevel])//若会员信用值依旧在该等级的信用界限中，则等级不变
-            return ResultMessage.levelNotChange;
-        else {
-            if (credit < boundraies[0])//若信用值低于最低要求，则等级为0级，但依旧是会员
-                memberPO.setLevel(0);
+        if(credit < boundraies[boundraies.length - 1]) {
+            if (credit < boundraies[initLevel] && credit > boundraies[initLevel - 1])//若会员信用值依旧在该等级的信用界限中，则等级不变
+                return ResultMessage.levelNotChange;
             else {
-                for (int i = 0; i < boundraies.length; i++) {
-                    if (i != boundraies.length - 1) {
-                        if (credit > boundraies[i] && credit < boundraies[i + 1])//若信用值在两者之间
-                            memberPO.setLevel(i + 1);
-                    } else if (credit >= boundraies[i])
-                        memberPO.setLevel(i + 1);//若信用值大于最高界限
+                if (credit < boundraies[0])//若信用值低于最低要求，则等级为0级，但依旧是会员
+                    memberPO.setLevel(0);
+                else {
+                    for (int i = 0; i < boundraies.length; i++) {
+                        if (i != boundraies.length - 1) {
+                            if (credit > boundraies[i] && credit < boundraies[i + 1])//若信用值在两者之间
+                                memberPO.setLevel(i + 1);
+                        } else if (credit >= boundraies[i])
+                            memberPO.setLevel(i + 1);//若信用值大于最高界限
+                    }
                 }
+                if (member_dataService.updateMember(memberPO))
+                    return ResultMessage.levelChangeSuccess;
             }
-            if (member_dataService.updateMember(memberPO))
-                return ResultMessage.levelChangeSuccess;
+        }else{
+            memberPO.setLevel(boundraies.length);
         }
         return ResultMessage.Fail;
     }
