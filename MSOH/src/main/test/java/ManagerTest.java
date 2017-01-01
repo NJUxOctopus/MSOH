@@ -45,9 +45,9 @@ public class ManagerTest {
      */
     @Test
     public void testChangePassword() throws Exception {
-        ResultMessage resultMessage1 = manager.changePassword("320522201612072017", "123123", "123456", "123456");
+        ResultMessage resultMessage1 = manager.changePassword("320522201612072017", "123456", "123123", "123123");
         assertEquals(resultMessage1, ResultMessage.ChangePasswordSuccess);
-        manager.changePassword("320581199701010006", "123456", "123123", "123123");
+        manager.changePassword("320522201612072017", "123123", "123456", "123456");
     }
 
 
