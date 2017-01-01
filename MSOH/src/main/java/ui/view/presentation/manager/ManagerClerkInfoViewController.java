@@ -178,6 +178,7 @@ public class ManagerClerkInfoViewController implements ControlledStage {
             }
             if(resultMessage == ResultMessage.ChangeInfoSuccess){
                 errorBoxController.setLabel("成功修改酒店工作人员信息！");
+                stageController.closeStage(resource);
             }
         }catch (RemoteException e){
             e.printStackTrace();
@@ -199,6 +200,7 @@ public class ManagerClerkInfoViewController implements ControlledStage {
         cleckNameTextField.setText(clerkVO.name);
         phoneTextField.setText(clerkVO.phone);
         cleckIDTextField.setText(clerkVO.ID);
+        cleckIDTextField.setEditable(false);
         hotelIDTextField.setText(clerkVO.hotelID);
         if(!clerkVO.picUrl.equals("")) {
             ImageController imageController = new ImageController();

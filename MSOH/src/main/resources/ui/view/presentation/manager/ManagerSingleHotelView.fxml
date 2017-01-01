@@ -27,15 +27,15 @@
       <Label layoutX="35.0" layoutY="205.0" text="所属城市:" textFill="WHITE" />
       <Label layoutX="35.0" layoutY="230.0" text="所属商圈:" textFill="WHITE" />
       <Label layoutX="35.0" layoutY="255.0" text="详细地址:" textFill="WHITE" />
-      <Label fx:id="cityLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="205.0" prefHeight="29.0" prefWidth="89.0" text="？？？？？？？？？？" textFill="WHITE" wrapText="true">
+      <Label fx:id="cityLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="207.0" prefHeight="29.0" prefWidth="89.0" text="？？？？？？？？？？" textFill="WHITE" wrapText="true">
          <font>
             <Font size="10.0" />
          </font></Label>
-      <Label fx:id="areaLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="231.0" prefHeight="29.0" prefWidth="89.0" text="？？？？？？？？？？？？？" textFill="WHITE" wrapText="true">
+      <Label fx:id="areaLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="233.0" prefHeight="29.0" prefWidth="89.0" text="？？？？？？？？？？？？？" textFill="WHITE" wrapText="true">
          <font>
             <Font size="10.0" />
          </font></Label>
-      <Label fx:id="addressLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="256.0" prefHeight="39.0" prefWidth="95.0" text="？？？？？？？？？？？" textFill="WHITE" wrapText="true">
+      <Label fx:id="addressLabel" alignment="TOP_LEFT" layoutX="90.0" layoutY="258.0" prefHeight="39.0" prefWidth="95.0" text="？？？？？？？？？？？" textFill="WHITE" wrapText="true">
          <font>
             <Font size="10.0" />
          </font></Label>
@@ -47,6 +47,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fx:id="hotelImage" fitHeight="125.0" fitWidth="175.0" layoutX="8.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="hotelImage" fitHeight="120.0" fitWidth="160.0" layoutX="16.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

@@ -163,6 +163,7 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
             }
             if(resultMessage == ResultMessage.Marketer_ChangeInfoSuccess){
                 errorBoxController.setLabel("成功修改网站营销人员信息！");
+                stageController.closeStage(resource);
             }
         }catch (RemoteException e){
             e.printStackTrace();
@@ -177,6 +178,7 @@ public class ManagerMarketerInfoViewController implements ControlledStage {
         addButton.setText("修改");
         addMarketerPane.setOpacity(0);
         modifyMarketerPane.setOpacity(1);
+        marketerIDTextField.setEditable(false);
         passwordTextField.setEditable(false);
         passwordLabel.setOpacity(0);
         passwordTextField.setOpacity(0);

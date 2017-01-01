@@ -101,7 +101,7 @@ public class ManagerModifyCustomerInfoViewController implements ControlledStage 
         if(isModified()){
             CustomerInfoChange customerInfoChange = new CustomerInfoChangeController();
             try {
-                ResultMessage resultMessage = customerInfoChange.changeInfo(new CustomerVO(ID, name, email, phone));
+                ResultMessage resultMessage = customerInfoChange.changeInfo(new CustomerVO(ID, name, phone, email));
                 stageController = new StageController();
                 stageController.loadStage("util/ErrorBoxView.fxml", 0.75);
                 ErrorBoxController errorBoxController = (ErrorBoxController)stageController.getController();
