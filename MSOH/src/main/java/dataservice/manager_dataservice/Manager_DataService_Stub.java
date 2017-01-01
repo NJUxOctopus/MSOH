@@ -25,14 +25,4 @@ public class Manager_DataService_Stub implements Manager_DataService{
 		else
 			return null;
 	}
-
-	@Override
-	public List<ManagerPO> findAllManagers() throws IOException, ClassNotFoundException {
-		return null;
-	}
-
-	@Override
-	public List<ManagerPO> findManagerByName(String name) throws IOException, ClassNotFoundException {
-		return null;
-	}
 }
