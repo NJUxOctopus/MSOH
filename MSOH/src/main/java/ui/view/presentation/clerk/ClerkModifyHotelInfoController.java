@@ -1,12 +1,16 @@
 package ui.view.presentation.clerk;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ChoiceBoxListCell;
 import ui.controller.HotelAdminController;
+import ui.controller.HotelInfoController;
 import ui.view.controllerservice.HotelAdmin;
+import ui.view.controllerservice.HotelInfo;
 import ui.view.presentation.util.ConfirmExitController;
 import ui.view.presentation.util.ControlledStage;
 import ui.view.presentation.StageController;
@@ -42,15 +46,17 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
     @FXML
     private TextArea hotelIntroductionTextArea;
     @FXML
-    private Label cityLabel;
+    private ChoiceBox cityChoiceBox;
     @FXML
-    private Label areaLabel;
+    private ChoiceBox areaChoiceBox;
 
     private String resource = "clerk/ClerkModifyHotelInfoController.fxml";
 
     private String hotelID;
+    private String clerkID;
     private HotelVO hotelVO;
     private HotelAdmin hotelAdmin;
+    private HotelInfo hotelInfo;
     private List<String> infras = new ArrayList<String>();
 
     @Override
@@ -63,8 +69,10 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
      */
     public void initial(String hotelID) throws RemoteException {
         hotelAdmin = new HotelAdminController();
+        hotelInfo = new HotelInfoController();
         this.hotelID = hotelID;
         hotelVO = hotelAdmin.findByID(hotelID);
+        this.clerkID = hotelVO.clerkID;
         hotelNameTextField.setText(hotelVO.hotelName);
         hotelAddressTextField.setText(hotelVO.hotelAddress);
         hotelIntroductionTextArea.setText(hotelVO.intro);
@@ -73,8 +81,29 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
         starLevelChoiceBox.setItems(star);
         starLevelChoiceBox.setValue(star.get(hotelVO.star - 1));
 
-        cityLabel.setText(hotelVO.city);
-        areaLabel.setText(hotelVO.area);
+        //初始化酒店城市和商圈
+        ObservableList<String> cities = FXCollections.observableArrayList();
+        List<String> toAdd = hotelInfo.getAllCities();
+        for (int i = 0; i < toAdd.size(); i++) {
+            cities.add(toAdd.get(i));
+        }
+        cityChoiceBox.setItems(cities);
+        cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                ObservableList<String> areas = FXCollections.observableArrayList();
+                try {
+                    List<String> toAdd = hotelInfo.getAreaByCity((String) cityChoiceBox.getSelectionModel().getSelectedItem());
+                    for (int i = 0; i < toAdd.size(); i++) {
+                        areas.add(toAdd.get(i));
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        cityChoiceBox.getSelectionModel().select(hotelVO.city);
+        areaChoiceBox.getSelectionModel().select(hotelVO.area);
 
 
         List<String> infra = new ArrayList<String>();
@@ -112,6 +141,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
         } else {
             hotelAdmin = new HotelAdminController();
             ResultMessage resultMessage = hotelAdmin.updateHotelInfo(new HotelVO(hotelNameTextField.getText(),
+                    (String) cityChoiceBox.getSelectionModel().getSelectedItem(), (String) areaChoiceBox.getSelectionModel().getSelectedItem(),
                     hotelAddressTextField.getText(), hotelIntroductionTextArea.getText(),
                     (String[]) infras.toArray(), starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1,
                     hotelID));
@@ -120,6 +150,9 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
             } else if (resultMessage.equals(ResultMessage.Hotel_modifyHotelInfoSuccess)) {
                 stageController = this.returnMessage("修改成功！");
                 stageController.closeStage(resource);
+
+                ClerkHotelInfoController clerkHotelInfoController = (ClerkHotelInfoController) stageController.getController("clerk/ClerkHotelInfo.fxml");
+                clerkHotelInfoController.initial(clerkID);
             }
         }
     }
@@ -158,6 +191,8 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
 
         if (hotelNameTextField.getText().equals(hotelVO.hotelName)
                 && starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1 == hotelVO.star
+                && ((String) cityChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.city)
+                && ((String) areaChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.area)
                 && hotelAddressTextField.getText().equals(hotelVO.hotelAddress)
                 && infras.toArray().equals(hotelVO.infra)
                 && hotelIntroductionTextArea.getText().equals(hotelVO.intro)) {
