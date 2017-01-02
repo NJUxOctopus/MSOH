@@ -54,12 +54,12 @@ public class ClerkTest {
     /**
      * Method: changePassword(String ID, String oldPassword, String newPassword1, String newPassword2)
      */
-    @Test
-    public void testChangePassword() throws Exception {
-        ResultMessage resultMessage1 = clerk.changePassword("320581196912223590", "123456", "123123", "123123");
-        assertEquals(resultMessage1, ResultMessage.ChangePasswordSuccess);
-        clerk.changePassword("320581196912223590", "123123", "123456", "123456");
-    }
+//    @Test
+//    public void testChangePassword() throws Exception {
+//        ResultMessage resultMessage1 = clerk.changePassword("320581196912223590", "123456", "123123", "123123");
+//        assertEquals(resultMessage1, ResultMessage.ChangePasswordSuccess);
+//        clerk.changePassword("320581196912223590", "123123", "123456", "123456");
+//    }
 
 
 } 
