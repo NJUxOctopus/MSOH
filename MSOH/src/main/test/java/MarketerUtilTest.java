@@ -1,6 +1,5 @@
 
 
-import businesslogic.marketer_bl.Marketer;
 import businesslogic.marketer_bl.MarketerUtil;
 import org.junit.Test;
 import org.junit.Before;
