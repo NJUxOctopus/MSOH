@@ -54,9 +54,6 @@ public class ClerkHotelInfoController implements ControlledStage {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
     private Timestamp time = Timestamp.valueOf(dateFormat.format(date));
 
-    //当前酒店房间信息
-    private ObservableList<String> roomType = FXCollections.observableArrayList();
-    private List<String> leftRooms = new ArrayList<String>();
 
     @Override
     public void setStageController(StageController stageController) {
@@ -75,35 +72,40 @@ public class ClerkHotelInfoController implements ControlledStage {
         //显示酒店评分
         hotelScore.setText(df.format(hotelVO.score) + "分");
         //加载酒店房间类型列表
-        getRoomNum();
-        roomTypeChoiceBox.setItems(roomType);
-        //设置提示信息
-        roomTypeChoiceBox.setTooltip(new Tooltip("选择房间类型"));
-        //设置ChoicebBox监听
-        roomTypeChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                int index = roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
-                try{
-                    getRoomNum();
-                }catch (RemoteException e){
-                    e.printStackTrace();
-                }
-                roomNum.setText(leftRooms.get(index));
-            }
-        });
-        roomTypeChoiceBox.setValue(roomType.get(0));
-
-    }
-
-    private void getRoomNum() throws RemoteException{
-        hotelAdmin = new HotelAdminController();
-        hotelVO = hotelAdmin.findHotelByClerkID(clerkID);
+        ObservableList<String> roomType = FXCollections.observableArrayList();
+        List<String> leftRooms = new ArrayList<String>();
         for (RoomVO room : hotelAdmin.getDailyRoomInfo(hotelVO.hotelID, time).room) {
             roomType.add(room.roomType);
             leftRooms.add(String.valueOf(room.leftRooms));
         }
+        roomTypeChoiceBox.setItems(roomType);
+        //设置提示信息
+        roomTypeChoiceBox.setTooltip(new Tooltip("选择房间类型"));
+        roomTypeChoiceBox.setValue(roomType.get(0));
+        roomNum.setText(leftRooms.get(0));
+        //设置ChoicebBox监听
+        roomTypeChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                try {
+                    ObservableList<String> roomType = FXCollections.observableArrayList();
+                    List<String> leftRooms = new ArrayList<String>();
+                    hotelAdmin = new HotelAdminController();
+                    for (RoomVO room : hotelAdmin.getDailyRoomInfo(hotelVO.hotelID, time).room) {
+                        leftRooms.add(String.valueOf(room.leftRooms));
+                    }
+                    int index = roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().intValue();
+                    if (index == -1)
+                        index = 0;
+                    roomNum.setText(leftRooms.get(index));
+                }catch (RemoteException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
+
 
     /**
      * 查看详细评价按钮结果，显示酒店详细评价页面

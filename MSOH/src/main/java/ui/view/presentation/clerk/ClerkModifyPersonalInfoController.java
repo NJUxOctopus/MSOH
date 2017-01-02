@@ -112,6 +112,8 @@ public class ClerkModifyPersonalInfoController implements ControlledStage {
                 this.returnMessage("手机号格式错误！");
             } else if (resultMessage.equals(ResultMessage.ChangeInfoSuccess)) {
                 stageController = this.returnMessage("修改成功！");
+                ClerkFrameController clerkFrameController = (ClerkFrameController) stageController.getController("clerk/ClerkFrame.fxml");
+                clerkFrameController.initial(clerkID);
                 stageController.closeStage(resource);
             } else {
                 this.returnMessage("未知错误！");
