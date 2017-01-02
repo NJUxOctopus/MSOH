@@ -148,6 +148,9 @@ public class CustomerSingleOrderPaneViewController implements ControlledStage {
                 processOrderButton.setText("评价酒店");
                 processOrderButton.setOpacity(1);
             }
+            if(orderStatus == OrderStatus.EXECUTED){
+                orderStatusLabel.setText("已执行订单");
+            }
             if(orderStatus == OrderStatus.UNEXECUTED){
                 orderStatusLabel.setText("未执行订单");
                 processOrderButton.setOpacity(1);

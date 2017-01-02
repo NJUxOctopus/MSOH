@@ -48,7 +48,25 @@ public class ClerkSingleOrderController implements ControlledStage {
         this.clerkID = clerkID;
         this.orderVO = orderVO;
         orderIDLabel.setText(orderVO.orderID);
-        orderStatusLabel.setText(orderVO.orderType.toString());
+        OrderStatus orderStatus = orderVO.orderType;
+        if(orderStatus == OrderStatus.FINISHED_UNEVALUATED) {
+            orderStatusLabel.setText("未评价订单");
+        }
+        if(orderStatus == OrderStatus.EXECUTED){
+            orderStatusLabel.setText("已执行订单");
+        }
+        if(orderStatus == OrderStatus.UNEXECUTED){
+            orderStatusLabel.setText("未执行订单");
+        }
+        if(orderStatus == OrderStatus.REVOKED){
+            orderStatusLabel.setText("已撤销订单");
+        }
+        if(orderStatus == OrderStatus.ABNORMAL){
+            orderStatusLabel.setText("异常订单");
+        }
+        if(orderStatus == OrderStatus.FINISHED_EVALUATED){
+            orderStatusLabel.setText("已完成订单");
+        }
         String roomTypes = "";
         for (String types : orderVO.rooms) {
             roomTypes += types + "; ";

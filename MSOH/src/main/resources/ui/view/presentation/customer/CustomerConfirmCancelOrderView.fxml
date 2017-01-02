@@ -20,10 +20,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" layoutX="4.0" layoutY="55.0" prefHeight="22.0" prefWidth="236.0" text="您确认要撤销该订单吗？" textFill="#458ee0">
+      <Label alignment="CENTER" layoutX="5.0" layoutY="42.0" prefHeight="22.0" prefWidth="236.0" text="您确认要撤销该订单吗？" textFill="#458ee0">
          <font>
             <Font name="Microsoft YaHei" size="20.0" />
          </font>
       </Label>
+      <Label layoutX="18.0" layoutY="68.0" prefHeight="76.0" prefWidth="209.0" text="若撤销时间离最晚时间不足六小时，会扣除您订单价值一半的信用值！" textFill="#808080" wrapText="true" />
    </children>
 </Pane>

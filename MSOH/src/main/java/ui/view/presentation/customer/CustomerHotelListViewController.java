@@ -128,7 +128,7 @@ public class CustomerHotelListViewController implements ControlledStage {
         String checkInTime = checkInTimeTextField.getText();
         String checkOutTime = checkOutTimeTextField.getText();
         boolean rightTime = true;
-        if((checkInTime != null && checkInTime == null) || (checkInTime == null && checkInTime != null)){
+        if((!checkInTime.equals("") && checkOutTime.equals("")) || (checkInTime.equals("") && !checkOutTime.equals(""))){
             stageController = new StageController();
             stageController.loadStage("util/ErrorBoxView.fxml", 0.8);
             ErrorBoxController controller = (ErrorBoxController) stageController.getController();
@@ -136,7 +136,7 @@ public class CustomerHotelListViewController implements ControlledStage {
         }
         Timestamp checkIn;
         Timestamp checkOut;
-        if(!checkInTime.equals("") && !checkInTime.equals("")){
+        if(!checkInTime.equals("") && !checkOutTime.equals("")){
             checkIn = Timestamp.valueOf(checkInTime + " 00:00:00");
             checkOut = Timestamp.valueOf(checkOutTime + " 00:00:00");
             if(checkIn.after(checkOut)){

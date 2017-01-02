@@ -261,7 +261,9 @@ public class CustomerMainViewController implements ControlledStage {
         String checkOutTime = checkOutTimeLabel.getText();
 
         HotelVO hotelVO = new HotelVO(city, area, star, score, checkInTime, checkOutTime);
+        if(!checkInTime.equals("") && !checkOutTime.equals("")){
 
+        }
         if (city != null && area != null) {
             stageController = new StageController();
             stageController.loadStage("customer/CustomerHotelListView.fxml", 1);

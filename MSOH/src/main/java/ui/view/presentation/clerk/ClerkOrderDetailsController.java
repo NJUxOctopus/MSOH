@@ -90,7 +90,25 @@ public class ClerkOrderDetailsController implements ControlledStage {
         customerIDLabel.setText(orderVO.customerID);
         customerNameLabel.setText(orderVO.customerName);
         customerPhoneLabel.setText(orderVO.phone);
-        orderStatusLabel.setText(orderVO.orderType.toString());
+        OrderStatus orderStatus = orderVO.orderType;
+        if(orderStatus == OrderStatus.FINISHED_UNEVALUATED) {
+            orderStatusLabel.setText("未评价订单");
+        }
+        if(orderStatus == OrderStatus.EXECUTED){
+            orderStatusLabel.setText("已执行订单");
+        }
+        if(orderStatus == OrderStatus.UNEXECUTED){
+            orderStatusLabel.setText("未执行订单");
+        }
+        if(orderStatus == OrderStatus.REVOKED){
+            orderStatusLabel.setText("已撤销订单");
+        }
+        if(orderStatus == OrderStatus.ABNORMAL){
+            orderStatusLabel.setText("异常订单");
+        }
+        if(orderStatus == OrderStatus.FINISHED_EVALUATED){
+            orderStatusLabel.setText("已完成订单");
+        }
         estimatedCheckinTimeLabel.setText(orderVO.estimatedCheckinTime == null ? "" : orderVO.estimatedCheckinTime.toString().substring(0, 10));
         estimatedCheckoutTimeLabel.setText(orderVO.estimatedCheckoutTime == null ? "" : orderVO.estimatedCheckoutTime.toString().substring(0, 10));
         actualCheckinTimeLabel.setText(orderVO.actualCheckinTime == null ? "" : orderVO.actualCheckinTime.toString().substring(0, 10));

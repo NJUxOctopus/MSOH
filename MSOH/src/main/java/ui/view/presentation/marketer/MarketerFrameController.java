@@ -57,7 +57,7 @@ public class MarketerFrameController implements ControlledStage {
         this.marketerID = marketerID;
         marketerVO = userAdmin.findMarketerByID(this.marketerID);
         marketerName.setText(marketerVO.name);
-
+        selectShade.setY(1000);
         editMemberLevel = new EditMemberLevelController();
     }
 
