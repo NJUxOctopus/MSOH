@@ -51,7 +51,8 @@ public class ClerkFrameController implements ControlledStage {
     public void initial(String clerkID) throws RemoteException {
 
         this.clerkID = clerkID;
-
+        selectShade.setY(1000);
+        selectShade.setHeight(165);
         hotelAdmin = new HotelAdminController();
         hotelName.setText(hotelAdmin.findHotelByClerkID(clerkID).hotelName);
 

@@ -144,6 +144,8 @@ public class ClerkModifyAvailableRoomsController implements ControlledStage {
                 //修改每日房间信息成功
                 stageController = this.returnMessage("修改成功！");
                 stageController.closeStage(resource);
+                ClerkHotelInfoController clerkHotelInfoController = (ClerkHotelInfoController) stageController.getController("clerk/ClerkHotelInfo.fxml");
+                clerkHotelInfoController.initial(hotelAdmin.findByID(hotelID).clerkID);
             } else {
                 this.returnMessage("未知错误！");
             }

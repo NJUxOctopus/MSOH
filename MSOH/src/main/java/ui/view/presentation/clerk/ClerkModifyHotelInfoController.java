@@ -50,7 +50,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
     @FXML
     private ChoiceBox areaChoiceBox;
 
-    private String resource = "clerk/ClerkModifyHotelInfoController.fxml";
+    private String resource = "clerk/ClerkModifyHotelInfo.fxml";
 
     private String hotelID;
     private String clerkID;
@@ -91,12 +91,15 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
         cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                ObservableList<String> areas = FXCollections.observableArrayList();
+                String selectedCity = (String) cityChoiceBox.getSelectionModel().getSelectedItem();
+                HotelInfo hotelInfo = new HotelInfoController();
                 try {
-                    List<String> toAdd = hotelInfo.getAreaByCity((String) cityChoiceBox.getSelectionModel().getSelectedItem());
-                    for (int i = 0; i < toAdd.size(); i++) {
-                        areas.add(toAdd.get(i));
-                    }
+                    List<String> area = hotelInfo.getAreaByCity(selectedCity);
+                    ObservableList<String> areas = FXCollections.observableArrayList();
+
+                    for (int i = 0; i < area.size(); i++)
+                        areas.add(area.get(i));
+                    areaChoiceBox.setItems(areas);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -123,10 +126,11 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
         if (!this.isModified()) {
             //信息未修改
             stageController.closeStage(resource);
+        }else {
+            stageController.loadStage("util/ConfirmExit.fxml", 0.8);
+            ConfirmExitController controller = (ConfirmExitController) stageController.getController();
+            controller.setToBeClosed("clerk/ClerkModifyHotelInfo.fxml");
         }
-        stageController.loadStage("util/ConfirmExit.fxml", 0.8);
-        ConfirmExitController controller = (ConfirmExitController) stageController.getController();
-        controller.setToBeClosed("clerk/ClerkModifyHotelInfo.fxml");
     }
 
     /**
@@ -143,7 +147,7 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
             ResultMessage resultMessage = hotelAdmin.updateHotelInfo(new HotelVO(hotelNameTextField.getText(),
                     (String) cityChoiceBox.getSelectionModel().getSelectedItem(), (String) areaChoiceBox.getSelectionModel().getSelectedItem(),
                     hotelAddressTextField.getText(), hotelIntroductionTextArea.getText(),
-                    (String[]) infras.toArray(), starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1,
+                    infras.toArray(new String[infras.size()]), starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1,
                     hotelID));
             if (resultMessage.equals(ResultMessage.Blank)) {
                 this.returnMessage("信息填写不完整！");
@@ -189,16 +193,21 @@ public class ClerkModifyHotelInfoController implements ControlledStage {
             infras.add("健身房");
         }
 
-        if (hotelNameTextField.getText().equals(hotelVO.hotelName)
-                && starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1 == hotelVO.star
-                && ((String) cityChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.city)
-                && ((String) areaChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.area)
-                && hotelAddressTextField.getText().equals(hotelVO.hotelAddress)
-                && infras.toArray().equals(hotelVO.infra)
-                && hotelIntroductionTextArea.getText().equals(hotelVO.intro)) {
-            //信息未修改
-            return false;
-        } else {
+        if(cityChoiceBox.getSelectionModel().getSelectedItem() != null
+          && areaChoiceBox.getSelectionModel().getSelectedItem() != null) {
+            if (hotelNameTextField.getText().equals(hotelVO.hotelName)
+                    && starLevelChoiceBox.getSelectionModel().selectedIndexProperty().intValue() + 1 == hotelVO.star
+                    && ((String) cityChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.city)
+                    && ((String) areaChoiceBox.getSelectionModel().getSelectedItem()).equals(hotelVO.area)
+                    && hotelAddressTextField.getText().equals(hotelVO.hotelAddress)
+                    && infras.toArray().equals(hotelVO.infra)
+                    && hotelIntroductionTextArea.getText().equals(hotelVO.intro)) {
+                //信息未修改
+                return false;
+            } else {
+                return true;
+            }
+        }else{
             return true;
         }
     }
